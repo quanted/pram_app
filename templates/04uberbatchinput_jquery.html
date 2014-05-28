@@ -39,7 +39,9 @@ $(document).ready(function() {
 			    processData: false,
 				success: function(url) {
 					$.unblockUI();
-					$("div.articles").replaceWith(url);
+					$("div.articles").replaceWith(function() {
+    					return $(url).hide().fadeIn();
+					});
 					$("div.right").remove();
 					location.hash = "output";
 				},

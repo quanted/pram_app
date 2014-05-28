@@ -61,8 +61,6 @@ out_html_all = {}
 job_q = Queue.Queue()
 thread_count = 10
 
-# data.next()
-
 
 def html_table(row_inp_all):
     while True:

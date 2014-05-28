@@ -1,8 +1,45 @@
-import numpy
-from django.template import Context, Template
-from django.utils.safestring import mark_safe
-import datetime
-import logging
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+import importlib
+import linksLeft
+from REST import rest_funcs
+
+def historyPage(request, model='none', header='none'):
+    viewmodule = importlib.import_module('.views', 'models.'+model)
+    header = viewmodule.header
+
+    html = render_to_string('01uberheader.html', {'title': header+' History'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'history'})
+    html = html + linksLeft.linksLeft()
+    html = html + render_to_string('04uberalgorithm_start.html', {
+            'model_attributes': header+' User History'})
+    html = html + render_to_string('history_pagination.html', {})   
+
+    hist_obj = rest_funcs.user_hist('admin', model)
+    html = html + table_all(hist_obj)
+
+    html = html + render_to_string('04ubertext_end.html', {})
+    html = html + render_to_string('06uberfooter.html', {'links': ''})
+
+    response = HttpResponse()
+    response.write(html)
+    return response
+
+def historyPageRevist(request):
+
+    jid = request.GET.get('jid')
+    model_name = request.GET.get('model_name')
+    print jid, model_name
+    html = rest_funcs.get_output_html(jid, model_name)
+
+    response = HttpResponse()
+    response.write(html)
+    return response
+
+
+#######################################################################################
+########################## Moved from history_tables.py ###############################
+#######################################################################################
 
 def table_all(user_hist_obj):
     table1_out = table_1(user_hist_obj)
@@ -37,5 +74,3 @@ def table_1(user_hist_obj):
             </div>
         '''
         return html
-
- # 

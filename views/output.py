@@ -7,11 +7,12 @@ import logging
 
 def outputPage(request, model='none'):
     viewmodule = importlib.import_module('.views', 'models.'+model)
+    outputmodule = importlib.import_module('.'+model+'_output', 'models.'+model)
     tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
     from REST import rest_funcs
     header = viewmodule.header
 
-    outputPageFunc = getattr(viewmodule, model+'OutputPage')      # function name = 'model'OutputPage  (e.g. 'sipOutputPage')
+    outputPageFunc = getattr(outputmodule, model+'OutputPage')      # function name = 'model'OutputPage  (e.g. 'sipOutputPage')
     model_obj = outputPageFunc(request)
 
     html = render_to_string('01uberheader.html', {'title': header+' Output'})

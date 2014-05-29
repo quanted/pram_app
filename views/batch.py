@@ -22,17 +22,17 @@ def batchInputPage(request, model='none', header='none'):
     return response
 
 def batchOutputPage(request, model='none', header='none'):
-    importlib.import_module('.'+model+'_model', 'models.'+model)
-    viewmodule = importlib.import_module('.'+model+'_batchoutput', 'models.'+model)
+    viewmodule = importlib.import_module('.views', 'models.'+model)
+    batchoutputmodule = importlib.import_module('.'+model+'_batchoutput', 'models.'+model)
     from REST import rest_funcs
-    header = importlib.import_module('.views', 'models.'+model).header
+    header = viewmodule.header
     linksleft = linksLeft.linksLeft()
 
     html = render_to_string('04uberbatch_start.html', {
             'model': model,
             'model_attributes': header+' Batch Output'})
 
-    batchOutputPageFunc = getattr(viewmodule, model+'BatchOutputPage')  # function name = 'model'BatchOutputPage  (e.g. 'sipBatchOutputPage')
+    batchOutputPageFunc = getattr(batchoutputmodule, model+'BatchOutputPage')  # function name = 'model'BatchOutputPage  (e.g. 'sipBatchOutputPage')
     batchOutputTuple = batchOutputPageFunc(request)
     html = html + batchOutputTuple[0]
     html = html + render_to_string('export.html', {})

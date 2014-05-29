@@ -54,64 +54,94 @@ def agdrift_trexInputPage(request, model=''):
 
 @require_POST
 def agdrift_trexOutputPage(request):
-    import agdrift_trex_model
 
+    # AgDrift Inputs
+    drop_size = request.POST.get('drop_size')
+    ecosystem_type = request.POST.get('ecosystem_type')
+    application_method = request.POST.get('application_method')
+    boom_height = request.POST.get('boom_height')
+    orchard_type = request.POST.get('orchard_type')
+    aquatic_type = request.POST.get('aquatic_type')
+    distance = request.POST.get('distance')
+    calculation_input = request.POST.get('calculation_input')
+
+    # T-REX Inputs
     chem_name = request.POST.get('chemical_name')
     use = request.POST.get('Use')
     formu_name = request.POST.get('Formulated_product_name')
     a_i = request.POST.get('percent_ai')
     a_i = float(a_i)/100
-    a_r = request.POST.get('application_rate')
-    a_r = float(a_r)         
-    n_a = request.POST.get('number_of_applications')
-    n_a = float(n_a)
+    Application_type = request.POST.get('Application_type')
+    seed_crop = float(request.POST.get('seed_crop'))
+    seed_crop_v = request.POST.get('seed_crop_v')
+    p_i = request.POST.get('percent_incorporated')
+    p_i = float(p_i)/100
+    seed_treatment_formulation_name = request.POST.get('seed_treatment_formulation_name')
+    den = request.POST.get('density_of_product')
+    den = float(den)
+    m_s_r_p = request.POST.get('maximum_seedling_rate_per_use')
+    m_s_r_p = float(m_s_r_p)
+    r_s = request.POST.get('row_sp') 
+    r_s=float(r_s)
+    b_w = request.POST.get('bandwidth')   #convert to ft
+    b_w = float(b_w)/12
 
-    i_a = request.POST.get('interval_between_applications')
-    i_a = float(i_a)
+    if Application_type=='Seed Treatment':
+       n_a = 1
+    else:
+       n_a = float(request.POST.get('noa'))
+    
+    rate_out = []
+    day_out = [0]
+    for i in range(int(n_a)):
+       j=i+1
+       rate_temp = request.POST.get('rate'+str(j))
+       rate_out.append(float(rate_temp))
+       # day_temp = float(request.POST.get('day'+str(j)))
+       # day_out.append(day_temp)  
     h_l = request.POST.get('Foliar_dissipation_half_life')
-    h_l = float(h_l)        
-    avian_ld50 = float(request.POST.get('avian_ld50'))
-    avian_lc50 = float(request.POST.get('avian_lc50'))
-    avian_NOAEC = float(request.POST.get('avian_NOAEC'))
-    avian_NOAEL = float(request.POST.get('avian_NOAEL'))
-
+    ld50_bird = request.POST.get('avian_ld50')
+    lc50_bird = request.POST.get('avian_lc50')
+    NOAEC_bird = float(request.POST.get('avian_NOAEC'))
+    try:
+        NOAEL_bird = float(request.POST.get('avian_NOAEL'))
+    except:
+        NOAEL_bird = 'N/A'
+    aw_bird_sm = request.POST.get('body_weight_of_the_assessed_bird_small')
+    aw_bird_sm = float(aw_bird_sm)  
+    aw_bird_md = request.POST.get('body_weight_of_the_assessed_bird_medium')
+    aw_bird_md = float(aw_bird_md) 
+    aw_bird_lg = request.POST.get('body_weight_of_the_assessed_bird_large')
+    aw_bird_lg = float(aw_bird_lg)       
+    
     Species_of_the_tested_bird_avian_ld50 = request.POST.get('Species_of_the_tested_bird_avian_ld50')
     Species_of_the_tested_bird_avian_lc50 = request.POST.get('Species_of_the_tested_bird_avian_lc50')
     Species_of_the_tested_bird_avian_NOAEC = request.POST.get('Species_of_the_tested_bird_avian_NOAEC')
     Species_of_the_tested_bird_avian_NOAEL = request.POST.get('Species_of_the_tested_bird_avian_NOAEL')
 
-    bw_avian_ld50 = float(request.POST.get('bw_avian_ld50'))
-    bw_avian_lc50 = float(request.POST.get('bw_avian_lc50'))
-    bw_avian_NOAEC = float(request.POST.get('bw_avian_NOAEC'))
-    bw_avian_NOAEL = float(request.POST.get('bw_avian_NOAEL'))
+    tw_bird_ld50 = float(request.POST.get('bw_avian_ld50'))
+    tw_bird_lc50 = float(request.POST.get('bw_avian_lc50'))
+    tw_bird_NOAEC = float(request.POST.get('bw_avian_NOAEC'))
+    tw_bird_NOAEL = float(request.POST.get('bw_avian_NOAEL'))
 
-    mineau_scaling_factor = request.POST.get('mineau_scaling_factor')
-    mineau_scaling_factor = float(mineau_scaling_factor)
-    c_mamm_a = request.POST.get('body_weight_of_the_consumed_mammal_a')
-    c_mamm_a = float(c_mamm_a)
-    c_herp_a = request.POST.get('body_weight_of_the_consumed_herp_a')
-    c_herp_a = float(c_herp_a)    
+    x = request.POST.get('mineau_scaling_factor')
+    ld50_mamm = request.POST.get('mammalian_ld50')
+    try:
+        lc50_mamm = float(request.POST.get('mammalian_lc50'))
+    except:
+        lc50_mamm = 'N/A'
+    NOAEC_mamm = request.POST.get('mammalian_NOAEC')
+    NOAEC_mamm = float(NOAEC_mamm)
+    NOAEL_mamm = request.POST.get('mammalian_NOAEL')
 
-    bw_herp_a_sm = request.POST.get('BW_herptile_a_sm')
-    bw_herp_a_sm = float(bw_herp_a_sm)
-    bw_herp_a_md = request.POST.get('BW_herptile_a_md')
-    bw_herp_a_md = float(bw_herp_a_md)
-    bw_herp_a_lg = request.POST.get('BW_herptile_a_lg')
-    bw_herp_a_lg = float(bw_herp_a_lg)
-
-    wp_herp_a_sm = request.POST.get('W_p_a_sm')
-    wp_herp_a_sm = float(wp_herp_a_sm)/100      
-    wp_herp_a_md = request.POST.get('W_p_a_md')
-    wp_herp_a_md = float(wp_herp_a_md)/100   
-    wp_herp_a_lg = request.POST.get('W_p_a_lg')
-    wp_herp_a_lg = float(wp_herp_a_lg)/100   
-    
-
-    agdrift_trex_obj = agdrift_trex_model.agdrift_trex('single',chem_name, use, formu_name, a_i, h_l, n_a, i_a, a_r, avian_ld50, avian_lc50, avian_NOAEC, avian_NOAEL, 
-                                     Species_of_the_tested_bird_avian_ld50, Species_of_the_tested_bird_avian_lc50, Species_of_the_tested_bird_avian_NOAEC, Species_of_the_tested_bird_avian_NOAEL,
-                                     bw_avian_ld50, bw_avian_lc50, bw_avian_NOAEC, bw_avian_NOAEL,
-                                     mineau_scaling_factor, bw_herp_a_sm, bw_herp_a_md, bw_herp_a_lg, wp_herp_a_sm, wp_herp_a_md, 
-                                     wp_herp_a_lg, c_mamm_a, c_herp_a)
+    aw_mamm_sm = request.POST.get('body_weight_of_the_assessed_mammal_small')
+    aw_mamm_sm = float(aw_mamm_sm)  
+    aw_mamm_md = request.POST.get('body_weight_of_the_assessed_mammal_medium')
+    aw_mamm_md = float(aw_mamm_md) 
+    aw_mamm_lg = request.POST.get('body_weight_of_the_assessed_mammal_large')
+    aw_mamm_lg = float(aw_mamm_lg)               
+    tw_mamm = request.POST.get('body_weight_of_the_tested_mammal')
+    tw_mamm = float(tw_mamm) 
 
 
     return agdrift_trex_obj

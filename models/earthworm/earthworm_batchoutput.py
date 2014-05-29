@@ -1,28 +1,12 @@
 # -*- coding: utf-8 -*-
-
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
-import webapp2 as webapp
-from google.appengine.ext.webapp.util import run_wsgi_app
-from google.appengine.ext.webapp import template
-import numpy as np
-import cgi
-import cgitb
-cgitb.enable()
-import unittest
-from StringIO import StringIO
-import cStringIO
-import logging
-import sys
-sys.path.append("../earthworm")
-from earthworm import earthworm_model,earthworm_tables
-from uber import uber_lib
+from django.views.decorators.http import require_POST
 import csv
-import numpy
-import rest_funcs
+import earthworm_model, earthworm_tables
+import logging
 from threading import Thread
 import Queue
 from collections import OrderedDict
+logger = logging.getLogger("SIPBatchOutput")
 
 ######Pre-defined inputs########
 Kow=[]
@@ -123,38 +107,9 @@ def loop_html(thefile):
     return  html_timestamp + sum_html + "".join(out_html_all_sort.values())
 
 
+@require_POST
+def earthwormBatchOutputPage(request):
+    thefile = request.FILES['upfile']
+    iter_html=loop_html(thefile)
 
-class earthwormBatchOutputPage(webapp.RequestHandler):
-    def post(self):
-        text_file1 = open('earthworm/earthworm_description.txt','r')
-        x = text_file1.read()
-        form = cgi.FieldStorage()
-        logger.info(form) 
-        thefile = form['file-0']
-        iter_html=loop_html(thefile)        
-        templatepath = os.path.dirname(__file__) + '/../templates/'
-        ChkCookie = self.request.cookies.get("ubercookie")
-        # html = uber_lib.SkinChk(ChkCookie)
-        # html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'earthworm','page':'batchinput'})
-        # html = html + template.render (templatepath + '03ubertext_links_left.html', {})                
-        html = template.render(templatepath + '04uberbatch_start.html', {
-                'model':'earthworm',
-                'model_attributes':'Earthworm Batch Output'})
-        # html = html + earthworm_tables.timestamp("", jid_batch[0])
-        html = html + iter_html
-        # html = html + template.render(templatepath + 'earthworm-batchoutput-jqplot.html', {})
-        html = html + template.render(templatepath + '04uberoutput_end.html', {'sub_title': ''})
-        # html = html + template.render(templatepath + '06uberfooter.html', {'links': ''})
-        rest_funcs.batch_save_dic(html, [x.__dict__ for x in earthworm_all], 'earthworm', 'batch', jid_batch[0], ChkCookie, templatepath)
-        self.response.out.write(html)
-
-app = webapp.WSGIApplication([('/.*', earthwormBatchOutputPage)], debug=True)
-
-def main():
-    run_wsgi_app(app)
-
-if __name__ == '__main__':
-    main()
-    
-    
-
+    return iter_html, earthworm_all, jid_batch

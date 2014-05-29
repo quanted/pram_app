@@ -36,4 +36,4 @@ def outputPage(request, model='none'):
 
     response = HttpResponse()
     response.write(html)
-    return response
+    return response

@@ -54,13 +54,10 @@ class iec(object):
 
         self.jid = rest_funcs.gen_jid()
         url=os.environ['UBERTOOL_REST_SERVER'] + '/iec/' + self.jid 
-        # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url=url, data=data, headers=http_headers, timeout=60)
         output_val = json.loads(response.content)['result']
         for key, value in output_val.items():
             setattr(self, key, value)
-
-
 
     def set_unit_testing_variables(self):
         z_score_f_out_expected = None

@@ -1,0 +1,15 @@
+import datetime
+from models.trex2 import trex2_tables
+from models.agdrift import agdrift_tables
+
+def timestamp(agdrift_trex_obj):
+    st = datetime.datetime.strptime(agdrift_trex_obj.jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
+    html="""
+    <div class="out_">
+    <b>Agdrift-Trex<br>
+    """
+    html = html + st
+    html = html + " (EST)</b>"
+    html = html + """
+    </div>"""
+    return html

@@ -235,7 +235,7 @@ def table_all(dust_obj):
     return html_all
 
 def table_all_qaqc(dust_obj):
-    return ""
+    return "In Development"
 
 def timestamp(dust_obj="", batch_jid=""):
     #ts = time.time()

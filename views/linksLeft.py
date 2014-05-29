@@ -10,7 +10,7 @@ def linksLeft():
                 ('SIP', 'sip'),
                 ('STIR', 'stir'),
                 ('DUST', 'dust'),
-                ('T-Rex', 'trex2'),
+                ('T-REX', 'trex2'),
                 ('T-Herps', 'therps'),
                 ('IEC', 'iec'),
                 ('AgDrift', 'agdrift'),

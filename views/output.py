@@ -3,6 +3,8 @@ from django.http import HttpResponse
 import importlib
 import linksLeft
 
+import logging
+
 def outputPage(request, model='none'):
     viewmodule = importlib.import_module('.views', 'models.'+model)
     tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
@@ -18,7 +20,15 @@ def outputPage(request, model='none'):
     html = html + render_to_string('04uberoutput_start.html', {
             'model_attributes': header+' Output'})
     html = html + tablesmodule.timestamp(model_obj)
-    html = html + tablesmodule.table_all(model_obj)
+    try: # Check if table_all() returns string
+        tables_output = tablesmodule.table_all(model_obj)
+    except:
+        pass
+    try: # Check if table_all() returns tuple
+        tables_output = tablesmodule.table_all(model_obj)[0]
+    except TypeError: # Pass error to output page if fails
+        tables_output = "table_all() Returned Wrong Type"
+    html = html + tables_output
     html = html + render_to_string('export.html', {})
     html = html + render_to_string('04uberoutput_end.html', {})
     html = html + render_to_string('06uberfooter.html', {'links': ''})

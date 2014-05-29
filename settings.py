@@ -136,4 +136,4 @@ STATICFILES_FINDERS = (
 STATIC_URL = '/static/'
 
 print 'BASE_DIR = %s' %BASE_DIR
-print 'PROJECT_ROOT = %s' %PROJECT_ROOT
+print 'PROJECT_ROOT = %s' %PROJECT_ROOT

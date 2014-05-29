@@ -193,33 +193,9 @@ def loop_html(thefile):
     return  html_timestamp + sum_html + "".join(out_html_all_sort.values())
 
 
-
 @require_POST
 def terrplantBatchOutputPage(request):
     thefile = request.FILES['upfile']
     iter_html=loop_html(thefile)
 
     return iter_html, terr_all, jid_batch
-
-# class TerrPlantBatchOutputPage(webapp.RequestHandler):
-#     def post(self):
-#         # text_file1 = open('terrplant/terrplant_description.txt','r')
-#         # x = text_file1.read()
-#         form = cgi.FieldStorage()
-#         logger.info(form) 
-#         thefile = form['file-0']
-#         iter_html=loop_html(thefile)        
-#         templatepath = os.path.dirname(__file__) + '/../templates/'
-#         ChkCookie = self.request.cookies.get("ubercookie")
-#         # html = uber_lib.SkinChk(ChkCookie)
-#         # html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'terrplant','page':'batchinput'})
-#         # html = html + template.render (templatepath + '03ubertext_links_left.html', {})                
-#         html = template.render(templatepath + '04uberbatch_start.html', {
-#                 'model':'terrplant',
-#                 'model_attributes':'TerrPlant Batch Output'})
-#         html = html + iter_html
-#         # html = html + template.render(templatepath + 'terrplant-batchoutput-jqplot.html', {})
-#         html = html + template.render(templatepath + '04uberoutput_end.html', {'sub_title': ''})
-#         # html = html + template.render(templatepath + '06uberfooter.html', {'links': ''})
-#         rest_funcs.batch_save_dic(html, [x.__dict__ for x in terr_all], 'terrplant', 'batch', jid_batch[0], ChkCookie, templatepath)
-#         

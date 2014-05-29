@@ -201,7 +201,7 @@ def gett2data(sm):
 def table_sum_2(avian_oral_ld50,body_weight_assessed_bird,body_weight_tested_bird,mineau_scaling_factor,mammal_inhalation_lc50,duration_mammal_inhalation_study,body_weight_assessed_mammal,body_weight_tested_mammal,mammal_oral_ld50):
     #pre-table sum_input_2
     html = """
-        <H4 class="out_1 collapsible" id="section3"><span></span>Toxicity  Properties</H4>
+        <H4 class="out_1 collapsible" id="section3"><span></span>Toxicity Properties</H4>
             <div class="out_ container_output">
     """
 

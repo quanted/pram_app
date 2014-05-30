@@ -4,7 +4,8 @@ from django.template.loader import render_to_string
 def therpsInputPage(request, model='', header=''):
     import therps_parameters,therps_tooltips
 
-    html = render_to_string('04uberinput_start_tabbed.html', {
+    html = render_to_string('04uberinput_jquery.html', { 'model': model })
+    html = html + render_to_string('04uberinput_start_tabbed.html', {
             'model':'therps', 
             'model_attributes':'T-Herps Inputs'})
     html = html + render_to_string('04uberinput_tabbed_nav.html', {

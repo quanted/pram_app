@@ -4,7 +4,8 @@ from django.template.loader import render_to_string
 def sipInputPage(request, model='', header=''):
     import sip_parameters,sip_tooltips
 
-    html = render_to_string('04uberinput_start.html', {
+    html = render_to_string('04uberinput_jquery.html', { 'model': model })
+    html = html + render_to_string('04uberinput_start.html', {
             'model':model, 
             'model_attributes': header+' Inputs'})
     html = html + render_to_string('sip_ubertool_config_input.html', {})

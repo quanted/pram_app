@@ -528,7 +528,13 @@ var browserHeight = $(window).height();
 var winleft = (browserWidth / 2) - 220 + "px";
 var wintop = (browserHeight / 2) - 30 + "px";
 // Model name
-var model = pathSlice.slice(0, -5).split('_')[0];
+var noOfUndScr = pathSlice.split('_').length
+var model;
+if (noOfUndScr > 2) {
+	model = pathSlice.split('_').slice(0,noOfUndScr-1).join('_');
+} else {
+	model = pathSlice.split('_')[0];
+}
 // Remove query string from 'pathSlice' var
 if (pathPage.indexOf("?")) {
 	pathPage = pathPage.split('.html?')[0];

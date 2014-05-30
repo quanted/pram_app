@@ -2,7 +2,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 import importlib
 import linksLeft
-
+import inspect
 import logging
 
 def outputPage(request, model='none'):
@@ -15,25 +15,33 @@ def outputPage(request, model='none'):
     outputPageFunc = getattr(outputmodule, model+'OutputPage')      # function name = 'model'OutputPage  (e.g. 'sipOutputPage')
     model_obj = outputPageFunc(request)
 
+    if type(model_obj) is tuple:
+        modelOutputHTML = model_obj[0]
+        model_obj = model_obj[1]
+    else:
+        logging.info(model_obj.__dict__)
+        modelOutputHTML = tablesmodule.timestamp(model_obj)
+        
+        tables_output = tablesmodule.table_all(model_obj)
+        
+        if type(tables_output) is tuple:
+            modelOutputHTML = tables_output[0]
+        elif type(tables_output) is str or type(tables_output) is unicode:
+            modelOutputHTML = tables_output
+        else:
+            modelOutputHTML = "table_all() Returned Wrong Type"
+
+    # Render output page view
     html = render_to_string('01uberheader.html', {'title': header+' Output'})
     html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'output'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberoutput_start.html', {
             'model_attributes': header+' Output'})
-    html = html + tablesmodule.timestamp(model_obj)
-    try: # Check if table_all() returns string
-        tables_output = tablesmodule.table_all(model_obj)
-        html = html + tables_output
-    except TypeError:
-        try: # Check if table_all() returns tuple
-            tables_output = tablesmodule.table_all(model_obj)[0]
-            html = html + tables_output
-        except TypeError: # Pass error to output page if fails
-            tables_output = "table_all() Returned Wrong Type"
-            html = html + tables_output
+    html = html + modelOutputHTML
     html = html + render_to_string('export.html', {})
     html = html + render_to_string('04uberoutput_end.html', {})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
+
     rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
 
     response = HttpResponse()

@@ -4,7 +4,8 @@ from django.template.loader import render_to_string
 def trex2InputPage(request, model='', header=''):
     import trex2_parameters,trex2_tooltips
 
-    html = render_to_string('04uberinput_start_tabbed.html', {
+    html = render_to_string('04uberinput_jquery.html', { 'model': model })
+    html = html + render_to_string('04uberinput_start_tabbed.html', {
             'model':model, 
             'model_attributes': header+' Inputs'})
     html = html + """<a href="trex_input.html" class="TREX1"> Want to Use TREX 1.4.1?</a>"""

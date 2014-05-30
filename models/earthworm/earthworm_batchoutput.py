@@ -6,7 +6,7 @@ import logging
 from threading import Thread
 import Queue
 from collections import OrderedDict
-logger = logging.getLogger("SIPBatchOutput")
+logger = logging.getLogger("earthwormBatchOutput")
 
 ######Pre-defined inputs########
 Kow=[]
@@ -28,8 +28,6 @@ all_threads = []
 out_html_all = {}
 job_q = Queue.Queue()
 thread_count = 10
-
-logger = logging.getLogger("earthwormBatchOutput")
 
 def html_table(row_inp_all):
     while True:

@@ -44,12 +44,6 @@ def linksLeft():
                 ('Saved Runs', 'user'),
             ])
         ),
-        ('Coming Soon', OrderedDict([
-                ('Downstream Dilution Model', 'ddm'),
-                ('SuperPRZM', 'superprzm'),
-                ('SAM', 'sam'),
-            ])
-        ),
     ])
 
     html = render_to_string('03ubertext_links_left.html', {'link_dict': link_dict})

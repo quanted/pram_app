@@ -39,9 +39,10 @@ def trex2InputPage(request, model='', header=''):
     html = html + str(trex2_parameters.trexInp_mammal())
     html = html + render_to_string('04uberinput_tabbed_end.html', {'sub_title': 'Submit'})
     # Check if tooltips dictionary exists
-    if hasattr(trex2_tooltips, 'tooltips'):
+    try:
+        hasattr(trex2_tooltips, 'tooltips')
         tooltips = trex2_tooltips.tooltips
-    else:
+    except:
         tooltips = {}
     html = html + render_to_string('05ubertext_tooltips_right.html', {'tooltips':tooltips})
 

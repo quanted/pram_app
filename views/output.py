@@ -19,7 +19,7 @@ def outputPage(request, model='none'):
         modelOutputHTML = model_obj[0]
         model_obj = model_obj[1]
     else:
-        logging.info(model_obj.__dict__)
+        # logging.info(model_obj.__dict__)
         modelOutputHTML = tablesmodule.timestamp(model_obj)
         
         tables_output = tablesmodule.table_all(model_obj)

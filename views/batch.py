@@ -3,6 +3,8 @@ from django.http import HttpResponse
 import importlib
 import linksLeft
 
+import logging
+
 def batchInputPage(request, model='none', header='none'):
     viewmodule = importlib.import_module('.views', 'models.'+model)
     header = viewmodule.header
@@ -13,7 +15,10 @@ def batchInputPage(request, model='none', header='none'):
     html = html + render_to_string('04uberbatchinput.html', {
             'model': model,
             'model_attributes': header+' Batch Run'})
-    html = html + render_to_string('04uberbatchinput_jquery.html', {'model':model, 'header':header})
+    if model == 'przm':
+        html = html + render_to_string('04uberbatchinput_jquery_przm_batch.html', {'model':model, 'header':header})
+    else:
+        html = html + render_to_string('04uberbatchinput_jquery.html', {'model':model, 'header':header})
     html = html + render_to_string('05ubertext_links_right.html', {})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
 
@@ -34,13 +39,17 @@ def batchOutputPage(request, model='none', header='none'):
 
     batchOutputPageFunc = getattr(batchoutputmodule, model+'BatchOutputPage')  # function name = 'model'BatchOutputPage  (e.g. 'sipBatchOutputPage')
     batchOutputTuple = batchOutputPageFunc(request)
-    html = html + batchOutputTuple[0]
-    html = html + render_to_string('export.html', {})
-    html = html + render_to_string('04uberoutput_end.html', {})
+    if model == 'przm':
+        logging.info(batchOutputTuple)
+        html = html + ''
+    else:
+        html = html + batchOutputTuple[0]
+        html = html + render_to_string('export.html', {})
+        html = html + render_to_string('04uberoutput_end.html', {})
 
-    model_all = batchOutputTuple[1]
-    jid_batch = batchOutputTuple[2]
-    rest_funcs.batch_save_dic(html, [x.__dict__ for x in model_all], model, 'batch', jid_batch[0], linksleft)
+        model_all = batchOutputTuple[1]
+        jid_batch = batchOutputTuple[2]
+        rest_funcs.batch_save_dic(html, [x.__dict__ for x in model_all], model, 'batch', jid_batch[0], linksleft)
 
     response = HttpResponse()
     response.write(html)

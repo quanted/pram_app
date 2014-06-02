@@ -3,8 +3,7 @@ import time, datetime
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
 import trex2_model,trex2_parameters
-import time
-import datetime
+
 
 def getheaderpvu():
 	headings = ["Parameter", "Value", "Units"]

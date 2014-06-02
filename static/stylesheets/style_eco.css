@@ -1228,4 +1228,14 @@ th {
 	font-weight:normal;
 }
 
+/* Form Validation */
+
+form label.error {
+    width: 200px;
+    display: block;
+    float: right;
+    color: red;
+    padding-left: 10px;
+}
+
 /* Testing */

@@ -2,7 +2,7 @@ from django.template.loader import render_to_string
 
 
 def trex2InputPage(request, model='', header=''):
-    import trex2_parameters,trex2_tooltips
+    import trex2_parameters
 
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
     html = html + render_to_string('04uberinput_start_tabbed.html', {
@@ -40,6 +40,7 @@ def trex2InputPage(request, model='', header=''):
     html = html + render_to_string('04uberinput_tabbed_end.html', {'sub_title': 'Submit'})
     # Check if tooltips dictionary exists
     try:
+        import trex2_tooltips
         hasattr(trex2_tooltips, 'tooltips')
         tooltips = trex2_tooltips.tooltips
     except:

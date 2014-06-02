@@ -2,7 +2,7 @@ from django.template.loader import render_to_string
 
 
 def examsInputPage(request, model='', header=''):
-    import exams_parameters,exams_tooltips
+    import exams_parameters
               
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
     html = html + render_to_string('04uberinput_start.html', {
@@ -29,6 +29,7 @@ def examsInputPage(request, model='', header=''):
     html = html + render_to_string('04uberinput_end.html', {'sub_title': 'Submit'})
     # Check if tooltips dictionary exists
     try:
+        import exams_tooltips
         hasattr(exams_tooltips, 'tooltips')
         tooltips = exams_tooltips.tooltips
     except:

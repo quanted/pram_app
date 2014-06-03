@@ -1,7 +1,6 @@
 import numpy
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
-import sip_model,sip_parameters
 import logging
 import time
 import datetime

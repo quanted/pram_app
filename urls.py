@@ -18,6 +18,7 @@ urlpatterns = patterns('views',
     (r'^eco/(?P<model>.*?)/qaqc/?$', 'qaqc.qaqcPage'),
     (r'^eco/(?P<model>.*?)/history/?$', 'history.historyPage'),
     (r'^eco/.*?/history_revisit\.html$', 'history.historyPageRevist'),
+    # (r'^eco/.*?/przm5_intermediate\.html', 'przm5_intermediate.przm5IntermediatePage'),
     (r'^eco/(?P<model>.*?)/?$', 'description.descriptionPage'),
     (r'^eco_index\.html$', 'landing.ecoLandingPage'),                        #Legacy links
     (r'^(?P<model>.*?)_description\.html$', 'description.descriptionPage'),  #Legacy links
@@ -38,3 +39,4 @@ handler404 = 'views.misc.fileNotFound'
 handler500 = 'views.misc.fileNotFound'
 # 403 Error view (forbidden)
 handler403 = 'views.misc.fileNotFound'
+

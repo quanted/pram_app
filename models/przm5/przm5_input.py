@@ -115,4 +115,5 @@ def przm5InputPage(request, model='', header=''):
         tooltips = {}
     html = html + render_to_string('05ubertext_tooltips_right.html', {'tooltips':tooltips})
 
-    return html
+    return html
+

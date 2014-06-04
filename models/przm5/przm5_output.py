@@ -10,6 +10,5 @@ def przm5OutputPage(request):
     for key in request.POST:
         args[key] = request.POST.get(key)
     args["run_type"] = "single"
-    logging.info(args)
     przm5_obj = przm5_model.przm5(args)
     return przm5_obj

@@ -123,7 +123,7 @@ def get_jid(run_type, pfac, snowmelt, evapDepth,
                "convertSoil1": convertSoil1,
                "convert1to3": convert1to3,
                "convert2to3": convert2to3}
-    # logger.info(all_dic)
+    logger.info(all_dic)
     data = json.dumps(all_dic)
     jid = rest_funcs.gen_jid()
     url=url_part1 + '/przm5/' + jid 

@@ -31,6 +31,7 @@ def outputPage(request, model='none'):
         else:
             modelOutputHTML = "table_all() Returned Wrong Type"
 
+
     # Render output page view
     html = render_to_string('01uberheader.html', {'title': header+' Output'})
     html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'output'})
@@ -41,9 +42,13 @@ def outputPage(request, model='none'):
     html = html + render_to_string('export.html', {})
     html = html + render_to_string('04uberoutput_end.html', {})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
-
     rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
+    # if model=="przm5":
+    #     html = html + render_to_string('przm5_output_jquery.html', {'jid': model_obj.jid})
+    # else:
+    #     pass
 
     response = HttpResponse()
     response.write(html)
     return response
+

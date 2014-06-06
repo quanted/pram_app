@@ -1,26 +1,14 @@
-# -*- coding: utf-8 -*-
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
-import webapp2 as webapp
-from google.appengine.ext.webapp.util import run_wsgi_app
-from google.appengine.ext.webapp import template
-import numpy as np
-import cgi
-import cgitb
-cgitb.enable()
-import unittest
+from django.views.decorators.http import require_POST
+
 from StringIO import StringIO
-import cStringIO
+
+import terrplant_model,terrplant_tables
+
 import logging
-import sys
-sys.path.append("../rice")
-from rice import rice_model,rice_tables
-from uber import uber_lib
 import csv
 from threading import Thread
 import Queue
 from collections import OrderedDict
-import rest_funcs
 
 logger = logging.getLogger("RiceBatchPage")
 
@@ -133,34 +121,10 @@ def loop_html(thefile):
     sum_html = rice_tables.table_sum_all(rice_tables.sumheadings, rice_tables.tmpl, mai, dsed, a, pb, dw, osed, kd, msed, vw, mai1, cw)
     return  html_timestamp + sum_html+sum_output_cw+sum_fig + "".join(out_html_all_sort.values())
 
-              
-class RiceBatchOutputPage(webapp.RequestHandler):
-    def post(self):
-        form = cgi.FieldStorage()
-        logger.info(form) 
-        thefile = form['file-0']
-        iter_html=loop_html(thefile)        
-        templatepath = os.path.dirname(__file__) + '/../templates/'
-        ChkCookie = self.request.cookies.get("ubercookie")
-        # html = uber_lib.SkinChk(ChkCookie)
-        # html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'rice','page':'batchinput'})
-        # html = html + template.render (templatepath + '03ubertext_links_left.html', {})                
-        html = template.render(templatepath + '04uberbatch_start.html', {
-                'model':'rice',
-                'model_attributes':'Rice Model Batch Output'})
-        html = html + iter_html
-        html = html + template.render(templatepath + 'rice-batchoutput-jqplot.html', {})
-        html = html + template.render(templatepath + 'export.html', {})            
-        html = html + template.render(templatepath + '04uberoutput_end.html', {'sub_title': ''})
-        # html = html + template.render(templatepath + '06uberfooter.html', {'links': ''})
-        rest_funcs.batch_save_dic(html, [x.__dict__ for x in rice_all], 'rice', 'batch', jid_batch[0], ChkCookie, templatepath)
-        self.response.out.write(html)
+@require_POST              
+def RiceBatchOutputPage(request):
+    thefile = request.FILES['upfile']
+    iter_html=loop_html(thefile)
 
-app = webapp.WSGIApplication([('/.*', RiceBatchOutputPage)], debug=True)
-
-def main():
-    run_wsgi_app(app)
-
-if __name__ == '__main__':
-    main()
+    return iter_html, terr_all, jid_batch
 

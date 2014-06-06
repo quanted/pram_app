@@ -1,81 +1,24 @@
-# Tier I Rice Model v1.0
-
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
-import webapp2 as webapp
-from google.appengine.ext.webapp.util import run_wsgi_app
-from google.appengine.ext.webapp import template
-# from google.appengine.api import users
-# from google.appengine.ext import db
-import numpy as np
-import cgi
-import cgitb
-cgitb.enable()
-import logging
-import sys
-sys.path.append("../utils")
-import utils.json_utils
-sys.path.append("../rice")
-from rice import rice_model,rice_parameters,rice_tables
-import datetime
-from uber import uber_lib
-import rest_funcs
-
-class RiceExecutePage(webapp.RequestHandler):
-    def post(self):
-        # logger = logging.getLogger("UbertoolUseConfigurationPage")
-        form = cgi.FieldStorage() 
-        # config_name = str(form.getvalue('config_name'))
+from django.template.loader import render_to_string
+from django.views.decorators.http import require_POST
 
 
-        # user = users.get_current_user()
-        # if user:
-        #     logger.info(user.user_id())
-        #     rice.user = user
-        # rice.config_name = config_name
+@require_POST
+def riceOutputPage(request):
+    import rice_model
 
+    version_rice = request.POST.get('version_rice')
+    chemical_name = request.POST.get('chemical_name')
+    mai = request.POST.get('mai')
+    dsed = request.POST.get('dsed')
+    a = request.POST.get('area')
+    pb = request.POST.get('pb')
+    dw = request.POST.get('dw')
+    osed = request.POST.get('osed')
+    kd = request.POST.get('Kd')
 
-        chemical_name = form.getvalue('chemical_name')
-        mai = form.getvalue('mai')
-        dsed = form.getvalue('dsed')
-        a = form.getvalue('area')
-        pb = form.getvalue('pb')
-        dw = form.getvalue('dw')
-        osed = form.getvalue('osed')
-        kd = form.getvalue('Kd')
-        rice_obj = rice_model.rice(True,True,'single',chemical_name, mai, dsed, a, pb, dw, osed, kd)
+    rice_obj = rice_model.rice(True,True,version_rice,'single',chemical_name, mai, dsed, 
+        a, pb, dw, osed, kd)
 
-
-        # rice.put()
-        # q = db.Query(rice_model.Rice)
-        # q.filter("user =", user)
-        # q.filter("config_name =", config_name)
-        # for new_use in q:
-        #     logger.info(new_use.to_xml())
-
-
-        text_file = open('rice/rice_description.txt','r')
-        x = text_file.read()
-        templatepath = os.path.dirname(__file__) + '/../templates/'
-        ChkCookie = self.request.cookies.get("ubercookie")
-        html = uber_lib.SkinChk(ChkCookie, "Rice Output")
-        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'rice','page':'output'})
-        html = html + template.render (templatepath + '03ubertext_links_left.html', {})                
-        html = html + template.render(templatepath + '04uberoutput_start.html',{
-                'model':'rice', 
-                'model_attributes':'Rice Model Output'})
-        html = html + rice_tables.timestamp(rice_obj)
-        html = html + rice_tables.table_all(rice_obj)
-        html = html + template.render(templatepath + 'export.html', {})
-        html = html + template.render(templatepath + '04uberoutput_end.html', {})
-        html = html + template.render(templatepath + '06uberfooter.html', {'links': ''})
-        rest_funcs.save_dic(html, rice_obj.__dict__, "rice", "single")
-        self.response.out.write(html)
-
-app = webapp.WSGIApplication([('/.*', RiceExecutePage)], debug=True)
-
-def main():
-    run_wsgi_app(app)
-
-if __name__ == '__main__':
-    main()
+    import logging
+    logging.info(rice_obj)
+    return rice_obj

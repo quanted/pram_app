@@ -1,6 +1,7 @@
 import numpy
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
+import rice_model,rice_parameters
 import logging
 import time
 import datetime

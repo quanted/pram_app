@@ -31,7 +31,7 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 SECRET_KEY = secret.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -136,4 +136,5 @@ STATICFILES_FINDERS = (
 STATIC_URL = '/static/'
 
 print 'BASE_DIR = %s' %BASE_DIR
-print 'PROJECT_ROOT = %s' %PROJECT_ROOT
+print 'PROJECT_ROOT = %s' %PROJECT_ROOT
+

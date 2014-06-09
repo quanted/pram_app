@@ -5,7 +5,6 @@ from django.views.decorators.http import require_POST
 @require_POST
 def geneecOutputPage(request):
     import geneec_model
-    print request.POST
     chem_name = request.POST.get('chemical_name')
     application_target = request.POST.get('application_target')
     application_rate = request.POST.get('application_rate')

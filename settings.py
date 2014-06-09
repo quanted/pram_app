@@ -16,8 +16,8 @@ os.environ.update({
     'UBERTOOL_BATCH_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com/',
     'UBERTOOL_MONGO_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
     'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
-    'UBERTOOL_REST_SERVER': 'http://localhost:7777',
-    # 'UBERTOOL_REST_SERVER': 'http://54.83.18.251:7777',
+    # 'UBERTOOL_REST_SERVER': 'http://localhost:80',
+    'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',
 })
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -31,7 +31,7 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 SECRET_KEY = secret.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -135,5 +135,5 @@ STATICFILES_FINDERS = (
 
 STATIC_URL = '/static/'
 
-print 'BASE_DIR = %s' %BASE_DIR
-print 'PROJECT_ROOT = %s' %PROJECT_ROOT
+# print 'BASE_DIR = %s' %BASE_DIR
+# print 'PROJECT_ROOT = %s' %PROJECT_ROOT

@@ -43,12 +43,8 @@ def outputPage(request, model='none'):
     html = html + render_to_string('04uberoutput_end.html', {})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
     rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
-    # if model=="przm5":
-    #     html = html + render_to_string('przm5_output_jquery.html', {'jid': model_obj.jid})
-    # else:
-    #     pass
+
 
     response = HttpResponse()
     response.write(html)
     return response
-

@@ -1,12 +1,11 @@
 from REST import rest_funcs
 import json
 import logging
+logger = logging.getLogger('Rice Model')
 import os
 import keys_Picloud_S3
 import base64
 import requests
-
-logger = logging.getLogger('Rice Model')
 
 ############Provide the key and connect to EC2####################
 api_key=keys_Picloud_S3.picloud_api_key
@@ -18,9 +17,8 @@ url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 
 class rice(object):
-    def __init__(self, 
-                set_variables=True,run_methods=True,
-                version_rice="1.0",run_type = "single",chemical_name='', 
+    def __init__(self, set_variables=True,run_methods=True,version_rice="1.0",
+                run_type = "single",chemical_name='', 
                 mai=1, dsed=1, a=1, pb=1, dw=1, osed=1, kd=1, 
                 vars_dict=None):
         self.set_default_variables()
@@ -30,9 +28,7 @@ class rice(object):
             if vars_dict != None:
                 self.__dict__.update(vars_dict)
             else:
-                self.set_variables(self,
-                    version_rice,run_type,chemical_name,
-                    mai,dsed,a,pb,dw,osed,kd)
+                self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)
 
     def set_default_variables(self):
         self.version_rice = ''
@@ -46,9 +42,7 @@ class rice(object):
         self.osed = -1
         self.kd = -1
 
-    def set_variables(self,
-            version_rice,run_type,chemical_name,
-            mai,dsed,a,pb,dw,osed,kd)
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
         self.version_rice = version_rice
         self.run_type = run_type
         self.chemical_name = chemical_name

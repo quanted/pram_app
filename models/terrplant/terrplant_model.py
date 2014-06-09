@@ -17,8 +17,10 @@ url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 
 class terrplant(object):
-    def __init__(self, set_variables=True, run_methods=True, version_terrplant='1.2.2', run_type = "single", A=1, I=1, R=1, D=1, nms=1, lms=1, nds=1, lds=1,
-            chemical_name='', pc_code='', use='', application_method='', application_form='', solubility=1, vars_dict=None,):
+    def __init__(self, set_variables=True, run_methods=True, version_terrplant='1.2.2', 
+            run_type = "single", A=1, I=1, R=1, D=1, nms=1, lms=1, nds=1, lds=1,
+            chemical_name='', pc_code='', use='', application_method='', application_form='', solubility=1, 
+            vars_dict=None,):
         self.set_default_variables()
         self.jid = rest_funcs.gen_jid()
 

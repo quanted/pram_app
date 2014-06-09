@@ -5,7 +5,7 @@ from StringIO import StringIO
 import csv
 
 cwd= os.getcwd()
-data = csv.reader(open(cwd+'models/rice/rice_qaqc_inputs.csv'))
+data = csv.reader(open(cwd+'/models/rice/rice_qaqc_inputs.csv'))
 version_rice="1.0"
 chemical_name=[]
 mai=[]

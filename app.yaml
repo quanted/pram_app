@@ -52,7 +52,6 @@ skip_files:
 - ^(data/webice/images/.*)
 - ^(geneec/geneec_picloud/.*)
 - ^(data/.*)
-- ^(REST/.*)
 - ^(przm/przm_picloud/.*)
 - ^(pfam/pfam_picloud/.*)
 - ^(generatepdf/generatepdf_picloud/.*)$

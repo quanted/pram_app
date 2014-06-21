@@ -1,5 +1,5 @@
-Architecture
-------------
+Features
+-----------
 ubertool stuff
 
 subsection

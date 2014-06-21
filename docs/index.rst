@@ -12,9 +12,15 @@ Contents:
    :maxdepth: 2
 
    intro
+   features
+   models
+   architecture
    deployment
    installation
-   architecture
+   api
+   qapp
+   research
+   references
 
 Indices and tables
 ==================

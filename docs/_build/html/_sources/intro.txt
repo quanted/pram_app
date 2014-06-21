@@ -17,7 +17,10 @@ Ancillary roles on the scrum team are:
 - Stakeholders: (Bill Eckel, Ed Odenkirchen, Dirk Young, Nelson Thurman, Ron Parker, Katrina White, others identified by Bill Eckel)
 - Managers: People who control the environment (Kate Sullivan [Branch Chief], Roy Sidle [Division Director], John Kenneke [CSS Matrix Interface], Tina Bohardi [CSS], Jim Cowles [EFED Director], Andrew Gillespie
 
-Development Process
+Development process
 ++++++++++++++++++++
 proceed according to the principles of “scrum” development, an iterative and incremental agile software development process for developing applications.
 http://en.wikipedia.org/wiki/Scrum_%28development%29
+
+Sprint history
++++++++++++++++

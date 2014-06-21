@@ -17,9 +17,11 @@ Contents:
    architecture
    deployment
    installation
+   processes
    api
    qapp
    research
+   publications
    references
 
 Indices and tables

@@ -28,8 +28,8 @@ def linksLeft():
                 ('EXAMS', 'exams'),
                 ('PFAM', 'pfam'),
                 ('PRZM-EXAMS', 'przm_exams'),
-                ('VVWM', 'vvwm'),
-                ('Surface Water Calculator', 'swc'),
+                # ('VVWM', 'vvwm'),
+                # ('Surface Water Calculator', 'swc'),
             ])
         ),
         ('&uuml;bertool', OrderedDict([

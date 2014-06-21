@@ -4,6 +4,7 @@ from django.template.loader import render_to_string
 def terrplantInputPage(request, model='', header=''):
     import terrplant_parameters
     
+    # html = render_to_string('04uberinput_jquery.html', { 'model': model })
     html = render_to_string('04uberinput_start.html', {
             'model':model, 
             'model_attributes': header+' Inputs'})

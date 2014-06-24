@@ -18,7 +18,13 @@ import os
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
+sys.path.append(os.path.join(os.path.abspath(os.pardir)))
+#sys.path.insert(0,os.path.abspath('..')+'/models/rice')
+#sys.path.insert(0, os.path.abspath('../'))
 #sys.path.insert(0, os.path.abspath('.'))
+#parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#os.sys.path.insert(0,parentdir) 
+#sys.path.insert(0, os.path.abspath('\Users\puruckertom\ubertool_src\ubertool_eco\models\rice'))
 
 # -- General configuration ------------------------------------------------
 
@@ -37,6 +43,9 @@ extensions = [
     'sphinx.ext.pngmath',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
+#    'numpydoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.inheritance_diagram'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

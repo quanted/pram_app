@@ -23,6 +23,9 @@ Contents:
    research
    publications
    references
+   rice
+
+.. autosummary::
 
 Indices and tables
 ==================

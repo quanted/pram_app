@@ -1,7 +1,12 @@
+"""
+.. module:: rice_input
+   :synopsis: A useful module indeed.
+"""
+
 from django.template.loader import render_to_string
- 
- 
+
 def riceInputPage(request, model='', header=''):
+    """ handle rice input """
     import rice_parameters
 
     html = render_to_string('04uberinput_start.html', {

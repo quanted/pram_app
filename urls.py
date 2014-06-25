@@ -18,6 +18,8 @@ urlpatterns = patterns('views',
     (r'^eco/(?P<model>.*?)/qaqc/?$', 'qaqc.qaqcPage'),
     (r'^eco/(?P<model>.*?)/history/?$', 'history.historyPage'),
     (r'^eco/.*?/history_revisit\.html$', 'history.historyPageRevist'),
+    # (r'^pdf\.html$', 'misc.pdfOutput'),
+    # (r'^html\.html$', 'misc.htmlOutput'),
     # (r'^eco/.*?/przm5_intermediate\.html', 'przm5_intermediate.przm5IntermediatePage'),
     (r'^eco/(?P<model>.*?)/?$', 'description.descriptionPage'),
     (r'^eco_index\.html$', 'landing.ecoLandingPage'),                        #Legacy links

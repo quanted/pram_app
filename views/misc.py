@@ -1,7 +1,9 @@
 from django.template.loader import render_to_string
+from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 import importlib
 import linksLeft
+
 
 #######################################################################################
 ################################ HTTP Error Pages #####################################
@@ -23,3 +25,11 @@ def fileNotFound(request):
     response.write(html)
 
     return response
+
+#######################################################################################
+################################# PDF Generation ######################################
+#######################################################################################
+
+# @require_POST
+# def pdfOutput(request):
+#     html = 

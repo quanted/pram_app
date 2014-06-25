@@ -1,7 +1,9 @@
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
+"""
+.. module:: rice_input
+   :synopsis: A useful module indeed.
+"""
+
 from django import forms
-from django.db import models
 from django.utils.safestring import mark_safe
 
 SELECT_VERSION = (('1.0','1.0'),)

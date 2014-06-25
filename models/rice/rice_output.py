@@ -1,9 +1,28 @@
+"""
+.. module:: rice_output
+   :synopsis: A useful module indeed.
+"""
+
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 
 
 @require_POST
 def riceOutputPage(request):
+    """ Handles rice output parameters.
+
+    Longer description.
+
+    :param request: asdf.
+    :type request: str.
+    :param model: asdf.
+    :type model: str.
+    :param header: asdf.
+    :type header: str.
+    :returns: html code.
+    :raises: errors.
+    """
+    
     import rice_model
 
     version_rice = request.POST.get('version_rice')

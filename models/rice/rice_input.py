@@ -6,7 +6,19 @@
 from django.template.loader import render_to_string
 
 def riceInputPage(request, model='', header=''):
-    """ handle rice input """
+    """ Handles rice input parameters.
+
+    Longer description.
+
+    :param request: asdf.
+    :type request: str.
+    :param model: asdf.
+    :type model: str.
+    :param header: asdf.
+    :type header: str.
+    :returns: html code.
+    :raises: errors.
+    """
     import rice_parameters
 
     html = render_to_string('04uberinput_start.html', {

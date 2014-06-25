@@ -19,11 +19,12 @@ Contents:
    installation
    processes
    api
+   code
    qapp
    research
    publications
    references
-   rice
+   rst_examples
 
 .. autosummary::
 

@@ -19,12 +19,10 @@ import os
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.append(os.path.join(os.path.abspath(os.pardir)))
-#sys.path.insert(0,os.path.abspath('..')+'/models/rice')
+sys.path.insert(0,os.path.abspath('..')+'/models/rice')
+sys.path.insert(0,os.path.abspath('../../..')+'/google-cloud-sdk/platform/google_appengine/lib/django-1.5')
 #sys.path.insert(0, os.path.abspath('../'))
 #sys.path.insert(0, os.path.abspath('.'))
-#parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#os.sys.path.insert(0,parentdir) 
-#sys.path.insert(0, os.path.abspath('\Users\puruckertom\ubertool_src\ubertool_eco\models\rice'))
 
 # -- General configuration ------------------------------------------------
 
@@ -36,7 +34,7 @@ sys.path.append(os.path.join(os.path.abspath(os.pardir)))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.doctest',
+#    'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
@@ -111,6 +109,8 @@ pygments_style = 'sphinx'
 # If true, keep warnings as "system message" paragraphs in the built documents.
 #keep_warnings = False
 
+#not sure why
+numpydoc_show_class_members = False
 
 # -- Options for HTML output ----------------------------------------------
 

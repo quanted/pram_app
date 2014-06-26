@@ -47,6 +47,7 @@ skip_files:
 - ^(.*/)?.*\.SDR
 - ^(.*/)?.*\MIT-LICENSE
 - ^(.*/)?.*\LGPL-LICENSE
+- ^(REST/.*)
 - ^(data/.*)
 - ^(data/webice/.*)
 - ^(data/webice/images/.*)

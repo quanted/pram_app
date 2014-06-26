@@ -19,9 +19,15 @@ import os
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.append(os.path.join(os.path.abspath(os.pardir)))
-#sys.path.insert(0,os.path.abspath('..')+'/models/rice')
-sys.path.insert(0,os.path.abspath('..')+'/models')
+sys.path.insert(0,os.path.abspath('..')+'/models/rice')
+#print os.environ
+#tom django
+if os.environ['COMPUTERNAME']=="DC2626UTPURUCKE":
+  sys.path.append("C:/Program Files (x86)/Google/google_appengine/lib/django-1.5/")
+#sys.path.insert(0,os.path.abspath('..')+'\models\rice')
+# sys.path.insert(0,os.path.abspath('..')+'/models')
 #sys.path.insert(0,os.path.abspath('../../..')+'/google-cloud-sdk/platform/google_appengine/lib/django-1.5')
+#sys.path.insert(0,os.path.abspath('../../..')+'c://lib/django-1.5')
 #sys.path.insert(0, os.path.abspath('../'))
 #sys.path.insert(0, os.path.abspath('.'))
 
@@ -117,12 +123,18 @@ numpydoc_show_class_members = False
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+#html_theme = 'default'
+#html_theme = 'agogo'
+html_theme = 'nature'
+#html_theme = 'pyramid'
+#html_theme = 'sphinxdoc'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+html_theme_options = {
+#  "rightsidebar":"True"
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []

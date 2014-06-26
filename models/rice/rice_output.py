@@ -15,10 +15,6 @@ def riceOutputPage(request):
 
     :param request: asdf.
     :type request: str.
-    :param model: asdf.
-    :type model: str.
-    :param header: asdf.
-    :type header: str.
     :returns: html code.
     :raises: errors.
     """

@@ -1,12 +1,10 @@
-Documentation for the Code
+Code Documentation
 ----------------------------
 
-RICE1
+RICE
 +++++++++++++++++
-.. automodule:: models.rice_input
+.. automodule:: rice_input
    :members: riceInputPage
 
-RICE2
-+++++++++++++++++
-.. automodule:: models.rice_output
+.. automodule:: rice_output
    :members: riceOutputPage

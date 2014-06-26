@@ -54,7 +54,7 @@ imgData_json = JSON.stringify(imgData)
 		$(document).ajaxStart(function(){
 			$.blockUI({
 				css:{ "top":""+wintop+"", "left":""+winleft+"", "padding": "30px 20px", "width": "400px", "height": "60px", "border": "0 none", "border-radius": "4px", "-webkit-border-radius": "4px", "-moz-border-radius": "4px", "box-shadow": "3px 3px 15px #333", "-webkit-box-shadow": "3px 3px 15px #333", "-moz-box-shadow": "3px 3px 15px #333" },
-				message: '<h2 class="popup_header">Generating PDF Document...</h2><br><img src="/images/loader.gif" style="margin-top:-16px">',
+				message: '<h2 class="popup_header">Generating PDF Document...</h2><br><img src="/static/images/loader.gif" style="margin-top:-16px">',
 				fadeIn:  500
 			});
 		});
@@ -68,7 +68,7 @@ imgData_json = JSON.stringify(imgData)
 	        	$.unblockUI();
 	        });
 		});
-        eror_msg = '<div id="popup_link"><img src="/images/export/exit_button.png" class="exit_button"><h2 class="popup_header">Something Went Wrong</h2></div>' 
+        eror_msg = '<div id="popup_link"><img src="/static/images/export/exit_button.png" class="exit_button"><h2 class="popup_header">Something Went Wrong</h2></div>' 
 
 		$.ajax({
 			type: "POST",
@@ -92,7 +92,7 @@ imgData_json = JSON.stringify(imgData)
 		$(document).ajaxStart(function(){
 			$.blockUI({
 				css:{ "top":""+wintop+"", "left":""+winleft+"", "padding": "30px 20px", "width": "400px", "height": "60px", "border": "0 none", "border-radius": "4px", "-webkit-border-radius": "4px", "-moz-border-radius": "4px", "box-shadow": "3px 3px 15px #333", "-webkit-box-shadow": "3px 3px 15px #333", "-moz-box-shadow": "3px 3px 15px #333" },
-				message: '<h2 class="popup_header">Generating HTML Document...</h2><br><img src="/images/loader.gif" style="margin-top:-16px">',
+				message: '<h2 class="popup_header">Generating HTML Document...</h2><br><img src="/static/images/loader.gif" style="margin-top:-16px">',
 				fadeIn:  500
 			});
 		});

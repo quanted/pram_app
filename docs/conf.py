@@ -18,8 +18,15 @@ import os
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.append(os.path.join(os.path.abspath(os.pardir)))
-sys.path.insert(0,os.path.abspath('..')+'/models/rice')
+# sys.path.append(os.path.join(os.path.abspath(os.pardir)))
+
+# path = os.path.join(os.path.dirname(__file__), '../../../ubertool_src/REST/REST_EC2')
+# print path
+# print (os.listdir(path))
+
+sys.path.append(os.path.abspath(os.pardir))
+sys.path.insert(0, os.path.abspath('..')+'/models/rice')
+
 #print os.environ
 #tom django
 if os.environ['COMPUTERNAME']=="DC2626UTPURUCKE":

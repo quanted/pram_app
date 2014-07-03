@@ -58,42 +58,6 @@ $(document).ready(function () {
 		$('form').attr('action', 'html').submit();
 	});
 
-	// $('#htmlExport').click(function () {
-	// 	$(document).ajaxStart(function(){
-	// 		$.blockUI({
-	// 			css:{ "top":""+wintop+"", "left":""+winleft+"", "padding": "30px 20px", "width": "400px", "height": "60px", "border": "0 none", "border-radius": "4px", "-webkit-border-radius": "4px", "-moz-border-radius": "4px", "box-shadow": "3px 3px 15px #333", "-webkit-box-shadow": "3px 3px 15px #333", "-moz-box-shadow": "3px 3px 15px #333" },
-	// 			message: '<h2 class="popup_header">Generating HTML Document...</h2><br><img src="/static/images/loader.gif" style="margin-top:-16px">',
-	// 			fadeIn:  500
-	// 		});
-	// 	});
-
-	// 	$(document).ajaxStop(function(){
-	// 		$.blockUI( { message: null, fadeIn: 0 } );
-	// 		$("#popup").show();
-	// 		$("#export_link,.exit_button").fadeIn(500);
-	// 		$("#popup_link").css({ "top":""+wintop+"", "left":""+winleft+"" });
-	// 		$(".exit_button").click(function (){
-	// 			$("#popup").hide();
-	// 			$.unblockUI();
-	// 		});
-
-	// 	});
-
-	// 	$.ajax({
-	// 			type: "post",
-	// 			url: "/html.html",
-	// 			data: $("#pdf_post").serialize(),
-	// 			dataType: "html",
-	// 			success: function(data) {
-	// 				$("#popup").show();
-	// 				doneDiv.innerHTML = data;
-	// 			},
-	// 			error: function() { 
-	// 				$("#popup").show();
-	// 				doneDiv.innerHTML = eror_msg;
-	// 			}   
-	// 	});
-	// });
 
 	$('#fadeExport_pdf').append('<span class="hover"></span>').each(function () {
 		var $span = $('> span.hover', this).css('opacity', 0);

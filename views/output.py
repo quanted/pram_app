@@ -40,10 +40,9 @@ def outputPage(request, model='none'):
             'model_attributes': header+' Output'})
     html = html + modelOutputHTML
     html = html + render_to_string('export.html', {})
-    html = html + render_to_string('04uberoutput_end.html', {})
+    html = html + render_to_string('04uberoutput_end.html', {'model':model})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
     rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
-
 
     response = HttpResponse()
     response.write(html)

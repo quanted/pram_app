@@ -35,67 +35,60 @@ $(document).ready(function() {
         wrapper: "div",  // a wrapper around the error message
         ignore: 'input[type="button"],input[type="submit"]',
         rules: {
-            chemical_name: {
+            application_rate: {
                 required: true,
+                sciFormat: true,
+                positiveNumber: true
             },
-            pc_code: {
-                required : true,
-            },
-            use: {
+            number_of_applications: {
                 required: true,
+                sciFormat: true,
+                positiveNumber: true
+            },
+            interval_between_applications: {
+                required: true,
+                sciFormat: true,
+                positiveNumber: true
+            },
+            Koc: {
+                required: true,
+                sciFormat: true,
+                positiveNumber: true
+            },
+            aerobic_soil_metabolism: {
+                required: true,
+                sciFormat: true,
+                positiveNumber: true
             },
             application_method: {
                 required: true,
             },
-            application_form: {
+            no_spray_drift: {
                 required: true,
+                sciFormat: true,
+                positiveNumber: true
+            },
+            incorporation_depth: {
+                required: true,
+                sciFormat: true,
+                positiveNumber: true
             },
             solubility: {
                 required: true,
                 sciFormat: true,
                 positiveNumber: true
             },
-            application_rate: {
+            aerobic_aquatic_metabolism: {
                 required: true,
                 sciFormat: true,
                 positiveNumber: true
             },
-            EC25_for_nonlisted_seedling_emergence_monocot: {
+            hydrolysis: {
                 required: true,
                 sciFormat: true,
                 positiveNumber: true
             },
-            EC25_for_nonlisted_seedling_emergence_dicot: {
-                required: true,
-                sciFormat: true,
-                positiveNumber: true
-            },
-            NOAEC_for_listed_seedling_emergence_monocot: {
-                required: true,
-                sciFormat: true,
-                positiveNumber: true
-            },
-            NOAEC_for_listed_seedling_emergence_dicot: {
-                required: true,
-                sciFormat: true,
-                positiveNumber: true
-            },
-            EC25_for_nonlisted_vegetative_vigor_monocot: {
-                required: true,
-                sciFormat: true,
-                positiveNumber: true
-            },
-            EC25_for_nonlisted_vegetative_vigor_dicot: {
-                required: true,
-                sciFormat: true,
-                positiveNumber: true
-            },
-            NOAEC_for_listed_vegetative_vigor_monocot: {
-                required: true,
-                sciFormat: true,
-                positiveNumber: true
-            },
-            NOAEC_for_listed_vegetative_vigor_dicot: {
+            photolysis_aquatic_half_life: {
                 required: true,
                 sciFormat: true,
                 positiveNumber: true

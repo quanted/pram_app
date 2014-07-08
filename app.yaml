@@ -1,5 +1,5 @@
 application: pypest
-version: sprint14
+version: master
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -39,6 +39,7 @@ skip_files:
 - ^(.*/)?.*\.gz
 - ^(.*/)?.*\.aux
 - ^(.*/)?.*\.xcf
+- ^(.*/)?.*\.log
 - ^(.*/)?.*\.php
 - ^(.*/)?.*\.bak
 - ^(.*/)?.*\.inc

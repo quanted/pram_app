@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.geneec.leftover.publish_fortran &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.geneec.leftover.publish_fortran</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">cloud</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">api_key</span><span class="o">=</span><span class="s">&#39;3355&#39;</span>
+<span class="n">api_secretkey</span><span class="o">=</span><span class="s">&#39;212ed160e3f416fdac8a3b71c90f3016722856b9&#39;</span>
+<span class="n">cloud</span><span class="o">.</span><span class="n">setkey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_secretkey</span><span class="p">)</span>    
+
+
+<span class="k">def</span> <span class="nf">geneec2</span><span class="p">(</span><span class="n">APPRAT</span><span class="p">,</span><span class="n">APPNUM</span><span class="p">,</span><span class="n">APSPAC</span><span class="p">,</span><span class="n">KOC</span><span class="p">,</span><span class="n">METHAF</span><span class="p">,</span><span class="n">WETTED</span><span class="p">,</span><span class="n">METHOD</span><span class="p">,</span><span class="n">AIRFLG</span><span class="p">,</span><span class="n">YLOCEN</span><span class="p">,</span><span class="n">GRNFLG</span><span class="p">,</span><span class="n">GRSIZE</span><span class="p">,</span><span class="n">ORCFLG</span><span class="p">,</span><span class="n">INCORP</span><span class="p">,</span><span class="n">SOL</span><span class="p">,</span><span class="n">METHAP</span><span class="p">,</span><span class="n">HYDHAP</span><span class="p">,</span><span class="n">FOTHAP</span><span class="p">):</span> 
+<div class="viewcode-block" id="geneec2"><a class="viewcode-back" href="../../../../models.geneec.leftover.html#models.geneec.leftover.publish_fortran.geneec2">[docs]</a>    <span class="n">cwd</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">&quot;CWD=&quot;</span><span class="p">,</span><span class="n">cwd</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">cwd</span><span class="p">))</span>   <span class="c">#check what files are copied</span>
+    
+    <span class="kn">import</span> <span class="nn">g1</span>
+    <span class="n">ff</span><span class="o">=</span><span class="n">g1</span><span class="o">.</span><span class="n">geneec2</span><span class="p">(</span><span class="n">APPRAT</span><span class="p">,</span><span class="n">APPNUM</span><span class="p">,</span><span class="n">APSPAC</span><span class="p">,</span><span class="n">KOC</span><span class="p">,</span><span class="n">METHAF</span><span class="p">,</span><span class="n">WETTED</span><span class="p">,</span><span class="n">METHOD</span><span class="p">,</span><span class="n">AIRFLG</span><span class="p">,</span><span class="n">YLOCEN</span><span class="p">,</span><span class="n">GRNFLG</span><span class="p">,</span><span class="n">GRSIZE</span><span class="p">,</span><span class="n">ORCFLG</span><span class="p">,</span><span class="n">INCORP</span><span class="p">,</span><span class="n">SOL</span><span class="p">,</span><span class="n">METHAP</span><span class="p">,</span><span class="n">HYDHAP</span><span class="p">,</span><span class="n">FOTHAP</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">ff</span>
+<span class="n">cloud</span><span class="o">.</span><span class="n">rest</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">geneec2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;GENEEC_FORTRAN&#39;</span><span class="p">,</span> <span class="n">_env</span><span class="o">=</span><span class="s">&#39;t-fortran77-test&#39;</span><span class="p">,</span> <span class="n">_type</span><span class="o">=</span><span class="s">&#39;c1&#39;</span><span class="p">,</span> <span class="n">_profile</span><span class="o">=</span><span class="bp">True</span> <span class="p">)</span></div>
+<span class="n">cloud</span><span class="o">.</span><span class="n">rest</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">geneec2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;GENEEC_FORTRAN_s1&#39;</span><span class="p">,</span> <span class="n">_env</span><span class="o">=</span><span class="s">&#39;t-fortran77-test&#39;</span><span class="p">,</span> <span class="n">_type</span><span class="o">=</span><span class="s">&#39;s1&#39;</span><span class="p">,</span> <span class="n">_profile</span><span class="o">=</span><span class="bp">True</span> <span class="p">)</span>
+<span class="k">print</span> <span class="s">&#39;Done&#39;</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.geneec.geneec_output &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.geneec.geneec_output</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
+
+<span class="nd">@require_POST</span>
+<div class="viewcode-block" id="geneecOutputPage"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_output.geneecOutputPage">[docs]</a><span class="k">def</span> <span class="nf">geneecOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">geneec_model</span>
+    <span class="n">chem_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;chemical_name&#39;</span><span class="p">)</span>
+    <span class="n">application_target</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;application_target&#39;</span><span class="p">)</span>
+    <span class="n">application_rate</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;application_rate&#39;</span><span class="p">)</span>
+    <span class="n">number_of_applications</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;number_of_applications&#39;</span><span class="p">)</span>
+    <span class="n">interval_between_applications</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;interval_between_applications&#39;</span><span class="p">)</span>
+    <span class="n">Koc</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Koc&#39;</span><span class="p">)</span>  
+    <span class="n">aerobic_soil_metabolism</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;aerobic_soil_metabolism&#39;</span><span class="p">)</span>   
+    <span class="n">wet_in</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;wet_in&#39;</span><span class="p">)</span>              
+    <span class="n">application_method</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;application_method&#39;</span><span class="p">)</span>
+    <span class="c">#A1</span>
+    <span class="n">aerial_size_dist</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;aerial_size_dist&#39;</span><span class="p">)</span>
+    <span class="c">#B1</span>
+    <span class="n">ground_spray_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ground_spray_type&#39;</span><span class="p">)</span>                                          
+    <span class="c">#C1</span>
+    <span class="n">airblast_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;airblast_type&#39;</span><span class="p">)</span>  
+    <span class="c">#B2    </span>
+    <span class="n">spray_quality</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;spray_quality&#39;</span><span class="p">)</span>
+    
+    <span class="n">no_spray_drift</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;no_spray_drift&#39;</span><span class="p">)</span>    
+    <span class="n">incorporation_depth</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;incorporation_depth&#39;</span><span class="p">)</span>   
+    <span class="n">solubility</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;solubility&#39;</span><span class="p">)</span>
+    <span class="n">aerobic_aquatic_metabolism</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;aerobic_aquatic_metabolism&#39;</span><span class="p">)</span>
+    <span class="n">hydrolysis</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;hydrolysis&#39;</span><span class="p">)</span>
+    <span class="n">photolysis_aquatic_half_life</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;photolysis_aquatic_half_life&#39;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">application_method</span><span class="o">==</span><span class="s">&#39;a&#39;</span> <span class="ow">or</span> <span class="n">application_method</span><span class="o">==</span><span class="s">&#39;c&#39;</span><span class="p">):</span>
+        <span class="n">incorporation_depth</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">application_method</span><span class="o">==</span><span class="s">&#39;d&#39;</span><span class="p">):</span>
+        <span class="n">no_spray_drift</span><span class="o">=</span><span class="mi">0</span>     
+    <span class="k">if</span>  <span class="n">aerobic_aquatic_metabolism</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">hydrolysis_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">hydrolysis_label</span><span class="o">=</span><span class="n">hydrolysis</span>
+           
+<span class="c">################label selection###################################                    </span>
+    <span class="k">if</span> <span class="n">application_method</span><span class="o">==</span><span class="s">&#39;a&#39;</span><span class="p">:</span>
+        <span class="n">application_method_label</span><span class="o">=</span><span class="s">&#39;Aerial Spray&#39;</span>
+        <span class="k">if</span> <span class="n">aerial_size_dist</span><span class="o">==</span><span class="s">&#39;a&#39;</span><span class="p">:</span>
+           <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;Very Fine to Fine&#39;</span>
+           <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+           <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+           <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span> 
+        <span class="k">elif</span> <span class="n">aerial_size_dist</span><span class="o">==</span><span class="s">&#39;b&#39;</span><span class="p">:</span>
+           <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;Fine to Medium (EFED Default)&#39;</span>
+           <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+           <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+           <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+        <span class="k">elif</span> <span class="n">aerial_size_dist</span><span class="o">==</span><span class="s">&#39;c&#39;</span><span class="p">:</span>
+           <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;Medium to Coarse&#39;</span>
+           <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+           <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+           <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+           <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;Coarse to Very Coarse&#39;</span> 
+           <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+           <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+           <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+          
+    <span class="k">elif</span> <span class="n">application_method</span><span class="o">==</span><span class="s">&#39;b&#39;</span><span class="p">:</span>        
+        <span class="n">application_method_label</span><span class="o">=</span><span class="s">&#39;Ground Spray&#39;</span>
+        <span class="k">if</span> <span class="n">ground_spray_type</span><span class="o">==</span><span class="s">&#39;a&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">spray_quality</span><span class="o">==</span><span class="s">&#39;a&#39;</span><span class="p">:</span>
+                <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span> 
+                <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;Low Boom Ground Spray (20&quot; or less)&#39;</span>
+                <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;Fine (EFED Default)&#39;</span>
+                <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span> 
+                <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;Low Boom Ground Spray (20&quot; or less)&#39;</span>
+                <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;Medium-Coarse&#39;</span>
+                <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">spray_quality</span><span class="o">==</span><span class="s">&#39;a&#39;</span><span class="p">:</span>
+                <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span> 
+                <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;High Boom Ground Spray (20-50&quot;; EFED Default)&#39;</span>
+                <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;Fine (EFED Default)&#39;</span>
+                <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span> 
+                <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;High Boom Ground Spray (20-50&quot;; EFED Default)&#39;</span>
+                <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;Medium-Coarse&#39;</span>
+                <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+    <span class="k">elif</span> <span class="n">application_method</span><span class="o">==</span><span class="s">&#39;c&#39;</span><span class="p">:</span>
+        <span class="n">application_method_label</span><span class="o">=</span><span class="s">&#39;Airblast Spray (Orchard &amp; Vineyard)&#39;</span>
+        <span class="k">if</span> <span class="n">airblast_type</span><span class="o">==</span><span class="s">&#39;a&#39;</span><span class="p">:</span>
+                <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span> 
+                <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+                <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+                <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;Orchards and Dormant Vineyards&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+                <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span> 
+                <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+                <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+                <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;Foliated Vineyards&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">application_method_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+        <span class="n">aerial_size_dist_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span> 
+        <span class="n">ground_spray_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+        <span class="n">spray_quality_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+        <span class="n">airblast_type_label</span><span class="o">=</span><span class="s">&#39;NA&#39;</span>
+<span class="c">##########################################################################################                                        </span>
+    <span class="n">geneec_obj</span> <span class="o">=</span> <span class="n">geneec_model</span><span class="o">.</span><span class="n">geneec</span><span class="p">(</span><span class="s">&#39;single&#39;</span><span class="p">,</span> <span class="n">chem_name</span><span class="p">,</span> <span class="n">application_target</span><span class="p">,</span> <span class="n">application_rate</span><span class="p">,</span> <span class="n">number_of_applications</span><span class="p">,</span> <span class="n">interval_between_applications</span><span class="p">,</span> <span class="n">Koc</span><span class="p">,</span> <span class="n">aerobic_soil_metabolism</span><span class="p">,</span> <span class="n">wet_in</span><span class="p">,</span> <span class="n">application_method</span><span class="p">,</span> <span class="n">application_method_label</span><span class="p">,</span> <span class="n">aerial_size_dist</span><span class="p">,</span> <span class="n">ground_spray_type</span><span class="p">,</span> <span class="n">airblast_type</span><span class="p">,</span> <span class="n">spray_quality</span><span class="p">,</span> <span class="n">no_spray_drift</span><span class="p">,</span> <span class="n">incorporation_depth</span><span class="p">,</span> <span class="n">solubility</span><span class="p">,</span> <span class="n">aerobic_aquatic_metabolism</span><span class="p">,</span> <span class="n">hydrolysis</span><span class="p">,</span> <span class="n">photolysis_aquatic_half_life</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">geneec_obj</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

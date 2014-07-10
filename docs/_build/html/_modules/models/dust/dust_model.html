@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.dust.dust_model &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.dust.dust_model</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">rest_funcs</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">keys_Picloud_S3</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="c">############Provide the key and connect to EC2####################</span>
+<span class="n">api_key</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_key</span>
+<span class="n">api_secretkey</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_secretkey</span>
+<span class="n">base64string</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">encodestring</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_secretkey</span><span class="p">))[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">http_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Authorization&#39;</span> <span class="p">:</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">base64string</span><span class="p">,</span> <span class="s">&#39;Content-Type&#39;</span> <span class="p">:</span> <span class="s">&#39;application/json&#39;</span><span class="p">}</span>
+<span class="n">url_part1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span>
+<span class="c">###########################################################################</span>
+
+
+<div class="viewcode-block" id="dust"><a class="viewcode-back" href="../../../models.dust.html#models.dust.dust_model.dust">[docs]</a><span class="k">class</span> <span class="nc">dust</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_variables</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">run_methods</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">run_type</span><span class="o">=</span><span class="s">&#39;single&#39;</span><span class="p">,</span> <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">label_epa_reg_no</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">ar_lb</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">frac_pest_surface</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dislodge_fol_res</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="n">bird_acute_oral_study</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">bird_study_add_comm</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span>
+              <span class="n">low_bird_acute_ld50</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">test_bird_bw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mineau_scaling_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mamm_acute_derm_study</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">mamm_study_add_comm</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span>  <span class="n">mam_acute_derm_ld50</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mam_acute_oral_ld50</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">test_mam_bw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vars_dict</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_default_variables</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">set_variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">vars_dict</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">vars_dict</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_variables</span><span class="p">(</span><span class="n">run_type</span><span class="p">,</span> <span class="n">chemical_name</span><span class="p">,</span> <span class="n">label_epa_reg_no</span><span class="p">,</span> <span class="n">ar_lb</span><span class="p">,</span> <span class="n">frac_pest_surface</span><span class="p">,</span> <span class="n">dislodge_fol_res</span><span class="p">,</span>  <span class="n">bird_acute_oral_study</span><span class="p">,</span> <span class="n">bird_study_add_comm</span><span class="p">,</span>
+              <span class="n">low_bird_acute_ld50</span><span class="p">,</span> <span class="n">test_bird_bw</span><span class="p">,</span> <span class="n">mineau_scaling_factor</span><span class="p">,</span> <span class="n">mamm_acute_derm_study</span><span class="p">,</span> <span class="n">mamm_study_add_comm</span><span class="p">,</span>  <span class="n">mam_acute_derm_ld50</span><span class="p">,</span> <span class="n">mam_acute_oral_ld50</span><span class="p">,</span> <span class="n">test_mam_bw</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="dust.set_default_variables"><a class="viewcode-back" href="../../../models.dust.html#models.dust.dust_model.dust.set_default_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_default_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c">#Currently used variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span> <span class="o">=</span> <span class="s">&quot;single&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_epa_reg_no</span><span class="o">=</span><span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ar_lb</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frac_pest_surface</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dislodge_fol_res</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bird_acute_oral_study</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bird_study_add_comm</span><span class="o">=</span><span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">low_bird_acute_ld50</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_bird_bw</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mineau_scaling_factor</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mamm_acute_derm_study</span><span class="o">=</span><span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mamm_study_add_comm</span><span class="o">=</span><span class="s">&#39;&#39;</span>
+        <span class="c">#self.aviandermaltype=1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mam_acute_derm_ld50</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mam_acute_oral_ld50</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_mam_bw</span><span class="o">=</span><span class="mi">1</span>
+
+</div>
+<div class="viewcode-block" id="dust.set_variables"><a class="viewcode-back" href="../../../models.dust.html#models.dust.dust_model.dust.set_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_type</span><span class="p">,</span> <span class="n">chemical_name</span><span class="p">,</span> <span class="n">label_epa_reg_no</span><span class="p">,</span> <span class="n">ar_lb</span><span class="p">,</span> <span class="n">frac_pest_surface</span><span class="p">,</span> <span class="n">dislodge_fol_res</span><span class="p">,</span> <span class="n">bird_acute_oral_study</span><span class="p">,</span> <span class="n">bird_study_add_comm</span><span class="p">,</span>
+              <span class="n">low_bird_acute_ld50</span><span class="p">,</span> <span class="n">test_bird_bw</span><span class="p">,</span> <span class="n">mineau_scaling_factor</span><span class="p">,</span> <span class="n">mamm_acute_derm_study</span><span class="p">,</span> <span class="n">mamm_study_add_comm</span><span class="p">,</span> <span class="n">mam_acute_derm_ld50</span><span class="p">,</span> <span class="n">mam_acute_oral_ld50</span><span class="p">,</span> <span class="n">test_mam_bw</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span> <span class="o">=</span> <span class="n">run_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chemical_name</span><span class="o">=</span><span class="n">chemical_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_epa_reg_no</span><span class="o">=</span><span class="n">label_epa_reg_no</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ar_lb</span><span class="o">=</span><span class="n">ar_lb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frac_pest_surface</span><span class="o">=</span><span class="n">frac_pest_surface</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dislodge_fol_res</span><span class="o">=</span><span class="n">dislodge_fol_res</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bird_acute_oral_study</span><span class="o">=</span><span class="n">bird_acute_oral_study</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bird_study_add_comm</span><span class="o">=</span><span class="n">bird_study_add_comm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">low_bird_acute_ld50</span><span class="o">=</span><span class="n">low_bird_acute_ld50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_bird_bw</span><span class="o">=</span><span class="n">test_bird_bw</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mineau_scaling_factor</span><span class="o">=</span><span class="n">mineau_scaling_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mamm_acute_derm_study</span><span class="o">=</span><span class="n">mamm_acute_derm_study</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mamm_study_add_comm</span><span class="o">=</span><span class="n">mamm_study_add_comm</span>
+        <span class="c">#self.aviandermaltype=aviandermaltype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mam_acute_derm_ld50</span><span class="o">=</span><span class="n">mam_acute_derm_ld50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mam_acute_oral_ld50</span> <span class="o">=</span> <span class="n">mam_acute_oral_ld50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_mam_bw</span><span class="o">=</span><span class="n">test_mam_bw</span>
+
+        <span class="n">all_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;chemical_name&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">chemical_name</span><span class="p">,</span> <span class="s">&quot;label_epa_reg_no&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">label_epa_reg_no</span><span class="p">,</span> 
+                   <span class="s">&quot;ar_lb&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">ar_lb</span><span class="p">,</span> <span class="s">&quot;frac_pest_surface&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">frac_pest_surface</span><span class="p">,</span> <span class="s">&quot;dislodge_fol_res&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">dislodge_fol_res</span><span class="p">,</span> 
+                   <span class="s">&quot;bird_acute_oral_study&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">bird_acute_oral_study</span><span class="p">,</span> <span class="s">&quot;bird_study_add_comm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">bird_study_add_comm</span><span class="p">,</span> 
+                   <span class="s">&quot;low_bird_acute_ld50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">low_bird_acute_ld50</span><span class="p">,</span> <span class="s">&quot;test_bird_bw&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">test_bird_bw</span><span class="p">,</span> 
+                   <span class="s">&quot;mineau_scaling_factor&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">mineau_scaling_factor</span><span class="p">,</span> <span class="s">&quot;mamm_acute_derm_study&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">mamm_acute_derm_study</span><span class="p">,</span> 
+                   <span class="s">&quot;mamm_study_add_comm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">mamm_study_add_comm</span><span class="p">,</span> <span class="s">&quot;mam_acute_derm_ld50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">mam_acute_derm_ld50</span><span class="p">,</span> 
+                   <span class="s">&quot;mam_acute_oral_ld50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">mam_acute_oral_ld50</span><span class="p">,</span> <span class="s">&quot;test_mam_bw&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">test_mam_bw</span><span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">all_dic</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;/dust/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> 
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">http_headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">output_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">output_val</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

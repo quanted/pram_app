@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.przm.przm_tables &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.przm.przm_tables</h1><div class="highlight"><pre>
+<span class="c"># import numpy</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">Template</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+<span class="kn">import</span> <span class="nn">przm_model</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
+
+
+<div class="viewcode-block" id="getheaderpvu"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.getheaderpvu">[docs]</a><span class="k">def</span> <span class="nf">getheaderpvu</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="getheaderpvu2"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.getheaderpvu2">[docs]</a><span class="k">def</span> <span class="nf">getheaderpvu2</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">,</span> <span class="s">&quot;Units&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="gethtmlrowsfromcols"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.gethtmlrowsfromcols">[docs]</a><span class="k">def</span> <span class="nf">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headings</span><span class="p">):</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">heading</span><span class="p">]</span> <span class="k">for</span> <span class="n">heading</span> <span class="ow">in</span> <span class="n">headings</span><span class="p">]</span>
+
+    <span class="c"># get the length of the longest column</span>
+    <span class="n">max_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="c"># padding the short columns with None</span>
+        <span class="n">col</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">None</span><span class="p">,]</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">col</span><span class="p">))</span>
+
+    <span class="c"># Then rotate the structure...</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_len</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">rows</span>
+</div>
+<div class="viewcode-block" id="getdjtemplate"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.getdjtemplate">[docs]</a><span class="k">def</span> <span class="nf">getdjtemplate</span><span class="p">():</span>
+    <span class="n">dj_template</span> <span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;table class=&quot;out_&quot;&gt;</span>
+<span class="s">    {# headings #}</span>
+<span class="s">        &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or heading in headings %}</span>
+<span class="s">            &lt;th colspan={{ th_span|default:&#39;1&#39; }}&gt;{{ heading }}&lt;/th&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">        &lt;/tr&gt;</span>
+<span class="s">    </span>
+<span class="s">    {</span><span class="si">% i</span><span class="s">f sub_headings %}</span>
+<span class="s">        &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or sub_heading in sub_headings %}</span>
+<span class="s">            &lt;th&gt;{{ sub_heading }}&lt;/th&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">        &lt;/tr&gt;</span>
+<span class="s">    {</span><span class="si">% e</span><span class="s">ndif %}</span>
+<span class="s">    {# data #}</span>
+<span class="s">    {</span><span class="si">% f</span><span class="s">or row in data %}</span>
+<span class="s">    &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or val in row %}</span>
+<span class="s">        &lt;td&gt;{{ val|default:&#39;&#39;|safe }}&lt;/td&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/tr&gt;</span>
+<span class="s">    {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/table&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dj_template</span>
+ </div>
+<div class="viewcode-block" id="gett1data"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.gett1data">[docs]</a><span class="k">def</span> <span class="nf">gett1data</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span> <span class="s">&#39;Standard OPP/EFED Scenarios&#39;</span><span class="p">,</span> <span class="s">&#39;Weather station&#39;</span><span class="p">,</span> <span class="s">&#39;Met filename&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;INP filename&#39;</span><span class="p">,</span> <span class="s">&#39;RUN filename&#39;</span><span class="p">,</span> <span class="s">&#39;Number of applications&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">chemical_name</span><span class="p">,</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">Scenarios</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">station</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">met_o</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">inp_o</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">run_o</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">NOA</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett2data"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.gett2data">[docs]</a><span class="k">def</span> <span class="nf">gett2data</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Application timing&#39;</span><span class="p">,</span> <span class="s">&#39;Days relevant to the application&#39;</span><span class="p">,</span> <span class="s">&#39;Application method&#39;</span><span class="p">,</span> <span class="s">&#39;Application rate&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Chemical application Method&#39;</span><span class="p">,</span> <span class="s">&#39;Efficiency&#39;</span><span class="p">,</span> <span class="s">&#39;Drift pond&#39;</span><span class="p">,</span> <span class="s">&#39;Incorporation depth (DEPI)&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">Apt_p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">DayRe_l</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">Ap_mp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">Ar_l</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">CAM_f_p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">EFF_p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">Drft_p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">DEPI_p</span><span class="p">[</span><span class="n">i</span><span class="p">],],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;kg/ha&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;cm&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<span class="n">pvuheadings</span> <span class="o">=</span> <span class="n">getheaderpvu</span><span class="p">()</span>
+<span class="n">pvuheadings2</span> <span class="o">=</span> <span class="n">getheaderpvu2</span><span class="p">()</span>
+<span class="n">djtemplate</span> <span class="o">=</span> <span class="n">getdjtemplate</span><span class="p">()</span>
+<span class="n">tmpl</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">djtemplate</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="table_all"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.table_all">[docs]</a><span class="k">def</span> <span class="nf">table_all</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">):</span>
+    <span class="n">table1_out</span> <span class="o">=</span> <span class="n">table_1</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">)</span>
+    <span class="n">table2_out</span> <span class="o">=</span> <span class="n">table_2</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">)</span>
+    <span class="n">table3_out</span> <span class="o">=</span> <span class="n">table_3</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">)</span>
+    <span class="n">table4_out</span> <span class="o">=</span> <span class="n">table_4</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">)</span>
+    <span class="n">table5_out</span> <span class="o">=</span> <span class="n">table_5</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">)</span>
+    <span class="n">html_plot</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;przm-output-jqplot.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;model_index&#39;</span><span class="p">:</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">iter_index</span><span class="p">,</span> 
+                                                                           <span class="s">&#39;plot_index1&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">przm_obj</span><span class="o">.</span><span class="n">iter_index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> 
+                                                                           <span class="s">&#39;plot_index2&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">przm_obj</span><span class="o">.</span><span class="n">iter_index</span><span class="o">+</span><span class="mi">2</span><span class="p">})</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">table1_out</span> <span class="o">+</span> <span class="n">table2_out</span> <span class="o">+</span> <span class="n">table3_out</span> <span class="o">+</span> <span class="n">table4_out</span> <span class="o">+</span> <span class="n">table5_out</span> <span class="o">+</span> <span class="n">html_plot</span>
+    <span class="k">return</span> <span class="n">html_all</span>
+
+</div>
+<div class="viewcode-block" id="timestamp"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.timestamp">[docs]</a><span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">przm_obj</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">batch_jid</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">przm_obj</span><span class="p">:</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">przm_obj</span><span class="o">.</span><span class="n">jid</span><span class="p">,</span> <span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%A, %Y-%B-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">batch_jid</span><span class="p">,</span> <span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%A, %Y-%B-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="n">html</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">        &lt;b&gt;PRZM&lt;br&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">st</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot; (EST)&lt;/b&gt;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;/div&gt;&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_1"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.table_1">[docs]</a><span class="k">def</span> <span class="nf">table_1</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Inputs&lt;/H3&gt;</span>
+<span class="s">    &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">        &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;Profile&lt;/H4&gt;</span>
+<span class="s">            &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1data</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">)</span>
+    <span class="n">t1rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data</span><span class="p">,</span> <span class="n">pvuheadings</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">    &lt;/div&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_2"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.table_2">[docs]</a><span class="k">def</span> <span class="nf">table_2</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">):</span>
+    <span class="n">html_table2</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">przm_obj</span><span class="o">.</span><span class="n">NOA</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;H4 class=&quot;out_2 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Application </span><span class="si">%s</span><span class="s">&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">t2data</span> <span class="o">=</span> <span class="n">gett2data</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">t2rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2data</span><span class="p">,</span> <span class="n">pvuheadings2</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings2</span><span class="p">)))</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/div&gt;&quot;&quot;&quot;</span>
+        <span class="n">html_table2</span> <span class="o">=</span> <span class="n">html_table2</span> <span class="o">+</span> <span class="n">html</span>
+    <span class="k">return</span> <span class="n">html_table2</span>
+</div>
+<div class="viewcode-block" id="table_3"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.table_3">[docs]</a><span class="k">def</span> <span class="nf">table_3</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;H3 class=&quot;out_3 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Outputs&lt;/H3&gt;</span>
+<span class="s">    &lt;div class=&quot;out_3&quot;&gt;</span>
+<span class="s">        &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;Download&lt;/H4&gt;</span>
+<span class="s">            &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">                &lt;table class=&quot;out_&quot;&gt;</span>
+<span class="s">                    &lt;tr&gt;</span>
+<span class="s">                        &lt;th scope=&quot;col&quot;&gt;Outputs&lt;/div&gt;&lt;/th&gt;</span>
+<span class="s">                        &lt;th scope=&quot;col&quot;&gt;Value&lt;/div&gt;&lt;/th&gt;                            </span>
+<span class="s">                    &lt;/tr&gt;</span>
+<span class="s">                    &lt;tr&gt;</span>
+<span class="s">                        &lt;td&gt;Simulation is finished. Please download your file from here&lt;/td&gt;</span>
+<span class="s">                        &lt;td&gt;&lt;a href=</span><span class="si">%s</span><span class="s">&gt;Link&lt;/a&gt;&lt;/td&gt;</span>
+<span class="s">                    &lt;/tr&gt;</span>
+<span class="s">                &lt;/table&gt;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">    &lt;/div&gt;&quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">przm_obj</span><span class="o">.</span><span class="n">link</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_4"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.table_4">[docs]</a><span class="k">def</span> <span class="nf">table_4</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H4 class=&quot;out_4 collapsible&quot; id=&quot;section1&quot; style=&quot;display: none&quot;&gt;&lt;span&gt;&lt;/span&gt;Plot&lt;/H4&gt;</span>
+<span class="s">            &lt;div class=&quot;out_4 container_output&quot;&gt;</span>
+<span class="s">                &lt;table class=&quot;out_&quot; style=&quot;display: none&quot;&gt;</span>
+<span class="s">                    &lt;tr&gt;</span>
+<span class="s">                        &lt;td id=&quot;x_pre_irr&quot;&gt;pre+irr&lt;/td&gt;</span>
+<span class="s">                        &lt;td id=&quot;x_pre_irr_val_</span><span class="si">%s</span><span class="s">&quot;&gt;</span><span class="si">%s</span><span class="s">&lt;/td&gt;</span>
+<span class="s">                    &lt;/tr&gt;</span>
+<span class="s">                    &lt;tr&gt;</span>
+<span class="s">                        &lt;td id=&quot;x_leachate&quot;&gt;leachate&lt;/td&gt;</span>
+<span class="s">                        &lt;td id=&quot;x_leachate_val_</span><span class="si">%s</span><span class="s">&quot;&gt;</span><span class="si">%s</span><span class="s">&lt;/td&gt;</span>
+<span class="s">                    &lt;/tr&gt;                          </span>
+<span class="s">                    &lt;tr&gt;</span>
+<span class="s">                        &lt;td id=&quot;x_et&quot;&gt;et&lt;/td&gt;</span>
+<span class="s">                        &lt;td id=&quot;x_et_val_</span><span class="si">%s</span><span class="s">&quot;&gt;</span><span class="si">%s</span><span class="s">&lt;/td&gt;</span>
+<span class="s">                    &lt;/tr&gt;</span>
+<span class="s">                    &lt;tr&gt;</span>
+<span class="s">                        &lt;td id=&quot;x_runoff&quot;&gt;runoff&lt;/td&gt;</span>
+<span class="s">                        &lt;td id=&quot;x_runoff_val_</span><span class="si">%s</span><span class="s">&quot;&gt;</span><span class="si">%s</span><span class="s">&lt;/td&gt;</span>
+<span class="s">                    &lt;/tr&gt;                          </span>
+<span class="s">                &lt;/table&gt;</span>
+<span class="s">            &lt;/div&gt;&quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">przm_obj</span><span class="o">.</span><span class="n">iter_index</span><span class="p">,</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">x_pre_irr</span><span class="p">,</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">iter_index</span><span class="p">,</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">x_leachate</span><span class="p">,</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">iter_index</span><span class="p">,</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">x_et</span><span class="p">,</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">iter_index</span><span class="p">,</span> <span class="n">przm_obj</span><span class="o">.</span><span class="n">x_runoff</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_5"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_tables.table_5">[docs]</a><span class="k">def</span> <span class="nf">table_5</span><span class="p">(</span><span class="n">przm_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H3 class=&quot;out_3 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;Plots&lt;/H3&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_4 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/H4&gt;</span>
+<span class="s">                &lt;div id=&quot;chart</span><span class="si">%s</span><span class="s">&quot; style=&quot;margin-top:20px; margin-left:20px; width:600px; height:400px;&quot;&gt;&lt;/div&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_4 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/H4&gt;</span>
+<span class="s">                &lt;div id=&quot;chart</span><span class="si">%s</span><span class="s">&quot; style=&quot;margin-top:20px; margin-left:20px; width:600px; height:400px;&quot;&gt;&lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span><span class="o">%</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">przm_obj</span><span class="o">.</span><span class="n">iter_index</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">przm_obj</span><span class="o">.</span><span class="n">iter_index</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">html</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

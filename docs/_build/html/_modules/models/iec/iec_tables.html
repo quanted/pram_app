@@ -1,0 +1,387 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.iec.iec_tables &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.iec.iec_tables</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="c">#import django</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">Template</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&quot;IecTables&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="getheaderiv"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.getheaderiv">[docs]</a><span class="k">def</span> <span class="nf">getheaderiv</span><span class="p">():</span>
+  <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="getheaderov"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.getheaderov">[docs]</a><span class="k">def</span> <span class="nf">getheaderov</span><span class="p">():</span>
+  <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="getheaderovqaqc"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.getheaderovqaqc">[docs]</a><span class="k">def</span> <span class="nf">getheaderovqaqc</span><span class="p">():</span>
+  <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">,</span> <span class="s">&quot;Expected Value&quot;</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="getheadersum"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.getheadersum">[docs]</a><span class="k">def</span> <span class="nf">getheadersum</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Mean&quot;</span><span class="p">,</span> <span class="s">&quot;Std&quot;</span><span class="p">,</span> <span class="s">&quot;Min&quot;</span><span class="p">,</span> <span class="s">&quot;Max&quot;</span><span class="p">,</span> <span class="s">&quot;Unit&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="getheadersum_un"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.getheadersum_un">[docs]</a><span class="k">def</span> <span class="nf">getheadersum_un</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Mean&quot;</span><span class="p">,</span> <span class="s">&quot;Std&quot;</span><span class="p">,</span> <span class="s">&quot;Min&quot;</span><span class="p">,</span> <span class="s">&quot;Max&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="gethtmlrowsfromcols"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.gethtmlrowsfromcols">[docs]</a><span class="k">def</span> <span class="nf">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headings</span><span class="p">):</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">heading</span><span class="p">]</span> <span class="k">for</span> <span class="n">heading</span> <span class="ow">in</span> <span class="n">headings</span><span class="p">]</span>
+
+    <span class="c"># get the length of the longest column</span>
+    <span class="n">max_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="c"># padding the short columns with None</span>
+        <span class="n">col</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">None</span><span class="p">,]</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">col</span><span class="p">))</span>
+
+    <span class="c"># Then rotate the structure...</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_len</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">rows</span>
+</div>
+<div class="viewcode-block" id="getdjtemplate"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.getdjtemplate">[docs]</a><span class="k">def</span> <span class="nf">getdjtemplate</span><span class="p">():</span>
+    <span class="n">dj_template</span> <span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;table class=&quot;out_&quot; &gt;</span>
+<span class="s">    {# headings #}</span>
+<span class="s">        &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or heading in headings %}</span>
+<span class="s">            &lt;th&gt;{{ heading }}&lt;/th&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">        &lt;/tr&gt;</span>
+<span class="s">    {# data #}</span>
+<span class="s">    {</span><span class="si">% f</span><span class="s">or row in data %}</span>
+<span class="s">    &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or val in row %}</span>
+<span class="s">        &lt;td&gt;{{ val|default:&#39;&#39; }}&lt;/td&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/tr&gt;</span>
+<span class="s">    {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/table&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dj_template</span>
+
+
+</div>
+<div class="viewcode-block" id="gett1data"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.gett1data">[docs]</a><span class="k">def</span> <span class="nf">gett1data</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;LC50 or LD50&#39;</span><span class="p">,</span> <span class="s">&#39;Threshold&#39;</span><span class="p">,</span> <span class="s">&#39;Slope&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">iec_obj</span><span class="o">.</span><span class="n">LC50</span><span class="p">,</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">threshold</span><span class="p">,</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">dose_response</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gettsumdata_1"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.gettsumdata_1">[docs]</a><span class="k">def</span> <span class="nf">gettsumdata_1</span><span class="p">(</span><span class="n">LC50_pool</span><span class="p">,</span> <span class="n">threshold_pool</span><span class="p">,</span> <span class="n">dose_response_pool</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;LC50 or LD50&#39;</span><span class="p">,</span> <span class="s">&#39;Threshold&#39;</span><span class="p">,</span> <span class="s">&#39;Slope&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Mean&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">LC50_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">threshold_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dose_response_pool</span><span class="p">)],</span>
+        <span class="s">&quot;Std&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">LC50_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">threshold_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dose_response_pool</span><span class="p">)],</span>
+        <span class="s">&quot;Min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">LC50_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">threshold_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dose_response_pool</span><span class="p">)],</span>
+        <span class="s">&quot;Max&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">LC50_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">threshold_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dose_response_pool</span><span class="p">)],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett2data"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.gett2data">[docs]</a><span class="k">def</span> <span class="nf">gett2data</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">):</span>
+    <span class="c">#logger.info(vars(iec_obj))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Z Score&#39;</span><span class="p">,</span> <span class="s">&#39;&quot;F8&quot;&#39;</span><span class="p">,</span> <span class="s">&#39;Chance of Individual Effect&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">z_score_f_out</span><span class="p">,</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">F8_f_out</span><span class="p">,</span><span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">chance_f_out</span><span class="p">,</span> <span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gettsumdata_2_un"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.gettsumdata_2_un">[docs]</a><span class="k">def</span> <span class="nf">gettsumdata_2_un</span><span class="p">(</span><span class="n">z_score_f_pool</span><span class="p">,</span> <span class="n">F8_f_pool</span><span class="p">,</span> <span class="n">chance_f_pool</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Z Score&#39;</span><span class="p">,</span> <span class="s">&#39;&quot;F8&quot;&#39;</span><span class="p">,</span> <span class="s">&#39;Chance of Individual Effect&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Mean&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">z_score_f_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">F8_f_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">chance_f_pool</span><span class="p">)],</span>
+        <span class="s">&quot;Std&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">z_score_f_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">F8_f_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">chance_f_pool</span><span class="p">)],</span>
+        <span class="s">&quot;Min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">z_score_f_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">F8_f_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">chance_f_pool</span><span class="p">)],</span>
+        <span class="s">&quot;Max&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">z_score_f_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">F8_f_pool</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">chance_f_pool</span><span class="p">)],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett2dataqaqc"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.gett2dataqaqc">[docs]</a><span class="k">def</span> <span class="nf">gett2dataqaqc</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Z Score&#39;</span><span class="p">,</span> <span class="s">&#39;&quot;F8&quot;&#39;</span><span class="p">,</span> <span class="s">&#39;Chance of Individual Effect&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">z_score_f_out</span><span class="p">,</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">F8_f_out</span><span class="p">,</span><span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">chance_f_out</span><span class="p">,</span> <span class="p">],</span>
+        <span class="s">&quot;Expected Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">z_score_f_out_expected</span><span class="p">,</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">F8_f_out_expected</span><span class="p">,</span><span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">iec_obj</span><span class="o">.</span><span class="n">chance_f_out_expected</span><span class="p">,</span> <span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c"># def gettsumdata(dose_response,LC50,threshold)</span></div>
+<div class="viewcode-block" id="gettsumdata"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.gettsumdata">[docs]</a><span class="k">def</span> <span class="nf">gettsumdata</span><span class="p">(</span><span class="n">dose_response</span><span class="p">,</span><span class="n">LC50</span><span class="p">,</span><span class="n">threshold</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Dose Response&#39;</span><span class="p">,</span> <span class="s">&#39;LC50&#39;</span><span class="p">,</span> <span class="s">&#39;Threshold&#39;</span><span class="p">],</span>
+        <span class="s">&quot;Mean&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dose_response</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">LC50</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">threshold</span><span class="p">),],</span>
+        <span class="s">&quot;Std&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dose_response</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">LC50</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">threshold</span><span class="p">),],</span>
+        <span class="s">&quot;Min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dose_response</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">LC50</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">threshold</span><span class="p">),],</span>
+         <span class="s">&quot;Max&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dose_response</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">LC50</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">threshold</span><span class="p">),],</span>
+        <span class="s">&quot;Unit&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;mg/kg-bw&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c"># def gettsumdata_out(dose_response,LC50,threshold):</span></div>
+<div class="viewcode-block" id="gettsumdata_out"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.gettsumdata_out">[docs]</a><span class="k">def</span> <span class="nf">gettsumdata_out</span><span class="p">(</span><span class="n">z_score_f_out</span><span class="p">,</span> <span class="n">F8_f_out</span><span class="p">,</span> <span class="n">chance_f_out</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Z Score F&#39;</span><span class="p">,</span> <span class="s">&#39;F8&#39;</span><span class="p">,</span> <span class="s">&#39;Chance F&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Mean&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">z_score_f_out</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">F8_f_out</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">chance_f_out</span><span class="p">),],</span>
+        <span class="s">&quot;Std&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">z_score_f_out</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">F8_f_out</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">chance_f_out</span><span class="p">),],</span>
+        <span class="s">&quot;Min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">z_score_f_out</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">F8_f_out</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">chance_f_out</span><span class="p">),],</span>
+         <span class="s">&quot;Max&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">z_score_f_out</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">F8_f_out</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">chance_f_out</span><span class="p">),],</span>
+        <span class="s">&quot;Unit&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;mg/kg-bw&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<span class="n">ivheadings</span> <span class="o">=</span> <span class="n">getheaderiv</span><span class="p">()</span>
+<span class="n">ovheadings</span> <span class="o">=</span> <span class="n">getheaderov</span><span class="p">()</span>
+<span class="n">ivheadings_un</span> <span class="o">=</span> <span class="n">getheadersum_un</span><span class="p">()</span>
+<span class="n">ovheadingsqaqc</span> <span class="o">=</span> <span class="n">getheaderovqaqc</span><span class="p">()</span>
+<span class="n">sumheadings</span> <span class="o">=</span> <span class="n">getheadersum</span><span class="p">()</span>
+<span class="n">djtemplate</span> <span class="o">=</span> <span class="n">getdjtemplate</span><span class="p">()</span>
+<span class="n">tmpl</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">djtemplate</span><span class="p">)</span>
+
+<div class="viewcode-block" id="table_all"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_all">[docs]</a><span class="k">def</span> <span class="nf">table_all</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">):</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">table_1</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">)</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">html_all</span> <span class="o">+</span> <span class="n">table_2</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html_all</span>
+</div>
+<div class="viewcode-block" id="table_all_qaqc"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_all_qaqc">[docs]</a><span class="k">def</span> <span class="nf">table_all_qaqc</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">):</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">table_1</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">)</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">html_all</span> <span class="o">+</span> <span class="n">table_2_qaqc</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html_all</span>
+</div>
+<div class="viewcode-block" id="timestamp"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.timestamp">[docs]</a><span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">iec_obj</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">batch_jid</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
+    <span class="c">#ts = time.time()</span>
+    <span class="c">#st = datetime.datetime.fromtimestamp(ts).strftime(&#39;%A, %Y-%B-%d %H:%M:%S&#39;)</span>
+    <span class="k">if</span> <span class="n">iec_obj</span><span class="p">:</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">iec_obj</span><span class="o">.</span><span class="n">jid</span><span class="p">,</span> <span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%A, %Y-%B-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">batch_jid</span><span class="p">,</span> <span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%A, %Y-%B-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="n">html</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">    &lt;b&gt;IEC Version 1.0 (Beta)&lt;br&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">st</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot; (EST)&lt;/b&gt;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;/div&gt;&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+
+<span class="c"># def timestamp():</span>
+<span class="c">#     ts = time.time()</span>
+<span class="c">#     st = datetime.datetime.fromtimestamp(ts).strftime(&#39;%A, %Y-%B-%d %H:%M:%S&#39;)</span>
+<span class="c">#     html=&quot;&quot;&quot;</span>
+<span class="c">#     &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="c">#         &lt;b&gt;IEC Version 1.0&lt;/a&gt; (Beta)&lt;br&gt;</span>
+<span class="c">#     &quot;&quot;&quot;</span>
+<span class="c">#     html = html + st</span>
+<span class="c">#     html = html + &quot; (UTC)&lt;/b&gt;&quot;</span>
+<span class="c">#     html = html + &quot;&quot;&quot;</span>
+<span class="c">#     &lt;/div&gt;&quot;&quot;&quot;</span>
+<span class="c">#     return html</span>
+</div>
+<div class="viewcode-block" id="table_all_un"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_all_un">[docs]</a><span class="k">def</span> <span class="nf">table_all_un</span><span class="p">(</span><span class="n">LC50_pool</span><span class="p">,</span> <span class="n">threshold_pool</span><span class="p">,</span> <span class="n">dose_response_pool</span><span class="p">,</span> <span class="n">z_score_f_pool</span><span class="p">,</span> <span class="n">F8_f_pool</span><span class="p">,</span> <span class="n">chance_f_pool</span><span class="p">):</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">table_1_un</span><span class="p">(</span><span class="n">LC50_pool</span><span class="p">,</span> <span class="n">F8_f_pool</span><span class="p">,</span> <span class="n">dose_response_pool</span><span class="p">)</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">html_all</span> <span class="o">+</span> <span class="n">table_2_un</span><span class="p">(</span><span class="n">z_score_f_pool</span><span class="p">,</span> <span class="n">threshold_pool</span><span class="p">,</span> <span class="n">chance_f_pool</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html_all</span>
+</div>
+<div class="viewcode-block" id="table_1"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_1">[docs]</a><span class="k">def</span> <span class="nf">table_1</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Inputs&lt;/H4&gt;</span>
+<span class="s">            &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1data</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">)</span>
+        <span class="n">t1rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data</span><span class="p">,</span><span class="n">ivheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">ivheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_2"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_2">[docs]</a><span class="k">def</span> <span class="nf">table_2</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H4 class=&quot;out_2 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Model Output&lt;/H4&gt;</span>
+<span class="s">            &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="n">t2data</span> <span class="o">=</span> <span class="n">gett2data</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">)</span>
+        <span class="n">t2rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2data</span><span class="p">,</span><span class="n">ovheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">ovheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_2_qaqc"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_2_qaqc">[docs]</a><span class="k">def</span> <span class="nf">table_2_qaqc</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H4 class=&quot;out_2 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Model Output&lt;/H4&gt;</span>
+<span class="s">            &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="n">t2data</span> <span class="o">=</span> <span class="n">gett2dataqaqc</span><span class="p">(</span><span class="n">iec_obj</span><span class="p">)</span>
+        <span class="n">t2rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2data</span><span class="p">,</span><span class="n">ovheadingsqaqc</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">ovheadingsqaqc</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+
+</div>
+<div class="viewcode-block" id="table_all_sum"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_all_sum">[docs]</a><span class="k">def</span> <span class="nf">table_all_sum</span><span class="p">(</span><span class="n">dose_response</span><span class="p">,</span><span class="n">LC50</span><span class="p">,</span><span class="n">threshold</span><span class="p">,</span><span class="n">z_score_f_out</span><span class="p">,</span> <span class="n">F8_f_out</span><span class="p">,</span> <span class="n">chance_f_out</span><span class="p">):</span>
+    <span class="n">html_all_sum</span> <span class="o">=</span> <span class="n">table_sum_input</span><span class="p">(</span><span class="n">dose_response</span><span class="p">,</span><span class="n">LC50</span><span class="p">,</span><span class="n">threshold</span><span class="p">)</span>
+    <span class="n">html_all_sum</span> <span class="o">+=</span> <span class="n">table_sum_output</span><span class="p">(</span><span class="n">z_score_f_out</span><span class="p">,</span> <span class="n">F8_f_out</span><span class="p">,</span> <span class="n">chance_f_out</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html_all_sum</span>
+</div>
+<div class="viewcode-block" id="table_sum_input"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_sum_input">[docs]</a><span class="k">def</span> <span class="nf">table_sum_input</span><span class="p">(</span><span class="n">dose_response</span><span class="p">,</span><span class="n">LC50</span><span class="p">,</span><span class="n">threshold</span><span class="p">):</span>
+        <span class="c">#pre-table sum_input</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;Summary Statistics&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section4&quot;&gt;&lt;span&gt;&lt;/span&gt;Batch Inputs&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="c">#table sum_input</span>
+        <span class="n">tsuminputdata</span> <span class="o">=</span> <span class="n">gettsumdata</span><span class="p">(</span><span class="n">dose_response</span><span class="p">,</span><span class="n">LC50</span><span class="p">,</span><span class="n">threshold</span><span class="p">)</span>
+        <span class="n">tsuminputrows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">tsuminputdata</span><span class="p">,</span> <span class="n">sumheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tsuminputrows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">sumheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_sum_output"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_sum_output">[docs]</a><span class="k">def</span> <span class="nf">table_sum_output</span><span class="p">(</span><span class="n">z_score_f_out</span><span class="p">,</span> <span class="n">F8_f_out</span><span class="p">,</span> <span class="n">chance_f_out</span><span class="p">):</span>
+        <span class="c">#pre-table sum_input</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section3&quot;&gt;&lt;span&gt;&lt;/span&gt;IEC Outputs&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="c">#table sum_input</span>
+        <span class="n">tsumoutputdata</span> <span class="o">=</span> <span class="n">gettsumdata_out</span><span class="p">(</span><span class="n">z_score_f_out</span><span class="p">,</span> <span class="n">F8_f_out</span><span class="p">,</span> <span class="n">chance_f_out</span><span class="p">)</span>
+        <span class="n">tsumoutputrows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">tsumoutputdata</span><span class="p">,</span> <span class="n">sumheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tsumoutputrows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">sumheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &lt;br&gt;&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+        </div>
+<div class="viewcode-block" id="table_1_un"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_1_un">[docs]</a><span class="k">def</span> <span class="nf">table_1_un</span><span class="p">(</span><span class="n">LC50_pool</span><span class="p">,</span> <span class="n">threshold_pool</span><span class="p">,</span> <span class="n">dose_response_pool</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Inputs&lt;/H4&gt;</span>
+<span class="s">            &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="n">t1data_un</span> <span class="o">=</span> <span class="n">gettsumdata_1</span><span class="p">(</span><span class="n">LC50_pool</span><span class="p">,</span> <span class="n">threshold_pool</span><span class="p">,</span> <span class="n">dose_response_pool</span><span class="p">)</span>
+        <span class="n">t1rows_un</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data_un</span><span class="p">,</span><span class="n">ivheadings_un</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows_un</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">ivheadings_un</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_2_un"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_tables.table_2_un">[docs]</a><span class="k">def</span> <span class="nf">table_2_un</span><span class="p">(</span><span class="n">z_score_f_pool</span><span class="p">,</span> <span class="n">F8_f_pool</span><span class="p">,</span> <span class="n">chance_f_pool</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H4 class=&quot;out_2 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;Outputs&lt;/H4&gt;</span>
+<span class="s">            &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="n">t2data_un</span> <span class="o">=</span> <span class="n">gettsumdata_2_un</span><span class="p">(</span><span class="n">z_score_f_pool</span><span class="p">,</span> <span class="n">F8_f_pool</span><span class="p">,</span> <span class="n">chance_f_pool</span><span class="p">)</span>
+        <span class="n">t2rows_un</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2data_un</span><span class="p">,</span><span class="n">ivheadings_un</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2rows_un</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">ivheadings_un</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.terrplant.terrplant_parameters &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.terrplant.terrplant_parameters</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;settings&#39;</span>
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+
+<span class="n">SELECT_INCORPORATION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1&#39;</span><span class="p">,</span><span class="s">&#39;1&#39;</span><span class="p">),(</span><span class="s">&#39;2&#39;</span><span class="p">,</span><span class="s">&#39;2&#39;</span><span class="p">),(</span><span class="s">&#39;3&#39;</span><span class="p">,</span><span class="s">&#39;3&#39;</span><span class="p">),(</span><span class="s">&#39;4&#39;</span><span class="p">,</span><span class="s">&#39;4&#39;</span><span class="p">),(</span><span class="s">&#39;5&#39;</span><span class="p">,</span><span class="s">&#39;5&#39;</span><span class="p">),(</span><span class="s">&#39;6&#39;</span><span class="p">,</span><span class="s">&#39;6&#39;</span><span class="p">))</span>
+
+<span class="n">SELECT_DRIFT</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;0.01&#39;</span><span class="p">,</span><span class="s">&#39;0.01&#39;</span><span class="p">),(</span><span class="s">&#39;0.05&#39;</span><span class="p">,</span><span class="s">&#39;0.05&#39;</span><span class="p">),(</span><span class="s">&#39;0&#39;</span><span class="p">,</span><span class="s">&#39;0&#39;</span><span class="p">))</span>
+
+<span class="n">SELECT_RUN</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;0.01&#39;</span><span class="p">,</span><span class="s">&#39;0.01&#39;</span><span class="p">),(</span><span class="s">&#39;0.02&#39;</span><span class="p">,</span><span class="s">&#39;0.02&#39;</span><span class="p">),(</span><span class="s">&#39;0.05&#39;</span><span class="p">,</span><span class="s">&#39;0.05&#39;</span><span class="p">))</span>
+
+<span class="n">SELECT_VERSION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1.2.2&#39;</span><span class="p">,</span><span class="s">&#39;1.2.2&#39;</span><span class="p">),)</span>
+
+<div class="viewcode-block" id="TerrPlantInp"><a class="viewcode-back" href="../../../models.terrplant.html#models.terrplant.terrplant_parameters.TerrPlantInp">[docs]</a><span class="k">class</span> <span class="nc">TerrPlantInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">version_terrplant</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_VERSION</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Version&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.2.2&#39;</span><span class="p">)</span>
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;Alachlor&#39;</span><span class="p">)</span>
+    <span class="n">pc_code</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;PC Code&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;90501&#39;</span><span class="p">)</span>
+    <span class="n">use</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Use&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;Corn&#39;</span><span class="p">)</span>
+    <span class="n">application_method</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Application Method&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;Ground&#39;</span><span class="p">)</span>
+    <span class="n">application_form</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Application Form&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;Spray&#39;</span><span class="p">)</span>
+    <span class="n">solubility</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Solubility&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mi">240</span><span class="p">)</span>
+    <span class="n">incorporation</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_INCORPORATION</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Incorporation Depth (in)&#39;</span><span class="p">)</span>    
+    <span class="n">application_rate</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Application rate (lbs ai/A)&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>    
+    <span class="n">drift_fraction</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_DRIFT</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Drift Fraction&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">runoff_fraction</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_RUN</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Runoff Fraction&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">EC25_for_nonlisted_seedling_emergence_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Seedling Emergence Monocot&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.0067</span><span class="p">)</span>
+    <span class="n">EC25_for_nonlisted_seedling_emergence_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Seedling Emergence Dicot&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.034</span><span class="p">)</span>
+    <span class="n">NOAEC_for_listed_seedling_emergence_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;NOAEC for Non-listed Seedling Emergence Monocot&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.0023</span><span class="p">)</span>
+    <span class="n">NOAEC_for_listed_seedling_emergence_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;NOAEC for Non-listed Seedling Emergence Dicot&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.019</span><span class="p">)</span>
+    <span class="n">EC25_for_nonlisted_vegetative_vigor_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Vegetative Vigor Monocot&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.068</span><span class="p">)</span>
+    <span class="n">EC25_for_nonlisted_vegetative_vigor_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Vegetative Vigor Dicot&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">1.4</span><span class="p">)</span>
+    <span class="n">NOAEC_for_listed_vegetative_vigor_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;NOAEC for Non-listed Vegetative Vigor Monocot&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.037</span><span class="p">)</span>
+    <span class="n">NOAEC_for_listed_vegetative_vigor_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;NOAEC for Non-listed Vegetative Vigor Dicot&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.67</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

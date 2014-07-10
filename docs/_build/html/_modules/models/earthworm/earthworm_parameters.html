@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.earthworm.earthworm_parameters &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.earthworm.earthworm_parameters</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;settings&#39;</span>
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+
+<div class="viewcode-block" id="earthwormInp"><a class="viewcode-back" href="../../../models.earthworm.html#models.earthworm.earthworm_parameters.earthwormInp">[docs]</a><span class="k">class</span> <span class="nc">earthwormInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+	<span class="c"># chemical_name = forms.CharField(widget=forms.Textarea (attrs={&#39;cols&#39;: 20, &#39;rows&#39;: 2}))</span>
+	<span class="c"># body_weight_of_bird = forms.FloatField(required=True,label=&#39;NEED TO GET INPUTS.&#39;)</span>
+	<span class="n">k_ow</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Octanol to water partition coefficient K&lt;sub&gt;OW&lt;/sub&gt;&#39;</span><span class="p">),</span><span class="n">initial</span> <span class="o">=</span> <span class="mi">57544</span><span class="p">)</span>
+	<span class="n">l_f_e</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;Lipid fraction of earthworm L&#39;</span><span class="p">,</span> <span class="n">initial</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
+	<span class="n">c_s</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Chemical concentration in soil C&lt;sub&gt;S&lt;/sub&gt; (mol/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span><span class="n">initial</span> <span class="o">=</span> <span class="mf">0.055</span><span class="p">)</span>
+	<span class="n">k_d</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Soil partitioning coefficient K&lt;sub&gt;d&lt;/sub&gt; (cm&lt;sup&gt;3&lt;/sup&gt;/g)&#39;</span><span class="p">),</span> <span class="n">initial</span> <span class="o">=</span> <span class="mi">69</span><span class="p">)</span>
+	<span class="n">p_s</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Bulk density of soil &amp;#961;&lt;sub&gt;s&lt;/sub&gt; (g/cm&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span> <span class="n">initial</span> <span class="o">=</span> <span class="mf">1.7</span><span class="p">)</span>
+	<span class="n">c_w</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Chemical concentration in pore water of soil C&lt;sub&gt;W&lt;/sub&gt; (mol/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span> <span class="n">initial</span> <span class="o">=</span> <span class="mf">0.000447</span><span class="p">)</span>
+	<span class="n">m_w</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Molecular weight of chemical MW (g/mol)&#39;</span><span class="p">),</span> <span class="n">initial</span> <span class="o">=</span> <span class="mf">406.9</span><span class="p">)</span>
+	<span class="n">p_e</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Density of earthworm &amp;#961;&lt;sub&gt;E&lt;/sub&gt; (kg/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span> <span class="n">initial</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+	
+
+	
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.sip.sip_output &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.sip.sip_output</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
+
+
+<span class="nd">@require_POST</span>
+<div class="viewcode-block" id="sipOutputPage"><a class="viewcode-back" href="../../../models.sip.html#models.sip.sip_output.sipOutputPage">[docs]</a><span class="k">def</span> <span class="nf">sipOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">sip_model</span>
+
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;chemical_name&#39;</span><span class="p">)</span>
+   <span class="c"># select_receptor = request.POST.get(&#39;select_receptor&#39;)</span>
+   <span class="c"># bw_bird = request.POST.get(&#39;body_weight_of_bird&#39;)</span>
+   <span class="c"># bw_mamm = request.POST.get(&#39;body_weight_of_mammal&#39;)</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;solubility&#39;</span><span class="p">)</span>
+    <span class="n">ld50_a</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ld50_a&#39;</span><span class="p">)</span>
+    <span class="n">ld50_m</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ld50_m&#39;</span><span class="p">)</span>
+    <span class="n">aw_bird</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;aw_bird&#39;</span><span class="p">)</span>
+    <span class="c"># tw_bird = request.POST.get(&#39;body_weight_of_the_tested_bird&#39;)</span>
+    <span class="n">aw_mamm</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;aw_mamm&#39;</span><span class="p">)</span>
+    <span class="c"># tw_mamm = request.POST.get(&#39;body_weight_of_the_tested_mammal&#39;)</span>
+    <span class="n">mineau</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;mineau_scaling_factor&#39;</span><span class="p">)</span>
+    <span class="n">noael</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;NOAEL&#39;</span><span class="p">)</span>
+    <span class="n">noaec_d</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;NOAEC_d&#39;</span><span class="p">)</span>
+    <span class="n">noaec_q</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;NOAEC_q&#39;</span><span class="p">)</span>
+    <span class="n">noaec_o</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;NOAEC_o&#39;</span><span class="p">)</span>
+    <span class="c"># noaec_o2 = request.POST.get(&#39;NOAEC_o2&#39;)</span>
+    <span class="n">Species_of_the_bird_NOAEC_CHOICES</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;NOAEC_species&#39;</span><span class="p">)</span>
+    <span class="n">bw_quail</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bw_quail&#39;</span><span class="p">)</span>
+    <span class="n">bw_duck</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bw_duck&#39;</span><span class="p">)</span>
+    <span class="n">bwb_other</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bwb_other&#39;</span><span class="p">)</span>
+    <span class="n">bw_rat</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bw_rat&#39;</span><span class="p">)</span>
+    <span class="n">bwm_other</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bwm_other&#39;</span><span class="p">)</span>
+    <span class="n">b_species</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;b_species&#39;</span><span class="p">)</span>
+    <span class="n">m_species</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;m_species&#39;</span><span class="p">)</span>
+
+    <span class="n">sip_obj</span> <span class="o">=</span> <span class="n">sip_model</span><span class="o">.</span><span class="n">sip</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="s">&#39;single&#39;</span><span class="p">,</span><span class="n">chemical_name</span><span class="p">,</span> <span class="n">b_species</span><span class="p">,</span> <span class="n">m_species</span><span class="p">,</span> <span class="n">bw_quail</span><span class="p">,</span> <span class="n">bw_duck</span><span class="p">,</span> <span class="n">bwb_other</span><span class="p">,</span> <span class="n">bw_rat</span><span class="p">,</span> <span class="n">bwm_other</span><span class="p">,</span> <span class="n">sol</span><span class="p">,</span> <span class="n">ld50_a</span><span class="p">,</span> <span class="n">ld50_m</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">mineau</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">noaec_d</span><span class="p">,</span> <span class="n">noaec_q</span><span class="p">,</span> <span class="n">noaec_o</span><span class="p">,</span> <span class="n">Species_of_the_bird_NOAEC_CHOICES</span><span class="p">,</span> <span class="n">noael</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sip_obj</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

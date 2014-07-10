@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.exams.exams_parameters &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.exams.exams_parameters</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on 06-06-2013</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;settings&#39;</span>
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+
+<span class="n">scenario_select</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;Select a scenario&#39;</span><span class="p">),(</span><span class="s">&#39;CA Almonds MLRA-17&#39;</span><span class="p">,</span> <span class="s">&#39;CA Almonds MLRA-17&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;CA Citrus   MLRA-17&#39;</span><span class="p">,</span> <span class="s">&#39;CA Citrus   MLRA-17&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;CA Cotton   MLRA-17&#39;</span><span class="p">,</span> <span class="s">&#39;CA Cotton   MLRA-17&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;CA Grape  MLRA-17&#39;</span><span class="p">,</span> <span class="s">&#39;CA Grape  MLRA-17&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;CA Lettuce  MLRA-14&#39;</span><span class="p">,</span> <span class="s">&#39;CA Lettuce  MLRA-14&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;CA Onions MLRA-17&#39;</span><span class="p">,</span> <span class="s">&#39;CA Onions MLRA-17&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;CA Tomato MLRA-17&#39;</span><span class="p">,</span> <span class="s">&#39;CA Tomato MLRA-17&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;FL Avocado MLRA-156A&#39;</span><span class="p">,</span> <span class="s">&#39;FL Avocado MLRA-156A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;FL Cabbage   MLRA-155&#39;</span><span class="p">,</span> <span class="s">&#39;FL Cabbage   MLRA-155&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;FL Carrots MLRA-156B&#39;</span><span class="p">,</span> <span class="s">&#39;FL Carrots MLRA-156B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;FL Citrus   MLRA-156A&#39;</span><span class="p">,</span> <span class="s">&#39;FL Citrus   MLRA-156A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;FL Cucumber   MLRA-156A&#39;</span><span class="p">,</span> <span class="s">&#39;FL Cucumber   MLRA-156A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;FL Peppers MLRA-156A&#39;</span><span class="p">,</span> <span class="s">&#39;FL Peppers MLRA-156A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;FL Strawberry   MLRA-155&#39;</span><span class="p">,</span> <span class="s">&#39;FL Strawberry   MLRA-155&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;FL Sugarcane   MLRA-156A&#39;</span><span class="p">,</span> <span class="s">&#39;FL Sugarcane   MLRA-156A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;FL Tomato   MLRA-155&#39;</span><span class="p">,</span> <span class="s">&#39;FL Tomato   MLRA-155&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;FL Turf  MLRA-155&#39;</span><span class="p">,</span> <span class="s">&#39;FL Turf  MLRA-155&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;GA Onions MLRA-153A/133A&#39;</span><span class="p">,</span> <span class="s">&#39;GA Onions MLRA-153A/133A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;GA Peach   MLRA-133A&#39;</span><span class="p">,</span> <span class="s">&#39;GA Peach   MLRA-133A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;GA Pecan   MLRA-133A&#39;</span><span class="p">,</span> <span class="s">&#39;GA Pecan   MLRA-133A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;ID Potato   MLRA-11B&#39;</span><span class="p">,</span> <span class="s">&#39;ID Potato   MLRA-11B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;IL Corn   MLRA-108&#39;</span><span class="p">,</span> <span class="s">&#39;IL Corn   MLRA-108&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;KS Sorghum   MLRA-112&#39;</span><span class="p">,</span> <span class="s">&#39;KS Sorghum   MLRA-112&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;LA Sugarcane   MLRA-131&#39;</span><span class="p">,</span> <span class="s">&#39;LA Sugarcane   MLRA-131&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;ME Potato   MLRA-146&#39;</span><span class="p">,</span> <span class="s">&#39;ME Potato   MLRA-146&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;MI Asparagus MLRA-96&#39;</span><span class="p">,</span> <span class="s">&#39;MI Asparagus MLRA-96&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;MI Beans MLRA-99&#39;</span><span class="p">,</span> <span class="s">&#39;MI Beans MLRA-99&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;MI Cherry   MLRA-96&#39;</span><span class="p">,</span> <span class="s">&#39;MI Cherry   MLRA-96&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;MN Sugarbeet   MLRA-56&#39;</span><span class="p">,</span> <span class="s">&#39;MN Sugarbeet   MLRA-56&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;MS Corn   MLRA-134&#39;</span><span class="p">,</span> <span class="s">&#39;MS Corn   MLRA-134&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;MS Cotton   MLRA-134&#39;</span><span class="p">,</span> <span class="s">&#39;MS Cotton   MLRA-134&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;MS Soybean   MLRA-134&#39;</span><span class="p">,</span> <span class="s">&#39;MS Soybean   MLRA-134&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;NC Apple   MLRA-130&#39;</span><span class="p">,</span> <span class="s">&#39;NC Apple   MLRA-130&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;NC Corn - E   MLRA-153A&#39;</span><span class="p">,</span> <span class="s">&#39;NC Corn - E   MLRA-153A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;NC Cotton   MLRA-133A&#39;</span><span class="p">,</span> <span class="s">&#39;NC Cotton   MLRA-133A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;NC Peanut   MLRA-153A&#39;</span><span class="p">,</span> <span class="s">&#39;NC Peanut   MLRA-153A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;NC Sweet Potato MLRA-133&#39;</span><span class="p">,</span> <span class="s">&#39;NC Sweet Potato MLRA-133&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;NC Tobacco   MLRA-133A&#39;</span><span class="p">,</span> <span class="s">&#39;NC Tobacco   MLRA-133A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;ND Canola   MLRA-55A&#39;</span><span class="p">,</span> <span class="s">&#39;ND Canola   MLRA-55A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;ND Wheat   MLRA-56&#39;</span><span class="p">,</span> <span class="s">&#39;ND Wheat   MLRA-56&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;NY Grape   MLRA-100/101&#39;</span><span class="p">,</span> <span class="s">&#39;NY Grape   MLRA-100/101&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;OH Corn   MLRA-111&#39;</span><span class="p">,</span> <span class="s">&#39;OH Corn   MLRA-111&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;OR Apple   MLRA-2&#39;</span><span class="p">,</span> <span class="s">&#39;OR Apple   MLRA-2&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;OR Christmas Trees  MLRA-2&#39;</span><span class="p">,</span> <span class="s">&#39;OR Christmas Trees  MLRA-2&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;OR Filberts   MLRA-2&#39;</span><span class="p">,</span> <span class="s">&#39;OR Filberts   MLRA-2&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;OR Grass Seed   MLRA-2&#39;</span><span class="p">,</span> <span class="s">&#39;OR Grass Seed   MLRA-2&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;OR Hops   MLRA-2&#39;</span><span class="p">,</span> <span class="s">&#39;OR Hops   MLRA-2&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;OR Mint   MLRA-2&#39;</span><span class="p">,</span> <span class="s">&#39;OR Mint   MLRA-2&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;PA Apple   MLRA-148&#39;</span><span class="p">,</span> <span class="s">&#39;PA Apple   MLRA-148&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;PA Corn   MLRA-148&#39;</span><span class="p">,</span> <span class="s">&#39;PA Corn   MLRA-148&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;PA Turf  MLRA-148&#39;</span><span class="p">,</span> <span class="s">&#39;PA Turf  MLRA-148&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;PR Coffee MLRA-270&#39;</span><span class="p">,</span> <span class="s">&#39;PR Coffee MLRA-270&#39;</span><span class="p">))</span>
+<span class="n">farm_select</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;No&#39;</span><span class="p">,</span><span class="s">&#39;No&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Yes&#39;</span><span class="p">,</span><span class="s">&#39;Yes&#39;</span><span class="p">))</span>
+
+<div class="viewcode-block" id="EXAMSInp"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_parameters.EXAMSInp">[docs]</a><span class="k">class</span> <span class="nc">EXAMSInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}))</span>
+    <span class="n">scenarios</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">choices</span><span class="o">=</span><span class="n">scenario_select</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Standard OPP/EFED Scenarios&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">farm_pond</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">choices</span><span class="o">=</span><span class="n">farm_select</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Farm pond (no flow)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">molecular_weight</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Molecular weight (g/mol)&#39;</span><span class="p">)</span> 
+    <span class="n">solubility</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Solubility(mg/L)&#39;</span><span class="p">)</span>
+    <span class="n">Koc</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Aquatic Sediment Koc (mL/g)&#39;</span><span class="p">)</span>   
+    <span class="n">vapor_pressure</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Vapor Pressure (torr)&#39;</span><span class="p">)</span>
+    <span class="n">aerobic_aquatic_metabolism</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Aerobic aquatic metabolism (days)&#39;</span><span class="p">)</span>
+    <span class="n">anaerobic_aquatic_metabolism</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Anaerobic aquatic metabolism (days)&#39;</span><span class="p">)</span>
+    <span class="n">aquatic_direct_photolysis</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Aquatic Direct Photolysis (days)&#39;</span><span class="p">)</span>
+    <span class="n">temperature</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Test Temperature (&lt;sup&gt;o&lt;/sup&gt;C)&#39;</span><span class="p">))</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

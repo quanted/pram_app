@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.trex2.trex2_model &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.trex2.trex2_model</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;trex2 model&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">rest_funcs</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">keys_Picloud_S3</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="c">############Provide the key and connect to EC2####################</span>
+<span class="n">api_key</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_key</span>
+<span class="n">api_secretkey</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_secretkey</span>
+<span class="n">base64string</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">encodestring</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_secretkey</span><span class="p">))[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">http_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Authorization&#39;</span> <span class="p">:</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">base64string</span><span class="p">,</span> <span class="s">&#39;Content-Type&#39;</span> <span class="p">:</span> <span class="s">&#39;application/json&#39;</span><span class="p">}</span>
+<span class="n">url_part1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span>
+<span class="c">###########################################################################</span>
+
+<span class="c">#food intake for birds</span>
+<div class="viewcode-block" id="trex2"><a class="viewcode-back" href="../../../models.trex2.html#models.trex2.trex2_model.trex2">[docs]</a><span class="k">class</span> <span class="nc">trex2</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_type</span><span class="p">,</span> <span class="n">chem_name</span><span class="p">,</span> <span class="n">use</span><span class="p">,</span> <span class="n">formu_name</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">Application_type</span><span class="p">,</span> <span class="n">seed_treatment_formulation_name</span><span class="p">,</span> <span class="n">seed_crop</span><span class="p">,</span> <span class="n">seed_crop_v</span><span class="p">,</span> <span class="n">r_s</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">p_i</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">h_l</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">ar_lb</span><span class="p">,</span> <span class="n">day_out</span><span class="p">,</span>
+              <span class="n">ld50_bird</span><span class="p">,</span> <span class="n">lc50_bird</span><span class="p">,</span> <span class="n">NOAEC_bird</span><span class="p">,</span> <span class="n">NOAEL_bird</span><span class="p">,</span> <span class="n">aw_bird_sm</span><span class="p">,</span> <span class="n">aw_bird_md</span><span class="p">,</span> <span class="n">aw_bird_lg</span><span class="p">,</span> 
+              <span class="n">Species_of_the_tested_bird_avian_ld50</span><span class="p">,</span> <span class="n">Species_of_the_tested_bird_avian_lc50</span><span class="p">,</span> <span class="n">Species_of_the_tested_bird_avian_NOAEC</span><span class="p">,</span> <span class="n">Species_of_the_tested_bird_avian_NOAEL</span><span class="p">,</span> 
+              <span class="n">tw_bird_ld50</span><span class="p">,</span> <span class="n">tw_bird_lc50</span><span class="p">,</span> <span class="n">tw_bird_NOAEC</span><span class="p">,</span> <span class="n">tw_bird_NOAEL</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ld50_mamm</span><span class="p">,</span> <span class="n">lc50_mamm</span><span class="p">,</span> <span class="n">NOAEC_mamm</span><span class="p">,</span> <span class="n">NOAEL_mamm</span><span class="p">,</span> <span class="n">aw_mamm_sm</span><span class="p">,</span> <span class="n">aw_mamm_md</span><span class="p">,</span> <span class="n">aw_mamm_lg</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">,</span>
+              <span class="n">m_s_r_p</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span><span class="o">=</span><span class="n">run_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chem_name</span><span class="o">=</span><span class="n">chem_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="o">=</span><span class="n">use</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">formu_name</span><span class="o">=</span><span class="n">formu_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_i</span><span class="o">=</span><span class="n">a_i</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_i_t1</span><span class="o">=</span><span class="mi">100</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">a_i</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Application_type</span><span class="o">=</span><span class="n">Application_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed_treatment_formulation_name</span><span class="o">=</span><span class="n">seed_treatment_formulation_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed_crop</span><span class="o">=</span><span class="n">seed_crop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed_crop_v</span><span class="o">=</span><span class="n">seed_crop_v</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_s</span><span class="o">=</span><span class="n">r_s</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_w</span><span class="o">=</span><span class="n">b_w</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_w_t1</span><span class="o">=</span><span class="mi">12</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">b_w</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_i</span><span class="o">=</span><span class="n">p_i</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">p_i_t1</span><span class="o">=</span><span class="mi">100</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">p_i</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">p_i_t1</span><span class="o">=</span><span class="s">&#39;N/A&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">den</span><span class="o">=</span><span class="n">den</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_l</span><span class="o">=</span><span class="n">h_l</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_a</span><span class="o">=</span><span class="n">n_a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ar_lb</span><span class="o">=</span><span class="n">ar_lb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">day_out</span><span class="o">=</span><span class="n">day_out</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ld50_bird</span><span class="o">=</span><span class="n">ld50_bird</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lc50_bird</span><span class="o">=</span><span class="n">lc50_bird</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NOAEC_bird</span><span class="o">=</span><span class="n">NOAEC_bird</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NOAEL_bird</span><span class="o">=</span><span class="n">NOAEL_bird</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aw_bird_sm</span><span class="o">=</span><span class="n">aw_bird_sm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aw_bird_md</span><span class="o">=</span><span class="n">aw_bird_md</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aw_bird_lg</span><span class="o">=</span><span class="n">aw_bird_lg</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Species_of_the_tested_bird_avian_ld50</span><span class="o">=</span><span class="n">Species_of_the_tested_bird_avian_ld50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Species_of_the_tested_bird_avian_lc50</span><span class="o">=</span><span class="n">Species_of_the_tested_bird_avian_lc50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Species_of_the_tested_bird_avian_NOAEC</span><span class="o">=</span><span class="n">Species_of_the_tested_bird_avian_NOAEC</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Species_of_the_tested_bird_avian_NOAEL</span><span class="o">=</span><span class="n">Species_of_the_tested_bird_avian_NOAEL</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tw_bird_ld50</span><span class="o">=</span><span class="n">tw_bird_ld50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tw_bird_lc50</span><span class="o">=</span><span class="n">tw_bird_lc50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tw_bird_NOAEC</span><span class="o">=</span><span class="n">tw_bird_NOAEC</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tw_bird_NOAEL</span><span class="o">=</span><span class="n">tw_bird_NOAEL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ld50_mamm</span><span class="o">=</span><span class="n">ld50_mamm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lc50_mamm</span><span class="o">=</span><span class="n">lc50_mamm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NOAEC_mamm</span><span class="o">=</span><span class="n">NOAEC_mamm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NOAEL_mamm</span><span class="o">=</span><span class="n">NOAEL_mamm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aw_mamm_sm</span><span class="o">=</span><span class="n">aw_mamm_sm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aw_mamm_md</span><span class="o">=</span><span class="n">aw_mamm_md</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aw_mamm_lg</span><span class="o">=</span><span class="n">aw_mamm_lg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tw_mamm</span><span class="o">=</span><span class="n">tw_mamm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m_s_r_p</span><span class="o">=</span><span class="n">m_s_r_p</span>
+
+        <span class="n">all_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;chem_name&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">chem_name</span><span class="p">,</span> <span class="s">&quot;use&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">,</span> <span class="s">&quot;formu_name&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">formu_name</span><span class="p">,</span> <span class="s">&quot;a_i&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">a_i</span><span class="p">,</span> 
+                   <span class="s">&quot;Application_type&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">Application_type</span><span class="p">,</span> <span class="s">&quot;seed_treatment_formulation_name&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">seed_treatment_formulation_name</span><span class="p">,</span> 
+                   <span class="s">&quot;seed_crop&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">seed_crop</span><span class="p">,</span> <span class="s">&quot;seed_crop_v&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">seed_crop_v</span><span class="p">,</span> <span class="s">&quot;r_s&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">r_s</span><span class="p">,</span> <span class="s">&quot;b_w&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">b_w</span><span class="p">,</span> <span class="s">&quot;p_i&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">p_i</span><span class="p">,</span> 
+                   <span class="s">&quot;den&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">den</span><span class="p">,</span> <span class="s">&quot;h_l&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">h_l</span><span class="p">,</span> <span class="s">&quot;n_a&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">n_a</span><span class="p">,</span> <span class="s">&quot;ar_lb&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">ar_lb</span><span class="p">,</span> <span class="s">&quot;day_out&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">day_out</span><span class="p">,</span> <span class="s">&quot;ld50_bird&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">ld50_bird</span><span class="p">,</span> 
+                   <span class="s">&quot;lc50_bird&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">lc50_bird</span><span class="p">,</span> <span class="s">&quot;NOAEC_bird&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">NOAEC_bird</span><span class="p">,</span> <span class="s">&quot;NOAEL_bird&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">NOAEL_bird</span><span class="p">,</span> <span class="s">&quot;aw_bird_sm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">aw_bird_sm</span><span class="p">,</span> 
+                   <span class="s">&quot;aw_bird_md&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">aw_bird_md</span><span class="p">,</span> <span class="s">&quot;aw_bird_lg&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">aw_bird_lg</span><span class="p">,</span> <span class="s">&quot;Species_of_the_tested_bird_avian_ld50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">Species_of_the_tested_bird_avian_ld50</span><span class="p">,</span> 
+                   <span class="s">&quot;Species_of_the_tested_bird_avian_lc50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">Species_of_the_tested_bird_avian_lc50</span><span class="p">,</span> <span class="s">&quot;Species_of_the_tested_bird_avian_NOAEC&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">Species_of_the_tested_bird_avian_NOAEC</span><span class="p">,</span> 
+                   <span class="s">&quot;Species_of_the_tested_bird_avian_NOAEL&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">Species_of_the_tested_bird_avian_NOAEL</span><span class="p">,</span> <span class="s">&quot;tw_bird_ld50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">tw_bird_ld50</span><span class="p">,</span> <span class="s">&quot;tw_bird_lc50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">tw_bird_lc50</span><span class="p">,</span> 
+                   <span class="s">&quot;tw_bird_NOAEC&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">tw_bird_NOAEC</span><span class="p">,</span> <span class="s">&quot;tw_bird_NOAEL&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">tw_bird_NOAEL</span><span class="p">,</span> <span class="s">&quot;x&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s">&quot;ld50_mamm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">ld50_mamm</span><span class="p">,</span> <span class="s">&quot;lc50_mamm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">lc50_mamm</span><span class="p">,</span> <span class="s">&quot;NOAEC_mamm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">NOAEC_mamm</span><span class="p">,</span> 
+                   <span class="s">&quot;NOAEL_mamm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">NOAEL_mamm</span><span class="p">,</span> <span class="s">&quot;aw_mamm_sm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">aw_mamm_sm</span><span class="p">,</span> <span class="s">&quot;aw_mamm_md&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">aw_mamm_md</span><span class="p">,</span> <span class="s">&quot;aw_mamm_lg&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">aw_mamm_lg</span><span class="p">,</span> <span class="s">&quot;tw_mamm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">tw_mamm</span><span class="p">,</span> <span class="s">&quot;m_s_r_p&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">m_s_r_p</span><span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">all_dic</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;/trex2/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> 
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">http_headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">output_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">cls</span><span class="o">=</span><span class="n">rest_funcs</span><span class="o">.</span><span class="n">NumPyDecoder</span><span class="p">)[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+        <span class="n">output_val_uni</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">output_val</span><span class="p">,</span> <span class="n">cls</span><span class="o">=</span><span class="n">rest_funcs</span><span class="o">.</span><span class="n">NumPyDecoder</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">output_val_uni</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

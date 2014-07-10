@@ -1,0 +1,67 @@
+# -*- coding: utf-8 -*-
+
+from django.core.exceptions import ValidationError
+
+# Built-in Django validation rules
+
+#
+# validate_slug - A RegexValidator instance that ensures a value consists of only letters, numbers, underscores or hyphens.
+#
+# max_value - Raises a ValidationError with a code of 'max_value' if value is greater than max_value.
+#
+# min_value - Raises a ValidationError with a code of 'min_value' if value is less than min_value.
+#
+# max_length - Raises a ValidationError with a code of 'max_length' if the length of value is greater than max_length.
+#
+# min_length - Raises a ValidationError with a code of 'min_length' if the length of value is less than min_length.
+#
+# validate_email - A RegexValidator instance that ensures a value looks like an email address.
+#
+# validate_comma_separated_integer_list - A RegexValidator instance that ensures a value is a comma-separated list of integers.
+#
+# URLValidator - A RegexValidator that ensures a value looks like a URL, and raises an error code of 'invalid' if it doesn’t.
+#
+# validate_ipv4_address - A RegexValidator instance that ensures a value looks like an IPv4 address.
+#
+# validate_ipv6_address - Uses django.utils.ipv6 to check the validity of an IPv6 address.
+#
+# validate_ipv46_address - Uses both validate_ipv4_address and validate_ipv6_address to ensure a value is either a valid IPv4 or IPv6 address.
+#
+
+# Our defined validation rules
+
+# Valid range 0 - 1
+def validate_range01(value):
+	if 0 <= value <= 1:
+		pass
+	else:
+		raise ValidationError(u'Range must fall between 0 - 1')
+
+# Valid range 0 - 100 (e.g. temperature Centigrade/Celsius)
+def validate_range0100(value):
+	if 0 <= value <= 100:
+		pass
+	else:
+		raise ValidationError(u'Range must fall between 0 - 100')
+
+# Valid if value > 0
+def validate_greaterthan0(value):
+	if value > 0:
+		pass
+	else:
+		raise ValidationError(u'Value must be greater than 0')
+
+# Valid if value is positive (>= 0)
+def validate_positive(value):
+	if value < 0:
+		raise ValidationError(u'Value must be positive')
+
+# Valid if value >= 1 (e.g. Mineau scaling factor)
+def validate_greaterthanequalto1(value):
+	if value < 1:
+		raise ValidationError(u'Value must greater than or equal to 1')
+
+# ChoiceField (drop-down menu), value is not 0 ("Make a selection")
+def validate_choicefield(value):
+	if value == "0" or value == 0:
+		raise ValidationError(u'Make a selection')

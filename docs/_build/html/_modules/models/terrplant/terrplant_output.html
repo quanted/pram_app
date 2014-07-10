@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.terrplant.terrplant_output &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.terrplant.terrplant_output</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
+
+
+<span class="nd">@require_POST</span>
+<div class="viewcode-block" id="terrplantOutputPage"><a class="viewcode-back" href="../../../models.terrplant.html#models.terrplant.terrplant_output.terrplantOutputPage">[docs]</a><span class="k">def</span> <span class="nf">terrplantOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">terrplant_model</span>
+
+    <span class="n">version_terrplant</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;version_terrplant&#39;</span><span class="p">)</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;incorporation&#39;</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;application_rate&#39;</span><span class="p">)</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;drift_fraction&#39;</span><span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;runoff_fraction&#39;</span><span class="p">)</span>
+    <span class="n">nms</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;EC25_for_nonlisted_seedling_emergence_monocot&#39;</span><span class="p">)</span>
+    <span class="n">nds</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;EC25_for_nonlisted_seedling_emergence_dicot&#39;</span><span class="p">)</span>
+    <span class="n">lms</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;NOAEC_for_listed_seedling_emergence_monocot&#39;</span><span class="p">)</span>
+    <span class="n">lds</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;NOAEC_for_listed_seedling_emergence_dicot&#39;</span><span class="p">)</span>
+    <span class="c">#fill out terrplant object with yet to be used data</span>
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;chemical_name&#39;</span><span class="p">)</span>
+    <span class="c"># terr.chemical_name = chemical_name</span>
+    <span class="n">pc_code</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;pc_code&#39;</span><span class="p">)</span>
+    <span class="c"># terr.pc_code = pc_code</span>
+    <span class="n">use</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;use&#39;</span><span class="p">)</span>
+    <span class="c"># terr.use = use</span>
+    <span class="n">application_method</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;application_method&#39;</span><span class="p">)</span>
+    <span class="c"># terr.application_method = application_method</span>
+    <span class="n">application_form</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;application_form&#39;</span><span class="p">)</span>
+    <span class="c"># terr.application_form = application_form</span>
+    <span class="n">solubility</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;solubility&#39;</span><span class="p">)</span>
+    <span class="c"># terr.sol = sol</span>
+    <span class="n">terr</span> <span class="o">=</span> <span class="n">terrplant_model</span><span class="o">.</span><span class="n">terrplant</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="n">version_terrplant</span><span class="p">,</span><span class="s">&quot;single&quot;</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">nms</span><span class="p">,</span><span class="n">lms</span><span class="p">,</span><span class="n">nds</span><span class="p">,</span><span class="n">lds</span><span class="p">,</span><span class="n">chemical_name</span><span class="p">,</span><span class="n">pc_code</span><span class="p">,</span><span class="n">use</span><span class="p">,</span><span class="n">application_method</span><span class="p">,</span><span class="n">application_form</span><span class="p">,</span><span class="n">solubility</span><span class="p">)</span>
+
+    <span class="n">nmv</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;EC25_for_nonlisted_vegetative_vigor_monocot&#39;</span><span class="p">)</span>
+    <span class="n">terr</span><span class="o">.</span><span class="n">nmv</span> <span class="o">=</span> <span class="n">nmv</span>
+    <span class="n">ndv</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;EC25_for_nonlisted_vegetative_vigor_dicot&#39;</span><span class="p">)</span>
+    <span class="n">terr</span><span class="o">.</span><span class="n">ndv</span> <span class="o">=</span> <span class="n">ndv</span>
+    <span class="n">lmv</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;NOAEC_for_listed_vegetative_vigor_monocot&#39;</span><span class="p">)</span>
+    <span class="n">terr</span><span class="o">.</span><span class="n">lmv</span> <span class="o">=</span> <span class="n">lmv</span>
+    <span class="n">ldv</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;NOAEC_for_listed_vegetative_vigor_dicot&#39;</span><span class="p">)</span>
+    <span class="n">terr</span><span class="o">.</span><span class="n">ldv</span> <span class="o">=</span> <span class="n">ldv</span>
+
+    <span class="k">return</span> <span class="n">terr</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

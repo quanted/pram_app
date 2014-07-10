@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.geneec.geneec_model &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.geneec.geneec_model</h1><div class="highlight"><pre>
+<span class="c"># import os</span>
+<span class="c"># import keys_Picloud_S3</span>
+<span class="c"># import base64</span>
+<span class="c"># import urllib</span>
+<span class="c"># from google.appengine.api import urlfetch</span>
+<span class="c"># import json</span>
+<span class="c"># import logging</span>
+<span class="c"># from REST import rest_funcs</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;Geneec Model&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">rest_funcs</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">keys_Picloud_S3</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<div class="viewcode-block" id="geneec"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_model.geneec">[docs]</a><span class="k">class</span> <span class="nc">geneec</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_type</span><span class="p">,</span> <span class="n">chem_name</span><span class="p">,</span> <span class="n">application_target</span><span class="p">,</span> <span class="n">application_rate</span><span class="p">,</span> <span class="n">number_of_applications</span><span class="p">,</span> <span class="n">interval_between_applications</span><span class="p">,</span> <span class="n">Koc</span><span class="p">,</span> <span class="n">aerobic_soil_metabolism</span><span class="p">,</span> <span class="n">wet_in</span><span class="p">,</span> <span class="n">application_method</span><span class="p">,</span> <span class="n">application_method_label</span><span class="p">,</span> <span class="n">aerial_size_dist</span><span class="p">,</span> <span class="n">ground_spray_type</span><span class="p">,</span> <span class="n">airblast_type</span><span class="p">,</span> <span class="n">spray_quality</span><span class="p">,</span> <span class="n">no_spray_drift</span><span class="p">,</span> <span class="n">incorporation_depth</span><span class="p">,</span> <span class="n">solubility</span><span class="p">,</span> <span class="n">aerobic_aquatic_metabolism</span><span class="p">,</span> <span class="n">hydrolysis</span><span class="p">,</span> <span class="n">photolysis_aquatic_half_life</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span> <span class="o">=</span> <span class="n">run_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chem_name</span> <span class="o">=</span> <span class="n">chem_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">application_target</span> <span class="o">=</span> <span class="n">application_target</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">application_rate</span> <span class="o">=</span> <span class="n">application_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_applications</span> <span class="o">=</span> <span class="n">number_of_applications</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval_between_applications</span> <span class="o">=</span> <span class="n">interval_between_applications</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Koc</span> <span class="o">=</span> <span class="n">Koc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aerobic_soil_metabolism</span> <span class="o">=</span> <span class="n">aerobic_soil_metabolism</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wet_in</span> <span class="o">=</span> <span class="n">wet_in</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">application_method</span> <span class="o">=</span> <span class="n">application_method</span>
+        <span class="k">if</span> <span class="n">application_method</span> <span class="o">==</span> <span class="s">&#39;a&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">application_method_label</span> <span class="o">=</span> <span class="s">&#39;Aerial Spray&#39;</span>
+        <span class="k">if</span> <span class="n">application_method</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">application_method_label</span> <span class="o">=</span> <span class="s">&#39;Ground Spray&#39;</span>
+        <span class="k">if</span> <span class="n">application_method</span> <span class="o">==</span> <span class="s">&#39;c&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">application_method_label</span> <span class="o">=</span> <span class="s">&#39;Airblast Spray (Orchard &amp; Vineyard)&#39;</span>
+        <span class="k">if</span> <span class="n">application_method</span> <span class="o">==</span> <span class="s">&#39;d&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">application_method_label</span> <span class="o">=</span> <span class="s">&#39;Granular (Non-spray)&#39;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_target</span> <span class="o">==</span> <span class="s">&#39;a&#39;</span> <span class="ow">or</span> <span class="s">&#39;Short grass&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">application_target_label</span> <span class="o">=</span> <span class="s">&#39;Short grass&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_target</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span> <span class="ow">or</span> <span class="s">&#39;Tall grass&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">application_target_label</span> <span class="o">=</span> <span class="s">&#39;Tall grass&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_target</span> <span class="o">==</span> <span class="s">&#39;c&#39;</span> <span class="ow">or</span> <span class="s">&#39;Broad-leafed plants/small insects&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">application_target_label</span> <span class="o">=</span> <span class="s">&#39;Broad-leafed plants/small insects&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_target</span> <span class="o">==</span> <span class="s">&#39;d&#39;</span> <span class="ow">or</span> <span class="s">&#39;Fruits/pods/seeds/large insects&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">application_target_label</span> <span class="o">=</span> <span class="s">&#39;Fruits/pods/seeds/large insects&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">aerial_size_dist</span> <span class="o">=</span> <span class="n">aerial_size_dist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ground_spray_type</span> <span class="o">=</span> <span class="n">ground_spray_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">airblast_type</span> <span class="o">=</span> <span class="n">airblast_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spray_quality</span> <span class="o">=</span> <span class="n">spray_quality</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">no_spray_drift</span> <span class="o">=</span> <span class="n">no_spray_drift</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">incorporation_depth</span> <span class="o">=</span> <span class="n">incorporation_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solubility</span> <span class="o">=</span> <span class="n">solubility</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aerobic_aquatic_metabolism</span> <span class="o">=</span> <span class="n">aerobic_aquatic_metabolism</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hydrolysis</span> <span class="o">=</span> <span class="n">hydrolysis</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">photolysis_aquatic_half_life</span> <span class="o">=</span> <span class="n">photolysis_aquatic_half_life</span>
+
+        <span class="c">############Provide the key and connect to the picloud####################</span>
+        <span class="n">api_key</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_key</span>
+        <span class="n">api_secretkey</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_secretkey</span>
+        <span class="n">base64string</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">encodestring</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_secretkey</span><span class="p">))[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">http_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Authorization&#39;</span> <span class="p">:</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">base64string</span><span class="p">,</span> <span class="s">&#39;Content-Type&#39;</span> <span class="p">:</span> <span class="s">&#39;application/json&#39;</span><span class="p">}</span>
+        <span class="c">########call the function################# </span>
+
+        <span class="n">APPRAT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_rate</span>
+        <span class="n">APPNUM</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_of_applications</span>
+        <span class="n">APSPAC</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval_between_applications</span>
+        <span class="n">KOC</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Koc</span>
+        <span class="n">METHAF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aerobic_soil_metabolism</span>
+        <span class="n">WETTED</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wet_in</span>
+        <span class="n">METHOD</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_method</span>
+        <span class="n">AIRFLG</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aerial_size_dist</span>
+        <span class="n">YLOCEN</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_spray_drift</span>
+        <span class="n">GRNFLG</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ground_spray_type</span>
+        <span class="n">GRSIZE</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spray_quality</span>
+        <span class="n">ORCFLG</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">airblast_type</span>
+        <span class="n">INCORP</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">incorporation_depth</span>
+        <span class="n">SOL</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">solubility</span>
+        <span class="n">METHAP</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aerobic_aquatic_metabolism</span>
+        <span class="n">HYDHAP</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hydrolysis</span>
+        <span class="n">FOTHAP</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">photolysis_aquatic_half_life</span>
+
+
+        <span class="n">all_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;APPRAT&quot;</span><span class="p">:</span><span class="n">APPRAT</span><span class="p">,</span> <span class="s">&quot;APPNUM&quot;</span><span class="p">:</span><span class="n">APPNUM</span><span class="p">,</span> <span class="s">&quot;APSPAC&quot;</span><span class="p">:</span><span class="n">APSPAC</span><span class="p">,</span> <span class="s">&quot;KOC&quot;</span><span class="p">:</span><span class="n">KOC</span><span class="p">,</span> <span class="s">&quot;METHAF&quot;</span><span class="p">:</span><span class="n">METHAF</span><span class="p">,</span> <span class="s">&quot;WETTED&quot;</span><span class="p">:</span><span class="n">WETTED</span><span class="p">,</span>
+                   <span class="s">&quot;METHOD&quot;</span><span class="p">:</span><span class="n">METHOD</span><span class="p">,</span> <span class="s">&quot;AIRFLG&quot;</span><span class="p">:</span><span class="n">AIRFLG</span><span class="p">,</span> <span class="s">&quot;YLOCEN&quot;</span><span class="p">:</span><span class="n">YLOCEN</span><span class="p">,</span> <span class="s">&quot;GRNFLG&quot;</span><span class="p">:</span><span class="n">GRNFLG</span><span class="p">,</span> <span class="s">&quot;GRSIZE&quot;</span><span class="p">:</span><span class="n">GRSIZE</span><span class="p">,</span>
+                   <span class="s">&quot;ORCFLG&quot;</span><span class="p">:</span><span class="n">ORCFLG</span><span class="p">,</span> <span class="s">&quot;INCORP&quot;</span><span class="p">:</span><span class="n">INCORP</span><span class="p">,</span> <span class="s">&quot;SOL&quot;</span><span class="p">:</span><span class="n">SOL</span><span class="p">,</span> <span class="s">&quot;METHAP&quot;</span><span class="p">:</span><span class="n">METHAP</span><span class="p">,</span> <span class="s">&quot;HYDHAP&quot;</span><span class="p">:</span><span class="n">HYDHAP</span><span class="p">,</span> <span class="s">&quot;FOTHAP&quot;</span><span class="p">:</span><span class="n">FOTHAP</span><span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">all_dic</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;/geneec/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> 
+
+
+        <span class="k">if</span> <span class="n">run_type</span> <span class="o">==</span> <span class="s">&quot;single&quot;</span> <span class="ow">or</span> <span class="s">&quot;qaqc&quot;</span><span class="p">:</span>
+            <span class="c"># response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   </span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">http_headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">output_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+
+
+        <span class="k">if</span> <span class="n">run_type</span> <span class="o">==</span> <span class="s">&quot;batch&quot;</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+            <span class="k">while</span> <span class="n">response</span> <span class="o">==</span><span class="s">&quot;&quot;</span><span class="p">:</span>
+                <span class="c"># response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   </span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">http_headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

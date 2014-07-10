@@ -1231,11 +1231,16 @@ th {
 /* Form Validation */
 
 form label.error {
-    width: 200px;
-    display: block;
-    float: right;
-    color: red;
-    padding-left: 10px;
+  width: 200px;
+  display: block;
+  float: right;
+  color: red;
+  padding-left: 10px;
+}
+form ul.errorlist li{
+  color: #dd0d0d;
+  padding-left: 4px;
+  font-weight: 700;
 }
 
 /* Testing */

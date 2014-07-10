@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.geneec.geneec_tables &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.geneec.geneec_tables</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">Template</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<div class="viewcode-block" id="getheaderpvu"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.getheaderpvu">[docs]</a><span class="k">def</span> <span class="nf">getheaderpvu</span><span class="p">():</span>
+  <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">,</span> <span class="s">&quot;Units&quot;</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="getheaderpvuqaqc"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.getheaderpvuqaqc">[docs]</a><span class="k">def</span> <span class="nf">getheaderpvuqaqc</span><span class="p">():</span>
+  <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">,</span> <span class="s">&quot;Expected Value&quot;</span><span class="p">,</span> <span class="s">&quot;Units&quot;</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="gethtmlrowsfromcols"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.gethtmlrowsfromcols">[docs]</a><span class="k">def</span> <span class="nf">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headings</span><span class="p">):</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">heading</span><span class="p">]</span> <span class="k">for</span> <span class="n">heading</span> <span class="ow">in</span> <span class="n">headings</span><span class="p">]</span>
+
+    <span class="c"># get the length of the longest column</span>
+    <span class="n">max_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="c"># padding the short columns with None</span>
+        <span class="n">col</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">None</span><span class="p">,]</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">col</span><span class="p">))</span>
+
+    <span class="c"># Then rotate the structure...</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_len</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">rows</span>
+</div>
+<div class="viewcode-block" id="getdjtemplate"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.getdjtemplate">[docs]</a><span class="k">def</span> <span class="nf">getdjtemplate</span><span class="p">():</span>
+    <span class="n">dj_template</span> <span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;table class=&quot;out_&quot;&gt;</span>
+<span class="s">    {# headings #}</span>
+<span class="s">        &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or heading in headings %}</span>
+<span class="s">            &lt;th colspan={{ th_span|default:&#39;1&#39; }}&gt;{{ heading }}&lt;/th&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">        &lt;/tr&gt;</span>
+<span class="s">    </span>
+<span class="s">    {</span><span class="si">% i</span><span class="s">f sub_headings %}</span>
+<span class="s">        &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or sub_heading in sub_headings %}</span>
+<span class="s">            &lt;th&gt;{{ sub_heading }}&lt;/th&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">        &lt;/tr&gt;</span>
+<span class="s">    {</span><span class="si">% e</span><span class="s">ndif %}</span>
+<span class="s">    {# data #}</span>
+<span class="s">    {</span><span class="si">% f</span><span class="s">or row in data %}</span>
+<span class="s">    &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or val in row %}</span>
+<span class="s">        &lt;td&gt;{{ val|default:&#39;&#39;|safe }}&lt;/td&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/tr&gt;</span>
+<span class="s">    {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/table&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dj_template</span>
+ 
+<span class="c"># &#39;%s&#39; % geneec_obj.hydrolysis, </span></div>
+<div class="viewcode-block" id="gett1dataAerial"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.gett1dataAerial">[docs]</a><span class="k">def</span> <span class="nf">gett1dataAerial</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerial_size_dist</span> <span class="o">==</span> <span class="s">&quot;a&quot;</span><span class="p">:</span>
+      <span class="n">aerial_dist</span> <span class="o">=</span> <span class="s">&#39;Very Fine to Fine&#39;</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerial_size_dist</span> <span class="o">==</span> <span class="s">&quot;b&quot;</span><span class="p">:</span>
+      <span class="n">aerial_dist</span> <span class="o">=</span> <span class="s">&#39;Fine to Medium (EFED Default)&#39;</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerial_size_dist</span> <span class="o">==</span> <span class="s">&quot;c&quot;</span><span class="p">:</span>
+      <span class="n">aerial_dist</span> <span class="o">=</span> <span class="s">&#39;Medium to Coarse&#39;</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerial_size_dist</span> <span class="o">==</span> <span class="s">&quot;d&quot;</span><span class="p">:</span>
+      <span class="n">aerial_dist</span> <span class="o">=</span> <span class="s">&#39;Coarse to Very Coarse&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span> <span class="s">&#39;Application target&#39;</span><span class="p">,</span> <span class="s">&#39;Application rate&#39;</span><span class="p">,</span> <span class="s">&#39;Number of applications&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Interval between applications&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;K&lt;sub&gt;OC&lt;/sub&gt;&#39;</span><span class="p">),</span> <span class="s">&#39;Aerobic soil metabolism half-life&#39;</span><span class="p">,</span> <span class="s">&#39;Wet in&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Aerial size dist&#39;</span><span class="p">,</span> <span class="s">&#39;Width of the no-spray zone&#39;</span><span class="p">,</span> <span class="s">&#39;Solubility&#39;</span><span class="p">,</span> <span class="s">&#39;Aerobic aquatic metabolism half-life&#39;</span><span class="p">,</span> <span class="s">&#39;Photolysis, aquatic half-life&#39;</span> <span class="p">],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">chem_name</span><span class="p">,</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_target_label</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_rate</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">number_of_applications</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">interval_between_applications</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">Koc</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerobic_soil_metabolism</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">wet_in</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">aerial_dist</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">no_spray_drift</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">solubility</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerobic_aquatic_metabolism</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">photolysis_aquatic_half_life</span> <span class="p">],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;lbs a.i./A&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;mL/g OC&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;ft&#39;</span><span class="p">,</span> <span class="s">&#39;mg/L&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span> <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett1dataAerial_qaqc"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.gett1dataAerial_qaqc">[docs]</a><span class="k">def</span> <span class="nf">gett1dataAerial_qaqc</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerial_size_dist</span> <span class="o">==</span> <span class="s">&quot;a&quot;</span><span class="p">:</span>
+      <span class="n">aerial_dist</span> <span class="o">=</span> <span class="s">&#39;Very Fine to Fine&#39;</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerial_size_dist</span> <span class="o">==</span> <span class="s">&quot;b&quot;</span><span class="p">:</span>
+      <span class="n">aerial_dist</span> <span class="o">=</span> <span class="s">&#39;Fine to Medium (EFED Default)&#39;</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerial_size_dist</span> <span class="o">==</span> <span class="s">&quot;c&quot;</span><span class="p">:</span>
+      <span class="n">aerial_dist</span> <span class="o">=</span> <span class="s">&#39;Medium to Coarse&#39;</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerial_size_dist</span> <span class="o">==</span> <span class="s">&quot;d&quot;</span><span class="p">:</span>
+      <span class="n">aerial_dist</span> <span class="o">=</span> <span class="s">&#39;Coarse to Very Coarse&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span> <span class="s">&#39;Application target&#39;</span><span class="p">,</span> <span class="s">&#39;Application rate&#39;</span><span class="p">,</span> <span class="s">&#39;Number of applications&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Interval between applications&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;K&lt;sub&gt;OC&lt;/sub&gt;&#39;</span><span class="p">),</span> <span class="s">&#39;Aerobic soil metabolism half-life&#39;</span><span class="p">,</span> <span class="s">&#39;Wet in&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Aerial size dist&#39;</span><span class="p">,</span> <span class="s">&#39;Width of the no-spray zone&#39;</span><span class="p">,</span> <span class="s">&#39;Solubility&#39;</span><span class="p">,</span> <span class="s">&#39;Aerobic aquatic metabolism half-life&#39;</span><span class="p">,</span> <span class="s">&#39;Photolysis, aquatic half-life&#39;</span> <span class="p">],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">chem_name_exp</span><span class="p">,</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_target</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_rate</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">number_of_applications</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">interval_between_applications</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">Koc</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerobic_soil_metabolism</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">wet_in</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">aerial_dist</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">no_spray_drift</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">solubility</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerobic_aquatic_metabolism</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">photolysis_aquatic_half_life</span> <span class="p">],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;lbs a.i./A&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;mL/g OC&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;ft&#39;</span><span class="p">,</span> <span class="s">&#39;mg/L&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span> <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett1dataGround"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.gett1dataGround">[docs]</a><span class="k">def</span> <span class="nf">gett1dataGround</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">ground_spray_type</span> <span class="o">==</span> <span class="s">&#39;a&#39;</span><span class="p">:</span>
+      <span class="n">sprayType</span> <span class="o">=</span> <span class="s">&#39;Low Boom Ground Spray (20&quot; or less)&#39;</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">ground_spray_type</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
+      <span class="n">sprayType</span> <span class="o">=</span> <span class="s">&#39;High Boom Ground Spray (20-50&quot;; EFED Default)&#39;</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">spray_quality</span> <span class="o">==</span> <span class="s">&#39;a&#39;</span><span class="p">:</span>
+      <span class="n">sprayQual</span> <span class="o">=</span> <span class="s">&#39;Fine (EFED Default)&#39;</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">spray_quality</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
+      <span class="n">sprayQual</span> <span class="o">=</span> <span class="s">&#39;Medium&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span> <span class="s">&#39;Application target&#39;</span><span class="p">,</span> <span class="s">&#39;Application rate&#39;</span><span class="p">,</span> <span class="s">&#39;Number of applications&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Interval between applications&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;K&lt;sub&gt;OC&lt;/sub&gt;&#39;</span><span class="p">),</span> <span class="s">&#39;Aerobic soil metabolism half-life&#39;</span><span class="p">,</span> <span class="s">&#39;Wet in&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Ground spray type&#39;</span><span class="p">,</span> <span class="s">&#39;Spray quality&#39;</span><span class="p">,</span> <span class="s">&#39;Width of the no-spray zone&#39;</span><span class="p">,</span> <span class="s">&#39;Incorporation depth&#39;</span><span class="p">,</span> <span class="s">&#39;Solubility&#39;</span><span class="p">,</span> <span class="s">&#39;Aerobic aquatic metabolism half-life&#39;</span><span class="p">,</span> <span class="s">&#39;Photolysis, aquatic half-life&#39;</span> <span class="p">],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">chem_name</span><span class="p">,</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_target</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_rate</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">number_of_applications</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">interval_between_applications</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">Koc</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerobic_soil_metabolism</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">wet_in</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">sprayType</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">sprayQual</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">no_spray_drift</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">incorporation_depth</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">solubility</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerobic_aquatic_metabolism</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">photolysis_aquatic_half_life</span> <span class="p">],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;lbs a.i./A&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;mL/g OC&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;ft&#39;</span><span class="p">,</span> <span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="s">&#39;mg/L&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span> <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett1dataAirBlast"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.gett1dataAirBlast">[docs]</a><span class="k">def</span> <span class="nf">gett1dataAirBlast</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">airblast_type</span> <span class="o">==</span> <span class="s">&#39;a&#39;</span><span class="p">:</span>
+      <span class="n">airblast</span> <span class="o">=</span> <span class="s">&#39;Orchards and Dormant Vineyards&#39;</span>
+    <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">airblast_type</span> <span class="o">==</span> <span class="s">&#39;b&#39;</span><span class="p">:</span>
+      <span class="n">airblast</span> <span class="o">=</span> <span class="s">&#39;Foliated Vineyards&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span> <span class="s">&#39;Application target&#39;</span><span class="p">,</span> <span class="s">&#39;Application rate&#39;</span><span class="p">,</span> <span class="s">&#39;Number of applications&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Interval between applications&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;K&lt;sub&gt;OC&lt;/sub&gt;&#39;</span><span class="p">),</span> <span class="s">&#39;Aerobic soil metabolism half-life&#39;</span><span class="p">,</span> <span class="s">&#39;Wet in&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Aerial size dist&#39;</span><span class="p">,</span> <span class="s">&#39;Width of the no-spray zone&#39;</span><span class="p">,</span> <span class="s">&#39;Solubility&#39;</span><span class="p">,</span> <span class="s">&#39;Aerobic aquatic metabolism half-life&#39;</span><span class="p">,</span> <span class="s">&#39;Photolysis, aquatic half-life&#39;</span> <span class="p">],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">chem_name</span><span class="p">,</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_target</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_rate</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">number_of_applications</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">interval_between_applications</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">Koc</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerobic_soil_metabolism</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">wet_in</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">airblast</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">no_spray_drift</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">solubility</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerobic_aquatic_metabolism</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">photolysis_aquatic_half_life</span> <span class="p">],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;lbs a.i./A&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;mL/g OC&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;ft&#39;</span><span class="p">,</span> <span class="s">&#39;mg/L&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span> <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett1dataGranular"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.gett1dataGranular">[docs]</a><span class="k">def</span> <span class="nf">gett1dataGranular</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span> <span class="s">&#39;Application target&#39;</span><span class="p">,</span> <span class="s">&#39;Application rate&#39;</span><span class="p">,</span> <span class="s">&#39;Number of applications&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Interval between applications&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;K&lt;sub&gt;OC&lt;/sub&gt;&#39;</span><span class="p">),</span> <span class="s">&#39;Aerobic soil metabolism half-life&#39;</span><span class="p">,</span> <span class="s">&#39;Wet in&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Incorporation depth&#39;</span><span class="p">,</span> <span class="s">&#39;Solubility&#39;</span><span class="p">,</span> <span class="s">&#39;Aerobic aquatic metabolism half-life&#39;</span><span class="p">,</span> <span class="s">&#39;Photolysis, aquatic half-life&#39;</span> <span class="p">],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">chem_name</span><span class="p">,</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_target</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_rate</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">number_of_applications</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">interval_between_applications</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">Koc</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerobic_soil_metabolism</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">wet_in</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">incorporation_depth</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">solubility</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">aerobic_aquatic_metabolism</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">photolysis_aquatic_half_life</span> <span class="p">],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;lbs a.i./A&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;mL/g OC&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;ft&#39;</span><span class="p">,</span> <span class="s">&#39;mg/L&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span> <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett2data"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.gett2data">[docs]</a><span class="k">def</span> <span class="nf">gett2data</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;Peak GEEC&#39;</span><span class="p">,</span><span class="s">&#39;Maximum 4-day Average GEEC&#39;</span><span class="p">,</span><span class="s">&#39;Maximum 21-day Average GEEC&#39;</span><span class="p">,</span><span class="s">&#39;Maximum 60-day Average GEEC&#39;</span><span class="p">,</span><span class="s">&#39;Maximum 90-day Average GEEC&#39;</span> <span class="p">],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">output_val</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">output_val</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">output_val</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">output_val</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">output_val</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;ppb&#39;</span><span class="p">,</span><span class="s">&#39;ppb&#39;</span><span class="p">,</span><span class="s">&#39;ppb&#39;</span><span class="p">,</span><span class="s">&#39;ppb&#39;</span><span class="p">,</span><span class="s">&#39;ppb&#39;</span> <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett2data_qaqc"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.gett2data_qaqc">[docs]</a><span class="k">def</span> <span class="nf">gett2data_qaqc</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;Peak GEEC&#39;</span><span class="p">,</span><span class="s">&#39;Maximum 4-day Average GEEC&#39;</span><span class="p">,</span><span class="s">&#39;Maximum 21-day Average GEEC&#39;</span><span class="p">,</span><span class="s">&#39;Maximum 60-day Average GEEC&#39;</span><span class="p">,</span><span class="s">&#39;Maximum 90-day Average GEEC&#39;</span> <span class="p">],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">output_val</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">output_val</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">output_val</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">output_val</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">output_val</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">],</span>
+        <span class="s">&quot;Expected Value&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">GEEC_peak_exp</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">GEEC_4avg_exp</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">GEEC_21avg_exp</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">GEEC_60avg_exp</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">GEEC_90avg_exp</span> <span class="p">],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&#39;ppb&#39;</span><span class="p">,</span><span class="s">&#39;ppb&#39;</span><span class="p">,</span><span class="s">&#39;ppb&#39;</span><span class="p">,</span><span class="s">&#39;ppb&#39;</span><span class="p">,</span><span class="s">&#39;ppb&#39;</span> <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<span class="n">pvuheadings</span> <span class="o">=</span> <span class="n">getheaderpvu</span><span class="p">()</span>
+<span class="n">pvuheadingsqaqc</span> <span class="o">=</span> <span class="n">getheaderpvuqaqc</span><span class="p">()</span>
+<span class="n">djtemplate</span> <span class="o">=</span> <span class="n">getdjtemplate</span><span class="p">()</span>
+<span class="n">tmpl</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">djtemplate</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="table_all"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.table_all">[docs]</a><span class="k">def</span> <span class="nf">table_all</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+    <span class="n">table1_out</span> <span class="o">=</span> <span class="n">table_1</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+    <span class="n">table2_out</span> <span class="o">=</span> <span class="n">table_2</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">table1_out</span> <span class="o">+</span> <span class="n">table2_out</span>
+    <span class="k">return</span> <span class="n">html_all</span>
+</div>
+<div class="viewcode-block" id="table_all_qaqc"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.table_all_qaqc">[docs]</a><span class="k">def</span> <span class="nf">table_all_qaqc</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+    <span class="n">table1_out</span> <span class="o">=</span> <span class="n">table_1_qaqc</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+    <span class="n">table2_out</span> <span class="o">=</span> <span class="n">table_2_qaqc</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">table1_out</span> <span class="o">+</span> <span class="n">table2_out</span>
+    <span class="k">return</span> <span class="n">html_all</span>
+</div>
+<div class="viewcode-block" id="timestamp"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.timestamp">[docs]</a><span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">jid</span><span class="p">,</span> <span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%A %Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="n">html</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">        &lt;b&gt;GENEEC Version 2.0 (Beta)&lt;br&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">st</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot; (EST)&lt;/b&gt;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;/div&gt;&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_1"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.table_1">[docs]</a><span class="k">def</span> <span class="nf">table_1</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_method_label</span> <span class="o">==</span> <span class="s">&#39;Aerial Spray&#39;</span><span class="p">:</span>
+          <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1dataAerial</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_method_label</span> <span class="o">==</span> <span class="s">&#39;Ground Spray&#39;</span><span class="p">:</span>
+          <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1dataGround</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_method_label</span> <span class="o">==</span> <span class="s">&#39;Airblast Spray (Orchard &amp; Vineyard)&#39;</span><span class="p">:</span>
+          <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1dataAirBlast</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_method_label</span> <span class="o">==</span> <span class="s">&#39;Granular (Non-spray)&#39;</span><span class="p">:</span>
+          <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1dataGranular</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+        <span class="n">t1rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data</span><span class="p">,</span><span class="n">pvuheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Inputs&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Chemical Properties: </span><span class="si">%s</span><span class="s">&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_method_label</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &lt;br&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_1_qaqc"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.table_1_qaqc">[docs]</a><span class="k">def</span> <span class="nf">table_1_qaqc</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+        <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1dataAerial_qaqc</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+        <span class="n">t1rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data</span><span class="p">,</span><span class="n">pvuheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Inputs&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Chemical Properties: </span><span class="si">%s</span><span class="s">&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span><span class="o">%</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">application_method_label</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &lt;br&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_2"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.table_2">[docs]</a><span class="k">def</span> <span class="nf">table_2</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;Model Output&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_2 collapsible&quot; id=&quot;section3&quot;&gt;&lt;span&gt;&lt;/span&gt;Generic Expected Environmental Concentration (GEEC)&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="n">t2data</span> <span class="o">=</span> <span class="n">gett2data</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+        <span class="n">t2rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2data</span><span class="p">,</span><span class="n">pvuheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_2_qaqc"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_tables.table_2_qaqc">[docs]</a><span class="k">def</span> <span class="nf">table_2_qaqc</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;Model Output&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_2 collapsible&quot; id=&quot;section3&quot;&gt;&lt;span&gt;&lt;/span&gt;Generic Expected Environmental Concentration (GEEC)&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="n">t2data</span> <span class="o">=</span> <span class="n">gett2data_qaqc</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+        <span class="n">t2rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2data</span><span class="p">,</span><span class="n">pvuheadingsqaqc</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadingsqaqc</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

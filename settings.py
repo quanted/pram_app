@@ -31,13 +31,13 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 SECRET_KEY = secret.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
-# APPEND_SLASH = False
+APPEND_SLASH = True
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -62,13 +62,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     # 'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'models.terrplant',
-    # 'models.sip',
+    'docs'
 )
 
 MIDDLEWARE_CLASSES = (
     # 'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'django.middleware.common.CommonMiddleware',
+    'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
@@ -137,3 +136,10 @@ STATIC_URL = '/static/'
 
 # print 'BASE_DIR = %s' %BASE_DIR
 # print 'PROJECT_ROOT = %s' %PROJECT_ROOT
+
+# Path to Sphinx HTML Docs
+# http://django-docs.readthedocs.org/en/latest/
+
+DOCS_ROOT = os.path.join(PROJECT_ROOT, 'docs', '_build', 'html')
+
+DOCS_ACCESS = 'public'

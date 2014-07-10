@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.therps.therps_parameters &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.therps.therps_parameters</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;settings&#39;</span>
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+
+<span class="n">Species_of_the_tested_bird_CHOICES</span><span class="o">=</span><span class="p">((</span><span class="s">&#39;Bobwhite quail&#39;</span><span class="p">,</span><span class="s">&#39;Bobwhite quail&#39;</span><span class="p">),(</span><span class="s">&#39;Mallard duck&#39;</span><span class="p">,</span><span class="s">&#39;Mallard duck&#39;</span><span class="p">),(</span><span class="s">&#39;Other&#39;</span><span class="p">,</span><span class="s">&#39;Other&#39;</span><span class="p">))</span>
+
+<div class="viewcode-block" id="trexInp_chem"><a class="viewcode-back" href="../../../models.therps.html#models.therps.therps_parameters.trexInp_chem">[docs]</a><span class="k">class</span> <span class="nc">trexInp_chem</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>    
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;Fluxapyroxad&#39;</span><span class="p">)</span>
+    <span class="n">Use</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;Dried shelled beans (except soybeans)&#39;</span><span class="p">)</span>   
+    <span class="n">Formulated_product_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;NA&#39;</span><span class="p">)</span>    
+    <span class="n">percent_ai</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;% a.i. (%)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">Foliar_dissipation_half_life</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Foliar dissipation half-life (days)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>
+    <span class="n">number_of_applications</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Number of applications&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">interval_between_applications</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Interval between applications (days)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+    <span class="n">application_rate</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Application rate (lbs a.i./A)&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.18</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="trexInp_bird"><a class="viewcode-back" href="../../../models.therps.html#models.therps.therps_parameters.trexInp_bird">[docs]</a><span class="k">class</span> <span class="nc">trexInp_bird</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>    
+    <span class="n">avian_ld50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Avian LD50 (mg/kg-bw)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+    <span class="n">Species_of_the_tested_bird_avian_ld50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Test species (for Avian LD50)&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">Species_of_the_tested_bird_CHOICES</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Bobwhite quail&#39;</span><span class="p">)</span>
+    <span class="n">bw_avian_ld50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Weight (g)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span> <span class="s">&#39;178&#39;</span><span class="p">)</span>
+    <span class="n">avian_lc50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Avian LC50 (mg/kg-diet)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">2457</span><span class="p">)</span>
+    <span class="n">Species_of_the_tested_bird_avian_lc50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Test species (for Avian LC50)&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">Species_of_the_tested_bird_CHOICES</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Bobwhite quail&#39;</span><span class="p">)</span>
+    <span class="n">bw_avian_lc50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Weight (g)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span> <span class="s">&#39;178&#39;</span><span class="p">)</span>
+    <span class="n">avian_NOAEC</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Avian NOAEC (mg/kg-diet)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">Species_of_the_tested_bird_avian_NOAEC</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Test species (for Avian NOAEC)&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">Species_of_the_tested_bird_CHOICES</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Bobwhite quail&#39;</span><span class="p">)</span>
+    <span class="n">bw_avian_NOAEC</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Weight (g)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span> <span class="s">&#39;178&#39;</span><span class="p">)</span>
+    <span class="n">avian_NOAEL</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Avian NOAEL (mg/kg-bw)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">7.8</span><span class="p">)</span>
+    <span class="n">Species_of_the_tested_bird_avian_NOAEL</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Test species (for Avian NOAEL)&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">Species_of_the_tested_bird_CHOICES</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Bobwhite quail&#39;</span><span class="p">)</span>
+    <span class="n">bw_avian_NOAEL</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Weight (g)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span> <span class="s">&#39;178&#39;</span><span class="p">)</span>
+
+    <span class="c"># Species_of_the_tested_bird = forms.ChoiceField(required=True,label=&#39;Species of the tested bird&#39;, choices=Species_of_the_tested_bird_CHOICES, initial=&#39;Bobwhite quail&#39;)</span>
+    <span class="c"># body_weight_of_the_tested_bird=forms.FloatField(required=True, label=&#39;Body weight of the tested bird (g)&#39;, initial=178)</span>
+    <span class="n">mineau_scaling_factor</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Mineau scaling factor&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">1.15</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="trexInp_herp"><a class="viewcode-back" href="../../../models.therps.html#models.therps.therps_parameters.trexInp_herp">[docs]</a><span class="k">class</span> <span class="nc">trexInp_herp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>    
+    <span class="n">BW_herptile_a_sm</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body weight of assessed small herptile (g)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">W_p_a_sm</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&quot;Water content of the assessed small herptile&#39;s diet (%)&quot;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span>
+    <span class="n">BW_herptile_a_md</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body weight of assessed medium herptile (g)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">W_p_a_md</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&quot;Water content of the assessed medium herptile&#39;s diet (%)&quot;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span>
+    <span class="n">BW_herptile_a_lg</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body weight of assessed large herptile (g)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">W_p_a_lg</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&quot;Water content of the assessed large herptile&#39;s diet (%)&quot;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span>
+    <span class="n">body_weight_of_the_consumed_mammal_a</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Weight of the mammal consumed by assessed frog (g)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">body_weight_of_the_consumed_herp_a</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Weight of the herptile  consumed by assessed frog (g)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

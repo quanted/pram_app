@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.agdrift_trex.agdrift_trex_output &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.agdrift_trex.agdrift_trex_output</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
+
+
+<span class="nd">@require_POST</span>
+<div class="viewcode-block" id="agdrift_trexOutputPage"><a class="viewcode-back" href="../../../models.agdrift_trex.html#models.agdrift_trex.agdrift_trex_output.agdrift_trexOutputPage">[docs]</a><span class="k">def</span> <span class="nf">agdrift_trexOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">models.agdrift</span> <span class="kn">import</span> <span class="n">agdrift_model</span><span class="p">,</span><span class="n">agdrift_tables</span>
+    <span class="kn">from</span> <span class="nn">models.trex2</span> <span class="kn">import</span> <span class="n">trex2_model</span><span class="p">,</span><span class="n">trex2_tables</span>
+    <span class="kn">import</span> <span class="nn">agdrift_trex_tables</span>
+
+
+    <span class="c"># AgDrift Inputs</span>
+    <span class="n">drop_size</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;drop_size&#39;</span><span class="p">)</span>
+    <span class="n">ecosystem_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ecosystem_type&#39;</span><span class="p">)</span>
+    <span class="n">application_method</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;application_method&#39;</span><span class="p">)</span>
+    <span class="n">boom_height</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;boom_height&#39;</span><span class="p">)</span>
+    <span class="n">orchard_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;orchard_type&#39;</span><span class="p">)</span>
+    <span class="n">aquatic_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;aquatic_type&#39;</span><span class="p">)</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;distance&#39;</span><span class="p">)</span>
+    <span class="n">calculation_input</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;calculation_input&#39;</span><span class="p">)</span>
+
+    <span class="c"># T-REX Inputs</span>
+    <span class="n">chem_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;chemical_name&#39;</span><span class="p">)</span>
+    <span class="n">use</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Use&#39;</span><span class="p">)</span>
+    <span class="n">formu_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Formulated_product_name&#39;</span><span class="p">)</span>
+    <span class="n">a_i</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;percent_ai&#39;</span><span class="p">)</span>
+    <span class="n">a_i</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>
+    <span class="n">Application_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Application_type&#39;</span><span class="p">)</span>
+    <span class="n">seed_crop</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;seed_crop&#39;</span><span class="p">))</span>
+    <span class="n">seed_crop_v</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;seed_crop_v&#39;</span><span class="p">)</span>
+    <span class="n">p_i</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;percent_incorporated&#39;</span><span class="p">)</span>
+    <span class="n">p_i</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">p_i</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>
+    <span class="n">seed_treatment_formulation_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;seed_treatment_formulation_name&#39;</span><span class="p">)</span>
+    <span class="n">den</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;density_of_product&#39;</span><span class="p">)</span>
+    <span class="n">den</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">den</span><span class="p">)</span>
+    <span class="n">m_s_r_p</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;maximum_seedling_rate_per_use&#39;</span><span class="p">)</span>
+    <span class="n">m_s_r_p</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">m_s_r_p</span><span class="p">)</span>
+    <span class="n">r_s</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;row_sp&#39;</span><span class="p">)</span> 
+    <span class="n">r_s</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">r_s</span><span class="p">)</span>
+    <span class="n">b_w</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bandwidth&#39;</span><span class="p">)</span>   <span class="c">#convert to ft</span>
+    <span class="n">b_w</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">b_w</span><span class="p">)</span><span class="o">/</span><span class="mi">12</span>
+
+    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s">&#39;Seed Treatment&#39;</span><span class="p">:</span>
+       <span class="n">n_a</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+       <span class="n">n_a</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;noa&#39;</span><span class="p">))</span>
+    
+    <span class="n">rate_out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">day_out</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n_a</span><span class="p">)):</span>
+       <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+       <span class="n">rate_temp</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;rate&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+       <span class="n">rate_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">rate_temp</span><span class="p">))</span>
+       <span class="c"># day_temp = float(request.POST.get(&#39;day&#39;+str(j)))</span>
+       <span class="c"># day_out.append(day_temp)  </span>
+    <span class="n">h_l</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Foliar_dissipation_half_life&#39;</span><span class="p">)</span>
+    <span class="n">ld50_bird</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;avian_ld50&#39;</span><span class="p">)</span>
+    <span class="n">lc50_bird</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;avian_lc50&#39;</span><span class="p">)</span>
+    <span class="n">NOAEC_bird</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;avian_NOAEC&#39;</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">NOAEL_bird</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;avian_NOAEL&#39;</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">NOAEL_bird</span> <span class="o">=</span> <span class="s">&#39;N/A&#39;</span>
+    <span class="n">aw_bird_sm</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_of_the_assessed_bird_small&#39;</span><span class="p">)</span>
+    <span class="n">aw_bird_sm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">aw_bird_sm</span><span class="p">)</span>  
+    <span class="n">aw_bird_md</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_of_the_assessed_bird_medium&#39;</span><span class="p">)</span>
+    <span class="n">aw_bird_md</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">aw_bird_md</span><span class="p">)</span> 
+    <span class="n">aw_bird_lg</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_of_the_assessed_bird_large&#39;</span><span class="p">)</span>
+    <span class="n">aw_bird_lg</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">aw_bird_lg</span><span class="p">)</span>       
+    
+    <span class="n">Species_of_the_tested_bird_avian_ld50</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Species_of_the_tested_bird_avian_ld50&#39;</span><span class="p">)</span>
+    <span class="n">Species_of_the_tested_bird_avian_lc50</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Species_of_the_tested_bird_avian_lc50&#39;</span><span class="p">)</span>
+    <span class="n">Species_of_the_tested_bird_avian_NOAEC</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Species_of_the_tested_bird_avian_NOAEC&#39;</span><span class="p">)</span>
+    <span class="n">Species_of_the_tested_bird_avian_NOAEL</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Species_of_the_tested_bird_avian_NOAEL&#39;</span><span class="p">)</span>
+
+    <span class="n">tw_bird_ld50</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bw_avian_ld50&#39;</span><span class="p">))</span>
+    <span class="n">tw_bird_lc50</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bw_avian_lc50&#39;</span><span class="p">))</span>
+    <span class="n">tw_bird_NOAEC</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bw_avian_NOAEC&#39;</span><span class="p">))</span>
+    <span class="n">tw_bird_NOAEL</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bw_avian_NOAEL&#39;</span><span class="p">))</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;mineau_scaling_factor&#39;</span><span class="p">)</span>
+    <span class="n">ld50_mamm</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;mammalian_ld50&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">lc50_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;mammalian_lc50&#39;</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">lc50_mamm</span> <span class="o">=</span> <span class="s">&#39;N/A&#39;</span>
+    <span class="n">NOAEC_mamm</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;mammalian_NOAEC&#39;</span><span class="p">)</span>
+    <span class="n">NOAEC_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">NOAEC_mamm</span><span class="p">)</span>
+    <span class="n">NOAEL_mamm</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;mammalian_NOAEL&#39;</span><span class="p">)</span>
+
+    <span class="n">aw_mamm_sm</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_of_the_assessed_mammal_small&#39;</span><span class="p">)</span>
+    <span class="n">aw_mamm_sm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">aw_mamm_sm</span><span class="p">)</span>  
+    <span class="n">aw_mamm_md</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_of_the_assessed_mammal_medium&#39;</span><span class="p">)</span>
+    <span class="n">aw_mamm_md</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">aw_mamm_md</span><span class="p">)</span> 
+    <span class="n">aw_mamm_lg</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_of_the_assessed_mammal_large&#39;</span><span class="p">)</span>
+    <span class="n">aw_mamm_lg</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">aw_mamm_lg</span><span class="p">)</span>               
+    <span class="n">tw_mamm</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_of_the_tested_mammal&#39;</span><span class="p">)</span>
+    <span class="n">tw_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tw_mamm</span><span class="p">)</span> 
+
+    <span class="c"># Run AgDrift model</span>
+    <span class="n">agdrift_obj</span> <span class="o">=</span> <span class="n">agdrift_model</span><span class="o">.</span><span class="n">agdrift</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&#39;single&#39;</span><span class="p">,</span> <span class="n">drop_size</span><span class="p">,</span> <span class="n">ecosystem_type</span><span class="p">,</span> <span class="n">application_method</span><span class="p">,</span> <span class="n">boom_height</span><span class="p">,</span> <span class="n">orchard_type</span><span class="p">,</span> <span class="n">rate_out</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">distance</span><span class="p">,</span> <span class="n">aquatic_type</span><span class="p">,</span> <span class="n">calculation_input</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="n">x_agdrif</span><span class="o">=</span><span class="n">agdrift_obj</span><span class="o">.</span><span class="n">x</span>
+    <span class="c"># Run T-REX2 model (using an output from AgDrift as an input)</span>
+    <span class="n">trex_obj</span> <span class="o">=</span> <span class="n">trex2_model</span><span class="o">.</span><span class="n">trex2</span><span class="p">(</span><span class="s">&#39;single&#39;</span><span class="p">,</span> <span class="n">chem_name</span><span class="p">,</span> <span class="n">use</span><span class="p">,</span> <span class="n">formu_name</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">Application_type</span><span class="p">,</span> <span class="n">seed_treatment_formulation_name</span><span class="p">,</span> <span class="n">seed_crop</span><span class="p">,</span> <span class="n">seed_crop_v</span><span class="p">,</span> <span class="n">r_s</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">p_i</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">h_l</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="p">[</span><span class="n">agdrift_obj</span><span class="o">.</span><span class="n">init_avg_dep_foa</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rate_out</span><span class="p">],</span> <span class="n">day_out</span><span class="p">,</span>
+                                 <span class="n">ld50_bird</span><span class="p">,</span> <span class="n">lc50_bird</span><span class="p">,</span> <span class="n">NOAEC_bird</span><span class="p">,</span> <span class="n">NOAEL_bird</span><span class="p">,</span> <span class="n">aw_bird_sm</span><span class="p">,</span> <span class="n">aw_bird_md</span><span class="p">,</span> <span class="n">aw_bird_lg</span><span class="p">,</span> 
+                                 <span class="n">Species_of_the_tested_bird_avian_ld50</span><span class="p">,</span> <span class="n">Species_of_the_tested_bird_avian_lc50</span><span class="p">,</span> <span class="n">Species_of_the_tested_bird_avian_NOAEC</span><span class="p">,</span> <span class="n">Species_of_the_tested_bird_avian_NOAEL</span><span class="p">,</span>
+                                 <span class="n">tw_bird_ld50</span><span class="p">,</span> <span class="n">tw_bird_lc50</span><span class="p">,</span> <span class="n">tw_bird_NOAEC</span><span class="p">,</span> <span class="n">tw_bird_NOAEL</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ld50_mamm</span><span class="p">,</span> <span class="n">lc50_mamm</span><span class="p">,</span> <span class="n">NOAEC_mamm</span><span class="p">,</span> <span class="n">NOAEL_mamm</span><span class="p">,</span> <span class="n">aw_mamm_sm</span><span class="p">,</span> <span class="n">aw_mamm_md</span><span class="p">,</span> <span class="n">aw_mamm_lg</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">,</span>
+                                 <span class="n">m_s_r_p</span><span class="p">)</span>
+
+    <span class="c"># Render output tables for each of the linked models</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">agdrift_trex_tables</span><span class="o">.</span><span class="n">timestamp</span><span class="p">(</span><span class="n">agdrift_obj</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">agdrift_tables</span><span class="o">.</span><span class="n">table_all</span><span class="p">(</span><span class="n">agdrift_obj</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">trex2_tables</span><span class="o">.</span><span class="n">table_all</span><span class="p">(</span><span class="n">trex_obj</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c"># merge the two class instances into one instance</span>
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">ob1</span><span class="p">,</span> <span class="n">ob2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        an object&#39;s __dict__ contains all its </span>
+<span class="sd">        attributes, methods, docstrings, etc.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ob1</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ob2</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ob1</span>
+    
+    <span class="n">agdrift_trex_obj</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">agdrift_obj</span><span class="p">,</span> <span class="n">trex_obj</span><span class="p">)</span>
+    <span class="n">agdrift_trex_obj</span><span class="o">.</span><span class="n">x_agdrif</span><span class="o">=</span><span class="n">x_agdrif</span>
+    <span class="n">agdrift_trex_obj</span><span class="o">.</span><span class="n">x_trex</span><span class="o">=</span><span class="n">trex_obj</span><span class="o">.</span><span class="n">x</span>
+
+    <span class="c"># Return the rendered output tables &amp; merged model object to output.py</span>
+    <span class="k">return</span> <span class="n">html</span><span class="p">,</span> <span class="n">agdrift_trex_obj</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

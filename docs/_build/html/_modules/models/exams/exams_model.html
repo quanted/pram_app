@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.exams.exams_model &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.exams.exams_model</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">rest_funcs</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;SIP Model&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">keys_Picloud_S3</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="c">############Provide the key and connect to EC2####################</span>
+<span class="n">api_key</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_key</span>
+<span class="n">api_secretkey</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_secretkey</span>
+<span class="n">base64string</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">encodestring</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_secretkey</span><span class="p">))[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">http_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Authorization&#39;</span> <span class="p">:</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">base64string</span><span class="p">,</span> <span class="s">&#39;Content-Type&#39;</span> <span class="p">:</span> <span class="s">&#39;application/json&#39;</span><span class="p">}</span>
+<span class="n">url_part1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span>
+<span class="c">###########################################################################</span>
+
+<div class="viewcode-block" id="get_jid"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_model.get_jid">[docs]</a><span class="k">def</span> <span class="nf">get_jid</span><span class="p">(</span><span class="n">chem_name</span><span class="p">,</span> <span class="n">scenarios</span><span class="p">,</span> <span class="n">met</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">mw</span><span class="p">,</span> <span class="n">sol</span><span class="p">,</span> <span class="n">koc</span><span class="p">,</span> <span class="n">vp</span><span class="p">,</span> <span class="n">aem</span><span class="p">,</span> <span class="n">anm</span><span class="p">,</span> <span class="n">aqp</span><span class="p">,</span> <span class="n">tmper</span><span class="p">,</span> <span class="n">n_ph</span><span class="p">,</span> <span class="n">ph_out</span><span class="p">,</span> <span class="n">hl_out</span><span class="p">):</span>
+    <span class="n">all_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;chem_name&quot;</span><span class="p">:</span> <span class="n">chem_name</span><span class="p">,</span>
+               <span class="s">&quot;scenarios&quot;</span><span class="p">:</span> <span class="n">scenarios</span><span class="p">,</span>
+               <span class="s">&quot;met&quot;</span><span class="p">:</span> <span class="n">met</span><span class="p">,</span>
+               <span class="s">&quot;farm&quot;</span><span class="p">:</span> <span class="n">farm</span><span class="p">,</span>
+               <span class="s">&quot;mw&quot;</span><span class="p">:</span> <span class="n">mw</span><span class="p">,</span>
+               <span class="s">&quot;sol&quot;</span><span class="p">:</span> <span class="n">sol</span><span class="p">,</span>
+               <span class="s">&quot;koc&quot;</span><span class="p">:</span> <span class="n">koc</span><span class="p">,</span>
+               <span class="s">&quot;vp&quot;</span><span class="p">:</span> <span class="n">vp</span><span class="p">,</span>
+               <span class="s">&quot;aem&quot;</span><span class="p">:</span> <span class="n">aem</span><span class="p">,</span>
+               <span class="s">&quot;anm&quot;</span><span class="p">:</span> <span class="n">anm</span><span class="p">,</span>
+               <span class="s">&quot;aqp&quot;</span><span class="p">:</span> <span class="n">aqp</span><span class="p">,</span>
+               <span class="s">&quot;tmper&quot;</span><span class="p">:</span> <span class="n">tmper</span><span class="p">,</span>
+               <span class="s">&quot;n_ph&quot;</span><span class="p">:</span> <span class="n">n_ph</span><span class="p">,</span>
+               <span class="s">&quot;ph_out&quot;</span><span class="p">:</span> <span class="n">ph_out</span><span class="p">,</span>
+               <span class="s">&quot;hl_out&quot;</span><span class="p">:</span> <span class="n">hl_out</span><span class="p">}</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">all_dic</span><span class="p">)</span>
+    <span class="n">jid</span><span class="o">=</span><span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+    <span class="n">url</span><span class="o">=</span><span class="n">url_part1</span> <span class="o">+</span> <span class="s">&#39;/exams/&#39;</span> <span class="o">+</span> <span class="n">jid</span> 
+    <span class="c"># response_val = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">http_headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">output_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">jid</span><span class="p">,</span> <span class="n">output_val</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="exams"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_model.exams">[docs]</a><span class="k">class</span> <span class="nc">exams</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="c"># station_pool={&#39;NC Sweet Potato MLRA-133&#39;: &#39;Raleigh/Durham, NC&#39;, &#39;ID Potato   MLRA-11B&#39;: &#39;Pocatello, ID&#39;, &#39;NY Grape   MLRA-100/101&#39;: &#39;Binghamton, NY&#39;, &#39;CA Citrus   MLRA-17&#39;: &#39;Bakersfield, CA&#39;, &#39;OR Hops   MLRA-2&#39;: &#39;Salem, OR&#39;, &#39;FL Sugarcane   MLRA-156A&#39;: &#39;W Palm Beach, FL&#39;, &#39;OR Mint   MLRA-2&#39;: &#39;Salem, OR&#39;, &#39;FL Citrus   MLRA-156A&#39;: &#39;W Palm Beach, FL&#39;, &#39;CA Almonds MLRA-17&#39;: &#39;Sacramento, CA&#39;, &#39;ND Canola   MLRA-55A&#39;: &#39;Minot, ND&#39;, &#39;MI Asparagus MLRA-96&#39;: &#39;Muskegon, MI&#39;, &#39;PR Coffee MLRA-270&#39;: &#39;San Juan, PR&#39;, &#39;FL Avocado MLRA-156A&#39;: &#39;Miami, FL&#39;, &#39;NC Tobacco   MLRA-133A&#39;: &#39;Raleigh/Durham, NC&#39;, &#39;CA Grape  MLRA-17&#39;: &#39;Fresno, CA&#39;, &#39;FL Cucumber   MLRA-156A&#39;: &#39;W Palm Beach, FL&#39;, &#39;OH Corn   MLRA-111&#39;: &#39;Dayton, OH&#39;, &#39;NC Apple   MLRA-130&#39;: &#39;Asheville, NC&#39;, &#39;CA Onions MLRA-17&#39;: &#39;Bakersfield, CA&#39;, &#39;PA Turf  MLRA-148&#39;: &#39;Harrisburg, PA&#39;, &#39;MI Beans MLRA-99&#39;: &#39;Flint, MI&#39;, &#39;GA Onions MLRA-153A/133A&#39;: &#39;Savannah, GA&#39;, &#39;LA Sugarcane   MLRA-131&#39;: &#39;Baton Rouge, LA&#39;, &#39;NC Corn - E   MLRA-153A&#39;: &#39;Raleigh/Durham, NC&#39;, &#39;OR Christmas Trees  MLRA-2&#39;: &#39;Salem, OR&#39;, &#39;MN Sugarbeet   MLRA-56&#39;: &#39;Fargo, ND&#39;, &#39;FL Turf  MLRA-155&#39;: &#39;Daytona Beach, FL&#39;, &#39;MS Cotton   MLRA-134&#39;: &#39;Jackson, MS&#39;, &#39;MS Soybean   MLRA-134&#39;: &#39;Jackson, MS&#39;, &#39;GA Pecan   MLRA-133A&#39;: &#39;Tallahassee, FL&#39;, &#39;OR Filberts   MLRA-2&#39;: &#39;Salem, OR&#39;, &#39;OR Grass Seed   MLRA-2&#39;: &#39;Salem, OR&#39;, &#39;GA Peach   MLRA-133A&#39;: &#39;Macon, GA&#39;, &#39;FL Carrots MLRA-156B&#39;: &#39;W Palm Beach, FL&#39;, &#39;NC Cotton   MLRA-133A&#39;: &#39;Raleigh/Durham, NC&#39;, &#39;CA Lettuce  MLRA-14&#39;: &#39;Santa Maria, CA&#39;, &#39;FL Tomato   MLRA-155&#39;: &#39;W Palm Beach, FL&#39;, &#39;OR Apple   MLRA-2&#39;: &#39;Salem, OR&#39;, &#39;ND Wheat   MLRA-56&#39;: &#39;Fargo, ND&#39;, &#39;CA Tomato MLRA-17&#39;: &#39;Fresno, CA&#39;, &#39;PA Corn   MLRA-148&#39;: &#39;Harrisburg, PA&#39;, &#39;FL Peppers MLRA-156A&#39;: &#39;W Palm Beach, FL&#39;, &#39;MS Corn   MLRA-134&#39;: &#39;Jackson, MS&#39;, &#39;MI Cherry   MLRA-96&#39;: &#39;Traverse City, MI&#39;, &#39;IL Corn   MLRA-108&#39;: &#39;Peoria, IL&#39;, &#39;ME Potato   MLRA-146&#39;: &#39;Caribou, ME&#39;, &#39;FL Strawberry   MLRA-155&#39;: &#39;Tampa, FL&#39;, &#39;KS Sorghum   MLRA-112&#39;: &#39;Topeka, KS&#39;, &#39;PA Apple   MLRA-148&#39;: &#39;Harrisburg, PA&#39;, &#39;CA Cotton   MLRA-17&#39;: &#39;Fresno, CA&#39;, &#39;NC Peanut   MLRA-153A&#39;: &#39;Raleigh/Durham, NC&#39;, &#39;FL Cabbage   MLRA-155&#39;: &#39;Tampa, FL&#39;}</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chem_name</span><span class="p">,</span> <span class="n">scenarios</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">mw</span><span class="p">,</span> <span class="n">sol</span><span class="p">,</span> <span class="n">koc</span><span class="p">,</span> <span class="n">vp</span><span class="p">,</span> <span class="n">aem</span><span class="p">,</span> <span class="n">anm</span><span class="p">,</span> <span class="n">aqp</span><span class="p">,</span> <span class="n">tmper</span><span class="p">,</span> <span class="n">n_ph</span><span class="p">,</span> <span class="n">ph_out</span><span class="p">,</span> <span class="n">hl_out</span><span class="p">):</span>
+        <span class="n">met_pool</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;NC Sweet Potato MLRA-133&#39;</span><span class="p">:</span> <span class="s">&#39;W13722.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;ID Potato   MLRA-11B&#39;</span><span class="p">:</span> <span class="s">&#39;W24156.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;NY Grape   MLRA-100/101&#39;</span><span class="p">:</span> <span class="s">&#39;W04725.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;CA Citrus   MLRA-17&#39;</span><span class="p">:</span> <span class="s">&#39;W23155.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;OR Hops   MLRA-2&#39;</span><span class="p">:</span> <span class="s">&#39;W24232.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;FL Sugarcane   MLRA-156A&#39;</span><span class="p">:</span> <span class="s">&#39;W12844.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;OR Mint   MLRA-2&#39;</span><span class="p">:</span> <span class="s">&#39;W24232.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;FL Citrus   MLRA-156A&#39;</span><span class="p">:</span> <span class="s">&#39;W12844.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;CA Almonds MLRA-17&#39;</span><span class="p">:</span> <span class="s">&#39;W23232.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;ND Canola   MLRA-55A&#39;</span><span class="p">:</span> <span class="s">&#39;W24013.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;MI Asparagus MLRA-96&#39;</span><span class="p">:</span> <span class="s">&#39;w14840.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;PR Coffee MLRA-270&#39;</span><span class="p">:</span> <span class="s">&#39;W11641.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;FL Avocado MLRA-156A&#39;</span><span class="p">:</span> <span class="s">&#39;W12839.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;NC Tobacco   MLRA-133A&#39;</span><span class="p">:</span> <span class="s">&#39;W13722.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;CA Grape  MLRA-17&#39;</span><span class="p">:</span> <span class="s">&#39;W93193.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;FL Cucumber   MLRA-156A&#39;</span><span class="p">:</span> <span class="s">&#39;W12844.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;OH Corn   MLRA-111&#39;</span><span class="p">:</span> <span class="s">&#39;W93815.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;NC Apple   MLRA-130&#39;</span><span class="p">:</span> <span class="s">&#39;W03812.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;CA Onions MLRA-17&#39;</span><span class="p">:</span> <span class="s">&#39;W23155.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;PA Turf  MLRA-148&#39;</span><span class="p">:</span> <span class="s">&#39;W14751.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;MI Beans MLRA-99&#39;</span><span class="p">:</span> <span class="s">&#39;W14826.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;GA Onions MLRA-153A/133A&#39;</span><span class="p">:</span> <span class="s">&#39;W03822.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;LA Sugarcane   MLRA-131&#39;</span><span class="p">:</span> <span class="s">&#39;W13970.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;NC Corn - E   MLRA-153A&#39;</span><span class="p">:</span> <span class="s">&#39;W13722.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;OR Christmas Trees  MLRA-2&#39;</span><span class="p">:</span> <span class="s">&#39;W24232.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;MN Sugarbeet   MLRA-56&#39;</span><span class="p">:</span> <span class="s">&#39;W14914.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;FL Turf  MLRA-155&#39;</span><span class="p">:</span> <span class="s">&#39;W12834.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;MS Cotton   MLRA-134&#39;</span><span class="p">:</span> <span class="s">&#39;W03940.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;MS Soybean   MLRA-134&#39;</span><span class="p">:</span> <span class="s">&#39;W03940.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;GA Pecan   MLRA-133A&#39;</span><span class="p">:</span> <span class="s">&#39;W93805.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;OR Filberts   MLRA-2&#39;</span><span class="p">:</span> <span class="s">&#39;W24232.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;OR Grass Seed   MLRA-2&#39;</span><span class="p">:</span> <span class="s">&#39;W24232.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;GA Peach   MLRA-133A&#39;</span><span class="p">:</span> <span class="s">&#39;W03813.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;FL Carrots MLRA-156B&#39;</span><span class="p">:</span> <span class="s">&#39;W12844.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;NC Cotton   MLRA-133A&#39;</span><span class="p">:</span> <span class="s">&#39;W13722.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;CA Lettuce  MLRA-14&#39;</span><span class="p">:</span> <span class="s">&#39;W93193.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;FL Tomato   MLRA-155&#39;</span><span class="p">:</span> <span class="s">&#39;W12844.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;OR Apple   MLRA-2&#39;</span><span class="p">:</span> <span class="s">&#39;W24232.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;ND Wheat   MLRA-56&#39;</span><span class="p">:</span> <span class="s">&#39;W14914.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;CA Tomato MLRA-17&#39;</span><span class="p">:</span> <span class="s">&#39;W93193.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;PA Corn   MLRA-148&#39;</span><span class="p">:</span> <span class="s">&#39;W14751.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;FL Peppers MLRA-156A&#39;</span><span class="p">:</span> <span class="s">&#39;W12844.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;MS Corn   MLRA-134&#39;</span><span class="p">:</span> <span class="s">&#39;W03940.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;MI Cherry   MLRA-96&#39;</span><span class="p">:</span> <span class="s">&#39;W14850.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;IL Corn   MLRA-108&#39;</span><span class="p">:</span> <span class="s">&#39;W14842.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;ME Potato   MLRA-146&#39;</span><span class="p">:</span> <span class="s">&#39;W14607.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;FL Strawberry   MLRA-155&#39;</span><span class="p">:</span> <span class="s">&#39;W12842.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;KS Sorghum   MLRA-112&#39;</span><span class="p">:</span> <span class="s">&#39;W13996.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;PA Apple   MLRA-148&#39;</span><span class="p">:</span> <span class="s">&#39;W14751.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;CA Cotton   MLRA-17&#39;</span><span class="p">:</span> <span class="s">&#39;W93193.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;NC Peanut   MLRA-153A&#39;</span><span class="p">:</span> <span class="s">&#39;W13722.DVF&#39;</span><span class="p">,</span> <span class="s">&#39;FL Cabbage   MLRA-155&#39;</span><span class="p">:</span> <span class="s">&#39;W12842.DVF&#39;</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chem_name</span><span class="o">=</span><span class="n">chem_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenarios</span><span class="o">=</span><span class="n">scenarios</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">=</span><span class="n">farm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mw</span><span class="o">=</span><span class="n">mw</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sol</span><span class="o">=</span><span class="n">sol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">koc</span><span class="o">=</span><span class="n">koc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vp</span><span class="o">=</span><span class="n">vp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aem</span><span class="o">=</span><span class="n">aem</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anm</span><span class="o">=</span><span class="n">anm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aqp</span><span class="o">=</span><span class="n">aqp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tmper</span><span class="o">=</span><span class="n">tmper</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_ph</span><span class="o">=</span><span class="n">n_ph</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ph_out</span><span class="o">=</span><span class="n">ph_out</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hl_out</span><span class="o">=</span><span class="n">hl_out</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">met</span> <span class="o">=</span> <span class="n">met_pool</span><span class="p">[</span><span class="n">scenarios</span><span class="p">]</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span> <span class="o">=</span> <span class="n">get_jid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chem_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenarios</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">met</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mw</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sol</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">koc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">aem</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">anm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">aqp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tmper</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_ph</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ph_out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hl_out</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

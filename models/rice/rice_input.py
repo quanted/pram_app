@@ -8,7 +8,7 @@ from django.template.loader import render_to_string
 def riceInputPage(request, model='', header=''):
     """ Handles rice input parameters.
 
-    Longer description. 
+    Even Longer description.
 
     :param request: asdf.
     :type request: str.

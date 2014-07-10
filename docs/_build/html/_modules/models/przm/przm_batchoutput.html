@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.przm.przm_batchoutput &mdash; ubertool  documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ubertool  documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.przm.przm_batchoutput</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
+<span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">import</span> <span class="nn">przm_model</span><span class="o">,</span> <span class="nn">przm_tables</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">import</span> <span class="nn">Queue</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">przm_batchmodel</span>
+<span class="kn">import</span> <span class="nn">datetime</span><span class="o">,</span> <span class="nn">time</span>
+
+
+<div class="viewcode-block" id="generate_batch_jid"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_batchoutput.generate_batch_jid">[docs]</a><span class="k">def</span> <span class="nf">generate_batch_jid</span><span class="p">():</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">daylight</span><span class="p">):</span>
+        <span class="n">ts1</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=-</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="n">ts</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ts1</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=-</span><span class="mi">5</span><span class="p">)</span><span class="o">+</span><span class="n">ts</span>
+    <span class="n">batch_jid</span> <span class="o">=</span> <span class="n">ts1</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">batch_jid</span>
+
+</div>
+<span class="nd">@require_POST</span>
+<div class="viewcode-block" id="przmBatchOutputPage"><a class="viewcode-back" href="../../../models.przm.html#models.przm.przm_batchoutput.przmBatchOutputPage">[docs]</a><span class="k">def</span> <span class="nf">przmBatchOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">thefile</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">[</span><span class="s">&#39;upfile&#39;</span><span class="p">]</span>
+    <span class="n">batch_jid</span> <span class="o">=</span> <span class="n">generate_batch_jid</span><span class="p">()</span>
+    <span class="n">iter_html</span> <span class="o">=</span> <span class="n">przm_batchmodel</span><span class="o">.</span><span class="n">loop_html</span><span class="p">(</span><span class="n">thefile</span><span class="p">,</span> <span class="n">batch_jid</span><span class="p">)</span>
+    
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">iter_html</span><span class="p">)</span>
+    <span class="c"># return iter_html, trex2_obj_all, batch_jid</span>
+
+
+<span class="c"># class przmBatchOutputPage(webapp.RequestHandler):</span>
+<span class="c">#     def post(self):</span>
+<span class="c">#         form = cgi.FieldStorage()</span>
+<span class="c">#         thefile = form[&#39;file-0&#39;]</span>
+<span class="c">#         przm_batchmodel.loop_html(thefile, generate_batch_jid())</span>
+<span class="c">#         templatepath = os.path.dirname(__file__) + &#39;/../templates/&#39;</span>
+<span class="c">#         ChkCookie = self.request.cookies.get(&quot;ubercookie&quot;)</span>
+<span class="c">#         html = template.render(templatepath + &#39;04uberoutput_start.html&#39;, {</span>
+<span class="c">#                 &#39;model&#39;:&#39;przm&#39;,</span>
+<span class="c">#                 &#39;model_attributes&#39;:&#39;PRZM Batch Output&#39;})</span>
+<span class="c">#         self.response.out.write(html)</span>
+
+<span class="c"># app = webapp.WSGIApplication([(&#39;/.*&#39;, przmBatchOutputPage)], debug=True)</span>
+
+
+<span class="c"># def main():</span>
+<span class="c">#     run_wsgi_app(app)</span>
+
+<span class="c"># if __name__ == &#39;__main__&#39;:</span>
+<span class="c">#     main()</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">ubertool  documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, ubertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

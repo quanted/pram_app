@@ -1,4 +1,4 @@
-models.dust package
+DUST
 ===================
 
 Submodules

@@ -1,4 +1,4 @@
-models.agdrift_trex package
+AgDrift - Trex v1.5.2
 ===========================
 
 Submodules

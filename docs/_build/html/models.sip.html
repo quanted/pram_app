@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>models.sip package &mdash; ubertool  documentation</title>
+    <title>SIP &mdash; übertool alpha documentation</title>
     
     <link rel="stylesheet" href="_static/ubertool.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '',
+        VERSION:     'alpha',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,10 +23,10 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="ubertool  documentation" href="index.html" />
-    <link rel="up" title="models package" href="models.html" />
-    <link rel="next" title="models.stir package" href="models.stir.html" />
-    <link rel="prev" title="models.rice package" href="models.rice.html" />
+    <link rel="top" title="übertool alpha documentation" href="index.html" />
+    <link rel="up" title="Models" href="models.html" />
+    <link rel="next" title="STIR" href="models.stir.html" />
+    <link rel="prev" title="RICE" href="models.rice.html" />
 <!-- Browser FAVICON -->
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
 
@@ -42,13 +42,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="models.stir.html" title="models.stir package"
+          <a href="models.stir.html" title="STIR"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="models.rice.html" title="models.rice package"
+          <a href="models.rice.html" title="RICE"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">ubertool  documentation</a> &raquo;</li>
-          <li><a href="models.html" accesskey="U">models package</a> &raquo;</li> 
+        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -57,8 +57,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="models-sip-package">
-<h1>models.sip package<a class="headerlink" href="#models-sip-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="sip">
+<h1>SIP<a class="headerlink" href="#sip" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -131,7 +131,7 @@
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
 <dl class="attribute">
 <dt id="models.sip.sip_parameters.SIPInp.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'chemical_name': &lt;django.forms.fields.CharField object at 0x031E5A30&gt;, 'solubility': &lt;django.forms.fields.FloatField object at 0x031E58D0&gt;, 'ld50_m': &lt;django.forms.fields.FloatField object at 0x031E59B0&gt;, 'm_species': &lt;django.forms.fields.ChoiceField object at 0x07ECD030&gt;, 'bw_rat': &lt;django.forms.fields.FloatField object at 0x07ECD7D0&gt;, 'bwm_other': &lt;django.forms.fields.FloatField object at 0x07ECD790&gt;, 'aw_mamm': &lt;django.forms.fields.FloatField object at 0x07ECD5F0&gt;, 'NOAEL': &lt;django.forms.fields.FloatField object at 0x07ECD650&gt;, 'ld50_a': &lt;django.forms.fields.FloatField object at 0x07ECD610&gt;, 'b_species': &lt;django.forms.fields.ChoiceField object at 0x07ECFFB0&gt;, 'bw_quail': &lt;django.forms.fields.FloatField object at 0x07ECD4B0&gt;, 'bw_duck': &lt;django.forms.fields.FloatField object at 0x07ECD470&gt;, 'bwb_other': &lt;django.forms.fields.FloatField object at 0x07ECDE30&gt;, 'aw_bird': &lt;django.forms.fields.FloatField object at 0x07ECDE70&gt;, 'mineau_scaling_factor': &lt;django.forms.fields.FloatField object at 0x07ECDEB0&gt;, 'NOAEC_species': &lt;django.forms.fields.ChoiceField object at 0x07ECDEF0&gt;, 'NOAEC_d': &lt;django.forms.fields.FloatField object at 0x07ECDF30&gt;, 'NOAEC_q': &lt;django.forms.fields.FloatField object at 0x07ECDF70&gt;, 'NOAEC_o': &lt;django.forms.fields.FloatField object at 0x07ECDFB0&gt;}</em><a class="headerlink" href="#models.sip.sip_parameters.SIPInp.base_fields" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">base_fields</tt><em class="property"> = {'chemical_name': &lt;django.forms.fields.CharField object at 0x07A1ADF0&gt;, 'solubility': &lt;django.forms.fields.FloatField object at 0x07A1AE10&gt;, 'ld50_m': &lt;django.forms.fields.FloatField object at 0x07A1AE50&gt;, 'm_species': &lt;django.forms.fields.ChoiceField object at 0x07A1AE90&gt;, 'bw_rat': &lt;django.forms.fields.FloatField object at 0x044A1C90&gt;, 'bwm_other': &lt;django.forms.fields.FloatField object at 0x07683B10&gt;, 'aw_mamm': &lt;django.forms.fields.FloatField object at 0x07A1AF10&gt;, 'NOAEL': &lt;django.forms.fields.FloatField object at 0x0738FEF0&gt;, 'ld50_a': &lt;django.forms.fields.FloatField object at 0x07A1AF70&gt;, 'b_species': &lt;django.forms.fields.ChoiceField object at 0x07A1AFB0&gt;, 'bw_quail': &lt;django.forms.fields.FloatField object at 0x07A1AFF0&gt;, 'bw_duck': &lt;django.forms.fields.FloatField object at 0x07A0D050&gt;, 'bwb_other': &lt;django.forms.fields.FloatField object at 0x07A0D090&gt;, 'aw_bird': &lt;django.forms.fields.FloatField object at 0x0738FC90&gt;, 'mineau_scaling_factor': &lt;django.forms.fields.FloatField object at 0x07A0D0F0&gt;, 'NOAEC_species': &lt;django.forms.fields.ChoiceField object at 0x07A0D130&gt;, 'NOAEC_d': &lt;django.forms.fields.FloatField object at 0x07A0D150&gt;, 'NOAEC_q': &lt;django.forms.fields.FloatField object at 0x07A0D190&gt;, 'NOAEC_o': &lt;django.forms.fields.FloatField object at 0x07A0D1D0&gt;}</em><a class="headerlink" href="#models.sip.sip_parameters.SIPInp.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -297,7 +297,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">models.sip package</a><ul>
+<li><a class="reference internal" href="#">SIP</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#models-sip-sip-batch-runner-module">models.sip.sip_batch_runner module</a></li>
 <li><a class="reference internal" href="#module-models.sip.sip_batchoutput">models.sip.sip_batchoutput module</a></li>
@@ -316,10 +316,10 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="models.rice.html"
-                        title="previous chapter">models.rice package</a></p>
+                        title="previous chapter">RICE</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="models.stir.html"
-                        title="next chapter">models.stir package</a></p>
+                        title="next chapter">STIR</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/models.sip.txt"
@@ -352,17 +352,17 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="models.stir.html" title="models.stir package"
+          <a href="models.stir.html" title="STIR"
              >next</a> |</li>
         <li class="right" >
-          <a href="models.rice.html" title="models.rice package"
+          <a href="models.rice.html" title="RICE"
              >previous</a> |</li>
-        <li><a href="index.html">ubertool  documentation</a> &raquo;</li>
-          <li><a href="models.html" >models package</a> &raquo;</li> 
+        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="models.html" >Models</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, ubertool team.
+        &copy; Copyright 2014, EPA übertool team.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

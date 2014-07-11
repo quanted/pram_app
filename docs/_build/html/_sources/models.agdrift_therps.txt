@@ -1,4 +1,4 @@
-models.agdrift_therps package
+AgDrift - T-Herps
 =============================
 
 Submodules

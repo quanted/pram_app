@@ -1,93 +1,61 @@
-models.przm package
-===================
+PRZM
+====================
 
 Submodules
 ----------
 
-models.przm.przm_batchmodel module
-----------------------------------
+models.przm5.przm5_input module
+-------------------------------
 
-.. automodule:: models.przm.przm_batchmodel
+.. automodule:: models.przm5.przm5_input
     :members:
     :undoc-members:
     :show-inheritance:
 
-models.przm.przm_batchoutput module
------------------------------------
+models.przm5.przm5_model module
+-------------------------------
 
-.. automodule:: models.przm.przm_batchoutput
+.. automodule:: models.przm5.przm5_model
     :members:
     :undoc-members:
     :show-inheritance:
 
-models.przm.przm_batchoutput_backend module
--------------------------------------------
+models.przm5.przm5_output module
+--------------------------------
 
-.. automodule:: models.przm.przm_batchoutput_backend
+.. automodule:: models.przm5.przm5_output
     :members:
     :undoc-members:
     :show-inheritance:
 
-models.przm.przm_input module
------------------------------
+models.przm5.przm5_parameters module
+------------------------------------
 
-.. automodule:: models.przm.przm_input
+.. automodule:: models.przm5.przm5_parameters
     :members:
     :undoc-members:
     :show-inheritance:
 
-models.przm.przm_input_default module
--------------------------------------
-
-.. automodule:: models.przm.przm_input_default
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-models.przm.przm_model module
------------------------------
-
-.. automodule:: models.przm.przm_model
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-models.przm.przm_output module
+models.przm5.przm5_qaqc module
 ------------------------------
 
-.. automodule:: models.przm.przm_output
+.. automodule:: models.przm5.przm5_qaqc
     :members:
     :undoc-members:
     :show-inheritance:
 
-models.przm.przm_parameters module
-----------------------------------
+models.przm5.przm5_tables module
+--------------------------------
 
-.. automodule:: models.przm.przm_parameters
+.. automodule:: models.przm5.przm5_tables
     :members:
     :undoc-members:
     :show-inheritance:
 
-models.przm.przm_qaqc module
-----------------------------
+models.przm5.views module
+-------------------------
 
-.. automodule:: models.przm.przm_qaqc
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-models.przm.przm_tables module
-------------------------------
-
-.. automodule:: models.przm.przm_tables
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-models.przm.views module
-------------------------
-
-.. automodule:: models.przm.views
+.. automodule:: models.przm5.views
     :members:
     :undoc-members:
     :show-inheritance:
@@ -96,7 +64,7 @@ models.przm.views module
 Module contents
 ---------------
 
-.. automodule:: models.przm
+.. automodule:: models.przm5
     :members:
     :undoc-members:
     :show-inheritance:

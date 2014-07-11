@@ -1,4 +1,4 @@
-models.vvwm package
+VVWM
 ===================
 
 Submodules

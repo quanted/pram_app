@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>models.geneec package &mdash; ubertool  documentation</title>
+    <title>Geneec &mdash; übertool alpha documentation</title>
     
     <link rel="stylesheet" href="_static/ubertool.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '',
+        VERSION:     'alpha',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,10 +23,10 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="ubertool  documentation" href="index.html" />
-    <link rel="up" title="models package" href="models.html" />
-    <link rel="next" title="models.geneec.leftover package" href="models.geneec.leftover.html" />
-    <link rel="prev" title="models.forms package" href="models.forms.html" />
+    <link rel="top" title="übertool alpha documentation" href="index.html" />
+    <link rel="up" title="Models" href="models.html" />
+    <link rel="next" title="IEC" href="models.iec.html" />
+    <link rel="prev" title="EXAMS" href="models.exams.html" />
 <!-- Browser FAVICON -->
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
 
@@ -42,13 +42,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="models.geneec.leftover.html" title="models.geneec.leftover package"
+          <a href="models.iec.html" title="IEC"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="models.forms.html" title="models.forms package"
+          <a href="models.exams.html" title="EXAMS"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">ubertool  documentation</a> &raquo;</li>
-          <li><a href="models.html" accesskey="U">models package</a> &raquo;</li> 
+        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -57,26 +57,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="models-geneec-package">
-<h1>models.geneec package<a class="headerlink" href="#models-geneec-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="models.geneec.leftover.html">models.geneec.leftover package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="models.geneec.leftover.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.geneec.leftover.html#models-geneec-leftover-geneec-algorithm-module">models.geneec.leftover.geneec_algorithm module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.geneec.leftover.html#models-geneec-leftover-geneec-batchinput-module">models.geneec.leftover.geneec_batchinput module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.geneec.leftover.html#models-geneec-leftover-geneec-description-module">models.geneec.leftover.geneec_description module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.geneec.leftover.html#models-geneec-leftover-geneec-history-module">models.geneec.leftover.geneec_history module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.geneec.leftover.html#models-geneec-leftover-geneec-references-module">models.geneec.leftover.geneec_references module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.geneec.leftover.html#module-models.geneec.leftover.publish_fortran">models.geneec.leftover.publish_fortran module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.geneec.leftover.html#module-models.geneec.leftover">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
+  <div class="section" id="geneec">
+<h1>Geneec<a class="headerlink" href="#geneec" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -131,7 +113,7 @@
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
 <dl class="attribute">
 <dt id="models.geneec.geneec_parameters.geneecInp.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'chemical_name': &lt;django.forms.fields.CharField object at 0x04099C90&gt;, 'application_target': &lt;django.forms.fields.ChoiceField object at 0x04099F10&gt;, 'application_rate': &lt;django.forms.fields.FloatField object at 0x04099CD0&gt;, 'number_of_applications': &lt;django.forms.fields.FloatField object at 0x040992D0&gt;, 'interval_between_applications': &lt;django.forms.fields.FloatField object at 0x040998D0&gt;, 'Koc': &lt;django.forms.fields.FloatField object at 0x04099790&gt;, 'aerobic_soil_metabolism': &lt;django.forms.fields.FloatField object at 0x039443F0&gt;, 'wet_in': &lt;django.forms.fields.ChoiceField object at 0x03E26050&gt;, 'application_method': &lt;django.forms.fields.ChoiceField object at 0x03C2CAD0&gt;, 'aerial_size_dist': &lt;django.forms.fields.ChoiceField object at 0x03C2CB30&gt;, 'ground_spray_type': &lt;django.forms.fields.ChoiceField object at 0x03C2CB70&gt;, 'airblast_type': &lt;django.forms.fields.ChoiceField object at 0x0446D190&gt;, 'spray_quality': &lt;django.forms.fields.ChoiceField object at 0x0446D890&gt;, 'no_spray_drift': &lt;django.forms.fields.FloatField object at 0x0446D950&gt;, 'incorporation_depth': &lt;django.forms.fields.FloatField object at 0x0446DD50&gt;, 'solubility': &lt;django.forms.fields.FloatField object at 0x0446DD70&gt;, 'aerobic_aquatic_metabolism': &lt;django.forms.fields.FloatField object at 0x0446D910&gt;, 'hydrolysis': &lt;django.forms.fields.FloatField object at 0x0446D9B0&gt;, 'photolysis_aquatic_half_life': &lt;django.forms.fields.FloatField object at 0x0446D2D0&gt;}</em><a class="headerlink" href="#models.geneec.geneec_parameters.geneecInp.base_fields" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">base_fields</tt><em class="property"> = {'chemical_name': &lt;django.forms.fields.CharField object at 0x032CAE10&gt;, 'application_target': &lt;django.forms.fields.ChoiceField object at 0x032CAF10&gt;, 'application_rate': &lt;django.forms.fields.FloatField object at 0x03C5EF30&gt;, 'number_of_applications': &lt;django.forms.fields.FloatField object at 0x03C5E8D0&gt;, 'interval_between_applications': &lt;django.forms.fields.FloatField object at 0x03C5E850&gt;, 'Koc': &lt;django.forms.fields.FloatField object at 0x03E5E050&gt;, 'aerobic_soil_metabolism': &lt;django.forms.fields.FloatField object at 0x03E5E030&gt;, 'wet_in': &lt;django.forms.fields.ChoiceField object at 0x02F8D870&gt;, 'application_method': &lt;django.forms.fields.ChoiceField object at 0x02F8D930&gt;, 'aerial_size_dist': &lt;django.forms.fields.ChoiceField object at 0x02F8D9B0&gt;, 'ground_spray_type': &lt;django.forms.fields.ChoiceField object at 0x02F8DA30&gt;, 'airblast_type': &lt;django.forms.fields.ChoiceField object at 0x02F8DAD0&gt;, 'spray_quality': &lt;django.forms.fields.ChoiceField object at 0x02F8DBF0&gt;, 'no_spray_drift': &lt;django.forms.fields.FloatField object at 0x02F8DBD0&gt;, 'incorporation_depth': &lt;django.forms.fields.FloatField object at 0x02F8DD10&gt;, 'solubility': &lt;django.forms.fields.FloatField object at 0x037C4D30&gt;, 'aerobic_aquatic_metabolism': &lt;django.forms.fields.FloatField object at 0x02F8DDD0&gt;, 'hydrolysis': &lt;django.forms.fields.FloatField object at 0x02F8DE90&gt;, 'photolysis_aquatic_half_life': &lt;django.forms.fields.FloatField object at 0x02F8D9D0&gt;}</em><a class="headerlink" href="#models.geneec.geneec_parameters.geneecInp.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -254,8 +236,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">models.geneec package</a><ul>
-<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#">Geneec</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-models.geneec.geneec_batchoutput">models.geneec.geneec_batchoutput module</a></li>
 <li><a class="reference internal" href="#module-models.geneec.geneec_input">models.geneec.geneec_input module</a></li>
@@ -271,11 +252,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="models.forms.html"
-                        title="previous chapter">models.forms package</a></p>
+  <p class="topless"><a href="models.exams.html"
+                        title="previous chapter">EXAMS</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="models.geneec.leftover.html"
-                        title="next chapter">models.geneec.leftover package</a></p>
+  <p class="topless"><a href="models.iec.html"
+                        title="next chapter">IEC</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/models.geneec.txt"
@@ -308,17 +289,17 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="models.geneec.leftover.html" title="models.geneec.leftover package"
+          <a href="models.iec.html" title="IEC"
              >next</a> |</li>
         <li class="right" >
-          <a href="models.forms.html" title="models.forms package"
+          <a href="models.exams.html" title="EXAMS"
              >previous</a> |</li>
-        <li><a href="index.html">ubertool  documentation</a> &raquo;</li>
-          <li><a href="models.html" >models package</a> &raquo;</li> 
+        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="models.html" >Models</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, ubertool team.
+        &copy; Copyright 2014, EPA übertool team.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

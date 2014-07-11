@@ -1,4 +1,4 @@
-models.agdrift package
+AgDrift
 ======================
 
 Submodules

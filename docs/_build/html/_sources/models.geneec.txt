@@ -1,12 +1,5 @@
-models.geneec package
+Geneec
 =====================
-
-Subpackages
------------
-
-.. toctree::
-
-    models.geneec.leftover
 
 Submodules
 ----------

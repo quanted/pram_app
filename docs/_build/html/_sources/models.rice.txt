@@ -1,4 +1,4 @@
-models.rice package
+RICE
 ===================
 
 Submodules

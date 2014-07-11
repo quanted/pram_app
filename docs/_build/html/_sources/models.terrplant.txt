@@ -1,4 +1,4 @@
-models.terrplant package
+TerrPlant
 ========================
 
 Submodules

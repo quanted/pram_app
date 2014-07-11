@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Architecture &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="index.html" />
+    <link rel="next" title="Deployment" href="deployment.html" />
+    <link rel="prev" title="Form Validation" href="models.forms.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deployment.html" title="Deployment"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="models.forms.html" title="Form Validation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h1>
+<p>ubertool stuff</p>
+<div class="section" id="technology-stack">
+<h2>Technology stack<a class="headerlink" href="#technology-stack" title="Permalink to this headline">¶</a></h2>
+<p>smaller point</p>
+</div>
+<div class="section" id="front-end-server">
+<h2>Front-end server<a class="headerlink" href="#front-end-server" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="back-end-server">
+<h2>Back-end server<a class="headerlink" href="#back-end-server" title="Permalink to this headline">¶</a></h2>
+<p>The primary component on the back-end server is Amazon Elastic Compute Cloud (EC2) since it: hosts the platform for data transfer between the front and back-end through Representational state transfer (REST) application programming interface (API); creates the environment for models to be executed; generates reports and documents; hosts a NoSQL database (MongoDB) to manage user history; and runs a Python-based task queue management system (Celery). Other elements on AWS include Simple Storage Service (S3) and Simple Queue Service (SQS), where the former is designed to store model output files for the long term and the latter manages requests generated from batch model runs.</p>
+<div class="align-center figure align-center">
+<a class="reference internal image-reference" href="_images/back_end_1.png"><img alt="alternate text" src="_images/back_end_1.png" style="width: 400pt; height: 300pt;" /></a>
+<p class="caption">Structure of the Back-end Server</p>
+</div>
+<p>The REST API for übertool is built on Bottle, a lightweight Web Server Gateway Interface (WSGI)-based Python framework <a class="footnote-reference" href="#id4" id="id1">[1]</a>. Bottle contains a single file and has no dependencies other than the Python Standard Library. While some full-stack web frameworks (e.g., Django and web2py) support a number of activities through build-in modules (e.g., interpreting requests, producing responses, storing data persistently, etc.), Bottle could achieve these features through plug-ins which enables developers to customize web applications easily. Conceptually, the REST API performs as a “hub” on the back-end server which receives requests and inputs from the front-end, distributes requests by invoking different functions, and transfers outputs to the front-end for display. All data transmitted over the REST API follow the JavaScript Object Notation (JSON) format commonly used in modern web applications <a class="footnote-reference" href="#id5" id="id2">[2]</a>. Three types of APIs are created: 1) executing legacy FORTRAN models; 2) generating reports based on model outputs (PDF and HTML format); and 3) exchanging information between a non-relational database, MongoDB. A noSQL database was preferred over a relational database because it is convenient to modify the existing data structure (e.g., introducing new fields, changing structure, etc.); has fast query speed, and is easy to scale horizontally through automatic sharing and building replications <a class="footnote-reference" href="#id6" id="id3">[3]</a>.</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Hellkamp, M. (2014). &#8220;Bottle.&#8221;  0.12. from <a class="reference external" href="http://bottlepy.org/docs/dev/index.html">http://bottlepy.org/docs/dev/index.html</a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Crockford, D. (2009). &#8220;Introducing json.&#8221; Available: <a class="reference external" href="http://www.json.org">http://www.json.org</a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Amol. (2014). &#8220;Web Frameworks for Python.&#8221;   Retrieved March 14th, 2014, from <a class="reference external" href="https://wiki.python.org/moin/WebFrameworks">https://wiki.python.org/moin/WebFrameworks</a>.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="d4em-server">
+<h2>D4EM server<a class="headerlink" href="#d4em-server" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="public-deployment">
+<h2>Public deployment<a class="headerlink" href="#public-deployment" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="epa-intranet-deployment">
+<h2>EPA intranet deployment<a class="headerlink" href="#epa-intranet-deployment" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Architecture</a><ul>
+<li><a class="reference internal" href="#technology-stack">Technology stack</a></li>
+<li><a class="reference internal" href="#front-end-server">Front-end server</a></li>
+<li><a class="reference internal" href="#back-end-server">Back-end server</a></li>
+<li><a class="reference internal" href="#d4em-server">D4EM server</a></li>
+<li><a class="reference internal" href="#public-deployment">Public deployment</a></li>
+<li><a class="reference internal" href="#epa-intranet-deployment">EPA intranet deployment</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="models.forms.html"
+                        title="previous chapter">Form Validation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="deployment.html"
+                        title="next chapter">Deployment</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/architecture.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deployment.html" title="Deployment"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="models.forms.html" title="Form Validation"
+             >previous</a> |</li>
+        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-models.kabam package
+Kabam
 ====================
 
 Submodules

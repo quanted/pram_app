@@ -1,4 +1,4 @@
-models.trex2 package
+T-Rex v1.5.2
 ====================
 
 Submodules

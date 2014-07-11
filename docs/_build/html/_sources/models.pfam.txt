@@ -1,4 +1,4 @@
-models.pfam package
+PFAM
 ===================
 
 Submodules

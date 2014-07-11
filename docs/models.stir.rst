@@ -1,4 +1,4 @@
-models.stir package
+STIR
 ===================
 
 Submodules

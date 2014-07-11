@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>models.terrplant package &mdash; ubertool  documentation</title>
+    <title>TerrPlant &mdash; übertool alpha documentation</title>
     
     <link rel="stylesheet" href="_static/ubertool.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '',
+        VERSION:     'alpha',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,10 +23,10 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="ubertool  documentation" href="index.html" />
-    <link rel="up" title="models package" href="models.html" />
-    <link rel="next" title="models.therps package" href="models.therps.html" />
-    <link rel="prev" title="models.stir package" href="models.stir.html" />
+    <link rel="top" title="übertool alpha documentation" href="index.html" />
+    <link rel="up" title="Models" href="models.html" />
+    <link rel="next" title="T-Herps" href="models.therps.html" />
+    <link rel="prev" title="STIR" href="models.stir.html" />
 <!-- Browser FAVICON -->
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
 
@@ -42,13 +42,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="models.therps.html" title="models.therps package"
+          <a href="models.therps.html" title="T-Herps"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="models.stir.html" title="models.stir package"
+          <a href="models.stir.html" title="STIR"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">ubertool  documentation</a> &raquo;</li>
-          <li><a href="models.html" accesskey="U">models package</a> &raquo;</li> 
+        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -57,8 +57,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="models-terrplant-package">
-<h1>models.terrplant package<a class="headerlink" href="#models-terrplant-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="terrplant">
+<h1>TerrPlant<a class="headerlink" href="#terrplant" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -126,7 +126,7 @@
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
 <dl class="attribute">
 <dt id="models.terrplant.terrplant_parameters.TerrPlantInp.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'version_terrplant': &lt;django.forms.fields.ChoiceField object at 0x086BA090&gt;, 'chemical_name': &lt;django.forms.fields.CharField object at 0x086BA0D0&gt;, 'pc_code': &lt;django.forms.fields.CharField object at 0x086BA110&gt;, 'use': &lt;django.forms.fields.CharField object at 0x086BA150&gt;, 'application_method': &lt;django.forms.fields.CharField object at 0x086BA190&gt;, 'application_form': &lt;django.forms.fields.CharField object at 0x086BA1D0&gt;, 'solubility': &lt;django.forms.fields.FloatField object at 0x077BEA90&gt;, 'incorporation': &lt;django.forms.fields.ChoiceField object at 0x086A5150&gt;, 'application_rate': &lt;django.forms.fields.FloatField object at 0x085D5510&gt;, 'drift_fraction': &lt;django.forms.fields.ChoiceField object at 0x085D5D10&gt;, 'runoff_fraction': &lt;django.forms.fields.ChoiceField object at 0x085D5AF0&gt;, 'EC25_for_nonlisted_seedling_emergence_monocot': &lt;django.forms.fields.FloatField object at 0x085D5930&gt;, 'EC25_for_nonlisted_seedling_emergence_dicot': &lt;django.forms.fields.FloatField object at 0x085D54F0&gt;, 'NOAEC_for_listed_seedling_emergence_monocot': &lt;django.forms.fields.FloatField object at 0x085D5050&gt;, 'NOAEC_for_listed_seedling_emergence_dicot': &lt;django.forms.fields.FloatField object at 0x07F29950&gt;, 'EC25_for_nonlisted_vegetative_vigor_monocot': &lt;django.forms.fields.FloatField object at 0x07F29AD0&gt;, 'EC25_for_nonlisted_vegetative_vigor_dicot': &lt;django.forms.fields.FloatField object at 0x0863F2B0&gt;, 'NOAEC_for_listed_vegetative_vigor_monocot': &lt;django.forms.fields.FloatField object at 0x08226B50&gt;, 'NOAEC_for_listed_vegetative_vigor_dicot': &lt;django.forms.fields.FloatField object at 0x0863F130&gt;}</em><a class="headerlink" href="#models.terrplant.terrplant_parameters.TerrPlantInp.base_fields" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">base_fields</tt><em class="property"> = {'version_terrplant': &lt;django.forms.fields.ChoiceField object at 0x02DC80B0&gt;, 'chemical_name': &lt;django.forms.fields.CharField object at 0x02DC8110&gt;, 'pc_code': &lt;django.forms.fields.CharField object at 0x02DC8050&gt;, 'use': &lt;django.forms.fields.CharField object at 0x02DC8AF0&gt;, 'application_method': &lt;django.forms.fields.CharField object at 0x02DC8B10&gt;, 'application_form': &lt;django.forms.fields.CharField object at 0x02DC8D30&gt;, 'solubility': &lt;django.forms.fields.FloatField object at 0x02DC8CD0&gt;, 'incorporation': &lt;django.forms.fields.ChoiceField object at 0x02DC8B90&gt;, 'application_rate': &lt;django.forms.fields.FloatField object at 0x02DC8C90&gt;, 'drift_fraction': &lt;django.forms.fields.ChoiceField object at 0x02DC8810&gt;, 'runoff_fraction': &lt;django.forms.fields.ChoiceField object at 0x02DC8510&gt;, 'EC25_for_nonlisted_seedling_emergence_monocot': &lt;django.forms.fields.FloatField object at 0x02DC8210&gt;, 'EC25_for_nonlisted_seedling_emergence_dicot': &lt;django.forms.fields.FloatField object at 0x02DC8E70&gt;, 'NOAEC_for_listed_seedling_emergence_monocot': &lt;django.forms.fields.FloatField object at 0x02F008D0&gt;, 'NOAEC_for_listed_seedling_emergence_dicot': &lt;django.forms.fields.FloatField object at 0x02F00E30&gt;, 'EC25_for_nonlisted_vegetative_vigor_monocot': &lt;django.forms.fields.FloatField object at 0x02F00AD0&gt;, 'EC25_for_nonlisted_vegetative_vigor_dicot': &lt;django.forms.fields.FloatField object at 0x02F00A50&gt;, 'NOAEC_for_listed_vegetative_vigor_monocot': &lt;django.forms.fields.FloatField object at 0x02F00AF0&gt;, 'NOAEC_for_listed_vegetative_vigor_dicot': &lt;django.forms.fields.FloatField object at 0x02F008F0&gt;}</em><a class="headerlink" href="#models.terrplant.terrplant_parameters.TerrPlantInp.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -342,7 +342,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">models.terrplant package</a><ul>
+<li><a class="reference internal" href="#">TerrPlant</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#models-terrplant-terrplant-batch-runner-module">models.terrplant.terrplant_batch_runner module</a></li>
 <li><a class="reference internal" href="#module-models.terrplant.terrplant_batchoutput">models.terrplant.terrplant_batchoutput module</a></li>
@@ -361,10 +361,10 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="models.stir.html"
-                        title="previous chapter">models.stir package</a></p>
+                        title="previous chapter">STIR</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="models.therps.html"
-                        title="next chapter">models.therps package</a></p>
+                        title="next chapter">T-Herps</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/models.terrplant.txt"
@@ -397,17 +397,17 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="models.therps.html" title="models.therps package"
+          <a href="models.therps.html" title="T-Herps"
              >next</a> |</li>
         <li class="right" >
-          <a href="models.stir.html" title="models.stir package"
+          <a href="models.stir.html" title="STIR"
              >previous</a> |</li>
-        <li><a href="index.html">ubertool  documentation</a> &raquo;</li>
-          <li><a href="models.html" >models package</a> &raquo;</li> 
+        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="models.html" >Models</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, ubertool team.
+        &copy; Copyright 2014, EPA übertool team.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

@@ -3,15 +3,26 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to ubertool's documentation!
+übertool's Ecological Risk Assessment Documentation
 ====================================
 
 Contents:
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
 
+   intro
+   features
    models
+   architecture
+   deployment
+   installation
+   processes
+   api
+   qapp
+   research
+   publications
+   references
 
 
 Indices and tables

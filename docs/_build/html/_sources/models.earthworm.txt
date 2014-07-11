@@ -1,12 +1,5 @@
-models.earthworm package
+Earthworm
 ========================
-
-Subpackages
------------
-
-.. toctree::
-
-    models.earthworm.leftover
 
 Submodules
 ----------

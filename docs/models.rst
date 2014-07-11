@@ -1,7 +1,7 @@
-models package
+Models
 ==============
 
-Subpackages
+Source Code
 -----------
 
 .. toctree::
@@ -12,7 +12,6 @@ Subpackages
     models.dust
     models.earthworm
     models.exams
-    models.forms
     models.geneec
     models.iec
     models.kabam
@@ -27,6 +26,7 @@ Subpackages
     models.therps
     models.trex2
     models.vvwm
+    models.forms
 
 Module contents
 ---------------

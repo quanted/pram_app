@@ -1,4 +1,4 @@
-models.exams package
+EXAMS
 ====================
 
 Submodules

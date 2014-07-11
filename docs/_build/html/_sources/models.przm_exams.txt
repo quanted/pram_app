@@ -1,4 +1,4 @@
-models.przm_exams package
+PRZM - EXAMS
 =========================
 
 Submodules

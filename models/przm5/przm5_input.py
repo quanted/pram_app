@@ -1,3 +1,8 @@
+"""
+.. module:: przm5_input
+   :synopsis: A useful module indeed.
+"""
+
 from django.template.loader import render_to_string
 import logging
 logger = logging.getLogger('PRZM5 Model')

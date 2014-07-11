@@ -1,7 +1,8 @@
-# -*- coding: utf-8 -*-
 """
-@author: Taohong
+.. module:: przm_parameters
+   :synopsis: A useful module indeed.
 """
+
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms
@@ -45,4 +46,5 @@ class PRZMInp(forms.Form):
 #    Number_crop = forms.FloatField(required=True,label='Number of simulated crops',initial=3)
     
     
-    
+    
+

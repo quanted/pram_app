@@ -1,3 +1,8 @@
+"""
+.. module:: iec_qaqc
+   :synopsis: A useful module indeed.
+"""
+
 import iec_model
 import logging
 import os
@@ -77,4 +82,5 @@ iec_obj.chance_f_out_expected = chance_f_out[0]
 
 test_suite_z_score_f_out = suite(TestCase_z_score_f_out, iec_obj=iec_obj)
 test_suite_F8_f_out = suite(TestCase_F8_f_out, iec_obj=iec_obj)
-test_suite_chance_f_out = suite(TestCase_chance_f_out, iec_obj=iec_obj)
+test_suite_chance_f_out = suite(TestCase_chance_f_out, iec_obj=iec_obj)
+

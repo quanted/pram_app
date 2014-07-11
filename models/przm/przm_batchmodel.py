@@ -1,3 +1,8 @@
+"""
+.. module:: przm_batchmodel
+   :synopsis: A useful module indeed.
+"""
+
 import json
 import logging
 logger = logging.getLogger('PRZM Batch Model')

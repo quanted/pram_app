@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
-Created on 11/07/2013
+.. module:: przm5_parameters
+   :synopsis: A useful module indeed.
+"""
 
-@author: Tao Hong
-"""
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms

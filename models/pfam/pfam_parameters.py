@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
-Created on Feb 14 2013
+.. module:: pfam_parameters
+   :synopsis: A useful module indeed.
+"""
 
-@author: THong
-"""
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms

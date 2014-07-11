@@ -1,5 +1,9 @@
-from django.template.loader import render_to_string
+"""
+.. module:: stir_input
+   :synopsis: A useful module indeed.
+"""
 
+from django.template.loader import render_to_string
 
 def stirInputPage(request, model='', header=''):
     import stir_parameters,stir_tooltips

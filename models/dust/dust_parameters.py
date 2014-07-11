@@ -1,4 +1,7 @@
-# -*- coding: utf-8 -*-
+"""
+.. module:: dust_batch_runner
+   :synopsis: A useful module indeed.
+"""
 
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'

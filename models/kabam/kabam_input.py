@@ -1,6 +1,10 @@
+"""
+.. module:: kabam_input
+   :synopsis: A useful module indeed.
+"""
+
 from django.template.loader import render_to_string
- 
- 
+
 def kabamInputPage(request, model='', header=''):
     import kabam_parameters,kabam_tooltips
  

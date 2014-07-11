@@ -1,3 +1,8 @@
+"""
+.. module:: iec_model
+   :synopsis: A useful module indeed.
+"""
+
 import numpy as np
 import logging
 import sys

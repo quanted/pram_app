@@ -1,3 +1,8 @@
+"""
+.. module:: terrplant_qaqc
+   :synopsis: A useful module indeed.
+"""
+
 import terrplant_model
 import os
 import unittest

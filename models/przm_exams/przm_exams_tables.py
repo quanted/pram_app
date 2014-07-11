@@ -1,8 +1,12 @@
+"""
+.. module:: przm_exams_tables
+   :synopsis: A useful module indeed.
+"""
+
 from django.template import Context, Template
 import przm_exams_model
 from django.template.loader import render_to_string
 import datetime
-
 
 def getheaderpvu_1():
 	headings = ["Parameter", "Value"]

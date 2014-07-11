@@ -1,4 +1,8 @@
-# -*- coding: utf-8 -*-
+"""
+.. module:: earthworm_batchoutput
+   :synopsis: A useful module indeed.
+"""
+
 from django.views.decorators.http import require_POST
 import csv
 import earthworm_model, earthworm_tables

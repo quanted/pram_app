@@ -1,3 +1,8 @@
+"""
+.. module:: agdrift_tables
+   :synopsis: A useful module indeed.
+"""
+
 import numpy
 #import django
 from django.template import Context, Template

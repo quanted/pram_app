@@ -1,3 +1,8 @@
+"""
+.. module:: therps_batchoutput
+   :synopsis: A useful module indeed.
+"""
+
 from django.views.decorators.http import require_POST
 from StringIO import StringIO
 import therps_model, therps_tables

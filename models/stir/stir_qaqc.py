@@ -1,3 +1,8 @@
+"""
+.. module:: stir_qaqc
+   :synopsis: A useful module indeed.
+"""
+
 import stir_model
 import logging
 import os

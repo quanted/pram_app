@@ -1,5 +1,9 @@
-from django.template.loader import render_to_string
+"""
+.. module:: terrplant_input
+   :synopsis: A useful module indeed.
+"""
 
+from django.template.loader import render_to_string
 
 def terrplantInputPage(request, model='', header=''):
     import terrplant_parameters

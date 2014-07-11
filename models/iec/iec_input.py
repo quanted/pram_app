@@ -1,5 +1,9 @@
-from django.template.loader import render_to_string
+"""
+.. module:: iec_input
+   :synopsis: A useful module indeed.
+"""
 
+from django.template.loader import render_to_string
 
 def iecInputPage(request, model='', header=''):
     import iec_parameters

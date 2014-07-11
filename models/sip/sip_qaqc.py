@@ -1,3 +1,8 @@
+"""
+.. module:: sip_qaqc
+   :synopsis: A useful module indeed.
+"""
+
 import sip_model
 import logging
 import os

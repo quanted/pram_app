@@ -1,5 +1,9 @@
-from django.template.loader import render_to_string
+"""
+.. module:: exams_input
+   :synopsis: A useful module indeed.
+"""
 
+from django.template.loader import render_to_string
 
 def examsInputPage(request, model='', header=''):
     import exams_parameters

@@ -1,4 +1,7 @@
-# -*- coding: utf-8 -*-
+"""
+.. module:: stir_parameters
+   :synopsis: A useful module indeed.
+"""
 
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'

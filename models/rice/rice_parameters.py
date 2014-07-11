@@ -1,5 +1,5 @@
 """
-.. module:: rice_input
+.. module:: rice_parameters
    :synopsis: A useful module indeed.
 """
 

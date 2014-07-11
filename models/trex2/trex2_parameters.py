@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
-Created on Tue Dec 20 16:13:59 2011
+.. module:: trex2_parameters
+   :synopsis: A useful module indeed.
+"""
 
-@author: TPurucke
-"""
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms

@@ -1,5 +1,9 @@
+"""
+.. module:: dust_batch_runner
+   :synopsis: A useful module indeed.
+"""
+
 import numpy
-#import django
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
 import dust_model,dust_parameters

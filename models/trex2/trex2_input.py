@@ -1,5 +1,9 @@
-from django.template.loader import render_to_string
+"""
+.. module:: trex2_input
+   :synopsis: A useful module indeed.
+"""
 
+from django.template.loader import render_to_string
 
 def trex2InputPage(request, model='', header=''):
     import trex2_parameters

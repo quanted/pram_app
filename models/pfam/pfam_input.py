@@ -1,6 +1,10 @@
+"""
+.. module:: pfam_input
+   :synopsis: A useful module indeed.
+"""
+
 from django.template.loader import render_to_string
- 
- 
+
 def pfamInputPage(request, model='', header=''):
     import pfam_parameters
  

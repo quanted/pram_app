@@ -1,3 +1,8 @@
+"""
+.. module:: terrplant_model
+   :synopsis: A useful module indeed.
+"""
+
 from REST import rest_funcs
 import json
 import logging

@@ -1,5 +1,9 @@
-from django.template.loader import render_to_string
+"""
+.. module:: przm_exams_input
+   :synopsis: A useful module indeed.
+"""
 
+from django.template.loader import render_to_string
 
 def przm_examsInputPage(request, model='', header=''):
     import przm_exams_parameters

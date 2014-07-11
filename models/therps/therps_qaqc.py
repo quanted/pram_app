@@ -1,9 +1,13 @@
+"""
+.. module:: therps_qaqc
+   :synopsis: A useful module indeed.
+"""
+
 import therps_model
 import os
 import unittest
 from StringIO import StringIO
 import csv
-
 
 cwd= os.getcwd()
 data = csv.reader(open(cwd+'/models/therps/therps_qaqc.csv'))

@@ -1,5 +1,9 @@
-from django.template.loader import render_to_string
+"""
+.. module:: earthworm_input
+   :synopsis: A useful module indeed.
+"""
 
+from django.template.loader import render_to_string
 
 def earthwormInputPage(request, model='', header=''):
     import earthworm_parameters,earthworm_tooltips

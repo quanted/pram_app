@@ -1,5 +1,9 @@
-from django.template.loader import render_to_string
+"""
+.. module:: przm_input
+   :synopsis: A useful module indeed.
+"""
 
+from django.template.loader import render_to_string
 
 def przmInputPage(request, model='', header=''):
     import przm_parameters,przm_tooltips

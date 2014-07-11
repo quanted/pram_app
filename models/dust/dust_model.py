@@ -1,3 +1,8 @@
+"""
+.. module:: dust_batch_runner
+   :synopsis: A useful module indeed.
+"""
+
 from REST import rest_funcs
 import json
 import logging

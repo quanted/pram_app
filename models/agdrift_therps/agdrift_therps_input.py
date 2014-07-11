@@ -1,5 +1,9 @@
-from django.template.loader import render_to_string
+"""
+.. module:: agdrift_therps_input
+   :synopsis: A useful module indeed.
+"""
 
+from django.template.loader import render_to_string
 
 def agdrift_therpsInputPage(request, model='', header=''):
     import agdrift_therps_parameters,agdrift_therps_tooltips

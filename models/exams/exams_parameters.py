@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 """
-Created on 06-06-2013
+.. module:: exams_parameters
+   :synopsis: A useful module indeed.
+"""
 
-"""
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms

@@ -1,3 +1,8 @@
+"""
+.. module:: dust_batch_runner
+   :synopsis: A useful module indeed.
+"""
+
 from django.views.decorators.http import require_POST
 from StringIO import StringIO
 import dust_model,dust_tables

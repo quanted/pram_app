@@ -64,35 +64,101 @@
 </div>
 <div class="section" id="module-models.forms.validation">
 <span id="models-forms-validation-module"></span><h2>models.forms.validation module<a class="headerlink" href="#module-models.forms.validation" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
+<span class="target" id="module-validation"></span><dl class="function">
 <dt id="models.forms.validation.validate_choicefield">
 <tt class="descclassname">models.forms.validation.</tt><tt class="descname">validate_choicefield</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/models/forms/validation.html#validate_choicefield"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.forms.validation.validate_choicefield" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Form Validation Rule: ChoiceField (drop-down menu), value is not 0 (e.g. &#8220;Make a selection&#8221;)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; Form input field value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValidationError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="models.forms.validation.validate_greaterthan0">
 <tt class="descclassname">models.forms.validation.</tt><tt class="descname">validate_greaterthan0</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/models/forms/validation.html#validate_greaterthan0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.forms.validation.validate_greaterthan0" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Form Validation Rule: Valid if value &gt; 0</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; Form input field value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValidationError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="models.forms.validation.validate_greaterthanequalto1">
 <tt class="descclassname">models.forms.validation.</tt><tt class="descname">validate_greaterthanequalto1</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/models/forms/validation.html#validate_greaterthanequalto1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.forms.validation.validate_greaterthanequalto1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Form Validation Rule: Valid if value &gt;= 1 (e.g. Mineau scaling factor)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; Form input field value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValidationError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="models.forms.validation.validate_positive">
 <tt class="descclassname">models.forms.validation.</tt><tt class="descname">validate_positive</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/models/forms/validation.html#validate_positive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.forms.validation.validate_positive" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Form Validation Rule: Valid if value is positive (&gt;= 0)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; Form input field value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValidationError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="models.forms.validation.validate_range01">
 <tt class="descclassname">models.forms.validation.</tt><tt class="descname">validate_range01</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/models/forms/validation.html#validate_range01"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.forms.validation.validate_range01" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Form Validation Rule: Valid range 0 - 1</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; Form input field value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValidationError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="models.forms.validation.validate_range0100">
 <tt class="descclassname">models.forms.validation.</tt><tt class="descname">validate_range0100</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/models/forms/validation.html#validate_range0100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.forms.validation.validate_range0100" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Form Validation Rule: Valid range 0 - 100 (e.g. temperature Centigrade/Celsius)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; Form input field value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">ValidationError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </div>
 <div class="section" id="module-models.forms">

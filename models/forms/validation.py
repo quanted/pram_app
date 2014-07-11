@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+"""
+.. module:: validation
+   :synopsis: Our custom defined Django validation rules
+"""
+
 from django.core.exceptions import ValidationError
 
 # Built-in Django validation rules
@@ -28,40 +33,63 @@ from django.core.exceptions import ValidationError
 # validate_ipv46_address - Uses both validate_ipv4_address and validate_ipv6_address to ensure a value is either a valid IPv4 or IPv6 address.
 #
 
-# Our defined validation rules
 
-# Valid range 0 - 1
 def validate_range01(value):
+	""" Form Validation Rule: Valid range 0 - 1
+	
+	:param value: Form input field value
+	:raises: ValidationError
+	"""
 	if 0 <= value <= 1:
 		pass
 	else:
 		raise ValidationError(u'Range must fall between 0 - 1')
 
-# Valid range 0 - 100 (e.g. temperature Centigrade/Celsius)
 def validate_range0100(value):
+	""" Form Validation Rule: Valid range 0 - 100 (e.g. temperature Centigrade/Celsius)
+	
+	:param value: Form input field value
+	:raises: ValidationError
+	"""
 	if 0 <= value <= 100:
 		pass
 	else:
 		raise ValidationError(u'Range must fall between 0 - 100')
 
-# Valid if value > 0
 def validate_greaterthan0(value):
+	""" Form Validation Rule: Valid if value > 0
+	
+	:param value: Form input field value
+	:raises: ValidationError
+	"""
 	if value > 0:
 		pass
 	else:
 		raise ValidationError(u'Value must be greater than 0')
 
-# Valid if value is positive (>= 0)
 def validate_positive(value):
+	""" Form Validation Rule: Valid if value is positive (>= 0)
+	
+	:param value: Form input field value
+	:raises: ValidationError
+	"""
 	if value < 0:
 		raise ValidationError(u'Value must be positive')
 
-# Valid if value >= 1 (e.g. Mineau scaling factor)
 def validate_greaterthanequalto1(value):
+	""" Form Validation Rule: Valid if value >= 1 (e.g. Mineau scaling factor)
+	
+	:param value: Form input field value
+	:raises: ValidationError
+	"""
 	if value < 1:
 		raise ValidationError(u'Value must greater than or equal to 1')
 
-# ChoiceField (drop-down menu), value is not 0 ("Make a selection")
 def validate_choicefield(value):
+	""" Form Validation Rule: ChoiceField (drop-down menu), value is not 0 (e.g. "Make a selection")
+
+	:param value: Form input field value
+	:raises: ValidationError
+	"""
 	if value == "0" or value == 0:
 		raise ValidationError(u'Make a selection')

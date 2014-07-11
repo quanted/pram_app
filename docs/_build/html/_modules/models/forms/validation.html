@@ -52,6 +52,11 @@
   <h1>Source code for models.forms.validation</h1><div class="highlight"><pre>
 <span class="c"># -*- coding: utf-8 -*-</span>
 
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: validation</span>
+<span class="sd">   :synopsis: Our custom defined Django validation rules</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ValidationError</span>
 
 <span class="c"># Built-in Django validation rules</span>
@@ -80,41 +85,64 @@
 <span class="c"># validate_ipv46_address - Uses both validate_ipv4_address and validate_ipv6_address to ensure a value is either a valid IPv4 or IPv6 address.</span>
 <span class="c">#</span>
 
-<span class="c"># Our defined validation rules</span>
 
-<span class="c"># Valid range 0 - 1</span>
 <div class="viewcode-block" id="validate_range01"><a class="viewcode-back" href="../../../models.forms.html#models.forms.validation.validate_range01">[docs]</a><span class="k">def</span> <span class="nf">validate_range01</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; Form Validation Rule: Valid range 0 - 1</span>
+<span class="sd">	</span>
+<span class="sd">	:param value: Form input field value</span>
+<span class="sd">	:raises: ValidationError</span>
+<span class="sd">	&quot;&quot;&quot;</span>
 	<span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
 		<span class="k">pass</span>
 	<span class="k">else</span><span class="p">:</span>
 		<span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">u&#39;Range must fall between 0 - 1&#39;</span><span class="p">)</span>
-
-<span class="c"># Valid range 0 - 100 (e.g. temperature Centigrade/Celsius)</span></div>
+</div>
 <div class="viewcode-block" id="validate_range0100"><a class="viewcode-back" href="../../../models.forms.html#models.forms.validation.validate_range0100">[docs]</a><span class="k">def</span> <span class="nf">validate_range0100</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; Form Validation Rule: Valid range 0 - 100 (e.g. temperature Centigrade/Celsius)</span>
+<span class="sd">	</span>
+<span class="sd">	:param value: Form input field value</span>
+<span class="sd">	:raises: ValidationError</span>
+<span class="sd">	&quot;&quot;&quot;</span>
 	<span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">:</span>
 		<span class="k">pass</span>
 	<span class="k">else</span><span class="p">:</span>
 		<span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">u&#39;Range must fall between 0 - 100&#39;</span><span class="p">)</span>
-
-<span class="c"># Valid if value &gt; 0</span></div>
+</div>
 <div class="viewcode-block" id="validate_greaterthan0"><a class="viewcode-back" href="../../../models.forms.html#models.forms.validation.validate_greaterthan0">[docs]</a><span class="k">def</span> <span class="nf">validate_greaterthan0</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; Form Validation Rule: Valid if value &gt; 0</span>
+<span class="sd">	</span>
+<span class="sd">	:param value: Form input field value</span>
+<span class="sd">	:raises: ValidationError</span>
+<span class="sd">	&quot;&quot;&quot;</span>
 	<span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
 		<span class="k">pass</span>
 	<span class="k">else</span><span class="p">:</span>
 		<span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">u&#39;Value must be greater than 0&#39;</span><span class="p">)</span>
-
-<span class="c"># Valid if value is positive (&gt;= 0)</span></div>
+</div>
 <div class="viewcode-block" id="validate_positive"><a class="viewcode-back" href="../../../models.forms.html#models.forms.validation.validate_positive">[docs]</a><span class="k">def</span> <span class="nf">validate_positive</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; Form Validation Rule: Valid if value is positive (&gt;= 0)</span>
+<span class="sd">	</span>
+<span class="sd">	:param value: Form input field value</span>
+<span class="sd">	:raises: ValidationError</span>
+<span class="sd">	&quot;&quot;&quot;</span>
 	<span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
 		<span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">u&#39;Value must be positive&#39;</span><span class="p">)</span>
-
-<span class="c"># Valid if value &gt;= 1 (e.g. Mineau scaling factor)</span></div>
+</div>
 <div class="viewcode-block" id="validate_greaterthanequalto1"><a class="viewcode-back" href="../../../models.forms.html#models.forms.validation.validate_greaterthanequalto1">[docs]</a><span class="k">def</span> <span class="nf">validate_greaterthanequalto1</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; Form Validation Rule: Valid if value &gt;= 1 (e.g. Mineau scaling factor)</span>
+<span class="sd">	</span>
+<span class="sd">	:param value: Form input field value</span>
+<span class="sd">	:raises: ValidationError</span>
+<span class="sd">	&quot;&quot;&quot;</span>
 	<span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
 		<span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">u&#39;Value must greater than or equal to 1&#39;</span><span class="p">)</span>
-
-<span class="c"># ChoiceField (drop-down menu), value is not 0 (&quot;Make a selection&quot;)</span></div>
+</div>
 <div class="viewcode-block" id="validate_choicefield"><a class="viewcode-back" href="../../../models.forms.html#models.forms.validation.validate_choicefield">[docs]</a><span class="k">def</span> <span class="nf">validate_choicefield</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; Form Validation Rule: ChoiceField (drop-down menu), value is not 0 (e.g. &quot;Make a selection&quot;)</span>
+
+<span class="sd">	:param value: Form input field value</span>
+<span class="sd">	:raises: ValidationError</span>
+<span class="sd">	&quot;&quot;&quot;</span>
 	<span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s">&quot;0&quot;</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
 		<span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">u&#39;Make a selection&#39;</span><span class="p">)</span></div>
 </pre></div>

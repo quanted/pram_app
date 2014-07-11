@@ -32,6 +32,10 @@ def linksLeft():
                 # ('Surface Water Calculator', 'swc'),
             ])
         ),
+        ('Documentation', OrderedDict([
+                ('Source Code', 'docs'),
+            ])
+        ),
         # ('&uuml;bertool', OrderedDict([
         #         ('Chemical Selection', 'select_chemical'),
         #         ('Use/Label/Site Data', 'site_data'),

@@ -1,6 +1,7 @@
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
+from django.shortcuts import redirect
 import importlib
 import linksLeft
 
@@ -27,9 +28,8 @@ def fileNotFound(request):
     return response
 
 #######################################################################################
-################################# PDF Generation ######################################
+################################# Docs Redirect #######################################
 #######################################################################################
 
-# @require_POST
-# def pdfOutput(request):
-#     html = 
+def docsRedirect(request):
+    return redirect('/docs/', permanent=True)

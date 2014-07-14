@@ -17,7 +17,7 @@ SELECT_RUN = (('0.01','0.01'),('0.02','0.02'),('0.05','0.05'))
 
 SELECT_VERSION = (('1.2.2','1.2.2'),)
 
-class TerrPlantInp(forms.Form):
+class TerrplantInp(forms.Form):
     version_terrplant = forms.ChoiceField(required=True, choices=SELECT_VERSION, label='Version',initial='1.2.2')
     chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),label='Chemical Name',initial='Alachlor')
     pc_code = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), label='PC Code',initial='90501')

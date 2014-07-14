@@ -15,10 +15,10 @@ def sipInputPage(request, model='', header='', formData=None):
             'model_attributes': header+' Inputs'})
     html = html + render_to_string('sip_ubertool_config_input.html', {})
     # if formData == None:
-    #     html = html + str(sip_parameters.SIPInp())
+    #     html = html + str(sip_parameters.SipInp())
     # else:
-    #     html = html + str(sip_parameters.SIPInp(formData))
-    html = html + str(sip_parameters.SIPInp(formData))
+    #     html = html + str(sip_parameters.SipInp(formData))
+    html = html + str(sip_parameters.SipInp(formData))
     html = html + render_to_string('04uberinput_end.html', {'sub_title': 'Submit'})
     html = html + render_to_string('sip_ubertool_config.html', {})
     # Check if tooltips dictionary exists

@@ -8,7 +8,7 @@ def stirInputPage(request, model='', header=''):
             'model':model, 
             'model_attributes': header+' Inputs'})
     # html = html + render_to_string('stir_ubertool_config_input.html', {})
-    html = html + str(stir_parameters.STIRInp())
+    html = html + str(stir_parameters.StirInp())
     html = html + render_to_string('04uberinput_end.html', {'sub_title': 'Submit'})
     # html = html + render_to_string('stir_ubertool_config.html', {})
     # Check if tooltips dictionary exists

@@ -15,7 +15,7 @@ Species_of_the_tested_mamm_CHOICES=(('0','Make a selection'),('350','Laboratory 
 #SELECT_RECEPTOR = (('Avian','Avian'),('Mammalian','Mammalian'),('Both','Both'))
 
 
-class SIPInp(forms.Form):
+class SipInp(forms.Form):
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
             initial='Quinoxyfen',

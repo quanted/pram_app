@@ -12,7 +12,7 @@ SELECT_HEIGHT = (('3.3','3.3'),('1','1'))
 
 SELECT_DURATION = (('1.5','1.5'),('0.5','0.5'))
 
-class STIRInp(forms.Form):
+class StirInp(forms.Form):
     chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), label='Chemical Name',initial='Quinoxyfen')
     application_rate = forms.FloatField(required=True, label='Pesticide Application Rate (lbs ai/A)', initial=0.107)    
     column_height = forms.ChoiceField(required=True, label='Direct Spray Column Height', choices=SELECT_HEIGHT, initial='3.3')    

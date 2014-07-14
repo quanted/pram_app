@@ -14,7 +14,7 @@ libraries:
 - name: matplotlib
   version: latest
 - name: ssl
-  version: "latest" 
+  version: latest 
 
 builtins:
 - django_wsgi: on

@@ -539,3 +539,14 @@ if (noOfUndScr > 2) {
 if (pathPage.indexOf("?")) {
 	pathPage = pathPage.split('.html?')[0];
 }
+
+// Cross-Browser approach to searching JS array
+function contains(a, obj) {
+    var i = a.length;
+    while (i--) {
+       if (a[i] === obj) {
+           return true;
+       }
+    }
+    return false;
+}

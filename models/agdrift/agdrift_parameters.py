@@ -2,12 +2,11 @@
 .. module:: agdrift_parameters
    :synopsis: A useful module indeed.
 """
-
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms
-from django.db import models
 from django.utils.safestring import mark_safe
+from django.core import validators
+from models.forms import validation
+
 
 Application_method_CHOICES=(('','Make a selection'),('Aerial','Tier I Aerial'),('Ground','Tier I Ground'),('Orchard/Airblast','Tier I Orchard/Airblast'))
 Drop_size_distribution_CHOICES=(('','Make a selection'),('Fine','Very fine to fine'),('Medium','Fine to Medium'),('Coarse','Medium to Coarse'), ('Very Coarse','Coarse to Very Coarse'))
@@ -19,7 +18,8 @@ Ecosystem_type_CHOICES=(('','Make a selection'),('EPA Pond','Aquatic Assessment'
 Orchard_CHOICES=(('','Make a selection'),('Normal','Normal (Stone and Pome Fruit Vineyard)'),('Dense','Dense (Citrus, tall trees)'), ('Sparse', 'Sparse (Young, dormant)'),('Vineyard', 'Vineyard'),('Orchard','Orchard'))
 Aquatic_type_CHOICES=(('','Make a selection'),('1','EPA Defined Pond'),('2', 'EPA Defined Wetland'))
 Calculation_input_CHOICES=(('','Make a selection'), ('Distance','Distance to waterbody or field'), ('Fraction','Fraction of applied'),('Initial Average Deposition (g/ha)','Initial Average Deposition (g/ha)'),('Initial Average Deposition (lb/ac)', 'Initial Average Deposition (lb/ac)'),('Initial Average Concentration (ng/L)', 'Initial Average Concentration (ng/L)'), ('Initial Average Deposiion (mg/cm2)','Initial Average Deposition (mg/cm2)'))
-class agdriftInp(forms.Form):    
+
+class AgdriftInp(forms.Form):
 #    waterbody_type = forms.ChoiceField(required=True,label='Water body type', choices=Waterbody_type_CHOICES,initial='Make a selection')
     application_method = forms.ChoiceField(required=True,label='Application Method', choices=Application_method_CHOICES, initial='Make a selection')    
     ecosystem_type = forms.ChoiceField(required=True,label='Ecosystem type', choices=Ecosystem_type_CHOICES,initial='EPA Pond')
@@ -36,6 +36,3 @@ class agdriftInp(forms.Form):
  #   avg_depo_lbac = forms.FloatField(required=True,label=mark_safe('Initial Average Deposition (lb/ac)'))
  #   deposition_ngL = forms.FloatField(required=True,label=mark_safe('Initial Average Concentration (ng/L)'))
  #   deposition_mgcm = forms.FloatField(required=True,label=mark_safe('Initial Average Deposiion (mg/cm2)'))
-
-
-

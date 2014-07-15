@@ -11,7 +11,7 @@ from django.utils.safestring import mark_safe
 
 Species_of_the_tested_bird_CHOICES=(('Bobwhite quail','Bobwhite quail'),('Mallard duck','Mallard duck'),('Other','Other'))
 
-class trexInp_chem(forms.Form):    
+class therpsInp_chem(forms.Form):    
     chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),initial='Fluxapyroxad')
     Use = forms.CharField(max_length=255, widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),initial='Dried shelled beans (except soybeans)')   
     Formulated_product_name = forms.CharField(max_length=255, widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),initial='NA')    
@@ -21,7 +21,7 @@ class trexInp_chem(forms.Form):
     interval_between_applications = forms.FloatField(required=True, label='Interval between applications (days)', initial=7)
     application_rate = forms.FloatField(required=True, label='Application rate (lbs a.i./A)',initial=0.18)
 
-class trexInp_bird(forms.Form):    
+class therpsInp_bird(forms.Form):    
     avian_ld50 = forms.FloatField(required=True, label='Avian LD50 (mg/kg-bw)', initial=2000)
     Species_of_the_tested_bird_avian_ld50 = forms.ChoiceField(required=True,label='Test species (for Avian LD50)', choices=Species_of_the_tested_bird_CHOICES, initial='Bobwhite quail')
     bw_avian_ld50 = forms.FloatField(required=True,label='Weight (g)', initial= '178')
@@ -39,7 +39,7 @@ class trexInp_bird(forms.Form):
     # body_weight_of_the_tested_bird=forms.FloatField(required=True, label='Body weight of the tested bird (g)', initial=178)
     mineau_scaling_factor = forms.FloatField(required=True,label='Mineau scaling factor',initial=1.15)
 
-class trexInp_herp(forms.Form):    
+class therpsInp_herp(forms.Form):    
     BW_herptile_a_sm = forms.FloatField(required=True, label='Body weight of assessed small herptile (g)', initial=2.0)
     W_p_a_sm = forms.FloatField(required=True, label="Water content of the assessed small herptile's diet (%)", initial=85)
     BW_herptile_a_md = forms.FloatField(required=True, label='Body weight of assessed medium herptile (g)', initial=20)
@@ -50,3 +50,5 @@ class trexInp_herp(forms.Form):
     body_weight_of_the_consumed_herp_a = forms.FloatField(required=True,label='Weight of the herptile  consumed by assessed frog (g)', initial=15)
 
 
+class TherpsInp(therpsInp_chem, therpsInp_bird, therpsInp_herp):
+    pass

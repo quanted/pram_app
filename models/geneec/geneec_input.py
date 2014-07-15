@@ -5,15 +5,15 @@
 
 from django.template.loader import render_to_string
 
-def geneecInputPage(request, model='', header=''):
+def geneecInputPage(request, model='', header='', formData=None):
     import geneec_parameters
 
-    html = render_to_string('04uberinput_jquery.html', { 'model': model })
-    html = html + render_to_string('04uberinput_start.html', {
+    # html = render_to_string('04uberinput_jquery.html', { 'model': model })
+    html = render_to_string('04uberinput_start.html', {
             'model':model, 
             'model_attributes': header+' Inputs'})
     # html = html + render_to_string('geneec_ubertool_config_input.html', {})
-    html = html + str(geneec_parameters.geneecInp())
+    html = html + str(geneec_parameters.GeneecInp(formData))
     html = html + render_to_string('04uberinput_end.html', {'sub_title': 'Submit'})
     # html = html + render_to_string('geneec_ubertool_config.html', {})
     # Check if tooltips dictionary exists

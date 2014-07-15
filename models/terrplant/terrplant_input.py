@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 
 
-def terrplantInputPage(request, model='', header=''):
+def terrplantInputPage(request, model='', header='', formData=None):
     import terrplant_parameters
     
     # html = render_to_string('04uberinput_jquery.html', { 'model': model })
@@ -9,7 +9,7 @@ def terrplantInputPage(request, model='', header=''):
             'model':model, 
             'model_attributes': header+' Inputs'})
     html = html + render_to_string('terrplant_ubertool_config_input.html', {})  
-    html = html + str(terrplant_parameters.TerrplantInp())
+    html = html + str(terrplant_parameters.TerrplantInp(formData))
     html = html + render_to_string('04uberinput_end.html', {'sub_title': 'Submit'})
     html = html + render_to_string('terrplant_ubertool_config.html', {})
     # Check if tooltips dictionary exists

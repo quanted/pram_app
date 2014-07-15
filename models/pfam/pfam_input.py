@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
  
  
-def pfamInputPage(request, model='', header=''):
+def pfamInputPage(request, model='', header='', formData=None):
     import pfam_parameters
  
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
@@ -16,7 +16,7 @@ def pfamInputPage(request, model='', header=''):
                 }
             })
     html = html + """<br><table class="input_table tab tab_Chemical">"""
-    html = html + str(pfam_parameters.PFAMInp_chem())
+    html = html + str(pfam_parameters.PFAMInp_chem(formData))
     html = html + """</table><table class="input_table tab tab_Application" style="display:none">
                                 <tr><th colspan="2" scope="col"><label for="id_noa">Number of Applications:</label></th>
                                     <td colspan="3" scope="col"><select name="noa" id="id_noa">
@@ -55,7 +55,7 @@ def pfamInputPage(request, model='', header=''):
                                 </tr>"""        
             
     html = html + """</table><table class="input_table tab tab_Location" style="display:none">"""    
-    html = html + str(pfam_parameters.PFAMInp_loc())
+    html = html + str(pfam_parameters.PFAMInp_loc(formData))
     html = html + """</table><table class="input_table tab tab_Floods" style="display:none">
                                 <tr><th></th><th colspan="2" scope="col"><label for="id_nof">Number of Floods Events:</label></th>
                                     <td colspan="2" scope="col"><select name="nof" id="id_nof">
@@ -77,11 +77,11 @@ def pfamInputPage(request, model='', header=''):
                                 </tr>"""    
 
     html = html + """</table><table class="input_table tab tab_Crop" style="display:none">"""      
-    html = html + str(pfam_parameters.PFAMInp_cro())                
+    html = html + str(pfam_parameters.PFAMInp_cro(formData))                
     html = html + """</table><table class="input_table tab tab_Physical" style="display:none">"""      
-    html = html + str(pfam_parameters.PFAMInp_phy())
+    html = html + str(pfam_parameters.PFAMInp_phy(formData))
     html = html + """</table><table class="input_table tab tab_Output" style="display:none">"""    
-    html = html + str(pfam_parameters.PFAMInp_out())     
+    html = html + str(pfam_parameters.PFAMInp_out(formData))     
                 
     html = html + render_to_string('04uberinput_tabbed_end.html', {'sub_title': 'Submit'})
     # Check if tooltips dictionary exists

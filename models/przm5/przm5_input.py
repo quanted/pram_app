@@ -1,12 +1,13 @@
 from django.template.loader import render_to_string
-import logging
-logger = logging.getLogger('PRZM5 Model')
-import os, sys
-sys.path.append(os.path.abspath(__file__ + "/../../"))
+# import logging
+# logger = logging.getLogger('PRZM5 Model')
+# import os, sys
+# sys.path.append(os.path.abspath(__file__ + "/../../"))
 
-def przm5InputPage(request, model='', header=''):
+def przm5InputPage(request, model='', header='', formData=None):
     import przm5_parameters
-    from vvwm import vvwm_parameters
+    from models.vvwm import vvwm_parameters
+
     html = render_to_string('04uberinput_jquery.html', { 'model': "przm5" })
     html = html + render_to_string('04uberinput_jquery.html', { 'model': "swcprzm5vvwm" })
     html = html + render_to_string('04uberinput_start_tabbed.html', {
@@ -20,28 +21,28 @@ def przm5InputPage(request, model='', header=''):
                 }
             })
     html = html + """<br><table class="input_table tab tab_Chemical">"""
-    html = html + str(przm5_parameters.przm5Inp_chem())
+    html = html + str(przm5_parameters.przm5Inp_chem(formData))
     html = html + """</table><table class="input_table tab tab_Chemical0">"""
-    html = html + str(przm5_parameters.przm5Inp_chem0())
+    html = html + str(przm5_parameters.przm5Inp_chem0(formData))
     html = html + """</table><table class="input_table tab tab_Chemical1" style="display:none">
                         <tr><th colspan="2">Degradate 1</th></tr>
                         """
-    html = html + str(przm5_parameters.przm5Inp_chem1())
+    html = html + str(przm5_parameters.przm5Inp_chem1(formData))
     html = html + """</table><table class="input_table tab tab_Chemical_MCF1" style="display:none">
                         <tr><th colspan="2">Molar Conversion Factors (Degradate 1)</th></tr>
                         """
-    html = html + str(przm5_parameters.przm5Inp_mcf1())
+    html = html + str(przm5_parameters.przm5Inp_mcf1(formData))
     html = html + """</table><table class="input_table tab tab_Chemical2" style="display:none">
                         <tr><th colspan="2">Degradate 2</th></tr>
                         """
-    html = html + str(przm5_parameters.przm5Inp_chem2())
+    html = html + str(przm5_parameters.przm5Inp_chem2(formData))
     html = html + """</table><table class="input_table tab tab_Chemical_MCF2" style="display:none">
                         <tr><th colspan="2">Molar Conversion Factors (Degradate 2)</th></tr>
                         """
-    html = html + str(przm5_parameters.przm5Inp_mcf2())
+    html = html + str(przm5_parameters.przm5Inp_mcf2(formData))
 
     html = html + """</table><table class="input_table tab tab_Applications" style="display:none">"""
-    html = html + str(przm5_parameters.przm5Inp_appl())
+    html = html + str(przm5_parameters.przm5Inp_appl(formData))
     html = html + """
                     <tr>
                         <th width="55px">Day</th>
@@ -57,8 +58,8 @@ def przm5InputPage(request, model='', header=''):
                     """
     # Next line will be replaced with "vvwm_weatherfile.html" template when selecting of Weatherfile (*.dvf) is enabled
     html = html + """</table><table class="input_table tab tab_CropLand" style="display:none">"""
-    html = html + str(vvwm_parameters.vvwmInp_cropland())
-    html = html + str(przm5_parameters.przm5Inp_cropland())
+    html = html + str(vvwm_parameters.vvwmInp_cropland(formData))
+    html = html + str(przm5_parameters.przm5Inp_cropland(formData))
     html = html + """</table><table class="input_table tab tab_CropLand tab_noh" style="display:none">
                                 <tr><th colspan="2" scope="col"><label for="id_noh">No. of Horizons:</label></th>
                                     <td colspan="1" scope="col"><select name="noh" id="id_noh">
@@ -86,7 +87,7 @@ def przm5InputPage(request, model='', header=''):
                                 </tr>""" 
 
     html = html + """</table><table class="input_table tab tab_Runoff" style="display:none">"""
-    html = html + str(przm5_parameters.przm5Inp_runoff())
+    html = html + str(przm5_parameters.przm5Inp_runoff(formData))
     html = html + """</table><table class="input_table tab tab_Runoff tab_nott" style="display:none">
                                 <tr><th colspan="3" scope="col"><label for="id_nott">No. of Time-Varing Factors:</label></th>
                                     <td colspan="1" scope="col"><select name="nott" id="id_nott">
@@ -105,11 +106,13 @@ def przm5InputPage(request, model='', header=''):
                                 </tr>""" 
 
     html = html + """</table><table class="input_table tab tab_WaterBody" style="display:none">"""
-    html = html + str(przm5_parameters.przm5Inp_waterbody())
+    html = html + str(przm5_parameters.przm5Inp_waterbody(formData))
 
     html = html + render_to_string('04uberinput_tabbed_end.html', {'sub_title': 'Submit'})
     # Check if tooltips dictionary exists
     try:
+        import przm5_tooltips
+        hasattr(przm5_tooltips, 'tooltips')
         tooltips = przm5_tooltips.tooltips
     except:
         tooltips = {}

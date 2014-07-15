@@ -4,12 +4,10 @@ Created on Tue Jan 17 14:50:59 2012
 
 @author: thong
 """
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms
 from django.utils.safestring import mark_safe
-from django.db import models
-# from google.appengine.api import rdbms
+from django.core import validators
+from models.forms import validation
 
 Species_of_the_tested_bird_CHOICES=(('0','Make a selection'),('178','Northern bobwhite quail'),('1580','Mallard duck'),('1','Other'))
 Species_of_the_tested_mamm_CHOICES=(('0','Make a selection'),('350','Laboratory rat'),('1','Other'))
@@ -179,3 +177,11 @@ class KabamInp_constants(forms.Form):
     lfish_kd = forms.FloatField(required=True, label=mark_safe('large fish k<sub>D</sub> (kg-food/kg-org/d)'),initial=1)
     lfish_ke = forms.FloatField(required=True, label=mark_safe('large fish k<sub>E</sub> (d<sup>-1</sup>)'),initial=1)
     lfish_km = forms.FloatField(required=True, label=mark_safe('large fish k<sub>M</sub> (d<sup>-1</sup>)'),initial=0)
+
+
+# Combined Form Classes for Validation
+class KabamInp( KabamInp_chem, KabamInp_bird, KabamInp_mammal,
+                KabamInp_lfish, KabamInp_mfish, KabamInp_sfish, 
+                KabamInp_ff, KabamInp_invert, KabamInp_zoo, 
+                KabamInp_sed, KabamInp_phyto, KabamInp_constants    ):
+    pass

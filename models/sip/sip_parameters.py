@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 """
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms
-from django.db import models
 from django.utils.safestring import mark_safe
 from django.core import validators
 from models.forms import validation

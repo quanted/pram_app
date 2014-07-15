@@ -5,8 +5,10 @@
 
 from django.template.loader import render_to_string
 
-def przm_examsInputPage(request, model='', header=''):
+def przm_examsInputPage(request, model='', header='', formData=None):
     import przm_exams_parameters
+    from models.przm import przm_parameters
+    from models.exams import exams_parameters
 
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
     html = html + render_to_string('04uberinput_jquery_qtip.html', {})
@@ -20,9 +22,9 @@ def przm_examsInputPage(request, model='', header=''):
                 }
             })
     html = html + """<br><table class="input_table tab tab_PRZM">"""
-    html = html + str(przm_exams_parameters.PRZMInp())
+    html = html + str(przm_parameters.PrzmInp(formData))
     html = html + """</table><table class="input_table tab tab_EXAMS" style="display:none">"""
-    html = html + str(przm_exams_parameters.EXAMSInp())
+    html = html + str(exams_parameters.ExamsInp(formData))
     html = html + """
     </table><table class="input_table tab tab_EXAMS n_ph" style="display:none">
         <tr><th><label for="n_ph">Number of Different pH:</label></th>

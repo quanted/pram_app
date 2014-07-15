@@ -50,13 +50,11 @@
           <div class="body">
             
   <h1>Source code for models.sip.sip_parameters</h1><div class="highlight"><pre>
-<span class="c"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: sip_parameters</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;settings&#39;</span>
 <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
-<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 <span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
 <span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">validators</span>
 <span class="kn">from</span> <span class="nn">models.forms</span> <span class="kn">import</span> <span class="n">validation</span>
@@ -67,7 +65,7 @@
 <span class="c">#SELECT_RECEPTOR = ((&#39;Avian&#39;,&#39;Avian&#39;),(&#39;Mammalian&#39;,&#39;Mammalian&#39;),(&#39;Both&#39;,&#39;Both&#39;))</span>
 
 
-<div class="viewcode-block" id="SIPInp"><a class="viewcode-back" href="../../../models.sip.html#models.sip.sip_parameters.SIPInp">[docs]</a><span class="k">class</span> <span class="nc">SIPInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<div class="viewcode-block" id="SipInp"><a class="viewcode-back" href="../../../models.sip.html#models.sip.sip_parameters.SipInp">[docs]</a><span class="k">class</span> <span class="nc">SipInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
     <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
             <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> 
             <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Quinoxyfen&#39;</span><span class="p">,</span>
@@ -174,8 +172,8 @@
 <span class="c">#  body_weight_of_bird = forms.FloatField(required=True, label=&#39;Body weight of bird (kg)&#39;, initial=&#39;4&#39;)</span>
 <span class="c">#  body_weight_of_mammal = forms.FloatField(required=True,label=&#39;Body weight of mammal (kg)&#39;, initial=&#39;5&#39;)</span>
 <span class="c">#  body_weight_of_the_assessed_bird = forms.FloatField(required=True, label=&#39;Body weight of assessed bird (g)&#39;, initial=&#39;8&#39;)</span>
-<span class="c">#  body_weight_of_the_assessed_mammal = forms.FloatField(required=True, label=&#39;Body weight of assessed mammal (kg)&#39;, initial=&#39;5&#39;)</span>
-</pre></div></div>
+<span class="c">#  body_weight_of_the_assessed_mammal = forms.FloatField(required=True, label=&#39;Body weight of assessed mammal (kg)&#39;, initial=&#39;5&#39;)</span></div>
+</pre></div>
 
           </div>
         </div>

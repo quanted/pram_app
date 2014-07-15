@@ -5,14 +5,14 @@
 
 from django.template.loader import render_to_string
 
-def trex2InputPage(request, model='', header=''):
+def trex2InputPage(request, model='', header='', formData=None):
     import trex2_parameters
 
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
     html = html + render_to_string('04uberinput_start_tabbed.html', {
             'model':model, 
             'model_attributes': header+' Inputs'})
-    html = html + """<a href="trex_input.html" class="TREX1"> Want to Use TREX 1.4.1?</a>"""
+    html = html + """<a href="../../trex_input.html" class="TREX1"> Want to Use TREX 1.4.1?</a>"""
     html = html + render_to_string('04uberinput_tabbed_nav.html', {
             'nav_dict': {
                 'class_name': ['Chemical', 'Avian', 'Mammal'],
@@ -20,7 +20,7 @@ def trex2InputPage(request, model='', header=''):
                 }
             })
     html = html + """<br><table class="input_table tab tab_Chemical">"""
-    html = html + str(trex2_parameters.trexInp_chem())
+    html = html + str(trex2_parameters.trexInp_chem(formData))
     html = html + """</table><table class="input_table tab tab_Application tab_Chemical">
                                 <tr><th colspan="2" scope="col"><label for="id_noa">Number of Applications:</label></th>
                                     <td colspan="3" scope="col"><select name="noa" id="id_noa">
@@ -38,9 +38,9 @@ def trex2InputPage(request, model='', header=''):
                                     <td><input type="text" size="5" name="day1" id="id_day1" value="0" /></td>
                                 </tr>""" 
     html = html + """</table><table class="input_table tab tab_Avian" style="display:none">"""
-    html = html + str(trex2_parameters.trexInp_bird())
+    html = html + str(trex2_parameters.trexInp_bird(formData))
     html = html + """</table><table class="input_table tab tab_Mammal" style="display:none">"""
-    html = html + str(trex2_parameters.trexInp_mammal())
+    html = html + str(trex2_parameters.trexInp_mammal(formData))
     html = html + render_to_string('04uberinput_tabbed_end.html', {'sub_title': 'Submit'})
     # Check if tooltips dictionary exists
     try:

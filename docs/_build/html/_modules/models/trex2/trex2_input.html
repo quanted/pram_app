@@ -50,17 +50,21 @@
           <div class="body">
             
   <h1>Source code for models.trex2.trex2_input</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: trex2_input</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
 
-
-<div class="viewcode-block" id="trex2InputPage"><a class="viewcode-back" href="../../../models.trex2.html#models.trex2.trex2_input.trex2InputPage">[docs]</a><span class="k">def</span> <span class="nf">trex2InputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="trex2InputPage"><a class="viewcode-back" href="../../../models.trex2.html#models.trex2.trex2_input.trex2InputPage">[docs]</a><span class="k">def</span> <span class="nf">trex2InputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">formData</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">trex2_parameters</span>
 
     <span class="n">html</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_jquery.html&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="s">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span> <span class="p">})</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_start_tabbed.html&#39;</span><span class="p">,</span> <span class="p">{</span>
             <span class="s">&#39;model&#39;</span><span class="p">:</span><span class="n">model</span><span class="p">,</span> 
             <span class="s">&#39;model_attributes&#39;</span><span class="p">:</span> <span class="n">header</span><span class="o">+</span><span class="s">&#39; Inputs&#39;</span><span class="p">})</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;a href=&quot;trex_input.html&quot; class=&quot;TREX1&quot;&gt; Want to Use TREX 1.4.1?&lt;/a&gt;&quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;a href=&quot;../../trex_input.html&quot; class=&quot;TREX1&quot;&gt; Want to Use TREX 1.4.1?&lt;/a&gt;&quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_tabbed_nav.html&#39;</span><span class="p">,</span> <span class="p">{</span>
             <span class="s">&#39;nav_dict&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s">&#39;class_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Chemical&#39;</span><span class="p">,</span> <span class="s">&#39;Avian&#39;</span><span class="p">,</span> <span class="s">&#39;Mammal&#39;</span><span class="p">],</span>
@@ -68,7 +72,7 @@
                 <span class="p">}</span>
             <span class="p">})</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;br&gt;&lt;table class=&quot;input_table tab tab_Chemical&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trex2_parameters</span><span class="o">.</span><span class="n">trexInp_chem</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trex2_parameters</span><span class="o">.</span><span class="n">trexInp_chem</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Application tab_Chemical&quot;&gt;</span>
 <span class="s">                                &lt;tr&gt;&lt;th colspan=&quot;2&quot; scope=&quot;col&quot;&gt;&lt;label for=&quot;id_noa&quot;&gt;Number of Applications:&lt;/label&gt;&lt;/th&gt;</span>
 <span class="s">                                    &lt;td colspan=&quot;3&quot; scope=&quot;col&quot;&gt;&lt;select name=&quot;noa&quot; id=&quot;id_noa&quot;&gt;</span>
@@ -86,9 +90,9 @@
 <span class="s">                                    &lt;td&gt;&lt;input type=&quot;text&quot; size=&quot;5&quot; name=&quot;day1&quot; id=&quot;id_day1&quot; value=&quot;0&quot; /&gt;&lt;/td&gt;</span>
 <span class="s">                                &lt;/tr&gt;&quot;&quot;&quot;</span> 
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Avian&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trex2_parameters</span><span class="o">.</span><span class="n">trexInp_bird</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trex2_parameters</span><span class="o">.</span><span class="n">trexInp_bird</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Mammal&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trex2_parameters</span><span class="o">.</span><span class="n">trexInp_mammal</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trex2_parameters</span><span class="o">.</span><span class="n">trexInp_mammal</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_tabbed_end.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;sub_title&#39;</span><span class="p">:</span> <span class="s">&#39;Submit&#39;</span><span class="p">})</span>
     <span class="c"># Check if tooltips dictionary exists</span>
     <span class="k">try</span><span class="p">:</span>

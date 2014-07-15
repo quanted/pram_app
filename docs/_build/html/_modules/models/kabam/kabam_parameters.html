@@ -50,18 +50,14 @@
           <div class="body">
             
   <h1>Source code for models.kabam.kabam_parameters</h1><div class="highlight"><pre>
-<span class="c"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Created on Tue Jan 17 14:50:59 2012</span>
-
-<span class="sd">@author: thong</span>
+<span class="sd">.. module:: kabam_parameters</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;settings&#39;</span>
 <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
 <span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
-<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
-<span class="c"># from google.appengine.api import rdbms</span>
+<span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">validators</span>
+<span class="kn">from</span> <span class="nn">models.forms</span> <span class="kn">import</span> <span class="n">validation</span>
 
 <span class="n">Species_of_the_tested_bird_CHOICES</span><span class="o">=</span><span class="p">((</span><span class="s">&#39;0&#39;</span><span class="p">,</span><span class="s">&#39;Make a selection&#39;</span><span class="p">),(</span><span class="s">&#39;178&#39;</span><span class="p">,</span><span class="s">&#39;Northern bobwhite quail&#39;</span><span class="p">),(</span><span class="s">&#39;1580&#39;</span><span class="p">,</span><span class="s">&#39;Mallard duck&#39;</span><span class="p">),(</span><span class="s">&#39;1&#39;</span><span class="p">,</span><span class="s">&#39;Other&#39;</span><span class="p">))</span>
 <span class="n">Species_of_the_tested_mamm_CHOICES</span><span class="o">=</span><span class="p">((</span><span class="s">&#39;0&#39;</span><span class="p">,</span><span class="s">&#39;Make a selection&#39;</span><span class="p">),(</span><span class="s">&#39;350&#39;</span><span class="p">,</span><span class="s">&#39;Laboratory rat&#39;</span><span class="p">),(</span><span class="s">&#39;1&#39;</span><span class="p">,</span><span class="s">&#39;Other&#39;</span><span class="p">))</span>
@@ -230,7 +226,15 @@
     <span class="n">lfish_k2</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;large fish k&lt;sub&gt;2&lt;/sub&gt; (d&lt;sup&gt;-1&lt;/sup&gt;)&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">lfish_kd</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;large fish k&lt;sub&gt;D&lt;/sub&gt; (kg-food/kg-org/d)&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">lfish_ke</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;large fish k&lt;sub&gt;E&lt;/sub&gt; (d&lt;sup&gt;-1&lt;/sup&gt;)&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">lfish_km</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;large fish k&lt;sub&gt;M&lt;/sub&gt; (d&lt;sup&gt;-1&lt;/sup&gt;)&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+    <span class="n">lfish_km</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;large fish k&lt;sub&gt;M&lt;/sub&gt; (d&lt;sup&gt;-1&lt;/sup&gt;)&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="c"># Combined Form Classes for Validation</span></div>
+<div class="viewcode-block" id="KabamInp"><a class="viewcode-back" href="../../../models.kabam.html#models.kabam.kabam_parameters.KabamInp">[docs]</a><span class="k">class</span> <span class="nc">KabamInp</span><span class="p">(</span> <span class="n">KabamInp_chem</span><span class="p">,</span> <span class="n">KabamInp_bird</span><span class="p">,</span> <span class="n">KabamInp_mammal</span><span class="p">,</span>
+                <span class="n">KabamInp_lfish</span><span class="p">,</span> <span class="n">KabamInp_mfish</span><span class="p">,</span> <span class="n">KabamInp_sfish</span><span class="p">,</span> 
+                <span class="n">KabamInp_ff</span><span class="p">,</span> <span class="n">KabamInp_invert</span><span class="p">,</span> <span class="n">KabamInp_zoo</span><span class="p">,</span> 
+                <span class="n">KabamInp_sed</span><span class="p">,</span> <span class="n">KabamInp_phyto</span><span class="p">,</span> <span class="n">KabamInp_constants</span>    <span class="p">):</span>
+    <span class="k">pass</span></div>
 </pre></div>
 
           </div>

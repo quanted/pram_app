@@ -78,7 +78,7 @@
 <span id="models-rice-rice-input-module"></span><h2>models.rice.rice_input module<a class="headerlink" href="#module-models.rice.rice_input" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-rice_input"></span><dl class="function">
 <dt id="models.rice.rice_input.riceInputPage">
-<tt class="descclassname">models.rice.rice_input.</tt><tt class="descname">riceInputPage</tt><big>(</big><em>request</em>, <em>model=''</em>, <em>header=''</em><big>)</big><a class="reference internal" href="_modules/models/rice/rice_input.html#riceInputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_input.riceInputPage" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">models.rice.rice_input.</tt><tt class="descname">riceInputPage</tt><big>(</big><em>request</em>, <em>model=''</em>, <em>header=''</em>, <em>formData=None</em><big>)</big><a class="reference internal" href="_modules/models/rice/rice_input.html#riceInputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_input.riceInputPage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handles rice input parameters.</p>
 <p>Even Longer description.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -105,7 +105,7 @@
 </div>
 <div class="section" id="module-models.rice.rice_model">
 <span id="models-rice-rice-model-module"></span><h2>models.rice.rice_model module<a class="headerlink" href="#module-models.rice.rice_model" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<span class="target" id="module-rice_model"></span><dl class="class">
 <dt id="models.rice.rice_model.rice">
 <em class="property">class </em><tt class="descclassname">models.rice.rice_model.</tt><tt class="descname">rice</tt><big>(</big><em>set_variables=True</em>, <em>run_methods=True</em>, <em>version_rice='1.0'</em>, <em>run_type='single'</em>, <em>chemical_name=''</em>, <em>mai=1</em>, <em>dsed=1</em>, <em>a=1</em>, <em>pb=1</em>, <em>dw=1</em>, <em>osed=1</em>, <em>kd=1</em>, <em>vars_dict=None</em><big>)</big><a class="reference internal" href="_modules/models/rice/rice_model.html#rice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_model.rice" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
@@ -146,13 +146,13 @@
 </div>
 <div class="section" id="module-models.rice.rice_parameters">
 <span id="models-rice-rice-parameters-module"></span><h2>models.rice.rice_parameters module<a class="headerlink" href="#module-models.rice.rice_parameters" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-rice_input"></span><dl class="class">
+<span class="target" id="module-rice_parameters"></span><dl class="class">
 <dt id="models.rice.rice_parameters.RiceInp">
 <em class="property">class </em><tt class="descclassname">models.rice.rice_parameters.</tt><tt class="descname">RiceInp</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/rice/rice_parameters.html#RiceInp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_parameters.RiceInp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
 <dl class="attribute">
 <dt id="models.rice.rice_parameters.RiceInp.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'version_rice': &lt;django.forms.fields.ChoiceField object at 0x0420C3F0&gt;, 'chemical_name': &lt;django.forms.fields.CharField object at 0x06EEDD50&gt;, 'mai': &lt;django.forms.fields.FloatField object at 0x06EEDD70&gt;, 'area': &lt;django.forms.fields.FloatField object at 0x06EEDE30&gt;, 'dsed': &lt;django.forms.fields.FloatField object at 0x06EEDBD0&gt;, 'pb': &lt;django.forms.fields.FloatField object at 0x06EEDCF0&gt;, 'dw': &lt;django.forms.fields.FloatField object at 0x06EEDB70&gt;, 'osed': &lt;django.forms.fields.FloatField object at 0x06EED330&gt;, 'Kd': &lt;django.forms.fields.FloatField object at 0x06EEDC30&gt;}</em><a class="headerlink" href="#models.rice.rice_parameters.RiceInp.base_fields" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">base_fields</tt><em class="property"> = {'version_rice': &lt;django.forms.fields.ChoiceField object at 0x06EB9C10&gt;, 'chemical_name': &lt;django.forms.fields.CharField object at 0x06EB94F0&gt;, 'mai': &lt;django.forms.fields.FloatField object at 0x06F427F0&gt;, 'area': &lt;django.forms.fields.FloatField object at 0x06EB9D10&gt;, 'dsed': &lt;django.forms.fields.FloatField object at 0x06EB9750&gt;, 'pb': &lt;django.forms.fields.FloatField object at 0x06EB9A10&gt;, 'dw': &lt;django.forms.fields.FloatField object at 0x06EB99B0&gt;, 'osed': &lt;django.forms.fields.FloatField object at 0x06EB98B0&gt;, 'Kd': &lt;django.forms.fields.FloatField object at 0x06EB9AD0&gt;}</em><a class="headerlink" href="#models.rice.rice_parameters.RiceInp.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -174,7 +174,7 @@
 </div>
 <div class="section" id="module-models.rice.rice_tables">
 <span id="models-rice-rice-tables-module"></span><h2>models.rice.rice_tables module<a class="headerlink" href="#module-models.rice.rice_tables" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
+<span class="target" id="module-rice_tables"></span><dl class="function">
 <dt id="models.rice.rice_tables.getdjtemplate">
 <tt class="descclassname">models.rice.rice_tables.</tt><tt class="descname">getdjtemplate</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/models/rice/rice_tables.html#getdjtemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.getdjtemplate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -285,7 +285,7 @@
 </div>
 <div class="section" id="module-models.rice.views">
 <span id="models-rice-views-module"></span><h2>models.rice.views module<a class="headerlink" href="#module-models.rice.views" title="Permalink to this headline">¶</a></h2>
-</div>
+<span class="target" id="module-views"></span></div>
 <div class="section" id="module-models.rice">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-models.rice" title="Permalink to this headline">¶</a></h2>
 </div>

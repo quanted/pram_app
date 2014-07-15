@@ -50,8 +50,12 @@
           <div class="body">
             
   <h1>Source code for models.agdrift_trex.agdrift_trex_tables</h1><div class="highlight"><pre>
-<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: agdrift_trex_tables</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">datetime</span>
 
 <div class="viewcode-block" id="timestamp"><a class="viewcode-back" href="../../../models.agdrift_trex.html#models.agdrift_trex.agdrift_trex_tables.timestamp">[docs]</a><span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">agdrift_trex_obj</span><span class="p">):</span>
     <span class="n">st</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">agdrift_trex_obj</span><span class="o">.</span><span class="n">jid</span><span class="p">,</span> <span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%A, %Y-%B-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>

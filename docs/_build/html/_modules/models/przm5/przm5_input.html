@@ -50,15 +50,21 @@
           <div class="body">
             
   <h1>Source code for models.przm5.przm5_input</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;PRZM5 Model&#39;</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">__file__</span> <span class="o">+</span> <span class="s">&quot;/../../&quot;</span><span class="p">))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: przm5_input</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="przm5InputPage"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_input.przm5InputPage">[docs]</a><span class="k">def</span> <span class="nf">przm5InputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
+<span class="c"># import logging</span>
+<span class="c"># logger = logging.getLogger(&#39;PRZM5 Model&#39;)</span>
+<span class="c"># import os, sys</span>
+<span class="c"># sys.path.append(os.path.abspath(__file__ + &quot;/../../&quot;))</span>
+
+<div class="viewcode-block" id="przm5InputPage"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_input.przm5InputPage">[docs]</a><span class="k">def</span> <span class="nf">przm5InputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">formData</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">przm5_parameters</span>
-    <span class="kn">from</span> <span class="nn">vvwm</span> <span class="kn">import</span> <span class="n">vvwm_parameters</span>
+    <span class="kn">from</span> <span class="nn">models.vvwm</span> <span class="kn">import</span> <span class="n">vvwm_parameters</span>
+
     <span class="n">html</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_jquery.html&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="s">&#39;model&#39;</span><span class="p">:</span> <span class="s">&quot;przm5&quot;</span> <span class="p">})</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_jquery.html&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="s">&#39;model&#39;</span><span class="p">:</span> <span class="s">&quot;swcprzm5vvwm&quot;</span> <span class="p">})</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_start_tabbed.html&#39;</span><span class="p">,</span> <span class="p">{</span>
@@ -72,28 +78,28 @@
                 <span class="p">}</span>
             <span class="p">})</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;br&gt;&lt;table class=&quot;input_table tab tab_Chemical&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical0&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem0</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem0</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical1&quot; style=&quot;display:none&quot;&gt;</span>
 <span class="s">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Degradate 1&lt;/th&gt;&lt;/tr&gt;</span>
 <span class="s">                        &quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem1</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem1</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical_MCF1&quot; style=&quot;display:none&quot;&gt;</span>
 <span class="s">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Molar Conversion Factors (Degradate 1)&lt;/th&gt;&lt;/tr&gt;</span>
 <span class="s">                        &quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_mcf1</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_mcf1</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical2&quot; style=&quot;display:none&quot;&gt;</span>
 <span class="s">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Degradate 2&lt;/th&gt;&lt;/tr&gt;</span>
 <span class="s">                        &quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem2</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem2</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical_MCF2&quot; style=&quot;display:none&quot;&gt;</span>
 <span class="s">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Molar Conversion Factors (Degradate 2)&lt;/th&gt;&lt;/tr&gt;</span>
 <span class="s">                        &quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_mcf2</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_mcf2</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
 
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Applications&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_appl</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_appl</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
 <span class="s">                    &lt;tr&gt;</span>
 <span class="s">                        &lt;th width=&quot;55px&quot;&gt;Day&lt;/th&gt;</span>
@@ -109,8 +115,8 @@
 <span class="s">                    &quot;&quot;&quot;</span>
     <span class="c"># Next line will be replaced with &quot;vvwm_weatherfile.html&quot; template when selecting of Weatherfile (*.dvf) is enabled</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_CropLand&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vvwm_parameters</span><span class="o">.</span><span class="n">vvwmInp_cropland</span><span class="p">())</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_cropland</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vvwm_parameters</span><span class="o">.</span><span class="n">vvwmInp_cropland</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_cropland</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_CropLand tab_noh&quot; style=&quot;display:none&quot;&gt;</span>
 <span class="s">                                &lt;tr&gt;&lt;th colspan=&quot;2&quot; scope=&quot;col&quot;&gt;&lt;label for=&quot;id_noh&quot;&gt;No. of Horizons:&lt;/label&gt;&lt;/th&gt;</span>
 <span class="s">                                    &lt;td colspan=&quot;1&quot; scope=&quot;col&quot;&gt;&lt;select name=&quot;noh&quot; id=&quot;id_noh&quot;&gt;</span>
@@ -138,7 +144,7 @@
 <span class="s">                                &lt;/tr&gt;&quot;&quot;&quot;</span> 
 
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Runoff&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_runoff</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_runoff</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Runoff tab_nott&quot; style=&quot;display:none&quot;&gt;</span>
 <span class="s">                                &lt;tr&gt;&lt;th colspan=&quot;3&quot; scope=&quot;col&quot;&gt;&lt;label for=&quot;id_nott&quot;&gt;No. of Time-Varing Factors:&lt;/label&gt;&lt;/th&gt;</span>
 <span class="s">                                    &lt;td colspan=&quot;1&quot; scope=&quot;col&quot;&gt;&lt;select name=&quot;nott&quot; id=&quot;id_nott&quot;&gt;</span>
@@ -157,11 +163,13 @@
 <span class="s">                                &lt;/tr&gt;&quot;&quot;&quot;</span> 
 
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_WaterBody&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_waterbody</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_waterbody</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
 
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_tabbed_end.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;sub_title&#39;</span><span class="p">:</span> <span class="s">&#39;Submit&#39;</span><span class="p">})</span>
     <span class="c"># Check if tooltips dictionary exists</span>
     <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">przm5_tooltips</span>
+        <span class="nb">hasattr</span><span class="p">(</span><span class="n">przm5_tooltips</span><span class="p">,</span> <span class="s">&#39;tooltips&#39;</span><span class="p">)</span>
         <span class="n">tooltips</span> <span class="o">=</span> <span class="n">przm5_tooltips</span><span class="o">.</span><span class="n">tooltips</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="n">tooltips</span> <span class="o">=</span> <span class="p">{}</span>

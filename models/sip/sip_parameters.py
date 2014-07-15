@@ -2,11 +2,7 @@
 .. module:: sip_parameters
    :synopsis: A useful module indeed.
 """
-
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms
-from django.db import models
 from django.utils.safestring import mark_safe
 from django.core import validators
 from models.forms import validation
@@ -125,4 +121,3 @@ class SipInp(forms.Form):
 #  body_weight_of_mammal = forms.FloatField(required=True,label='Body weight of mammal (kg)', initial='5')
 #  body_weight_of_the_assessed_bird = forms.FloatField(required=True, label='Body weight of assessed bird (g)', initial='8')
 #  body_weight_of_the_assessed_mammal = forms.FloatField(required=True, label='Body weight of assessed mammal (kg)', initial='5')
-

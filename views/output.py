@@ -3,7 +3,7 @@ from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 import importlib
 import linksLeft
-# import logging
+import logging
 
 
 def outputPageView(request, model='none', header=''):
@@ -31,21 +31,21 @@ def outputPageView(request, model='none', header=''):
         else:
             modelOutputHTML = "table_all() Returned Wrong Type"
 
-        # Render output page view
-        html = render_to_string('01uberheader.html', {'title': header+' Output'})
-        html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'output'})
-        html = html + linksLeft.linksLeft()
-        html = html + render_to_string('04uberoutput_start.html', {
-                'model_attributes': header+' Output'})
-        html = html + modelOutputHTML
-        html = html + render_to_string('export.html', {})
-        html = html + render_to_string('04uberoutput_end.html', {'model':model})
-        html = html + render_to_string('06uberfooter.html', {'links': ''})
-        rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
+    # Render output page view
+    html = render_to_string('01uberheader.html', {'title': header+' Output'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'output'})
+    html = html + linksLeft.linksLeft()
+    html = html + render_to_string('04uberoutput_start.html', {
+            'model_attributes': header+' Output'})
+    html = html + modelOutputHTML
+    html = html + render_to_string('export.html', {})
+    html = html + render_to_string('04uberoutput_end.html', {'model':model})
+    html = html + render_to_string('06uberfooter.html', {'links': ''})
+    rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
 
-        response = HttpResponse()
-        response.write(html)
-        return response
+    response = HttpResponse()
+    response.write(html)
+    return response
 
 @require_POST
 def outputPage(request, model='none', header=''):
@@ -55,7 +55,7 @@ def outputPage(request, model='none', header=''):
     header = viewmodule.header
 
     parametersmodule = importlib.import_module('.'+model+'_parameters', 'models.'+model)
-    
+
     try:
         # Class name must be ModelInp, e.g. SipInp or TerrplantInp
         inputForm = getattr(parametersmodule, model.title() + 'Inp')
@@ -64,11 +64,10 @@ def outputPage(request, model='none', header=''):
 
         # Form validation testing
         if form.is_valid():
-
             return outputPageView(request, model, header)
 
         else:
-
+            logging.info(form.errors)
             inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
 
             # Render input page view with POSTed values and show errors
@@ -89,4 +88,36 @@ def outputPage(request, model='none', header=''):
 
     except:
         
+        logging.info("E X C E P T")
+
+        # if model == "trex2":
+        #     import models.trex2.trex2_parameters
+
+        #     form = models.trex2.trex2_parameters.Trex2Inp(request.POST)
+
+        #     if form.is_valid():
+
+        #         return outputPageView(request, model, header)
+
+        #     else:
+        #         logging.info(form.errors)
+        #         inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
+
+        #         # Render input page view with POSTed values and show errors
+        #         html = render_to_string('01uberheader.html', {'title': header+' Inputs'})
+        #         html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'input'})
+        #         html = html + linksLeft.linksLeft()
+
+        #         inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
+        #         html = html + inputPageFunc(request, model, header, formData=request.POST)  # formData contains the already POSTed form data
+
+        #         html = html + render_to_string('06uberfooter.html', {'links': ''})
+                
+        #         response = HttpResponse()
+        #         response.write(html)
+        #         return response
+        
+        # else:
+        #     return outputPageView(request, model, header)
+
         return outputPageView(request, model, header)

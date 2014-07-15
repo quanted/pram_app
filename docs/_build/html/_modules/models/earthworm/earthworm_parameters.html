@@ -50,13 +50,18 @@
           <div class="body">
             
   <h1>Source code for models.earthworm.earthworm_parameters</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: earthworm_parameters</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;settings&#39;</span>
 <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
 <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 <span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
 
-<div class="viewcode-block" id="earthwormInp"><a class="viewcode-back" href="../../../models.earthworm.html#models.earthworm.earthworm_parameters.earthwormInp">[docs]</a><span class="k">class</span> <span class="nc">earthwormInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<div class="viewcode-block" id="EarthwormInp"><a class="viewcode-back" href="../../../models.earthworm.html#models.earthworm.earthworm_parameters.EarthwormInp">[docs]</a><span class="k">class</span> <span class="nc">EarthwormInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
 	<span class="c"># chemical_name = forms.CharField(widget=forms.Textarea (attrs={&#39;cols&#39;: 20, &#39;rows&#39;: 2}))</span>
 	<span class="c"># body_weight_of_bird = forms.FloatField(required=True,label=&#39;NEED TO GET INPUTS.&#39;)</span>
 	<span class="n">k_ow</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Octanol to water partition coefficient K&lt;sub&gt;OW&lt;/sub&gt;&#39;</span><span class="p">),</span><span class="n">initial</span> <span class="o">=</span> <span class="mi">57544</span><span class="p">)</span>

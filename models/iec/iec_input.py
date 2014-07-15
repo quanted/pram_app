@@ -12,7 +12,7 @@ def iecInputPage(request, model='', header='', formData=None):
             'model':model, 
             'model_attributes': header+' Inputs'})
     # html = html + render_to_string('iec_ubertool_config_input.html', {})
-    html = html + str(iec_parameters.iecInp(formData))
+    html = html + str(iec_parameters.IecInp(formData))
     html = html + render_to_string('04uberinput_end.html', {'sub_title': 'Submit'})
     # html = html + render_to_string('iec_ubertool_config.html', {})
     # Check if tooltips dictionary exists

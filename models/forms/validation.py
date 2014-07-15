@@ -10,7 +10,9 @@ from django.core.exceptions import ValidationError
 # Built-in Django validation rules
 
 #
-# validate_slug - A RegexValidator instance that ensures a value consists of only letters, numbers, underscores or hyphens.
+# validate_slug - A RegexValidator instance that ensures a value consists of only letters, numbers, underscores or hyphens. NOTE: Does not allow spaces
+#
+# validate_integer - Raises a ValidationError if value fails 'value(int)'.
 #
 # max_value - Raises a ValidationError with a code of 'max_value' if value is greater than max_value.
 #
@@ -55,6 +57,28 @@ def validate_range0100(value):
 		pass
 	else:
 		raise ValidationError(u'Range must fall between 0 - 100')
+
+def validate_range_1_365(value):
+	""" Form Validation Rule: Valid range 1 - 365 (e.g. Day of the Year)
+	
+	:param value: Form input field value
+	:raises: ValidationError
+	"""
+	if 1 <= value <= 365:
+		pass
+	else:
+		raise ValidationError(u'Range must fall between 1 - 365')
+
+def validate_integer(value):
+	""" Form Validation Rule: Valid if integer
+	
+	:param value: Form input field value
+	:raises: ValidationError
+	"""
+	if int(value) == value:
+		pass
+	else:
+		raise ValidationError('Value must be an integer')
 
 def validate_greaterthan0(value):
 	""" Form Validation Rule: Valid if value > 0

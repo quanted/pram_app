@@ -2,12 +2,11 @@
 .. module:: terrplant_parameters
    :synopsis: A useful module indeed.
 """
-
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms
-from django.db import models
 from django.utils.safestring import mark_safe
+from django.core import validators
+from models.forms import validation
+
 
 SELECT_INCORPORATION = (('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'))
 
@@ -19,76 +18,82 @@ SELECT_VERSION = (('1.2.2','1.2.2'),)
 
 class TerrplantInp(forms.Form):
     version_terrplant = forms.ChoiceField(
-            required=True, 
             choices=SELECT_VERSION, 
             label='Version',
             initial='1.2.2')
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
             label='Chemical Name',
-            initial='Alachlor')
+            initial='Alachlor',
+            validators=[validators.validate_slug])
     pc_code = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
             label='PC Code',
-            initial='90501')
+            initial='90501',
+            validators=[validators.validate_slug])
     use = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
             label='Use',
-            initial='Corn')
+            initial='Corn',
+            validators=[validators.validate_slug])
     application_method = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
             label='Application Method',
-            initial='Ground')
+            initial='Ground',
+            validators=[validators.validate_slug])
     application_form = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
             label='Application Form',
-            initial='Spray')
+            initial='Spray',
+            validators=[validators.validate_slug])
     solubility = forms.FloatField(
             label='Solubility',
-            initial=240)
+            initial=240,
+            validators=[validation.validate_positive])
     incorporation = forms.ChoiceField(
-            required=True, 
             choices=SELECT_INCORPORATION, 
             label='Incorporation Depth (in)')    
     application_rate = forms.FloatField(
-            required=True,
             label='Application rate (lbs ai/A)',
             initial=4)    
     drift_fraction = forms.ChoiceField(
-            required=True, 
             choices=SELECT_DRIFT, 
             label='Drift Fraction',
-            initial=0.01)
+            initial=0.01,
+            validators=[validation.validate_positive])
     runoff_fraction = forms.ChoiceField(
-            required=True, 
             choices=SELECT_RUN, 
             label='Runoff Fraction',
             initial=0.05)
     EC25_for_nonlisted_seedling_emergence_monocot = forms.FloatField(
-            required=True, 
             label=mark_safe('EC<sub>25</sub> for Non-listed Seedling Emergence Monocot'),
-            initial=0.0067)
+            initial=0.0067,
+            validators=[validation.validate_positive])
     EC25_for_nonlisted_seedling_emergence_dicot = forms.FloatField(
-            required=True, 
             label=mark_safe('EC<sub>25</sub> for Non-listed Seedling Emergence Dicot'),
-            initial=0.034)
+            initial=0.034,
+            validators=[validation.validate_positive])
     NOAEC_for_listed_seedling_emergence_monocot = forms.FloatField(
-            required=True, 
             label=mark_safe('NOAEC for Non-listed Seedling Emergence Monocot'),
-            initial=0.0023)
+            initial=0.0023,
+            validators=[validation.validate_positive])
     NOAEC_for_listed_seedling_emergence_dicot = forms.FloatField(
-            required=True, 
             label=mark_safe('NOAEC for Non-listed Seedling Emergence Dicot'),
-            initial=0.019)
+            initial=0.019,
+            validators=[validation.validate_positive])
     EC25_for_nonlisted_vegetative_vigor_monocot = forms.FloatField(
             label=mark_safe('EC<sub>25</sub> for Non-listed Vegetative Vigor Monocot'),
-            initial=0.068)
+            initial=0.068,
+            validators=[validation.validate_positive])
     EC25_for_nonlisted_vegetative_vigor_dicot = forms.FloatField(
             label=mark_safe('EC<sub>25</sub> for Non-listed Vegetative Vigor Dicot'),
-            initial=1.4)
+            initial=1.4,
+            validators=[validation.validate_positive])
     NOAEC_for_listed_vegetative_vigor_monocot = forms.FloatField(
             label=mark_safe('NOAEC for Non-listed Vegetative Vigor Monocot'),
-            initial=0.037)
+            initial=0.037,
+            validators=[validation.validate_positive])
     NOAEC_for_listed_vegetative_vigor_dicot = forms.FloatField(
             label=mark_safe('NOAEC for Non-listed Vegetative Vigor Dicot'),
-            initial=0.67)
+            initial=0.67,
+            validators=[validation.validate_positive])

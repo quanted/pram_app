@@ -57,7 +57,7 @@
 
 <span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
 
-<div class="viewcode-block" id="riceInputPage"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_input.riceInputPage">[docs]</a><span class="k">def</span> <span class="nf">riceInputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="riceInputPage"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_input.riceInputPage">[docs]</a><span class="k">def</span> <span class="nf">riceInputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">formData</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Handles rice input parameters.</span>
 
 <span class="sd">    Even Longer description.</span>
@@ -77,7 +77,7 @@
             <span class="s">&#39;model&#39;</span><span class="p">:</span><span class="n">model</span><span class="p">,</span>
             <span class="s">&#39;model_attributes&#39;</span><span class="p">:</span> <span class="n">header</span><span class="o">+</span><span class="s">&#39; Inputs&#39;</span><span class="p">})</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;rice_ubertool_config_input.html&#39;</span><span class="p">,</span> <span class="p">{})</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rice_parameters</span><span class="o">.</span><span class="n">RiceInp</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rice_parameters</span><span class="o">.</span><span class="n">RiceInp</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_end.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;sub_title&#39;</span><span class="p">:</span> <span class="s">&#39;Submit&#39;</span><span class="p">})</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;rice_ubertool_config.html&#39;</span><span class="p">,</span> <span class="p">{})</span>
     <span class="c"># Check if tooltips dictionary exists</span>

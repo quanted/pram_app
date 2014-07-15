@@ -50,7 +50,11 @@
           <div class="body">
             
   <h1>Source code for models.geneec.geneec_parameters</h1><div class="highlight"><pre>
-<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: geneec_parameters</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;settings&#39;</span>
 <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
@@ -72,7 +76,7 @@
                          <span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;Foliated Vineyards&#39;</span><span class="p">))</span> 
 
 
-<div class="viewcode-block" id="geneecInp"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_parameters.geneecInp">[docs]</a><span class="k">class</span> <span class="nc">geneecInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<div class="viewcode-block" id="GeneecInp"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_parameters.GeneecInp">[docs]</a><span class="k">class</span> <span class="nc">GeneecInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
     <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}))</span>
     <span class="n">application_target</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">applicationtarget_CHOICES</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Short grass&#39;</span><span class="p">)</span>        
     <span class="n">application_rate</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Application rate (lbs a.i./A)&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>

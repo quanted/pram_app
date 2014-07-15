@@ -50,7 +50,10 @@
           <div class="body">
             
   <h1>Source code for models.stir.stir_parameters</h1><div class="highlight"><pre>
-<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: stir_parameters</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;settings&#39;</span>
@@ -64,7 +67,7 @@
 
 <span class="n">SELECT_DURATION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1.5&#39;</span><span class="p">,</span><span class="s">&#39;1.5&#39;</span><span class="p">),(</span><span class="s">&#39;0.5&#39;</span><span class="p">,</span><span class="s">&#39;0.5&#39;</span><span class="p">))</span>
 
-<div class="viewcode-block" id="STIRInp"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_parameters.STIRInp">[docs]</a><span class="k">class</span> <span class="nc">STIRInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<div class="viewcode-block" id="StirInp"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_parameters.StirInp">[docs]</a><span class="k">class</span> <span class="nc">StirInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
     <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;Quinoxyfen&#39;</span><span class="p">)</span>
     <span class="n">application_rate</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Pesticide Application Rate (lbs ai/A)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">0.107</span><span class="p">)</span>    
     <span class="n">column_height</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Direct Spray Column Height&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_HEIGHT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;3.3&#39;</span><span class="p">)</span>    

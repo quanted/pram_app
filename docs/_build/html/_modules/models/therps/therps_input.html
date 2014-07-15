@@ -50,11 +50,16 @@
           <div class="body">
             
   <h1>Source code for models.therps.therps_input</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: therps_input</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
 
 
-<div class="viewcode-block" id="therpsInputPage"><a class="viewcode-back" href="../../../models.therps.html#models.therps.therps_input.therpsInputPage">[docs]</a><span class="k">def</span> <span class="nf">therpsInputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
-    <span class="kn">import</span> <span class="nn">therps_parameters</span><span class="o">,</span><span class="nn">therps_tooltips</span>
+<div class="viewcode-block" id="therpsInputPage"><a class="viewcode-back" href="../../../models.therps.html#models.therps.therps_input.therpsInputPage">[docs]</a><span class="k">def</span> <span class="nf">therpsInputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">formData</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">therps_parameters</span>
 
     <span class="n">html</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_jquery.html&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="s">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span> <span class="p">})</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_start_tabbed.html&#39;</span><span class="p">,</span> <span class="p">{</span>
@@ -67,16 +72,18 @@
                 <span class="p">}</span>
             <span class="p">})</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;br&gt;&lt;table class=&quot;input_table tab tab_Chemical&quot; border=&quot;0&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">therps_parameters</span><span class="o">.</span><span class="n">trexInp_chem</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">therps_parameters</span><span class="o">.</span><span class="n">therpsInp_chem</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Avian&quot; border=&quot;0&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">therps_parameters</span><span class="o">.</span><span class="n">trexInp_bird</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">therps_parameters</span><span class="o">.</span><span class="n">therpsInp_bird</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Herptile&quot; border=&quot;0&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">therps_parameters</span><span class="o">.</span><span class="n">trexInp_herp</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">therps_parameters</span><span class="o">.</span><span class="n">therpsInp_herp</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_tabbed_end.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;sub_title&#39;</span><span class="p">:</span> <span class="s">&#39;Submit&#39;</span><span class="p">})</span>
     <span class="c"># Check if tooltips dictionary exists</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">therps_tooltips</span><span class="p">,</span> <span class="s">&#39;tooltips&#39;</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">therps_tooltips</span>
+        <span class="nb">hasattr</span><span class="p">(</span><span class="n">therps_tooltips</span><span class="p">,</span> <span class="s">&#39;tooltips&#39;</span><span class="p">)</span>
         <span class="n">tooltips</span> <span class="o">=</span> <span class="n">therps_tooltips</span><span class="o">.</span><span class="n">tooltips</span>
-    <span class="k">else</span><span class="p">:</span>
+    <span class="k">except</span><span class="p">:</span>
         <span class="n">tooltips</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;05ubertext_tooltips_right.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;tooltips&#39;</span><span class="p">:</span><span class="n">tooltips</span><span class="p">})</span>
 

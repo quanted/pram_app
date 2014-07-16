@@ -117,3 +117,14 @@ def validate_choicefield(value):
 	"""
 	if value == "0" or value == 0:
 		raise ValidationError(u'Make a selection')
+
+def validate_degrees_latitude(value):
+	""" Form Validation Rule: Degrees Latitue (-90 to 90)
+
+	:param value: Form input field value
+	:raises: ValidationError
+	"""
+	if -90 <= value <= 90:
+		pass
+	else:
+		raise ValidationError(u'Range between -90 and 90')

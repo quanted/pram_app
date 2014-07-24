@@ -104,6 +104,9 @@ $( document ).ready(function() {
 		});
 	});
 
+	// Assign class to be jQueryUI date picker widget
+	$( ".datePicker" ).datepicker();
+
 });
 
 // Tabbed Nav

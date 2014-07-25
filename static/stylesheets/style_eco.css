@@ -1246,8 +1246,10 @@ form ul.errorlist li{
 /* Date Picker */
 
 div.ui-datepicker-header {
-  background: #F4F7ED;
-  border-radius: 2px;
+  background: #F9FBF6;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
   -webkit-border-radius: 2px 2px 0 0;
   -moz-border-radius: 2px 2px 0 0;
   box-shadow: 3px 3px 15px #CCC;
@@ -1267,7 +1269,13 @@ div.ui-datepicker-header {
   float:right;
   padding: 4px;
 }
-
+.ui-datepicker-prev.ui-state-hover,
+.ui-datepicker-next.ui-state-hover {
+  color: #333333;
+  border: none;
+  padding: 4px;
+  text-decoration: underline;
+}
 table.ui-datepicker-calendar {
   padding: 4px;
   border-radius: 0 0 2px 2px;
@@ -1278,7 +1286,22 @@ table.ui-datepicker-calendar {
   -moz-box-shadow: 3px 3px 15px #CCC;
 }
 .ui-datepicker-calendar a:link, a:visited {
-  color: #000;
+  color: #333333;
+}
+.ui-state-hover, .ui-state-active {
+  border: 1px solid #333;
+  padding: 1px;
+  background: #F4F7ED;
+}
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited {
+  color: #F9FBF6;
+}
+.ui-datepicker-calendar td {
+  border: 0;
+  padding: 1px;
 }
 
 /* Testing */

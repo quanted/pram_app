@@ -24,6 +24,7 @@ Source Code
     models.stir
     models.terrplant
     models.therps
+    models.trex
     models.trex2
     models.vvwm
     models.forms

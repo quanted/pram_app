@@ -9,19 +9,10 @@ from django.core import validators
 from models.forms import validation
 
 
-# def make_custom_datefield(f):
-#     formfield = f.formfield()
-#     if isinstance(f, models.DateField):
-#         formfield.widget.format = '%m/%d/%Y'
-#         formfield.widget.attrs.update({'class':'datePicker', 'readonly':'true'})
-#     return formfield
-
-
-
 class SamInp_chem(forms.Form):
-    chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}))
-    koc = forms.FloatField(required=True,label='Koc (mL/g)')
-    soil_metabolism_hl = forms.FloatField(required=True,label='Soil Metabolism Halflife (days)')
+    chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), initial="Chemical X")
+    koc = forms.FloatField(required=True,label='Koc (mL/g)', initial=2)
+    soil_metabolism_hl = forms.FloatField(required=True,label='Soil Metabolism Halflife (days)', initial=45)
 
 
 class SamInp_app(forms.Form):
@@ -68,10 +59,10 @@ class SamInp_app(forms.Form):
 	)
 
 	crop = forms.ChoiceField(choices=CROP_CHOICES)
-	crop_number = forms.FloatField(required=True, label='Total Number of Crops')
-	noa = forms.FloatField(required=True, label='Total Number of Applications')
+	crop_number = forms.FloatField(required=True, label='Total Number of Crops', initial=1)
+	noa = forms.FloatField(required=True, label='Total Number of Applications', initial=4)
 	application_method = forms.ChoiceField(choices=APP_METH_CHOICES)
-	application_rate = forms.FloatField(required=True, label='Application Rate (kg/ha)')
+	application_rate = forms.FloatField(required=True, label='Application Rate (kg/ha)', initial=0.75)
 
 
 class SamInp_app_refine(forms.Form):
@@ -114,9 +105,9 @@ class SamInp_sim(forms.Form):
 
 	state = forms.ChoiceField(choices=SIM_STATE, label='Sate/Region')
 	sim_type = forms.ChoiceField(widget=forms.RadioSelect, choices=SIM_CHOICES)
-	sim_date_start = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='Start Date') #choices=SIM_DATE_START_CHOICES
-	sim_date_end = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='End Date') #choices=SIM_DATE_END_CHOICES
-	sim_date_1stapp = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='First Application Date') #choices=SIM_DATE_1STAPP_CHOICES
+	sim_date_start = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='Start Date', initial="01/01/1970") #choices=SIM_DATE_START_CHOICES
+	sim_date_end = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='End Date', initial="12/31/2012") #choices=SIM_DATE_END_CHOICES
+	sim_date_1stapp = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='First Application Date', initial="01/01/1970") #choices=SIM_DATE_1STAPP_CHOICES
 
 
 class SamInp_output(forms.Form):

@@ -18,6 +18,6 @@ def timestamp(sam_obj="", batch_jid=""):
     """
     html = html + st
     html = html + " (EST)</b>"
-    html = html + """
+    html = html + """-
     </div>"""
     return html

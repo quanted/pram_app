@@ -10,9 +10,9 @@ from models.forms import validation
 
 
 class SamInp_chem(forms.Form):
-    chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), initial="Chemical X")
-    koc = forms.FloatField(required=True,label='Koc (mL/g)', initial=2)
-    soil_metabolism_hl = forms.FloatField(required=True,label='Soil Metabolism Halflife (days)', initial=45)
+    chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), initial="Atrazine")
+    koc = forms.FloatField(required=True,label='Koc (mL/g)', initial=100)
+    soil_metabolism_hl = forms.FloatField(required=True,label='Soil Metabolism Halflife (days)', initial=123)
 
 
 class SamInp_app(forms.Form):
@@ -59,8 +59,8 @@ class SamInp_app(forms.Form):
 	)
 
 	crop = forms.ChoiceField(choices=CROP_CHOICES)
-	crop_number = forms.FloatField(required=True, label='Total Number of Crops', initial=1)
-	noa = forms.FloatField(required=True, label='Total Number of Applications', initial=4)
+	crop_number = forms.FloatField(required=True, label='Total Number of Crops', initial=4)
+	noa = forms.FloatField(required=True, label='Total Number of Applications', initial=1)
 	application_method = forms.ChoiceField(choices=APP_METH_CHOICES)
 	application_rate = forms.FloatField(required=True, label='Application Rate (kg/ha)', initial=0.75)
 

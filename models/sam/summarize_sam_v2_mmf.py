@@ -141,7 +141,7 @@ def summarize_exposure(subset, attr, run_combinations):
 
     out = {}
     for pct, ivl in run_combinations:
-        run_id = "{}_{}d_{}pct".format(attr, ivl, pct)
+        run_id = "{}_{}pct_{}d".format(attr, ivl, pct)
         out[run_id] = 'nan'
         if len(subset) > ivl:
             data = sorted([float(v[attr]) if not math.isnan(float(v[attr])) else -1 for v in subset.values()])
@@ -201,7 +201,7 @@ def write_table(out_map, out_dir, table):
 
 def main(argv):
     """Main body of script"""
-    # parameter_file = r"T:\SAM\OutputFormatting\SAM Output Scripts\parameters.txt"
+    # parameter_file = r"C:\Models\Python_Scripts\parameters_v2_mmf.txt"
     parameter_file = ''
     try:
         opts, args = getopt.getopt(argv,"hi:",["input="])
@@ -235,8 +235,8 @@ def main(argv):
             out_map["BasinID"] = basin
             if p['write_csv']:
                 write_table(out_map, p['out_dir'], table)
-            if p['write_shapefile']:
-                write_shapefile(out_map, p['out_dir'], table, p['shp_key'], p['in_shp'])
+            # if p['write_shapefile']:
+            #     write_shapefile(out_map, p['out_dir'], table, p['shp_key'], p['in_shp'])
 
 
 if __name__ == "__main__":

@@ -1,0 +1,6 @@
+[global]
+ApplicationName=ubertoolord
+AwsCredentialFile=C:\Users\Jon\.elasticbeanstalk\aws_credential_file
+DevToolsEndpoint=git.elasticbeanstalk.us-east-1.amazonaws.com
+EnvironmentName=UbertoolORD-07-30-14-10-20-54AM-Application-5J8MZ1TZWA5K
+Region=1

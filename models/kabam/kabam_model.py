@@ -1,3 +1,8 @@
+"""
+.. module:: kabam_model
+   :synopsis: A useful module indeed.
+"""
+
 from REST import rest_funcs
 import json
 import logging
@@ -6,8 +11,6 @@ import os
 import keys_Picloud_S3
 import base64
 import requests
-
-# Daily water intake rate for birds
 
 ############Provide the key and connect to EC2####################
 api_key=keys_Picloud_S3.picloud_api_key

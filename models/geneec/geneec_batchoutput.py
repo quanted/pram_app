@@ -1,3 +1,8 @@
+"""
+.. module:: geneec_batchoutput
+   :synopsis: A useful module indeed.
+"""
+
 # import os
 # os.environ['DJANGO_SETTINGS_MODULE']='settings'
 # import webapp2 as webapp

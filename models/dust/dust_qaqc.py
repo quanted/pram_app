@@ -1,3 +1,8 @@
+"""
+.. module:: dust_batch_runner
+   :synopsis: A useful module indeed.
+"""
+
 import dust_model
 import os
 import unittest

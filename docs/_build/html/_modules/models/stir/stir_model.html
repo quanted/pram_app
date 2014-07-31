@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.stir.stir_model &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.stir.stir_model</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: stir_model</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;stir Model&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">rest_funcs</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">keys_Picloud_S3</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c">############Provide the key and connect to EC2####################</span>
+<span class="n">api_key</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_key</span>
+<span class="n">api_secretkey</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_secretkey</span>
+<span class="n">base64string</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">encodestring</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_secretkey</span><span class="p">))[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">http_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Authorization&#39;</span> <span class="p">:</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">base64string</span><span class="p">,</span> <span class="s">&#39;Content-Type&#39;</span> <span class="p">:</span> <span class="s">&#39;application/json&#39;</span><span class="p">}</span>
+<span class="n">url_part1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span>
+<span class="c">###########################################################################</span>
+
+<div class="viewcode-block" id="StirModel"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_model.StirModel">[docs]</a><span class="k">class</span> <span class="nc">StirModel</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">set_variables</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">run_methods</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">run_type</span> <span class="o">=</span> <span class="s">&quot;single&quot;</span><span class="p">,</span>
+            <span class="n">chemical_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">application_rate</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">column_height</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">spray_drift_fraction</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">direct_spray_duration</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+            <span class="n">molecular_weight</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">vapor_pressure</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">avian_oral_ld50</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">body_weight_assessed_bird</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">body_weight_tested_bird</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+            <span class="n">mineau_scaling_factor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">mammal_inhalation_lc50</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">duration_mammal_inhalation_study</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">body_weight_assessed_mammal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+            <span class="n">body_weight_tested_mammal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">mammal_oral_ld50</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+            <span class="n">vars_dict</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_default_variables</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">set_variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">vars_dict</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">vars_dict</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_variables</span><span class="p">(</span><span class="n">run_type</span><span class="p">,</span><span class="n">chemical_name</span><span class="p">,</span><span class="n">application_rate</span><span class="p">,</span><span class="n">column_height</span><span class="p">,</span><span class="n">spray_drift_fraction</span><span class="p">,</span><span class="n">direct_spray_duration</span><span class="p">,</span> 
+                    <span class="n">molecular_weight</span><span class="p">,</span><span class="n">vapor_pressure</span><span class="p">,</span><span class="n">avian_oral_ld50</span><span class="p">,</span> <span class="n">body_weight_assessed_bird</span><span class="p">,</span> <span class="n">body_weight_tested_bird</span><span class="p">,</span> <span class="n">mineau_scaling_factor</span><span class="p">,</span> 
+                    <span class="n">mammal_inhalation_lc50</span><span class="p">,</span><span class="n">duration_mammal_inhalation_study</span><span class="p">,</span><span class="n">body_weight_assessed_mammal</span><span class="p">,</span> <span class="n">body_weight_tested_mammal</span><span class="p">,</span> 
+                    <span class="n">mammal_oral_ld50</span><span class="p">)</span>
+
+<div class="viewcode-block" id="StirModel.set_default_variables"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_model.StirModel.set_default_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_default_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c">#inputs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span> <span class="o">=</span> <span class="s">&#39;single&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chemical_name</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">application_rate</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">column_height</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spray_drift_fraction</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direct_spray_duration</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">molecular_weight</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vapor_pressure</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">avian_oral_ld50</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_weight_assessed_bird</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_weight_tested_bird</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mineau_scaling_factor</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mammal_inhalation_lc50</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">duration_mammal_inhalation_study</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_weight_assessed_mammal</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_weight_tested_mammal</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mammal_oral_ld50</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span> <span class="o">=</span> <span class="s">&quot;single&quot;</span>
+
+
+
+    <span class="c"># def __str__(self):</span>
+    <span class="c">#     #inputs</span>
+    <span class="c">#     string_rep = &#39;&#39;</span>
+    <span class="c">#     string_rep = string_rep + self.chemical_name + &quot;\n&quot;</span>
+    <span class="c">#     string_rep = string_rep + &quot;application_rate = %.2e \n&quot; % self.application_rate</span>
+    <span class="c">#     string_rep = string_rep + &quot;column_height = %.2e \n&quot; % self.column_height</span>
+    <span class="c">#     string_rep = string_rep + &quot;spray_drift_fraction = %.2e \n&quot; % self.spray_drift_fraction</span>
+    <span class="c">#     string_rep = string_rep + &quot;direct_spray_duration = %.2e \n&quot; % self.direct_spray_duration</span>
+    <span class="c">#     string_rep = string_rep + &quot;molecular_weight = %.2e \n&quot; % self.molecular_weight</span>
+    <span class="c">#     string_rep = string_rep + &quot;vapor_pressure = %.2e \n&quot; % self.vapor_pressure</span>
+    <span class="c">#     string_rep = string_rep + &quot;avian_oral_ld50 = %.2e \n&quot; % self.avian_oral_ld50</span>
+    <span class="c">#     string_rep = string_rep + &quot;body_weight_assessed_bird = %.2e \n&quot; % self.body_weight_assessed_bird</span>
+    <span class="c">#     string_rep = string_rep + &quot;body_weight_tested_bird = %.2e \n&quot; % self.body_weight_tested_bird</span>
+    <span class="c">#     string_rep = string_rep + &quot;mineau_scaling_factor = %.2e \n&quot; % self.mineau_scaling_factor</span>
+    <span class="c">#     string_rep = string_rep + &quot;mammal_inhalation_lc50 = %.2e \n&quot; % self.mammal_inhalation_lc50</span>
+    <span class="c">#     string_rep = string_rep + &quot;duration_mammal_inhalation_study = %.2e \n&quot; % self.duration_mammal_inhalation_study</span>
+    <span class="c">#     string_rep = string_rep + &quot;body_weight_assessed_mammal = %.2e \n&quot; % self.body_weight_assessed_mammal</span>
+    <span class="c">#     string_rep = string_rep + &quot;body_weight_tested_mammal = %.2e \n&quot; % self.body_weight_tested_mammal</span>
+    <span class="c">#     string_rep = string_rep + &quot;mammal_oral_ld50 = %.2e \n&quot; % self.mammal_oral_ld50</span>
+    <span class="c">#     #outputs</span>
+    <span class="c">#     string_rep = string_rep + &quot;sat_air_conc = %.2e \n&quot; % self.sat_air_conc</span>
+    <span class="c">#     string_rep = string_rep + &quot;inh_rate_avian = %.2e \n&quot; % self.inh_rate_avian</span>
+    <span class="c">#     string_rep = string_rep + &quot;vid_avian = %.2e \n&quot; % self.vid_avian</span>
+    <span class="c">#     string_rep = string_rep + &quot;inh_rate_mammal = %.2e \n&quot; % self.inh_rate_mammal</span>
+    <span class="c">#     string_rep = string_rep + &quot;vid_mammal = %.2e \n&quot; % self.vid_mammal</span>
+    <span class="c">#     string_rep = string_rep + &quot;ar2 = %.2e \n&quot; % self.ar2</span>
+    <span class="c">#     string_rep = string_rep + &quot;air_conc = %.2e \n&quot; % self.air_conc</span>
+    <span class="c">#     string_rep = string_rep + &quot;sid_avian = %.2e \n&quot; % self.sid_avian</span>
+    <span class="c">#     string_rep = string_rep + &quot;sid_mammal = %.2e \n&quot; % self.sid_mammal</span>
+    <span class="c">#     string_rep = string_rep + &quot;cf = %.2e \n&quot; % self.cf</span>
+    <span class="c">#     string_rep = string_rep + &quot;mammal_inhalation_ld50 = %.2e \n&quot; % self.self.mammal_inhalation_ld50</span>
+    <span class="c">#     string_rep = string_rep + &quot;adjusted_mammal_inhalation_ld50 = %.2e \n&quot; % self.adjusted_mammal_inhalation_ld50</span>
+    <span class="c">#     string_rep = string_rep + &quot;estimated_avian_inhalation_ld50 = %.2e \n&quot; % self.estimated_avian_inhalation_ld50</span>
+    <span class="c">#     string_rep = string_rep + &quot;adjusted_avian_inhalation_ld50 = %.2e \n&quot; % self.adjusted_avian_inhalation_ld50</span>
+    <span class="c">#     string_rep = string_rep + &quot;ratio_vid_avian = %.2e \n&quot; % self.ratio_vid_avian</span>
+    <span class="c">#     string_rep = string_rep + &quot;ratio_sid_avian = %.2e \n&quot; % self.ratio_sid_avian</span>
+    <span class="c">#     string_rep = string_rep + &quot;ratio_vid_mammal = %.2e \n&quot; % self.ratio_vid_mammal</span>
+    <span class="c">#     string_rep = string_rep + &quot;ratio_sid_mammal = %.2e \n&quot; % self.ratio_sid_mammal</span>
+    <span class="c">#     string_rep = string_rep + &quot;loc_vid_avian =&quot; + self.loc_vid_avian + &quot;\n&quot;</span>
+    <span class="c">#     string_rep = string_rep + &quot;loc_sid_avian =&quot; + self.loc_sid_avian + &quot;\n&quot;</span>
+    <span class="c">#     string_rep = string_rep + &quot;loc_vid_mammal =&quot; + self.loc_vid_mammal + &quot;\n&quot;</span>
+    <span class="c">#     string_rep = string_rep + &quot;loc_sid_mammal =&quot; + self.loc_sid_mammal + &quot;\n&quot;</span>
+        <span class="c"># return string_rep</span>
+</div>
+<div class="viewcode-block" id="StirModel.set_variables"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_model.StirModel.set_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">run_type</span><span class="p">,</span><span class="n">chemical_name</span><span class="p">,</span><span class="n">application_rate</span><span class="p">,</span><span class="n">column_height</span><span class="p">,</span><span class="n">spray_drift_fraction</span><span class="p">,</span><span class="n">direct_spray_duration</span><span class="p">,</span> 
+            <span class="n">molecular_weight</span><span class="p">,</span><span class="n">vapor_pressure</span><span class="p">,</span><span class="n">avian_oral_ld50</span><span class="p">,</span><span class="n">body_weight_assessed_bird</span><span class="p">,</span><span class="n">body_weight_tested_bird</span><span class="p">,</span><span class="n">mineau_scaling_factor</span><span class="p">,</span> 
+            <span class="n">mammal_inhalation_lc50</span><span class="p">,</span><span class="n">duration_mammal_inhalation_study</span><span class="p">,</span><span class="n">body_weight_assessed_mammal</span><span class="p">,</span><span class="n">body_weight_tested_mammal</span><span class="p">,</span> 
+            <span class="n">mammal_oral_ld50</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span> <span class="o">=</span> <span class="n">run_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chemical_name</span> <span class="o">=</span> <span class="n">chemical_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">application_rate</span> <span class="o">=</span> <span class="n">application_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">column_height</span> <span class="o">=</span> <span class="n">column_height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spray_drift_fraction</span> <span class="o">=</span> <span class="n">spray_drift_fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direct_spray_duration</span> <span class="o">=</span> <span class="n">direct_spray_duration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">molecular_weight</span> <span class="o">=</span> <span class="n">molecular_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vapor_pressure</span> <span class="o">=</span> <span class="n">vapor_pressure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">avian_oral_ld50</span> <span class="o">=</span> <span class="n">avian_oral_ld50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_weight_assessed_bird</span> <span class="o">=</span> <span class="n">body_weight_assessed_bird</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_weight_tested_bird</span> <span class="o">=</span> <span class="n">body_weight_tested_bird</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mineau_scaling_factor</span> <span class="o">=</span> <span class="n">mineau_scaling_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mammal_inhalation_lc50</span> <span class="o">=</span> <span class="n">mammal_inhalation_lc50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">duration_mammal_inhalation_study</span> <span class="o">=</span> <span class="n">duration_mammal_inhalation_study</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_weight_assessed_mammal</span> <span class="o">=</span> <span class="n">body_weight_assessed_mammal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_weight_tested_mammal</span> <span class="o">=</span> <span class="n">body_weight_tested_mammal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mammal_oral_ld50</span> <span class="o">=</span> <span class="n">mammal_oral_ld50</span>
+
+        <span class="n">all_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;run_type&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">run_type</span><span class="p">,</span> <span class="s">&quot;chemical_name&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">chemical_name</span><span class="p">,</span> <span class="s">&quot;application_rate&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">application_rate</span><span class="p">,</span> <span class="s">&quot;column_height&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">column_height</span><span class="p">,</span> <span class="s">&quot;spray_drift_fraction&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">spray_drift_fraction</span><span class="p">,</span> <span class="s">&quot;direct_spray_duration&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">direct_spray_duration</span><span class="p">,</span> <span class="s">&quot;molecular_weight&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">molecular_weight</span><span class="p">,</span>
+                   <span class="s">&quot;vapor_pressure&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">vapor_pressure</span><span class="p">,</span> <span class="s">&quot;avian_oral_ld50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">avian_oral_ld50</span><span class="p">,</span> <span class="s">&quot;body_weight_assessed_bird&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">body_weight_assessed_bird</span><span class="p">,</span> <span class="s">&quot;body_weight_tested_bird&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">body_weight_tested_bird</span><span class="p">,</span> <span class="s">&quot;body_weight_tested_bird&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">body_weight_tested_bird</span><span class="p">,</span>
+                   <span class="s">&quot;mineau_scaling_factor&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">mineau_scaling_factor</span><span class="p">,</span> <span class="s">&quot;mammal_inhalation_lc50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">mammal_inhalation_lc50</span><span class="p">,</span> <span class="s">&quot;duration_mammal_inhalation_study&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">duration_mammal_inhalation_study</span><span class="p">,</span> <span class="s">&quot;body_weight_assessed_mammal&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">body_weight_assessed_mammal</span><span class="p">,</span> <span class="s">&quot;body_weight_tested_mammal&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">body_weight_tested_mammal</span><span class="p">,</span> <span class="s">&quot;mammal_oral_ld50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">mammal_oral_ld50</span><span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">all_dic</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;/stir/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> 
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">http_headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">output_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">output_val</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="StirModel.set_unit_testing_variables"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_model.StirModel.set_unit_testing_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_unit_testing_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chemical_name_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sat_air_conc_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inh_rate_avian_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vid_avian_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inh_rate_mammal_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vid_mammal_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ar2_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">air_conc_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sid_avian_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sid_mammal_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cf_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mammal_inhalation_ld50_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adjusted_mammal_inhalation_ld50_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">estimated_avian_inhalation_ld50_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adjusted_avian_inhalation_ld50_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratio_vid_avian_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratio_sid_avian_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratio_vid_mammal_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratio_sid_mammal_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loc_vid_avian_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loc_sid_avian_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loc_vid_mammal_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loc_sid_mammal_expected</span> <span class="o">=</span> <span class="bp">None</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -6,6 +6,7 @@ from django.conf.urls import patterns, include, url
 
 # All view functions here must be in '/views/views.py'
 urlpatterns = patterns('views',
+    url(r'^docs/', include('docs.urls')),
     (r'^$', 'landing.ecoLandingPage'),
     (r'^eco/?$', 'landing.ecoLandingPage'),
     (r'^eco/(?P<model>.*?)/description/?$', 'description.descriptionPage'),
@@ -18,8 +19,9 @@ urlpatterns = patterns('views',
     (r'^eco/(?P<model>.*?)/qaqc/?$', 'qaqc.qaqcPage'),
     (r'^eco/(?P<model>.*?)/history/?$', 'history.historyPage'),
     (r'^eco/.*?/history_revisit\.html$', 'history.historyPageRevist'),
-    # (r'^pdf\.html$', 'misc.pdfOutput'),
-    # (r'^html\.html$', 'misc.htmlOutput'),
+    (r'^eco/(?P<model>.*?)/pdf/?$', 'generateReport.pdfReceiver'),
+    (r'^eco/(?P<model>.*?)/html/?$', 'generateReport.htmlReceiver'),
+    (r'^eco/docs/?$', 'misc.docsRedirect'),
     # (r'^eco/.*?/przm5_intermediate\.html', 'przm5_intermediate.przm5IntermediatePage'),
     (r'^eco/(?P<model>.*?)/?$', 'description.descriptionPage'),
     (r'^eco_index\.html$', 'landing.ecoLandingPage'),                        #Legacy links

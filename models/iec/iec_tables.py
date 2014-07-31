@@ -1,3 +1,8 @@
+"""
+.. module:: iec_tables
+   :synopsis: A useful module indeed.
+"""
+
 import numpy
 #import django
 from django.template import Context, Template
@@ -289,4 +294,5 @@ def table_2_un(z_score_f_pool, F8_f_pool, chance_f_pool):
         html = html + """
             </div>
         """
-        return html
+        return html
+

@@ -1,0 +1,10 @@
+
+:mod:`rice`
+-------------------
+
+.. automodule:: models.rice
+   :members:
+   :undoc-members:
+   :special-members:
+   :inherited-members:
+   :show-inheritance:

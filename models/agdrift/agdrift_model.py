@@ -1,3 +1,8 @@
+"""
+.. module:: agdrift_model
+   :synopsis: A useful module indeed.
+"""
+
 import os
 from bisect import *
 import logging

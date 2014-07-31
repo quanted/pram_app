@@ -5,10 +5,10 @@
 
 from django.template.loader import render_to_string
 
-def riceInputPage(request, model='', header=''):
+def riceInputPage(request, model='', header='', formData=None):
     """ Handles rice input parameters.
 
-    Longer description. 
+    Even Longer description.
 
     :param request: asdf.
     :type request: str.
@@ -25,7 +25,7 @@ def riceInputPage(request, model='', header=''):
             'model':model,
             'model_attributes': header+' Inputs'})
     html = html + render_to_string('rice_ubertool_config_input.html', {})
-    html = html + str(rice_parameters.RiceInp())
+    html = html + str(rice_parameters.RiceInp(formData))
     html = html + render_to_string('04uberinput_end.html', {'sub_title': 'Submit'})
     html = html + render_to_string('rice_ubertool_config.html', {})
     # Check if tooltips dictionary exists

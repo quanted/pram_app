@@ -1,3 +1,8 @@
+"""
+.. module:: trex2_qaqc
+   :synopsis: A useful module indeed.
+"""
+
 import trex2_model
 import os
 import unittest

@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.stir.stir_parameters &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.stir.stir_parameters</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: stir_parameters</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;settings&#39;</span>
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+
+<span class="n">SELECT_RECEPTOR</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;Avian&#39;</span><span class="p">,</span><span class="s">&#39;Avian&#39;</span><span class="p">),(</span><span class="s">&#39;Mammalian&#39;</span><span class="p">,</span><span class="s">&#39;Mammalian&#39;</span><span class="p">),(</span><span class="s">&#39;Both&#39;</span><span class="p">,</span><span class="s">&#39;Both&#39;</span><span class="p">))</span>
+
+<span class="n">SELECT_HEIGHT</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;3.3&#39;</span><span class="p">,</span><span class="s">&#39;3.3&#39;</span><span class="p">),(</span><span class="s">&#39;1&#39;</span><span class="p">,</span><span class="s">&#39;1&#39;</span><span class="p">))</span>
+
+<span class="n">SELECT_DURATION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1.5&#39;</span><span class="p">,</span><span class="s">&#39;1.5&#39;</span><span class="p">),(</span><span class="s">&#39;0.5&#39;</span><span class="p">,</span><span class="s">&#39;0.5&#39;</span><span class="p">))</span>
+
+<div class="viewcode-block" id="StirInp"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_parameters.StirInp">[docs]</a><span class="k">class</span> <span class="nc">StirInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;Quinoxyfen&#39;</span><span class="p">)</span>
+    <span class="n">application_rate</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Pesticide Application Rate (lbs ai/A)&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">0.107</span><span class="p">)</span>    
+    <span class="n">column_height</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Direct Spray Column Height&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_HEIGHT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;3.3&#39;</span><span class="p">)</span>    
+    <span class="n">spray_drift_fraction</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Fraction of Spray Inhaled&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+    <span class="n">direct_spray_duration</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Direct Spray Inhalation Duration&#39;</span><span class="p">,</span> 
+        <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_DURATION</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.5&#39;</span><span class="p">)</span>
+    <span class="n">molecular_weight</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Molecular Weight&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">308.14</span><span class="p">)</span>   
+    <span class="n">vapor_pressure</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Vapor Pressure&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">9.e-8</span><span class="p">)</span>
+    <span class="n">avian_oral_ld50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Lowest Avian Oral LD&lt;sub&gt;50&lt;/sub&gt;&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">2292.</span><span class="p">)</span>
+    <span class="n">body_weight_assessed_bird</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Assessed Bird&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+    <span class="n">body_weight_tested_bird</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Tested Bird&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.178</span><span class="p">)</span>
+    <span class="n">mineau_scaling_factor</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Chemical Specific Mineau Scaling Factor&#39;</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.15&#39;</span><span class="p">)</span>
+    <span class="n">mammal_inhalation_lc50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Lowest Mammal (Rat) Inhalation LC&lt;sub&gt;50&lt;/sub&gt;&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">3.38</span><span class="p">)</span>
+    <span class="n">duration_mammal_inhalation_study</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Duration of Mammal (Rat) Inhalation Study&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">4.</span><span class="p">)</span>
+    <span class="n">body_weight_assessed_mammal</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Assessed Mammal&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.015</span><span class="p">)</span>
+    <span class="n">body_weight_tested_mammal</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Tested Mammal&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+    <span class="n">mammal_oral_ld50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Lowest Mammal (Rat) Oral LD&lt;sub&gt;50&lt;/sub&gt;&#39;</span><span class="p">),</span><span class="n">initial</span><span class="o">=</span><span class="mf">5000.</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

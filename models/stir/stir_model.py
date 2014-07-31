@@ -1,3 +1,8 @@
+"""
+.. module:: stir_model
+   :synopsis: A useful module indeed.
+"""
+
 import logging
 logger = logging.getLogger('stir Model')
 import json

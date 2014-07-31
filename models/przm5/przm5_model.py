@@ -1,4 +1,8 @@
-# -*- coding: utf-8 -*-
+"""
+.. module:: przm5_model
+   :synopsis: A useful module indeed.
+"""
+
 import keys_Picloud_S3
 import base64
 import urllib

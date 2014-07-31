@@ -1,3 +1,8 @@
+"""
+.. module:: trex2_model
+   :synopsis: A useful module indeed.
+"""
+
 import logging
 logger = logging.getLogger('trex2 model')
 from REST import rest_funcs

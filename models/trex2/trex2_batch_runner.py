@@ -1,3 +1,8 @@
+"""
+.. module:: trex2_batch_runner
+   :synopsis: A useful module indeed.
+"""
+
 import numpy as np
 import logging
 import sys

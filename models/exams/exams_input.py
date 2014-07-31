@@ -1,14 +1,18 @@
+"""
+.. module:: exams_input
+   :synopsis: A useful module indeed.
+"""
+
 from django.template.loader import render_to_string
 
-
-def examsInputPage(request, model='', header=''):
+def examsInputPage(request, model='', header='', formData=None):
     import exams_parameters
               
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
     html = html + render_to_string('04uberinput_start.html', {
             'model':'exams', 
             'model_attributes':'EXAMS Inputs'})
-    html = html + str(exams_parameters.EXAMSInp())
+    html = html + str(exams_parameters.ExamsInp(formData))
     html = html + """
     </table>
     <table class="n_ph" align="center">

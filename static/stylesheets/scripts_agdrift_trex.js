@@ -143,24 +143,24 @@ $(document).ready(function() {
 
 
     $('#id_noa').change(function () {
-    	var total = $(this).val();
-    	$('tr[id*="noa_header"]').show();
+        var total = $(this).val();
+        $('tr[id*="noa_header"]').show();
 
-    	while (i <= total) {
-    		if (i==1){
-    			$('.tab_Application').append('<tr class="tab_noa1"><td><input name="jm' + i + '" type="text" size="5" value="' + i + '"/></td><td><input type="text" size="5" name="rate' + i + '" id="id_rate' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day' + i + '"  value="0" /></td></tr>');
-    		}
+        while (i <= total) {
+            if (i==1){
+                $('.tab_Application').append('<tr class="tab_noa1"><td><input name="jm' + i + '" type="text" size="5" value="' + i + '"/></td><td><input type="text" size="5" name="rate' + i + '" id="id_rate' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day' + i + '"  value="0" /></td></tr>');
+            }
 
-    		else {
-    			$('.tab_Application').append('<tr class="tab_noa1"><td><input name="jm' + i + '" type="text" size="5" value="' + i + '"/></td><td><input type="text" size="5" name="rate' + i + '" id="id_rate' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day' + i + '" value="' + 3*(i-1) + '"/></td></tr>');
-    		}
-    		i = i + 1;
-    	}
-    	while (i-1 > total) {
-    		$(".tab_Application tr:last").remove();
-    		i=i-1
-    	}
-    	$('</table>').appendTo('.tab_Application');
+            else {
+                $('.tab_Application').append('<tr class="tab_noa1"><td><input name="jm' + i + '" type="text" size="5" value="' + i + '"/></td><td><input type="text" size="5" name="rate' + i + '" id="id_rate' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day' + i + '" value="' + 3*(i-1) + '"/></td></tr>');
+            }
+            i = i + 1;
+        }
+        while (i-1 > total) {
+            $(".tab_Application tr:last").remove();
+            i=i-1
+        }
+        $('</table>').appendTo('.tab_Application');
     })
 
     $('#id_Species_of_the_tested_bird_avian_ld50').change(function() { 

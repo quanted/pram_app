@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.sip.sip_model &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.sip.sip_model</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: sip_model</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c"># Screening Imbibiton Program v1.0 (SIP)</span>
+<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">rest_funcs</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;SIP Model&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">keys_Picloud_S3</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Daily water intake rate for birds</span>
+
+<span class="c">############Provide the key and connect to EC2####################</span>
+<span class="n">api_key</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_key</span>
+<span class="n">api_secretkey</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_secretkey</span>
+<span class="n">base64string</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">encodestring</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_secretkey</span><span class="p">))[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">http_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Authorization&#39;</span> <span class="p">:</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">base64string</span><span class="p">,</span> <span class="s">&#39;Content-Type&#39;</span> <span class="p">:</span> <span class="s">&#39;application/json&#39;</span><span class="p">}</span>
+<span class="n">url_part1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span>
+<span class="c">###########################################################################</span>
+
+
+<div class="viewcode-block" id="sip"><a class="viewcode-back" href="../../../models.sip.html#models.sip.sip_model.sip">[docs]</a><span class="k">class</span> <span class="nc">sip</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_variables</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">run_methods</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">run_type</span> <span class="o">=</span> <span class="s">&quot;single&quot;</span><span class="p">,</span><span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">b_species</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">m_species</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">bw_quail</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bw_duck</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bwb_other</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bw_rat</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bwm_other</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ld50_a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ld50_m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">aw_bird</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mineau</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noaec_d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noaec_q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noaec_o</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Species_of_the_bird_NOAEC_CHOICES</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noael</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">vars_dict</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_default_variables</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">set_variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">vars_dict</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">vars_dict</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_variables</span><span class="p">(</span><span class="n">run_type</span><span class="p">,</span> <span class="n">chemical_name</span><span class="p">,</span> <span class="n">b_species</span><span class="p">,</span> <span class="n">m_species</span><span class="p">,</span> <span class="n">bw_quail</span><span class="p">,</span> <span class="n">bw_duck</span><span class="p">,</span> <span class="n">bwb_other</span><span class="p">,</span> <span class="n">bw_rat</span><span class="p">,</span> <span class="n">bwm_other</span><span class="p">,</span> <span class="n">sol</span><span class="p">,</span> <span class="n">ld50_a</span><span class="p">,</span> <span class="n">ld50_m</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">mineau</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">noaec_d</span><span class="p">,</span> <span class="n">noaec_q</span><span class="p">,</span> <span class="n">noaec_o</span><span class="p">,</span> <span class="n">Species_of_the_bird_NOAEC_CHOICES</span><span class="p">,</span> <span class="n">noael</span><span class="p">)</span>
+
+<div class="viewcode-block" id="sip.set_default_variables"><a class="viewcode-back" href="../../../models.sip.html#models.sip.sip_model.sip.set_default_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_default_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span> <span class="o">=</span> <span class="s">&quot;single&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chemical_name</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+       <span class="c"># self.select_receptor()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bw_bird</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bw_quail</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bw_duck</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bwb_other</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bw_rat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bwm_other</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_species</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m_species</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bw_mamm</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sol</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ld50_a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ld50_m</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aw_bird</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mineau</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aw_mamm</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noaec</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noael</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+</div>
+<div class="viewcode-block" id="sip.set_variables"><a class="viewcode-back" href="../../../models.sip.html#models.sip.sip_model.sip.set_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_type</span><span class="p">,</span> <span class="n">chemical_name</span><span class="p">,</span> <span class="n">b_species</span><span class="p">,</span> <span class="n">m_species</span><span class="p">,</span> <span class="n">bw_quail</span><span class="p">,</span> <span class="n">bw_duck</span><span class="p">,</span> <span class="n">bwb_other</span><span class="p">,</span> <span class="n">bw_rat</span><span class="p">,</span> <span class="n">bwm_other</span><span class="p">,</span> <span class="n">sol</span><span class="p">,</span> <span class="n">ld50_a</span><span class="p">,</span> <span class="n">ld50_m</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">mineau</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">noaec_d</span><span class="p">,</span> <span class="n">noaec_q</span><span class="p">,</span> <span class="n">noaec_o</span><span class="p">,</span> <span class="n">Species_of_the_bird_NOAEC_CHOICES</span><span class="p">,</span> <span class="n">noael</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span> <span class="o">=</span> <span class="n">run_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chemical_name</span> <span class="o">=</span> <span class="n">chemical_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bw_quail</span> <span class="o">=</span> <span class="n">bw_quail</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bw_duck</span> <span class="o">=</span> <span class="n">bw_duck</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bwb_other</span> <span class="o">=</span> <span class="n">bwb_other</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bw_rat</span> <span class="o">=</span> <span class="n">bw_rat</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bwm_other</span> <span class="o">=</span> <span class="n">bwm_other</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_species</span> <span class="o">=</span> <span class="n">b_species</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m_species</span> <span class="o">=</span> <span class="n">m_species</span>
+        <span class="k">if</span> <span class="n">b_species</span> <span class="o">==</span><span class="s">&#39;178&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bw_bird</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw_quail</span>
+        <span class="k">elif</span> <span class="n">b_species</span> <span class="o">==</span><span class="s">&#39;1580&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bw_bird</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw_duck</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bw_bird</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bwb_other</span>
+        <span class="k">if</span> <span class="n">m_species</span> <span class="o">==</span><span class="s">&#39;350&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bw_mamm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw_rat</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bw_mamm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bwm_other</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sol</span> <span class="o">=</span> <span class="n">sol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ld50_a</span> <span class="o">=</span> <span class="n">ld50_a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ld50_m</span> <span class="o">=</span> <span class="n">ld50_m</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aw_bird</span> <span class="o">=</span> <span class="n">aw_bird</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mineau</span> <span class="o">=</span> <span class="n">mineau</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aw_mamm</span> <span class="o">=</span> <span class="n">aw_mamm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noaec_d</span> <span class="o">=</span> <span class="n">noaec_d</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noaec_q</span> <span class="o">=</span> <span class="n">noaec_q</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noaec_o</span> <span class="o">=</span> <span class="n">noaec_o</span>
+        <span class="k">if</span> <span class="n">Species_of_the_bird_NOAEC_CHOICES</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">noaec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">noaec_q</span>
+        <span class="k">elif</span> <span class="n">Species_of_the_bird_NOAEC_CHOICES</span> <span class="o">==</span> <span class="s">&#39;2&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">noaec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">noaec_d</span>
+        <span class="k">elif</span> <span class="n">Species_of_the_bird_NOAEC_CHOICES</span> <span class="o">==</span> <span class="s">&#39;3&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">noaec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">noaec_o</span>
+        <span class="c"># else:</span>
+        <span class="c">#     try:</span>
+        <span class="c">#         self.noaec = noaec</span>
+        <span class="c">#     except ValueError:</span>
+        <span class="c">#         raise ValueError\</span>
+        <span class="c">#         (&#39;self.noaec=%g is a non-physical value.&#39; % self.aw_bird)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noael</span> <span class="o">=</span> <span class="n">noael</span>
+
+        <span class="n">all_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;chemical_name&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">chemical_name</span><span class="p">,</span> <span class="s">&quot;bw_bird&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">bw_bird</span><span class="p">,</span> <span class="s">&quot;bw_quail&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">bw_quail</span><span class="p">,</span> <span class="s">&quot;bw_duck&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">bw_duck</span><span class="p">,</span> <span class="s">&quot;bwb_other&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">bwb_other</span><span class="p">,</span> <span class="s">&quot;bw_rat&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">bw_rat</span><span class="p">,</span>
+                   <span class="s">&quot;bwm_other&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">bwm_other</span><span class="p">,</span> <span class="s">&quot;b_species&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">b_species</span><span class="p">,</span> <span class="s">&quot;m_species&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">m_species</span><span class="p">,</span> <span class="s">&quot;bw_mamm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">bw_mamm</span><span class="p">,</span> <span class="s">&quot;sol&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">sol</span><span class="p">,</span>
+                   <span class="s">&quot;ld50_a&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">ld50_a</span><span class="p">,</span> <span class="s">&quot;ld50_m&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">ld50_m</span><span class="p">,</span> <span class="s">&quot;aw_bird&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">aw_bird</span><span class="p">,</span> <span class="s">&quot;mineau&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">mineau</span><span class="p">,</span> <span class="s">&quot;aw_mamm&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">aw_mamm</span><span class="p">,</span> <span class="s">&quot;noaec&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">noaec</span><span class="p">,</span> <span class="s">&quot;noael&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">noael</span><span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">all_dic</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;/sip/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> 
+        <span class="c"># response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">http_headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>  
+        <span class="n">output_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">output_val</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="sip.set_unit_testing_variables"><a class="viewcode-back" href="../../../models.sip.html#models.sip.sip_model.sip.set_unit_testing_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_unit_testing_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fw_bird_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fw_mamm_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dose_bird_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dose_mamm_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">at_bird_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">at_mamm_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fi_bird_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">det_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">act_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acute_bird_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acuconb_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acute_mamm_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acuconm_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chron_bird_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chronconb_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chron_mamm_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chronconm_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

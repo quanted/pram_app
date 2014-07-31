@@ -1,3 +1,8 @@
+"""
+.. module:: rice_tables
+   :synopsis: A useful module indeed.
+"""
+
 import numpy
 from django.template import Context, Template
 from django.utils.safestring import mark_safe

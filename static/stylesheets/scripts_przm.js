@@ -293,154 +293,154 @@ var HArvest_pool={'NC Sweet Potato MLRA-133': '2209', 'ID Potato   MLRA-11B': '1
 /////////////////////begin the form validation process//////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    $.validator.addMethod(
-        "apptiming",
-        function(value, element) {
-            if (element.value == "")
-            {
-                return false;
-            }
-            else return true;
-        },
-        "Please choose a application timing."
-    );
+    // $.validator.addMethod(
+    //     "apptiming",
+    //     function(value, element) {
+    //         if (element.value == "")
+    //         {
+    //             return false;
+    //         }
+    //         else return true;
+    //     },
+    //     "Please choose a application timing."
+    // );
     
-    $.validator.addMethod(
-        "dateFormat",
-        function (value, element) {
-            return isDate(value);
-        },
-        "Please enter a date in the format MM/DD"
-    );
+    // $.validator.addMethod(
+    //     "dateFormat",
+    //     function (value, element) {
+    //         return isDate(value);
+    //     },
+    //     "Please enter a date in the format MM/DD"
+    // );
 
-    $.validator.addMethod(
-        "dateSeq",
-        function (value, element) {
-            return dateS(value, element);
-        },
-        "Application Date should be later than its previous one"
-    );
+    // $.validator.addMethod(
+    //     "dateSeq",
+    //     function (value, element) {
+    //         return dateS(value, element);
+    //     },
+    //     "Application Date should be later than its previous one"
+    // );
 
-    $.validator.addMethod(
-        "dateRange",
-        function (value, element) {
-            return dateRange(value, element);
-        },
-        "Application Date should between Jan 1st and Dec 31th"
-    );
+    // $.validator.addMethod(
+    //     "dateRange",
+    //     function (value, element) {
+    //         return dateRange(value, element);
+    //     },
+    //     "Application Date should between Jan 1st and Dec 31th"
+    // );
                     
-    function isDate(txtDate) {
-        var currVal = txtDate;
-        if (currVal == '') {
-            return false;
-        }
-        //Declare Regex  
-        var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})$/;
-        var dtArray = currVal.match(rxDatePattern); // is format OK?
-        if (dtArray == null) {
-            return false;
-        }
-        //Checks for dd/mm format.
-        var dtDay = dtArray[3];
-        var dtMonth = dtArray[1];
+    // function isDate(txtDate) {
+    //     var currVal = txtDate;
+    //     if (currVal == '') {
+    //         return false;
+    //     }
+    //     //Declare Regex  
+    //     var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})$/;
+    //     var dtArray = currVal.match(rxDatePattern); // is format OK?
+    //     if (dtArray == null) {
+    //         return false;
+    //     }
+    //     //Checks for dd/mm format.
+    //     var dtDay = dtArray[3];
+    //     var dtMonth = dtArray[1];
 
-        if (dtMonth.length !=2 ||dtMonth < 1 || dtMonth > 12) {
-            return false;
-        } else if (dtDay.length !=2 || dtDay < 1 || dtDay > 31) {
-            return false;
-        }
-        return true;
-    }
+    //     if (dtMonth.length !=2 ||dtMonth < 1 || dtMonth > 12) {
+    //         return false;
+    //     } else if (dtDay.length !=2 || dtDay < 1 || dtDay > 31) {
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
-    function dateS(value, element) {
+    // function dateS(value, element) {
 
-        var date1_m = parseFloat($(element).val().slice(0, 2))
-        var date1_d = parseFloat($(element).val().slice(3, 5))
-        var dayR1 = parseFloat($(element).closest("tr").nextAll('.app_days:first').find('input').val()) 
-        var date2_m = parseFloat($(element).closest("tr").prevAll('.app_dates:first').find('input').val().slice(0, 2))
-        var date2_d = parseFloat($(element).closest("tr").prevAll('.app_dates:first').find('input').val().slice(3, 5))
-        var dayR2 = parseFloat($(element).closest("tr").prevAll('.app_days:first').find('input').val()) 
-        var date1_full = new Date(1960, date1_m - 01, date1_d+dayR1)
-        var date2_full = new Date(1960, date2_m - 01, date2_d+dayR2)
+    //     var date1_m = parseFloat($(element).val().slice(0, 2))
+    //     var date1_d = parseFloat($(element).val().slice(3, 5))
+    //     var dayR1 = parseFloat($(element).closest("tr").nextAll('.app_days:first').find('input').val()) 
+    //     var date2_m = parseFloat($(element).closest("tr").prevAll('.app_dates:first').find('input').val().slice(0, 2))
+    //     var date2_d = parseFloat($(element).closest("tr").prevAll('.app_dates:first').find('input').val().slice(3, 5))
+    //     var dayR2 = parseFloat($(element).closest("tr").prevAll('.app_days:first').find('input').val()) 
+    //     var date1_full = new Date(1960, date1_m - 01, date1_d+dayR1)
+    //     var date2_full = new Date(1960, date2_m - 01, date2_d+dayR2)
 
-        if (date1_full <= date2_full) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+    //     if (date1_full <= date2_full) {
+    //         return false;
+    //     }
+    //     else {
+    //         return true;
+    //     }
+    // }
 
-    function dateRange(value, element) {
-        var date1_m = parseFloat($(element).val().slice(0, 2))
-        var date1_d = parseFloat($(element).val().slice(3, 5))
-        var dayR1 = parseFloat($(element).closest("tr").nextAll('.app_days:first').find('input').val()) 
-        var date1_full = new Date(1960, date1_m - 01, date1_d+dayR1)
-        if (date1_full <= new Date(1960, 11, 31) && date1_full >= new Date(1960, 00, 01) ) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    // function dateRange(value, element) {
+    //     var date1_m = parseFloat($(element).val().slice(0, 2))
+    //     var date1_d = parseFloat($(element).val().slice(3, 5))
+    //     var dayR1 = parseFloat($(element).closest("tr").nextAll('.app_days:first').find('input').val()) 
+    //     var date1_full = new Date(1960, date1_m - 01, date1_d+dayR1)
+    //     if (date1_full <= new Date(1960, 11, 31) && date1_full >= new Date(1960, 00, 01) ) {
+    //         return true;
+    //     }
+    //     else {
+    //         return false;
+    //     }
+    // }
     
-    // var validator = $( "#myform" ).validate();
-    // validator.form();
+    // // var validator = $( "#myform" ).validate();
+    // // validator.form();
 
 
-    $("form").validate({
-        rules: {
-            chemical_name: "required",      // simple rule, converted to {required:true}
-            Scenarios:"required",
-            NOA:"required",
-            Unit:"required",
-            Apt:{apptiming:true
-            },
-            DayRe:"required",
-            Ap_m:"required",
-            Ar:"required",
-            Date_apt:{dateFormat:true,
-                      dateRange:true
-            },
-        //2 application
-            Apt2:{apptiming:true
-            },
-            DayRe2:"required",
-            Ap_m2: {required:true,
-                equalTo: "#id_Ap_m"
-                },
-            Ar2:"required",
-            Date_apt2:{dateFormat:true,
-                       dateRange:true,
-                       dateSeq:true
-            },                      
-        //3 application
-            Apt3:"required",
-            DayRe3:"required",
-            Ap_m3: {required:true,
-                    equalTo: "#id_Ap_m2" 
-                },
-            Ar3:"required",
-            Date_apt3:{dateFormat:true,
-                       dateRange:true,
-                       dateSeq:true
-            },                          
-        //4 application
-            Apt4:"required",
-            DayRe4:"required",
-            Ap_m4: {required:true,
-                equalTo: "#id_Ap_m3" 
-                },
-            Ar4:"required",
-            Date_apt4:{dateFormat:true,
-                       dateRange:true,
-                       dateSeq:true
-            }                       
-        },
-        messages: {
-            Scenarios: "Please choose a scenario.",                 
-            Unit: "Please choose a unit."
-        }
-    });
+    // $("form").validate({
+    //     rules: {
+    //         chemical_name: "required",      // simple rule, converted to {required:true}
+    //         Scenarios:"required",
+    //         NOA:"required",
+    //         Unit:"required",
+    //         Apt:{apptiming:true
+    //         },
+    //         DayRe:"required",
+    //         Ap_m:"required",
+    //         Ar:"required",
+    //         Date_apt:{dateFormat:true,
+    //                   dateRange:true
+    //         },
+    //     //2 application
+    //         Apt2:{apptiming:true
+    //         },
+    //         DayRe2:"required",
+    //         Ap_m2: {required:true,
+    //             equalTo: "#id_Ap_m"
+    //             },
+    //         Ar2:"required",
+    //         Date_apt2:{dateFormat:true,
+    //                    dateRange:true,
+    //                    dateSeq:true
+    //         },                      
+    //     //3 application
+    //         Apt3:"required",
+    //         DayRe3:"required",
+    //         Ap_m3: {required:true,
+    //                 equalTo: "#id_Ap_m2" 
+    //             },
+    //         Ar3:"required",
+    //         Date_apt3:{dateFormat:true,
+    //                    dateRange:true,
+    //                    dateSeq:true
+    //         },                          
+    //     //4 application
+    //         Apt4:"required",
+    //         DayRe4:"required",
+    //         Ap_m4: {required:true,
+    //             equalTo: "#id_Ap_m3" 
+    //             },
+    //         Ar4:"required",
+    //         Date_apt4:{dateFormat:true,
+    //                    dateRange:true,
+    //                    dateSeq:true
+    //         }                       
+    //     },
+    //     messages: {
+    //         Scenarios: "Please choose a scenario.",                 
+    //         Unit: "Please choose a unit."
+    //     }
+    // });
 
 });

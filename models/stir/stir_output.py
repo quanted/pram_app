@@ -1,6 +1,10 @@
+"""
+.. module:: stir_output
+   :synopsis: A useful module indeed.
+"""
+
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
-
 
 @require_POST
 def stirOutputPage(request):

@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+.. module:: terrplant_tooltips
+   :synopsis: A useful module indeed.
+"""
+
 # Dictionary for tooltips, where 'key' = the var name in (model)_parameters, and 'value' = the tooltip text
 tooltips = {
 	'chemical_name':'The common name of the chemical',

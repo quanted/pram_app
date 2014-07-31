@@ -1,3 +1,8 @@
+"""
+.. module:: trex2_tables
+   :synopsis: A useful module indeed.
+"""
+
 import numpy
 import time, datetime
 from django.template import Context, Template

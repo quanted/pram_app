@@ -1,4 +1,8 @@
-# # -*- coding: utf-8 -*-
+"""
+.. module:: iec_batchoutput
+   :synopsis: A useful module indeed.
+"""
+
 from django.views.decorators.http import require_POST
 import csv
 import iec_model, iec_tables

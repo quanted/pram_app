@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.geneec.geneec_batchoutput &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.geneec.geneec_batchoutput</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: geneec_batchoutput</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c"># import os</span>
+<span class="c"># os.environ[&#39;DJANGO_SETTINGS_MODULE&#39;]=&#39;settings&#39;</span>
+<span class="c"># import webapp2 as webapp</span>
+<span class="c"># from google.appengine.ext.webapp.util import run_wsgi_app</span>
+<span class="c"># from google.appengine.ext.webapp import template</span>
+<span class="c"># import numpy as np</span>
+<span class="c"># import cgi</span>
+<span class="c"># import cgitb</span>
+<span class="c"># cgitb.enable()</span>
+<span class="c"># from uber import uber_lib</span>
+<span class="c"># import csv</span>
+<span class="c"># from geneec import geneec_model, geneec_tables</span>
+
+<span class="c"># from threading import Thread</span>
+<span class="c"># import Queue</span>
+<span class="c"># from collections import OrderedDict</span>
+<span class="c"># import rest_funcs</span>
+
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">geneec_model</span><span class="o">,</span> <span class="nn">geneec_tables</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">import</span> <span class="nn">Queue</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">rest_funcs</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;Geneec Batch&#39;</span><span class="p">)</span>
+
+<span class="n">chem_name</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">application_target</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">application_rate</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">number_of_applications</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">interval_between_applications</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Koc</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">aerobic_soil_metabolism</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">wet_in</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">application_method</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">application_method_label</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">aerial_size_dist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ground_spray_type</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">airblast_type</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">spray_quality</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">no_spray_drift</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">incorporation_depth</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">solubility</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">aerobic_aquatic_metabolism</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">hydrolysis</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">photolysis_aquatic_half_life</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c">####### Outputs ########</span>
+<span class="n">jid_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">jid_batch</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">geneec_obj_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">geneec_obj_all_dict</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">all_threads</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">out_html_all</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">job_q</span> <span class="o">=</span> <span class="n">Queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+<span class="n">thread_count</span> <span class="o">=</span> <span class="mi">10</span>
+
+<div class="viewcode-block" id="create_jid"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_batchoutput.create_jid">[docs]</a><span class="k">def</span> <span class="nf">create_jid</span><span class="p">(</span><span class="n">row_inp</span><span class="p">):</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">row_inp_temp_all</span> <span class="o">=</span> <span class="n">row_inp</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">row_inp_temp_all</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">row_inp_temp</span> <span class="o">=</span> <span class="n">row_inp_temp_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="nb">iter</span> <span class="o">=</span> <span class="n">row_inp_temp_all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">chem_name_temp</span> <span class="o">=</span> <span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">application_target_temp</span> <span class="o">=</span> <span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">application_rate_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">number_of_applications_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">interval_between_applications_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="n">Koc_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+            <span class="n">aerobic_soil_metabolism_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+            <span class="n">wet_in_temp</span> <span class="o">=</span> <span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+            <span class="n">application_method_temp</span> <span class="o">=</span> <span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+            <span class="n">aerial_size_dist_temp</span> <span class="o">=</span> <span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+            <span class="n">ground_spray_type_temp</span> <span class="o">=</span> <span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+            <span class="n">airblast_type_temp</span> <span class="o">=</span> <span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
+            <span class="n">spray_quality_temp</span> <span class="o">=</span> <span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
+            <span class="n">no_spray_drift_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">13</span><span class="p">])</span>
+            <span class="n">incorporation_depth_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
+            <span class="n">solubility_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">15</span><span class="p">])</span>
+            <span class="n">aerobic_aquatic_metabolism_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">16</span><span class="p">])</span>
+            <span class="n">hydrolysis_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">17</span><span class="p">])</span>
+            <span class="n">photolysis_aquatic_half_life_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row_inp_temp</span><span class="p">[</span><span class="mi">18</span><span class="p">])</span>
+
+            <span class="n">geneec_obj</span> <span class="o">=</span> <span class="n">geneec_model</span><span class="o">.</span><span class="n">geneec</span><span class="p">(</span><span class="s">&#39;batch&#39;</span><span class="p">,</span> <span class="n">chem_name_temp</span><span class="p">,</span> <span class="n">application_target_temp</span><span class="p">,</span> <span class="n">application_rate_temp</span><span class="p">,</span> <span class="n">number_of_applications_temp</span><span class="p">,</span> <span class="n">interval_between_applications_temp</span><span class="p">,</span> <span class="n">Koc_temp</span><span class="p">,</span> <span class="n">aerobic_soil_metabolism_temp</span><span class="p">,</span> <span class="n">wet_in_temp</span><span class="p">,</span> <span class="n">application_method_temp</span><span class="p">,</span> <span class="n">application_method_label</span><span class="p">,</span> <span class="n">aerial_size_dist_temp</span><span class="p">,</span> <span class="n">ground_spray_type_temp</span><span class="p">,</span> <span class="n">airblast_type_temp</span><span class="p">,</span> <span class="n">spray_quality_temp</span><span class="p">,</span> <span class="n">no_spray_drift_temp</span><span class="p">,</span> <span class="n">incorporation_depth_temp</span><span class="p">,</span> <span class="n">solubility_temp</span><span class="p">,</span> <span class="n">aerobic_aquatic_metabolism_temp</span><span class="p">,</span> <span class="n">hydrolysis_temp</span><span class="p">,</span> <span class="n">photolysis_aquatic_half_life_temp</span><span class="p">)</span>
+            <span class="c"># logger.info(genee_obj)</span>
+            <span class="n">jid_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">jid</span><span class="p">)</span>
+            <span class="n">geneec_obj_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">jid_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">geneec_obj</span><span class="o">.</span><span class="n">jid</span><span class="p">)</span>
+
+            <span class="n">batch_header</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">                    &lt;br&gt;&lt;H3&gt;Batch Calculation of Iteration </span><span class="si">%s</span><span class="s">:&lt;/H3&gt;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">                &quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="nb">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">out_html_temp</span> <span class="o">=</span> <span class="n">batch_header</span> <span class="o">+</span> <span class="n">geneec_tables</span><span class="o">.</span><span class="n">table_all</span><span class="p">(</span><span class="n">geneec_obj</span><span class="p">)</span>
+            <span class="n">out_html_all</span><span class="p">[</span><span class="nb">iter</span><span class="p">]</span><span class="o">=</span><span class="n">out_html_temp</span>
+            <span class="c"># save_dic(out_html_temp, genee_obj.__dict__, &#39;geneec&#39;)</span>
+
+</div>
+<div class="viewcode-block" id="loop_html"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_batchoutput.loop_html">[docs]</a><span class="k">def</span> <span class="nf">loop_html</span><span class="p">(</span><span class="n">thefile</span><span class="p">):</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">thefile</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+    <span class="n">indx</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">job_q</span><span class="o">.</span><span class="n">put</span><span class="p">([</span><span class="n">row</span><span class="p">,</span> <span class="n">indx</span><span class="p">])</span>
+        <span class="n">indx</span> <span class="o">=</span> <span class="n">indx</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">job_q</span><span class="o">.</span><span class="n">qsize</span><span class="p">())</span>
+
+    <span class="c"># Start all threads</span>
+    <span class="n">all_threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">create_jid</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">job_q</span><span class="p">,</span> <span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">thread_count</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
+        <span class="n">job_q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+    <span class="n">out_html_all_sort</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">out_html_all</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="n">out_html_all_sort</span>
+
+</div>
+<span class="nd">@require_POST</span>
+<div class="viewcode-block" id="geneecBatchOutputPage"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_batchoutput.geneecBatchOutputPage">[docs]</a><span class="k">def</span> <span class="nf">geneecBatchOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">thefile</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">[</span><span class="s">&#39;upfile&#39;</span><span class="p">]</span>
+    <span class="n">iter_html</span><span class="o">=</span><span class="n">loop_html</span><span class="p">(</span><span class="n">thefile</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">iter_html</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">geneec_obj_all</span><span class="p">,</span> <span class="n">jid_batch</span>
+
+<span class="c"># class geneecBatchOutputPage(webapp.RequestHandler):</span>
+<span class="c">#     def post(self):</span>
+<span class="c">#         form = cgi.FieldStorage()</span>
+<span class="c">#         thefile = form[&#39;file-0&#39;]</span>
+<span class="c">#         iter_html=loop_html(thefile)</span>
+<span class="c">#         templatepath = os.path.dirname(__file__) + &#39;/../templates/&#39;</span>
+<span class="c">#         ChkCookie = self.request.cookies.get(&quot;ubercookie&quot;)</span>
+
+<span class="c">#         html = template.render(templatepath + &#39;04uberoutput_start.html&#39;, {</span>
+<span class="c">#                 &#39;model&#39;:&#39;geneec&#39;,</span>
+<span class="c">#                 &#39;model_attributes&#39;:&#39;Geneec Batch Output&#39;})</span>
+<span class="c">#         html= html + &quot;&quot;&quot;</span>
+<span class="c">#                 &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="c">#                     &lt;b&gt;GENEEC Version 2.0 (Beta)&lt;br&gt;</span>
+<span class="c">#                 &lt;/div&gt;&quot;&quot;&quot;</span>
+<span class="c">#         html = html + &quot;&quot;.join(iter_html.values())</span>
+<span class="c">#         html = html + template.render(templatepath + &#39;04uberoutput_end.html&#39;, {&#39;sub_title&#39;: &#39;&#39;})</span>
+<span class="c">#         # logger.info(iter_html.keys())</span>
+<span class="c">#         # logger.info(len(iter_html.keys()))</span>
+
+<span class="c">#         rest_funcs.batch_save_dic(html, [x.__dict__ for x in geneec_obj_all], &#39;geneec&#39;, &#39;batch&#39;, jid_batch[0], ChkCookie, templatepath)</span>
+<span class="c">#         self.response.out.write(html)</span>
+
+<span class="c"># app = webapp.WSGIApplication([(&#39;/.*&#39;, geneecBatchOutputPage)], debug=True)</span>
+
+<span class="c"># def main():</span>
+<span class="c">#     run_wsgi_app(app)</span>
+
+<span class="c"># if __name__ == &#39;__main__&#39;:</span>
+<span class="c">#     main()</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

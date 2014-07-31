@@ -1,4 +1,8 @@
-# -*- coding: utf-8 -*-
+"""
+.. module:: therps_model
+   :synopsis: A useful module indeed.
+"""
+
 import logging
 from REST import rest_funcs
 logger = logging.getLogger('therps model')

@@ -1,0 +1,574 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.therps.therps_batchoutput &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.therps.therps_batchoutput</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: therps_batchoutput</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
+<span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">import</span> <span class="nn">therps_model</span><span class="o">,</span> <span class="nn">therps_tables</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">import</span> <span class="nn">Queue</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<span class="n">chem_name</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">use</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">formu_name</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">a_i</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">a_i_disp</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">a_r</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">n_a</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">i_a</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">h_l</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ld50_bird</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">Species_of_the_tested_bird_avian_ld50</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">bw_avian_ld50</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">lc50_bird</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">Species_of_the_tested_bird_avian_lc50</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">bw_avian_lc50</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">NOAEC_bird</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">Species_of_the_tested_bird_avian_NOAEC</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">bw_avian_NOAEC</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">NOAEL_bird</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">Species_of_the_tested_bird_avian_NOAEL</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">bw_avian_NOAEL</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">c_mamm_a</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">c_herp_a</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">bw_herp_a_sm</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">bw_herp_a_md</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">bw_herp_a_lg</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">wp_herp_a_sm</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">wp_herp_a_md</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">wp_herp_a_lg</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="c">######Pre-defined outputs########</span>
+<span class="n">EEC_diet_herp_BL_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_ARQ_herp_BL_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_CRQ_herp_BL_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_diet_herp_FR_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_ARQ_herp_FR_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_CRQ_herp_FR_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_diet_herp_HM_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_ARQ_herp_HM_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_CRQ_herp_HM_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_diet_herp_IM_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_ARQ_herp_IM_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_CRQ_herp_IM_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_diet_herp_TP_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_ARQ_herp_TP_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_CRQ_herp_TP_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">LD50_AD_sm_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">LD50_AD_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">LD50_AD_lg_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_BP_sm_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_BP_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_BP_lg_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_BP_sm_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_BP_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_BP_lg_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_FR_sm_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_FR_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_FR_lg_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_FR_sm_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_FR_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_FR_lg_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_HM_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_HM_lg_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_HM_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_HM_lg_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_IM_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_IM_lg_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_IM_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_IM_lg_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_TP_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_TP_lg_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_TP_md_out</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_TP_lg_out</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="n">EEC_diet_herp_BL_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_ARQ_herp_BL_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_CRQ_herp_BL_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_diet_herp_FR_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_ARQ_herp_FR_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_CRQ_herp_FR_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_diet_herp_HM_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_ARQ_herp_HM_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_CRQ_herp_HM_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_diet_herp_IM_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_ARQ_herp_IM_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_CRQ_herp_IM_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_diet_herp_TP_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_ARQ_herp_TP_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_CRQ_herp_TP_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">LD50_AD_sm_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">LD50_AD_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">LD50_AD_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_BP_sm_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_BP_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_BP_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_BP_sm_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_BP_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_BP_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_FR_sm_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_FR_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_FR_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_FR_sm_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_FR_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_FR_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_HM_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_HM_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_HM_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_HM_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_IM_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_IM_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_IM_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_IM_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_TP_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">EEC_dose_TP_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_TP_md_out_mean</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ARQ_dose_TP_lg_out_mean</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="n">jid_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">jid_batch</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">therps_obj_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">all_threads</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">out_html_all</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">job_q</span> <span class="o">=</span> <span class="n">Queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+<span class="n">thread_count</span> <span class="o">=</span> <span class="mi">10</span>
+
+
+<div class="viewcode-block" id="html_table"><a class="viewcode-back" href="../../../models.therps.html#models.therps.therps_batchoutput.html_table">[docs]</a><span class="k">def</span> <span class="nf">html_table</span><span class="p">(</span><span class="n">row_inp_all</span><span class="p">):</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">row_inp_temp_all</span> <span class="o">=</span> <span class="n">row_inp_all</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">row_inp_temp_all</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">row_inp</span> <span class="o">=</span> <span class="n">row_inp_temp_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="nb">iter</span> <span class="o">=</span> <span class="n">row_inp_temp_all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c">###Inputs###########</span>
+        <span class="n">chem_name_temp</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">chem_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chem_name_temp</span><span class="p">)</span>
+        <span class="n">use_temp</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">use</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">use_temp</span><span class="p">)</span>
+        <span class="n">formu_name_temp</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">formu_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">formu_name_temp</span><span class="p">)</span>
+        <span class="n">a_i_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">/</span><span class="mi">100</span>
+        <span class="n">a_i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_i_temp</span><span class="p">)</span>
+        <span class="n">a_i_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">a_i_temp</span><span class="p">)</span>
+        <span class="n">a_r_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+        <span class="n">a_r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_r_temp</span><span class="p">)</span>
+        <span class="n">n_a_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+        <span class="n">n_a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n_a_temp</span><span class="p">)</span>
+        <span class="n">i_a_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+        <span class="n">i_a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i_a_temp</span><span class="p">)</span>
+        <span class="n">h_l_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+        <span class="n">h_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h_l_temp</span><span class="p">)</span>
+        <span class="n">ld50_bird_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+        <span class="n">ld50_bird</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ld50_bird_temp</span><span class="p">)</span>
+        <span class="n">Species_of_the_tested_bird_avian_ld50_temp</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+        <span class="n">Species_of_the_tested_bird_avian_ld50</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Species_of_the_tested_bird_avian_ld50_temp</span><span class="p">)</span>
+        <span class="n">bw_avian_ld50_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+        <span class="n">bw_avian_ld50</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bw_avian_ld50_temp</span><span class="p">)</span>
+        <span class="n">lc50_bird_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
+        <span class="n">lc50_bird</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lc50_bird_temp</span><span class="p">)</span>
+        <span class="n">Species_of_the_tested_bird_avian_lc50_temp</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">12</span><span class="p">])</span>
+        <span class="n">Species_of_the_tested_bird_avian_lc50</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Species_of_the_tested_bird_avian_lc50_temp</span><span class="p">)</span>
+        <span class="n">bw_avian_lc50_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">13</span><span class="p">])</span>
+        <span class="n">bw_avian_lc50</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bw_avian_lc50_temp</span><span class="p">)</span>
+        <span class="n">NOAEC_bird_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
+        <span class="n">NOAEC_bird</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NOAEC_bird_temp</span><span class="p">)</span>
+        <span class="n">Species_of_the_tested_bird_avian_NOAEC_temp</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">15</span><span class="p">])</span>
+        <span class="n">Species_of_the_tested_bird_avian_NOAEC</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Species_of_the_tested_bird_avian_NOAEC_temp</span><span class="p">)</span>
+        <span class="n">bw_avian_NOAEC_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">16</span><span class="p">])</span>
+        <span class="n">bw_avian_NOAEC</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bw_avian_NOAEC_temp</span><span class="p">)</span>
+        <span class="n">NOAEL_bird_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">17</span><span class="p">])</span>
+        <span class="n">NOAEL_bird</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NOAEL_bird_temp</span><span class="p">)</span>
+        <span class="n">Species_of_the_tested_bird_avian_NOAEL_temp</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">18</span><span class="p">])</span>
+        <span class="n">Species_of_the_tested_bird_avian_NOAEL</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Species_of_the_tested_bird_avian_NOAEL_temp</span><span class="p">)</span>
+        <span class="n">bw_avian_NOAEL_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">19</span><span class="p">])</span>
+        <span class="n">bw_avian_NOAEL</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bw_avian_NOAEL_temp</span><span class="p">)</span>
+        <span class="n">x_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">20</span><span class="p">])</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_temp</span><span class="p">)</span>
+        <span class="n">c_mamm_a_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">21</span><span class="p">])</span>
+        <span class="n">c_mamm_a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_mamm_a_temp</span><span class="p">)</span>
+        <span class="n">c_herp_a_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">22</span><span class="p">])</span>
+        <span class="n">c_herp_a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_herp_a_temp</span><span class="p">)</span>
+        <span class="n">bw_herp_a_sm_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">23</span><span class="p">])</span>
+        <span class="n">bw_herp_a_sm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bw_herp_a_sm_temp</span><span class="p">)</span>
+        <span class="n">wp_herp_a_sm_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">24</span><span class="p">])</span><span class="o">/</span><span class="mi">100</span>
+        <span class="n">wp_herp_a_sm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wp_herp_a_sm_temp</span><span class="p">)</span>
+        <span class="n">bw_herp_a_md_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">25</span><span class="p">])</span>
+        <span class="n">bw_herp_a_md</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bw_herp_a_md_temp</span><span class="p">)</span>
+        <span class="n">wp_herp_a_md_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">26</span><span class="p">])</span><span class="o">/</span><span class="mi">100</span>
+        <span class="n">wp_herp_a_md</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wp_herp_a_md_temp</span><span class="p">)</span>
+        <span class="n">bw_herp_a_lg_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">27</span><span class="p">])</span>
+        <span class="n">bw_herp_a_lg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bw_herp_a_lg_temp</span><span class="p">)</span>
+        <span class="n">wp_herp_a_lg_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">28</span><span class="p">])</span><span class="o">/</span><span class="mi">100</span>
+        <span class="n">wp_herp_a_lg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wp_herp_a_lg_temp</span><span class="p">)</span>
+
+        <span class="n">Input_header</span><span class="o">=</span><span class="s">&quot;&quot;&quot;&lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">                            &lt;br&gt;&lt;H3&gt;Batch Calculation of Iteration </span><span class="si">%s</span><span class="s">&lt;/H3&gt;</span>
+<span class="s">                        &lt;/div&gt;&quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="nb">iter</span><span class="p">)</span>
+
+        <span class="n">therps_obj_temp</span> <span class="o">=</span> <span class="n">therps_model</span><span class="o">.</span><span class="n">therps</span><span class="p">(</span><span class="s">&quot;batch&quot;</span><span class="p">,</span><span class="n">chem_name_temp</span><span class="p">,</span> <span class="n">use_temp</span><span class="p">,</span> <span class="n">formu_name_temp</span><span class="p">,</span> <span class="n">a_i_temp</span><span class="p">,</span> <span class="n">h_l_temp</span><span class="p">,</span> <span class="n">n_a_temp</span><span class="p">,</span> <span class="n">i_a_temp</span><span class="p">,</span> <span class="n">a_r_temp</span><span class="p">,</span> 
+                                              <span class="n">ld50_bird_temp</span><span class="p">,</span> <span class="n">lc50_bird_temp</span><span class="p">,</span> <span class="n">NOAEC_bird_temp</span><span class="p">,</span> <span class="n">NOAEL_bird_temp</span><span class="p">,</span> 
+                                              <span class="n">Species_of_the_tested_bird_avian_ld50_temp</span><span class="p">,</span> <span class="n">Species_of_the_tested_bird_avian_lc50_temp</span><span class="p">,</span> <span class="n">Species_of_the_tested_bird_avian_NOAEC_temp</span><span class="p">,</span> <span class="n">Species_of_the_tested_bird_avian_NOAEL_temp</span><span class="p">,</span>
+                                              <span class="n">bw_avian_ld50_temp</span><span class="p">,</span> <span class="n">bw_avian_lc50_temp</span><span class="p">,</span> <span class="n">bw_avian_NOAEC_temp</span><span class="p">,</span> <span class="n">bw_avian_NOAEL_temp</span><span class="p">,</span>
+                                              <span class="n">x_temp</span><span class="p">,</span> <span class="n">bw_herp_a_sm_temp</span><span class="p">,</span> <span class="n">bw_herp_a_md_temp</span><span class="p">,</span> <span class="n">bw_herp_a_lg_temp</span><span class="p">,</span> <span class="n">wp_herp_a_sm_temp</span><span class="p">,</span> <span class="n">wp_herp_a_md_temp</span><span class="p">,</span> <span class="n">wp_herp_a_lg_temp</span><span class="p">,</span> <span class="n">c_mamm_a_temp</span><span class="p">,</span> <span class="n">c_herp_a_temp</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">therps_obj_temp</span><span class="p">))</span>
+        <span class="n">table_all_out</span> <span class="o">=</span> <span class="n">therps_tables</span><span class="o">.</span><span class="n">table_all</span><span class="p">(</span><span class="n">therps_obj_temp</span><span class="p">)</span>
+        <span class="n">html_table_temp</span> <span class="o">=</span> <span class="n">Input_header</span> <span class="o">+</span> <span class="n">table_all_out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span>
+        <span class="n">out_html_all</span><span class="p">[</span><span class="nb">iter</span><span class="p">]</span><span class="o">=</span><span class="n">html_table_temp</span>
+
+        <span class="n">EEC_diet_herp_BL_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s">&#39;EEC_diet_herp_BL&#39;</span><span class="p">]</span>
+        <span class="n">EEC_diet_herp_BL_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_diet_herp_BL_temp</span><span class="p">)</span>
+        <span class="n">EEC_CRQ_herp_BL_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s">&#39;EEC_CRQ_herp_BL&#39;</span><span class="p">]</span>
+        <span class="n">EEC_CRQ_herp_BL_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_CRQ_herp_BL_temp</span><span class="p">)</span>
+        <span class="n">EEC_diet_herp_FR_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s">&#39;EEC_diet_herp_FR&#39;</span><span class="p">]</span>
+        <span class="n">EEC_diet_herp_FR_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_diet_herp_FR_temp</span><span class="p">)</span>
+        <span class="n">EEC_CRQ_herp_FR_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s">&#39;EEC_CRQ_herp_FR&#39;</span><span class="p">]</span>
+        <span class="n">EEC_CRQ_herp_FR_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_CRQ_herp_FR_temp</span><span class="p">)</span>
+        <span class="n">EEC_CRQ_herp_HM_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s">&#39;EEC_CRQ_herp_HM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_CRQ_herp_HM_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_CRQ_herp_HM_temp</span><span class="p">)</span>
+        <span class="n">EEC_diet_herp_IM_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s">&#39;EEC_diet_herp_IM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_diet_herp_IM_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_diet_herp_IM_temp</span><span class="p">)</span>
+        <span class="n">EEC_CRQ_herp_IM_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s">&#39;EEC_CRQ_herp_IM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_CRQ_herp_IM_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_CRQ_herp_IM_temp</span><span class="p">)</span>
+        <span class="n">EEC_diet_herp_TP_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s">&#39;EEC_diet_herp_TP&#39;</span><span class="p">]</span>
+        <span class="n">EEC_diet_herp_TP_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_diet_herp_TP_temp</span><span class="p">)</span>
+        <span class="n">EEC_CRQ_herp_TP_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s">&#39;EEC_CRQ_herp_TP&#39;</span><span class="p">]</span>
+        <span class="n">EEC_CRQ_herp_TP_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_CRQ_herp_TP_temp</span><span class="p">)</span>
+
+        <span class="n">EEC_ARQ_herp_BL_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s">&#39;EEC_ARQ_herp_BL&#39;</span><span class="p">]</span>
+        <span class="n">EEC_ARQ_herp_BL_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_ARQ_herp_BL_temp</span><span class="p">)</span>
+        <span class="n">EEC_ARQ_herp_FR_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s">&#39;EEC_ARQ_herp_FR&#39;</span><span class="p">]</span>
+        <span class="n">EEC_ARQ_herp_FR_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_ARQ_herp_FR_temp</span><span class="p">)</span>
+        <span class="n">EEC_diet_herp_HM_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s">&#39;EEC_diet_herp_HM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_diet_herp_HM_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_diet_herp_HM_temp</span><span class="p">)</span>
+        <span class="n">EEC_ARQ_herp_HM_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s">&#39;EEC_ARQ_herp_HM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_ARQ_herp_HM_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_ARQ_herp_HM_temp</span><span class="p">)</span>
+        <span class="n">EEC_ARQ_herp_IM_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s">&#39;EEC_ARQ_herp_IM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_ARQ_herp_IM_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_ARQ_herp_IM_temp</span><span class="p">)</span>
+        <span class="n">EEC_ARQ_herp_TP_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s">&#39;EEC_ARQ_herp_TP&#39;</span><span class="p">]</span>
+        <span class="n">EEC_ARQ_herp_TP_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_ARQ_herp_TP_temp</span><span class="p">)</span>
+
+
+        <span class="n">LD50_AD_sm_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;LD50_AD_sm&#39;</span><span class="p">]</span>
+        <span class="n">LD50_AD_sm_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LD50_AD_sm_temp</span><span class="p">)</span>
+        <span class="n">LD50_AD_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;LD50_AD_md&#39;</span><span class="p">]</span>
+        <span class="n">LD50_AD_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LD50_AD_md_temp</span><span class="p">)</span>
+        <span class="n">LD50_AD_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;LD50_AD_lg&#39;</span><span class="p">]</span>
+        <span class="n">LD50_AD_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LD50_AD_lg_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_BP_sm_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_BP_sm&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_BP_sm_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_BP_sm_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_BP_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_BP_md&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_BP_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_BP_md_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_BP_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_BP_lg&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_BP_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_BP_lg_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_BP_sm_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_BP_sm&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_BP_sm_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_BP_sm_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_BP_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_BP_md&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_BP_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_BP_md_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_BP_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_BP_lg&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_BP_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_BP_lg_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_FR_sm_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_FR_sm&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_FR_sm_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_FR_sm_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_FR_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_FR_md&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_FR_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_FR_md_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_FR_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_FR_lg&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_FR_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_FR_lg_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_FR_sm_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_FR_sm&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_FR_sm_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_FR_sm_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_FR_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_FR_md&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_FR_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_FR_md_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_FR_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_FR_lg&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_FR_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_FR_lg_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_HM_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_HM_md&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_HM_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_HM_md_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_HM_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_HM_lg&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_HM_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_HM_lg_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_HM_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_HM_md&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_HM_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_HM_md_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_HM_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_HM_lg&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_HM_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_HM_lg_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_IM_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_IM_md&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_IM_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_IM_md_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_IM_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_IM_lg&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_IM_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_IM_lg_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_IM_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_IM_md&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_IM_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_IM_md_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_IM_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_IM_lg&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_IM_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_IM_lg_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_TP_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_TP_md&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_TP_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_TP_md_temp</span><span class="p">)</span>
+        <span class="n">EEC_dose_TP_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;EEC_dose_TP_lg&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_TP_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_TP_lg_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_TP_md_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_TP_md&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_TP_md_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_TP_md_temp</span><span class="p">)</span>
+        <span class="n">ARQ_dose_TP_lg_temp</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;ARQ_dose_TP_lg&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_TP_lg_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_TP_lg_temp</span><span class="p">)</span>
+
+    <span class="c">##################################################################</span>
+    <span class="c">############average case##########################################</span>
+    <span class="c">##################################################################</span>
+        <span class="n">EEC_diet_herp_BL_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="s">&#39;EEC_diet_herp_BL&#39;</span><span class="p">]</span>
+        <span class="n">EEC_diet_herp_BL_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_diet_herp_BL_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_CRQ_herp_BL_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="s">&#39;EEC_CRQ_herp_BL&#39;</span><span class="p">]</span>
+        <span class="n">EEC_CRQ_herp_BL_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_CRQ_herp_BL_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_diet_herp_FR_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="s">&#39;EEC_diet_herp_FR&#39;</span><span class="p">]</span>
+        <span class="n">EEC_diet_herp_FR_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_diet_herp_FR_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_CRQ_herp_FR_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="s">&#39;EEC_CRQ_herp_FR&#39;</span><span class="p">]</span>
+        <span class="n">EEC_CRQ_herp_FR_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_CRQ_herp_FR_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_CRQ_herp_HM_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="s">&#39;EEC_CRQ_herp_HM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_CRQ_herp_HM_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_CRQ_herp_HM_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_diet_herp_IM_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="s">&#39;EEC_diet_herp_IM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_diet_herp_IM_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_diet_herp_IM_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_CRQ_herp_IM_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="s">&#39;EEC_CRQ_herp_IM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_CRQ_herp_IM_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_CRQ_herp_IM_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_diet_herp_TP_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="s">&#39;EEC_diet_herp_TP&#39;</span><span class="p">]</span>
+        <span class="n">EEC_diet_herp_TP_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_diet_herp_TP_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_CRQ_herp_TP_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="s">&#39;EEC_CRQ_herp_TP&#39;</span><span class="p">]</span>
+        <span class="n">EEC_CRQ_herp_TP_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_CRQ_herp_TP_temp_mean</span><span class="p">)</span>
+
+        <span class="n">EEC_ARQ_herp_BL_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s">&#39;EEC_ARQ_herp_BL&#39;</span><span class="p">]</span>
+        <span class="n">EEC_ARQ_herp_BL_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_ARQ_herp_BL_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_ARQ_herp_FR_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s">&#39;EEC_ARQ_herp_FR&#39;</span><span class="p">]</span>
+        <span class="n">EEC_ARQ_herp_FR_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_ARQ_herp_FR_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_diet_herp_HM_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s">&#39;EEC_diet_herp_HM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_diet_herp_HM_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_diet_herp_HM_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_ARQ_herp_HM_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s">&#39;EEC_ARQ_herp_HM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_ARQ_herp_HM_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_ARQ_herp_HM_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_ARQ_herp_IM_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s">&#39;EEC_ARQ_herp_IM&#39;</span><span class="p">]</span>
+        <span class="n">EEC_ARQ_herp_IM_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_ARQ_herp_IM_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_ARQ_herp_TP_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s">&#39;EEC_ARQ_herp_TP&#39;</span><span class="p">]</span>
+        <span class="n">EEC_ARQ_herp_TP_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_ARQ_herp_TP_temp_mean</span><span class="p">)</span>
+
+
+        <span class="n">LD50_AD_sm_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;LD50_AD_sm&#39;</span><span class="p">]</span>
+        <span class="n">LD50_AD_sm_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LD50_AD_sm_temp_mean</span><span class="p">)</span>
+        <span class="n">LD50_AD_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;LD50_AD_md&#39;</span><span class="p">]</span>
+        <span class="n">LD50_AD_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LD50_AD_md_temp_mean</span><span class="p">)</span>
+        <span class="n">LD50_AD_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;LD50_AD_lg&#39;</span><span class="p">]</span>
+        <span class="n">LD50_AD_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LD50_AD_lg_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_BP_sm_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_BP_sm&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_BP_sm_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_BP_sm_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_BP_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_BP_md&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_BP_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_BP_md_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_BP_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_BP_lg&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_BP_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_BP_lg_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_BP_sm_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_BP_sm&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_BP_sm_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_BP_sm_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_BP_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_BP_md&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_BP_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_BP_md_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_BP_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_BP_lg&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_BP_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_BP_lg_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_FR_sm_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_FR_sm&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_FR_sm_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_FR_sm_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_FR_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_FR_md&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_FR_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_FR_md_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_FR_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_FR_lg&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_FR_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_FR_lg_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_FR_sm_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_FR_sm&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_FR_sm_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_FR_sm_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_FR_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_FR_md&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_FR_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_FR_md_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_FR_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_FR_lg&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_FR_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_FR_lg_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_HM_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_HM_md&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_HM_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_HM_md_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_HM_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_HM_lg&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_HM_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_HM_lg_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_HM_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_HM_md&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_HM_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_HM_md_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_HM_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_HM_lg&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_HM_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_HM_lg_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_IM_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_IM_md&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_IM_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_IM_md_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_IM_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_IM_lg&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_IM_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_IM_lg_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_IM_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_IM_md&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_IM_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_IM_md_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_IM_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_IM_lg&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_IM_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_IM_lg_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_TP_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_TP_md&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_TP_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_TP_md_temp_mean</span><span class="p">)</span>
+        <span class="n">EEC_dose_TP_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;EEC_dose_TP_lg&#39;</span><span class="p">]</span>
+        <span class="n">EEC_dose_TP_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EEC_dose_TP_lg_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_TP_md_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_TP_md&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_TP_md_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_TP_md_temp_mean</span><span class="p">)</span>
+        <span class="n">ARQ_dose_TP_lg_temp_mean</span><span class="o">=</span><span class="n">table_all_out</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s">&#39;ARQ_dose_TP_lg&#39;</span><span class="p">]</span>
+        <span class="n">ARQ_dose_TP_lg_out_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ARQ_dose_TP_lg_temp_mean</span><span class="p">)</span>
+
+        <span class="n">jid_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">therps_obj_temp</span><span class="o">.</span><span class="n">jid</span><span class="p">)</span>
+        <span class="n">therps_obj_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">therps_obj_temp</span><span class="p">)</span>    
+        <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">jid_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">therps_obj_temp</span><span class="o">.</span><span class="n">jid</span><span class="p">)</span>
+        <span class="c"># return html_table_temp  </span>
+
+<span class="c">######Output###########</span>
+</div>
+<div class="viewcode-block" id="loop_html"><a class="viewcode-back" href="../../../models.therps.html#models.therps.therps_batchoutput.loop_html">[docs]</a><span class="k">def</span> <span class="nf">loop_html</span><span class="p">(</span><span class="n">thefile</span><span class="p">):</span>
+    <span class="c"># reader = csv.reader(thefile.file.read().splitlines())</span>
+    <span class="c"># header = reader.next()</span>
+    <span class="c"># exclud_list = [&#39;&#39;, &quot; &quot;, &quot;  &quot;, &quot;   &quot;, &quot;    &quot;, &quot;     &quot;, &quot;      &quot;, &quot;       &quot;, &quot;        &quot;, &quot;         &quot;, &quot;          &quot;]</span>
+    <span class="c"># i=1</span>
+
+    <span class="c"># iter_html=&quot;&quot;</span>
+    <span class="c"># for row in reader:</span>
+    <span class="c">#     if row[3] in exclud_list:</span>
+    <span class="c">#         break</span>
+    <span class="c">#     iter_html = iter_html +html_table(row,i)</span>
+    <span class="c">#     i=i+1</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">thefile</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">job_q</span><span class="o">.</span><span class="n">put</span><span class="p">([</span><span class="n">row</span><span class="p">,</span> <span class="n">i</span><span class="p">])</span>
+        <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+
+    <span class="n">all_threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">html_table</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">job_q</span><span class="p">,</span> <span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">thread_count</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">thread_single</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
+        <span class="n">thread_single</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">thread_single</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
+        <span class="n">job_q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">thread_single</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
+        <span class="n">thread_single</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+    <span class="n">out_html_all_sort</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">out_html_all</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+
+    <span class="n">sum_1</span><span class="o">=</span><span class="n">therps_tables</span><span class="o">.</span><span class="n">table_sum_1</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">a_i_disp</span><span class="p">,</span> <span class="n">h_l</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">)</span>
+    <span class="n">sum_2</span><span class="o">=</span><span class="n">therps_tables</span><span class="o">.</span><span class="n">table_sum_2</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">,</span> <span class="n">lc50_bird</span><span class="p">,</span> <span class="n">NOAEC_bird</span><span class="p">,</span> <span class="n">NOAEL_bird</span><span class="p">,</span> <span class="n">bw_avian_ld50</span><span class="p">,</span> <span class="n">bw_avian_lc50</span><span class="p">,</span> <span class="n">bw_avian_NOAEC</span><span class="p">,</span> <span class="n">bw_avian_NOAEL</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">sum_3</span><span class="o">=</span><span class="n">therps_tables</span><span class="o">.</span><span class="n">table_sum_3</span><span class="p">(</span><span class="n">bw_herp_a_sm</span><span class="p">,</span> <span class="n">bw_herp_a_md</span><span class="p">,</span> <span class="n">bw_herp_a_lg</span><span class="p">,</span> <span class="n">wp_herp_a_sm</span><span class="p">,</span> <span class="n">wp_herp_a_md</span><span class="p">,</span> <span class="n">wp_herp_a_lg</span><span class="p">,</span> <span class="n">c_mamm_a</span><span class="p">,</span> <span class="n">c_herp_a</span><span class="p">)</span>
+    <span class="n">sum_4</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;br&gt;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section3&quot;&gt;&lt;span&gt;&lt;/span&gt;T-herps Batch outputs:&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="n">sum_5</span><span class="o">=</span><span class="n">therps_tables</span><span class="o">.</span><span class="n">table_sum_5</span><span class="p">(</span><span class="s">&quot;Upper Bound Kenaga&quot;</span><span class="p">,</span> <span class="n">EEC_diet_herp_BL_out</span><span class="p">,</span> <span class="n">EEC_ARQ_herp_BL_out</span><span class="p">,</span> <span class="n">EEC_diet_herp_FR_out</span><span class="p">,</span> <span class="n">EEC_ARQ_herp_FR_out</span><span class="p">,</span> <span class="n">EEC_diet_herp_HM_out</span><span class="p">,</span> <span class="n">EEC_ARQ_herp_HM_out</span><span class="p">,</span> <span class="n">EEC_diet_herp_IM_out</span><span class="p">,</span> <span class="n">EEC_ARQ_herp_IM_out</span><span class="p">,</span> <span class="n">EEC_diet_herp_TP_out</span><span class="p">,</span> <span class="n">EEC_ARQ_herp_TP_out</span><span class="p">)</span>
+    <span class="n">sum_6</span><span class="o">=</span><span class="n">therps_tables</span><span class="o">.</span><span class="n">table_sum_6</span><span class="p">(</span><span class="s">&quot;Upper Bound Kenaga&quot;</span><span class="p">,</span> <span class="n">EEC_diet_herp_BL_out</span><span class="p">,</span> <span class="n">EEC_CRQ_herp_BL_out</span><span class="p">,</span> <span class="n">EEC_diet_herp_FR_out</span><span class="p">,</span> <span class="n">EEC_CRQ_herp_FR_out</span><span class="p">,</span> <span class="n">EEC_diet_herp_HM_out</span><span class="p">,</span> <span class="n">EEC_CRQ_herp_HM_out</span><span class="p">,</span> <span class="n">EEC_diet_herp_IM_out</span><span class="p">,</span> <span class="n">EEC_CRQ_herp_IM_out</span><span class="p">,</span> <span class="n">EEC_diet_herp_TP_out</span><span class="p">,</span> <span class="n">EEC_CRQ_herp_TP_out</span><span class="p">)</span>
+    <span class="n">sum_7</span><span class="o">=</span><span class="n">therps_tables</span><span class="o">.</span><span class="n">table_sum_7</span><span class="p">(</span><span class="s">&quot;Upper Bound Kenaga&quot;</span><span class="p">,</span> <span class="n">bw_herp_a_sm</span><span class="p">,</span> <span class="n">bw_herp_a_md</span><span class="p">,</span> <span class="n">bw_herp_a_lg</span><span class="p">,</span> <span class="n">LD50_AD_sm_out</span><span class="p">,</span> <span class="n">LD50_AD_md_out</span><span class="p">,</span> <span class="n">LD50_AD_lg_out</span><span class="p">,</span>
+                  <span class="n">EEC_dose_BP_sm_out</span><span class="p">,</span> <span class="n">EEC_dose_BP_md_out</span><span class="p">,</span> <span class="n">EEC_dose_BP_lg_out</span><span class="p">,</span> <span class="n">ARQ_dose_BP_sm_out</span><span class="p">,</span> <span class="n">ARQ_dose_BP_md_out</span><span class="p">,</span> <span class="n">ARQ_dose_BP_lg_out</span><span class="p">,</span>
+                  <span class="n">EEC_dose_FR_sm_out</span><span class="p">,</span> <span class="n">EEC_dose_FR_md_out</span><span class="p">,</span> <span class="n">EEC_dose_FR_lg_out</span><span class="p">,</span> <span class="n">ARQ_dose_FR_sm_out</span><span class="p">,</span> <span class="n">ARQ_dose_FR_md_out</span><span class="p">,</span> <span class="n">ARQ_dose_FR_lg_out</span><span class="p">,</span>
+                  <span class="n">EEC_dose_HM_md_out</span><span class="p">,</span> <span class="n">EEC_dose_HM_lg_out</span><span class="p">,</span> <span class="n">ARQ_dose_HM_md_out</span><span class="p">,</span> <span class="n">ARQ_dose_HM_lg_out</span><span class="p">,</span>
+                  <span class="n">EEC_dose_IM_md_out</span><span class="p">,</span> <span class="n">EEC_dose_IM_lg_out</span><span class="p">,</span> <span class="n">ARQ_dose_IM_md_out</span><span class="p">,</span> <span class="n">ARQ_dose_IM_lg_out</span><span class="p">,</span>
+                  <span class="n">EEC_dose_TP_md_out</span><span class="p">,</span> <span class="n">EEC_dose_TP_lg_out</span><span class="p">,</span> <span class="n">ARQ_dose_TP_md_out</span><span class="p">,</span> <span class="n">ARQ_dose_TP_lg_out</span><span class="p">)</span>
+
+    <span class="n">sum_8</span><span class="o">=</span><span class="n">therps_tables</span><span class="o">.</span><span class="n">table_sum_5</span><span class="p">(</span><span class="s">&quot;Mean Kenaga&quot;</span><span class="p">,</span> <span class="n">EEC_diet_herp_BL_out_mean</span><span class="p">,</span> <span class="n">EEC_ARQ_herp_BL_out_mean</span><span class="p">,</span> <span class="n">EEC_diet_herp_FR_out_mean</span><span class="p">,</span> <span class="n">EEC_ARQ_herp_FR_out_mean</span><span class="p">,</span> <span class="n">EEC_diet_herp_HM_out_mean</span><span class="p">,</span> <span class="n">EEC_ARQ_herp_HM_out_mean</span><span class="p">,</span> <span class="n">EEC_diet_herp_IM_out_mean</span><span class="p">,</span> <span class="n">EEC_ARQ_herp_IM_out_mean</span><span class="p">,</span> <span class="n">EEC_diet_herp_TP_out_mean</span><span class="p">,</span> <span class="n">EEC_ARQ_herp_TP_out_mean</span><span class="p">)</span>
+    <span class="n">sum_9</span><span class="o">=</span><span class="n">therps_tables</span><span class="o">.</span><span class="n">table_sum_6</span><span class="p">(</span><span class="s">&quot;Mean Kenaga&quot;</span><span class="p">,</span> <span class="n">EEC_diet_herp_BL_out_mean</span><span class="p">,</span> <span class="n">EEC_CRQ_herp_BL_out_mean</span><span class="p">,</span> <span class="n">EEC_diet_herp_FR_out_mean</span><span class="p">,</span> <span class="n">EEC_CRQ_herp_FR_out_mean</span><span class="p">,</span> <span class="n">EEC_diet_herp_HM_out_mean</span><span class="p">,</span> <span class="n">EEC_CRQ_herp_HM_out_mean</span><span class="p">,</span> <span class="n">EEC_diet_herp_IM_out_mean</span><span class="p">,</span> <span class="n">EEC_CRQ_herp_IM_out_mean</span><span class="p">,</span> <span class="n">EEC_diet_herp_TP_out_mean</span><span class="p">,</span> <span class="n">EEC_CRQ_herp_TP_out_mean</span><span class="p">)</span>
+    <span class="n">sum_10</span><span class="o">=</span><span class="n">therps_tables</span><span class="o">.</span><span class="n">table_sum_7</span><span class="p">(</span><span class="s">&quot;Mean Kenaga&quot;</span><span class="p">,</span> <span class="n">bw_herp_a_sm</span><span class="p">,</span> <span class="n">bw_herp_a_md</span><span class="p">,</span> <span class="n">bw_herp_a_lg</span><span class="p">,</span> <span class="n">LD50_AD_sm_out_mean</span><span class="p">,</span> <span class="n">LD50_AD_md_out_mean</span><span class="p">,</span> <span class="n">LD50_AD_lg_out_mean</span><span class="p">,</span>
+                  <span class="n">EEC_dose_BP_sm_out_mean</span><span class="p">,</span> <span class="n">EEC_dose_BP_md_out_mean</span><span class="p">,</span> <span class="n">EEC_dose_BP_lg_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_BP_sm_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_BP_md_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_BP_lg_out_mean</span><span class="p">,</span>
+                  <span class="n">EEC_dose_FR_sm_out_mean</span><span class="p">,</span> <span class="n">EEC_dose_FR_md_out_mean</span><span class="p">,</span> <span class="n">EEC_dose_FR_lg_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_FR_sm_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_FR_md_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_FR_lg_out_mean</span><span class="p">,</span>
+                  <span class="n">EEC_dose_HM_md_out_mean</span><span class="p">,</span> <span class="n">EEC_dose_HM_lg_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_HM_md_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_HM_lg_out_mean</span><span class="p">,</span>
+                  <span class="n">EEC_dose_IM_md_out_mean</span><span class="p">,</span> <span class="n">EEC_dose_IM_lg_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_IM_md_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_IM_lg_out_mean</span><span class="p">,</span>
+                  <span class="n">EEC_dose_TP_md_out_mean</span><span class="p">,</span> <span class="n">EEC_dose_TP_lg_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_TP_md_out_mean</span><span class="p">,</span> <span class="n">ARQ_dose_TP_lg_out_mean</span><span class="p">)</span>
+    <span class="n">html_end</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sum_1</span><span class="o">+</span><span class="n">sum_2</span><span class="o">+</span><span class="n">sum_3</span><span class="o">+</span><span class="n">sum_4</span><span class="o">+</span><span class="n">sum_7</span><span class="o">+</span><span class="n">sum_5</span><span class="o">+</span><span class="n">sum_6</span><span class="o">+</span> <span class="n">sum_10</span><span class="o">+</span><span class="n">sum_8</span><span class="o">+</span><span class="n">sum_9</span><span class="o">+</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_html_all_sort</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">+</span><span class="n">html_end</span>
+    <span class="c"># return sum_1+sum_2+sum_3+iter_html</span>
+
+
+</div>
+<div class="viewcode-block" id="therpsBatchOutputPage"><a class="viewcode-back" href="../../../models.therps.html#models.therps.therps_batchoutput.therpsBatchOutputPage">[docs]</a><span class="k">def</span> <span class="nf">therpsBatchOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">thefile</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">[</span><span class="s">&#39;upfile&#39;</span><span class="p">]</span>
+    <span class="n">iter_html</span><span class="o">=</span><span class="n">loop_html</span><span class="p">(</span><span class="n">thefile</span><span class="p">)</span>
+ 
+    <span class="k">return</span> <span class="n">iter_html</span><span class="p">,</span> <span class="n">therps_obj_all</span><span class="p">,</span> <span class="n">jid_batch</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

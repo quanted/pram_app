@@ -1,8 +1,12 @@
+"""
+.. module:: agdrift_trex_input
+   :synopsis: A useful module indeed.
+"""
+
 from django.template.loader import render_to_string
 
-
-def agdrift_trexInputPage(request, model='', header=''):
-    import agdrift_trex_parameters,agdrift_trex_tooltips
+def agdrift_trexInputPage(request, model='', header='', formData=None):
+    from models.agdrift import agdrift_parameters
     from models.trex2 import trex2_parameters
 
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
@@ -16,9 +20,9 @@ def agdrift_trexInputPage(request, model='', header=''):
                 }
             })
     html = html + """<br><table class="input_table tab tab_Agdrift">"""
-    html = html + str(agdrift_trex_parameters.agdriftInp())
+    html = html + str(agdrift_parameters.AgdriftInp(formData))
     html = html + """<br><table class="input_table tab tab_Chemical" style="display:none">"""
-    html = html + str(trex2_parameters.trexInp_chem())
+    html = html + str(trex2_parameters.trexInp_chem(formData))
     html = html + """</table><table class="input_table tab tab_Application tab_Chemical" style="display:none">
                                 <tr><th colspan="2" scope="col"><label for="id_noa">Number of Applications:</label></th>
                                     <td colspan="3" scope="col"><select name="noa" id="id_noa">
@@ -34,14 +38,16 @@ def agdrift_trexInputPage(request, model='', header=''):
                                                      <td><input type="text" size="5" name="day1" id="id_day1" value="0" disabled/></td>
                                 </tr>""" 
     html = html + """</table><table class="input_table tab tab_Avian" style="display:none">"""
-    html = html + str(trex2_parameters.trexInp_bird())
+    html = html + str(trex2_parameters.trexInp_bird(formData))
     html = html + """</table><table class="input_table tab tab_Mammal" style="display:none">"""
-    html = html + str(trex2_parameters.trexInp_mammal())
+    html = html + str(trex2_parameters.trexInp_mammal(formData))
     html = html + render_to_string('04uberinput_tabbed_end.html', {'sub_title': 'Submit'})
     # Check if tooltips dictionary exists
-    if hasattr(agdrift_trex_tooltips, 'tooltips'):
+    try:
+        import agdrift_trex_tooltips
+        hasattr(agdrift_trex_tooltips, 'tooltips')
         tooltips = agdrift_trex_tooltips.tooltips
-    else:
+    except:
         tooltips = {}
     html = html + render_to_string('05ubertext_tooltips_right.html', {'tooltips':tooltips})
 

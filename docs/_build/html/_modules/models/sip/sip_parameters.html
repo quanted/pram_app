@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.sip.sip_parameters &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.sip.sip_parameters</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: sip_parameters</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+<span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">validators</span>
+<span class="kn">from</span> <span class="nn">models.forms</span> <span class="kn">import</span> <span class="n">validation</span>
+
+<span class="n">Species_of_the_tested_bird_CHOICES</span><span class="o">=</span><span class="p">((</span><span class="s">&#39;0&#39;</span><span class="p">,</span><span class="s">&#39;Make a selection&#39;</span><span class="p">),(</span><span class="s">&#39;178&#39;</span><span class="p">,</span><span class="s">&#39;Northern bobwhite quail&#39;</span><span class="p">),(</span><span class="s">&#39;1580&#39;</span><span class="p">,</span><span class="s">&#39;Mallard duck&#39;</span><span class="p">),(</span><span class="s">&#39;1&#39;</span><span class="p">,</span><span class="s">&#39;Other&#39;</span><span class="p">))</span>
+<span class="n">Species_of_the_bird_NOAEC_CHOICES</span><span class="o">=</span><span class="p">((</span><span class="s">&#39;0&#39;</span><span class="p">,</span><span class="s">&#39;Make a selection&#39;</span><span class="p">),(</span><span class="s">&#39;1&#39;</span><span class="p">,</span><span class="s">&#39;Northern bobwhite quail NOAEC&#39;</span><span class="p">),(</span><span class="s">&#39;2&#39;</span><span class="p">,</span><span class="s">&#39;Mallard duck NOAEC&#39;</span><span class="p">),(</span><span class="s">&#39;3&#39;</span><span class="p">,</span><span class="s">&#39;&quot;Other&quot; Bird species NOAEC&#39;</span><span class="p">))</span>
+<span class="n">Species_of_the_tested_mamm_CHOICES</span><span class="o">=</span><span class="p">((</span><span class="s">&#39;0&#39;</span><span class="p">,</span><span class="s">&#39;Make a selection&#39;</span><span class="p">),(</span><span class="s">&#39;350&#39;</span><span class="p">,</span><span class="s">&#39;Laboratory rat&#39;</span><span class="p">),(</span><span class="s">&#39;1&#39;</span><span class="p">,</span><span class="s">&#39;Other&#39;</span><span class="p">))</span>
+<span class="c">#SELECT_RECEPTOR = ((&#39;Avian&#39;,&#39;Avian&#39;),(&#39;Mammalian&#39;,&#39;Mammalian&#39;),(&#39;Both&#39;,&#39;Both&#39;))</span>
+
+
+<div class="viewcode-block" id="SipInp"><a class="viewcode-back" href="../../../models.sip.html#models.sip.sip_parameters.SipInp">[docs]</a><span class="k">class</span> <span class="nc">SipInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> 
+            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Quinoxyfen&#39;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
+    <span class="n">solubility</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Solubility&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mf">0.128</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">ld50_m</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Mammalian LD&lt;sub&gt;50&lt;/sub&gt; (mg/kg-bw)&#39;</span><span class="p">),</span> 
+            <span class="n">initial</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">m_species</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Species of the tested mammal&#39;</span><span class="p">,</span>
+            <span class="n">choices</span><span class="o">=</span><span class="n">Species_of_the_tested_mamm_CHOICES</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Laboratory rat&#39;</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_choicefield</span><span class="p">])</span>
+    <span class="n">bw_rat</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body weight of the tested mammal (g)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">bwm_other</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body weight of the &quot;other&quot; mammal (g)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">aw_mamm</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body weight of assessed mammal (g)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">NOAEL</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Mammalian NOAEL (mg/kg-bw)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">ld50_a</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Avian LD&lt;sub&gt;50&lt;/sub&gt; (mg/kg-bw) of the tested bird&#39;</span><span class="p">),</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mi">2292</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">b_species</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Species of the tested bird with LD&lt;sub&gt;50&lt;/sub&gt; data&#39;</span><span class="p">),</span>
+            <span class="n">choices</span><span class="o">=</span><span class="n">Species_of_the_tested_bird_CHOICES</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Mallard duck&#39;</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_choicefield</span><span class="p">])</span>
+    <span class="n">bw_quail</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Weight of the tested bird (g)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span> <span class="mi">178</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">bw_duck</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Weight of the tested bird (g)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mi">1580</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">bwb_other</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Weight of the &quot;other&quot; bird (g)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">aw_bird</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body weight of assessed bird (g)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">mineau_scaling_factor</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Mineau scaling factor&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mf">1.15</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthanequalto1</span><span class="p">])</span>
+    
+    <span class="c"># NOAEC = forms.ChoiceField(required=True,label=&#39;Species with NOAEC value&#39;, choices=Species_of_the_bird_NOAEC_CHOICES, initial=&#39;Make a selection&#39;)</span>
+
+    <span class="n">NOAEC_species</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Species of the tested bird with NOAEC data&#39;</span><span class="p">),</span>
+            <span class="n">choices</span><span class="o">=</span><span class="n">Species_of_the_bird_NOAEC_CHOICES</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Mallard duck NOAEC&#39;</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_choicefield</span><span class="p">])</span>
+    <span class="n">NOAEC_d</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Mallard duck NOAEC (mg/kg-diet)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mi">465</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">NOAEC_q</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Northern bobwhite quail NOAEC (mg/kg-diet)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mi">435</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">NOAEC_o</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;&quot;Other&quot; Bird species NOAEC (mg/kg-diet)&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="c"># NOAEC_o2 = forms.FloatField(required=True, label=mark_safe(&#39;&quot;2&lt;sup&gt;nd&lt;/sup&gt; Other&quot; Bird species NOAEC (mg/kg-diet)&#39;), initial=0)</span>
+
+<span class="c">#  select_receptor = forms.ChoiceField(required=True, choices=SELECT_RECEPTOR, initial=&#39;Both&#39;)</span>
+<span class="c">#  body_weight_of_bird = forms.FloatField(required=True, label=&#39;Body weight of bird (kg)&#39;, initial=&#39;4&#39;)</span>
+<span class="c">#  body_weight_of_mammal = forms.FloatField(required=True,label=&#39;Body weight of mammal (kg)&#39;, initial=&#39;5&#39;)</span>
+<span class="c">#  body_weight_of_the_assessed_bird = forms.FloatField(required=True, label=&#39;Body weight of assessed bird (g)&#39;, initial=&#39;8&#39;)</span>
+<span class="c">#  body_weight_of_the_assessed_mammal = forms.FloatField(required=True, label=&#39;Body weight of assessed mammal (kg)&#39;, initial=&#39;5&#39;)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

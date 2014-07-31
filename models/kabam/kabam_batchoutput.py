@@ -1,3 +1,8 @@
+"""
+.. module:: kabam_batchoutput
+   :synopsis: A useful module indeed.
+"""
+
 from django.views.decorators.http import require_POST
 from StringIO import StringIO
 import kabam_model, kabam_tables

@@ -1,3 +1,8 @@
+"""
+.. module:: rice_qaqc
+   :synopsis: A useful module indeed.
+"""
+
 import rice_model
 import os
 import unittest

@@ -1,3 +1,8 @@
+"""
+.. module:: przm5_tables
+   :synopsis: A useful module indeed.
+"""
+
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
 import przm5_model

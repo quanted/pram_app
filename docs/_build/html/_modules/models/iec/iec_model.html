@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.iec.iec_model &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.iec.iec_model</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: iec_model</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">rest_funcs</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">keys_Picloud_S3</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c">############Provide the key and connect to EC2####################</span>
+<span class="n">api_key</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_key</span>
+<span class="n">api_secretkey</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_secretkey</span>
+<span class="n">base64string</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">encodestring</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_secretkey</span><span class="p">))[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">http_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Authorization&#39;</span> <span class="p">:</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">base64string</span><span class="p">,</span> <span class="s">&#39;Content-Type&#39;</span> <span class="p">:</span> <span class="s">&#39;application/json&#39;</span><span class="p">}</span>
+<span class="n">url_part1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span>
+<span class="c">###########################################################################</span>
+
+<div class="viewcode-block" id="iec"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_model.iec">[docs]</a><span class="k">class</span> <span class="nc">iec</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_variables</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">run_methods</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">run_type</span><span class="o">=</span><span class="s">&#39;single&#39;</span><span class="p">,</span><span class="n">dose_response</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">LC50</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">vars_dict</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_default_variables</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">set_variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">vars_dict</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">vars_dict</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_variables</span><span class="p">(</span><span class="n">run_type</span><span class="p">,</span><span class="n">dose_response</span><span class="p">,</span><span class="n">LC50</span><span class="p">,</span><span class="n">threshold</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">string_rep</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">string_rep</span> <span class="o">=</span> <span class="n">string_rep</span> <span class="o">+</span> <span class="s">&quot;dose_response = </span><span class="si">%.2e</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">dose_response</span>
+        <span class="n">string_rep</span> <span class="o">=</span> <span class="n">string_rep</span> <span class="o">+</span> <span class="s">&quot;LC50 = </span><span class="si">%.2e</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">LC50</span>
+        <span class="n">string_rep</span> <span class="o">=</span> <span class="n">string_rep</span> <span class="o">+</span> <span class="s">&quot;threshold = </span><span class="si">%.2e</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
+        <span class="k">return</span> <span class="n">string_rep</span>
+
+
+<div class="viewcode-block" id="iec.set_default_variables"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_model.iec.set_default_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_default_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span> <span class="o">=</span> <span class="s">&quot;single&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dose_response</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">LC50</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c">#</span>
+        <span class="c">#&quot;_out&quot; need to be added to ea. fun. as expection catching</span>
+        <span class="c">#</span>
+</div>
+<div class="viewcode-block" id="iec.set_variables"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_model.iec.set_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_type</span><span class="p">,</span> <span class="n">dose_response</span><span class="p">,</span> <span class="n">LC50</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_type</span> <span class="o">=</span> <span class="n">run_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dose_response</span> <span class="o">=</span> <span class="n">dose_response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">LC50</span> <span class="o">=</span> <span class="n">LC50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+
+        <span class="n">all_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;dose_response&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">dose_response</span><span class="p">,</span> <span class="s">&quot;LC50&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">LC50</span><span class="p">,</span> <span class="s">&quot;threshold&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">all_dic</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;/iec/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> 
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">http_headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">output_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">output_val</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="iec.set_unit_testing_variables"><a class="viewcode-back" href="../../../models.iec.html#models.iec.iec_model.iec.set_unit_testing_variables">[docs]</a>    <span class="k">def</span> <span class="nf">set_unit_testing_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">z_score_f_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">F8_f_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">chance_f_out_expected</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

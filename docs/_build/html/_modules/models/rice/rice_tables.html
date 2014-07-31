@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.rice.rice_tables &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.rice.rice_tables</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: rice_tables</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">Template</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+<span class="kn">import</span> <span class="nn">rice_model</span><span class="o">,</span><span class="nn">rice_parameters</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&quot;RiceTables&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="getheaderpvu"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.getheaderpvu">[docs]</a><span class="k">def</span> <span class="nf">getheaderpvu</span><span class="p">():</span>
+	<span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">,</span> <span class="s">&quot;Units&quot;</span><span class="p">]</span>
+	<span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="getheaderpvuqaqc"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.getheaderpvuqaqc">[docs]</a><span class="k">def</span> <span class="nf">getheaderpvuqaqc</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">,</span> <span class="s">&quot;Expected-Value&quot;</span><span class="p">,</span> <span class="s">&quot;Units&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="getheadersum"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.getheadersum">[docs]</a><span class="k">def</span> <span class="nf">getheadersum</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Mean&quot;</span><span class="p">,</span> <span class="s">&quot;Std&quot;</span><span class="p">,</span> <span class="s">&quot;Min&quot;</span><span class="p">,</span> <span class="s">&quot;Max&quot;</span><span class="p">,</span> <span class="s">&quot;Unit&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="gethtmlrowsfromcols"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.gethtmlrowsfromcols">[docs]</a><span class="k">def</span> <span class="nf">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headings</span><span class="p">):</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">heading</span><span class="p">]</span> <span class="k">for</span> <span class="n">heading</span> <span class="ow">in</span> <span class="n">headings</span><span class="p">]</span>
+
+    <span class="c"># get the length of the longest column</span>
+    <span class="n">max_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="c"># padding the short columns with None</span>
+        <span class="n">col</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">None</span><span class="p">,]</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">col</span><span class="p">))</span>
+
+    <span class="c"># Then rotate the structure...</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_len</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">rows</span>
+</div>
+<div class="viewcode-block" id="getdjtemplate"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.getdjtemplate">[docs]</a><span class="k">def</span> <span class="nf">getdjtemplate</span><span class="p">():</span>
+    <span class="n">dj_template</span> <span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;table class=&quot;out_&quot;&gt;</span>
+<span class="s">    {# headings #}</span>
+<span class="s">        &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or heading in headings %}</span>
+<span class="s">            &lt;th&gt;{{ heading }}&lt;/th&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">        &lt;/tr&gt;</span>
+<span class="s">    {# data #}</span>
+<span class="s">    {</span><span class="si">% f</span><span class="s">or row in data %}</span>
+<span class="s">    &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or val in row %}</span>
+<span class="s">        &lt;td&gt;{{ val|default:&#39;&#39; }}&lt;/td&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/tr&gt;</span>
+<span class="s">    {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/table&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dj_template</span>
+</div>
+<div class="viewcode-block" id="gett1data"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.gett1data">[docs]</a><span class="k">def</span> <span class="nf">gett1data</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s">&#39;Mass applied to patty&#39;</span><span class="p">,</span><span class="s">&#39;Area of patty&#39;</span><span class="p">,</span><span class="s">&#39;Sediment Depth&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Sediment bulk density, &amp;#961;&lt;sub&gt;b&lt;/sub&gt;&#39;</span><span class="p">),</span><span class="s">&#39;Water column depth&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Sediment porosity, K&lt;sub&gt;d&lt;/sub&gt;&#39;</span><span class="p">),</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Water-Sediment partitioning coefficient, K&lt;sub&gt;d&lt;/sub&gt;&#39;</span><span class="p">)],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">chemical_name</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.4f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">mai</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">dsed</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">pb</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">dw</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.4f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">osed</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">kd</span><span class="p">],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;kg&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;m&lt;sup&gt;2&lt;/sup&gt;&#39;</span><span class="p">),</span><span class="s">&#39;m&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;kg/m&lt;sup&gt;3&lt;/sup&gt;&#39;</span><span class="p">),</span><span class="s">&#39;m&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;L/kg&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett1dataqaqc"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.gett1dataqaqc">[docs]</a><span class="k">def</span> <span class="nf">gett1dataqaqc</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s">&#39;Mass applied to patty&#39;</span><span class="p">,</span><span class="s">&#39;Area of patty&#39;</span><span class="p">,</span><span class="s">&#39;Sediment Depth&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Sediment bulk density, &amp;#961;&lt;sub&gt;b&lt;/sub&gt;&#39;</span><span class="p">),</span><span class="s">&#39;Water column depth&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Sediment porosity, K&lt;sub&gt;d&lt;/sub&gt;&#39;</span><span class="p">),</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Water-Sediment partitioning coefficient, K&lt;sub&gt;d&lt;/sub&gt;&#39;</span><span class="p">)],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">chemical_name</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">mai</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">a</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">dsed</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">pb</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">dw</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">osed</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">kd</span><span class="p">],</span>
+        <span class="s">&quot;Expected-Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">chemical_name_expected</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">mai</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">a</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">dsed</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">pb</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">dw</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">osed</span><span class="p">,</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">kd</span><span class="p">],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;kg&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;m&lt;sup&gt;2&lt;/sup&gt;&#39;</span><span class="p">),</span><span class="s">&#39;m&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;kg/m&lt;sup&gt;3&lt;/sup&gt;&#39;</span><span class="p">),</span><span class="s">&#39;m&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;L/kg&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett2data"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.gett2data">[docs]</a><span class="k">def</span> <span class="nf">gett2data</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Sediment Mass&#39;</span><span class="p">,</span> <span class="s">&#39;Water Column Volume&#39;</span><span class="p">,</span> <span class="s">&#39;Mass per unit area&#39;</span><span class="p">,</span> <span class="s">&#39;Water Concentration&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">msed</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">vw</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.4f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">mai1</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.4f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">cw</span><span class="p">,],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;kg&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;m&lt;sup&gt;3&lt;/sup&gt;&#39;</span><span class="p">),</span> <span class="s">&#39;kg/ha&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;&amp;#956;g/L&#39;</span><span class="p">),],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett2dataqaqc"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.gett2dataqaqc">[docs]</a><span class="k">def</span> <span class="nf">gett2dataqaqc</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Sediment Mass&#39;</span><span class="p">,</span> <span class="s">&#39;Water Column Volume&#39;</span><span class="p">,</span> <span class="s">&#39;Mass per unit area&#39;</span><span class="p">,</span> <span class="s">&#39;Water Concentration&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">msed</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">vw</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.4f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">mai1</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.4f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">cw</span><span class="p">,],</span>
+        <span class="s">&quot;Expected-Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">msed_expected</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">vw_expected</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.4f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">mai1_expected</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%.4f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">rice_obj</span><span class="o">.</span><span class="n">cw_expected</span><span class="p">,],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;kg&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;m&lt;sup&gt;3&lt;/sup&gt;&#39;</span><span class="p">),</span> <span class="s">&#39;kg/ha&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;&amp;#956;g/L&#39;</span><span class="p">),],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gettsumdata"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.gettsumdata">[docs]</a><span class="k">def</span> <span class="nf">gettsumdata</span><span class="p">(</span><span class="n">mai</span><span class="p">,</span> <span class="n">dsed</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">pb</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span> <span class="n">osed</span><span class="p">,</span> <span class="n">kd</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Mass applied to patty&#39;</span><span class="p">,</span><span class="s">&#39;Area of patty&#39;</span><span class="p">,</span><span class="s">&#39;Sediment Depth&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Sediment bulk density, &amp;#961;&lt;sub&gt;b&lt;/sub&gt;&#39;</span><span class="p">),</span><span class="s">&#39;Water column depth&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Sediment porosity, K&lt;sub&gt;d&lt;/sub&gt;&#39;</span><span class="p">),</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Water-Sediment partitioning coefficient, K&lt;sub&gt;d&lt;/sub&gt;&#39;</span><span class="p">)],</span>
+        <span class="s">&quot;Mean&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mai</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dsed</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pb</span><span class="p">),</span> 
+                 <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dw</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">osed</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">kd</span><span class="p">)],</span>
+        <span class="s">&quot;Std&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">mai</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dsed</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">pb</span><span class="p">),</span> 
+                <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dw</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">osed</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">kd</span><span class="p">)],</span>
+        <span class="s">&quot;Min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">mai</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dsed</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">pb</span><span class="p">),</span> 
+                <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dw</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">osed</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">kd</span><span class="p">)],</span>
+         <span class="s">&quot;Max&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mai</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dsed</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pb</span><span class="p">),</span> 
+                <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dw</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">osed</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">kd</span><span class="p">)],</span>
+        <span class="s">&quot;Unit&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;kg&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;m&lt;sup&gt;2&lt;/sup&gt;&#39;</span><span class="p">),</span><span class="s">&#39;m&#39;</span><span class="p">,</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;kg/m&lt;sup&gt;3&lt;/sup&gt;&#39;</span><span class="p">),</span><span class="s">&#39;m&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;L/kg&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gettsumdata_out"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.gettsumdata_out">[docs]</a><span class="k">def</span> <span class="nf">gettsumdata_out</span><span class="p">(</span><span class="n">msed</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">mai1</span><span class="p">,</span> <span class="n">cw</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Sediment Mass&#39;</span><span class="p">,</span> <span class="s">&#39;Water Column Volume&#39;</span><span class="p">,</span> <span class="s">&#39;Mass per unit area&#39;</span><span class="p">,</span> <span class="s">&#39;Water Concentration&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Mean&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">msed</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vw</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mai1</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cw</span><span class="p">)],</span>
+        <span class="s">&quot;Std&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">msed</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">vw</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">mai1</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">cw</span><span class="p">)],</span>
+        <span class="s">&quot;Min&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">msed</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">vw</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">mai1</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">cw</span><span class="p">)],</span>
+         <span class="s">&quot;Max&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">msed</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">vw</span><span class="p">),</span><span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mai1</span><span class="p">),</span> <span class="s">&#39;</span><span class="si">%.2e</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">cw</span><span class="p">)],</span>
+        <span class="s">&quot;Unit&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;kg&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;m&lt;sup&gt;3&lt;/sup&gt;&#39;</span><span class="p">),</span> <span class="s">&#39;kg/ha&#39;</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;&amp;#956;g/L&#39;</span><span class="p">),],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<span class="n">pvuheadings</span> <span class="o">=</span> <span class="n">getheaderpvu</span><span class="p">()</span>
+<span class="n">pvuheadingsqaqc</span> <span class="o">=</span> <span class="n">getheaderpvuqaqc</span><span class="p">()</span>
+<span class="n">sumheadings</span> <span class="o">=</span> <span class="n">getheadersum</span><span class="p">()</span>
+<span class="n">djtemplate</span> <span class="o">=</span> <span class="n">getdjtemplate</span><span class="p">()</span>
+<span class="n">tmpl</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">djtemplate</span><span class="p">)</span>
+
+<div class="viewcode-block" id="table_all"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.table_all">[docs]</a><span class="k">def</span> <span class="nf">table_all</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">):</span>
+   
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">table_1</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">)</span>      
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">html_all</span> <span class="o">+</span> <span class="n">table_2</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">html_all</span>
+</div>
+<div class="viewcode-block" id="table_all_qaqc"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.table_all_qaqc">[docs]</a><span class="k">def</span> <span class="nf">table_all_qaqc</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">):</span>
+   
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">table_1_qaqc</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">)</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">html_all</span> <span class="o">+</span> <span class="n">table_2_qaqc</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">html_all</span>
+</div>
+<div class="viewcode-block" id="timestamp"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.timestamp">[docs]</a><span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">rice_obj</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">batch_jid</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">rice_obj</span><span class="p">:</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">rice_obj</span><span class="o">.</span><span class="n">jid</span><span class="p">,</span> <span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%A, %Y-%B-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">batch_jid</span><span class="p">,</span> <span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%A, %Y-%B-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="n">html</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">        &lt;b&gt;Tier 1 Rice Model (Version 1.0)&lt;br&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">st</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot; (EST)&lt;/b&gt;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;/div&gt;&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_1"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.table_1">[docs]</a><span class="k">def</span> <span class="nf">table_1</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">):</span>
+        <span class="c">#pre-table 1</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Inputs&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Model Inputs&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="c">#table 1</span>
+        <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1data</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">)</span>
+        <span class="n">t1rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data</span><span class="p">,</span><span class="n">pvuheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_1_qaqc"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.table_1_qaqc">[docs]</a><span class="k">def</span> <span class="nf">table_1_qaqc</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">):</span>
+        <span class="c">#pre-table 1</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Inputs&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Model Inputs&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="c">#table 1</span>
+        <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1dataqaqc</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">)</span>
+        <span class="n">t1rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data</span><span class="p">,</span><span class="n">pvuheadingsqaqc</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadingsqaqc</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_2"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.table_2">[docs]</a><span class="k">def</span> <span class="nf">table_2</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">):</span>
+        <span class="c">#pre-table 1</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;br&gt;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section3&quot;&gt;&lt;span&gt;&lt;/span&gt;Rice Output&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_1&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section4&quot;&gt;&lt;span&gt;&lt;/span&gt;Model Output&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="c">#table 1</span>
+        <span class="n">t2data</span> <span class="o">=</span> <span class="n">gett2data</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">)</span>
+        <span class="n">t2rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2data</span><span class="p">,</span><span class="n">pvuheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_2_qaqc"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.table_2_qaqc">[docs]</a><span class="k">def</span> <span class="nf">table_2_qaqc</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">):</span>
+        <span class="c">#pre-table 1</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;br&gt;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section3&quot;&gt;&lt;span&gt;&lt;/span&gt;Rice Output&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_1&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section4&quot;&gt;&lt;span&gt;&lt;/span&gt;Model Output&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="c">#table 1</span>
+        <span class="n">t2data</span> <span class="o">=</span> <span class="n">gett2dataqaqc</span><span class="p">(</span><span class="n">rice_obj</span><span class="p">)</span>
+        <span class="n">t2rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2data</span><span class="p">,</span><span class="n">pvuheadingsqaqc</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadingsqaqc</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_sum_all"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.table_sum_all">[docs]</a><span class="k">def</span> <span class="nf">table_sum_all</span><span class="p">(</span><span class="n">sumheadings</span><span class="p">,</span> <span class="n">tmpl</span><span class="p">,</span> <span class="n">mai</span><span class="p">,</span> <span class="n">dsed</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">pb</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span> <span class="n">osed</span><span class="p">,</span> <span class="n">kd</span><span class="p">,</span> <span class="n">msed</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">mai1</span><span class="p">,</span> <span class="n">cw</span><span class="p">):</span>
+    <span class="n">html_all_sum</span> <span class="o">=</span> <span class="n">table_sum_input</span><span class="p">(</span><span class="n">sumheadings</span><span class="p">,</span> <span class="n">tmpl</span><span class="p">,</span> <span class="n">mai</span><span class="p">,</span> <span class="n">dsed</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">pb</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span> <span class="n">osed</span><span class="p">,</span> <span class="n">kd</span><span class="p">)</span>
+    <span class="n">html_all_sum</span> <span class="o">+=</span> <span class="n">table_sum_output</span><span class="p">(</span><span class="n">sumheadings</span><span class="p">,</span> <span class="n">tmpl</span><span class="p">,</span> <span class="n">msed</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">mai1</span><span class="p">,</span> <span class="n">cw</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html_all_sum</span>
+</div>
+<div class="viewcode-block" id="table_sum_input"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.table_sum_input">[docs]</a><span class="k">def</span> <span class="nf">table_sum_input</span><span class="p">(</span><span class="n">sumheadings</span><span class="p">,</span> <span class="n">tmpl</span><span class="p">,</span> <span class="n">mai</span><span class="p">,</span> <span class="n">dsed</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">pb</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span> <span class="n">osed</span><span class="p">,</span> <span class="n">kd</span><span class="p">):</span>
+    <span class="c">#pre-table sum_input</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;Summary Statistics&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section4&quot;&gt;&lt;span&gt;&lt;/span&gt;Batch Inputs&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="c">#table sum_input</span>
+        <span class="n">tsuminputdata</span> <span class="o">=</span> <span class="n">gettsumdata</span><span class="p">(</span><span class="n">mai</span><span class="p">,</span> <span class="n">dsed</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">pb</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span> <span class="n">osed</span><span class="p">,</span> <span class="n">kd</span><span class="p">)</span>
+        <span class="n">tsuminputrows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">tsuminputdata</span><span class="p">,</span> <span class="n">sumheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tsuminputrows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">sumheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_sum_output"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_tables.table_sum_output">[docs]</a><span class="k">def</span> <span class="nf">table_sum_output</span><span class="p">(</span><span class="n">sumheadings</span><span class="p">,</span> <span class="n">tmpl</span><span class="p">,</span> <span class="n">msed</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">mai1</span><span class="p">,</span> <span class="n">cw</span><span class="p">):</span>
+    <span class="c">#pre-table sum_input</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;br&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section3&quot;&gt;&lt;span&gt;&lt;/span&gt;Rice Model Outputs&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="c">#table sum_input</span>
+        <span class="n">tsumoutputdata</span> <span class="o">=</span> <span class="n">gettsumdata_out</span><span class="p">(</span><span class="n">msed</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">mai1</span><span class="p">,</span> <span class="n">cw</span><span class="p">)</span>
+        <span class="n">tsumoutputrows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">tsumoutputdata</span><span class="p">,</span> <span class="n">sumheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tsumoutputrows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">sumheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">        &lt;br&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

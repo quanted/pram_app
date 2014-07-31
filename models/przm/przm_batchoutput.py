@@ -1,3 +1,8 @@
+"""
+.. module:: przm_batchoutput
+   :synopsis: A useful module indeed.
+"""
+
 from django.views.decorators.http import require_POST
 from StringIO import StringIO
 import przm_model, przm_tables

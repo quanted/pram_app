@@ -1,3 +1,8 @@
+"""
+.. module:: agdrift_qaqc
+   :synopsis: A useful module indeed.
+"""
+
 import agdrift_model
 import os
 import unittest

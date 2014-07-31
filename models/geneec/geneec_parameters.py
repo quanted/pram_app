@@ -1,4 +1,8 @@
-# -*- coding: utf-8 -*-
+"""
+.. module:: geneec_parameters
+   :synopsis: A useful module indeed.
+"""
+
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms
@@ -20,7 +24,7 @@ airblast_type_CHOICES = (('a','Orchards and Dormant Vineyards'),
                          ('b','Foliated Vineyards')) 
 
 
-class geneecInp(forms.Form):
+class GeneecInp(forms.Form):
     chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}))
     application_target = forms.ChoiceField(required=True, choices=applicationtarget_CHOICES, initial='Short grass')        
     application_rate = forms.FloatField(required=True,label='Application rate (lbs a.i./A)',initial=4)

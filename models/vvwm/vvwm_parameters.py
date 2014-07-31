@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
-Created on Tue Jan 17 14:50:59 2012
+.. module:: vvwm_parameters
+   :synopsis: A useful module indeed.
+"""
 
-@author: Jon F.
-"""
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms

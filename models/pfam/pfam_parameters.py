@@ -1,13 +1,11 @@
-# -*- coding: utf-8 -*-
 """
-Created on Feb 14 2013
-
-@author: THong
+.. module:: pfam_parameters
+   :synopsis: A useful module indeed.
 """
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms
 from django.utils.safestring import mark_safe
+from django.core import validators
+from models.forms import validation
 
 weather_CHOICES=(('','Make a selection'),('wTest','test1'))
 
@@ -33,7 +31,11 @@ class PFAMInp_loc(forms.Form):
     wea_l = forms.FloatField(required=True,label='@Latitude (for Photolysis Calculations)', initial=28)
     
 class PFAMInp_cro(forms.Form):
-    zero_height_ref= forms.DateField(required=True,label='Zero Height Reference (MM/DD)', initial='04/01')
+    zero_height_ref= forms.DateField(
+            required=True,
+            label='Zero Height Reference (MM/DD)',
+            input_formats=['%m/%d'],
+            initial='04/01')
     days_zero_full = forms.IntegerField(required=True,label='Days from Zero Height to Full Height', initial=60)
     days_zero_removal = forms.IntegerField(required=True,label='Days from Zero Height to Removal', initial=150)
     max_frac_cov = forms.FloatField(required=True,label='Maximum Fractional Area Coverage', initial=0.99)
@@ -54,3 +56,8 @@ class PFAMInp_phy(forms.Form):
     q10 = forms.FloatField(required=True,label='Q10', initial=2)
 class PFAMInp_out(forms.Form):
     area_app = forms.FloatField(required=True,label=mark_safe('Area of Application (m<sup>2</sup>)'), initial=20000)
+
+
+# Combined Form Classes for Validation
+class PfamInp(PFAMInp_chem, PFAMInp_loc, PFAMInp_cro, PFAMInp_phy, PFAMInp_out):
+    pass

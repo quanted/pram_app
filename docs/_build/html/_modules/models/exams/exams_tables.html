@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.exams.exams_tables &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.exams.exams_tables</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: exams_tables</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c"># import numpy</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">Template</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+<span class="kn">import</span> <span class="nn">exams_model</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<div class="viewcode-block" id="getheaderpvu"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.getheaderpvu">[docs]</a><span class="k">def</span> <span class="nf">getheaderpvu</span><span class="p">():</span>
+	<span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">,</span> <span class="s">&quot;Units&quot;</span><span class="p">]</span>
+	<span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="getheaderpva"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.getheaderpva">[docs]</a><span class="k">def</span> <span class="nf">getheaderpva</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Index&quot;</span><span class="p">,</span> <span class="s">&quot;Test pH&quot;</span><span class="p">,</span> <span class="s">&quot;Half-life (days)&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="gethtmlrowsfromcols"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.gethtmlrowsfromcols">[docs]</a><span class="k">def</span> <span class="nf">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headings</span><span class="p">):</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">heading</span><span class="p">]</span> <span class="k">for</span> <span class="n">heading</span> <span class="ow">in</span> <span class="n">headings</span><span class="p">]</span>
+
+    <span class="c"># get the length of the longest column</span>
+    <span class="n">max_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="c"># padding the short columns with None</span>
+        <span class="n">col</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">None</span><span class="p">,]</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">col</span><span class="p">))</span>
+
+    <span class="c"># Then rotate the structure...</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_len</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">rows</span>
+</div>
+<div class="viewcode-block" id="getdjtemplate"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.getdjtemplate">[docs]</a><span class="k">def</span> <span class="nf">getdjtemplate</span><span class="p">():</span>
+    <span class="n">dj_template</span> <span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;table class=&quot;out_&quot;&gt;</span>
+<span class="s">    {# headings #}</span>
+<span class="s">        &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or heading in headings %}</span>
+<span class="s">            &lt;th colspan={{ th_span|default:&#39;1&#39; }}&gt;{{ heading }}&lt;/th&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">        &lt;/tr&gt;</span>
+<span class="s">    </span>
+<span class="s">    {</span><span class="si">% i</span><span class="s">f sub_headings %}</span>
+<span class="s">        &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or sub_heading in sub_headings %}</span>
+<span class="s">            &lt;th&gt;{{ sub_heading }}&lt;/th&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">        &lt;/tr&gt;</span>
+<span class="s">    {</span><span class="si">% e</span><span class="s">ndif %}</span>
+<span class="s">    {# data #}</span>
+<span class="s">    {</span><span class="si">% f</span><span class="s">or row in data %}</span>
+<span class="s">    &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or val in row %}</span>
+<span class="s">        &lt;td&gt;{{ val|default:&#39;&#39;|safe }}&lt;/td&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/tr&gt;</span>
+<span class="s">    {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/table&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dj_template</span>
+
+</div>
+<div class="viewcode-block" id="gett1data"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.gett1data">[docs]</a><span class="k">def</span> <span class="nf">gett1data</span><span class="p">(</span><span class="n">exams_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span> <span class="s">&#39;Scenario&#39;</span><span class="p">,</span> <span class="s">&#39;Farm Pond (no flow)&#39;</span><span class="p">,</span> <span class="s">&#39;Molecular Weight&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Solubility&#39;</span><span class="p">,</span> <span class="s">&#39;Aquatic Sediment&#39;</span><span class="p">,</span> <span class="s">&#39;Vapor Pressure&#39;</span><span class="p">,</span> <span class="s">&#39;Aerobic aquatic metabolism&#39;</span><span class="p">,</span> <span class="s">&#39;Anaerobic aquatic metabolism&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Aquatic Direct Photolysis&#39;</span><span class="p">,</span> <span class="s">&#39;Test Temperature&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">chem_name</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">scenarios</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">farm</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">mw</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">sol</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">koc</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">vp</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">aem</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">anm</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">aqp</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">exams_obj</span><span class="o">.</span><span class="n">tmper</span><span class="p">,],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;g/mol&#39;</span><span class="p">,</span> <span class="s">&#39;mg/L&#39;</span><span class="p">,</span> <span class="s">&#39;mL/g&#39;</span><span class="p">,</span> <span class="s">&#39;torr&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;days&#39;</span><span class="p">,</span> <span class="s">&#39;&lt;sup&gt;o&lt;/sup&gt;C&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett2data"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.gett2data">[docs]</a><span class="k">def</span> <span class="nf">gett2data</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">pH</span><span class="p">,</span> <span class="n">HL</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Index&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">index</span><span class="p">,</span>  <span class="p">],</span>
+        <span class="s">&quot;Test pH&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">pH</span><span class="p">,],</span>
+        <span class="s">&quot;Half-life (days)&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">HL</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<span class="n">pvuheadings</span> <span class="o">=</span> <span class="n">getheaderpvu</span><span class="p">()</span>
+<span class="n">pvaheadings</span> <span class="o">=</span> <span class="n">getheaderpva</span><span class="p">()</span>
+<span class="n">djtemplate</span> <span class="o">=</span> <span class="n">getdjtemplate</span><span class="p">()</span>
+<span class="n">tmpl</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">djtemplate</span><span class="p">)</span>
+
+<div class="viewcode-block" id="timestamp"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.timestamp">[docs]</a><span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">exams_obj</span><span class="p">):</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">exams_obj</span><span class="o">.</span><span class="n">jid</span><span class="p">,</span> <span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%A, %Y-%B-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="n">html</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">        &lt;b&gt;EXAMS&lt;br&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">st</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot; (EST)&lt;/b&gt;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;/div&gt;&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+
+</div>
+<div class="viewcode-block" id="table_all"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.table_all">[docs]</a><span class="k">def</span> <span class="nf">table_all</span><span class="p">(</span><span class="n">exams_obj</span><span class="p">):</span>
+    <span class="n">table1_out</span> <span class="o">=</span> <span class="n">table_1</span><span class="p">(</span><span class="n">exams_obj</span><span class="p">)</span>
+    <span class="n">table2_out</span> <span class="o">=</span> <span class="n">table_2</span><span class="p">(</span><span class="n">exams_obj</span><span class="p">)</span>
+    <span class="n">table3_out</span> <span class="o">=</span> <span class="n">table_3</span><span class="p">(</span><span class="n">exams_obj</span><span class="p">)</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">table1_out</span> <span class="o">+</span> <span class="n">table2_out</span> <span class="o">+</span> <span class="n">table3_out</span>
+
+    <span class="k">return</span> <span class="n">html_all</span>
+
+</div>
+<div class="viewcode-block" id="table_1"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.table_1">[docs]</a><span class="k">def</span> <span class="nf">table_1</span><span class="p">(</span><span class="n">exams_obj</span><span class="p">):</span>
+        <span class="c">#pre-table 1</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Inputs:&lt;/H3&gt;</span>
+<span class="s">        &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">            &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Chemical Properties&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="c">#table 1</span>
+        <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1data</span><span class="p">(</span><span class="n">exams_obj</span><span class="p">)</span>
+        <span class="n">t1rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data</span><span class="p">,</span><span class="n">pvuheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_2"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.table_2">[docs]</a><span class="k">def</span> <span class="nf">table_2</span><span class="p">(</span><span class="n">exams_obj</span><span class="p">):</span>
+        <span class="c"># #pre-table 2</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;H4 class=&quot;out_2 collapsible&quot; id=&quot;section3&quot;&gt;&lt;span&gt;&lt;/span&gt;Hydrolysis Tests (Number of Tested pH=</span><span class="si">%s</span><span class="s">)&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">exams_obj</span><span class="o">.</span><span class="n">n_ph</span><span class="p">)</span>
+        <span class="c">#table 2</span>
+        <span class="n">t2data_all</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">exams_obj</span><span class="o">.</span><span class="n">n_ph</span><span class="p">)):</span>
+            <span class="n">ph_out_temp</span><span class="o">=</span><span class="n">exams_obj</span><span class="o">.</span><span class="n">ph_out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">hl_out_temp</span><span class="o">=</span><span class="n">exams_obj</span><span class="o">.</span><span class="n">hl_out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">t2data_temp</span><span class="o">=</span><span class="n">gett2data</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ph_out_temp</span><span class="p">,</span> <span class="n">hl_out_temp</span><span class="p">)</span>
+            <span class="n">t2data_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t2data_temp</span><span class="p">)</span>
+        <span class="n">t2data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">k</span><span class="p">,[</span><span class="n">t2data_ind</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">t2data_ind</span> <span class="ow">in</span> <span class="n">t2data_all</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">t2data_temp</span><span class="p">])</span>
+        <span class="n">t2rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2data</span><span class="p">,</span><span class="n">pvaheadings</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvaheadings</span><span class="p">)))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_3"><a class="viewcode-back" href="../../../models.exams.html#models.exams.exams_tables.table_3">[docs]</a><span class="k">def</span> <span class="nf">table_3</span><span class="p">(</span><span class="n">exams_obj</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;br&gt;&lt;div&gt;&lt;table class=&quot;results&quot; width=&quot;550&quot; border=&quot;1&quot;&gt;</span>
+<span class="s">                          &lt;tr&gt;</span>
+<span class="s">                            &lt;th scope=&quot;col&quot; colspan=&quot;3&quot;&gt;&lt;div align=&quot;center&quot;&gt;EXAMS Results&lt;/div&gt;&lt;/th&gt;</span>
+<span class="s">                          &lt;/tr&gt;</span>
+<span class="s">                          &lt;tr&gt;</span>
+<span class="s">                            &lt;th scope=&quot;col&quot;&gt;&lt;div align=&quot;center&quot;&gt;Outputs&lt;/div&gt;&lt;/th&gt;</span>
+<span class="s">                            &lt;th scope=&quot;col&quot;&gt;&lt;div align=&quot;center&quot;&gt;Value&lt;/div&gt;&lt;/th&gt;                            </span>
+<span class="s">                          &lt;/tr&gt;</span>
+<span class="s">                          &lt;tr&gt;</span>
+<span class="s">                            &lt;td&gt;&lt;div align=&quot;center&quot;&gt;Simulation is finished. Please download your file from here&lt;/div&gt;&lt;/td&gt;</span>
+<span class="s">                            &lt;td&gt;&lt;div align=&quot;center&quot;&gt;&lt;a href=</span><span class="si">%s</span><span class="s">&gt;Link&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;</span>
+<span class="s">                          &lt;/tr&gt;</span>
+<span class="s">        &lt;/table&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">exams_obj</span><span class="o">.</span><span class="n">link</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">html</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

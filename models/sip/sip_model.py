@@ -1,3 +1,8 @@
+"""
+.. module:: sip_model
+   :synopsis: A useful module indeed.
+"""
+
 # Screening Imbibiton Program v1.0 (SIP)
 from REST import rest_funcs
 import json
@@ -6,8 +11,6 @@ logger = logging.getLogger('SIP Model')
 import os
 import keys_Picloud_S3
 import base64
-# import urllib
-# from google.appengine.api import urlfetch
 import requests
 
 # Daily water intake rate for birds

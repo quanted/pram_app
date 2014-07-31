@@ -1,3 +1,8 @@
+"""
+.. module:: agdrift_therps_tables
+   :synopsis: A useful module indeed.
+"""
+
 import datetime
 
 def timestamp(agdrift_therps_obj):

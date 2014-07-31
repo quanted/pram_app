@@ -1,3 +1,8 @@
+"""
+.. module:: stir_batchoutput
+   :synopsis: A useful module indeed.
+"""
+
 from django.views.decorators.http import require_POST
 from StringIO import StringIO
 import stir_model,stir_tables

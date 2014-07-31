@@ -1,3 +1,8 @@
+"""
+.. module:: kabam_qaqc
+   :synopsis: A useful module indeed.
+"""
+
 import kabam_model
 import os
 import unittest

@@ -225,4 +225,14 @@ function uberNavTabs( modelTabs, subTabs ) {
 			$(".back, #metaDataToggle, #metaDataText").hide();
 		}
 	});
+
+	// Error Handling, show tab with error
+	var isError = $('form').find('.errorlist');
+	if (isError.length > 0) {
+		var tableWithError = $(isError).closest('table');
+		var tableWithErrorClass = tableWithError.attr('class').split(' ')[2].slice(4);
+		if (contains(modelTabs, tableWithErrorClass)) {
+			$('.' + tableWithErrorClass).trigger('click');
+		}
+	}
 }

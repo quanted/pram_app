@@ -11,6 +11,7 @@
 *.pptx
 *.py~
 .elasticbeanstalk/config
+.ebextensions/*
 GA2.tif
 .VolumeIcon.icns
 .fseventsd

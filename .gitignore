@@ -21,3 +21,4 @@ Thumbs.db
 REST/REST_EC2/przm_rest/stdmet/*
 REST/REST_local/przm_rest/stdmet/*
 .elasticbeanstalk
+.elasticbeanstalk/config

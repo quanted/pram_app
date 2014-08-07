@@ -3,21 +3,21 @@
    :synopsis: A useful module indeed.
 """
 
-from REST import rest_funcs
+# from REST import rest_funcs
 import json
 import logging
 logger = logging.getLogger('Terrplant Model')
 import os
-import keys_Picloud_S3
+# import keys_Picloud_S3
 import base64
 import requests
 
 ############Provide the key and connect to EC2####################
-api_key=keys_Picloud_S3.picloud_api_key
-api_secretkey=keys_Picloud_S3.picloud_api_secretkey
-base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
-http_headers = {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
-url_part1 = os.environ['UBERTOOL_REST_SERVER']
+# api_key=keys_Picloud_S3.picloud_api_key
+# api_secretkey=keys_Picloud_S3.picloud_api_secretkey
+# base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
+# http_headers = {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
+# url_part1 = os.environ['UBERTOOL_REST_SERVER']
 ###########################################################################
 
 
@@ -27,7 +27,8 @@ class terrplant(object):
             chemical_name='', pc_code='', use='', application_method='', application_form='', solubility=1, 
             vars_dict=None,):
         self.set_default_variables()
-        self.jid = rest_funcs.gen_jid()
+        # self.jid = rest_funcs.gen_jid()
+        self.jid = '324523452345'
 
         if set_variables:
             if vars_dict != None:
@@ -82,7 +83,8 @@ class terrplant(object):
                    "pc_code":self.pc_code, "use":self.use, "application_method":self.application_method, "application_form":self.application_form, "solubility":self.solubility}
         data = json.dumps(all_dic)
 
-        self.jid = rest_funcs.gen_jid()
+        # self.jid = rest_funcs.gen_jid()
+        self.jid = '324523452345'
         url=os.environ['UBERTOOL_REST_SERVER'] + '/terrplant/' + self.jid 
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)  

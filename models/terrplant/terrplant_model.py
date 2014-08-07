@@ -19,7 +19,7 @@ import requests
 # http_headers = {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
 # url_part1 = os.environ['UBERTOOL_REST_SERVER']
 ###########################################################################
-
+http_headers = {'Content-Type' : 'application/json'}
 
 class terrplant(object):
     def __init__(self, set_variables=True, run_methods=True, version_terrplant='1.2.2', 

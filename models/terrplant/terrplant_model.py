@@ -87,7 +87,9 @@ class terrplant(object):
         self.jid = '324523452345'
         url=os.environ['UBERTOOL_REST_SERVER'] + '/terrplant/' + self.jid 
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
-        response = requests.post(url, data=data, headers=http_headers, timeout=60)  
+        response = requests.post(url, data=data, headers=http_headers, timeout=60)
+        print response
+        logging.info(response)
         output_val = json.loads(response.content)['result']
         for key, value in output_val.items():
             setattr(self, key, value)

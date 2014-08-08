@@ -1,1 +1,92 @@
-<p></p>
+<p>
+The Spatial Aquatic Model (SAM) is a spatial implementation designed to 
+compare modeled aquatic concentrations of pesticides to
+toxicity thresholds. Pesticide exposure concentrations are estimated as a 
+function of environmental factors and management practices. The outputs are a
+time series of pesticide concentrations at multiple point locations. The ratios
+of exposure concentrations to toxicity thresholds can then be characterized in 
+terms of magnitude, duration, frequency and specific locations of exceedance for 
+pesticide effects determinations.
+</p>
+<p>
+SAM more realistically incorporates the spatial heterogeneity within assessed 
+drainage areas (soils, land cover, weather data) 
+instead of assuming a single uniform watershed designed to reflect high-end/protective 
+exposures than previous pesticide registration models. 
+Exposures are generated for headwater streams and small water bodies but 
+are also be  integrated downstream for larger streams and water bodies. 
+In addition, exposure concentrations are not restricted to 
+standardized field/basin/water bodies (e.g., farm pond and index reservoir), but 
+reflect variability within and 
+across use areas. Output concentrations are then be aggregated at the 
+outlet portion of the drainage area (drinking water basin or HUC12 unit). 
+For ecological assessments, exposure estimates are based on the 
+main channel within the HUC12. Aquatic exposure areas are binned as static 
+or flowing water bodies.
+</p>
+<p>
+Due to the national scale of this tool, instead of routing flow from fields 
+within basins to stream channels to larger streams, flow is accumulated at the HUC12 
+unit level, routing outputs from headwater basins at the top of a 
+larger drainage shed through downstream HUCs.
+Daily estimates can be compared to stream gage data for flow and to monitoring 
+data for pesticide outputs.
+</p>
+<p>
+This is a beta version, important routines including erosion, spray drift,
+irrigation, travel times beyond “dayshed”, and the application window 
+(function of weather, crop stage) are in development.
+</p>
+<p>
+Figure 1 shows the data flow and algorithmic estimation procedure of SAM.
+</p>
+<p>
+<img src = "/static/images/sam_figure1.gif" alt="SAM Model">
+</p>
+<p>
+A lot of input information and some algorithmic output is pre-processed to 
+make exposure concentration estimation on this scale possible in a 
+reasonable amount of time. Spatially, soils are group into combinatoric 
+classes based on important pesticide transport factors, weather files have been 
+interpolated to an appropriate spatial resolution (~24,000 km grids), land 
+cover captures temporal variability of the prior 4-5 years of the Cropscape
+Data Layer, crop inputs include a full range of crops from an incorporated
+data base, and the hydrology is currently based on monthly flow data
+and defining single-day travel times for processing downstream pesticide loads.
+
+ (replacing the downstream dilution model). 
+
+Soils – Soil Survey Geographic database (SSURGO) most detailed soil dataset
+Routines developed to extract data from SSURGO’s complex data structure and convert to model inputs
+Land Use / Land Cover – Cropland Data Layer provides a footprint of crop/use distribution
+Using crop groupings to reduce errors in identification
+Need to address multi-year rotations
+Weather - Precipitation, temperature, solar radiation, wind speed, pan evap
+extracting weather data for 1948-2012 using NCEP/NCAR [Natl Ctrs for Envir. Prediction/Atmos. Research) reanalysis data
+
+In national scale-up, we are considering the use of NOAA Climate Prediction Center’s fine scale precipitation data…the NCAR/NCEP dataset (or another dataset) would still need to be used for other variables (Temp, Pan Evap)
+
+Crop growth/management - 
+Begin w/ PRZM manual, add spatial variations as we can find them
+USDA typical planting and harvesting dates publications; other state/regional publications
+USDA Plant Hardiness Zone map to reflect spatial variations
+
+Recipe files = list of model units in basin & total area of each unit
+NHD Plus Annual Avg Total Flow
+
+SuperScenarioGenerator – outputs runoff for sub watershed (calculated using CN Method)
+SuperPRZMhydro – sums up runoff (from all crops) to represent entire watershed; outputs Total Daily Runoff & Total Area
+SuperPRZMpesticide – outputs Pesticide Concentration in Water body (based on Total Daily Runoff + Base flow, and Pesticide Mass)
+
+Backbone/Foundation of SAM comes from PRZM/EXAMS – many of the same processes and assumptions
+In terms of hydrology it is pretty much all accounted for in the same way; this includes precip, snowmelt, …
+    - CN methodology the same (NRCS) – where CN used to estimate direct runoff (& infiltration) from rainfall event
+
+1-D solute transport in SAM is derived from PRZM/EXAMS
+
+
+
+
+
+
+</p>

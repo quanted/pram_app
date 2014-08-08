@@ -5,7 +5,7 @@
 
 import logging
 logger = logging.getLogger('trex2 model')
-from REST import auth_s3#, rest_funcs
+from REST import auth_s3, rest_funcs
 import json
 import os
 import requests

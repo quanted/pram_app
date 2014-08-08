@@ -3,7 +3,7 @@
    :synopsis: A useful module indeed.
 """
 
-from REST import auth_s3#, rest_funcs
+from REST import auth_s3, rest_funcs
 import json
 import logging
 logger = logging.getLogger('Kabam Model')

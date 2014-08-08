@@ -4,7 +4,7 @@
 """
 
 import logging
-from REST import auth_s3#, rest_funcs
+from REST import auth_s3, rest_funcs
 logger = logging.getLogger('therps model')
 import json
 import os

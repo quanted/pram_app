@@ -5,7 +5,7 @@
 
 import logging
 logger = logging.getLogger('Geneec Model')
-from REST import auth_s3#, rest_funcs
+from REST import auth_s3, rest_funcs
 import json
 import os
 import requests

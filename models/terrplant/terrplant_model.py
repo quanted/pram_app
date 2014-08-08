@@ -2,7 +2,7 @@
 .. module:: terrplant_model
    :synopsis: A useful module indeed.
 """
-from REST import auth_s3#, rest_funcs
+from REST import auth_s3, rest_funcs
 import json
 import logging
 logger = logging.getLogger('Terrplant Model')
@@ -19,8 +19,7 @@ class terrplant(object):
             chemical_name='', pc_code='', use='', application_method='', application_form='', solubility=1, 
             vars_dict=None,):
         self.set_default_variables()
-        # self.jid = rest_funcs.gen_jid()
-        self.jid = '324523452345'
+        self.jid = rest_funcs.gen_jid()
 
         if set_variables:
             if vars_dict != None:
@@ -75,8 +74,7 @@ class terrplant(object):
                    "pc_code":self.pc_code, "use":self.use, "application_method":self.application_method, "application_form":self.application_form, "solubility":self.solubility}
         data = json.dumps(all_dic)
 
-        # self.jid = rest_funcs.gen_jid()
-        self.jid = '324523452345'
+        self.jid = rest_funcs.gen_jid()
         url=url_part1 + '/terrplant/' + self.jid
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)

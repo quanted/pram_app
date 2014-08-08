@@ -6,7 +6,7 @@
 import os
 from bisect import *
 import logging
-from REST import auth_s3#, rest_funcs
+from REST import auth_s3, rest_funcs
 logger = logging.getLogger('agdrift Model')
 import json
 import requests

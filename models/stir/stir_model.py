@@ -6,7 +6,7 @@
 import logging
 logger = logging.getLogger('stir Model')
 import json
-from REST import auth_s3#, rest_funcs
+from REST import auth_s3, rest_funcs
 import os
 import requests
 

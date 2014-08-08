@@ -18,7 +18,8 @@ os.environ.update({
     'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',   
     # 'UBERTOOL_REST_SERVER': 'http://localhost:80',                         # Local REST server
     # 'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',                      # Tao's EC2 REST server 
-    'UBERTOOL_REST_SERVER': 'http://54.210.118.56'                           # EB Pilot REST server
+    'UBERTOOL_REST_SERVER': 'http://54.210.118.56'                         # EB Pilot REST server
+    # 'UBERTOOL_REST_SERVER': 'http://'                           # New EB Pilot REST server
 })
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

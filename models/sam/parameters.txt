@@ -1,0 +1,22 @@
+concentration-True	
+batch_id-DW	
+operations-max, mean
+conc_intervals-30
+exp_intervals-21,60
+exp_percentiles-90
+exceedance-True
+threshold-4
+in_dir-C:\SAM_Uber\TestFiles\Flowing
+file_flag-*_pestAvgConc_distrib.out
+out_dir-C:\SAM_Uber\TestFiles\OutputJonNew
+in_shp-C:\SAM_Uber\TestFiles\dummy_shapefile.shp
+basin_idf-OBJECTID
+julian_start-1/1/1900
+infile_header-JulianDate,TotalFlow,Baseflow,Runoff,AvgC,RMass,LMass
+write_shapefile-True
+write_csv-True
+annual-True
+monthly-True
+shp_key-OBJECTID
+overwrite-True
+exposure-True

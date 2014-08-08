@@ -12,7 +12,7 @@ def trex2InputPage(request, model='', header='', formData=None):
     html = html + render_to_string('04uberinput_start_tabbed.html', {
             'model':model, 
             'model_attributes': header+' Inputs'})
-    html = html + """<a href="../../trex_input.html" class="TREX1"> Want to Use TREX 1.4.1?</a>"""
+    html = html + """<a href="../trex" class="TREX1"> Want to Use TREX 1.4.1?</a>"""
     html = html + render_to_string('04uberinput_tabbed_nav.html', {
             'nav_dict': {
                 'class_name': ['Chemical', 'Avian', 'Mammal'],

@@ -1,19 +1,5 @@
 $(document).ready(function() {
 
-// define default inputs//
-    $('#id_chemical_name').val('Forchlorfenuron')
-    $('#id_scenarios').val('PA Turf  MLRA-148')
-    $('#id_molecular_weight').val(248)
-    $('#id_solubility').val(39)
-    $('#id_Koc').val(3526)
-
-    $('#id_vapor_pressure').val(3.50e-10)
-    $('#id_aerobic_aquatic_metabolism').val(1156)
-    $('#id_anaerobic_aquatic_metabolism').val(226)
-    $('#id_aquatic_direct_photolysis').val(143)
-    $('#id_temperature').val(25)
-
-
     var i = 1
     $('.n_ph').append('<tr id="n_ph_header" style="display:none"><th>pH</th><th>Half-life (days)</th></tr>');
 
@@ -35,9 +21,6 @@ $(document).ready(function() {
     $('#id_hl1').val(0)
     $('#id_hl2').val(0)
     $('#id_hl3').val(0)
-
-
-
 
     $('#n_ph').change(function () {
     	var total = $(this).val()

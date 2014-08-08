@@ -25,9 +25,9 @@ def outputPageView(request, model='none', header=''):
         tables_output = tablesmodule.table_all(model_obj)
         
         if type(tables_output) is tuple:
-            modelOutputHTML = tables_output[0]
+            modelOutputHTML = modelOutputHTML + tables_output[0]
         elif type(tables_output) is str or type(tables_output) is unicode:
-            modelOutputHTML = tables_output
+            modelOutputHTML = modelOutputHTML + tables_output
         else:
             modelOutputHTML = "table_all() Returned Wrong Type"
 
@@ -41,7 +41,10 @@ def outputPageView(request, model='none', header=''):
     html = html + render_to_string('export.html', {})
     html = html + render_to_string('04uberoutput_end.html', {'model':model})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
-    rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
+    
+    # Handle Trex, which is not objectified yet
+    if model != 'trex':
+        rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
 
     response = HttpResponse()
     response.write(html)
@@ -89,35 +92,5 @@ def outputPage(request, model='none', header=''):
     except:
         
         logging.info("E X C E P T")
-
-        # if model == "trex2":
-        #     import models.trex2.trex2_parameters
-
-        #     form = models.trex2.trex2_parameters.Trex2Inp(request.POST)
-
-        #     if form.is_valid():
-
-        #         return outputPageView(request, model, header)
-
-        #     else:
-        #         logging.info(form.errors)
-        #         inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
-
-        #         # Render input page view with POSTed values and show errors
-        #         html = render_to_string('01uberheader.html', {'title': header+' Inputs'})
-        #         html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'input'})
-        #         html = html + linksLeft.linksLeft()
-
-        #         inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
-        #         html = html + inputPageFunc(request, model, header, formData=request.POST)  # formData contains the already POSTed form data
-
-        #         html = html + render_to_string('06uberfooter.html', {'links': ''})
-                
-        #         response = HttpResponse()
-        #         response.write(html)
-        #         return response
-        
-        # else:
-        #     return outputPageView(request, model, header)
 
         return outputPageView(request, model, header)

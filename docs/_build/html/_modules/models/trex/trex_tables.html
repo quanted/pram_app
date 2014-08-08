@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.trex.trex_tables &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.trex.trex_tables</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">Template</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="kn">import</span> <span class="nn">trex_model</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<div class="viewcode-block" id="timestamp"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_tables.timestamp">[docs]</a><span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">trex_obj</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">batch_jid</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">):</span>
+   <span class="c"># if terrplant_obj:</span>
+   <span class="c">#     st = datetime.datetime.strptime(terrplant_obj.jid, &#39;%Y%m%d%H%M%S%f&#39;).strftime(&#39;%A, %Y-%B-%d %H:%M:%S&#39;)</span>
+   <span class="c"># else:</span>
+   <span class="c">#     st = datetime.datetime.strptime(batch_jid, &#39;%Y%m%d%H%M%S%f&#39;).strftime(&#39;%A, %Y-%B-%d %H:%M:%S&#39;)</span>
+
+   <span class="c"># temp timestamp</span>
+   <span class="n">st</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%Y-%B-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+
+   <span class="n">html</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">   &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">   &lt;b&gt;T-Rex 1.4.1&lt;br&gt;</span>
+<span class="s">   &quot;&quot;&quot;</span>
+   <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">st</span>
+   <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot; (EST)&lt;/b&gt;&quot;</span>
+   <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">   &lt;/div&gt;&quot;&quot;&quot;</span>
+   <span class="k">return</span> <span class="n">html</span>
+
+</div>
+<div class="viewcode-block" id="table_all"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_tables.table_all">[docs]</a><span class="k">def</span> <span class="nf">table_all</span><span class="p">(</span><span class="n">trex_obj</span><span class="p">):</span>
+   <span class="n">html</span> <span class="o">=</span> <span class="n">trex_obj</span>
+   <span class="c"># html = &quot;&quot;&quot;</span>
+   <span class="c"># &lt;table class=&quot;out_1&quot;&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;th scope=&quot;col&quot;&gt;Inputs&lt;/div&gt;&lt;/th&gt;</span>
+   <span class="c">#      &lt;th scope=&quot;col&quot;&gt;Value&lt;/div&gt;&lt;/th&gt;</span>
+   <span class="c">#      &lt;th scope=&quot;col&quot;&gt;Inputs&lt;/div&gt;&lt;/th&gt;</span>
+   <span class="c">#      &lt;th scope=&quot;col&quot;&gt;Value&lt;/div&gt;&lt;/th&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Chemical name&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Use&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;                          </span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Formulated procuct name&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Percentage active ingredient&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s%%&lt;/td&gt;  </span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Application type&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Percentage incorporated&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s%%&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Application rate (lbs a.i./A)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Liquid application rate (fl oz/A)&lt;/td&gt;                            </span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Seed treatment formulation name&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Density of product (lbs/gal)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Maximum seeding rate per use (lbs/A)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Application rate per use (fl oz/cwt)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;                              </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Row spacing (inch)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Bandwidth (inch)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;                              </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Number of applications&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Application target&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;                              </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Interval between applications (days)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Foliar dissipation half-life (days)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;                              </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Avian LD50 (mg/kg-bw)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Avian LC50 (mg/kg-diet)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;    </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Avian NOAEC (mg/kg-diet)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Avian NOAEL (mg/kg-bw)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;    </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Body weight of assessed bird (g)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Body weight of tested bird (g)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;                                                   </span>
+   <span class="c">#    &lt;/tr&gt;    </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Mineau scaling factor&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Mammalian LD50 (mg/kg-bw)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;                                                    </span>
+   <span class="c">#    &lt;/tr&gt;    </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Mammalian LC50 (mg/kg-diet)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Mammalian NOAEC (mg/kg-diet)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;                                                                             </span>
+   <span class="c">#    &lt;/tr&gt;    </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Mammalian NOAEL (mg/kg-bw)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;Body weight of assessed mammal (g)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;                           </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Body weight of tested mammal (g)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;&amp;nbsp;&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;&amp;nbsp;&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                                                              </span>
+   <span class="c"># &lt;/table&gt;</span>
+   <span class="c"># &lt;p&gt;&amp;nbsp;&lt;/p&gt;                     </span>
+   <span class="c"># &quot;&quot;&quot;%( chem_name, use, formu_name, 100*a_i, Application_type, 100*p_i, a_r, a_r_l, seed_treatment_formulation_name, den, m_s_r_p, a_r_p, </span>
+   <span class="c">#       r_s, b_w, n_a, a_t, i_a, h_l, ld50_bird, lc50_bird, NOAEC_bird, NOAEL_bird, aw_bird, tw_bird, x, ld50_mamm, </span>
+   <span class="c">#       lc50_mamm, NOAEC_mamm, NOAEL_mamm, aw_mamm, tw_mamm)                          </span>
+
+   <span class="c"># html = html + &quot;&quot;&quot;</span>
+   <span class="c"># &lt;table class=&quot;out_2&quot;&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;th scope=&quot;col&quot;&gt;Outputs&lt;/div&gt;&lt;/th&gt;</span>
+   <span class="c">#      &lt;th scope=&quot;col&quot;&gt;Value&lt;/div&gt;&lt;/th&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Dietary-based EECs for %s&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;</span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Avian dose-based acute EECs for %s (Herbivores and insectivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                      </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Avian dose-based acute EECs (Granivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;  </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Avian dose-based acute RQs for %s (Herbivores and insectivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Avian dose-based acute RQs (Granivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                          </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Avian diet-based acute RQs for %s (Herbivores and insectivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Avian diet-based chronic RQs for %s (Herbivores and insectivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                          </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Mammalian dose-based acute EECs for %s (Herbivores and insectivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt; </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Mammalian dose-based acute EECs (Granivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                            </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Mammalian dose-based acute RQs for %s (Herbivores and insectivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                          </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Mammalian dose-based acute RQs (Granivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt; </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Mammalian dose-based chronic RQs for %s (Herbivores and insectivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                           </span>
+   <span class="c">#    &lt;/tr&gt;                                                                                                        </span>
+   <span class="c">#    &lt;tr&gt;</span>
+   <span class="c">#      &lt;td&gt;Mammalian dose-based chronic RQs (Granivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                                                   </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Mammalian diet-based acute RQs for %s (Herbivores and insectivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Mammalian diet-based chronic RQs for %s (Herbivores and insectivores)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                                                 </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Avian LD50&lt;sup&gt;-2&lt;/sup&gt; for row/band/in-furrow granular application&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                          </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Avian LD50&lt;sup&gt;-2&lt;/sup&gt; for row/band/in-furrow liquid application&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                          </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Avian LD50&lt;sup&gt;-2&lt;/sup&gt; for broadcast granular application&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt; </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Avian LD50&lt;sup&gt;-2&lt;/sup&gt; for broadcast liquid application&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                          </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Mammalian LD50&lt;sup&gt;-2&lt;/sup&gt; for row/band/in-furrow granular application&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                          </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Mammalian LD50&lt;sup&gt;-2&lt;/sup&gt; for row/band/in-furrow liquid application&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                          </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Mammalian LD50&lt;sup&gt;-2&lt;/sup&gt; for broadcast granular application&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt; </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Mammalian LD50&lt;sup&gt;-2&lt;/sup&gt; for broadcast liquid application&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                          </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Seed treatment avian acute RQs (method 1)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Seed treatment avian acute RQs (method 2)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Seed treatment avian chronic RQs&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                          </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Seed treatment mammalian acute RQs (method 1)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;</span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Seed treatment mammalian acute RQs (method 2)&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt; </span>
+   <span class="c">#    &lt;tr&gt;                            </span>
+   <span class="c">#      &lt;td&gt;Seed treatment mammalian chronic RQs&lt;/td&gt;</span>
+   <span class="c">#      &lt;td&gt;%0.2E&lt;/td&gt;                            </span>
+   <span class="c">#    &lt;/tr&gt;                           </span>
+   <span class="c"># &lt;/table&gt;</span>
+   <span class="c"># &quot;&quot;&quot; %(   a_t, trex_model.EEC_diet(trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l), a_t, trex_model.EEC_dose_bird(trex_model.EEC_diet, aw_bird, trex_model.fi_bird, 0.8, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l), </span>
+   <span class="c">#          trex_model.EEC_dose_bird_g(trex_model.EEC_diet, aw_bird, trex_model.fi_bird, 0.1, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l), a_t, </span>
+   <span class="c">#          trex_model.ARQ_dose_bird(trex_model.EEC_dose_bird, trex_model.EEC_diet, aw_bird, trex_model.fi_bird, trex_model.at_bird, ld50_bird, tw_bird, x, 0.8, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l),</span>
+   <span class="c">#          trex_model.ARQ_dose_bird_g(trex_model.EEC_dose_bird, trex_model.EEC_diet, aw_bird, trex_model.fi_bird, trex_model.at_bird, ld50_bird, tw_bird, x, 0.1, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l),</span>
+   <span class="c">#          a_t, trex_model.ARQ_diet_bird(trex_model.EEC_diet, lc50_bird, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l), a_t, trex_model.CRQ_diet_bird(trex_model.EEC_diet, NOAEC_bird, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l),</span>
+   <span class="c">#          a_t, trex_model.EEC_dose_mamm(trex_model.EEC_diet, aw_mamm, trex_model.fi_mamm, 0.8, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l), trex_model.EEC_dose_mamm_g(trex_model.EEC_diet, aw_mamm, trex_model.fi_mamm, 0.1, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l),                                      </span>
+   <span class="c">#          a_t, trex_model.ARQ_dose_mamm(trex_model.EEC_dose_mamm, trex_model.at_mamm, aw_mamm, ld50_mamm, tw_mamm, 0.8, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l),</span>
+   <span class="c">#          trex_model.ARQ_dose_mamm_g(trex_model.EEC_dose_mamm, trex_model.at_mamm, aw_mamm, ld50_mamm, tw_mamm, 0.1, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l),</span>
+   <span class="c">#          a_t, trex_model.CRQ_dose_mamm(trex_model.EEC_diet, trex_model.EEC_dose_mamm, trex_model.ANOAEL_mamm, NOAEL_mamm, aw_mamm, tw_mamm, 0.8, n_a, i_a, a_r, a_i, para, h_l),</span>
+   <span class="c">#          trex_model.CRQ_dose_mamm_g(trex_model.EEC_diet, trex_model.EEC_dose_mamm, trex_model.ANOAEL_mamm, NOAEL_mamm, aw_mamm, tw_mamm, 0.1, n_a, i_a, a_r, a_i, para, h_l),</span>
+   <span class="c">#          a_t, trex_model.ARQ_diet_mamm(trex_model.EEC_diet, lc50_mamm, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l),</span>
+   <span class="c">#          a_t, trex_model.CRQ_diet_mamm(trex_model.EEC_diet, NOAEC_mamm, trex_model.C_0, n_a, i_a, a_r, a_i, para, h_l),</span>
+   <span class="c">#          trex_model.LD50_rg_bird(Application_type, a_r, a_i, p_i, r_s, b_w, aw_bird, trex_model.at_bird, ld50_bird, tw_bird, x), trex_model.LD50_rl_bird(Application_type, a_r_l, a_i, p_i, b_w, aw_bird, trex_model.at_bird, ld50_bird, tw_bird, x),</span>
+   <span class="c">#          trex_model.LD50_bg_bird(Application_type, a_r, a_i, p_i, b_w, aw_bird, trex_model.at_bird, ld50_bird, tw_bird,x),trex_model.LD50_bl_bird(Application_type, a_r_l, a_i, p_i, b_w, aw_bird, trex_model.at_bird, ld50_bird, tw_bird,x),</span>
+   <span class="c">#          trex_model.LD50_rg_mamm(Application_type, a_r, a_i, p_i, r_s, b_w, aw_mamm, trex_model.at_mamm, ld50_mamm, tw_mamm), trex_model.LD50_rl_mamm(Application_type, a_r_l, a_i, p_i, b_w, aw_mamm, trex_model.at_mamm, ld50_mamm, tw_mamm),</span>
+   <span class="c">#          trex_model.LD50_bg_mamm(Application_type, a_r, a_i, p_i, b_w, aw_mamm, trex_model.at_mamm, ld50_mamm, tw_mamm),trex_model.LD50_bl_mamm(Application_type, a_r_l, a_i, p_i, b_w, aw_mamm, trex_model.at_mamm, ld50_mamm, tw_mamm),</span>
+   <span class="c">#          trex_model.sa_bird_1(a_r_p, a_i, den, trex_model.at_bird,trex_model.fi_bird, ld50_bird, aw_bird, tw_bird, x),trex_model.sa_bird_2(a_r_p, a_i, den, m_s_r_p, trex_model.at_bird, ld50_bird, aw_bird, tw_bird, x),</span>
+   <span class="c">#          trex_model.sc_bird(a_r_p, a_i, den, NOAEC_bird),trex_model.sa_mamm_1(a_r_p, a_i, den, trex_model.at_mamm, trex_model.fi_mamm, ld50_mamm, aw_mamm, tw_mamm),</span>
+   <span class="c">#          trex_model.sa_mamm_2(a_r_p, a_i, den, m_s_r_p, trex_model.at_mamm, ld50_mamm, aw_mamm, tw_mamm),trex_model.sc_mamm(a_r_p, a_i, den, NOAEC_mamm))</span>
+
+   <span class="k">return</span> <span class="n">html</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

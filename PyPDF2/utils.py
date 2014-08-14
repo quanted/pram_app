@@ -78,7 +78,7 @@ def readNonWhitespace(stream):
     """
     Finds and reads the next non-whitespace character (ignores whitespace).
     """
-    tok = b_(' ')
+    tok = WHITESPACES[0]
     while tok in WHITESPACES:
         tok = stream.read(1)
     return tok
@@ -88,7 +88,7 @@ def skipOverWhitespace(stream):
     Similar to readNonWhitespace, but returns a Boolean if more than
     one whitespace character was read.
     """
-    tok = b_(' ')
+    tok = WHITESPACES[0]
     cnt = 0;
     while tok in WHITESPACES:
         tok = stream.read(1)
@@ -101,6 +101,29 @@ def skipOverComment(stream):
     if tok == b_('%'):
         while tok not in (b_('\n'), b_('\r')):
             tok = stream.read(1)
+
+def readUntilRegex(stream, regex, ignore_eof=False):
+    """
+    Reads until the regular expression pattern matched (ignore the match)
+    Raise PdfStreamError on premature end-of-file.
+    :param bool ignore_eof: If true, ignore end-of-line and return immediately
+    """
+    name = b_('')
+    while True:
+        tok = stream.read(16)
+        if not tok:
+            # stream has truncated prematurely
+            if ignore_eof == True:
+                return name
+            else:
+                raise PdfStreamError("Stream has ended unexpectedly")
+        m = regex.search(tok)
+        if m is not None:
+            name += tok[:m.start()]
+            stream.seek(m.start()-len(tok), 1)
+            break
+        name += tok
+    return name
 
 class ConvertFunctionsToVirtualList(object):
     def __init__(self, lengthFunction, getFunction):
@@ -115,7 +138,6 @@ class ConvertFunctionsToVirtualList(object):
             indices = Xrange(*index.indices(len(self)))
             cls = type(self)
             return cls(indices.__len__, lambda idx: self[indices[idx]])
-
         if not isinstance(index, int_types):
             raise TypeError("sequence indices must be integers")
         len_self = len(self)
@@ -124,6 +146,7 @@ class ConvertFunctionsToVirtualList(object):
             index = len_self + index
         if index < 0 or index >= len_self:
             raise IndexError("sequence index out of range")
+        return self.getFunction(index)
 
 def RC4_encrypt(key, plaintext):
     S = [i for i in range(256)]
@@ -175,15 +198,22 @@ class PdfStreamError(PdfReadError):
     pass
 
 
-def b_(s):
-    if sys.version_info[0] < 3:
+if sys.version_info[0] < 3:
+    def b_(s):
         return s
-    else:
+else:
+    B_CACHE = {}
+    def b_(s):
+        bc = B_CACHE
+        if s in bc:
+            return bc[s]
         if type(s) == bytes:
             return s
         else:
-            return s.encode('latin-1')
-
+            r = s.encode('latin-1')
+            if len(s) < 2:
+                bc[s] = r
+            return r
 def u_(s):
     if sys.version_info[0] < 3:
         return unicode(s, 'unicode_escape')

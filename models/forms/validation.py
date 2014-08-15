@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 """
 .. module:: validation
    :synopsis: Our custom defined Django validation rules

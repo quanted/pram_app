@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 .. module:: terrplant_parameters
    :synopsis: A useful module indeed.

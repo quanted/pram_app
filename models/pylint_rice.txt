@@ -1,0 +1,1878 @@
+************* Module ubertool_src.ubertool_eco.models.rice
+C:  1, 0: Missing module docstring (missing-docstring)
+************* Module ubertool_src.ubertool_eco.models.rice.rice
+C: 16, 0: Exactly one space required around assignment
+    mai1_out=db.FloatProperty()
+            ^ (bad-whitespace)
+C: 17, 0: Exactly one space required around assignment
+    cw_out=db.FloatProperty()
+          ^ (bad-whitespace)
+C: 18, 0: Trailing whitespace (trailing-whitespace)
+C:  1, 0: Missing module docstring (missing-docstring)
+F:  1, 0: Unable to import 'google.appengine.ext.db' (import-error)
+W:  5, 0: Class has no __init__ method (no-init)
+C:  5, 0: Missing class docstring (missing-docstring)
+C: 12, 4: Invalid class attribute name "pb" (invalid-name)
+C: 13, 4: Invalid class attribute name "dw" (invalid-name)
+C: 15, 4: Invalid class attribute name "Kd" (invalid-name)
+R:  5, 0: Too few public methods (0/2) (too-few-public-methods)
+W:  2, 0: Unused import datetime (unused-import)
+W:  3, 0: Unused import time (unused-import)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_batch_runner
+C: 13, 0: Trailing whitespace (trailing-whitespace)
+C: 14, 0: Exactly one space required after comma
+    def runRiceModel(self,config_properties):
+                         ^ (bad-whitespace)
+C: 16, 0: Line too long (105/80) (line-too-long)
+C: 19, 0: Line too long (143/80) (line-too-long)
+C: 19, 0: Exactly one space required around assignment
+                riceModelResults['mai1']=rice_model.mai1(config_properties['application_kg_rate'], config_properties['area_of_the_rice_paddy'])
+                                        ^ (bad-whitespace)
+C: 24, 0: Line too long (83/80) (line-too-long)
+C: 26, 0: Line too long (295/80) (line-too-long)
+C: 26, 0: Exactly one space required around assignment
+                                        riceModelResults['cw']=rice_model.cw(riceModelResults['mai1'], config_properties['water_column_depth'], config_properties['sediment_depth'], config_properties['porosity_of_sediment'], config_properties['bulk_density_of_sediment'], config_properties['Kd'])
+                                                              ^ (bad-whitespace)
+C: 27, 0: Final newline missing (missing-final-newline)
+C:  1, 0: Missing module docstring (missing-docstring)
+F:  5, 0: Unable to import 'json_utils' (import-error)
+W:  7, 0: Relative import 'rice_model', should be 'ubertool_src.ubertool_eco.models.rice.rice_model' (relative-import)
+C:  9, 0: Invalid constant name "logger" (invalid-name)
+C: 12, 0: Old-style class defined. (old-style-class)
+W: 12, 0: Class has no __init__ method (no-init)
+C: 12, 0: Missing class docstring (missing-docstring)
+C: 14, 4: Invalid method name "runRiceModel" (invalid-name)
+C: 14, 4: Missing method docstring (missing-docstring)
+C: 15, 8: Invalid variable name "riceModelResults" (invalid-name)
+E: 19,41: Module 'ubertool_src.ubertool_eco.models.rice.rice_model' has no 'mai1' member (no-member)
+E: 26,63: Module 'ubertool_src.ubertool_eco.models.rice.rice_model' has no 'cw' member (no-member)
+R: 14, 4: Method could be a function (no-self-use)
+R: 12, 0: Too few public methods (1/2) (too-few-public-methods)
+W:  1, 0: Unused import np (unused-import)
+W:  5, 0: Unused import json_utils (unused-import)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_batchinput
+C: 18, 0: Trailing whitespace (trailing-whitespace)
+C: 20, 0: Trailing whitespace (trailing-whitespace)
+C: 20, 0: No space allowed before bracket
+        html = html + template.render (templatepath + 
+                                      ^ (bad-whitespace)
+C: 21, 0: Wrong continued indentation.
+            '03ubertext_links_left.html', {})
+            ^                          | (bad-continuation)
+C: 24, 0: Wrong continued indentation.
+            'model_attributes':'Rice Model Batch Input'}) 
+            ^                                        | (bad-continuation)
+C: 24, 0: Trailing whitespace (trailing-whitespace)
+C: 29, 0: Trailing whitespace (trailing-whitespace)
+C: 30, 0: Wrong continued indentation.
+            '06uberfooter.html', {'links': ''})
+            ^                         | (bad-continuation)
+C:  1, 0: Missing module docstring (missing-docstring)
+F:  3, 0: Unable to import 'webapp2' (import-error)
+F:  4, 0: Unable to import 'google.appengine.ext.webapp.util' (import-error)
+F:  5, 0: Unable to import 'google.appengine.ext.webapp' (import-error)
+F: 10, 0: Unable to import 'uber' (import-error)
+W: 12, 0: Class has no __init__ method (no-init)
+C: 12, 0: Missing class docstring (missing-docstring)
+C: 13, 4: Missing method docstring (missing-docstring)
+C: 15, 8: Invalid variable name "ChkCookie" (invalid-name)
+E: 15,20: Instance of 'RiceBatchInputPage' has no 'request' member (no-member)
+E: 31, 8: Instance of 'RiceBatchInputPage' has no 'response' member (no-member)
+R: 12, 0: Too few public methods (1/2) (too-few-public-methods)
+C: 33, 0: Invalid constant name "app" (invalid-name)
+C: 35, 0: Missing function docstring (missing-docstring)
+W:  7, 0: Unused import cgi (unused-import)
+W:  6, 0: Unused import np (unused-import)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_batchoutput
+C:  5, 0: Exactly one space required after comma
+import terrplant_model,terrplant_tables
+                      ^ (bad-whitespace)
+C: 15, 0: Exactly one space required around assignment
+chemical_name=[]
+             ^ (bad-whitespace)
+C: 16, 0: Exactly one space required around assignment
+mai=[]
+   ^ (bad-whitespace)
+C: 17, 0: Exactly one space required around assignment
+a=[]
+ ^ (bad-whitespace)
+C: 18, 0: Exactly one space required around assignment
+dsed=[]
+    ^ (bad-whitespace)
+C: 19, 0: Exactly one space required around assignment
+pb=[]
+  ^ (bad-whitespace)
+C: 20, 0: Exactly one space required around assignment
+dw=[]
+  ^ (bad-whitespace)
+C: 21, 0: Exactly one space required around assignment
+osed=[]
+    ^ (bad-whitespace)
+C: 22, 0: Exactly one space required around assignment
+kd=[]
+  ^ (bad-whitespace)
+C: 25, 0: Exactly one space required around assignment
+msed=[]
+    ^ (bad-whitespace)
+C: 26, 0: Exactly one space required around assignment
+vw=[]
+  ^ (bad-whitespace)
+C: 27, 0: Exactly one space required around assignment
+mai1=[]
+    ^ (bad-whitespace)
+C: 28, 0: Exactly one space required around assignment
+cw=[]
+  ^ (bad-whitespace)
+C: 50, 0: Exactly one space required around assignment
+            chemical_name_temp=str(row_inp[0])
+                              ^ (bad-whitespace)
+C: 52, 0: Exactly one space required around assignment
+            mai_temp=float(row_inp[1])
+                    ^ (bad-whitespace)
+C: 54, 0: Exactly one space required around assignment
+            a_temp=float(row_inp[2])
+                  ^ (bad-whitespace)
+C: 56, 0: Exactly one space required before assignment
+            dsed_temp= float(row_inp[3])
+                     ^ (bad-whitespace)
+C: 58, 0: Exactly one space required around assignment
+            pb_temp=float(row_inp[4])
+                   ^ (bad-whitespace)
+C: 60, 0: Exactly one space required around assignment
+            dw_temp=float(row_inp[5])
+                   ^ (bad-whitespace)
+C: 62, 0: Exactly one space required around assignment
+            osed_temp=float(row_inp[6])
+                     ^ (bad-whitespace)
+C: 64, 0: Trailing whitespace (trailing-whitespace)
+C: 64, 0: Exactly one space required around assignment
+            kd_temp=float(row_inp[7])       
+                   ^ (bad-whitespace)
+C: 65, 0: Trailing whitespace (trailing-whitespace)
+C: 67, 0: Line too long (143/80) (line-too-long)
+C: 67, 0: Exactly one space required after comma
+            rice_obj = rice_model.rice(True,True,"batch",chemical_name_temp, mai_temp, dsed_temp, a_temp, pb_temp, dw_temp, osed_temp, kd_temp)
+                                           ^ (bad-whitespace)
+C: 67, 0: Exactly one space required after comma
+            rice_obj = rice_model.rice(True,True,"batch",chemical_name_temp, mai_temp, dsed_temp, a_temp, pb_temp, dw_temp, osed_temp, kd_temp)
+                                                ^ (bad-whitespace)
+C: 67, 0: Exactly one space required after comma
+            rice_obj = rice_model.rice(True,True,"batch",chemical_name_temp, mai_temp, dsed_temp, a_temp, pb_temp, dw_temp, osed_temp, kd_temp)
+                                                        ^ (bad-whitespace)
+C: 75, 0: Trailing whitespace (trailing-whitespace)
+C: 84, 0: Trailing whitespace (trailing-whitespace)
+C: 87, 0: Exactly one space required around assignment
+            out_html_all[iter]=out_html_temp
+                              ^ (bad-whitespace)
+C: 89, 0: Trailing whitespace (trailing-whitespace)
+C: 94, 0: Exactly one space required around assignment
+    i=1
+     ^ (bad-whitespace)
+C: 95, 0: Line too long (85/80) (line-too-long)
+C: 98, 0: Exactly one space required around assignment
+        i=i+1
+         ^ (bad-whitespace)
+C:100, 0: Line too long (90/80) (line-too-long)
+C:110, 0: Exactly one space required around assignment
+    sum_output_cw="""<table border="1" style="display: none"><tr>
+                 ^ (bad-whitespace)
+C:113, 0: Trailing whitespace (trailing-whitespace)
+C:114, 0: Exactly one space required around assignment
+    sum_fig="""<H3>Historgram</H3><br>
+           ^ (bad-whitespace)
+C:120, 0: Trailing whitespace (trailing-whitespace)
+C:120, 0: Line too long (118/80) (line-too-long)
+C:121, 0: Line too long (135/80) (line-too-long)
+C:122, 0: Line too long (97/80) (line-too-long)
+C:124, 0: Trailing whitespace (trailing-whitespace)
+C:127, 0: Exactly one space required around assignment
+    iter_html=loop_html(thefile)
+             ^ (bad-whitespace)
+C:  1, 0: Missing module docstring (missing-docstring)
+F:  5, 0: Unable to import 'terrplant_model' (import-error)
+F:  5, 0: Unable to import 'terrplant_tables' (import-error)
+C: 13, 0: Invalid constant name "logger" (invalid-name)
+C: 15, 0: Invalid constant name "chemical_name" (invalid-name)
+C: 16, 0: Invalid constant name "mai" (invalid-name)
+C: 17, 0: Invalid constant name "a" (invalid-name)
+C: 18, 0: Invalid constant name "dsed" (invalid-name)
+C: 19, 0: Invalid constant name "pb" (invalid-name)
+C: 20, 0: Invalid constant name "dw" (invalid-name)
+C: 21, 0: Invalid constant name "osed" (invalid-name)
+C: 22, 0: Invalid constant name "kd" (invalid-name)
+C: 25, 0: Invalid constant name "msed" (invalid-name)
+C: 26, 0: Invalid constant name "vw" (invalid-name)
+C: 27, 0: Invalid constant name "mai1" (invalid-name)
+C: 28, 0: Invalid constant name "cw" (invalid-name)
+C: 30, 0: Invalid constant name "jid_all" (invalid-name)
+C: 31, 0: Invalid constant name "jid_batch" (invalid-name)
+C: 32, 0: Invalid constant name "rice_all" (invalid-name)
+C: 33, 0: Invalid constant name "all_threads" (invalid-name)
+C: 34, 0: Invalid constant name "out_html_all" (invalid-name)
+C: 35, 0: Invalid constant name "job_q" (invalid-name)
+C: 36, 0: Invalid constant name "thread_count" (invalid-name)
+W: 46,12: Redefining built-in 'iter' (redefined-builtin)
+R: 39, 0: Too many local variables (16/15) (too-many-locals)
+C: 39, 0: Missing function docstring (missing-docstring)
+E: 67,23: Undefined variable 'rice_model' (undefined-variable)
+E: 85,24: Undefined variable 'rice_tables' (undefined-variable)
+W:100, 4: Redefining name 'all_threads' from outer scope (line 33) (redefined-outer-name)
+C: 90, 0: Missing function docstring (missing-docstring)
+C:101, 8: Invalid variable name "x" (invalid-name)
+C:103, 8: Invalid variable name "x" (invalid-name)
+C:105, 8: Invalid variable name "x" (invalid-name)
+E:108,21: Undefined variable 'rice_tables' (undefined-variable)
+E:120,58: Undefined variable 'np' (undefined-variable)
+E:121,15: Undefined variable 'rice_tables' (undefined-variable)
+E:121,41: Undefined variable 'rice_tables' (undefined-variable)
+E:121,66: Undefined variable 'rice_tables' (undefined-variable)
+W:100,65: Unused variable 'j' (unused-variable)
+W: 92, 4: Unused variable 'header' (unused-variable)
+C:125, 0: Invalid function name "RiceBatchOutputPage" (invalid-name)
+C:125, 0: Missing function docstring (missing-docstring)
+E:129,22: Undefined variable 'terr_all' (undefined-variable)
+W:  5, 0: Unused import terrplant_tables (unused-import)
+W:  5, 0: Unused import terrplant_model (unused-import)
+W:  3, 0: Unused import StringIO (unused-import)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_history
+C: 20, 0: Exactly one space required after comma
+        text_file1 = open('rice/rice_history.txt','r')
+                                                 ^ (bad-whitespace)
+C: 25, 0: Line too long (124/80) (line-too-long)
+C: 25, 0: Exactly one space required after comma
+        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'rice','page':'history'})
+                                                                                                         ^ (bad-whitespace)
+C: 26, 0: Trailing whitespace (trailing-whitespace)
+C: 26, 0: Line too long (86/80) (line-too-long)
+C: 27, 0: Line too long (84/80) (line-too-long)
+C: 28, 0: Wrong hanging indentation.
+                'model':'rice', 
+            |   ^ (bad-continuation)
+C: 28, 0: Trailing whitespace (trailing-whitespace)
+C: 29, 0: Wrong hanging indentation.
+                'model_attributes':'Rice Model User History', 
+            |   ^ (bad-continuation)
+C: 29, 0: Trailing whitespace (trailing-whitespace)
+C: 30, 0: Wrong hanging indentation.
+                'text_paragraph':x})
+            |   ^ (bad-continuation)
+C: 31, 0: Trailing whitespace (trailing-whitespace)
+C: 31, 0: Line too long (84/80) (line-too-long)
+C: 31, 0: No space allowed before bracket
+        html = html + template.render (templatepath + 'history_pagination.html', {})                
+                                      ^ (bad-whitespace)
+C: 35, 0: Line too long (88/80) (line-too-long)
+C: 45, 0: Final newline missing (missing-final-newline)
+F:  7, 0: Unable to import 'webapp2' (import-error)
+F:  8, 0: Unable to import 'google.appengine.ext.webapp.util' (import-error)
+F:  9, 0: Unable to import 'google.appengine.ext.webapp' (import-error)
+F: 11, 0: Unable to import 'uber' (import-error)
+F: 12, 0: Unable to import 'history_tables' (import-error)
+C: 14, 0: Invalid constant name "logger" (invalid-name)
+F: 15, 0: Unable to import 'rest_funcs' (import-error)
+W: 18, 0: Class has no __init__ method (no-init)
+C: 18, 0: Missing class docstring (missing-docstring)
+C: 19, 4: Missing method docstring (missing-docstring)
+C: 21, 8: Invalid variable name "x" (invalid-name)
+C: 23, 8: Invalid variable name "ChkCookie" (invalid-name)
+E: 23,20: Instance of 'RicehistoryPage' has no 'request' member (no-member)
+E: 36, 8: Instance of 'RicehistoryPage' has no 'response' member (no-member)
+R: 18, 0: Too few public methods (1/2) (too-few-public-methods)
+C: 38, 0: Invalid constant name "app" (invalid-name)
+C: 40, 0: Missing function docstring (missing-docstring)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_input
+C: 11, 0: Trailing whitespace (trailing-whitespace)
+C: 25, 0: Wrong hanging indentation.
+            'model':model,
+        |   ^ (bad-continuation)
+C: 26, 0: Wrong hanging indentation.
+            'model_attributes': header+' Inputs'})
+        |   ^ (bad-continuation)
+C: 29, 0: Line too long (83/80) (line-too-long)
+C: 37, 0: Trailing whitespace (trailing-whitespace)
+C: 38, 0: Line too long (91/80) (line-too-long)
+C:  8, 0: Invalid function name "riceInputPage" (invalid-name)
+W: 22, 4: Relative import 'rice_parameters', should be 'ubertool_src.ubertool_eco.models.rice.rice_parameters' (relative-import)
+E: 28,22: No value for argument 'name' in constructor call (no-value-for-parameter)
+E: 28,22: No value for argument 'bases' in constructor call (no-value-for-parameter)
+E: 28,22: No value for argument 'attrs' in constructor call (no-value-for-parameter)
+W: 36, 4: No exception type(s) specified (bare-except)
+F: 33, 8: Unable to import 'rice_tooltips' (import-error)
+W:  8,18: Unused argument 'request' (unused-argument)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_model
+C: 11, 0: Exactly one space required around assignment
+api_key=keys_Picloud_S3.picloud_api_key
+       ^ (bad-whitespace)
+C: 12, 0: Exactly one space required around assignment
+api_secretkey=keys_Picloud_S3.picloud_api_secretkey
+             ^ (bad-whitespace)
+C: 14, 0: Line too long (97/80) (line-too-long)
+C: 20, 0: Exactly one space required after comma
+    def __init__(self, set_variables=True,run_methods=True,version_rice="1.0",
+                                         ^ (bad-whitespace)
+C: 20, 0: Exactly one space required after comma
+    def __init__(self, set_variables=True,run_methods=True,version_rice="1.0",
+                                                          ^ (bad-whitespace)
+C: 21, 0: Wrong continued indentation.
+                run_type = "single",chemical_name='', 
+                ^| (bad-continuation)
+C: 21, 0: Trailing whitespace (trailing-whitespace)
+C: 21, 0: No space allowed around keyword argument assignment
+                run_type = "single",chemical_name='', 
+                         ^ (bad-whitespace)
+C: 21, 0: Exactly one space required after comma
+                run_type = "single",chemical_name='', 
+                                   ^ (bad-whitespace)
+C: 22, 0: Wrong continued indentation.
+                mai=1, dsed=1, a=1, pb=1, dw=1, osed=1, kd=1, 
+                ^| (bad-continuation)
+C: 22, 0: Trailing whitespace (trailing-whitespace)
+C: 23, 0: Wrong continued indentation.
+                vars_dict=None):
+                ^| (bad-continuation)
+C: 31, 0: Line too long (96/80) (line-too-long)
+C: 31, 0: Exactly one space required after comma
+                self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)
+                                               ^ (bad-whitespace)
+C: 31, 0: Exactly one space required after comma
+                self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)
+                                                        ^ (bad-whitespace)
+C: 31, 0: Exactly one space required after comma
+                self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)
+                                                                      ^ (bad-whitespace)
+C: 31, 0: Exactly one space required after comma
+                self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)
+                                                                          ^ (bad-whitespace)
+C: 31, 0: Exactly one space required after comma
+                self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)
+                                                                               ^ (bad-whitespace)
+C: 31, 0: Exactly one space required after comma
+                self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)
+                                                                                 ^ (bad-whitespace)
+C: 31, 0: Exactly one space required after comma
+                self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)
+                                                                                    ^ (bad-whitespace)
+C: 31, 0: Exactly one space required after comma
+                self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)
+                                                                                       ^ (bad-whitespace)
+C: 31, 0: Exactly one space required after comma
+                self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)
+                                                                                            ^ (bad-whitespace)
+C: 45, 0: Line too long (89/80) (line-too-long)
+C: 45, 0: Exactly one space required after comma
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
+                          ^ (bad-whitespace)
+C: 45, 0: Exactly one space required after comma
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
+                                       ^ (bad-whitespace)
+C: 45, 0: Exactly one space required after comma
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
+                                                ^ (bad-whitespace)
+C: 45, 0: Exactly one space required after comma
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
+                                                              ^ (bad-whitespace)
+C: 45, 0: Exactly one space required after comma
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
+                                                                  ^ (bad-whitespace)
+C: 45, 0: Exactly one space required after comma
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
+                                                                       ^ (bad-whitespace)
+C: 45, 0: Exactly one space required after comma
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
+                                                                         ^ (bad-whitespace)
+C: 45, 0: Exactly one space required after comma
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
+                                                                            ^ (bad-whitespace)
+C: 45, 0: Exactly one space required after comma
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
+                                                                               ^ (bad-whitespace)
+C: 45, 0: Exactly one space required after comma
+    def set_variables(self,version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd):
+                                                                                    ^ (bad-whitespace)
+C: 56, 0: Line too long (112/80) (line-too-long)
+C: 56, 0: Exactly one space required after comma
+        all_dic = {"version_rice":self.version_rice,"run_type":self.run_type,"chemical_name":self.chemical_name,
+                                                   ^ (bad-whitespace)
+C: 56, 0: Exactly one space required after comma
+        all_dic = {"version_rice":self.version_rice,"run_type":self.run_type,"chemical_name":self.chemical_name,
+                                                                            ^ (bad-whitespace)
+C: 57, 0: Wrong continued indentation.
+            "mai":self.mai, "dsed":self.dsed, "a":self.a, "pb":self.pb, "dw":self.dw,"osed":self.osed, "kd":self.kd}
+            ^      | (bad-continuation)
+C: 57, 0: Line too long (116/80) (line-too-long)
+C: 57, 0: Exactly one space required after comma
+            "mai":self.mai, "dsed":self.dsed, "a":self.a, "pb":self.pb, "dw":self.dw,"osed":self.osed, "kd":self.kd}
+                                                                                    ^ (bad-whitespace)
+C: 61, 0: Trailing whitespace (trailing-whitespace)
+C: 61, 0: Exactly one space required around assignment
+        url=os.environ['UBERTOOL_REST_SERVER'] + '/rice/' + self.jid 
+           ^ (bad-whitespace)
+C: 62, 0: Trailing whitespace (trailing-whitespace)
+C: 62, 0: Line too long (114/80) (line-too-long)
+C: 63, 0: Trailing whitespace (trailing-whitespace)
+C: 63, 0: Line too long (86/80) (line-too-long)
+C:  1, 0: Missing module docstring (missing-docstring)
+F:  1, 0: Unable to import 'REST' (import-error)
+C:  4, 0: Invalid constant name "logger" (invalid-name)
+F:  6, 0: Unable to import 'keys_Picloud_S3' (import-error)
+F:  8, 0: Unable to import 'requests' (import-error)
+C: 11, 0: Invalid constant name "api_key" (invalid-name)
+C: 12, 0: Invalid constant name "api_secretkey" (invalid-name)
+C: 13, 0: Invalid constant name "base64string" (invalid-name)
+C: 14, 0: Invalid constant name "http_headers" (invalid-name)
+C: 15, 0: Invalid constant name "url_part1" (invalid-name)
+R: 19, 0: Too many instance attributes (11/7) (too-many-instance-attributes)
+C: 19, 0: Invalid class name "rice" (invalid-name)
+C: 39, 8: Invalid attribute name "a" (invalid-name)
+C: 43, 8: Invalid attribute name "kd" (invalid-name)
+C: 40, 8: Invalid attribute name "pb" (invalid-name)
+C: 41, 8: Invalid attribute name "dw" (invalid-name)
+C: 19, 0: Missing class docstring (missing-docstring)
+R: 20, 4: Too many arguments (14/5) (too-many-arguments)
+W: 20,42: Unused argument 'run_methods' (unused-argument)
+C: 33, 4: Missing method docstring (missing-docstring)
+R: 45, 4: Too many arguments (11/5) (too-many-arguments)
+R: 45, 4: Too many local variables (18/15) (too-many-locals)
+C: 45, 4: Invalid argument name "a" (invalid-name)
+C: 45, 4: Invalid argument name "pb" (invalid-name)
+C: 45, 4: Invalid argument name "dw" (invalid-name)
+C: 45, 4: Invalid argument name "kd" (invalid-name)
+C: 45, 4: Missing method docstring (missing-docstring)
+W: 51, 8: Attribute 'a' defined outside __init__ (attribute-defined-outside-init)
+W: 55, 8: Attribute 'kd' defined outside __init__ (attribute-defined-outside-init)
+W: 46, 8: Attribute 'version_rice' defined outside __init__ (attribute-defined-outside-init)
+W: 47, 8: Attribute 'run_type' defined outside __init__ (attribute-defined-outside-init)
+W: 48, 8: Attribute 'chemical_name' defined outside __init__ (attribute-defined-outside-init)
+W: 52, 8: Attribute 'pb' defined outside __init__ (attribute-defined-outside-init)
+W: 50, 8: Attribute 'dsed' defined outside __init__ (attribute-defined-outside-init)
+W: 49, 8: Attribute 'mai' defined outside __init__ (attribute-defined-outside-init)
+W: 53, 8: Attribute 'dw' defined outside __init__ (attribute-defined-outside-init)
+W: 54, 8: Attribute 'osed' defined outside __init__ (attribute-defined-outside-init)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_output
+C: 21, 0: Trailing whitespace (trailing-whitespace)
+C: 34, 0: Trailing whitespace (trailing-whitespace)
+C: 34, 0: Line too long (88/80) (line-too-long)
+C: 34, 0: Exactly one space required after comma
+    rice_obj = rice_model.rice(True,True,version_rice,'single',chemical_name, mai, dsed, 
+                                   ^ (bad-whitespace)
+C: 34, 0: Exactly one space required after comma
+    rice_obj = rice_model.rice(True,True,version_rice,'single',chemical_name, mai, dsed, 
+                                        ^ (bad-whitespace)
+C: 34, 0: Exactly one space required after comma
+    rice_obj = rice_model.rice(True,True,version_rice,'single',chemical_name, mai, dsed, 
+                                                     ^ (bad-whitespace)
+C: 34, 0: Exactly one space required after comma
+    rice_obj = rice_model.rice(True,True,version_rice,'single',chemical_name, mai, dsed, 
+                                                              ^ (bad-whitespace)
+C: 35, 0: Wrong continued indentation.
+        a, pb, dw, osed, kd)
+        ^                      | (bad-continuation)
+C: 11, 0: Invalid function name "riceOutputPage" (invalid-name)
+W: 22, 4: Relative import 'rice_model', should be 'ubertool_src.ubertool_eco.models.rice.rice_model' (relative-import)
+C: 28, 4: Invalid variable name "a" (invalid-name)
+C: 29, 4: Invalid variable name "pb" (invalid-name)
+C: 30, 4: Invalid variable name "dw" (invalid-name)
+C: 32, 4: Invalid variable name "kd" (invalid-name)
+W:  6, 0: Unused import render_to_string (unused-import)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_parameters
+C:  9, 0: Exactly one space required after comma
+SELECT_VERSION = (('1.0','1.0'),)
+                        ^ (bad-whitespace)
+C: 12, 0: Trailing whitespace (trailing-whitespace)
+C: 12, 0: Line too long (116/80) (line-too-long)
+C: 13, 0: Line too long (103/80) (line-too-long)
+W: 13, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 13, 0: Exactly one space required after comma
+	version_rice = forms.ChoiceField(required=True, choices=SELECT_VERSION, label='Version',initial='1.0')
+                                                                                        ^ (bad-whitespace)
+C: 14, 0: Line too long (107/80) (line-too-long)
+W: 14, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 14, 0: No space allowed before bracket
+	chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), initial='Fipronil')
+                                                       ^ (bad-whitespace)
+C: 15, 0: Line too long (102/80) (line-too-long)
+W: 15, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 15, 0: Exactly one space required after comma
+	mai = forms.FloatField(required=True,label='Mass of Applied Ingredient to Paddy (kg)', initial=0.056)
+                                     ^ (bad-whitespace)
+C: 16, 0: Line too long (112/80) (line-too-long)
+W: 16, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 16, 0: Exactly one space required after comma
+	area = forms.FloatField(required=True,label=mark_safe('Area of the Rice Paddy (m<sup>2</sup>)'), initial=10000)
+                                      ^ (bad-whitespace)
+W: 17, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 17, 0: Exactly one space required after comma
+	dsed = forms.FloatField(required=True,label='Sediment Depth (m)', initial=0.01)
+                                      ^ (bad-whitespace)
+C: 18, 0: Line too long (134/80) (line-too-long)
+W: 18, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 18, 0: Exactly one space required after comma
+	pb = forms.FloatField(required=True,label=mark_safe('Bulk Density of Sediment, &#961;<sub>b</sub> (kg/m<sup>3</sup>)'), initial=1300)
+                                    ^ (bad-whitespace)
+C: 19, 0: Line too long (82/80) (line-too-long)
+W: 19, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 19, 0: Exactly one space required after comma
+	dw = forms.FloatField(required=True,label='Water Column Depth (m)', initial=0.10)
+                                    ^ (bad-whitespace)
+C: 20, 0: Line too long (109/80) (line-too-long)
+W: 20, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 20, 0: Exactly one space required after comma
+	osed = forms.FloatField(required=True,label=mark_safe('Porosity of Sediment, K<sub>d</sub>'), initial=0.509)
+                                      ^ (bad-whitespace)
+C: 21, 0: Line too long (132/80) (line-too-long)
+W: 21, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 21, 0: Exactly one space required after comma
+	Kd = forms.FloatField(required=True,label=mark_safe('Water-Sediment Partitioning Coefficient, K<sub>oc</sub> (L/kg)'), initial=727)
+                                    ^ (bad-whitespace)
+C: 11, 0: Missing class docstring (missing-docstring)
+E: 14,40: No value for argument 'name' in constructor call (no-value-for-parameter)
+E: 14,40: No value for argument 'bases' in constructor call (no-value-for-parameter)
+C: 18, 1: Invalid class attribute name "pb" (invalid-name)
+C: 19, 1: Invalid class attribute name "dw" (invalid-name)
+C: 21, 1: Invalid class attribute name "Kd" (invalid-name)
+R: 11, 0: Too few public methods (1/2) (too-few-public-methods)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_qaqc
+C:  7, 0: Exactly one space required before assignment
+cwd= os.getcwd()
+   ^ (bad-whitespace)
+C:  9, 0: Exactly one space required around assignment
+version_rice="1.0"
+            ^ (bad-whitespace)
+C: 10, 0: Exactly one space required around assignment
+chemical_name=[]
+             ^ (bad-whitespace)
+C: 11, 0: Exactly one space required around assignment
+mai=[]
+   ^ (bad-whitespace)
+C: 12, 0: Exactly one space required around assignment
+a=[]
+ ^ (bad-whitespace)
+C: 13, 0: Exactly one space required around assignment
+dsed=[]
+    ^ (bad-whitespace)
+C: 14, 0: Exactly one space required around assignment
+pb=[]
+  ^ (bad-whitespace)
+C: 15, 0: Exactly one space required around assignment
+dw=[]
+  ^ (bad-whitespace)
+C: 16, 0: Exactly one space required around assignment
+osed=[]
+    ^ (bad-whitespace)
+C: 17, 0: Exactly one space required around assignment
+kd=[]
+  ^ (bad-whitespace)
+C: 19, 0: Exactly one space required around assignment
+msed=[]
+    ^ (bad-whitespace)
+C: 20, 0: Exactly one space required around assignment
+vw=[]
+  ^ (bad-whitespace)
+C: 21, 0: Exactly one space required around assignment
+mai1=[]
+    ^ (bad-whitespace)
+C: 22, 0: Exactly one space required around assignment
+cw=[]
+  ^ (bad-whitespace)
+C: 28, 0: Trailing whitespace (trailing-whitespace)
+C: 32, 0: Trailing whitespace (trailing-whitespace)
+C: 33, 0: Trailing whitespace (trailing-whitespace)
+C: 37, 0: Trailing whitespace (trailing-whitespace)
+C: 39, 0: Exactly one space required around assignment
+out_fun_Msed=[]
+            ^ (bad-whitespace)
+C: 40, 0: Exactly one space required around assignment
+out_fun_Vw=[]
+          ^ (bad-whitespace)
+C: 41, 0: Trailing whitespace (trailing-whitespace)
+C: 41, 0: Exactly one space required around assignment
+out_fun_Mai1=[]            
+            ^ (bad-whitespace)
+C: 42, 0: Trailing whitespace (trailing-whitespace)
+C: 42, 0: Exactly one space required around assignment
+out_fun_Cw=[]            
+          ^ (bad-whitespace)
+C: 44, 0: Exactly one space required after comma
+rice_obj = rice_model.rice(True,True,
+                               ^ (bad-whitespace)
+C: 45, 0: Wrong continued indentation.
+            version_rice,"qaqc",chemical_name[0], 
+            ^              | (bad-continuation)
+C: 45, 0: Trailing whitespace (trailing-whitespace)
+C: 45, 0: Exactly one space required after comma
+            version_rice,"qaqc",chemical_name[0], 
+                        ^ (bad-whitespace)
+C: 45, 0: Exactly one space required after comma
+            version_rice,"qaqc",chemical_name[0], 
+                               ^ (bad-whitespace)
+C: 46, 0: Wrong continued indentation.
+            mai[0], dsed[0], a[0], pb[0], dw[0], osed[0], kd[0])
+            ^              | (bad-continuation)
+C: 48, 0: Exactly one space required around assignment
+rice_obj.chemical_name_expected=chemical_name[0]
+                               ^ (bad-whitespace)
+C: 49, 0: Exactly one space required around assignment
+rice_obj.msed_expected=msed[0]
+                      ^ (bad-whitespace)
+C: 50, 0: Exactly one space required around assignment
+rice_obj.vw_expected=vw[0]
+                    ^ (bad-whitespace)
+C: 51, 0: Exactly one space required around assignment
+rice_obj.mai1_expected=mai1[0]
+                      ^ (bad-whitespace)
+C: 52, 0: Exactly one space required around assignment
+rice_obj.cw_expected=cw[0]
+                    ^ (bad-whitespace)
+C:  1, 0: Missing module docstring (missing-docstring)
+W:  1, 0: Relative import 'rice_model', should be 'ubertool_src.ubertool_eco.models.rice.rice_model' (relative-import)
+C:  7, 0: Invalid constant name "cwd" (invalid-name)
+C:  8, 0: Invalid constant name "data" (invalid-name)
+C:  9, 0: Invalid constant name "version_rice" (invalid-name)
+C: 10, 0: Invalid constant name "chemical_name" (invalid-name)
+C: 11, 0: Invalid constant name "mai" (invalid-name)
+C: 12, 0: Invalid constant name "a" (invalid-name)
+C: 13, 0: Invalid constant name "dsed" (invalid-name)
+C: 14, 0: Invalid constant name "pb" (invalid-name)
+C: 15, 0: Invalid constant name "dw" (invalid-name)
+C: 16, 0: Invalid constant name "osed" (invalid-name)
+C: 17, 0: Invalid constant name "kd" (invalid-name)
+C: 19, 0: Invalid constant name "msed" (invalid-name)
+C: 20, 0: Invalid constant name "vw" (invalid-name)
+C: 21, 0: Invalid constant name "mai1" (invalid-name)
+C: 22, 0: Invalid constant name "cw" (invalid-name)
+C: 39, 0: Invalid constant name "out_fun_Msed" (invalid-name)
+C: 40, 0: Invalid constant name "out_fun_Vw" (invalid-name)
+C: 41, 0: Invalid constant name "out_fun_Mai1" (invalid-name)
+C: 42, 0: Invalid constant name "out_fun_Cw" (invalid-name)
+C: 44, 0: Invalid constant name "rice_obj" (invalid-name)
+W:  3, 0: Unused import unittest (unused-import)
+W:  4, 0: Unused import StringIO (unused-import)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_qaqcinput
+C:  2, 0: Exactly one space required around assignment
+os.environ['DJANGO_SETTINGS_MODULE']='settings'
+                                    ^ (bad-whitespace)
+C: 13, 0: Exactly one space required before assignment
+cwd= os.getcwd()
+   ^ (bad-whitespace)
+C: 15, 0: Exactly one space required around assignment
+dsed=[]
+    ^ (bad-whitespace)
+C: 16, 0: Exactly one space required around assignment
+a=[]
+ ^ (bad-whitespace)
+C: 17, 0: Exactly one space required around assignment
+pb=[]
+  ^ (bad-whitespace)
+C: 18, 0: Exactly one space required around assignment
+dw=[]
+  ^ (bad-whitespace)
+C: 19, 0: Exactly one space required around assignment
+osed=[]
+    ^ (bad-whitespace)
+C: 20, 0: Exactly one space required around assignment
+mai=[]
+   ^ (bad-whitespace)
+C: 21, 0: Exactly one space required around assignment
+kd=[]
+  ^ (bad-whitespace)
+C: 23, 0: Exactly one space required around assignment
+msed_out=[]
+        ^ (bad-whitespace)
+C: 24, 0: Exactly one space required around assignment
+vw_out=[]
+      ^ (bad-whitespace)
+C: 25, 0: Exactly one space required around assignment
+mai1_out=[]
+        ^ (bad-whitespace)
+C: 26, 0: Exactly one space required around assignment
+cw_out=[]
+      ^ (bad-whitespace)
+C: 31, 0: Trailing whitespace (trailing-whitespace)
+C: 34, 0: Trailing whitespace (trailing-whitespace)
+C: 35, 0: Trailing whitespace (trailing-whitespace)
+C: 36, 0: Trailing whitespace (trailing-whitespace)
+C: 40, 0: Trailing whitespace (trailing-whitespace)
+C: 41, 0: Trailing whitespace (trailing-whitespace)
+C: 42, 0: Trailing whitespace (trailing-whitespace)
+C: 45, 0: Exactly one space required after comma
+        text_file1 = open('rice/rice_description.txt','r')
+                                                     ^ (bad-whitespace)
+C: 49, 0: Line too long (121/80) (line-too-long)
+C: 49, 0: Exactly one space required after comma
+        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'rice','page':'qaqc'})
+                                                                                                         ^ (bad-whitespace)
+C: 50, 0: Trailing whitespace (trailing-whitespace)
+C: 50, 0: Line too long (87/80) (line-too-long)
+C: 50, 0: No space allowed before bracket
+        html = html + template.render (templatepath + '03ubertext_links_left.html', {})                
+                                      ^ (bad-whitespace)
+C: 51, 0: Trailing whitespace (trailing-whitespace)
+C: 51, 0: Line too long (94/80) (line-too-long)
+C: 52, 0: Line too long (87/80) (line-too-long)
+C: 53, 0: Line too long (88/80) (line-too-long)
+C: 63, 0: Trailing whitespace (trailing-whitespace)
+C:  1, 0: Missing module docstring (missing-docstring)
+F:  3, 0: Unable to import 'webapp2' (import-error)
+F:  4, 0: Unable to import 'google.appengine.ext.webapp.util' (import-error)
+F:  5, 0: Unable to import 'google.appengine.ext.webapp' (import-error)
+C: 13, 0: Invalid constant name "cwd" (invalid-name)
+C: 14, 0: Invalid constant name "data" (invalid-name)
+C: 15, 0: Invalid constant name "dsed" (invalid-name)
+C: 16, 0: Invalid constant name "a" (invalid-name)
+C: 17, 0: Invalid constant name "pb" (invalid-name)
+C: 18, 0: Invalid constant name "dw" (invalid-name)
+C: 19, 0: Invalid constant name "osed" (invalid-name)
+C: 20, 0: Invalid constant name "mai" (invalid-name)
+C: 21, 0: Invalid constant name "kd" (invalid-name)
+C: 23, 0: Invalid constant name "msed_out" (invalid-name)
+C: 24, 0: Invalid constant name "vw_out" (invalid-name)
+C: 25, 0: Invalid constant name "mai1_out" (invalid-name)
+C: 26, 0: Invalid constant name "cw_out" (invalid-name)
+W: 43, 0: Class has no __init__ method (no-init)
+C: 43, 0: Missing class docstring (missing-docstring)
+C: 44, 4: Missing method docstring (missing-docstring)
+C: 46, 8: Invalid variable name "x" (invalid-name)
+E: 54, 8: Instance of 'RiceQaqcInputPage' has no 'response' member (no-member)
+W: 46, 8: Unused variable 'x' (unused-variable)
+R: 43, 0: Too few public methods (1/2) (too-few-public-methods)
+C: 56, 0: Invalid constant name "app" (invalid-name)
+C: 58, 0: Missing function docstring (missing-docstring)
+W:  7, 0: Unused import cgi (unused-import)
+W: 10, 0: Unused import StringIO (unused-import)
+W:  6, 0: Unused import np (unused-import)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_qaqcoutput
+C:  2, 0: Exactly one space required around assignment
+os.environ['DJANGO_SETTINGS_MODULE']='settings'
+                                    ^ (bad-whitespace)
+C: 16, 0: Exactly one space required around assignment
+dsed=[]
+    ^ (bad-whitespace)
+C: 17, 0: Exactly one space required around assignment
+a=[]
+ ^ (bad-whitespace)
+C: 18, 0: Exactly one space required around assignment
+pb=[]
+  ^ (bad-whitespace)
+C: 19, 0: Exactly one space required around assignment
+dw=[]
+  ^ (bad-whitespace)
+C: 20, 0: Exactly one space required around assignment
+osed=[]
+    ^ (bad-whitespace)
+C: 21, 0: Exactly one space required around assignment
+mai=[]
+   ^ (bad-whitespace)
+C: 22, 0: Exactly one space required around assignment
+kd=[]
+  ^ (bad-whitespace)
+C: 24, 0: Exactly one space required around assignment
+msed_out=[]
+        ^ (bad-whitespace)
+C: 25, 0: Exactly one space required around assignment
+vw_out=[]
+      ^ (bad-whitespace)
+C: 26, 0: Exactly one space required around assignment
+mai1_out=[]
+        ^ (bad-whitespace)
+C: 27, 0: Exactly one space required around assignment
+cw_out=[]
+      ^ (bad-whitespace)
+C: 29, 0: Trailing whitespace (trailing-whitespace)
+C: 36, 0: Trailing whitespace (trailing-whitespace)
+C: 39, 0: Trailing whitespace (trailing-whitespace)
+C: 40, 0: Trailing whitespace (trailing-whitespace)
+C: 41, 0: Trailing whitespace (trailing-whitespace)
+C: 46, 0: Trailing whitespace (trailing-whitespace)
+C: 47, 0: Exactly one space required around assignment
+out_fun_Msed=[]
+            ^ (bad-whitespace)
+C: 48, 0: Exactly one space required around assignment
+out_fun_Vw=[]
+          ^ (bad-whitespace)
+C: 49, 0: Trailing whitespace (trailing-whitespace)
+C: 49, 0: Exactly one space required around assignment
+out_fun_Mai1=[]            
+            ^ (bad-whitespace)
+C: 50, 0: Trailing whitespace (trailing-whitespace)
+C: 50, 0: Exactly one space required around assignment
+out_fun_Cw=[]      
+          ^ (bad-whitespace)
+C: 56, 0: Trailing whitespace (trailing-whitespace)
+C: 60, 0: Exactly one space required around assignment
+        self.dsed_in=dsed_in
+                    ^ (bad-whitespace)
+C: 61, 0: Exactly one space required around assignment
+        self.a_in=a_in
+                 ^ (bad-whitespace)
+C: 62, 0: Exactly one space required around assignment
+        self.pb_in=pb_in
+                  ^ (bad-whitespace)
+C: 64, 0: Exactly one space required around assignment
+        self.msed_out_in=msed_out_in
+                        ^ (bad-whitespace)
+W: 66, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 66, 0: Exactly one space required after comma
+            fun = rice_output.msed(self.dsed_in,self.a_in,self.pb_in)
+                                               ^ (bad-whitespace)
+C: 66, 0: Exactly one space required after comma
+            fun = rice_output.msed(self.dsed_in,self.a_in,self.pb_in)
+                                                         ^ (bad-whitespace)
+W: 67, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 68, 0: Line too long (123/80) (line-too-long)
+W: 68, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 68, 0: Exactly one space required after comma
+            testFailureMessage = "Test of function name: %s expected: %i != calculated: %i" % ("msed",self.msed_out_in,fun)
+                                                                                                     ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+            testFailureMessage = "Test of function name: %s expected: %i != calculated: %i" % ("msed",self.msed_out_in,fun)
+                                                                                                                      ^ (bad-whitespace)
+C: 69, 0: Line too long (87/80) (line-too-long)
+W: 69, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 69, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.msed_out_in,3),testFailureMessage)
+                                      ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.msed_out_in,3),testFailureMessage)
+                                         ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.msed_out_in,3),testFailureMessage)
+                                                                ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.msed_out_in,3),testFailureMessage)
+                                                                   ^ (bad-whitespace)
+C: 74, 0: Trailing whitespace (trailing-whitespace)
+C: 74, 0: Exactly one space required around assignment
+        self.dw_in=dw_in       
+                  ^ (bad-whitespace)
+C: 75, 0: Exactly one space required around assignment
+        self.a_in=a_in
+                 ^ (bad-whitespace)
+C: 76, 0: Exactly one space required around assignment
+        self.dsed_in=dsed_in
+                    ^ (bad-whitespace)
+C: 77, 0: Trailing whitespace (trailing-whitespace)
+C: 77, 0: Exactly one space required around assignment
+        self.osed_in=osed_in       
+                    ^ (bad-whitespace)
+C: 79, 0: Exactly one space required around assignment
+        self.vw_out_in=vw_out_in
+                      ^ (bad-whitespace)
+W: 81, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 81, 0: Exactly one space required after comma
+            fun = rice_output.vw(self.dw_in,self.a_in,self.dsed_in,self.osed_in)
+                                           ^ (bad-whitespace)
+C: 81, 0: Exactly one space required after comma
+            fun = rice_output.vw(self.dw_in,self.a_in,self.dsed_in,self.osed_in)
+                                                     ^ (bad-whitespace)
+C: 81, 0: Exactly one space required after comma
+            fun = rice_output.vw(self.dw_in,self.a_in,self.dsed_in,self.osed_in)
+                                                                  ^ (bad-whitespace)
+W: 82, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 83, 0: Line too long (119/80) (line-too-long)
+W: 83, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 83, 0: Exactly one space required after comma
+            testFailureMessage = "Test of function name: %s expected: %i != calculated: %i" % ("vw",self.vw_out_in,fun)
+                                                                                                   ^ (bad-whitespace)
+C: 83, 0: Exactly one space required after comma
+            testFailureMessage = "Test of function name: %s expected: %i != calculated: %i" % ("vw",self.vw_out_in,fun)
+                                                                                                                  ^ (bad-whitespace)
+C: 84, 0: Line too long (85/80) (line-too-long)
+W: 84, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 84, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.vw_out_in,3),testFailureMessage)
+                                      ^ (bad-whitespace)
+C: 84, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.vw_out_in,3),testFailureMessage)
+                                         ^ (bad-whitespace)
+C: 84, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.vw_out_in,3),testFailureMessage)
+                                                              ^ (bad-whitespace)
+C: 84, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.vw_out_in,3),testFailureMessage)
+                                                                 ^ (bad-whitespace)
+C: 85, 0: Trailing whitespace (trailing-whitespace)
+C: 89, 0: Trailing whitespace (trailing-whitespace)
+C: 89, 0: Exactly one space required around assignment
+        self.mai_in=mai_in       
+                   ^ (bad-whitespace)
+C: 90, 0: Trailing whitespace (trailing-whitespace)
+C: 90, 0: Exactly one space required around assignment
+        self.a_in=a_in     
+                 ^ (bad-whitespace)
+C: 92, 0: Exactly one space required around assignment
+        self.mai1_out_in=mai1_out_in
+                        ^ (bad-whitespace)
+W: 94, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 94, 0: Exactly one space required after comma
+            fun = rice_output.mai1(self.mai_in,self.a_in)
+                                              ^ (bad-whitespace)
+W: 95, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 96, 0: Line too long (123/80) (line-too-long)
+W: 96, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 96, 0: Exactly one space required after comma
+            testFailureMessage = "Test of function name: %s expected: %i != calculated: %i" % ("mai1",self.mai1_out_in,fun)
+                                                                                                     ^ (bad-whitespace)
+C: 96, 0: Exactly one space required after comma
+            testFailureMessage = "Test of function name: %s expected: %i != calculated: %i" % ("mai1",self.mai1_out_in,fun)
+                                                                                                                      ^ (bad-whitespace)
+C: 97, 0: Line too long (87/80) (line-too-long)
+W: 97, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C: 97, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.mai1_out_in,3),testFailureMessage)
+                                      ^ (bad-whitespace)
+C: 97, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.mai1_out_in,3),testFailureMessage)
+                                         ^ (bad-whitespace)
+C: 97, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.mai1_out_in,3),testFailureMessage)
+                                                                ^ (bad-whitespace)
+C: 97, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.mai1_out_in,3),testFailureMessage)
+                                                                   ^ (bad-whitespace)
+C:102, 0: Exactly one space required around assignment
+        self.dsed_in=dsed_in
+                    ^ (bad-whitespace)
+C:103, 0: Exactly one space required around assignment
+        self.pb_in=pb_in
+                  ^ (bad-whitespace)
+C:104, 0: Exactly one space required around assignment
+        self.dw_in=dw_in
+                  ^ (bad-whitespace)
+C:105, 0: Exactly one space required around assignment
+        self.osed_in=osed_in
+                    ^ (bad-whitespace)
+C:106, 0: Exactly one space required around assignment
+        self.mai_in=mai_in
+                   ^ (bad-whitespace)
+C:107, 0: Exactly one space required around assignment
+        self.kd_in=kd_in
+                  ^ (bad-whitespace)
+C:108, 0: Exactly one space required around assignment
+        self.a_in=a_in
+                 ^ (bad-whitespace)
+C:110, 0: Exactly one space required around assignment
+        self.cw_out_in=cw_out_in
+                      ^ (bad-whitespace)
+C:112, 0: Line too long (132/80) (line-too-long)
+W:112, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C:112, 0: Exactly one space required after comma
+            fun = rice_output.cw(rice_output.mai1(self.mai_in,self.a_in),self.dw_in,self.dsed_in,self.osed_in,self.pb_in,self.kd_in)
+                                                             ^ (bad-whitespace)
+C:112, 0: Exactly one space required after comma
+            fun = rice_output.cw(rice_output.mai1(self.mai_in,self.a_in),self.dw_in,self.dsed_in,self.osed_in,self.pb_in,self.kd_in)
+                                                                        ^ (bad-whitespace)
+C:112, 0: Exactly one space required after comma
+            fun = rice_output.cw(rice_output.mai1(self.mai_in,self.a_in),self.dw_in,self.dsed_in,self.osed_in,self.pb_in,self.kd_in)
+                                                                                   ^ (bad-whitespace)
+C:112, 0: Exactly one space required after comma
+            fun = rice_output.cw(rice_output.mai1(self.mai_in,self.a_in),self.dw_in,self.dsed_in,self.osed_in,self.pb_in,self.kd_in)
+                                                                                                ^ (bad-whitespace)
+C:112, 0: Exactly one space required after comma
+            fun = rice_output.cw(rice_output.mai1(self.mai_in,self.a_in),self.dw_in,self.dsed_in,self.osed_in,self.pb_in,self.kd_in)
+                                                                                                             ^ (bad-whitespace)
+C:112, 0: Exactly one space required after comma
+            fun = rice_output.cw(rice_output.mai1(self.mai_in,self.a_in),self.dw_in,self.dsed_in,self.osed_in,self.pb_in,self.kd_in)
+                                                                                                                        ^ (bad-whitespace)
+W:113, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C:114, 0: Line too long (119/80) (line-too-long)
+W:114, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C:114, 0: Exactly one space required after comma
+            testFailureMessage = "Test of function name: %s expected: %d != calculated: %d" % ("cw",self.cw_out_in,fun)
+                                                                                                   ^ (bad-whitespace)
+C:114, 0: Exactly one space required after comma
+            testFailureMessage = "Test of function name: %s expected: %d != calculated: %d" % ("cw",self.cw_out_in,fun)
+                                                                                                                  ^ (bad-whitespace)
+C:115, 0: Line too long (85/80) (line-too-long)
+W:115, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+C:115, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.cw_out_in,3),testFailureMessage)
+                                      ^ (bad-whitespace)
+C:115, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.cw_out_in,3),testFailureMessage)
+                                         ^ (bad-whitespace)
+C:115, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.cw_out_in,3),testFailureMessage)
+                                                              ^ (bad-whitespace)
+C:115, 0: Exactly one space required after comma
+            self.assertEqual(round(fun,3),round(self.cw_out_in,3),testFailureMessage)
+                                                                 ^ (bad-whitespace)
+C:116, 0: Trailing whitespace (trailing-whitespace)
+C:125, 0: Exactly one space required around assignment
+    test_out=stream.read()
+            ^ (bad-whitespace)
+C:128, 0: Line too long (94/80) (line-too-long)
+C:129, 0: Line too long (94/80) (line-too-long)
+C:130, 0: Line too long (100/80) (line-too-long)
+C:131, 0: Line too long (100/80) (line-too-long)
+C:132, 0: Line too long (82/80) (line-too-long)
+C:133, 0: Line too long (82/80) (line-too-long)
+C:134, 0: Line too long (132/80) (line-too-long)
+C:135, 0: Line too long (132/80) (line-too-long)
+C:138, 0: Trailing whitespace (trailing-whitespace)
+C:141, 0: Exactly one space required after comma
+        text_file1 = open('rice/rice_description.txt','r')
+                                                     ^ (bad-whitespace)
+C:145, 0: Line too long (121/80) (line-too-long)
+C:145, 0: Exactly one space required after comma
+        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'rice','page':'qaqc'})
+                                                                                                         ^ (bad-whitespace)
+C:146, 0: Trailing whitespace (trailing-whitespace)
+C:146, 0: Line too long (87/80) (line-too-long)
+C:146, 0: No space allowed before bracket
+        html = html + template.render (templatepath + '03ubertext_links_left.html', {})                
+                                      ^ (bad-whitespace)
+C:147, 0: Line too long (96/80) (line-too-long)
+C:199, 0: Trailing whitespace (trailing-whitespace)
+C:200, 0: Wrong continued indentation.
+               pb[0], pb[1], dw[0], dw[1], osed[0], osed[1], kd[0], kd[1])      
+               ^| (bad-continuation)
+C:200, 0: Trailing whitespace (trailing-whitespace)
+C:260, 0: Line too long (107/80) (line-too-long)
+C:260, 0: Exactly one space required after comma
+        """ % (out_fun_Msed[0],msed_out[0],test_suite_msed_1,out_fun_Msed[1],msed_out[1],test_suite_msed_2,
+                              ^ (bad-whitespace)
+C:260, 0: Exactly one space required after comma
+        """ % (out_fun_Msed[0],msed_out[0],test_suite_msed_1,out_fun_Msed[1],msed_out[1],test_suite_msed_2,
+                                          ^ (bad-whitespace)
+C:260, 0: Exactly one space required after comma
+        """ % (out_fun_Msed[0],msed_out[0],test_suite_msed_1,out_fun_Msed[1],msed_out[1],test_suite_msed_2,
+                                                            ^ (bad-whitespace)
+C:260, 0: Exactly one space required after comma
+        """ % (out_fun_Msed[0],msed_out[0],test_suite_msed_1,out_fun_Msed[1],msed_out[1],test_suite_msed_2,
+                                                                            ^ (bad-whitespace)
+C:260, 0: Exactly one space required after comma
+        """ % (out_fun_Msed[0],msed_out[0],test_suite_msed_1,out_fun_Msed[1],msed_out[1],test_suite_msed_2,
+                                                                                        ^ (bad-whitespace)
+C:261, 0: Line too long (95/80) (line-too-long)
+C:261, 0: Exactly one space required after comma
+               out_fun_Vw[0],vw_out[0],test_suite_vw_1,out_fun_Vw[1],vw_out[1],test_suite_vw_2,
+                            ^ (bad-whitespace)
+C:261, 0: Exactly one space required after comma
+               out_fun_Vw[0],vw_out[0],test_suite_vw_1,out_fun_Vw[1],vw_out[1],test_suite_vw_2,
+                                      ^ (bad-whitespace)
+C:261, 0: Exactly one space required after comma
+               out_fun_Vw[0],vw_out[0],test_suite_vw_1,out_fun_Vw[1],vw_out[1],test_suite_vw_2,
+                                                      ^ (bad-whitespace)
+C:261, 0: Exactly one space required after comma
+               out_fun_Vw[0],vw_out[0],test_suite_vw_1,out_fun_Vw[1],vw_out[1],test_suite_vw_2,
+                                                                    ^ (bad-whitespace)
+C:261, 0: Exactly one space required after comma
+               out_fun_Vw[0],vw_out[0],test_suite_vw_1,out_fun_Vw[1],vw_out[1],test_suite_vw_2,
+                                                                              ^ (bad-whitespace)
+C:262, 0: Line too long (107/80) (line-too-long)
+C:262, 0: Exactly one space required after comma
+               out_fun_Mai1[0],mai1_out[0],test_suite_mai1_1,out_fun_Mai1[1],mai1_out[1],test_suite_mai1_2,
+                              ^ (bad-whitespace)
+C:262, 0: Exactly one space required after comma
+               out_fun_Mai1[0],mai1_out[0],test_suite_mai1_1,out_fun_Mai1[1],mai1_out[1],test_suite_mai1_2,
+                                          ^ (bad-whitespace)
+C:262, 0: Exactly one space required after comma
+               out_fun_Mai1[0],mai1_out[0],test_suite_mai1_1,out_fun_Mai1[1],mai1_out[1],test_suite_mai1_2,
+                                                            ^ (bad-whitespace)
+C:262, 0: Exactly one space required after comma
+               out_fun_Mai1[0],mai1_out[0],test_suite_mai1_1,out_fun_Mai1[1],mai1_out[1],test_suite_mai1_2,
+                                                                            ^ (bad-whitespace)
+C:262, 0: Exactly one space required after comma
+               out_fun_Mai1[0],mai1_out[0],test_suite_mai1_1,out_fun_Mai1[1],mai1_out[1],test_suite_mai1_2,
+                                                                                        ^ (bad-whitespace)
+C:263, 0: Line too long (95/80) (line-too-long)
+C:263, 0: Exactly one space required after comma
+               out_fun_Cw[0],cw_out[0],test_suite_cw_1,out_fun_Cw[1],cw_out[1],test_suite_cw_2)
+                            ^ (bad-whitespace)
+C:263, 0: Exactly one space required after comma
+               out_fun_Cw[0],cw_out[0],test_suite_cw_1,out_fun_Cw[1],cw_out[1],test_suite_cw_2)
+                                      ^ (bad-whitespace)
+C:263, 0: Exactly one space required after comma
+               out_fun_Cw[0],cw_out[0],test_suite_cw_1,out_fun_Cw[1],cw_out[1],test_suite_cw_2)
+                                                      ^ (bad-whitespace)
+C:263, 0: Exactly one space required after comma
+               out_fun_Cw[0],cw_out[0],test_suite_cw_1,out_fun_Cw[1],cw_out[1],test_suite_cw_2)
+                                                                    ^ (bad-whitespace)
+C:263, 0: Exactly one space required after comma
+               out_fun_Cw[0],cw_out[0],test_suite_cw_1,out_fun_Cw[1],cw_out[1],test_suite_cw_2)
+                                                                              ^ (bad-whitespace)
+C:264, 0: Line too long (96/80) (line-too-long)
+C:265, 0: Line too long (87/80) (line-too-long)
+C:266, 0: Line too long (88/80) (line-too-long)
+C:276, 0: Trailing whitespace (trailing-whitespace)
+C:277, 0: Trailing whitespace (trailing-whitespace)
+C:  1, 0: Missing module docstring (missing-docstring)
+F:  3, 0: Unable to import 'webapp2' (import-error)
+F:  4, 0: Unable to import 'google.appengine.ext.webapp.util' (import-error)
+F:  5, 0: Unable to import 'google.appengine.ext.webapp' (import-error)
+W: 12, 0: Relative import 'rice', should be 'ubertool_src.ubertool_eco.models.rice.rice' (relative-import)
+E: 12, 0: No name 'rice_output' in module 'ubertool_src.ubertool_eco.models.rice.rice' (no-name-in-module)
+C: 16, 0: Invalid constant name "dsed" (invalid-name)
+C: 17, 0: Invalid constant name "a" (invalid-name)
+C: 18, 0: Invalid constant name "pb" (invalid-name)
+C: 19, 0: Invalid constant name "dw" (invalid-name)
+C: 20, 0: Invalid constant name "osed" (invalid-name)
+C: 21, 0: Invalid constant name "mai" (invalid-name)
+C: 22, 0: Invalid constant name "kd" (invalid-name)
+C: 24, 0: Invalid constant name "msed_out" (invalid-name)
+C: 25, 0: Invalid constant name "vw_out" (invalid-name)
+C: 26, 0: Invalid constant name "mai1_out" (invalid-name)
+C: 27, 0: Invalid constant name "cw_out" (invalid-name)
+C: 29, 0: Invalid constant name "form" (invalid-name)
+C: 30, 0: Invalid constant name "thefile" (invalid-name)
+C: 31, 0: Invalid constant name "reader" (invalid-name)
+C: 32, 0: Invalid constant name "header" (invalid-name)
+C: 47, 0: Invalid constant name "out_fun_Msed" (invalid-name)
+C: 48, 0: Invalid constant name "out_fun_Vw" (invalid-name)
+C: 49, 0: Invalid constant name "out_fun_Mai1" (invalid-name)
+C: 50, 0: Invalid constant name "out_fun_Cw" (invalid-name)
+C: 53, 0: Missing function docstring (missing-docstring)
+C: 57, 0: Invalid class name "TestCase_Msed" (invalid-name)
+C: 57, 0: Missing class docstring (missing-docstring)
+E: 60,21: Undefined variable 'dsed_in' (undefined-variable)
+E: 61,18: Undefined variable 'a_in' (undefined-variable)
+E: 62,19: Undefined variable 'pb_in' (undefined-variable)
+E: 64,25: Undefined variable 'msed_out_in' (undefined-variable)
+C: 65, 4: Invalid method name "testMsed" (invalid-name)
+C: 65, 4: Missing method docstring (missing-docstring)
+C: 68,12: Invalid variable name "testFailureMessage" (invalid-name)
+R: 57, 0: Too many public methods (46/20) (too-many-public-methods)
+C: 71, 0: Invalid class name "TestCase_Vw" (invalid-name)
+C: 71, 0: Missing class docstring (missing-docstring)
+E: 74,19: Undefined variable 'dw_in' (undefined-variable)
+E: 75,18: Undefined variable 'a_in' (undefined-variable)
+E: 76,21: Undefined variable 'dsed_in' (undefined-variable)
+E: 77,21: Undefined variable 'osed_in' (undefined-variable)
+E: 79,23: Undefined variable 'vw_out_in' (undefined-variable)
+C: 80, 4: Invalid method name "testVw" (invalid-name)
+C: 80, 4: Missing method docstring (missing-docstring)
+C: 83,12: Invalid variable name "testFailureMessage" (invalid-name)
+R: 71, 0: Too many public methods (46/20) (too-many-public-methods)
+C: 86, 0: Invalid class name "TestCase_Mai1" (invalid-name)
+C: 86, 0: Missing class docstring (missing-docstring)
+E: 89,20: Undefined variable 'mai_in' (undefined-variable)
+E: 90,18: Undefined variable 'a_in' (undefined-variable)
+E: 92,25: Undefined variable 'mai1_out_in' (undefined-variable)
+C: 93, 4: Invalid method name "testMai1" (invalid-name)
+C: 93, 4: Missing method docstring (missing-docstring)
+C: 96,12: Invalid variable name "testFailureMessage" (invalid-name)
+R: 86, 0: Too many public methods (46/20) (too-many-public-methods)
+R: 99, 0: Too many instance attributes (8/7) (too-many-instance-attributes)
+C: 99, 0: Invalid class name "TestCase_Cw" (invalid-name)
+C: 99, 0: Missing class docstring (missing-docstring)
+E:102,21: Undefined variable 'dsed_in' (undefined-variable)
+E:103,19: Undefined variable 'pb_in' (undefined-variable)
+E:104,19: Undefined variable 'dw_in' (undefined-variable)
+E:105,21: Undefined variable 'osed_in' (undefined-variable)
+E:106,20: Undefined variable 'mai_in' (undefined-variable)
+E:107,19: Undefined variable 'kd_in' (undefined-variable)
+E:108,18: Undefined variable 'a_in' (undefined-variable)
+E:110,23: Undefined variable 'cw_out_in' (undefined-variable)
+C:111, 4: Invalid method name "testCw" (invalid-name)
+C:111, 4: Missing method docstring (missing-docstring)
+C:114,12: Invalid variable name "testFailureMessage" (invalid-name)
+R: 99, 0: Too many public methods (46/20) (too-many-public-methods)
+W:118, 4: Redefining name 'suite' from outer scope (line 117) (redefined-outer-name)
+C:117, 0: Invalid argument name "TestCaseName" (invalid-name)
+C:117, 0: Missing function docstring (missing-docstring)
+W:123, 4: Unused variable 'result' (unused-variable)
+C:128, 0: Invalid constant name "test_suite_msed_1" (invalid-name)
+C:129, 0: Invalid constant name "test_suite_msed_2" (invalid-name)
+C:130, 0: Invalid constant name "test_suite_vw_1" (invalid-name)
+C:131, 0: Invalid constant name "test_suite_vw_2" (invalid-name)
+C:132, 0: Invalid constant name "test_suite_mai1_1" (invalid-name)
+C:133, 0: Invalid constant name "test_suite_mai1_2" (invalid-name)
+C:134, 0: Invalid constant name "test_suite_cw_1" (invalid-name)
+C:135, 0: Invalid constant name "test_suite_cw_2" (invalid-name)
+W:139, 0: Class has no __init__ method (no-init)
+C:139, 0: Missing class docstring (missing-docstring)
+C:140, 4: Missing method docstring (missing-docstring)
+C:142, 8: Invalid variable name "x" (invalid-name)
+E:267, 8: Instance of 'RiceQaqcOutputPage' has no 'response' member (no-member)
+W:142, 8: Unused variable 'x' (unused-variable)
+R:139, 0: Too few public methods (1/2) (too-few-public-methods)
+C:269, 0: Invalid constant name "app" (invalid-name)
+C:271, 0: Missing function docstring (missing-docstring)
+W: 13, 0: Unused import pprint (unused-import)
+W:  6, 0: Unused import np (unused-import)
+************* Module ubertool_src.ubertool_eco.models.rice.rice_tables
+C:  4, 0: Exactly one space required after comma
+import rice_model,rice_parameters
+                 ^ (bad-whitespace)
+W: 12, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+W: 13, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 38, 0: Exactly one space required after assignment
+    dj_template ="""
+                ^ (bad-whitespace)
+C: 59, 0: Trailing whitespace (trailing-whitespace)
+C: 60, 0: Line too long (287/80) (line-too-long)
+C: 60, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                     ^ (bad-whitespace)
+C: 60, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                             ^ (bad-whitespace)
+C: 60, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                             ^ (bad-whitespace)
+C: 60, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                                              ^ (bad-whitespace)
+C: 60, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                                                                                                     ^ (bad-whitespace)
+C: 60, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                                                                                                                          ^ (bad-whitespace)
+C: 61, 0: Line too long (207/80) (line-too-long)
+C: 62, 0: Line too long (102/80) (line-too-long)
+C: 62, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                    ^ (bad-whitespace)
+C: 62, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                         ^ (bad-whitespace)
+C: 62, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                    ^ (bad-whitespace)
+C: 62, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                        ^ (bad-whitespace)
+C: 62, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                                                      ^ (bad-whitespace)
+C: 62, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                                                          ^ (bad-whitespace)
+C: 62, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                                                             ^ (bad-whitespace)
+C: 67, 0: Trailing whitespace (trailing-whitespace)
+C: 68, 0: Line too long (287/80) (line-too-long)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                     ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                             ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                             ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                                              ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                                                                                                     ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                                                                                                                          ^ (bad-whitespace)
+C: 69, 0: Line too long (130/80) (line-too-long)
+C: 69, 0: Exactly one space required after comma
+        "Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                        ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                     ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                              ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                                          ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                                                      ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                                                                    ^ (bad-whitespace)
+C: 70, 0: Line too long (148/80) (line-too-long)
+C: 70, 0: Exactly one space required after comma
+        "Expected-Value": [rice_obj.chemical_name_expected,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                          ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Expected-Value": [rice_obj.chemical_name_expected,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                       ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Expected-Value": [rice_obj.chemical_name_expected,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                                  ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Expected-Value": [rice_obj.chemical_name_expected,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                                                ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Expected-Value": [rice_obj.chemical_name_expected,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                                                            ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Expected-Value": [rice_obj.chemical_name_expected,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                                                                        ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Expected-Value": [rice_obj.chemical_name_expected,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+                                                                                                                                      ^ (bad-whitespace)
+C: 71, 0: Line too long (102/80) (line-too-long)
+C: 71, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                    ^ (bad-whitespace)
+C: 71, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                         ^ (bad-whitespace)
+C: 71, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                    ^ (bad-whitespace)
+C: 71, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                        ^ (bad-whitespace)
+C: 71, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                                                      ^ (bad-whitespace)
+C: 71, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                                                          ^ (bad-whitespace)
+C: 71, 0: Exactly one space required after comma
+        "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                                                             ^ (bad-whitespace)
+C: 76, 0: Trailing whitespace (trailing-whitespace)
+C: 77, 0: Line too long (108/80) (line-too-long)
+C: 78, 0: Line too long (111/80) (line-too-long)
+C: 79, 0: Line too long (86/80) (line-too-long)
+C: 84, 0: Trailing whitespace (trailing-whitespace)
+C: 85, 0: Line too long (108/80) (line-too-long)
+C: 86, 0: Line too long (111/80) (line-too-long)
+C: 87, 0: Line too long (156/80) (line-too-long)
+C: 88, 0: Line too long (86/80) (line-too-long)
+C: 94, 0: Line too long (271/80) (line-too-long)
+C: 94, 0: Exactly one space required after comma
+        "Parameter": ['Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                             ^ (bad-whitespace)
+C: 94, 0: Exactly one space required after comma
+        "Parameter": ['Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                             ^ (bad-whitespace)
+C: 94, 0: Exactly one space required after comma
+        "Parameter": ['Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                              ^ (bad-whitespace)
+C: 94, 0: Exactly one space required after comma
+        "Parameter": ['Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                                                                                     ^ (bad-whitespace)
+C: 94, 0: Exactly one space required after comma
+        "Parameter": ['Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+                                                                                                                                                          ^ (bad-whitespace)
+C: 95, 0: Trailing whitespace (trailing-whitespace)
+C: 95, 0: Line too long (116/80) (line-too-long)
+C: 95, 0: Exactly one space required after comma
+        "Mean": ['%.2e' % numpy.mean(mai),'%.2e' % numpy.mean(dsed),'%.2e' % numpy.mean(a), '%.2e' % numpy.mean(pb), 
+                                         ^ (bad-whitespace)
+C: 95, 0: Exactly one space required after comma
+        "Mean": ['%.2e' % numpy.mean(mai),'%.2e' % numpy.mean(dsed),'%.2e' % numpy.mean(a), '%.2e' % numpy.mean(pb), 
+                                                                   ^ (bad-whitespace)
+C: 96, 0: Line too long (94/80) (line-too-long)
+C: 97, 0: Trailing whitespace (trailing-whitespace)
+C: 97, 0: Line too long (111/80) (line-too-long)
+C: 97, 0: Exactly one space required after comma
+        "Std": ['%.2e' % numpy.std(mai),'%.2e' % numpy.std(dsed),'%.2e' % numpy.std(a), '%.2e' % numpy.std(pb), 
+                                       ^ (bad-whitespace)
+C: 97, 0: Exactly one space required after comma
+        "Std": ['%.2e' % numpy.std(mai),'%.2e' % numpy.std(dsed),'%.2e' % numpy.std(a), '%.2e' % numpy.std(pb), 
+                                                                ^ (bad-whitespace)
+C: 98, 0: Line too long (90/80) (line-too-long)
+C: 99, 0: Trailing whitespace (trailing-whitespace)
+C: 99, 0: Line too long (111/80) (line-too-long)
+C: 99, 0: Exactly one space required after comma
+        "Min": ['%.2e' % numpy.min(mai),'%.2e' % numpy.min(dsed),'%.2e' % numpy.min(a), '%.2e' % numpy.min(pb), 
+                                       ^ (bad-whitespace)
+C: 99, 0: Exactly one space required after comma
+        "Min": ['%.2e' % numpy.min(mai),'%.2e' % numpy.min(dsed),'%.2e' % numpy.min(a), '%.2e' % numpy.min(pb), 
+                                                                ^ (bad-whitespace)
+C:100, 0: Line too long (90/80) (line-too-long)
+C:101, 0: Wrong hanging indentation.
+         "Max": ['%.2e' % numpy.max(mai),'%.2e' % numpy.max(dsed),'%.2e' % numpy.max(a), '%.2e' % numpy.max(pb), 
+        |^ (bad-continuation)
+C:101, 0: Trailing whitespace (trailing-whitespace)
+C:101, 0: Line too long (112/80) (line-too-long)
+C:101, 0: Exactly one space required after comma
+         "Max": ['%.2e' % numpy.max(mai),'%.2e' % numpy.max(dsed),'%.2e' % numpy.max(a), '%.2e' % numpy.max(pb), 
+                                        ^ (bad-whitespace)
+C:101, 0: Exactly one space required after comma
+         "Max": ['%.2e' % numpy.max(mai),'%.2e' % numpy.max(dsed),'%.2e' % numpy.max(a), '%.2e' % numpy.max(pb), 
+                                                                 ^ (bad-whitespace)
+C:102, 0: Wrong continued indentation.
+                '%.2e' % numpy.max(dw), '%.2e' % numpy.max(osed), '%.2e' % numpy.max(kd)],
+                ^| (bad-continuation)
+C:102, 0: Line too long (90/80) (line-too-long)
+C:103, 0: Line too long (98/80) (line-too-long)
+C:103, 0: Exactly one space required after comma
+        "Unit": ['kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                     ^ (bad-whitespace)
+C:103, 0: Exactly one space required after comma
+        "Unit": ['kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                ^ (bad-whitespace)
+C:103, 0: Exactly one space required after comma
+        "Unit": ['kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                    ^ (bad-whitespace)
+C:103, 0: Exactly one space required after comma
+        "Unit": ['kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                                                  ^ (bad-whitespace)
+C:103, 0: Exactly one space required after comma
+        "Unit": ['kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                                                      ^ (bad-whitespace)
+C:103, 0: Exactly one space required after comma
+        "Unit": ['kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
+                                                                                         ^ (bad-whitespace)
+C:109, 0: Line too long (108/80) (line-too-long)
+C:110, 0: Line too long (119/80) (line-too-long)
+C:110, 0: Exactly one space required after comma
+        "Mean": ['%.2e' % numpy.mean(msed),'%.2e' % numpy.mean(vw),'%.2e' % numpy.mean(mai1), '%.2e' % numpy.mean(cw)],
+                                          ^ (bad-whitespace)
+C:110, 0: Exactly one space required after comma
+        "Mean": ['%.2e' % numpy.mean(msed),'%.2e' % numpy.mean(vw),'%.2e' % numpy.mean(mai1), '%.2e' % numpy.mean(cw)],
+                                                                  ^ (bad-whitespace)
+C:111, 0: Line too long (114/80) (line-too-long)
+C:111, 0: Exactly one space required after comma
+        "Std": ['%.2e' % numpy.std(msed),'%.2e' % numpy.std(vw),'%.2e' % numpy.std(mai1), '%.2e' % numpy.std(cw)],
+                                        ^ (bad-whitespace)
+C:111, 0: Exactly one space required after comma
+        "Std": ['%.2e' % numpy.std(msed),'%.2e' % numpy.std(vw),'%.2e' % numpy.std(mai1), '%.2e' % numpy.std(cw)],
+                                                               ^ (bad-whitespace)
+C:112, 0: Line too long (114/80) (line-too-long)
+C:112, 0: Exactly one space required after comma
+        "Min": ['%.2e' % numpy.min(msed),'%.2e' % numpy.min(vw),'%.2e' % numpy.min(mai1), '%.2e' % numpy.min(cw)],
+                                        ^ (bad-whitespace)
+C:112, 0: Exactly one space required after comma
+        "Min": ['%.2e' % numpy.min(msed),'%.2e' % numpy.min(vw),'%.2e' % numpy.min(mai1), '%.2e' % numpy.min(cw)],
+                                                               ^ (bad-whitespace)
+C:113, 0: Wrong hanging indentation.
+         "Max": ['%.2e' % numpy.max(msed),'%.2e' % numpy.max(vw),'%.2e' % numpy.max(mai1), '%.2e' % numpy.max(cw)],
+        |^ (bad-continuation)
+C:113, 0: Line too long (115/80) (line-too-long)
+C:113, 0: Exactly one space required after comma
+         "Max": ['%.2e' % numpy.max(msed),'%.2e' % numpy.max(vw),'%.2e' % numpy.max(mai1), '%.2e' % numpy.max(cw)],
+                                         ^ (bad-whitespace)
+C:113, 0: Exactly one space required after comma
+         "Max": ['%.2e' % numpy.max(msed),'%.2e' % numpy.max(vw),'%.2e' % numpy.max(mai1), '%.2e' % numpy.max(cw)],
+                                                                ^ (bad-whitespace)
+C:114, 0: Line too long (85/80) (line-too-long)
+C:125, 0: Trailing whitespace (trailing-whitespace)
+C:126, 0: Trailing whitespace (trailing-whitespace)
+C:132, 0: Trailing whitespace (trailing-whitespace)
+C:140, 0: Line too long (105/80) (line-too-long)
+C:142, 0: Line too long (102/80) (line-too-long)
+C:143, 0: Exactly one space required around assignment
+    html="""
+        ^ (bad-whitespace)
+W:155, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:162, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:163, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:163, 0: Exactly one space required after comma
+        t1rows = gethtmlrowsfromcols(t1data,pvuheadings)
+                                           ^ (bad-whitespace)
+C:164, 0: Line too long (83/80) (line-too-long)
+W:164, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:165, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:169, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:173, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:180, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:181, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:181, 0: Exactly one space required after comma
+        t1rows = gethtmlrowsfromcols(t1data,pvuheadingsqaqc)
+                                           ^ (bad-whitespace)
+C:182, 0: Line too long (87/80) (line-too-long)
+W:182, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:183, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:187, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:191, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:199, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:200, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:200, 0: Exactly one space required after comma
+        t2rows = gethtmlrowsfromcols(t2data,pvuheadings)
+                                           ^ (bad-whitespace)
+C:201, 0: Line too long (83/80) (line-too-long)
+W:201, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:202, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:206, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:210, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:218, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:219, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:219, 0: Exactly one space required after comma
+        t2rows = gethtmlrowsfromcols(t2data,pvuheadingsqaqc)
+                                           ^ (bad-whitespace)
+C:220, 0: Line too long (87/80) (line-too-long)
+W:220, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:221, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:225, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:227, 0: Line too long (89/80) (line-too-long)
+C:228, 0: Line too long (85/80) (line-too-long)
+W:234, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:241, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:242, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:243, 0: Line too long (90/80) (line-too-long)
+W:243, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:244, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:247, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:251, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:257, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:258, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:259, 0: Line too long (91/80) (line-too-long)
+W:259, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:260, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:265, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:  1, 0: Missing module docstring (missing-docstring)
+W:  4, 0: Relative import 'rice_model', should be 'ubertool_src.ubertool_eco.models.rice.rice_model' (relative-import)
+W:  4, 0: Relative import 'rice_parameters', should be 'ubertool_src.ubertool_eco.models.rice.rice_parameters' (relative-import)
+C:  9, 0: Invalid constant name "logger" (invalid-name)
+C: 11, 0: Missing function docstring (missing-docstring)
+C: 15, 0: Missing function docstring (missing-docstring)
+C: 19, 0: Missing function docstring (missing-docstring)
+C: 23, 0: Missing function docstring (missing-docstring)
+C: 37, 0: Missing function docstring (missing-docstring)
+C: 58, 0: Missing function docstring (missing-docstring)
+C: 66, 0: Missing function docstring (missing-docstring)
+C: 75, 0: Missing function docstring (missing-docstring)
+C: 83, 0: Missing function docstring (missing-docstring)
+R: 92, 0: Too many arguments (7/5) (too-many-arguments)
+C: 92, 0: Invalid argument name "a" (invalid-name)
+C: 92, 0: Invalid argument name "pb" (invalid-name)
+C: 92, 0: Invalid argument name "dw" (invalid-name)
+C: 92, 0: Invalid argument name "kd" (invalid-name)
+C: 92, 0: Missing function docstring (missing-docstring)
+C:107, 0: Invalid argument name "vw" (invalid-name)
+C:107, 0: Invalid argument name "cw" (invalid-name)
+C:107, 0: Missing function docstring (missing-docstring)
+C:118, 0: Invalid constant name "pvuheadings" (invalid-name)
+C:119, 0: Invalid constant name "pvuheadingsqaqc" (invalid-name)
+C:120, 0: Invalid constant name "sumheadings" (invalid-name)
+C:121, 0: Invalid constant name "djtemplate" (invalid-name)
+C:122, 0: Invalid constant name "tmpl" (invalid-name)
+C:124, 0: Missing function docstring (missing-docstring)
+C:131, 0: Missing function docstring (missing-docstring)
+C:138, 0: Missing function docstring (missing-docstring)
+C:140, 8: Invalid variable name "st" (invalid-name)
+E:140,40: Instance of 'str' has no 'jid' member (but some types could not be inferred) (maybe-no-member)
+C:142, 8: Invalid variable name "st" (invalid-name)
+C:153, 0: Missing function docstring (missing-docstring)
+C:171, 0: Missing function docstring (missing-docstring)
+C:189, 0: Missing function docstring (missing-docstring)
+C:208, 0: Missing function docstring (missing-docstring)
+W:227,31: Redefining name 'tmpl' from outer scope (line 122) (redefined-outer-name)
+W:227,18: Redefining name 'sumheadings' from outer scope (line 120) (redefined-outer-name)
+R:227, 0: Too many arguments (13/5) (too-many-arguments)
+C:227, 0: Invalid argument name "a" (invalid-name)
+C:227, 0: Invalid argument name "pb" (invalid-name)
+C:227, 0: Invalid argument name "dw" (invalid-name)
+C:227, 0: Invalid argument name "kd" (invalid-name)
+C:227, 0: Invalid argument name "vw" (invalid-name)
+C:227, 0: Invalid argument name "cw" (invalid-name)
+C:227, 0: Missing function docstring (missing-docstring)
+W:232,33: Redefining name 'tmpl' from outer scope (line 122) (redefined-outer-name)
+W:232,20: Redefining name 'sumheadings' from outer scope (line 120) (redefined-outer-name)
+R:232, 0: Too many arguments (9/5) (too-many-arguments)
+C:232, 0: Invalid argument name "a" (invalid-name)
+C:232, 0: Invalid argument name "pb" (invalid-name)
+C:232, 0: Invalid argument name "dw" (invalid-name)
+C:232, 0: Invalid argument name "kd" (invalid-name)
+C:232, 0: Missing function docstring (missing-docstring)
+W:249,34: Redefining name 'tmpl' from outer scope (line 122) (redefined-outer-name)
+W:249,21: Redefining name 'sumheadings' from outer scope (line 120) (redefined-outer-name)
+R:249, 0: Too many arguments (6/5) (too-many-arguments)
+C:249, 0: Invalid argument name "vw" (invalid-name)
+C:249, 0: Invalid argument name "cw" (invalid-name)
+C:249, 0: Missing function docstring (missing-docstring)
+W:  4, 0: Unused import rice_model (unused-import)
+W:  4, 0: Unused import rice_parameters (unused-import)
+W:  6, 0: Unused import time (unused-import)
+************* Module ubertool_src.ubertool_eco.models.rice.try
+F:  8, 0: Unable to import 'google.appengine.ext' (import-error)
+W: 10, 0: Class has no __init__ method (no-init)
+C: 10, 0: Missing class docstring (missing-docstring)
+W: 20, 0: Attribute 'travel_countries_visited' defined outside __init__ (attribute-defined-outside-init)
+W: 18, 0: Attribute 'chess_elo_rating' defined outside __init__ (attribute-defined-outside-init)
+W: 21, 0: Attribute 'travel_trip_count' defined outside __init__ (attribute-defined-outside-init)
+W: 24, 0: Attribute 'favorite' defined outside __init__ (attribute-defined-outside-init)
+R: 10, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 15, 0: Invalid constant name "p" (invalid-name)
+C: 23, 0: Invalid constant name "p1" (invalid-name)
+W: 27, 0: Class has no __init__ method (no-init)
+C: 27, 0: Missing class docstring (missing-docstring)
+R: 27, 0: Too few public methods (0/2) (too-few-public-methods)
+W: 30, 0: Class has no __init__ method (no-init)
+C: 30, 0: Missing class docstring (missing-docstring)
+R: 30, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 33, 0: Invalid constant name "obj1" (invalid-name)
+E: 35, 0: Instance of 'FirstModel' has no 'put' member (no-member)
+W:  7, 0: Unused import sys (unused-import)
+W:  7, 0: Unused import os (unused-import)
+************* Module ubertool_src.ubertool_eco.models.rice.views
+C:  3, 0: Final newline missing (missing-final-newline)
+C:  1, 0: Missing module docstring (missing-docstring)
+C:  2, 0: Invalid constant name "header" (invalid-name)
+R:  1, 0: Similar lines in 2 files
+==ubertool_src.ubertool_eco.models.rice.rice_qaqcinput:14
+==ubertool_src.ubertool_eco.models.rice.rice_qaqcoutput:15
+dsed=[]
+a=[]
+pb=[]
+dw=[]
+osed=[]
+mai=[]
+kd=[]
+######Pre-defined outputs########
+msed_out=[]
+vw_out=[]
+mai1_out=[]
+cw_out=[]
+ (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==ubertool_src.ubertool_eco.models.rice.rice_qaqcinput:29
+==ubertool_src.ubertool_eco.models.rice.rice_qaqcoutput:34
+    dsed.append(float(row[0]))
+    a.append(float(row[1]))
+    pb.append(float(row[2]))
+    dw.append(float(row[3]))
+    osed.append(float(row[4]))
+    mai.append(float(row[5]))
+    kd.append(float(row[6]))
+    msed_out.append(float(row[7]))
+    vw_out.append(float(row[8]))
+    mai1_out.append(float(row[9]))
+    cw_out.append(float(row[10]))
+ (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==ubertool_src.ubertool_eco.models.rice.rice_qaqcinput:0
+==ubertool_src.ubertool_eco.models.rice.rice_qaqcoutput:0
+import os
+os.environ['DJANGO_SETTINGS_MODULE']='settings'
+import webapp2 as webapp
+from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.ext.webapp import template
+import numpy as np
+import cgi
+import cgitb
+cgitb.enable() (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==ubertool_src.ubertool_eco.models.rice.rice_batchoutput:14
+==ubertool_src.ubertool_eco.models.rice.rice_qaqc:9
+chemical_name=[]
+mai=[]
+a=[]
+dsed=[]
+pb=[]
+dw=[]
+osed=[]
+kd=[]
+ (duplicate-code)
+R:  1, 0: Similar lines in 3 files
+==ubertool_src.ubertool_eco.models.rice.rice_batchinput:2
+==ubertool_src.ubertool_eco.models.rice.rice_qaqcinput:2
+==ubertool_src.ubertool_eco.models.rice.rice_qaqcoutput:2
+import webapp2 as webapp
+from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.ext.webapp import template
+import numpy as np
+import cgi
+import cgitb
+cgitb.enable() (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==ubertool_src.ubertool_eco.models.rice.rice_qaqcinput:44
+==ubertool_src.ubertool_eco.models.rice.rice_qaqcoutput:140
+        text_file1 = open('rice/rice_description.txt','r')
+        x = text_file1.read()
+        templatepath = os.path.dirname(__file__) + '/../templates/'
+        html = template.render(templatepath + '01uberheader.html', 'title')
+        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'rice','page':'qaqc'})
+        html = html + template.render (templatepath + '03ubertext_links_left.html', {}) (duplicate-code)
+
+
+Report
+======
+650 statements analysed.
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |734    |742      |-8.00      |
++-----------+-------+---------+-----------+
+|refactor   |31     |31       |=          |
++-----------+-------+---------+-----------+
+|warning    |132    |132      |=          |
++-----------+-------+---------+-----------+
+|error      |44     |44       |=          |
++-----------+-------+---------+-----------+
+
+
+
+% errors / warnings by module
+-----------------------------
+
++--------------------------------------------------------+------+--------+---------+-----------+
+|module                                                  |error |warning |refactor |convention |
++========================================================+======+========+=========+===========+
+|ubertool_src.ubertool_eco.models.rice.rice_qaqcoutput   |50.00 |17.42   |19.35    |27.38      |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_batchoutput  |18.18 |5.30    |3.23     |9.81       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_input        |6.82  |2.27    |0.00     |0.95       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_parameters   |4.55  |6.82    |3.23     |3.27       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_batch_runner |4.55  |3.03    |6.45     |2.18       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_batchinput   |4.55  |2.27    |3.23     |1.91       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_history      |4.55  |0.76    |3.23     |3.13       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_tables       |2.27  |37.12   |12.90    |23.98      |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.try               |2.27  |6.82    |9.68     |0.82       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_qaqcinput    |2.27  |3.79    |3.23     |6.81       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_model        |0.00  |8.33    |12.90    |8.72       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice              |0.00  |2.27    |3.23     |1.09       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_qaqc         |0.00  |2.27    |0.00     |7.63       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|ubertool_src.ubertool_eco.models.rice.rice_output       |0.00  |1.52    |0.00     |1.77       |
++--------------------------------------------------------+------+--------+---------+-----------+
+
+
+
+Messages
+--------
+
++-------------------------------+------------+
+|message id                     |occurrences |
++===============================+============+
+|bad-whitespace                 |294         |
++-------------------------------+------------+
+|invalid-name                   |167         |
++-------------------------------+------------+
+|line-too-long                  |106         |
++-------------------------------+------------+
+|trailing-whitespace            |77          |
++-------------------------------+------------+
+|missing-docstring              |67          |
++-------------------------------+------------+
+|bad-indentation                |52          |
++-------------------------------+------------+
+|undefined-variable             |28          |
++-------------------------------+------------+
+|import-error                   |25          |
++-------------------------------+------------+
+|unused-import                  |22          |
++-------------------------------+------------+
+|bad-continuation               |19          |
++-------------------------------+------------+
+|attribute-defined-outside-init |14          |
++-------------------------------+------------+
+|mixed-indentation              |11          |
++-------------------------------+------------+
+|too-few-public-methods         |10          |
++-------------------------------+------------+
+|no-member                      |9           |
++-------------------------------+------------+
+|no-init                        |9           |
++-------------------------------+------------+
+|redefined-outer-name           |8           |
++-------------------------------+------------+
+|relative-import                |7           |
++-------------------------------+------------+
+|too-many-arguments             |6           |
++-------------------------------+------------+
+|duplicate-code                 |6           |
++-------------------------------+------------+
+|unused-variable                |5           |
++-------------------------------+------------+
+|no-value-for-parameter         |5           |
++-------------------------------+------------+
+|too-many-public-methods        |4           |
++-------------------------------+------------+
+|missing-final-newline          |3           |
++-------------------------------+------------+
+|unused-argument                |2           |
++-------------------------------+------------+
+|too-many-locals                |2           |
++-------------------------------+------------+
+|too-many-instance-attributes   |2           |
++-------------------------------+------------+
+|redefined-builtin              |1           |
++-------------------------------+------------+
+|old-style-class                |1           |
++-------------------------------+------------+
+|no-self-use                    |1           |
++-------------------------------+------------+
+|no-name-in-module              |1           |
++-------------------------------+------------+
+|maybe-no-member                |1           |
++-------------------------------+------------+
+|bare-except                    |1           |
++-------------------------------+------------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at -7.18/10 (previous run: -7.31/10, +0.12)
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |880    |83.10 |876      |+4.00      |
++----------+-------+------+---------+-----------+
+|docstring |83     |7.84  |86       |-3.00      |
++----------+-------+------+---------+-----------+
+|comment   |12     |1.13  |12       |=          |
++----------+-------+------+---------+-----------+
+|empty     |84     |7.93  |84       |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |63    |63       |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |5.556 |5.560    |-0.00      |
++-------------------------+------+---------+-----------+
+
+
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |16     |16         |=          |31.25       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |15     |15         |=          |0.00        |33.33    |
++---------+-------+-----------+-----------+------------+---------+
+|method   |16     |16         |=          |31.25       |31.25    |
++---------+-------+-----------+-----------+------------+---------+
+|function |32     |32         |=          |6.25        |9.38     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+External dependencies
+---------------------
+::
+
+    django 
+      \-forms (ubertool_src.ubertool_eco.models.rice.rice_parameters)
+      \-template (ubertool_src.ubertool_eco.models.rice.rice_tables)
+      | \-loader (ubertool_src.ubertool_eco.models.rice.rice_input,ubertool_src.ubertool_eco.models.rice.rice_output)
+      \-utils 
+      | \-safestring (ubertool_src.ubertool_eco.models.rice.rice_parameters,ubertool_src.ubertool_eco.models.rice.rice_tables)
+      \-views 
+        \-decorators 
+          \-http (ubertool_src.ubertool_eco.models.rice.rice_batchoutput,ubertool_src.ubertool_eco.models.rice.rice_output)
+    numpy (ubertool_src.ubertool_eco.models.rice.rice_batchinput,ubertool_src.ubertool_eco.models.rice.rice_qaqcoutput,ubertool_src.ubertool_eco.models.rice.rice_qaqcinput,ubertool_src.ubertool_eco.models.rice.rice_batch_runner,ubertool_src.ubertool_eco.models.rice.rice_tables)
+
+
+

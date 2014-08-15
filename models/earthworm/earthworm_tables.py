@@ -11,7 +11,6 @@ import logging
 import time
 import datetime
 import os
-from google.appengine.ext.webapp import template
 
 logger = logging.getLogger("earthwormTables")
 

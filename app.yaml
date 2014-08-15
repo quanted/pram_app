@@ -1,5 +1,5 @@
 application: pypest
-version: master
+version: sprint16
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -15,7 +15,7 @@ libraries:
 - name: matplotlib
   version: latest
 - name: ssl
-  version: "latest" 
+  version: latest
 
 builtins:
 - django_wsgi: on

@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-import os
+import os, sys
 import secret
 
 # Define ENVIRONMENTAL VARIABLES for project (replaces the app.yaml)
@@ -145,3 +145,20 @@ STATIC_URL = '/static/'
 DOCS_ROOT = os.path.join(PROJECT_ROOT, 'docs', '_build', 'html')
 
 DOCS_ACCESS = 'public'
+
+
+#### APACHE TESTING ####
+
+print "__name__ =", __name__
+print "__file__ =", __file__
+print "os.getpid() =", os.getpid()
+print "os.getcwd() =", os.getcwd()
+print "os.curdir =", os.curdir
+print "sys.path =", repr(sys.path)
+print "sys.modules.keys() =", repr(sys.modules.keys())
+print "sys.modules.has_key('ubertool_eco') =", sys.modules.has_key('ubertool_eco')
+
+if sys.modules.has_key('ubertool_eco'):
+    print "sys.modules['ubertool_eco'].__name__ =", sys.modules['ubertool_eco'].__name__
+    print "sys.modules['ubertool_eco'].__file__ =", sys.modules['ubertool_eco'].__file__
+    print "os.environ['DJANGO_SETTINGS_MODULE'] =", os.environ.get('DJANGO_SETTINGS_MODULE', None)

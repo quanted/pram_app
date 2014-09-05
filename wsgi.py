@@ -6,13 +6,11 @@ It exposes the WSGI callable as a module-level variable named ``application``.
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 """
+import os, sys
 
-# App.yaml entry point
+# Settings.py declaration
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings_apache")
+
+# Django project entry point (Apache/mod_wsgi & app.yaml)
 import django.core.handlers.wsgi
-app = django.core.handlers.wsgi.WSGIHandler()
-
-import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-
-from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
+application = django.core.handlers.wsgi.WSGIHandler()

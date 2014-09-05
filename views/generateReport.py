@@ -82,7 +82,7 @@ def pdfReceiver(request, model=''):
 
     input_str = description
     input_str = input_str + parsePOST(request)
-    # input_str = input_str + algorithms         # PILlow has bug where transparent PNGs don't render correctly (black background)
+    input_str = input_str + algorithms         # PILlow has bug where transparent PNGs don't render correctly (black background)
 
     packet = StringIO.StringIO() #write to memory
     pisa.CreatePDF(input_str, dest = packet, link_callback = link_callback)

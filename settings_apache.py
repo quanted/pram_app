@@ -21,8 +21,8 @@ os.environ.update({
     'UBERTOOL_BATCH_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com/',
     'UBERTOOL_MONGO_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
     'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',   
-    'UBERTOOL_REST_SERVER': 'http://localhost:80',                         # Local REST server
-    #'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',                      # Tao's EC2 REST server 
+    #'UBERTOOL_REST_SERVER': 'http://localhost:80',                         # Local REST server
+    'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',                      # Tao's EC2 REST server 
     #'UBERTOOL_REST_SERVER': 'http://54.210.118.56'                         # EB Pilot REST server
     # 'UBERTOOL_REST_SERVER': 'http://',                           # New EB Pilot REST server
     'PROJECT_PATH': PROJECT_ROOT,
@@ -36,11 +36,15 @@ os.environ.update({
 SECRET_KEY = secret.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '134.67.114.1'
+    #'ord-uber-vm001',
+    #'ord-uber-vm001.'
+]
 
 APPEND_SLASH = True
 
@@ -81,7 +85,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'urls'
 
-WSGI_APPLICATION = 'wsgi.application'
+#WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
@@ -151,17 +155,17 @@ DOCS_ACCESS = 'public'
 
 
 #### APACHE TESTING ####
-print "PROJECT_PATH", os.environ['PROJECT_PATH']
-print "__name__ =", __name__
-print "__file__ =", __file__
-print "os.getpid() =", os.getpid()
-print "os.getcwd() =", os.getcwd()
-print "os.curdir =", os.curdir
-print "sys.path =", repr(sys.path)
-print "sys.modules.keys() =", repr(sys.modules.keys())
-print "sys.modules.has_key('ubertool_eco') =", sys.modules.has_key('ubertool_eco')
+#print "PROJECT_PATH", os.environ['PROJECT_PATH']
+#print "__name__ =", __name__
+#print "__file__ =", __file__
+#print "os.getpid() =", os.getpid()
+#print "os.getcwd() =", os.getcwd()
+#print "os.curdir =", os.curdir
+#print "sys.path =", repr(sys.path)
+#print "sys.modules.keys() =", repr(sys.modules.keys())
+#print "sys.modules.has_key('ubertool_eco') =", sys.modules.has_key('ubertool_eco')
 
-if sys.modules.has_key('ubertool_eco'):
-    print "sys.modules['ubertool_eco'].__name__ =", sys.modules['ubertool_eco'].__name__
-    print "sys.modules['ubertool_eco'].__file__ =", sys.modules['ubertool_eco'].__file__
-    print "os.environ['DJANGO_SETTINGS_MODULE'] =", os.environ.get('DJANGO_SETTINGS_MODULE', None)
+#if sys.modules.has_key('ubertool_eco'):
+#    print "sys.modules['ubertool_eco'].__name__ =", sys.modules['ubertool_eco'].__name__
+#    print "sys.modules['ubertool_eco'].__file__ =", sys.modules['ubertool_eco'].__file__
+#    print "os.environ['DJANGO_SETTINGS_MODULE'] =", os.environ.get('DJANGO_SETTINGS_MODULE', None)

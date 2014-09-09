@@ -54,8 +54,13 @@ def save_dic(output_html, model_object_dict, model_name, run_type):
 def batch_save_dic(output_html, model_object_dict, model_name, run_type, jid_batch, linksleft=''):
     from django.template.loader import render_to_string
     
-    html_save = render_to_string('01uberheader.html', {'title': 'Batch History'})
-    html_save = html_save + render_to_string('02uberintroblock_wmodellinks.html', {'model':model_name,'page':'batchinput'})
+    html_save = render_to_string('01uberheader.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'title': 'Batch History'})
+    html_save = html_save + render_to_string('02uberintroblock_wmodellinks.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'model':model_name,
+                'page':'batchinput'})
     html_save = html_save + linksleft
     html_save = html_save + output_html
     html_save = html_save + render_to_string('06uberfooter.html', {'links': ''})

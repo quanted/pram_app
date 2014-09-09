@@ -8,8 +8,10 @@ def ecoLandingPage(request):
     text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'views/main_text.txt'),'r')
     xx = text_file2.read()
 
-    html = render_to_string('01uberheader_main.html', {})
-    html = html + render_to_string('02uberintroblock_nomodellinks.html', {})
+    html = render_to_string('01uberheader_main.html', {
+            'site_skin' : os.environ['SITE_SKIN']
+            })
+    html = html + render_to_string('02uberintroblock_nomodellinks.html', {'site_skin' : os.environ['SITE_SKIN']})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04ubertext_start_index.html', {
             'text_paragraph':xx

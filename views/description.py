@@ -10,8 +10,13 @@ def descriptionPage(request, model='none', header='none'):
 
     text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'models/'+model+'/'+model+'_text.txt'),'r')
     xx = text_file2.read()
-    html = render_to_string('01uberheader.html', {'title': header+' Description'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'description'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' Description'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'description'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04ubertext_start.html', {
             'model_attributes': header+' Overview',

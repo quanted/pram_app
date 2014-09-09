@@ -3,24 +3,22 @@
 <!-- "Click" Menus -->
 <script type="text/javascript">
 $( document ).ready(function() {
-	var SkinChk;
+	var SkinChk = '{{ site_skin }}';
 	$('.fadeMenu').hover(function(){
-		SkinChk = getCookie('ubercookie');
 		if (SkinChk == 'EPA') {
 			// EPA Skin
 			$(this).stop().animate({ backgroundColor:'#356697', color:'#F7F9F4'},500);
 		} else {
 			// Default Skin
-			$(this).stop().animate({ backgroundColor:'rgb(255,165,0)', color:'#FFFFFF'},500);
+			$(this).stop().animate({ backgroundColor:'#FFA500', color:'#FFFFFF'},500);
 		}
 	}, function(){
-		SkinChk = getCookie('ubercookie');
 		if (SkinChk == 'EPA') {
 			// EPA Skin
 			$(this).stop().animate({ backgroundColor:'#dee7ef', color:'#1F262A'},500);
 		} else {
 			// Default Skin
-			$(this).stop().animate({ backgroundColor:'rgb(201,224,179)', color:'#333333'},500);
+			$(this).stop().animate({ backgroundColor:'#c9e0b3', color:'#333333'},500);
 		}
 	});
 });

@@ -10,8 +10,13 @@ def algorithmPage(request, model='none', header='none'):
 
     text_file1 = open(os.path.join(os.environ['PROJECT_PATH'], 'models/'+model+'/'+model+'_algorithm.txt'),'r')
     x = text_file1.read()
-    html = render_to_string('01uberheader.html', {'title': header+' Algorithms'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'algorithm'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' Algorithms'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'algorithm'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberalgorithm_start.html', {
             'model_attributes': header+' Algorithms', 

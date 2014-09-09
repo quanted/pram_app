@@ -10,8 +10,13 @@ def referencesPage(request, model='none', header='none'):
 
     text_file1 = open(os.path.join(os.environ['PROJECT_PATH'], 'models/'+model+'/'+model+'_references.txt'),'r')
     x = text_file1.read()
-    html = render_to_string('01uberheader.html', {'title': header+' References'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'references'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' References'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'references'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberreferences_start.html', {
             'model_attributes': header+' References', 

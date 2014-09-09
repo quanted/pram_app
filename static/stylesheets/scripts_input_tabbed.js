@@ -104,6 +104,18 @@ $( document ).ready(function() {
 		});
 	});
 
+	// Save Metadata
+	$('#metaDataTxtArea').prop('disabled', true);
+	$('#metaDataToggle').change(function() {
+		if ($('#metaDataToggle').prop( "checked" )) {
+			$('#metaDataTxtArea').prop('disabled', false);
+			$('#metaDataDiv').slideDown();
+		} else {
+			$('#metaDataDiv').slideUp();
+			$('#metaDataTxtArea').prop('disabled', true);
+		}
+	});
+
 });
 
 // Tabbed Nav

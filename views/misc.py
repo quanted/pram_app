@@ -4,15 +4,17 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 import importlib
 import linksLeft
-
+import os
 
 #######################################################################################
 ################################ HTTP Error Pages #####################################
 #######################################################################################
 
 def fileNotFound(request):
-    html = render_to_string('01uberheader.html', {'title': 'Error'})
-    html = html + render_to_string('02uberintroblock_nomodellinks.html', {'title2':'File not found'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': 'Error'})
+    html = html + render_to_string('02uberintroblock_nomodellinks.html', {'site_skin' : os.environ['SITE_SKIN']})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04ubertext_start.html', {
             'model_attributes': 'File Not Found',

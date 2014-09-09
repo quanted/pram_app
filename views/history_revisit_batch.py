@@ -39,9 +39,10 @@ class historyoutputPage(webapp.RequestHandler):
         templatepath = os.path.dirname(__file__) + '/templates/'
         ChkCookie = self.request.cookies.get("ubercookie")
         html = uber_lib.SkinChk(ChkCookie, 'Batch')
-        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'przm','page':'output'})
-
-
+        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'model':'przm',
+                'page':'output'})
         html = html + template.render (templatepath + '03ubertext_links_left.html', {})                
         html = html + template.render(templatepath + '04uberoutput_start.html', {
                 'model':'przm',

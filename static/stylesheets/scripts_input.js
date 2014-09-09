@@ -38,10 +38,10 @@ $( document ).ready(function() {
 	$('#resetbutton').click(
 		function(){
 			var values = [];
-      		var selected = $("input:checkbox").each(
-     		 function(){
-          		values.push( $(this).is(':checked'));
-     		});
+			var selected = $("input:checkbox").each(
+			 function(){
+				values.push( $(this).is(':checked'));
+			});
 			this.form.reset();
 			for (i=0;i<selected.length;i++) {
 				$(selected[i]).prop('checked', values[i]);
@@ -60,6 +60,18 @@ $( document ).ready(function() {
 					this.checked = false;
 			}
 		});
+	});
+
+	// Save Metadata
+	$('#metaDataTxtArea').prop('disabled', true);
+	$('#metaDataToggle').change(function() {
+		if ($('#metaDataToggle').prop( "checked" )) {
+			$('#metaDataTxtArea').prop('disabled', false);
+			$('#metaDataDiv').slideDown();
+		} else {
+			$('#metaDataDiv').slideUp();
+			$('#metaDataTxtArea').prop('disabled', true);
+		}
 	});
 
 });

@@ -3,13 +3,19 @@ from django.http import HttpResponse
 import importlib
 import linksLeft
 from REST import rest_funcs
+import os
 
 def historyPage(request, model='none', header='none'):
     viewmodule = importlib.import_module('.views', 'models.'+model)
     header = viewmodule.header
 
-    html = render_to_string('01uberheader.html', {'title': header+' History'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'history'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' History'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'history'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberalgorithm_start.html', {
             'model_attributes': header+' User History'})

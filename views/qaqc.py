@@ -2,6 +2,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 import importlib
 import linksLeft
+import os
 
 def qaqcPage(request, model='none'):
     viewmodule = importlib.import_module('.views', 'models.'+model)
@@ -10,8 +11,13 @@ def qaqcPage(request, model='none'):
     from REST import rest_funcs
     header = viewmodule.header
 
-    html = render_to_string('01uberheader.html', {'title': header+' QA/QC'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'qaqc'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' QA/QC'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'qaqc'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberoutput_start.html', {
             'model':model,

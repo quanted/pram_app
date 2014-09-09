@@ -1,0 +1,607 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.przm5.przm5_tables &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.przm5.przm5_tables</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: przm5_tables</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">Template</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+<span class="kn">import</span> <span class="nn">przm5_model</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<div class="viewcode-block" id="getheaderpvu"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.getheaderpvu">[docs]</a><span class="k">def</span> <span class="nf">getheaderpvu</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">,</span> <span class="s">&quot;Units&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="getheaderpvu2"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.getheaderpvu2">[docs]</a><span class="k">def</span> <span class="nf">getheaderpvu2</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Parameter&quot;</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span>
+</div>
+<div class="viewcode-block" id="gethtmlrowsfromcols"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gethtmlrowsfromcols">[docs]</a><span class="k">def</span> <span class="nf">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headings</span><span class="p">):</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">heading</span><span class="p">]</span> <span class="k">for</span> <span class="n">heading</span> <span class="ow">in</span> <span class="n">headings</span><span class="p">]</span>
+
+    <span class="c"># get the length of the longest column</span>
+    <span class="n">max_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="c"># padding the short columns with None</span>
+        <span class="n">col</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">None</span><span class="p">,]</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">col</span><span class="p">))</span>
+
+    <span class="c"># Then rotate the structure...</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_len</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">rows</span>
+</div>
+<div class="viewcode-block" id="getdjtemplate"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.getdjtemplate">[docs]</a><span class="k">def</span> <span class="nf">getdjtemplate</span><span class="p">():</span>
+    <span class="n">dj_template</span> <span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;table class=&quot;out_&quot;&gt;</span>
+<span class="s">    {# headings #}</span>
+<span class="s">        &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or heading in headings %}</span>
+<span class="s">            &lt;th colspan={{ th_span|default:&#39;1&#39; }}&gt;{{ heading|safe }}&lt;/th&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">        &lt;/tr&gt;</span>
+<span class="s">    </span>
+<span class="s">    {</span><span class="si">% i</span><span class="s">f sub_headings %}</span>
+<span class="s">        &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or sub_heading in sub_headings %}</span>
+<span class="s">            &lt;th&gt;{{ sub_heading }}&lt;/th&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">        &lt;/tr&gt;</span>
+<span class="s">    {</span><span class="si">% e</span><span class="s">ndif %}</span>
+<span class="s">    {# data #}</span>
+<span class="s">    {</span><span class="si">% f</span><span class="s">or row in data %}</span>
+<span class="s">    &lt;tr&gt;</span>
+<span class="s">        {</span><span class="si">% f</span><span class="s">or val in row %}</span>
+<span class="s">        &lt;td&gt;{{ val|default:&#39;&#39;|safe }}&lt;/td&gt;</span>
+<span class="s">        {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/tr&gt;</span>
+<span class="s">    {</span><span class="si">% e</span><span class="s">ndfor %}</span>
+<span class="s">    &lt;/table&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dj_template</span>
+ </div>
+<div class="viewcode-block" id="gett1data"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gett1data">[docs]</a><span class="k">def</span> <span class="nf">gett1data</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Sorption Coefficient Type&#39;</span><span class="p">,</span> <span class="s">&#39;Sorption Coefficient&#39;</span><span class="p">,</span> <span class="s">&#39;Soil Halflife&#39;</span><span class="p">,</span> <span class="s">&#39;Soil Reference Temp&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Foliar Halflife&#39;</span><span class="p">,</span> <span class="s">&#39;Number of Degradates&#39;</span><span class="p">],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">koc_check_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">Koc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">soilHalfLifeBox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">soilTempBox1</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">foliarHalfLifeBox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">deg_check</span><span class="p">],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;mL/g&#39;</span><span class="p">,</span> <span class="s">&#39;day&#39;</span><span class="p">,</span> <span class="s">&#39;&lt;sup&gt;o&lt;/sup&gt;C&#39;</span><span class="p">,</span> <span class="s">&#39;day&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett1data_b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gett1data_b">[docs]</a><span class="k">def</span> <span class="nf">gett1data_b</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Sorption Coefficient&#39;</span><span class="p">,</span> <span class="s">&#39;Soil Halflife&#39;</span><span class="p">,</span> <span class="s">&#39;Soil Reference Temp&#39;</span><span class="p">,</span> <span class="s">&#39;Foliar Halflife&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Molar Conversion Factors (Soil)&#39;</span><span class="p">,</span> <span class="s">&#39;Molar Conversion Factors (Foliar)&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">Koc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">soilHalfLifeBox</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">25</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">foliarHalfLifeBox</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">convertSoil1</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">convert_Foliar1</span><span class="p">,],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;mL/g&#39;</span><span class="p">,</span> <span class="s">&#39;day&#39;</span><span class="p">,</span> <span class="s">&#39;&lt;sup&gt;o&lt;/sup&gt;C&#39;</span><span class="p">,</span> <span class="s">&#39;day&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett1data_c"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gett1data_c">[docs]</a><span class="k">def</span> <span class="nf">gett1data_c</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Sorption Coefficient&#39;</span><span class="p">,</span> <span class="s">&#39;Soil Halflife&#39;</span><span class="p">,</span> <span class="s">&#39;Soil Reference Temp&#39;</span><span class="p">,</span> <span class="s">&#39;Foliar Halflife&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;Source of Degradate 2&#39;</span><span class="p">,</span> <span class="s">&#39;Molar Conversion Factors (Soil)&#39;</span><span class="p">,</span> <span class="s">&#39;Molar Conversion Factors (Foliar)&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">Koc</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">soilHalfLifeBox</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">25</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">foliarHalfLifeBox</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">deg2_source_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">convertSoil2</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">convert_Foliar2</span><span class="p">,],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;mL/g&#39;</span><span class="p">,</span> <span class="s">&#39;day&#39;</span><span class="p">,</span> <span class="s">&#39;&lt;sup&gt;o&lt;/sup&gt;C&#39;</span><span class="p">,</span> <span class="s">&#39;day&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+</div>
+<div class="viewcode-block" id="gett2data"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gett2data">[docs]</a><span class="k">def</span> <span class="nf">gett2data</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Choose Way of Entering Application Dates&#39;</span><span class="p">,</span> <span class="s">&#39;Number of Applications&#39;</span><span class="p">,</span> <span class="s">&#39;Specify Years?&#39;</span><span class="p">,</span> <span class="s">&#39;Enter Eff. &amp; Drift/T for&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">app_date_type_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">noa</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="s">&#39;No&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="s">&#39;Pond&#39;</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett3data"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gett3data">[docs]</a><span class="k">def</span> <span class="nf">gett3data</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">tempflag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+            <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Scenario ID&#39;</span><span class="p">,</span> <span class="s">&#39;Weather File&#39;</span><span class="p">,</span> <span class="s">&#39;Emerge (DD/MM)&#39;</span><span class="p">,</span> <span class="s">&#39;Mature (DD/MM)&#39;</span><span class="p">,</span> <span class="s">&#39;Harvest (DD/MM)&#39;</span><span class="p">,</span>
+                          <span class="s">&#39;Pan Factor&#39;</span><span class="p">,</span> <span class="s">&#39;Snowmelt Factor&#39;</span><span class="p">,</span> <span class="s">&#39;Evaportation Depth&#39;</span><span class="p">,</span> <span class="s">&#39;Root Depth&#39;</span><span class="p">,</span> <span class="s">&#39;Canopy Cover&#39;</span><span class="p">,</span>
+                          <span class="s">&#39;Canopy Height&#39;</span><span class="p">,</span> <span class="s">&#39;Canopy Holdup&#39;</span><span class="p">,</span> <span class="s">&#39;Irrigation&#39;</span><span class="p">,</span> <span class="s">&#39;Extra Water Fraction&#39;</span><span class="p">,</span> <span class="s">&#39;Allowed Depletion&#39;</span><span class="p">,</span> 
+                          <span class="s">&#39;Max Rate&#39;</span><span class="p">,</span> <span class="s">&#39;Post-Harvest Foliage&#39;</span><span class="p">,</span> <span class="s">&#39;No. of Horizons&#39;</span><span class="p">,</span> <span class="s">&#39;Simulate Temperature&#39;</span><span class="p">],</span>
+            <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">scenID</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">dvf_file</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">Emerge_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">Mature_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">Harvest_text</span><span class="p">,</span>
+                      <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">pfac</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">snowmelt</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">evapDepth</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">rootDepth</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">canopyCover</span><span class="p">,</span>
+                      <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">canopyHeight</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">canopyHoldup</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">irflag_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">fleach</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">depletion</span><span class="p">,</span> 
+                      <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">rateIrrig</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PestDispHarvest_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">noh</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="s">&#39;No&#39;</span><span class="p">,],</span>
+            <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;cm&#39;</span><span class="p">,</span> <span class="s">&#39;%&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;cm&#39;</span><span class="p">,</span> <span class="s">&#39;cm&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">],</span>
+        <span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+            <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Scenario ID&#39;</span><span class="p">,</span> <span class="s">&#39;Weather File&#39;</span><span class="p">,</span> <span class="s">&#39;Emerge (DD/MM)&#39;</span><span class="p">,</span> <span class="s">&#39;Mature (DD/MM)&#39;</span><span class="p">,</span> <span class="s">&#39;Harvest (DD/MM)&#39;</span><span class="p">,</span>
+                          <span class="s">&#39;Pan Factor&#39;</span><span class="p">,</span> <span class="s">&#39;Snowmelt Factor&#39;</span><span class="p">,</span> <span class="s">&#39;Evaportation Depth&#39;</span><span class="p">,</span> <span class="s">&#39;Root Depth&#39;</span><span class="p">,</span> <span class="s">&#39;Canopy Cover&#39;</span><span class="p">,</span>
+                          <span class="s">&#39;Canopy Height&#39;</span><span class="p">,</span> <span class="s">&#39;Canopy Holdup&#39;</span><span class="p">,</span> <span class="s">&#39;Irrigation&#39;</span><span class="p">,</span> <span class="s">&#39;Extra Water Fraction&#39;</span><span class="p">,</span> <span class="s">&#39;Allowed Depletion&#39;</span><span class="p">,</span> 
+                          <span class="s">&#39;Max Rate&#39;</span><span class="p">,</span> <span class="s">&#39;Post-Harvest Foliage&#39;</span><span class="p">,</span> <span class="s">&#39;No. of Horizons&#39;</span><span class="p">,</span> <span class="s">&#39;Simulate Temperature&#39;</span><span class="p">,</span> <span class="s">&#39;Lower BC Temperature&#39;</span><span class="p">,</span> <span class="s">&#39;Albedo&#39;</span><span class="p">],</span>
+            <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">scenID</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">dvf_file</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">Emerge_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">Mature_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">Harvest_text</span><span class="p">,</span>
+                      <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">pfac</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">snowmelt</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">evapDepth</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">rootDepth</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">canopyCover</span><span class="p">,</span>
+                      <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">canopyHeight</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">canopyHoldup</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">irflag_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">fleach</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">depletion</span><span class="p">,</span> 
+                      <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">rateIrrig</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PestDispHarvest_text</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">noh</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="s">&#39;Yes&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">bcTemp</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">albedo</span><span class="p">,],</span>
+            <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;cm&#39;</span><span class="p">,</span> <span class="s">&#39;%&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;cm&#39;</span><span class="p">,</span> <span class="s">&#39;cm&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&lt;sup&gt;o&lt;/sup&gt;C&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">],</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett4data"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gett4data">[docs]</a><span class="k">def</span> <span class="nf">gett4data</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;USLE K&#39;</span><span class="p">,</span> <span class="s">&#39;USLE LS&#39;</span><span class="p">,</span> <span class="s">&#39;USLE P&#39;</span><span class="p">,</span> <span class="s">&#39;IREG&#39;</span><span class="p">,</span> <span class="s">&#39;Slope&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;R-Depth&#39;</span><span class="p">,</span> <span class="s">&#39;R-Decline&#39;</span><span class="p">,</span> <span class="s">&#39;Efficiency&#39;</span><span class="p">,</span> <span class="s">&#39;E-Depth&#39;</span><span class="p">,</span> <span class="s">&#39;E-Decline&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">uslek</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">uslels</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">uslep</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">ireg</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">slope</span><span class="p">,</span>
+                  <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">rDepthBox</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">rDeclineBox</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">rBypassBox</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">eDepthBox</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">eDeclineBox</span><span class="p">,],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;%&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;cm&#39;</span><span class="p">,</span> <span class="s">&#39;1/cm&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;cm&#39;</span><span class="p">,</span> <span class="s">&#39;1/cm&#39;</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="gett5data"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gett5data">[docs]</a><span class="k">def</span> <span class="nf">gett5data</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Area of Field&#39;</span><span class="p">,</span> <span class="s">&#39;Hydraulic Length&#39;</span><span class="p">,],</span>
+        <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">fieldSize</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">hydlength</span><span class="p">,],</span>
+        <span class="s">&quot;Units&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;ha.&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<span class="n">pvuheadings</span> <span class="o">=</span> <span class="n">getheaderpvu</span><span class="p">()</span>
+<span class="n">pvuheadings2</span> <span class="o">=</span> <span class="n">getheaderpvu2</span><span class="p">()</span>
+<span class="n">djtemplate</span> <span class="o">=</span> <span class="n">getdjtemplate</span><span class="p">()</span>
+<span class="n">tmpl</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">djtemplate</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="timestamp"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.timestamp">[docs]</a><span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="c"># ts = time.time()</span>
+    <span class="c"># st = datetime.datetime.fromtimestamp(ts).strftime(&#39;%A, %Y-%B-%d %H:%M:%S&#39;)</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">przm5_obj</span><span class="o">.</span><span class="n">jid</span><span class="p">,</span> <span class="s">&#39;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S</span><span class="si">%f</span><span class="s">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%A %Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+    <span class="n">html</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;div class=&quot;out_&quot;&gt;</span>
+<span class="s">        &lt;b&gt;PRZM&lt;br&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">st</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot; (EST)&lt;/b&gt;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">    &lt;/div&gt;&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+
+</div>
+<div class="viewcode-block" id="table_all"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_all">[docs]</a><span class="k">def</span> <span class="nf">table_all</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">przm5_obj</span><span class="o">.</span><span class="n">deg2_source</span><span class="p">)</span>
+
+    <span class="n">table1_out</span> <span class="o">=</span> <span class="n">table_1</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">table1_out_b</span> <span class="o">=</span> <span class="n">table_1_b</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">table1_out_c</span> <span class="o">=</span> <span class="n">table_1_c</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">deg_check</span> <span class="o">==</span> <span class="s">&#39;0&#39;</span><span class="p">:</span>
+        <span class="n">table1_out_all</span> <span class="o">=</span> <span class="n">table1_out</span>
+    <span class="k">elif</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">deg_check</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">table1_out_all</span> <span class="o">=</span> <span class="n">table1_out</span> <span class="o">+</span> <span class="n">table1_out_b</span>
+    <span class="k">elif</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">deg_check</span> <span class="o">==</span> <span class="s">&#39;2&#39;</span><span class="p">:</span>
+        <span class="n">table1_out_all</span> <span class="o">=</span> <span class="n">table1_out</span> <span class="o">+</span> <span class="n">table1_out_b</span> <span class="o">+</span> <span class="n">table1_out_c</span>
+    <span class="n">table2_out</span> <span class="o">=</span> <span class="n">table_2</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span> <span class="o">+</span> <span class="n">table_2_b</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">table3_out</span> <span class="o">=</span> <span class="n">table_3</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span> <span class="o">+</span> <span class="n">table_3_b</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">table4_out</span> <span class="o">=</span> <span class="n">table_4</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span> <span class="o">+</span> <span class="n">table_4_b</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">table5_out</span> <span class="o">=</span> <span class="n">table_5</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">table6_out</span> <span class="o">=</span> <span class="n">table_6</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">table7_out</span> <span class="o">=</span> <span class="n">table_7</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">table8_out</span> <span class="o">=</span> <span class="n">table_8</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+
+    <span class="n">html_plot</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;przm5-output-jqplot.html&#39;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">timestamp</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span> <span class="o">+</span> <span class="n">table1_out</span> <span class="o">+</span> <span class="n">table2_out</span> <span class="o">+</span> <span class="n">table3_out</span> <span class="o">+</span> <span class="n">table4_out</span> <span class="o">+</span> <span class="n">html_plot</span>
+    <span class="n">html_all</span> <span class="o">=</span> <span class="n">timestamp</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span> <span class="o">+</span> <span class="n">table1_out_all</span> <span class="o">+</span> <span class="n">table2_out</span> <span class="o">+</span> <span class="n">table3_out</span> <span class="o">+</span> <span class="n">table4_out</span> <span class="o">+</span> <span class="n">table5_out</span> <span class="o">+</span> <span class="n">table6_out</span> <span class="o">+</span> <span class="n">table7_out</span> <span class="o">+</span> <span class="n">table8_out</span> <span class="o">+</span> <span class="n">html_plot</span>
+    <span class="k">return</span> <span class="n">html_all</span>
+
+</div>
+<div class="viewcode-block" id="table_1"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_1">[docs]</a><span class="k">def</span> <span class="nf">table_1</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;&lt;H3 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Inputs:&lt;/H3&gt;</span>
+<span class="s">                &lt;div class=&quot;out_input_table out_&quot;&gt;</span>
+<span class="s">                    &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Chemical&lt;/H4&gt;</span>
+<span class="s">                        &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">               &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">koc_check</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">koc_check_text</span><span class="o">=</span><span class="s">&#39;Koc&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">koc_check_text</span><span class="o">=</span><span class="s">&#39;Kd&#39;</span>
+    <span class="k">if</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">deg2_source</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">deg2_source_text</span> <span class="o">=</span> <span class="s">&#39;Degradate 1&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">deg2_source_text</span> <span class="o">=</span> <span class="s">&#39;Parent&#39;</span>
+    <span class="n">t1data</span> <span class="o">=</span> <span class="n">gett1data</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">t1rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data</span><span class="p">,</span> <span class="n">pvuheadings</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_1_b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_1_b">[docs]</a><span class="k">def</span> <span class="nf">table_1_b</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;&lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Chemical Degradate 1&lt;/H4&gt;</span>
+<span class="s">                        &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">               &quot;&quot;&quot;</span>
+    <span class="n">t1data_b</span> <span class="o">=</span> <span class="n">gett1data_b</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">t1rows_b</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data_b</span><span class="p">,</span> <span class="n">pvuheadings</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows_b</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_1_c"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_1_c">[docs]</a><span class="k">def</span> <span class="nf">table_1_c</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;&lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Chemical Degradate 2&lt;/H4&gt;</span>
+<span class="s">                        &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">               &quot;&quot;&quot;</span>
+    <span class="n">t1data_c</span> <span class="o">=</span> <span class="n">gett1data_c</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">t1rows_c</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t1data_c</span><span class="p">,</span> <span class="n">pvuheadings</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t1rows_c</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_2"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_2">[docs]</a><span class="k">def</span> <span class="nf">table_2</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;&lt;H4 class=&quot;out_3 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Application (n=</span><span class="si">%s</span><span class="s">)&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_input_table out_&quot;&gt;</span>
+<span class="s">               &quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">przm5_obj</span><span class="o">.</span><span class="n">noa</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">app_date_type</span> <span class="o">==</span> <span class="s">&#39;0&#39;</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">app_date_type_text</span> <span class="o">=</span> <span class="s">&#39;Absolute Dates&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">app_date_type_text</span> <span class="o">=</span> <span class="s">&#39;Relative Dates&#39;</span>
+    <span class="n">t2data</span> <span class="o">=</span> <span class="n">gett2data</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">t2rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2data</span><span class="p">,</span> <span class="n">pvuheadings2</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings2</span><span class="p">)))</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="getheader_table_2b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.getheader_table_2b">[docs]</a><span class="k">def</span> <span class="nf">getheader_table_2b</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Day&quot;</span><span class="p">,</span> <span class="s">&quot;Month&quot;</span><span class="p">,</span> <span class="s">&quot;Year&quot;</span><span class="p">,</span> <span class="s">&quot;Amount&quot;</span><span class="p">,</span> <span class="s">&quot;Application&quot;</span><span class="p">,</span> <span class="s">&quot;Depth&quot;</span><span class="p">,</span> <span class="s">&quot;Eff&quot;</span><span class="p">,</span> <span class="s">&quot;Drift&quot;</span><span class="p">]</span>
+    <span class="n">headings_show</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Day&quot;</span><span class="p">,</span> <span class="s">&quot;Month&quot;</span><span class="p">,</span> <span class="s">&quot;Year&quot;</span><span class="p">,</span> <span class="s">&quot;Amount (kg/hA)&quot;</span><span class="p">,</span> <span class="s">&quot;Application Method&quot;</span><span class="p">,</span> <span class="s">&quot;Depth (cm)&quot;</span><span class="p">,</span> <span class="s">&quot;Eff.&quot;</span><span class="p">,</span> <span class="s">&quot;Drift/T&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span><span class="p">,</span> <span class="n">headings_show</span>
+</div>
+<span class="n">table_2b_headings</span> <span class="o">=</span> <span class="n">getheader_table_2b</span><span class="p">()</span>
+
+<div class="viewcode-block" id="gett2data_b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gett2data_b">[docs]</a><span class="k">def</span> <span class="nf">gett2data_b</span><span class="p">(</span><span class="n">Day</span><span class="p">,</span> <span class="n">Month</span><span class="p">,</span> <span class="n">Amount</span><span class="p">,</span> <span class="n">Method</span><span class="p">,</span> <span class="n">Depth</span><span class="p">,</span> <span class="n">Eff</span><span class="p">,</span> <span class="n">Drift</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;Day&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Day</span><span class="p">,],</span>
+        <span class="s">&quot;Month&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Month</span><span class="p">,</span> <span class="p">],</span>
+        <span class="s">&quot;Year&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;NA&#39;</span><span class="p">],</span>
+        <span class="s">&quot;Amount&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Amount</span><span class="p">,],</span>
+        <span class="s">&quot;Application&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Method</span><span class="p">,],</span>
+        <span class="s">&quot;Depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Depth</span><span class="p">,],</span>
+        <span class="s">&quot;Eff&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Eff</span><span class="p">,],</span>
+        <span class="s">&quot;Drift&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Drift</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="table_2_b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_2_b">[docs]</a><span class="k">def</span> <span class="nf">table_2_b</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+        <span class="c"># #pre-table 2</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span> 
+        <span class="c">#table 2_b</span>
+        <span class="n">t2_b_data_all</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">przm5_obj</span><span class="o">.</span><span class="n">noa</span><span class="p">)):</span>
+            <span class="n">Day_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PestAppyDay</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">Month_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PestAppyMon</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">Amount_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PestAppyRate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">Method_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">ApplicationTypes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">Depth_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">DepthIncorp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">Eff_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">localEff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">Drift_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">localSpray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+            <span class="n">t2_d_data_temp</span><span class="o">=</span><span class="n">gett2data_b</span><span class="p">(</span><span class="n">Day_temp</span><span class="p">,</span> <span class="n">Month_temp</span><span class="p">,</span> <span class="n">Amount_temp</span><span class="p">,</span> <span class="n">Method_temp</span><span class="p">,</span> <span class="n">Depth_temp</span><span class="p">,</span> <span class="n">Eff_temp</span><span class="p">,</span> <span class="n">Drift_temp</span><span class="p">)</span>
+            <span class="n">t2_b_data_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t2_d_data_temp</span><span class="p">)</span>
+
+        <span class="n">t2_b_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">k</span><span class="p">,[</span><span class="n">t2data_ind</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">t2data_ind</span> <span class="ow">in</span> <span class="n">t2_b_data_all</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">t2_d_data_temp</span><span class="p">])</span>
+        <span class="n">t2_b_rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t2_b_data</span><span class="p">,</span> <span class="n">table_2b_headings</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t2_b_rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">table_2b_headings</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_3"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_3">[docs]</a><span class="k">def</span> <span class="nf">table_3</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;&lt;H4 class=&quot;out_3 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Crop/Land&lt;/H3&gt;</span>
+<span class="s">                &lt;div class=&quot;out_input_table out_&quot;&gt;</span>
+<span class="s">               &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">irflag</span> <span class="o">==</span> <span class="s">&#39;0&#39;</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">irflag_text</span> <span class="o">=</span> <span class="s">&#39;None&#39;</span>
+    <span class="k">elif</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">irflag</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">irflag_text</span> <span class="o">=</span> <span class="s">&#39;Over Canopy&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">irflag_text</span> <span class="o">=</span> <span class="s">&#39;Under Canopy&#39;</span>
+    <span class="k">if</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PestDispHarvest</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PestDispHarvest_text</span> <span class="o">=</span> <span class="s">&#39;Surface Applied&#39;</span>
+    <span class="k">elif</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PestDispHarvest</span> <span class="o">==</span> <span class="s">&#39;2&#39;</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PestDispHarvest_text</span> <span class="o">=</span> <span class="s">&#39;Removed&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PestDispHarvest_text</span> <span class="o">=</span> <span class="s">&#39;Left as Foliage&#39;</span>
+    <span class="n">t3data</span> <span class="o">=</span> <span class="n">gett3data</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">t3rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t3data</span><span class="p">,</span> <span class="n">pvuheadings</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t3rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="getheader_table_3b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.getheader_table_3b">[docs]</a><span class="k">def</span> <span class="nf">getheader_table_3b</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;thick&quot;</span><span class="p">,</span> <span class="s">&quot;rho&quot;</span><span class="p">,</span> <span class="s">&quot;max_cap&quot;</span><span class="p">,</span> <span class="s">&quot;min_cap&quot;</span><span class="p">,</span> <span class="s">&quot;oc&quot;</span><span class="p">,</span> <span class="s">&quot;n&quot;</span><span class="p">]</span>
+    <span class="n">headings_show</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Thick&quot;</span><span class="p">,</span> <span class="s">&quot;&amp;#961;&quot;</span><span class="p">,</span> <span class="s">&quot;Max. Cap.&quot;</span><span class="p">,</span> <span class="s">&quot;Min. Cap.&quot;</span><span class="p">,</span> <span class="s">&quot;O.C.&quot;</span><span class="p">,</span> <span class="s">&quot;N&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span><span class="p">,</span> <span class="n">headings_show</span>
+</div>
+<span class="n">table_3b_headings</span> <span class="o">=</span> <span class="n">getheader_table_3b</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="gett3data_b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gett3data_b">[docs]</a><span class="k">def</span> <span class="nf">gett3data_b</span><span class="p">(</span><span class="n">thick</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">max_cap</span><span class="p">,</span> <span class="n">min_cap</span><span class="p">,</span> <span class="n">oc</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;thick&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">thick</span><span class="p">,],</span>
+        <span class="s">&quot;rho&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">rho</span><span class="p">,</span> <span class="p">],</span>
+        <span class="s">&quot;max_cap&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">max_cap</span><span class="p">,],</span>
+        <span class="s">&quot;min_cap&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">min_cap</span><span class="p">,],</span>
+        <span class="s">&quot;oc&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">oc</span><span class="p">,],</span>
+        <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">n</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="table_3_b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_3_b">[docs]</a><span class="k">def</span> <span class="nf">table_3_b</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+        <span class="c"># #pre-table 3</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span> 
+        <span class="c">#table 3_b</span>
+        <span class="n">t3_b_data_all</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">przm5_obj</span><span class="o">.</span><span class="n">noh</span><span class="p">)):</span>
+            <span class="n">thick_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">SoilProperty_thick</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">rho_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">SoilProperty_bulkden</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">max_cap_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">SoilProperty_maxcap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">min_cap_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">SoilProperty_mincap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">oc_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">SoilProperty_oc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">n_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">SoilProperty_compartment</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+            <span class="n">t3_b_data_temp</span><span class="o">=</span><span class="n">gett3data_b</span><span class="p">(</span><span class="n">thick_temp</span><span class="p">,</span> <span class="n">rho_temp</span><span class="p">,</span> <span class="n">max_cap_temp</span><span class="p">,</span> <span class="n">min_cap_temp</span><span class="p">,</span> <span class="n">oc_temp</span><span class="p">,</span> <span class="n">n_temp</span><span class="p">)</span>
+            <span class="n">t3_b_data_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t3_b_data_temp</span><span class="p">)</span>
+
+        <span class="n">t3_b_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">k</span><span class="p">,[</span><span class="n">t3data_ind</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">t3data_ind</span> <span class="ow">in</span> <span class="n">t3_b_data_all</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">t3_b_data_temp</span><span class="p">])</span>
+        <span class="n">t3_b_rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t3_b_data</span><span class="p">,</span> <span class="n">table_3b_headings</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t3_b_rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">table_3b_headings</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+
+</div>
+<div class="viewcode-block" id="table_4"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_4">[docs]</a><span class="k">def</span> <span class="nf">table_4</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;&lt;H4 class=&quot;out_3 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Runoff&lt;/H3&gt;</span>
+<span class="s">                &lt;div class=&quot;out_input_table out_&quot;&gt;</span>
+<span class="s">               &quot;&quot;&quot;</span>
+    <span class="n">t4data</span> <span class="o">=</span> <span class="n">gett4data</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">t4rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t4data</span><span class="p">,</span> <span class="n">pvuheadings</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t4rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+
+</div>
+<div class="viewcode-block" id="getheader_table_4b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.getheader_table_4b">[docs]</a><span class="k">def</span> <span class="nf">getheader_table_4b</span><span class="p">():</span>
+    <span class="n">headings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;No&quot;</span><span class="p">,</span> <span class="s">&quot;Day&quot;</span><span class="p">,</span> <span class="s">&quot;Month&quot;</span><span class="p">,</span> <span class="s">&quot;Year&quot;</span><span class="p">,</span> <span class="s">&quot;CN&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;N&quot;</span><span class="p">]</span>
+    <span class="n">headings_show</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;No.&quot;</span><span class="p">,</span> <span class="s">&quot;Day&quot;</span><span class="p">,</span> <span class="s">&quot;Month&quot;</span><span class="p">,</span> <span class="s">&quot;Year&quot;</span><span class="p">,</span> <span class="s">&quot;CN&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;N&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">headings</span><span class="p">,</span> <span class="n">headings_show</span>
+</div>
+<span class="n">table_4b_headings</span> <span class="o">=</span> <span class="n">getheader_table_4b</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="gett4data_b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.gett4data_b">[docs]</a><span class="k">def</span> <span class="nf">gett4data_b</span><span class="p">(</span><span class="n">No</span><span class="p">,</span> <span class="n">Day</span><span class="p">,</span> <span class="n">Month</span><span class="p">,</span> <span class="n">Year</span><span class="p">,</span> <span class="n">CN</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s">&quot;No&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">No</span><span class="p">,],</span>
+        <span class="s">&quot;Day&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Day</span><span class="p">,</span> <span class="p">],</span>
+        <span class="s">&quot;Month&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Month</span><span class="p">,],</span>
+        <span class="s">&quot;Year&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Year</span><span class="p">,],</span>
+        <span class="s">&quot;CN&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">CN</span><span class="p">,],</span>
+        <span class="s">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">C</span><span class="p">,],</span>
+        <span class="s">&quot;N&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">N</span><span class="p">,],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span>
+</div>
+<div class="viewcode-block" id="table_4_b"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_4_b">[docs]</a><span class="k">def</span> <span class="nf">table_4_b</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+        <span class="c"># #pre-table 4</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span> 
+        <span class="c">#table 4_b</span>
+        <span class="n">t4_b_data_all</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">przm5_obj</span><span class="o">.</span><span class="n">nott</span><span class="p">)):</span>
+            <span class="n">No_temp</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+            <span class="n">Day_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">USLE_day</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">Month_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">USLE_mon</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">CN_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">USLE_cn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">C_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">USLE_c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">N_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">USLE_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">Year_temp</span> <span class="o">=</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">USLE_year</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">Year_temp</span> <span class="o">=</span> <span class="s">&#39;1972&#39;</span>
+
+            <span class="n">t4_b_data_temp</span><span class="o">=</span><span class="n">gett4data_b</span><span class="p">(</span><span class="n">No_temp</span><span class="p">,</span> <span class="n">Day_temp</span><span class="p">,</span> <span class="n">Month_temp</span><span class="p">,</span> <span class="n">Year_temp</span><span class="p">,</span> <span class="n">CN_temp</span><span class="p">,</span> <span class="n">C_temp</span><span class="p">,</span> <span class="n">N_temp</span><span class="p">)</span>
+            <span class="n">t4_b_data_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t4_b_data_temp</span><span class="p">)</span>
+
+        <span class="n">t4_b_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">k</span><span class="p">,[</span><span class="n">t4data_ind</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">t4data_ind</span> <span class="ow">in</span> <span class="n">t4_b_data_all</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">t4_b_data_temp</span><span class="p">])</span>
+        <span class="n">t4_b_rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t4_b_data</span><span class="p">,</span> <span class="n">table_4b_headings</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t4_b_rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">table_4b_headings</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                &lt;/div&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">html</span>
+
+
+
+</div>
+<div class="viewcode-block" id="table_5"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_5">[docs]</a><span class="k">def</span> <span class="nf">table_5</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;&lt;H4 class=&quot;out_3 collapsible&quot; id=&quot;section2&quot;&gt;&lt;span&gt;&lt;/span&gt;Water Body&lt;/H3&gt;</span>
+<span class="s">                &lt;div class=&quot;out_input_table out_&quot;&gt;</span>
+<span class="s">               &quot;&quot;&quot;</span>
+    <span class="n">t5data</span> <span class="o">=</span> <span class="n">gett5data</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">)</span>
+    <span class="n">t5rows</span> <span class="o">=</span> <span class="n">gethtmlrowsfromcols</span><span class="p">(</span><span class="n">t5data</span><span class="p">,</span> <span class="n">pvuheadings</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">t5rows</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="n">pvuheadings</span><span class="p">)))</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+
+</div>
+<div class="viewcode-block" id="table_6"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_6">[docs]</a><span class="k">def</span> <span class="nf">table_6</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;  &lt;H3 class=&quot;out_3 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;User Outputs&lt;/H3&gt;</span>
+<span class="s">                &lt;div class=&quot;out_3&quot;&gt;</span>
+<span class="s">                    &lt;H4 class=&quot;out_1 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;Download&lt;/H4&gt;</span>
+<span class="s">                        &lt;div class=&quot;out_ container_output&quot;&gt;</span>
+<span class="s">                            &lt;table class=&quot;out_&quot;&gt;</span>
+<span class="s">                                &lt;tr&gt;</span>
+<span class="s">                                    &lt;th scope=&quot;col&quot;&gt;Outputs&lt;/div&gt;&lt;/th&gt;</span>
+<span class="s">                                    &lt;th scope=&quot;col&quot;&gt;Value&lt;/div&gt;&lt;/th&gt;                            </span>
+<span class="s">                                &lt;/tr&gt;</span>
+<span class="s">                                &lt;tr&gt;</span>
+<span class="s">                                    &lt;td&gt;Simulation is finished. Please download your file from here&lt;/td&gt;</span>
+<span class="s">                                    &lt;td&gt;&lt;a href=</span><span class="si">%s</span><span class="s">&gt;Link&lt;/a&gt;&lt;/td&gt;</span>
+<span class="s">                                &lt;/tr&gt;</span>
+<span class="s">                            &lt;/table&gt;</span>
+<span class="s">                        &lt;/div&gt;</span>
+<span class="s">                &lt;/div&gt;&quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">przm5_obj</span><span class="o">.</span><span class="n">link</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_7"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_7">[docs]</a><span class="k">def</span> <span class="nf">table_7</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;  &lt;H4 class=&quot;out_4 collapsible&quot; id=&quot;section1&quot; style=&quot;display: none&quot;&gt;&lt;span&gt;&lt;/span&gt;Plot&lt;/H4&gt;</span>
+<span class="s">                &lt;div class=&quot;out_4 container_output&quot;&gt;</span>
+<span class="s">                    &lt;table class=&quot;out_&quot; style=&quot;display: none&quot;&gt;</span>
+<span class="s">                        &lt;tr&gt;</span>
+<span class="s">                            &lt;td id=&quot;x_pre_irr&quot;&gt;pre+irr&lt;/td&gt;</span>
+<span class="s">                            &lt;td id=&quot;x_pre_irr_val_</span><span class="si">%s</span><span class="s">&quot;&gt;</span><span class="si">%s</span><span class="s">&lt;/td&gt;</span>
+<span class="s">                        &lt;/tr&gt;</span>
+<span class="s">                        &lt;tr&gt;</span>
+<span class="s">                            &lt;td id=&quot;x_et&quot;&gt;et&lt;/td&gt;</span>
+<span class="s">                            &lt;td id=&quot;x_et_val_</span><span class="si">%s</span><span class="s">&quot;&gt;</span><span class="si">%s</span><span class="s">&lt;/td&gt;</span>
+<span class="s">                        &lt;/tr&gt;</span>
+<span class="s">                        &lt;tr&gt;</span>
+<span class="s">                            &lt;td id=&quot;x_runoff&quot;&gt;runoff&lt;/td&gt;</span>
+<span class="s">                            &lt;td id=&quot;x_runoff_val_</span><span class="si">%s</span><span class="s">&quot;&gt;</span><span class="si">%s</span><span class="s">&lt;/td&gt;</span>
+<span class="s">                        &lt;/tr&gt;                          </span>
+<span class="s">                    &lt;/table&gt;</span>
+<span class="s">                &lt;/div&gt;&quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">PRCP_IRRG_sum</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">CEVP_TETD_sum</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">przm5_obj</span><span class="o">.</span><span class="n">RUNF_sum</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html</span>
+</div>
+<div class="viewcode-block" id="table_8"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_tables.table_8">[docs]</a><span class="k">def</span> <span class="nf">table_8</span><span class="p">(</span><span class="n">przm5_obj</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">            &lt;H3 class=&quot;out_3 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;Plots&lt;/H3&gt;</span>
+<span class="s">            &lt;div class=&quot;out_3&quot;&gt;</span>
+<span class="s">                &lt;H4 class=&quot;out_4 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/H4&gt;</span>
+<span class="s">                    &lt;div id=&quot;chart1&quot; style=&quot;margin-top:20px; margin-left:20px; width:600px; height:400px;&quot;&gt;&lt;/div&gt;</span>
+<span class="s">                &lt;H4 class=&quot;out_4 collapsible&quot; id=&quot;section1&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/H4&gt;</span>
+<span class="s">                    &lt;div id=&quot;chart2&quot; style=&quot;margin-top:20px; margin-left:20px; width:600px; height:400px;&quot;&gt;&lt;/div&gt;</span>
+<span class="s">            &lt;/div&gt;</span>
+<span class="s">           &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

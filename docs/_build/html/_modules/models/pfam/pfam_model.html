@@ -55,23 +55,17 @@
 <span class="sd">   :synopsis: A useful module indeed.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">rest_funcs</span>
+<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">auth_s3</span><span class="p">,</span> <span class="n">rest_funcs</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;SIP Model&#39;</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;PFAM Model&#39;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">keys_Picloud_S3</span>
-<span class="kn">import</span> <span class="nn">base64</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
 
-<span class="c">############Provide the key and connect to EC2####################</span>
-<span class="n">api_key</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_key</span>
-<span class="n">api_secretkey</span><span class="o">=</span><span class="n">keys_Picloud_S3</span><span class="o">.</span><span class="n">picloud_api_secretkey</span>
-<span class="n">base64string</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">encodestring</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_secretkey</span><span class="p">))[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">http_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Authorization&#39;</span> <span class="p">:</span> <span class="s">&#39;Basic </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">base64string</span><span class="p">,</span> <span class="s">&#39;Content-Type&#39;</span> <span class="p">:</span> <span class="s">&#39;application/json&#39;</span><span class="p">}</span>
-<span class="n">url_part1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span>
-<span class="c">###########################################################################         </span>
+<span class="c"># Set HTTP header</span>
+<span class="n">http_headers</span> <span class="o">=</span> <span class="n">auth_s3</span><span class="o">.</span><span class="n">setHTTPHeaders</span><span class="p">()</span>
+<span class="n">url_part1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span>    
 
 <div class="viewcode-block" id="get_jid"><a class="viewcode-back" href="../../../models.pfam.html#models.pfam.pfam_model.get_jid">[docs]</a><span class="k">def</span> <span class="nf">get_jid</span><span class="p">(</span><span class="n">wat_hl</span><span class="p">,</span><span class="n">wat_t</span><span class="p">,</span><span class="n">ben_hl</span><span class="p">,</span><span class="n">ben_t</span><span class="p">,</span><span class="n">unf_hl</span><span class="p">,</span><span class="n">unf_t</span><span class="p">,</span><span class="n">aqu_hl</span><span class="p">,</span><span class="n">aqu_t</span><span class="p">,</span><span class="n">hyd_hl</span><span class="p">,</span><span class="n">mw</span><span class="p">,</span><span class="n">vp</span><span class="p">,</span><span class="n">sol</span><span class="p">,</span><span class="n">koc</span><span class="p">,</span><span class="n">hea_h</span><span class="p">,</span><span class="n">hea_r_t</span><span class="p">,</span>
            <span class="n">noa</span><span class="p">,</span><span class="n">dd_out</span><span class="p">,</span><span class="n">mm_out</span><span class="p">,</span><span class="n">ma_out</span><span class="p">,</span><span class="n">sr_out</span><span class="p">,</span><span class="n">weather</span><span class="p">,</span><span class="n">wea_l</span><span class="p">,</span><span class="n">nof</span><span class="p">,</span><span class="n">date_f1</span><span class="p">,</span><span class="n">nod_out</span><span class="p">,</span><span class="n">fl_out</span><span class="p">,</span><span class="n">wl_out</span><span class="p">,</span><span class="n">ml_out</span><span class="p">,</span><span class="n">to_out</span><span class="p">,</span>

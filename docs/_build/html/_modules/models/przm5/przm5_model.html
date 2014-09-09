@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models.przm5.przm5_model &mdash; übertool alpha documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<!-- Browser FAVICON -->
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for models.przm5.przm5_model</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: przm5_model</span>
+<span class="sd">   :synopsis: A useful module indeed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;PRZM5 Model&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">REST</span> <span class="kn">import</span> <span class="n">auth_s3</span><span class="p">,</span> <span class="n">rest_funcs</span>
+
+<span class="c"># Set HTTP header</span>
+<span class="n">http_headers</span> <span class="o">=</span> <span class="n">auth_s3</span><span class="o">.</span><span class="n">setHTTPHeaders</span><span class="p">()</span>
+<span class="n">url_part1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;UBERTOOL_REST_SERVER&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="get_jid"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_model.get_jid">[docs]</a><span class="k">def</span> <span class="nf">get_jid</span><span class="p">(</span><span class="n">run_type</span><span class="p">,</span> <span class="n">pfac</span><span class="p">,</span> <span class="n">snowmelt</span><span class="p">,</span> <span class="n">evapDepth</span><span class="p">,</span> 
+            <span class="n">uslek</span><span class="p">,</span> <span class="n">uslels</span><span class="p">,</span> <span class="n">uslep</span><span class="p">,</span> <span class="n">fieldSize</span><span class="p">,</span> <span class="n">ireg</span><span class="p">,</span> <span class="n">slope</span><span class="p">,</span> <span class="n">hydlength</span><span class="p">,</span>
+            <span class="n">canopyHoldup</span><span class="p">,</span> <span class="n">rootDepth</span><span class="p">,</span> <span class="n">canopyCover</span><span class="p">,</span> <span class="n">canopyHeight</span><span class="p">,</span>
+            <span class="n">NumberOfFactors</span><span class="p">,</span> <span class="n">useYears</span><span class="p">,</span>
+            <span class="n">USLE_day</span><span class="p">,</span> <span class="n">USLE_mon</span><span class="p">,</span> <span class="n">USLE_year</span><span class="p">,</span> <span class="n">USLE_c</span><span class="p">,</span> <span class="n">USLE_n</span><span class="p">,</span> <span class="n">USLE_cn</span><span class="p">,</span>
+            <span class="n">firstyear</span><span class="p">,</span> <span class="n">lastyear</span><span class="p">,</span>
+            <span class="n">dayEmerge_text</span><span class="p">,</span> <span class="n">monthEmerge_text</span><span class="p">,</span> <span class="n">dayMature_text</span><span class="p">,</span> <span class="n">monthMature_text</span><span class="p">,</span> <span class="n">dayHarvest_text</span><span class="p">,</span> <span class="n">monthHarvest_text</span><span class="p">,</span> <span class="n">addYearM</span><span class="p">,</span> <span class="n">addYearH</span><span class="p">,</span>
+            <span class="n">irflag</span><span class="p">,</span> <span class="n">tempflag</span><span class="p">,</span>
+            <span class="n">fleach</span><span class="p">,</span> <span class="n">depletion</span><span class="p">,</span> <span class="n">rateIrrig</span><span class="p">,</span>
+            <span class="n">albedo</span><span class="p">,</span> <span class="n">bcTemp</span><span class="p">,</span> <span class="n">Q10Box</span><span class="p">,</span> <span class="n">soilTempBox1</span><span class="p">,</span>
+            <span class="n">numHoriz</span><span class="p">,</span>
+            <span class="n">SoilProperty_thick</span><span class="p">,</span> <span class="n">SoilProperty_compartment</span><span class="p">,</span> <span class="n">SoilProperty_bulkden</span><span class="p">,</span> <span class="n">SoilProperty_maxcap</span><span class="p">,</span> <span class="n">SoilProperty_mincap</span><span class="p">,</span> <span class="n">SoilProperty_oc</span><span class="p">,</span> <span class="n">SoilProperty_sand</span><span class="p">,</span> <span class="n">SoilProperty_clay</span><span class="p">,</span>
+            <span class="n">rDepthBox</span><span class="p">,</span> <span class="n">rDeclineBox</span><span class="p">,</span> <span class="n">rBypassBox</span><span class="p">,</span>
+            <span class="n">eDepthBox</span><span class="p">,</span> <span class="n">eDeclineBox</span><span class="p">,</span>
+            <span class="n">appNumber_year</span><span class="p">,</span> <span class="n">totalApp</span><span class="p">,</span>
+            <span class="n">SpecifyYears</span><span class="p">,</span> <span class="n">ApplicationTypes</span><span class="p">,</span> <span class="n">PestAppyDay</span><span class="p">,</span> <span class="n">PestAppyMon</span><span class="p">,</span> <span class="n">Rela_a</span><span class="p">,</span> <span class="n">app_date_type</span><span class="p">,</span> <span class="n">DepthIncorp</span><span class="p">,</span> <span class="n">PestAppyRate</span><span class="p">,</span> <span class="n">localEff</span><span class="p">,</span> <span class="n">localSpray</span><span class="p">,</span>
+            <span class="n">PestDispHarvest</span><span class="p">,</span>
+            <span class="n">nchem</span><span class="p">,</span> <span class="n">convert_Foliar1</span><span class="p">,</span> <span class="n">parentTo3</span><span class="p">,</span> <span class="n">deg1To2</span><span class="p">,</span> <span class="n">foliarHalfLifeBox</span><span class="p">,</span>
+            <span class="n">koc_check</span><span class="p">,</span> <span class="n">Koc</span><span class="p">,</span>
+            <span class="n">soilHalfLifeBox</span><span class="p">,</span>
+            <span class="n">convertSoil1</span><span class="p">,</span> <span class="n">convert1to3</span><span class="p">,</span> <span class="n">convert2to3</span><span class="p">):</span>
+
+
+    <span class="n">all_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;pfac&quot;</span><span class="p">:</span> <span class="n">pfac</span><span class="p">,</span> 
+               <span class="s">&quot;snowmelt&quot;</span><span class="p">:</span> <span class="n">snowmelt</span><span class="p">,</span> 
+               <span class="s">&quot;evapDepth&quot;</span><span class="p">:</span> <span class="n">evapDepth</span><span class="p">,</span>
+               <span class="s">&quot;uslek&quot;</span><span class="p">:</span> <span class="n">uslek</span><span class="p">,</span>
+               <span class="s">&quot;uslels&quot;</span><span class="p">:</span> <span class="n">uslels</span><span class="p">,</span>
+               <span class="s">&quot;uslep&quot;</span><span class="p">:</span> <span class="n">uslep</span><span class="p">,</span>
+               <span class="s">&quot;fieldSize&quot;</span><span class="p">:</span> <span class="n">fieldSize</span><span class="p">,</span>
+               <span class="s">&quot;ireg&quot;</span><span class="p">:</span> <span class="n">ireg</span><span class="p">,</span>
+               <span class="s">&quot;slope&quot;</span><span class="p">:</span> <span class="n">slope</span><span class="p">,</span>
+               <span class="s">&quot;hydlength&quot;</span><span class="p">:</span> <span class="n">hydlength</span><span class="p">,</span>
+               <span class="s">&quot;canopyHoldup&quot;</span><span class="p">:</span> <span class="n">canopyHoldup</span><span class="p">,</span>
+               <span class="s">&quot;rootDepth&quot;</span><span class="p">:</span> <span class="n">rootDepth</span><span class="p">,</span>
+               <span class="s">&quot;canopyCover&quot;</span><span class="p">:</span> <span class="n">canopyCover</span><span class="p">,</span>
+               <span class="s">&quot;canopyHeight&quot;</span><span class="p">:</span> <span class="n">canopyHeight</span><span class="p">,</span>
+               <span class="s">&quot;NumberOfFactors&quot;</span><span class="p">:</span> <span class="n">NumberOfFactors</span><span class="p">,</span>
+               <span class="s">&quot;useYears&quot;</span><span class="p">:</span> <span class="n">useYears</span><span class="p">,</span>
+               <span class="s">&quot;USLE_day&quot;</span><span class="p">:</span> <span class="n">USLE_day</span><span class="p">,</span>
+               <span class="s">&quot;USLE_mon&quot;</span><span class="p">:</span> <span class="n">USLE_mon</span><span class="p">,</span>
+               <span class="s">&quot;USLE_year&quot;</span><span class="p">:</span> <span class="n">USLE_year</span><span class="p">,</span>
+               <span class="s">&quot;USLE_c&quot;</span><span class="p">:</span> <span class="n">USLE_c</span><span class="p">,</span>
+               <span class="s">&quot;USLE_n&quot;</span><span class="p">:</span> <span class="n">USLE_n</span><span class="p">,</span>
+               <span class="s">&quot;USLE_cn&quot;</span><span class="p">:</span> <span class="n">USLE_cn</span><span class="p">,</span>
+               <span class="s">&quot;firstyear&quot;</span><span class="p">:</span> <span class="n">firstyear</span><span class="p">,</span>
+               <span class="s">&quot;lastyear&quot;</span><span class="p">:</span> <span class="n">lastyear</span><span class="p">,</span>
+               <span class="s">&quot;dayEmerge_text&quot;</span><span class="p">:</span> <span class="n">dayEmerge_text</span><span class="p">,</span>
+               <span class="s">&quot;monthEmerge_text&quot;</span><span class="p">:</span> <span class="n">monthEmerge_text</span><span class="p">,</span>
+               <span class="s">&quot;dayMature_text&quot;</span><span class="p">:</span> <span class="n">dayMature_text</span><span class="p">,</span>
+               <span class="s">&quot;monthMature_text&quot;</span><span class="p">:</span> <span class="n">monthMature_text</span><span class="p">,</span>
+               <span class="s">&quot;dayHarvest_text&quot;</span><span class="p">:</span> <span class="n">dayHarvest_text</span><span class="p">,</span>
+               <span class="s">&quot;monthHarvest_text&quot;</span><span class="p">:</span> <span class="n">monthHarvest_text</span><span class="p">,</span>
+               <span class="s">&quot;addYearM&quot;</span><span class="p">:</span> <span class="n">addYearM</span><span class="p">,</span>
+               <span class="s">&quot;addYearH&quot;</span><span class="p">:</span> <span class="n">addYearH</span><span class="p">,</span>
+               <span class="s">&quot;irflag&quot;</span><span class="p">:</span> <span class="n">irflag</span><span class="p">,</span>
+               <span class="s">&quot;tempflag&quot;</span><span class="p">:</span> <span class="n">tempflag</span><span class="p">,</span>
+               <span class="s">&quot;fleach&quot;</span><span class="p">:</span> <span class="n">fleach</span><span class="p">,</span>
+               <span class="s">&quot;depletion&quot;</span><span class="p">:</span> <span class="n">depletion</span><span class="p">,</span>
+               <span class="s">&quot;rateIrrig&quot;</span><span class="p">:</span> <span class="n">rateIrrig</span><span class="p">,</span>
+               <span class="s">&quot;albedo&quot;</span><span class="p">:</span> <span class="n">albedo</span><span class="p">,</span>
+               <span class="s">&quot;bcTemp&quot;</span><span class="p">:</span> <span class="n">bcTemp</span><span class="p">,</span>
+               <span class="s">&quot;Q10Box&quot;</span><span class="p">:</span> <span class="n">Q10Box</span><span class="p">,</span>
+               <span class="s">&quot;soilTempBox1&quot;</span><span class="p">:</span> <span class="n">soilTempBox1</span><span class="p">,</span>
+               <span class="s">&quot;numHoriz&quot;</span><span class="p">:</span> <span class="n">numHoriz</span><span class="p">,</span>
+               <span class="s">&quot;SoilProperty_thick&quot;</span><span class="p">:</span> <span class="n">SoilProperty_thick</span><span class="p">,</span>
+               <span class="s">&quot;SoilProperty_compartment&quot;</span><span class="p">:</span> <span class="n">SoilProperty_compartment</span><span class="p">,</span>
+               <span class="s">&quot;SoilProperty_bulkden&quot;</span><span class="p">:</span> <span class="n">SoilProperty_bulkden</span><span class="p">,</span>
+               <span class="s">&quot;SoilProperty_maxcap&quot;</span><span class="p">:</span> <span class="n">SoilProperty_maxcap</span><span class="p">,</span>
+               <span class="s">&quot;SoilProperty_mincap&quot;</span><span class="p">:</span> <span class="n">SoilProperty_mincap</span><span class="p">,</span>
+               <span class="s">&quot;SoilProperty_oc&quot;</span><span class="p">:</span> <span class="n">SoilProperty_oc</span><span class="p">,</span>
+               <span class="s">&quot;SoilProperty_sand&quot;</span><span class="p">:</span> <span class="n">SoilProperty_sand</span><span class="p">,</span>
+               <span class="s">&quot;SoilProperty_clay&quot;</span><span class="p">:</span> <span class="n">SoilProperty_clay</span><span class="p">,</span>
+               <span class="s">&quot;rDepthBox&quot;</span><span class="p">:</span> <span class="n">rDepthBox</span><span class="p">,</span>
+               <span class="s">&quot;rDeclineBox&quot;</span><span class="p">:</span> <span class="n">rDeclineBox</span><span class="p">,</span>
+               <span class="s">&quot;rBypassBox&quot;</span><span class="p">:</span> <span class="n">rBypassBox</span><span class="p">,</span>
+               <span class="s">&quot;eDepthBox&quot;</span><span class="p">:</span> <span class="n">eDepthBox</span><span class="p">,</span>
+               <span class="s">&quot;eDeclineBox&quot;</span><span class="p">:</span> <span class="n">eDeclineBox</span><span class="p">,</span>
+               <span class="s">&quot;appNumber_year&quot;</span><span class="p">:</span> <span class="n">appNumber_year</span><span class="p">,</span>
+               <span class="s">&quot;totalApp&quot;</span><span class="p">:</span> <span class="n">totalApp</span><span class="p">,</span>
+               <span class="s">&quot;SpecifyYears&quot;</span><span class="p">:</span> <span class="n">SpecifyYears</span><span class="p">,</span>
+               <span class="s">&quot;ApplicationTypes&quot;</span><span class="p">:</span> <span class="n">ApplicationTypes</span><span class="p">,</span>
+               <span class="s">&quot;PestAppyDay&quot;</span><span class="p">:</span> <span class="n">PestAppyDay</span><span class="p">,</span>
+               <span class="s">&quot;PestAppyMon&quot;</span><span class="p">:</span> <span class="n">PestAppyMon</span><span class="p">,</span>
+               <span class="s">&quot;Rela_a&quot;</span><span class="p">:</span> <span class="n">Rela_a</span><span class="p">,</span>
+               <span class="s">&quot;app_date_type&quot;</span><span class="p">:</span> <span class="n">app_date_type</span><span class="p">,</span>
+               <span class="s">&quot;DepthIncorp&quot;</span><span class="p">:</span> <span class="n">DepthIncorp</span><span class="p">,</span>
+               <span class="s">&quot;PestAppyRate&quot;</span><span class="p">:</span> <span class="n">PestAppyRate</span><span class="p">,</span>
+               <span class="s">&quot;localEff&quot;</span><span class="p">:</span> <span class="n">localEff</span><span class="p">,</span>
+               <span class="s">&quot;localSpray&quot;</span><span class="p">:</span> <span class="n">localSpray</span><span class="p">,</span>
+               <span class="s">&quot;PestDispHarvest&quot;</span><span class="p">:</span> <span class="n">PestDispHarvest</span><span class="p">,</span>
+               <span class="s">&quot;nchem&quot;</span><span class="p">:</span> <span class="n">nchem</span><span class="p">,</span>
+               <span class="s">&quot;convert_Foliar1&quot;</span><span class="p">:</span> <span class="n">convert_Foliar1</span><span class="p">,</span>
+               <span class="s">&quot;parentTo3&quot;</span><span class="p">:</span> <span class="n">parentTo3</span><span class="p">,</span>
+               <span class="s">&quot;deg1To2&quot;</span><span class="p">:</span> <span class="n">deg1To2</span><span class="p">,</span>
+               <span class="s">&quot;foliarHalfLifeBox&quot;</span><span class="p">:</span> <span class="n">foliarHalfLifeBox</span><span class="p">,</span>
+               <span class="s">&quot;koc_check&quot;</span><span class="p">:</span> <span class="n">koc_check</span><span class="p">,</span>
+               <span class="s">&quot;Koc&quot;</span><span class="p">:</span> <span class="n">Koc</span><span class="p">,</span>
+               <span class="s">&quot;soilHalfLifeBox&quot;</span><span class="p">:</span> <span class="n">soilHalfLifeBox</span><span class="p">,</span>
+               <span class="s">&quot;convertSoil1&quot;</span><span class="p">:</span> <span class="n">convertSoil1</span><span class="p">,</span>
+               <span class="s">&quot;convert1to3&quot;</span><span class="p">:</span> <span class="n">convert1to3</span><span class="p">,</span>
+               <span class="s">&quot;convert2to3&quot;</span><span class="p">:</span> <span class="n">convert2to3</span><span class="p">}</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">all_dic</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">all_dic</span><span class="p">)</span>
+    <span class="n">jid</span> <span class="o">=</span> <span class="n">rest_funcs</span><span class="o">.</span><span class="n">gen_jid</span><span class="p">()</span>
+    <span class="n">url</span><span class="o">=</span><span class="n">url_part1</span> <span class="o">+</span> <span class="s">&#39;/przm5/&#39;</span> <span class="o">+</span> <span class="n">jid</span> 
+
+
+    <span class="k">if</span> <span class="n">run_type</span> <span class="o">==</span> <span class="s">&quot;single&quot;</span> <span class="ow">or</span> <span class="s">&quot;qaqc&quot;</span><span class="p">:</span>
+        <span class="c"># response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">http_headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">output_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+        <span class="c"># jid= json.loads(response.content)[&#39;jid&#39;]</span>
+        <span class="c"># print &quot;filepath=&quot;, output_val[4]</span>
+        <span class="c"># self.elapsed = (time.clock() - start)</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">jid</span><span class="p">,</span> <span class="n">output_val</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="get_upload"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_model.get_upload">[docs]</a><span class="k">def</span> <span class="nf">get_upload</span><span class="p">(</span><span class="n">src1</span><span class="p">,</span> <span class="n">name1</span><span class="p">):</span>
+    <span class="n">all_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;src1&quot;</span><span class="p">:</span> <span class="n">src1</span><span class="p">,</span> <span class="s">&quot;name1&quot;</span><span class="p">:</span> <span class="n">name1</span><span class="p">,</span> <span class="s">&quot;model_name&quot;</span><span class="p">:</span><span class="s">&quot;przm5&quot;</span><span class="p">}</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">all_dic</span><span class="p">)</span>
+    <span class="n">url</span><span class="o">=</span><span class="n">url_part1</span><span class="o">+</span><span class="s">&#39;/file_upload&#39;</span>
+    <span class="c"># response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">http_headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="convert_dict_key"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_model.convert_dict_key">[docs]</a><span class="k">def</span> <span class="nf">convert_dict_key</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">key</span>
+</div>
+<div class="viewcode-block" id="przm5"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_model.przm5">[docs]</a><span class="k">class</span> <span class="nc">przm5</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
+        <span class="c"># logger.info(&#39;===================&#39;)</span>
+        <span class="c"># logger.info(os.getcwd())</span>
+        <span class="c"># cwd=os.getcwd()+&#39;/PRZM5/&#39;</span>
+
+
+        <span class="n">alphanum_key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span> <span class="n">convert_dict_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">dictionary_1</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dictionary</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">alphanum_key</span><span class="p">)</span>
+        <span class="n">dictionary</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="n">dictionary_1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">hydlength</span> <span class="o">=</span> <span class="mf">356.8</span>  <span class="c">#for pond</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">useYears</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tempflag</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Q10Box</span> <span class="o">=</span> <span class="mf">2.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">soilTempBox1</span> <span class="o">=</span> <span class="mf">25.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SpecifyYears</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parentTo3</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deg1To2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">convert1to3</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">convert2to3</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Rela_a</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">USLE_day</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">USLE_mon</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">USLE_year</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">USLE_c</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">USLE_n</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">USLE_cn</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_thick</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_compartment</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_bulkden</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_maxcap</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_mincap</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_oc</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_sand</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_clay</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ApplicationTypes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DepthIncorp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PestAppyDay</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PestAppyMon</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PestAppyRate</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">localEff</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">localSpray</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">foliarHalfLifeBox</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Koc</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">soilHalfLifeBox</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;sp_year&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">useYears</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;tempflag_check&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tempflag</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;day_t_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">USLE_day</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;mon_t_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">USLE_mon</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;year_t_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">USLE_year</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;c_t_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">USLE_c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;n_t_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">USLE_n</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;cn_t_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">USLE_cn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="c"># elif k.startswith(&#39;cn_t_&#39;):</span>
+            <span class="c">#     self.USLE_cn.append(v)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;thick_h_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_thick</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;n_h_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_compartment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;rho_h_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_bulkden</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;max_h_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_maxcap</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;min_h_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_mincap</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;oc_h_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_oc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;sand_h_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_sand</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;clay_h_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_clay</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;deg_check&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nchem</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;cam_a_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ApplicationTypes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;depth_a_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">DepthIncorp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;day_a_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PestAppyDay</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;mon_a_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PestAppyMon</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;rate_a_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PestAppyRate</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;eff_pond_a_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">localEff</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;drift_pond_a_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">localSpray</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;foliarHalfLife_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">foliarHalfLifeBox</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;Koc_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Koc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;soilHalfLife_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">soilHalfLifeBox</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;rela_a_&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Rela_a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">NumberOfFactors</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nott</span><span class="p">)</span>
+        <span class="c"># dvf_file_read = open(cwd+self.dvf_file,&#39;r&#39;)</span>
+        <span class="c"># content = dvf_file_read.readlines()</span>
+        <span class="c"># self.firstyear = int(content[0][5:7])</span>
+        <span class="c"># self.lastyear = int(content[-1][5:7])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">firstyear</span> <span class="o">=</span> <span class="mi">61</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lastyear</span> <span class="o">=</span> <span class="mi">90</span>
+
+        <span class="c">#Record 12</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dayEmerge_text</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Emerge_text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">monthEmerge_text</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Emerge_text</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dateEmerge_text</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dayEmerge_text</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">monthEmerge_text</span><span class="p">),</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s">%m&quot;</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">dayMature_text</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Mature_text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">monthMature_text</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Mature_text</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dateMature_text</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dayMature_text</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">monthMature_text</span><span class="p">),</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s">%m&quot;</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">dayHarvest_text</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Harvest_text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">monthHarvest_text</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Harvest_text</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dateHarvest_text</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dayHarvest_text</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">monthHarvest_text</span><span class="p">),</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s">%m&quot;</span><span class="p">)</span> 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dateEmerge_text</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="o">&gt;</span><span class="bp">self</span><span class="o">.</span><span class="n">dateMature_text</span><span class="o">.</span><span class="n">date</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addYearM</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addYearM</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dateMature_text</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="o">&gt;</span><span class="bp">self</span><span class="o">.</span><span class="n">dateHarvest_text</span><span class="o">.</span><span class="n">date</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addYearH</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addYearH</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c">#Record 13-14</span>
+        <span class="c"># if int(self.irflag) == 1:</span>
+        <span class="c">#     self.irtype = 3</span>
+        <span class="c"># elif int(self.irflag) == 2:</span>
+        <span class="c">#     self.irtype = 4</span>
+
+        <span class="c">#Record 18</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numHoriz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">noh</span><span class="p">)</span>
+
+        <span class="c">#Record C1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">appNumber_year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">noa</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">totalApp</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lastyear</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstyear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">appNumber_year</span>
+
+        <span class="c">#Record C3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PestDispHarvest</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PestDispHarvest</span><span class="p">)</span>
+
+        <span class="c">#Record C5, C9</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deg2_source</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">deg1To2</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">convert1to3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convertSoil2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parentTo3</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">convert2to3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convertSoil2</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dateEmerge_text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dateEmerge_text</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dateMature_text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dateMature_text</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dateHarvest_text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dateHarvest_text</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span><span class="o">=</span><span class="n">get_jid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pfac</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">snowmelt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">evapDepth</span><span class="p">,</span> 
+                               <span class="bp">self</span><span class="o">.</span><span class="n">uslek</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uslels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uslep</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fieldSize</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ireg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slope</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hydlength</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">canopyHoldup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rootDepth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">canopyCover</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">canopyHeight</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">NumberOfFactors</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">useYears</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">USLE_day</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">USLE_mon</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">USLE_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">USLE_c</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">USLE_n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">USLE_cn</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">firstyear</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lastyear</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">dayEmerge_text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">monthEmerge_text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dayMature_text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">monthMature_text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dayHarvest_text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">monthHarvest_text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">addYearM</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">addYearH</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">irflag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tempflag</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">fleach</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">depletion</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rateIrrig</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">albedo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bcTemp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q10Box</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">soilTempBox1</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">numHoriz</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_thick</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_compartment</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_bulkden</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_maxcap</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_mincap</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_oc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_sand</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SoilProperty_clay</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">rDepthBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rDeclineBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rBypassBox</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">eDepthBox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eDeclineBox</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">appNumber_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">totalApp</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">SpecifyYears</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ApplicationTypes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PestAppyDay</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PestAppyMon</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rela_a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app_date_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DepthIncorp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PestAppyRate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">localEff</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">localSpray</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">PestDispHarvest</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">nchem</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_Foliar1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parentTo3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">deg1To2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">foliarHalfLifeBox</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">koc_check</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Koc</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">soilHalfLifeBox</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">convertSoil1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert1to3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert2to3</span><span class="p">)</span>
+        <span class="c"># self.info = self.final_res</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">jid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PRCP_IRRG_sum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">RUNF_sum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CEVP_TETD_sum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">src1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">5</span><span class="p">]</span>
+        <span class="n">get_upload</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">src1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name1</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, EPA übertool team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

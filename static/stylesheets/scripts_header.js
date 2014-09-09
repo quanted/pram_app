@@ -38,7 +38,7 @@ function setCookie(name,value,days) {
   else var expires = "";
   document.cookie = name+"="+value+expires+"; path=/";
 }
-// Get EPA Skin Cookie Value      <--- NOT USED ANYMORE
+// Get EPA Skin Cookie Value      <--- USED IN 02_UBERHEADER_*
 function getCookie(name) {
   var c_value = document.cookie;
   var c_start = c_value.indexOf(" " + name + "=");
@@ -65,12 +65,15 @@ function getCookie(name) {
     mouseOff = '#79973F';
     mouseOn = '#FFA500';
   }
-  return c_value;
+  // return c_value;
+  return 'EPA';
 }
 // Delete Cookie       <--- NOT USED ANYMORE
 function delCookie(name) {
   setCookie(name,"default",7);
 }
+mouseOff = '#4289AA';
+mouseOn = '#356697';
 //
 // jQuery
 //

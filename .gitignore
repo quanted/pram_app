@@ -21,3 +21,5 @@ keys_Picloud_S3.py
 Thumbs.db
 *.pem
 *.wsgi
+env/*
+build/*

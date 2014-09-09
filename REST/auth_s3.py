@@ -2,7 +2,6 @@ import os
 
 
 def auth_check():
-	import rest_funcs
 	import base64
 	import keys_Picloud_S3
 	
@@ -18,7 +17,7 @@ def setHTTPHeaders():
 	if os.environ['UBERTOOL_REST_SERVER'] == 'http://54.83.18.251:80':
 		http_headers = auth_check()
 	elif os.environ['UBERTOOL_REST_SERVER'] == 'http://localhost:80':
-		http_headers = auth_check()		
+		http_headers = auth_check()
 	else:
 		http_headers = {'Content-Type' : 'application/json'}
 

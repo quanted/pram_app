@@ -36,11 +36,14 @@ os.environ.update({
 SECRET_KEY = secret.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.ubertool.org',
+    '.ubertool.org.'
+]
 
 APPEND_SLASH = True
 

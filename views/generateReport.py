@@ -77,12 +77,12 @@ def pdfReceiver(request, model=''):
     text_description = open(os.path.join(os.environ['PROJECT_PATH'], 'models/'+model+'/'+model+'_text.txt'),'r')
     description = text_description.read()
     # Open algorithm txt
-    text_algorithm = open(os.path.join(os.environ['PROJECT_PATH'], 'models/'+model+'/'+model+'_algorithm.txt'),'r')
-    algorithms = text_algorithm.read()
+    #text_algorithm = open(os.path.join(os.environ['PROJECT_PATH'], 'models/'+model+'/'+model+'_algorithm.txt'),'r')
+    #algorithms = text_algorithm.read()
 
     input_str = description
     input_str = input_str + parsePOST(request)
-    input_str = input_str + algorithms         # PILlow has bug where transparent PNGs don't render correctly (black background)
+    #input_str = input_str + algorithms         # PILlow has bug where transparent PNGs don't render correctly (black background)
 
     packet = StringIO.StringIO() #write to memory
     pisa.CreatePDF(input_str, dest = packet, link_callback = link_callback)
@@ -101,7 +101,11 @@ def pdfReceiver(request, model=''):
 @require_POST
 def htmlReceiver(request, model=''):
 
-    input_str = parsePOST(request)
+    text_description = open(os.path.join(os.environ['PROJECT_PATH'], 'models/'+model+'/'+model+'_text.txt'),'r')
+    description = text_description.read()
+    
+    input_str = description
+    input_str = input_str + parsePOST(request)
 
     packet = StringIO.StringIO(input_str) #write to memory
 

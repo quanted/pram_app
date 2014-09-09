@@ -1,5 +1,5 @@
 application: pypest
-version: sprint16
+version: jon
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -24,8 +24,10 @@ env_variables:
   UBERTOOL_BATCH_SERVER: 'http://uberrest-topknotmeadows.rhcloud.com/'
   UBERTOOL_MONGO_SERVER: 'http://uberrest-topknotmeadows.rhcloud.com'
   UBERTOOL_SECURE_SERVER: 'http://uberrest-topknotmeadows.rhcloud.com'
-  UBERTOOL_REST_SERVER: 'http://localhost:80'
-  # UBERTOOL_REST_SERVER: 'http://54.83.18.251:80'
+  #UBERTOOL_REST_SERVER: 'http://localhost:80'
+  UBERTOOL_REST_SERVER: 'http://54.83.18.251:80'
+  PROJECT_PATH: ''
+  SITE_SKIN: ''
 
 skip_files:
 - ^(.*/)?app\.yaml

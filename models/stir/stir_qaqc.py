@@ -12,8 +12,8 @@ import csv
 
 logger = logging.getLogger('stirQaqcPage')
 
-cwd= os.getcwd()
-data = csv.reader(open(cwd+'/models/stir/stir_qaqc.csv'))
+
+data = csv.reader(open(os.path.join(os.environ['PROJECT_PATH'], 'models','stir','stir_qaqc.csv')))
 #inputs
 chemical_name = []
 application_rate = []

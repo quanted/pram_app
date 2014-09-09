@@ -9,8 +9,8 @@ import unittest
 from StringIO import StringIO
 import csv
 
-cwd= os.getcwd()
-data = csv.reader(open(cwd+'/models/trex2/trex2_qaqc.csv'))
+
+data = csv.reader(open(os.path.join(os.environ['PROJECT_PATH'], 'models','trex2','trex2_qaqc.csv')))
 
 chem_name = []
 use = []

@@ -74,10 +74,10 @@ def pdfReceiver(request, model=''):
     from xhtml2pdf import pisa
     # viewmodule = importlib.import_module('.views', 'models.'+model)
     # Open description txt
-    text_description = open('models/'+model+'/'+model+'_text.txt','r')
+    text_description = open(os.path.join(os.environ['PROJECT_PATH'], 'models/'+model+'/'+model+'_text.txt'),'r')
     description = text_description.read()
     # Open algorithm txt
-    text_algorithm = open('models/'+model+'/'+model+'_algorithm.txt','r')
+    text_algorithm = open(os.path.join(os.environ['PROJECT_PATH'], 'models/'+model+'/'+model+'_algorithm.txt'),'r')
     algorithms = text_algorithm.read()
 
     input_str = description

@@ -12,8 +12,7 @@ import csv
 
 logger = logging.getLogger('InsectQaqcPage')
 
-cwd= os.getcwd()
-data = csv.reader(open(cwd+'/models/insect/insect_qaqc.csv'))
+data = csv.reader(open(os.path.join(os.environ['PROJECT_PATH'], 'models','insect','insect_qaqc.csv')))
 
 chemical_name=[]
 b_species=[]

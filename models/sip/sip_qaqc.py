@@ -12,8 +12,8 @@ import csv
 
 logger = logging.getLogger('SIPQaqcPage')
 
-cwd= os.getcwd()
-data = csv.reader(open(cwd+'/models/sip/sip_qaqc.csv'))
+
+data = csv.reader(open(os.path.join(os.environ['PROJECT_PATH'], 'models','sip','sip_qaqc.csv')))
 
 chemical_name=[]
 b_species=[]

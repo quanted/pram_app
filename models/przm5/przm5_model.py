@@ -344,6 +344,6 @@ class przm5(object):
         self.PRCP_IRRG_sum = self.final_res[1][1]
         self.RUNF_sum = self.final_res[1][2]
         self.CEVP_TETD_sum = self.final_res[1][3]
-        self.src1 = self.final_res[1][4]
-        self.name1 = self.final_res[1][5]
-        get_upload(self.src1, self.name1)
+        #self.src1 = self.final_res[1][4]     #Not Needed??
+        #self.name1 = self.final_res[1][5]    #dido
+        #get_upload(self.src1, self.name1)    #dido

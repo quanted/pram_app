@@ -16,6 +16,8 @@ SELECT_DURATION = (('1.5','1.5'),('0.5','0.5'))
 
 
 class StirInp(forms.Form):
+
+
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
             label='Chemical Name',
@@ -43,7 +45,7 @@ class StirInp(forms.Form):
             validators=[validation.validate_positive])   
     vapor_pressure = forms.FloatField(
             label='Vapor Pressure',
-            initial=9.e-8,
+            initial=9e-8,
             validators=[validation.validate_positive])
     avian_oral_ld50 = forms.FloatField(
             label=mark_safe('Lowest Avian Oral LD<sub>50</sub>'),
@@ -81,3 +83,15 @@ class StirInp(forms.Form):
             label=mark_safe('Lowest Mammal (Rat) Oral LD<sub>50</sub>'),
             initial=5000,
             validators=[validation.validate_positive])
+
+    # def is_valid(self):
+    #     print "I ran!"
+    #     valid = super(StirInp, self).is_valid()
+    #     print valid
+    #     if not valid:
+    #         print "MODEL NOT VALID"
+    #         return False
+
+    #     else:
+    #         print "MODEL VALID"
+    #         return True

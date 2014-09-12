@@ -2,6 +2,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse, HttpResponseRedirect
 import importlib
 import linksLeft
+import os
 
 def inputPage(request, model='none', header='none'):
     viewmodule = importlib.import_module('.views', 'models.'+model)
@@ -53,8 +54,13 @@ def inputPage(request, model='none', header='none'):
     #         return response
     
     # else:
-    html = render_to_string('01uberheader.html', {'title': header+' Inputs'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'input'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' Inputs'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'input'})
     html = html + linksLeft.linksLeft()
 
     inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')

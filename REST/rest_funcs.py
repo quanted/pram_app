@@ -1,19 +1,18 @@
 import os
-import keys_Picloud_S3
-import base64
 import json
-# from google.appengine.api import urlfetch
+import auth_s3
 import requests
 import numpy as np
 import ast
 import logging
 import datetime
 import pytz
-#############################Provide the key and connect to the picloud#####################
-api_key=keys_Picloud_S3.picloud_api_key
-api_secretkey=keys_Picloud_S3.picloud_api_secretkey
-base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
-http_headers = {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
+
+
+# Set HTTP header
+http_headers = auth_s3.setHTTPHeaders()
+url_part1 = os.environ['UBERTOOL_REST_SERVER']
+
 
 ###########################A class helps dictionary to be converted to JSON when it contains numpy element################################ 
 class NumPyArangeEncoder(json.JSONEncoder):
@@ -44,26 +43,31 @@ def gen_jid():
 def save_dic(output_html, model_object_dict, model_name, run_type):
     all_dic = {"model_name":model_name, "_id":model_object_dict['jid'], "run_type":run_type, "output_html":output_html, "model_object_dict":model_object_dict}
     data = json.dumps(all_dic, cls=NumPyArangeEncoder)
-    url=os.environ['UBERTOOL_REST_SERVER'] + '/save_history'
+    url = url_part1 + '/save_history'
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
     except:
         pass
-
+ 
 ###########################function to save batch runs to MongoDB################################ 
 def batch_save_dic(output_html, model_object_dict, model_name, run_type, jid_batch, linksleft=''):
     from django.template.loader import render_to_string
     
-    html_save = render_to_string('01uberheader.html', {'title': 'Batch History'})
-    html_save = html_save + render_to_string('02uberintroblock_wmodellinks.html', {'model':model_name,'page':'batchinput'})
+    html_save = render_to_string('01uberheader.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'title': 'Batch History'})
+    html_save = html_save + render_to_string('02uberintroblock_wmodellinks.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'model':model_name,
+                'page':'batchinput'})
     html_save = html_save + linksleft
     html_save = html_save + output_html
     html_save = html_save + render_to_string('06uberfooter.html', {'links': ''})
     
     all_dic = {"model_name":model_name, "_id":jid_batch, "run_type":run_type, "output_html":html_save, "model_object_dict":model_object_dict}
     data = json.dumps(all_dic, cls=NumPyArangeEncoder)
-    url=os.environ['UBERTOOL_REST_SERVER'] + '/save_history'
+    url = url_part1 + '/save_history'
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
@@ -73,7 +77,7 @@ def batch_save_dic(output_html, model_object_dict, model_name, run_type, jid_bat
 def update_html(output_html, jid, model_name):
     all_dic = {"model_name":model_name, "_id":jid, "output_html":output_html}
     data = json.dumps(all_dic)
-    url=os.environ['UBERTOOL_REST_SERVER'] + '/update_html'
+    url = url_part1 + '/update_html'
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
@@ -83,7 +87,7 @@ def update_html(output_html, jid, model_name):
 def get_output_html(jid, model_name):
     all_dic = {"jid":jid, "model_name":model_name}
     data = json.dumps(all_dic)
-    url=os.environ['UBERTOOL_REST_SERVER'] + '/get_html_output'
+    url = url_part1 + '/get_html_output'
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
@@ -99,7 +103,7 @@ def get_output_html(jid, model_name):
 def create_batchoutput_html(jid, model_name):
     all_dic = {"jid":jid, "model_name":model_name}
     data = json.dumps(all_dic)
-    url=os.environ['UBERTOOL_REST_SERVER'] + '/get_przm_batch_output'
+    url = url_part1 + '/get_przm_batch_output'
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
@@ -129,7 +133,7 @@ class user_hist(object):
     ########call the function################# 
         self.all_dic = {"user_id": user_id, "model_name":model_name}
         self.data = json.dumps(self.all_dic)
-        self.url=os.environ['UBERTOOL_REST_SERVER']+'/user_history'
+        self.url = url_part1 + '/user_history'
         self.user_id = []
         self.time_id = []
         self.jid = []

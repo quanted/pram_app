@@ -3,24 +3,16 @@
    :synopsis: A useful module indeed.
 """
 
-# import os
-# import keys_Picloud_S3
-# import base64
-# import urllib
-# from google.appengine.api import urlfetch
-# import json
-# import logging
-# from REST import rest_funcs
-
 import logging
 logger = logging.getLogger('Geneec Model')
-import sys
-from REST import rest_funcs
+from REST import auth_s3, rest_funcs
 import json
 import os
-import keys_Picloud_S3
-import base64
 import requests
+
+# Set HTTP header
+http_headers = auth_s3.setHTTPHeaders()
+url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 class geneec(object):
     def __init__(self, run_type, chem_name, application_target, application_rate, number_of_applications, interval_between_applications, Koc, aerobic_soil_metabolism, wet_in, application_method, application_method_label, aerial_size_dist, ground_spray_type, airblast_type, spray_quality, no_spray_drift, incorporation_depth, solubility, aerobic_aquatic_metabolism, hydrolysis, photolysis_aquatic_half_life):
@@ -63,12 +55,6 @@ class geneec(object):
         self.hydrolysis = hydrolysis
         self.photolysis_aquatic_half_life = photolysis_aquatic_half_life
 
-        ############Provide the key and connect to the picloud####################
-        api_key=keys_Picloud_S3.picloud_api_key
-        api_secretkey=keys_Picloud_S3.picloud_api_secretkey
-        base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
-        http_headers = {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
-        ########call the function################# 
 
         APPRAT = self.application_rate
         APPNUM = self.number_of_applications
@@ -96,7 +82,7 @@ class geneec(object):
 
 
         self.jid = rest_funcs.gen_jid()
-        url=os.environ['UBERTOOL_REST_SERVER'] + '/geneec/' + self.jid 
+        url=url_part1 + '/geneec/' + self.jid 
 
 
         if run_type == "single" or "qaqc":

@@ -3,10 +3,6 @@
    :synopsis: A useful module indeed.
 """
 
-import keys_Picloud_S3
-import base64
-import urllib
-from google.appengine.api import urlfetch
 import json
 from datetime import datetime, timedelta
 import time
@@ -14,16 +10,12 @@ from collections import OrderedDict
 import os
 import logging
 logger = logging.getLogger('PRZM5 Model')
-from REST import rest_funcs
+import requests
+from REST import auth_s3, rest_funcs
 
-############Provide the key and connect to the picloud####################
-api_key=keys_Picloud_S3.picloud_api_key
-api_secretkey=keys_Picloud_S3.picloud_api_secretkey
-base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
-http_headers = {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
+# Set HTTP header
+http_headers = auth_s3.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
-
-###########################################################################
 
 def get_jid(run_type, pfac, snowmelt, evapDepth, 
             uslek, uslels, uslep, fieldSize, ireg, slope, hydlength,
@@ -134,7 +126,8 @@ def get_jid(run_type, pfac, snowmelt, evapDepth,
 
 
     if run_type == "single" or "qaqc":
-        response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
+        # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)
+        response = requests.post(url=url, data=data, headers=http_headers, timeout=60)
         output_val = json.loads(response.content)['result']
         # jid= json.loads(response.content)['jid']
         # print "filepath=", output_val[4]
@@ -145,7 +138,8 @@ def get_upload(src1, name1):
     all_dic = {"src1": src1, "name1": name1, "model_name":"przm5"}
     data = json.dumps(all_dic)
     url=url_part1+'/file_upload'
-    response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
+    # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)
+    response = requests.post(url=url, data=data, headers=http_headers, timeout=60)
 
 def convert_dict_key(key):
     try:
@@ -350,6 +344,6 @@ class przm5(object):
         self.PRCP_IRRG_sum = self.final_res[1][1]
         self.RUNF_sum = self.final_res[1][2]
         self.CEVP_TETD_sum = self.final_res[1][3]
-        self.src1 = self.final_res[1][4]
-        self.name1 = self.final_res[1][5]
-        get_upload(self.src1, self.name1)
+        #self.src1 = self.final_res[1][4]     #Not Needed??
+        #self.name1 = self.final_res[1][5]    #dido
+        #get_upload(self.src1, self.name1)    #dido

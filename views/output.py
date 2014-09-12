@@ -4,13 +4,13 @@ from django.http import HttpResponse
 import importlib
 import linksLeft
 import logging
-
+import os
 
 def outputPageView(request, model='none', header=''):
 
     outputmodule = importlib.import_module('.'+model+'_output', 'models.'+model)
     tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
-    from REST import rest_funcs
+    # from REST import rest_funcs
 
     outputPageFunc = getattr(outputmodule, model+'OutputPage')      # function name = 'model'OutputPage  (e.g. 'sipOutputPage')
     model_obj = outputPageFunc(request)
@@ -32,8 +32,13 @@ def outputPageView(request, model='none', header=''):
             modelOutputHTML = "table_all() Returned Wrong Type"
 
     # Render output page view
-    html = render_to_string('01uberheader.html', {'title': header+' Output'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'output'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' Output'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'output'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberoutput_start.html', {
             'model_attributes': header+' Output'})
@@ -43,8 +48,8 @@ def outputPageView(request, model='none', header=''):
     html = html + render_to_string('06uberfooter.html', {'links': ''})
     
     # Handle Trex, which is not objectified yet
-    if model != 'trex':
-        rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
+    # if model != 'trex':
+    #     rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
 
     response = HttpResponse()
     response.write(html)
@@ -74,8 +79,13 @@ def outputPage(request, model='none', header=''):
             inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
 
             # Render input page view with POSTed values and show errors
-            html = render_to_string('01uberheader.html', {'title': header+' Inputs'})
-            html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'input'})
+            html = render_to_string('01uberheader.html', {
+                    'site_skin' : os.environ['SITE_SKIN'],
+                    'title': header+' Inputs'})
+            html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+                    'site_skin' : os.environ['SITE_SKIN'],
+                    'model':model,
+                    'page':'input'})
             html = html + linksLeft.linksLeft()
 
             inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')

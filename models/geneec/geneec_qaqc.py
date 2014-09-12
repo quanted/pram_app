@@ -26,8 +26,8 @@ from StringIO import StringIO
 import csv
 from REST import rest_funcs
 
-cwd= os.getcwd()
-data = csv.reader(open(cwd+'/models/geneec/geneec_qaqc.csv'))
+
+data = csv.reader(open(os.path.join(os.environ['PROJECT_PATH'], 'models','geneec','geneec_qaqc.csv')))
 chem_name = []
 application_target = []
 application_rate = []

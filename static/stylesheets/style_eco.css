@@ -20,16 +20,16 @@
 
 /* Defining Hyperlink Colors */
 
-a:link {
-  color: #79973F;
-  text-decoration: none;
-}
-a:visited {
-  color: #79973F;
-  text-decoration: none;
-}
+a:link,
+a:visited,
 a:hover {
   color: #79973F;
+  text-decoration: none;
+}
+a.linkHover:link,
+a.linkHover:visited,
+a.linkHover:hover {
+  color: #FFA500;
   text-decoration: none;
 }
 

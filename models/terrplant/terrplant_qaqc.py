@@ -9,8 +9,9 @@ import unittest
 from StringIO import StringIO
 import csv
 
-cwd= os.getcwd()
-data = csv.reader(open(cwd+'/models/terrplant/terrplant_qaqc_inputs.csv'))
+
+path = os.path.join(os.environ['PROJECT_PATH'], 'models','terrplant','terrplant_qaqc_inputs.csv')
+data = csv.reader(open(path))
 version_terrplant = '1.2.2'
 A=[]
 I=[]

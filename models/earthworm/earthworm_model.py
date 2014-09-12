@@ -3,24 +3,16 @@
    :synopsis: A useful module indeed.
 """
 
-from REST import rest_funcs
+from REST import auth_s3, rest_funcs
 import json
 import logging
 logger = logging.getLogger('earthworm Model')
 import os
-import keys_Picloud_S3
-import base64
 import requests
 
-# Daily water intake rate for birds
-
-############Provide the key and connect to EC2####################
-api_key=keys_Picloud_S3.picloud_api_key
-api_secretkey=keys_Picloud_S3.picloud_api_secretkey
-base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
-http_headers = {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
+# Set HTTP header
+http_headers = auth_s3.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
-###########################################################################
 
 class earthworm(object):
     def __init__(self, set_variables=True, run_methods=True,run_type='single',k_ow=1,l_f_e=1,c_s=1,k_d=1,p_s=1,c_w=1,m_w=1,p_e=1,vars_dict=None):
@@ -45,7 +37,7 @@ class earthworm(object):
                            "m_w":self.m_w, "p_e":self.p_e}
                 data = json.dumps(all_dic)
                 self.jid = rest_funcs.gen_jid()
-                url=os.environ['UBERTOOL_REST_SERVER'] + '/earthworm/' + self.jid 
+                url=url_part1 + '/earthworm/' + self.jid 
                 response = requests.post(url=url, data=data, headers=http_headers, timeout=60)
                 output_val = json.loads(response.content)['result']
                 for key, value in output_val.items():

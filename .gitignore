@@ -11,7 +11,6 @@
 *.pptx
 *.py~
 .elasticbeanstalk/config
-.ebextensions/*
 GA2.tif
 .VolumeIcon.icns
 .fseventsd
@@ -20,3 +19,7 @@ Icon^M^M
 .pydevproject
 keys_Picloud_S3.py
 Thumbs.db
+*.pem
+*.wsgi
+env/*
+build/*

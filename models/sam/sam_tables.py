@@ -21,3 +21,6 @@ def timestamp(sam_obj="", batch_jid=""):
     html = html + """-
     </div>"""
     return html
+
+def table_all(sam_obj):
+    return "Fake Table"

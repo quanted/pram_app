@@ -14,7 +14,10 @@ class trexBatchInputPage(webapp.RequestHandler):
         templatepath = os.path.dirname(__file__) + '/../templates/'
         ChkCookie = self.request.cookies.get("ubercookie")
         html = uber_lib.SkinChk(ChkCookie, "TREX Batch")
-        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'trex','page':'batchinput'})
+        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'model':'trex',
+                'page':'batchinput'})
         html = html + template.render (templatepath + '03ubertext_links_left.html', {})                
         html = html + template.render(templatepath + '04uberbatchinput.html', {'model':'trex'}) 
         html = html + template.render(templatepath + '04uberbatchinput_jquery.html', {}) 

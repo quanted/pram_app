@@ -3,23 +3,17 @@
    :synopsis: A useful module indeed.
 """
 
-from REST import rest_funcs
+from REST import auth_s3, rest_funcs
 import json
 import logging
-logger = logging.getLogger('SIP Model')
+logger = logging.getLogger('PFAM Model')
 import os
-import keys_Picloud_S3
-import base64
 import requests
 
 
-############Provide the key and connect to EC2####################
-api_key=keys_Picloud_S3.picloud_api_key
-api_secretkey=keys_Picloud_S3.picloud_api_secretkey
-base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
-http_headers = {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
-url_part1 = os.environ['UBERTOOL_REST_SERVER']
-###########################################################################         
+# Set HTTP header
+http_headers = auth_s3.setHTTPHeaders()
+url_part1 = os.environ['UBERTOOL_REST_SERVER']    
 
 def get_jid(wat_hl,wat_t,ben_hl,ben_t,unf_hl,unf_t,aqu_hl,aqu_t,hyd_hl,mw,vp,sol,koc,hea_h,hea_r_t,
            noa,dd_out,mm_out,ma_out,sr_out,weather,wea_l,nof,date_f1,nod_out,fl_out,wl_out,ml_out,to_out,

@@ -8,21 +8,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-import os
+import os, sys
 import secret
+
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 # Define ENVIRONMENTAL VARIABLES for project (replaces the app.yaml)
 os.environ.update({
     'UBERTOOL_BATCH_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com/',
     'UBERTOOL_MONGO_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
-    'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
-    # 'UBERTOOL_REST_SERVER': 'http://localhost:80',
-    'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',
+    'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',   
+    #'UBERTOOL_REST_SERVER': 'http://localhost:80',                         # Local REST server
+    'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',                      # Tao's EC2 REST server 
+    #'UBERTOOL_REST_SERVER': 'http://54.210.118.56'                         # EB Pilot REST server
+    # 'UBERTOOL_REST_SERVER': 'http://'                           # New EB Pilot REST server
+    'PROJECT_PATH': PROJECT_ROOT,
+    'SITE_SKIN': ''                          # Leave empty ('') for default skin, 'EPA' for EPA skin
 })
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -35,7 +40,10 @@ DEBUG = True
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.ubertool.org',
+    '.ubertool.org.'
+]
 
 APPEND_SLASH = True
 

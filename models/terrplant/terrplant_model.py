@@ -2,24 +2,16 @@
 .. module:: terrplant_model
    :synopsis: A useful module indeed.
 """
-
-from REST import rest_funcs
+from REST import auth_s3, rest_funcs
 import json
 import logging
 logger = logging.getLogger('Terrplant Model')
 import os
-import keys_Picloud_S3
-import base64
 import requests
 
-############Provide the key and connect to EC2####################
-api_key=keys_Picloud_S3.picloud_api_key
-api_secretkey=keys_Picloud_S3.picloud_api_secretkey
-base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
-http_headers = {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
+# Set HTTP header
+http_headers = auth_s3.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
-###########################################################################
-
 
 class terrplant(object):
     def __init__(self, set_variables=True, run_methods=True, version_terrplant='1.2.2', 
@@ -83,9 +75,11 @@ class terrplant(object):
         data = json.dumps(all_dic)
 
         self.jid = rest_funcs.gen_jid()
-        url=os.environ['UBERTOOL_REST_SERVER'] + '/terrplant/' + self.jid 
+        url=url_part1 + '/terrplant/' + self.jid
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
-        response = requests.post(url, data=data, headers=http_headers, timeout=60)  
+        response = requests.post(url, data=data, headers=http_headers, timeout=60)
+        print response
+        logging.info(response)
         output_val = json.loads(response.content)['result']
         for key, value in output_val.items():
             setattr(self, key, value)

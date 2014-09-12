@@ -1,0 +1,58 @@
+<p>TerrPlant derives estimated exposure concentrations (EECs) of pesticide in runoff and in drift. From the derived EECs TerrPlant develops risk quotients (RQs) are developed for non-listed and listed species of monocots and dicots inhabiting dry and semi-aquatic areas adjacent to treatment sites using the equations below.</p>
+<p>Runoff to dry areas:</p>
+<!-- <img src = "/static/images/latex/terrplant/terrplant_image1.png" alt="Terrplant_1"> -->
+\begin{align*}%sets up equation environment so you can specify alignment with ampersands
+EEC & =  \left(\frac{A}{I}\right)R \nonumber \\
+A & =  \text{Application Rate} \nonumber \\
+I & =  \text{Incorporation} \nonumber \\
+R & =  \text{Runoff Fraction} \nonumber \\
+\end{align*} 
+<p>Runoff to semi-aquatic areas:</p>
+<!-- <img src = "/static/images/latex/terrplant/terrplant_image2.png" alt="Terrplant_2"> -->
+\begin{align*}%sets up equation environment so you can specify alignment with ampersands
+EEC & =  \left(\frac{A}{I}\right)R * 10 \nonumber \\
+A & =  \text{Application Rate} \nonumber \\
+I & =  \text{Incorporation} \nonumber \\
+R & =  \text{Runoff Fraction} \nonumber \\
+\end{align*} 
+<p>Spray drift:</p>
+<!-- <img src = "/static/images/latex/terrplant/terrplant_image3.jpg" alt="Terrplant_3"> -->
+\begin{align*}%sets up equation environment so you can specify alignment with ampersands
+EEC & =  A * D \nonumber \\
+A & =  \text{Application Rate} \nonumber \\
+D & =  \text{Drift Fraction} \nonumber \\
+\end{align*} 
+<p>Total for dry areas:</p>
+<!-- <img src = "/static/images/latex/terrplant/terrplant_image4.png" alt="Terrplant_4"> -->
+\begin{align*}%sets up equation environment so you can specify alignment with ampersands
+EEC & =  \left(\frac{A}{I}\right)R + \left(A * D\right) \nonumber \\
+A & =  \text{Application Rate} \nonumber \\
+D & =  \text{Drift Fraction} \nonumber \\
+I & =  \text{Incorporation} \nonumber \\
+R & =  \text{Runoff Fraction} \nonumber \\
+\end{align*} 
+<p>Total for semi-aquatic areas:</p>
+<!-- <img src = "/static/images/latex/terrplant/terrplant_image5.png" alt="Terrplant_5"> -->
+\begin{align*}%sets up equation environment so you can specify alignment with ampersands
+EEC & =  \left(\frac{A}{I}* R * 10\right) + \left(A * D\right) \nonumber \\
+A & =  \text{Application Rate} \nonumber \\
+D & =  \text{Drift Fraction} \nonumber \\
+I & =  \text{Incorporation} \nonumber \\
+R & =  \text{Runoff Fraction} \nonumber \\
+\end{align*} 
+<p>To calculate RQ values plant survival and growth data (EC<sub>25</sub>, NOAEC) input by the user for seedling emergence and vegetative vigor is divided into the total EEC for each scenario (total dry, total semi-aquatic, total drift) and plant type (monocot and dicot). For the non-listed species the EC<sub>25</sub> values are used and for listed species the NOAEC values are used. For spray drift RQ calculation the most sensitive measure of effect (seedling emergence or vegetative vigor) is used. </p>
+<p>Risk quotient calculation for non-listed species:</p>
+<!-- <img src = "/static/images/latex/terrplant/terrplant_image6.png" alt="Terrplant_6"> -->
+\begin{align*}%sets up equation environment so you can specify alignment with ampersands
+RQ & =  \frac{EEC}{EC_{25}}\nonumber \\
+EEC & =  \text{Estimated environmental concentration} \nonumber \\
+EC_{25} & =  \text{Effective concentration of a chemical that is estimated to} \nonumber \\
+&    \hspace{.15in} \text{ produce a specific adverse effect in 25 \% of test organisms} \nonumber\\
+\end{align*} 
+<p>Risk quotient calculation for listed species:</p>
+<!-- <img src = "/static/images/latex/terrplant/terrplant_image7.png" alt="Terrplant_7"> -->
+\begin{align*}%sets up equation environment so you can specify alignment with ampersands
+RQ & =  \frac{EEC}{EC_{25}}\nonumber \\
+EEC & =  \text{Estimated environmental concentration} \nonumber \\
+NOAEC & =  \text{No observed adverse effects concentration} \nonumber \\
+\end{align*} 

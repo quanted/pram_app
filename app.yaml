@@ -24,8 +24,10 @@ env_variables:
   UBERTOOL_BATCH_SERVER: 'http://uberrest-topknotmeadows.rhcloud.com/'
   UBERTOOL_MONGO_SERVER: 'http://uberrest-topknotmeadows.rhcloud.com'
   UBERTOOL_SECURE_SERVER: 'http://uberrest-topknotmeadows.rhcloud.com'
-  # UBERTOOL_REST_SERVER: 'http://localhost:80'
+  #UBERTOOL_REST_SERVER: 'http://localhost:80'
   UBERTOOL_REST_SERVER: 'http://54.83.18.251:80'
+  PROJECT_PATH: ''
+  SITE_SKIN: ''
 
 skip_files:
 - ^(.*/)?app\.yaml
@@ -57,4 +59,4 @@ handlers:
 - url: /static
   static_dir: static
 - url: /.*
-  script: wsgi.app
+  script: wsgi.application

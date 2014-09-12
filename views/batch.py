@@ -2,15 +2,20 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 import importlib
 import linksLeft
-
+import os
 import logging
 
 def batchInputPage(request, model='none', header='none'):
     viewmodule = importlib.import_module('.views', 'models.'+model)
     header = viewmodule.header
     
-    html = render_to_string('01uberheader.html', {'title': header+' Batch'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'batchinput'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' Batch'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'batchinput'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberbatchinput.html', {
             'model': model,

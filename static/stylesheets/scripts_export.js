@@ -1,60 +1,64 @@
 var doneDiv = document.getElementById("popup");
 
 $(document).ready(function () {
-	// var doneDiv = $('#popup');
-	var jq_html = $('<div />').append($("div.articles_output").children('table[class*=out_], div[class*=out_], H3[class*=out_], H4[class*=out_]:not(div#chart1,table:hidden)').clone()).html();
-	var n_plot_1 = $('div[id^="chart"]').size();
-	var n_plot_2 = $('img[id^="chart"]').size();
-	n_plot = n_plot_1 + n_plot_2
 
-	// console.log(n_plot);
+	function parseOutput() {
+		// var doneDiv = $('#popup');
+		var jq_html = $('<div />').append($("div.articles_output").children('table[class*=out_], div[class*=out_], H3[class*=out_], H4[class*=out_]:not(div#chart1,table:hidden)').clone()).html();
+		var n_plot_1 = $('div[id^="chart"]').size();
+		var n_plot_2 = $('img[id^="chart"]').size();
+		var n_plot = n_plot_1 + n_plot_2;
 
-	i=1;
+		console.log(n_plot);
 
-	var imgData = [];
-	var options = {
-		x_offset : 30,
-		y_offset : 30
-	};
+		var i=1;
 
-	while(i <= n_plot){
-		try{
-		imgData.push($('#chart'+i).jqplotToImageStr(options));
-		i=i+1    
-		// console.log('a')
+		var imgData = [];
+		var options = {
+			x_offset : 30,
+			y_offset : 30
+		};
 
+		while(i <= n_plot){
+			try {
+				imgData.push($('#chart'+i).jqplotToImageStr(options));
+				i++;
+				// console.log('a')
+			}
+			catch(e){
+				imgData.push($('#chart'+i).attr('src'));
+				i++;
+				// console.log('b')
+			}
 		}
-		catch(e){
-		imgData.push($('#chart'+i).attr('src'));
-		i=i+1    
-		// console.log('b')
-		}
+
+		var imgData_json = JSON.stringify(imgData, null, '\t');
+		// console.log(imgData_json);
+	
+		$('<tr style="display:none"><td><input type="hidden" name="pdf_t"></td></tr>')
+			.appendTo('.getpdf')
+			.find('input')
+			.val(jq_html);
+
+		$('<tr style="display:none"><td><input type="hidden" name="pdf_nop"></td></tr>')
+			.appendTo('.getpdf')
+			.find('input')
+			.val(n_plot);
+
+		$('<tr style="display:none"><td><input type="hidden" name="pdf_p"></td></tr>')
+			.appendTo('.getpdf')
+			.find('input')
+			.val(imgData_json);
+
 	}
 
-	imgData_json = JSON.stringify(imgData, null, '\t')
-	console.log(imgData_json);
-
-	$('<tr style="display:none"><td><input type="hidden" name="pdf_t"></td></tr>')
-	.appendTo('.getpdf')
-	.find('input')
-	.val(jq_html);
-
-	$('<tr style="display:none"><td><input type="hidden" name="pdf_nop"></td></tr>')
-	.appendTo('.getpdf')
-	.find('input')
-	.val(n_plot);
-
-	$('<tr style="display:none"><td><input type="hidden" name="pdf_p"></td></tr>')
-	.appendTo('.getpdf')
-	.find('input')
-	.val(imgData_json);
-
-   
 	$('#pdfExport').click(function () {
+		parseOutput();
 		$('form').attr('action', 'pdf').submit();
 	});
 
 	$('#htmlExport').click(function () {
+		parseOutput();
 		$('form').attr('action', 'html').submit();
 	});
 

@@ -126,3 +126,6 @@ button, input {
 /*#ssdResults, #tneResults th {
   padding: 0 4px;
 }*/
+.articles_output img {
+  margin-left: 4px;
+}

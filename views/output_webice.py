@@ -15,7 +15,9 @@ def ICETabletPage(requests):
 
 def webiceSSDOutputPage(requests):
 
-    html = render_to_string('01uberheader.html', {'title':'Ubertool'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' Output'})
     html = html + render_to_string('webiceSSD-jqueryOutput.html', {})
     html = html + render_to_string('02uberintroblock_wmodellinks.html',  {'model':'webice','page':'output'})
     html = html + linksLeft.linksLeft()
@@ -32,7 +34,9 @@ def webiceSSDOutputPage(requests):
 
 def webiceTNEOutputPage(requests):
 
-    html = render_to_string('01uberheader.html', {'title':'Ubertool'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' Output'})
     html = html + render_to_string('webiceTNE-jqueryOutput.html', {})
     html = html + render_to_string('02uberintroblock_wmodellinks.html',  {'model':'webice','page':'output'})
     html = html + linksLeft.linksLeft()
@@ -48,7 +52,9 @@ def webiceTNEOutputPage(requests):
     return response
 
 def webiceOutputPage(request):
-    html = render_to_string('01uberheader.html', {'title':'Ubertool'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' Output'})
     html = html + render_to_string('webice-jqueryOutput.html', {})
     html = html + render_to_string('02uberintroblock_wmodellinks.html',  {'model':'webice','page':'output'})
     html = html + linksLeft.linksLeft()

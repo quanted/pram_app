@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-	$.getScript('/stylesheets/webice/scripts/iceCalc.js', function() {
+	$.getScript('/static/stylesheets/webice/scripts/iceCalc.js', function() {
 		popHeader();
 		begin();
 	});

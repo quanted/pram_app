@@ -14,10 +14,10 @@ $( document ).ready(function() {
 	// 			.scrollLeft($(".ssdResultsContainer").scrollLeft());
 	// 	});
 	// }
-	$.getScript('/stylesheets/webice/scripts/ssdCalc.js', function() {
+	$.getScript('/static/stylesheets/webice/scripts/ssdCalc.js', function() {
 		begin();
 	});
-	$.getScript('/stylesheets/webice/scripts/tablesort.js', function() {
+	$.getScript('/static/stylesheets/webice/scripts/tablesort.js', function() {
 		setClicks('ssdResults');
 	});
 	setTimeout('reCompute()',1000);

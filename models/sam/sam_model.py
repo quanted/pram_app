@@ -88,3 +88,4 @@ class SAM(object):
 
         self.final_res=get_jid()
         self.jid = self.final_res[0]
+        self.link = self.final_res[1][0]

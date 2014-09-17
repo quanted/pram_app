@@ -23,4 +23,21 @@ def timestamp(sam_obj="", batch_jid=""):
     return html
 
 def table_all(sam_obj):
-    return "Fake Table"
+    html = """
+    <H3 class="out_3 collapsible" id="section1"><span></span>Model Outputs</H3>
+    <div class="out_3">
+        <H4 class="out_1 collapsible" id="section1"><span></span>Download</H4>
+            <div class="out_ container_output">
+                <table class="out_">
+                    <tr>
+                        <th scope="col">Outputs</div></th>
+                        <th scope="col">Value</div></th>                            
+                    </tr>
+                    <tr>
+                        <td>Simulation is finished. Please download your file from here</td>
+                        <td><a href=%s>Link</a></td>
+                    </tr>
+                </table>
+            </div>
+    </div>""" %sam_obj.link
+    return html

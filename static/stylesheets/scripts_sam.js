@@ -5,6 +5,9 @@ $(document).ready(function() {
         {   "isSubTabs":false   }
     );
 
+    // Default inputs
+    $('#id_sim_type_1, #id_output_format_0').prop('checked', true);
+
 	// Set default start date
 	startDate = $("#id_sim_date_start").val();
 	$( "#id_sim_date_start" ).datepicker({

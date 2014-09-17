@@ -12,7 +12,9 @@ def ICETabletPage(requests):
 
     html = render_to_string('webice_ICETable.html', {})
     
-    return html
+    response = HttpResponse()
+    response.write(html)
+    return response
 
 def webiceSSDOutputPage(requests):
 
@@ -20,7 +22,10 @@ def webiceSSDOutputPage(requests):
             'site_skin' : os.environ['SITE_SKIN'],
             'title': 'Web-ICE Output'})
     html = html + render_to_string('webiceSSD-jqueryOutput.html', {})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html',  {'model':'webice','page':'output'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html',  {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':'webice',
+            'page':'output'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberoutput_start.html', {
             'model':'webice', 
@@ -39,7 +44,10 @@ def webiceTNEOutputPage(requests):
             'site_skin' : os.environ['SITE_SKIN'],
             'title': 'Web-ICE Output'})
     html = html + render_to_string('webiceTNE-jqueryOutput.html', {})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html',  {'model':'webice','page':'output'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html',  {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':'webice',
+            'page':'output'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberoutput_start.html', {
             'model':'webice', 
@@ -57,7 +65,10 @@ def webiceOutputPage(request):
             'site_skin' : os.environ['SITE_SKIN'],
             'title': 'Web-ICE Output'})
     html = html + render_to_string('webice-jqueryOutput.html', {})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html',  {'model':'webice','page':'output'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html',  {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':'webice',
+            'page':'output'})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberoutput_start.html', {
             'model':'webice', 

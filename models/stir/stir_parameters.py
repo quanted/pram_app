@@ -83,15 +83,3 @@ class StirInp(forms.Form):
             label=mark_safe('Lowest Mammal (Rat) Oral LD<sub>50</sub>'),
             initial=5000,
             validators=[validation.validate_positive])
-
-    # def is_valid(self):
-    #     print "I ran!"
-    #     valid = super(StirInp, self).is_valid()
-    #     print valid
-    #     if not valid:
-    #         print "MODEL NOT VALID"
-    #         return False
-
-    #     else:
-    #         print "MODEL VALID"
-    #         return True

@@ -29,7 +29,7 @@ def linksLeft():
                 ('PFAM', 'pfam'),
                 ('PRZM-EXAMS', 'przm_exams'),
                 ('SAM', 'sam'),
-                ('Web-ICE', 'webice'),
+                # ('Web-ICE', 'webice'),
                 # ('VVWM', 'vvwm'),
                 # ('Surface Water Calculator', 'swc'),
             ])

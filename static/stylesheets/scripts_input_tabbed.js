@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
 	// BlockUI on Form Submit
-	$("input[value='Submit']").click(function (e) {
+	$("button").click(function (e) {
 		e.preventDefault();
 		// var form_valid = $("form").valid();
 		var form_valid;

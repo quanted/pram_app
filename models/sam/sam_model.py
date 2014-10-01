@@ -24,9 +24,11 @@ def get_jid():
     jid = rest_funcs.gen_jid()
     url=url_part1 + '/sam/' + jid 
 
-    response = requests.post(url=url, data=data, headers=http_headers, timeout=60)
-    output_val = json.loads(response.content)['result']
-    return(jid, output_val)
+    # response = requests.post(url=url, data=data, headers=http_headers, timeout=60)
+    # output_val = json.loads(response.content)['result']
+    # return(jid, output_val)
+    # TESTING 
+    return (jid, ["https://s3.amazonaws.com/super_przm/SAM_IB2QZS.zip"])
 
 def convert_dict_key(key):
     try:

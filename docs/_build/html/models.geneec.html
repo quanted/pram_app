@@ -65,139 +65,23 @@
 <div class="section" id="models-geneec-geneec-batchoutput-module">
 <h2>models.geneec.geneec_batchoutput module<a class="headerlink" href="#models-geneec-geneec-batchoutput-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-models.geneec.geneec_input">
-<span id="models-geneec-geneec-input-module"></span><h2>models.geneec.geneec_input module<a class="headerlink" href="#module-models.geneec.geneec_input" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-geneec_input"></span><dl class="function">
-<dt id="models.geneec.geneec_input.geneecInputPage">
-<tt class="descclassname">models.geneec.geneec_input.</tt><tt class="descname">geneecInputPage</tt><big>(</big><em>request</em>, <em>model=''</em>, <em>header=''</em>, <em>formData=None</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_input.html#geneecInputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_input.geneecInputPage" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="models-geneec-geneec-input-module">
+<h2>models.geneec.geneec_input module<a class="headerlink" href="#models-geneec-geneec-input-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="models-geneec-geneec-model-module">
 <h2>models.geneec.geneec_model module<a class="headerlink" href="#models-geneec-geneec-model-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-models.geneec.geneec_output">
-<span id="models-geneec-geneec-output-module"></span><h2>models.geneec.geneec_output module<a class="headerlink" href="#module-models.geneec.geneec_output" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-geneec_output"></span><dl class="function">
-<dt id="models.geneec.geneec_output.geneecOutputPage">
-<tt class="descclassname">models.geneec.geneec_output.</tt><tt class="descname">geneecOutputPage</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_output.html#geneecOutputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_output.geneecOutputPage" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="models-geneec-geneec-output-module">
+<h2>models.geneec.geneec_output module<a class="headerlink" href="#models-geneec-geneec-output-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-models.geneec.geneec_parameters">
-<span id="models-geneec-geneec-parameters-module"></span><h2>models.geneec.geneec_parameters module<a class="headerlink" href="#module-models.geneec.geneec_parameters" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-geneec_parameters"></span><dl class="class">
-<dt id="models.geneec.geneec_parameters.GeneecInp">
-<em class="property">class </em><tt class="descclassname">models.geneec.geneec_parameters.</tt><tt class="descname">GeneecInp</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_parameters.html#GeneecInp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_parameters.GeneecInp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
-<dl class="attribute">
-<dt id="models.geneec.geneec_parameters.GeneecInp.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'chemical_name': &lt;django.forms.fields.CharField object at 0x0374CDB0&gt;, 'application_target': &lt;django.forms.fields.ChoiceField object at 0x0374CDD0&gt;, 'application_rate': &lt;django.forms.fields.FloatField object at 0x040DB4F0&gt;, 'number_of_applications': &lt;django.forms.fields.FloatField object at 0x0374CE10&gt;, 'interval_between_applications': &lt;django.forms.fields.FloatField object at 0x0374CE50&gt;, 'Koc': &lt;django.forms.fields.FloatField object at 0x0374CE90&gt;, 'aerobic_soil_metabolism': &lt;django.forms.fields.FloatField object at 0x0374CED0&gt;, 'wet_in': &lt;django.forms.fields.ChoiceField object at 0x0374CF10&gt;, 'application_method': &lt;django.forms.fields.ChoiceField object at 0x0374CF50&gt;, 'aerial_size_dist': &lt;django.forms.fields.ChoiceField object at 0x0374CF90&gt;, 'ground_spray_type': &lt;django.forms.fields.ChoiceField object at 0x0374CFD0&gt;, 'airblast_type': &lt;django.forms.fields.ChoiceField object at 0x03761030&gt;, 'spray_quality': &lt;django.forms.fields.ChoiceField object at 0x03761070&gt;, 'no_spray_drift': &lt;django.forms.fields.FloatField object at 0x037610B0&gt;, 'incorporation_depth': &lt;django.forms.fields.FloatField object at 0x037610F0&gt;, 'solubility': &lt;django.forms.fields.FloatField object at 0x03761110&gt;, 'aerobic_aquatic_metabolism': &lt;django.forms.fields.FloatField object at 0x03761150&gt;, 'hydrolysis': &lt;django.forms.fields.FloatField object at 0x03761190&gt;, 'photolysis_aquatic_half_life': &lt;django.forms.fields.FloatField object at 0x037611D0&gt;}</em><a class="headerlink" href="#models.geneec.geneec_parameters.GeneecInp.base_fields" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="models.geneec.geneec_parameters.GeneecInp.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.geneec.geneec_parameters.GeneecInp.media" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="models-geneec-geneec-parameters-module">
+<h2>models.geneec.geneec_parameters module<a class="headerlink" href="#models-geneec-geneec-parameters-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="models-geneec-geneec-qaqc-module">
 <h2>models.geneec.geneec_qaqc module<a class="headerlink" href="#models-geneec-geneec-qaqc-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-models.geneec.geneec_tables">
-<span id="models-geneec-geneec-tables-module"></span><h2>models.geneec.geneec_tables module<a class="headerlink" href="#module-models.geneec.geneec_tables" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-geneec_tables"></span><dl class="function">
-<dt id="models.geneec.geneec_tables.getdjtemplate">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">getdjtemplate</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#getdjtemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.getdjtemplate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.getheaderpvu">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">getheaderpvu</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#getheaderpvu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.getheaderpvu" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.getheaderpvuqaqc">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">getheaderpvuqaqc</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#getheaderpvuqaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.getheaderpvuqaqc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.gethtmlrowsfromcols">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">gethtmlrowsfromcols</tt><big>(</big><em>data</em>, <em>headings</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#gethtmlrowsfromcols"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.gethtmlrowsfromcols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.gett1dataAerial">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">gett1dataAerial</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#gett1dataAerial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.gett1dataAerial" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.gett1dataAerial_qaqc">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">gett1dataAerial_qaqc</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#gett1dataAerial_qaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.gett1dataAerial_qaqc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.gett1dataAirBlast">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">gett1dataAirBlast</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#gett1dataAirBlast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.gett1dataAirBlast" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.gett1dataGranular">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">gett1dataGranular</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#gett1dataGranular"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.gett1dataGranular" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.gett1dataGround">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">gett1dataGround</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#gett1dataGround"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.gett1dataGround" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.gett2data">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">gett2data</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#gett2data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.gett2data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.gett2data_qaqc">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">gett2data_qaqc</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#gett2data_qaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.gett2data_qaqc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.table_1">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">table_1</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#table_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.table_1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.table_1_qaqc">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">table_1_qaqc</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#table_1_qaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.table_1_qaqc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.table_2">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">table_2</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#table_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.table_2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.table_2_qaqc">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">table_2_qaqc</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#table_2_qaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.table_2_qaqc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.table_all">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">table_all</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#table_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.table_all" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.table_all_qaqc">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">table_all_qaqc</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#table_all_qaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.table_all_qaqc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.geneec.geneec_tables.timestamp">
-<tt class="descclassname">models.geneec.geneec_tables.</tt><tt class="descname">timestamp</tt><big>(</big><em>geneec_obj</em><big>)</big><a class="reference internal" href="_modules/models/geneec/geneec_tables.html#timestamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.geneec.geneec_tables.timestamp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="models-geneec-geneec-tables-module">
+<h2>models.geneec.geneec_tables module<a class="headerlink" href="#models-geneec-geneec-tables-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-models.geneec.views">
 <span id="models-geneec-views-module"></span><h2>models.geneec.views module<a class="headerlink" href="#module-models.geneec.views" title="Permalink to this headline">¶</a></h2>
@@ -218,12 +102,12 @@
 <li><a class="reference internal" href="#">Geneec</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#models-geneec-geneec-batchoutput-module">models.geneec.geneec_batchoutput module</a></li>
-<li><a class="reference internal" href="#module-models.geneec.geneec_input">models.geneec.geneec_input module</a></li>
+<li><a class="reference internal" href="#models-geneec-geneec-input-module">models.geneec.geneec_input module</a></li>
 <li><a class="reference internal" href="#models-geneec-geneec-model-module">models.geneec.geneec_model module</a></li>
-<li><a class="reference internal" href="#module-models.geneec.geneec_output">models.geneec.geneec_output module</a></li>
-<li><a class="reference internal" href="#module-models.geneec.geneec_parameters">models.geneec.geneec_parameters module</a></li>
+<li><a class="reference internal" href="#models-geneec-geneec-output-module">models.geneec.geneec_output module</a></li>
+<li><a class="reference internal" href="#models-geneec-geneec-parameters-module">models.geneec.geneec_parameters module</a></li>
 <li><a class="reference internal" href="#models-geneec-geneec-qaqc-module">models.geneec.geneec_qaqc module</a></li>
-<li><a class="reference internal" href="#module-models.geneec.geneec_tables">models.geneec.geneec_tables module</a></li>
+<li><a class="reference internal" href="#models-geneec-geneec-tables-module">models.geneec.geneec_tables module</a></li>
 <li><a class="reference internal" href="#module-models.geneec.views">models.geneec.views module</a></li>
 <li><a class="reference internal" href="#module-models.geneec">Module contents</a></li>
 </ul>

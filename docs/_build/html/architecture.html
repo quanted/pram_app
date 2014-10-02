@@ -68,7 +68,7 @@
 <div class="section" id="back-end-server">
 <h2>Back-end server<a class="headerlink" href="#back-end-server" title="Permalink to this headline">¶</a></h2>
 <p>The primary component on the back-end server is Amazon Elastic Compute Cloud (EC2) since it: hosts the platform for data transfer between the front and back-end through Representational state transfer (REST) application programming interface (API); creates the environment for models to be executed; generates reports and documents; hosts a NoSQL database (MongoDB) to manage user history; and runs a Python-based task queue management system (Celery). Other elements on AWS include Simple Storage Service (S3) and Simple Queue Service (SQS), where the former is designed to store model output files for the long term and the latter manages requests generated from batch model runs.</p>
-<div class="align-center figure align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="_images/back_end_1.png"><img alt="alternate text" src="_images/back_end_1.png" style="width: 400pt; height: 300pt;" /></a>
 <p class="caption">Structure of the Back-end Server</p>
 </div>

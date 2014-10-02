@@ -68,15 +68,8 @@
 <div class="section" id="models-trex-trex-batchoutput-module">
 <h2>models.trex.trex_batchoutput module<a class="headerlink" href="#models-trex-trex-batchoutput-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-models.trex.trex_input">
-<span id="models-trex-trex-input-module"></span><h2>models.trex.trex_input module<a class="headerlink" href="#module-models.trex.trex_input" title="Permalink to this headline">¶</a></h2>
-<p>Created on Tue Jan 03 13:30:41 2012
-&#64;author: T. Hong</p>
-<dl class="function">
-<dt id="models.trex.trex_input.trexInputPage">
-<tt class="descclassname">models.trex.trex_input.</tt><tt class="descname">trexInputPage</tt><big>(</big><em>request</em>, <em>model=''</em>, <em>header=''</em>, <em>formData=None</em><big>)</big><a class="reference internal" href="_modules/models/trex/trex_input.html#trexInputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex.trex_input.trexInputPage" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="models-trex-trex-input-module">
+<h2>models.trex.trex_input module<a class="headerlink" href="#models-trex-trex-input-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-models.trex.trex_model">
 <span id="models-trex-trex-model-module"></span><h2>models.trex.trex_model module<a class="headerlink" href="#module-models.trex.trex_model" title="Permalink to this headline">¶</a></h2>
@@ -261,55 +254,17 @@
 <dd></dd></dl>
 
 </div>
-<div class="section" id="module-models.trex.trex_output">
-<span id="models-trex-trex-output-module"></span><h2>models.trex.trex_output module<a class="headerlink" href="#module-models.trex.trex_output" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="models.trex.trex_output.trexOutputPage">
-<tt class="descclassname">models.trex.trex_output.</tt><tt class="descname">trexOutputPage</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/models/trex/trex_output.html#trexOutputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex.trex_output.trexOutputPage" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="models-trex-trex-output-module">
+<h2>models.trex.trex_output module<a class="headerlink" href="#models-trex-trex-output-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-models.trex.trex_parameters">
-<span id="models-trex-trex-parameters-module"></span><h2>models.trex.trex_parameters module<a class="headerlink" href="#module-models.trex.trex_parameters" title="Permalink to this headline">¶</a></h2>
-<p>Created on Tue Dec 20 16:13:59 2011</p>
-<p>&#64;author: TPurucke</p>
-<dl class="class">
-<dt id="models.trex.trex_parameters.TrexInp">
-<em class="property">class </em><tt class="descclassname">models.trex.trex_parameters.</tt><tt class="descname">TrexInp</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/trex/trex_parameters.html#TrexInp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex.trex_parameters.TrexInp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
-<dl class="attribute">
-<dt id="models.trex.trex_parameters.TrexInp.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'chemical_name': &lt;django.forms.fields.CharField object at 0x079C34B0&gt;, 'Use': &lt;django.forms.fields.CharField object at 0x079C36D0&gt;, 'Formulated_product_name': &lt;django.forms.fields.CharField object at 0x079C3790&gt;, 'percent_ai': &lt;django.forms.fields.FloatField object at 0x079C3390&gt;, 'Application_type': &lt;django.forms.fields.ChoiceField object at 0x079C32D0&gt;, 'percent_incorporated': &lt;django.forms.fields.FloatField object at 0x07E714F0&gt;, 'application_rate': &lt;django.forms.fields.FloatField object at 0x079C3550&gt;, 'application_rate_l': &lt;django.forms.fields.FloatField object at 0x079C30B0&gt;, 'seed_treatment_formulation_name': &lt;django.forms.fields.CharField object at 0x079C3AD0&gt;, 'density_of_product': &lt;django.forms.fields.FloatField object at 0x079C3AB0&gt;, 'maximum_seedling_rate_per_use': &lt;django.forms.fields.FloatField object at 0x079C3350&gt;, 'application_rate_per_use': &lt;django.forms.fields.FloatField object at 0x079C38F0&gt;, 'row_sp': &lt;django.forms.fields.FloatField object at 0x07E71270&gt;, 'bandwidth': &lt;django.forms.fields.FloatField object at 0x079C33F0&gt;, 'number_of_applications': &lt;django.forms.fields.FloatField object at 0x079C3370&gt;, 'Application_target': &lt;django.forms.fields.ChoiceField object at 0x07E6D990&gt;, 'interval_between_applications': &lt;django.forms.fields.FloatField object at 0x079C3290&gt;, 'Foliar_dissipation_half_life': &lt;django.forms.fields.FloatField object at 0x07E6D810&gt;, 'avian_ld50': &lt;django.forms.fields.FloatField object at 0x07A37330&gt;, 'avian_lc50': &lt;django.forms.fields.FloatField object at 0x07A37ED0&gt;, 'avian_NOAEC': &lt;django.forms.fields.FloatField object at 0x07A37C70&gt;, 'avian_NOAEL': &lt;django.forms.fields.FloatField object at 0x07A37210&gt;, 'body_weight_of_the_assessed_bird': &lt;django.forms.fields.FloatField object at 0x07A375B0&gt;, 'Species_of_the_tested_bird': &lt;django.forms.fields.ChoiceField object at 0x07A374F0&gt;, 'body_weight_of_the_tested_bird': &lt;django.forms.fields.FloatField object at 0x07A37030&gt;, 'mineau_scaling_factor': &lt;django.forms.fields.FloatField object at 0x07A37E70&gt;, 'mammalian_ld50': &lt;django.forms.fields.FloatField object at 0x07A372B0&gt;, 'mammalian_lc50': &lt;django.forms.fields.FloatField object at 0x07A37670&gt;, 'mammalian_NOAEC': &lt;django.forms.fields.FloatField object at 0x07A376D0&gt;, 'mammalian_NOAEL': &lt;django.forms.fields.FloatField object at 0x07A379D0&gt;, 'body_weight_of_the_assessed_mammal': &lt;django.forms.fields.FloatField object at 0x07A37150&gt;, 'body_weight_of_the_tested_mammal': &lt;django.forms.fields.FloatField object at 0x07AA1910&gt;}</em><a class="headerlink" href="#models.trex.trex_parameters.TrexInp.base_fields" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="models.trex.trex_parameters.TrexInp.get_STB_choices">
-<tt class="descname">get_STB_choices</tt><big>(</big><em>Species_of_the_tested_bird</em><big>)</big><a class="reference internal" href="_modules/models/trex/trex_parameters.html#TrexInp.get_STB_choices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex.trex_parameters.TrexInp.get_STB_choices" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="models.trex.trex_parameters.TrexInp.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.trex.trex_parameters.TrexInp.media" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="models-trex-trex-parameters-module">
+<h2>models.trex.trex_parameters module<a class="headerlink" href="#models-trex-trex-parameters-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-models.trex.trex_qaqc">
 <span id="models-trex-trex-qaqc-module"></span><h2>models.trex.trex_qaqc module<a class="headerlink" href="#module-models.trex.trex_qaqc" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-models.trex.trex_tables">
-<span id="models-trex-trex-tables-module"></span><h2>models.trex.trex_tables module<a class="headerlink" href="#module-models.trex.trex_tables" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="models.trex.trex_tables.table_all">
-<tt class="descclassname">models.trex.trex_tables.</tt><tt class="descname">table_all</tt><big>(</big><em>trex_obj</em><big>)</big><a class="reference internal" href="_modules/models/trex/trex_tables.html#table_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex.trex_tables.table_all" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="models.trex.trex_tables.timestamp">
-<tt class="descclassname">models.trex.trex_tables.</tt><tt class="descname">timestamp</tt><big>(</big><em>trex_obj=''</em>, <em>batch_jid=''</em><big>)</big><a class="reference internal" href="_modules/models/trex/trex_tables.html#timestamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex.trex_tables.timestamp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="models-trex-trex-tables-module">
+<h2>models.trex.trex_tables module<a class="headerlink" href="#models-trex-trex-tables-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="models-trex-trex-tooltips-module">
 <h2>models.trex.trex_tooltips module<a class="headerlink" href="#models-trex-trex-tooltips-module" title="Permalink to this headline">¶</a></h2>
@@ -334,12 +289,12 @@
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#models-trex-trex-batch-runner-module">models.trex.trex_batch_runner module</a></li>
 <li><a class="reference internal" href="#models-trex-trex-batchoutput-module">models.trex.trex_batchoutput module</a></li>
-<li><a class="reference internal" href="#module-models.trex.trex_input">models.trex.trex_input module</a></li>
+<li><a class="reference internal" href="#models-trex-trex-input-module">models.trex.trex_input module</a></li>
 <li><a class="reference internal" href="#module-models.trex.trex_model">models.trex.trex_model module</a></li>
-<li><a class="reference internal" href="#module-models.trex.trex_output">models.trex.trex_output module</a></li>
-<li><a class="reference internal" href="#module-models.trex.trex_parameters">models.trex.trex_parameters module</a></li>
+<li><a class="reference internal" href="#models-trex-trex-output-module">models.trex.trex_output module</a></li>
+<li><a class="reference internal" href="#models-trex-trex-parameters-module">models.trex.trex_parameters module</a></li>
 <li><a class="reference internal" href="#module-models.trex.trex_qaqc">models.trex.trex_qaqc module</a></li>
-<li><a class="reference internal" href="#module-models.trex.trex_tables">models.trex.trex_tables module</a></li>
+<li><a class="reference internal" href="#models-trex-trex-tables-module">models.trex.trex_tables module</a></li>
 <li><a class="reference internal" href="#models-trex-trex-tooltips-module">models.trex.trex_tooltips module</a></li>
 <li><a class="reference internal" href="#module-models.trex.views">models.trex.views module</a></li>
 <li><a class="reference internal" href="#module-models.trex">Module contents</a></li>

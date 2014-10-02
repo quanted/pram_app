@@ -67,7 +67,6 @@ def outputPage(request, model='none', header=''):
     try:
         # Class name must be ModelInp, e.g. SipInp or TerrplantInp
         inputForm = getattr(parametersmodule, model.title() + 'Inp')
-        
         form = inputForm(request.POST) # bind user inputs to form object
 
         # Form validation testing
@@ -99,8 +98,8 @@ def outputPage(request, model='none', header=''):
 
         # end form validation testing
 
-    except:
-        
+    except Exception, e:
+        logging.exception(e)
         logging.info("E X C E P T")
 
         return outputPageView(request, model, header)

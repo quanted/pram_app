@@ -1,9 +1,10 @@
 $( document ).ready(function() {
 
 	// BlockUI on Form Submit
-	$("input[value='Submit']").click(function (e) {
+	$("button").click(function (e) {
 		e.preventDefault();
-		var form_valid = $("form").valid();
+		// var form_valid = $("form").valid();
+		var form_valid;
 
 		if (typeof form_valid == 'undefined'){
 			$.blockUI({
@@ -14,7 +15,8 @@ $( document ).ready(function() {
 			setTimeout(function() {$('form').submit();}, 500);
 		}
 
-		if (typeof form_valid !== 'undefined' && form_valid !== false){
+		// if (typeof form_valid !== 'undefined' && form_valid !== false){
+		else {
 			e.preventDefault();
 			// ES Mapper check
 			if (model == "es_mapping") {

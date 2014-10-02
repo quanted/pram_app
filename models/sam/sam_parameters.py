@@ -103,7 +103,7 @@ class SamInp_sim(forms.Form):
 		('West Virginia', 'West Virginia')
 	)
 
-	state = forms.ChoiceField(choices=SIM_STATE, label='Sate/Region')
+	region = forms.ChoiceField(choices=SIM_STATE, label='Sate/Region')
 	sim_type = forms.ChoiceField(widget=forms.RadioSelect, choices=SIM_CHOICES)
 	sim_date_start = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='Start Date', initial="01/01/1970") #choices=SIM_DATE_START_CHOICES
 	sim_date_end = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='End Date', initial="12/31/2012") #choices=SIM_DATE_END_CHOICES

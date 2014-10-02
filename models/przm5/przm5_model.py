@@ -157,7 +157,7 @@ class przm5(object):
         alphanum_key = lambda (key, value): convert_dict_key(key)
         dictionary_1 = sorted(dictionary.items(), key=alphanum_key)
         dictionary = OrderedDict(dictionary_1)
-
+        print dictionary
         self.hydlength = 356.8  #for pond
         self.useYears = 0
         self.tempflag = 0

@@ -96,7 +96,6 @@ def validate_positive(value):
 	:param value: Form input field value
 	:raises: ValidationError
 	"""
-	print "Positive! ", value
 	if float(value) < 0:
 		raise ValidationError(u'Value must be positive')
 

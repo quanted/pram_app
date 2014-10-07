@@ -1238,9 +1238,77 @@ th {
 /* Form Validation */
 
 form label.error {
-    width: 200px;
-    display: block;
-    float: right;
-    color: red;
-    padding-left: 10px;
+  width: 200px;
+  display: block;
+  float: right;
+  color: red;
+  padding-left: 10px;
+}
+form ul.errorlist li{
+  color: #dd0d0d;
+  padding-left: 4px;
+  font-weight: 700;
+}
+
+/* Date Picker */
+
+div.ui-datepicker-header {
+  background: #F9FBF6;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+  -webkit-border-radius: 2px 2px 0 0;
+  -moz-border-radius: 2px 2px 0 0;
+  box-shadow: 3px 3px 15px #CCC;
+  -webkit-box-shadow: 3px 3px 15px #CCC;
+  -moz-box-shadow: 3px 3px 15px #CCC;
+}
+.ui-datepicker-title {
+  font-weight: 700;
+  font-size: 1.2em;
+  padding: 4px;
+}
+.ui-datepicker-prev {
+  float:left;
+  padding: 4px;
+}
+.ui-datepicker-next {
+  float:right;
+  padding: 4px;
+}
+.ui-datepicker-prev.ui-state-hover,
+.ui-datepicker-next.ui-state-hover {
+  color: #333333;
+  border: none;
+  padding: 4px;
+  text-decoration: underline;
+}
+table.ui-datepicker-calendar {
+  padding: 4px;
+  border-radius: 0 0 2px 2px;
+  -webkit-border-radius: 0 0 2px 2px;
+  -moz-border-radius: 0 0 2px 2px;
+  box-shadow: 3px 3px 15px #CCC;
+  -webkit-box-shadow: 3px 3px 15px #CCC;
+  -moz-box-shadow: 3px 3px 15px #CCC;
+}
+.ui-datepicker-calendar a:link, a:visited {
+  color: #333333;
+}
+.ui-state-hover, .ui-state-active {
+  border: 1px solid #333;
+  padding: 1px;
+  background: #F4F7ED;
+}
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited {
+  color: #F9FBF6;
+}
+.ui-datepicker-calendar td {
+  border: 0;
+  padding: 1px;
+  min-height: 22px;
+  min-width: 22px;
 }

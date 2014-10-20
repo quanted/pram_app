@@ -73,11 +73,18 @@ class SamInp_app(forms.Form):
 	crop = forms.ChoiceField(
 			choices=CROP_CHOICES,
 			validators=[validation.validate_choicefield])
-	crop_number = forms.FloatField(
+	try:
+		crop_number = forms.FloatField(
 			required=True,
 			label='Total Number of Crops',
 			initial=0,
 			widget=forms.NumberInput(attrs={'readonly': 'true'}))
+	except:
+		crop_number = forms.FloatField(
+			required=True,
+			label='Total Number of Crops',
+			initial=0,
+			widget=forms.TextInput(attrs={'readonly': 'true'}))
 	noa = forms.FloatField(
 			required=True,
 			label='Total Number of Applications',

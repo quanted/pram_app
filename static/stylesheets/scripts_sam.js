@@ -6,21 +6,27 @@ $(document).ready(function() {
     );
 
     // Default inputs
-    $('#id_sim_type_1, #id_output_format_0').prop('checked', true);
+    $('#id_sim_type_0, #id_output_format_0').prop('checked', true);
+    $('#id_region').val('Ohio Valley');
     $('#id_crop_number').css('color', 'grey');
     $('#id_output_tox_value, #id_output_tox').closest('tr').hide();
+    $('#id_refine_time_window2, #id_refine_percent_applied2').prop('disabled', true).closest('tr').hide();;
 
 	// Set default start date
 	startDate = $("#id_sim_date_start").val();
 	$( "#id_sim_date_start" ).datepicker({
 		changeYear: true,
-		yearRange: '1960:+nn',
+		minDate: new Date(1984, 0, 1),
+		maxDate: new Date(2013, 11, 31),
+		yearRange: '1984:+2013',
 		defaultDate: startDate
 	});
 	// Set default end date
 	endDate = $("#id_sim_date_end").val();
 	$( "#id_sim_date_end" ).datepicker({
 		changeYear: true,
+		minDate: new Date(1984, 0, 1),
+		maxDate: new Date(2014, 5, 2),
 		yearRange: '1960:+nn',
 		defaultDate: endDate
 	});
@@ -28,6 +34,8 @@ $(document).ready(function() {
 	firstAppDate = $("#id_sim_date_1stapp").val();
 	$( "#id_sim_date_1stapp" ).datepicker({
 		changeYear: true,
+		minDate: new Date(1984, 0, 1),
+		maxDate: new Date(2013, 11, 31),
 		yearRange: '1960:+nn',
 		defaultDate: firstAppDate
 	});
@@ -73,6 +81,25 @@ $(document).ready(function() {
 			crop_list_array.splice(removedCropName_index, 1);
 		}
 		$('#id_crop_number').val(crop_list_array.length);
+	});
+
+	// Refinements
+	$('#id_refine').change(function() {
+		var refinement = $(this).val();
+		if (refinement == "1") {
+			$('#id_refine_time_window2, #id_refine_percent_applied2')
+				.prop('disabled', true).closest('tr').hide();
+			$('#id_refine_percent_applied1')
+				.prop('disabled', false).closest('tr').show();
+		}
+		else if (refinement == "2") {
+			$('#id_refine_percent_applied1, #id_refine_time_window2, #id_refine_percent_applied2')
+				.prop('disabled', false).closest('tr').show();
+		}
+		else if (refinement == "3") {
+			$('#id_refine_percent_applied1, #id_refine_time_window2, #id_refine_percent_applied2')
+				.prop('disabled', true).closest('tr').hide();
+		}
 	});
 
 	// Toxicity Threshold

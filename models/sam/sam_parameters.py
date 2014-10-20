@@ -103,14 +103,22 @@ class SamInp_app_refine(forms.Form):
 			required=True,
 			choices=REFINEMENT_CHOICES,
 			label="Refinements")
-	refine_time_window = forms.FloatField(
+	refine_time_window1 = forms.FloatField(
 			required=False,
 			label='Time Window (days)',
-			validators=[validation.validate_positive]) # jQuery hides onLoad
-	refine_percent_applied = forms.FloatField(
+			validators=[validation.validate_positive])
+	refine_percent_applied1 = forms.FloatField(
 			required=False,
 			label='Percent Applied',
-			validators=[validation.validate_positive]) # jQuery hides onLoad
+			validators=[validation.validate_positive])
+	refine_time_window2 = forms.FloatField(				# jQuery hides onLoad
+			required=False,
+			label='Time Window #2 (days)',
+			validators=[validation.validate_positive])
+	refine_percent_applied2 = forms.FloatField(			# jQuery hides onLoad
+			required=False,
+			label='Percent Applied #2',
+			validators=[validation.validate_positive])
 
 
 class SamInp_sim(forms.Form):
@@ -151,17 +159,17 @@ class SamInp_sim(forms.Form):
 			required=True,
 			widget=forms.DateInput(attrs={'class': 'datePicker'}),
 			label='Start Date',
-			initial="01/01/1970") #choices=SIM_DATE_START_CHOICES
+			initial="01/01/1984") #choices=SIM_DATE_START_CHOICES  This earliest possible start date
 	sim_date_end = forms.DateField(
 			required=True,
 			widget=forms.DateInput(attrs={'class': 'datePicker'}),
 			label='End Date',
-			initial="12/31/2012") #choices=SIM_DATE_END_CHOICES
+			initial="12/31/2013") #choices=SIM_DATE_END_CHOICES  6/2/2014 is latest possible end date
 	sim_date_1stapp = forms.DateField(
 			required=True,
 			widget=forms.DateInput(attrs={'class': 'datePicker'}),
 			label='First Application Date',
-			initial="01/01/1970") #choices=SIM_DATE_1STAPP_CHOICES
+			initial="04/20/1984") #choices=SIM_DATE_1STAPP_CHOICES
 
 
 class SamInp_output(forms.Form):
@@ -196,6 +204,6 @@ class SamInp_output(forms.Form):
 			choices=OUTPUT_FORMAT_CHOICES,
 			label='Output Format')
 
-
+ 
 class SamInp(SamInp_chem, SamInp_app, SamInp_app_refine, SamInp_sim, SamInp_output):
 	pass

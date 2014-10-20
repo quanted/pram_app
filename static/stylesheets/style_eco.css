@@ -1302,6 +1302,8 @@ table.ui-datepicker-calendar {
 .ui-datepicker-calendar td {
   border: 0;
   padding: 1px;
+  min-height: 22px;
+  min-width: 22px;
 }
 
 /* Testing */

@@ -10,13 +10,25 @@ from models.forms import validation
 
 
 class SamInp_chem(forms.Form):
-    chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), initial="Atrazine")
-    koc = forms.FloatField(required=True,label='Koc (mL/g)', initial=100)
-    soil_metabolism_hl = forms.FloatField(required=True,label='Soil Metabolism Halflife (days)', initial=123)
+    chemical_name = forms.CharField(
+    		required=True,
+    		widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
+    		initial="Atrazine")
+    koc = forms.FloatField(
+    		required=True,
+    		label='Koc (mL/g)',
+    		initial=100,
+    		validators=[validation.validate_positive])
+    soil_metabolism_hl = forms.FloatField(
+    		required=True,
+    		label='Soil Metabolism Halflife (days)',
+    		initial=123,
+    		validators=[validation.validate_positive])
 
 
 class SamInp_app(forms.Form):
 	CROP_CHOICES = (
+		(0, "Choose up to 4 crops"),
 		(10, "Corn"),
 		(14, "Corn/soybeans"),
 		(15, "Corn/wheat"),
@@ -58,11 +70,26 @@ class SamInp_app(forms.Form):
 		(2, 'Foliar')
 	)
 
-	crop = forms.ChoiceField(choices=CROP_CHOICES)
-	crop_number = forms.FloatField(required=True, label='Total Number of Crops', initial=4)
-	noa = forms.FloatField(required=True, label='Total Number of Applications', initial=1)
-	application_method = forms.ChoiceField(choices=APP_METH_CHOICES)
-	application_rate = forms.FloatField(required=True, label='Application Rate (kg/ha)', initial=0.75)
+	crop = forms.ChoiceField(
+			choices=CROP_CHOICES,
+			validators=[validation.validate_choicefield])
+	crop_number = forms.FloatField(
+			required=True,
+			label='Total Number of Crops',
+			initial=0,
+			widget=forms.NumberInput(attrs={'readonly': 'true'}))
+	noa = forms.FloatField(
+			required=True,
+			label='Total Number of Applications',
+			initial=1,
+			validators=[validation.validate_greaterthan0])
+	application_method = forms.ChoiceField(
+			choices=APP_METH_CHOICES)
+	application_rate = forms.FloatField(
+			required=True,
+			label='Application Rate (kg/ha)',
+			initial=0.75,
+			validators=[validation.validate_positive])
 
 
 class SamInp_app_refine(forms.Form):
@@ -72,9 +99,26 @@ class SamInp_app_refine(forms.Form):
 		(3, 'Triangular Application over Window')
 	)
 
-	refine = forms.ChoiceField(choices=REFINEMENT_CHOICES, label="Refinements")
-	refine_time_window = forms.FloatField(required=False, label='Time Window (days)') # jQuery hides onLoad
-	refine_percent_applied = forms.FloatField(required=False, label='Percent Applied') # jQuery hides onLoad
+	refine = forms.ChoiceField(
+			required=True,
+			choices=REFINEMENT_CHOICES,
+			label="Refinements")
+	refine_time_window1 = forms.FloatField(
+			required=False,
+			label='Time Window (days)',
+			validators=[validation.validate_positive])
+	refine_percent_applied1 = forms.FloatField(
+			required=False,
+			label='Percent Applied',
+			validators=[validation.validate_positive])
+	refine_time_window2 = forms.FloatField(				# jQuery hides onLoad
+			required=False,
+			label='Time Window #2 (days)',
+			validators=[validation.validate_positive])
+	refine_percent_applied2 = forms.FloatField(			# jQuery hides onLoad
+			required=False,
+			label='Percent Applied #2',
+			validators=[validation.validate_positive])
 
 
 class SamInp_sim(forms.Form):
@@ -103,11 +147,29 @@ class SamInp_sim(forms.Form):
 		('West Virginia', 'West Virginia')
 	)
 
-	region = forms.ChoiceField(choices=SIM_STATE, label='Sate/Region')
-	sim_type = forms.ChoiceField(widget=forms.RadioSelect, choices=SIM_CHOICES)
-	sim_date_start = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='Start Date', initial="01/01/1970") #choices=SIM_DATE_START_CHOICES
-	sim_date_end = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='End Date', initial="12/31/2012") #choices=SIM_DATE_END_CHOICES
-	sim_date_1stapp = forms.DateField(widget=forms.DateInput(attrs={'class': 'datePicker'}), label='First Application Date', initial="01/01/1970") #choices=SIM_DATE_1STAPP_CHOICES
+	region = forms.ChoiceField(
+			required=True,
+			choices=SIM_STATE,
+			label='Sate/Region')
+	sim_type = forms.ChoiceField(
+			required=True,
+			widget=forms.RadioSelect,
+			choices=SIM_CHOICES)
+	sim_date_start = forms.DateField(
+			required=True,
+			widget=forms.DateInput(attrs={'class': 'datePicker'}),
+			label='Start Date',
+			initial="01/01/1984") #choices=SIM_DATE_START_CHOICES  This earliest possible start date
+	sim_date_end = forms.DateField(
+			required=True,
+			widget=forms.DateInput(attrs={'class': 'datePicker'}),
+			label='End Date',
+			initial="12/31/2013") #choices=SIM_DATE_END_CHOICES  6/2/2014 is latest possible end date
+	sim_date_1stapp = forms.DateField(
+			required=True,
+			widget=forms.DateInput(attrs={'class': 'datePicker'}),
+			label='First Application Date',
+			initial="04/20/1984") #choices=SIM_DATE_1STAPP_CHOICES
 
 
 class SamInp_output(forms.Form):
@@ -125,11 +187,23 @@ class SamInp_output(forms.Form):
 		(2, 'Generate Map')
 	)
 
-	output_type = forms.ChoiceField(choices=OUTPUT_TYPE_CHOICES, label='Output Preference')
-	output_tox = forms.ChoiceField(choices=TOX_PERIOD_CHOICES, label='Threshold Time Period')
-	output_tox_value = forms.FloatField(required=False, label=mark_safe('Threshold (&micro;g/L)')) # jQuery hides onLoad
-	output_format = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OUTPUT_FORMAT_CHOICES, label='Output Format')
+	output_type = forms.ChoiceField(
+			required=True,
+			choices=OUTPUT_TYPE_CHOICES,
+			label='Output Preference')
+	output_tox = forms.ChoiceField(
+			required=True,
+			choices=TOX_PERIOD_CHOICES,
+			label='Threshold Time Period')
+	output_tox_value = forms.FloatField(
+			required=False,
+			label=mark_safe('Threshold (&micro;g/L)')) # jQuery hides onLoad
+	output_format = forms.MultipleChoiceField(
+			required=True,
+			widget=forms.CheckboxSelectMultiple,
+			choices=OUTPUT_FORMAT_CHOICES,
+			label='Output Format')
 
-
+ 
 class SamInp(SamInp_chem, SamInp_app, SamInp_app_refine, SamInp_sim, SamInp_output):
 	pass

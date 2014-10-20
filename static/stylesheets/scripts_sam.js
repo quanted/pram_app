@@ -7,6 +7,8 @@ $(document).ready(function() {
 
     // Default inputs
     $('#id_sim_type_1, #id_output_format_0').prop('checked', true);
+    $('#id_crop_number').css('color', 'grey');
+    $('#id_output_tox_value, #id_output_tox').closest('tr').hide();
 
 	// Set default start date
 	startDate = $("#id_sim_date_start").val();
@@ -28,6 +30,60 @@ $(document).ready(function() {
 		changeYear: true,
 		yearRange: '1960:+nn',
 		defaultDate: firstAppDate
+	});
+
+	// Selected Crops Rows
+	$('#id_crop').closest('tr').after('<tr><th>Chosen Crop(s):</th><td id="crop1"></td></tr>');
+	var crop_list_array = [];
+	$('#id_crop').change(function() {
+		var crop = $("#id_crop option:selected").text();
+		if (crop_list_array.length < 4) {
+			if ($('#crop1').text() == '') {
+				$('#crop1').html(crop + " <span class='deleteCrop'>[x]</span>");
+				crop_list_array.push(crop);
+			} else {
+				if ($.inArray(crop, crop_list_array) == -1) {
+					$('#crop1').closest('tr')
+					.after('<tr><th></th><td>' + crop + " <span class='deleteCrop'>[x]</span>" + '</td></tr>');
+					crop_list_array.push(crop);
+				}
+			}
+		}
+		if (crop_list_array.length == 4) {
+			$('#id_crop').prop('disabled', true);
+		}
+		$('#id_crop_number').val(crop_list_array.length);
+	});
+
+	$('table').on('click', 'span', function() {
+		var removedCropName = $(this).closest('td').text().split(' ')[0];
+		var removedCropName_index = $.inArray(removedCropName, crop_list_array);
+		if (removedCropName_index < 4) {
+			$('#id_crop').prop('disabled', false);
+		}
+		if ($(this).closest('td').prop('id') == 'crop1') {
+			if (crop_list_array.length > 1) {
+				$(this).closest('tr').next().find('th').text('Chosen Crop(s):');
+				$(this).closest('tr').next().find('td').attr('id', 'crop1');
+				$(this).closest('tr').remove();
+				crop_list_array.splice(removedCropName_index, 1);
+			}
+		} else {
+			$(this).closest('tr').remove();
+			crop_list_array.splice(removedCropName_index, 1);
+		}
+		$('#id_crop_number').val(crop_list_array.length);
+	});
+
+	// Toxicity Threshold
+	$('#id_output_type').change(function() {
+		var outputType = $(this).val();
+		if (outputType == '3') {
+			$('#id_output_tox_value, #id_output_tox').closest('tr').show();
+		}
+		else {
+			$('#id_output_tox_value, #id_output_tox').closest('tr').hide();
+		}
 	});
 
 });

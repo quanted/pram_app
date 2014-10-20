@@ -112,17 +112,17 @@ $(document).ready(function(){
       var month_map_min = month_map_pool[mydate_min.getMonth()];
       var date_map_min = date_map_pool[mydate_min.getDate()-1];
       var str_min = month_map_min + '/' + date_map_min+ '/' + mydate_min.getFullYear();
-      var mydate_min_ind = x_date2.indexOf(str_min);
+      var mydate_min_ind = $.inArray(str_min, x_date2);
 
       var month_map_max = month_map_pool[mydate_max.getMonth()];
       var date_map_max = date_map_pool[mydate_max.getDate()-1];
       var str_max = month_map_max + '/' + date_map_max+ '/' + mydate_max.getFullYear();
-      var mydate_max_ind = x_date2.indexOf(str_max);
+      var mydate_max_ind = $.inArray(str_max, x_date2);
 
-      //console.log(new_min_s, str_min, x_date2.indexOf(str_min), str_max, x_date2.indexOf(str_max))
+      //console.log(new_min_s, str_min, $.inArray(str_min, x_date2), str_max, $.inArray(str_max, x_date2))
       //console.log(x_date[0])
       //console.log(String(values_min))
-      //console.log(x_date.indexOf(String(values_min)))
+      //console.log($.inArray(String(values_min), x_date))
 
       createplot1(paired.slice(mydate_min_ind, mydate_max_ind+1), paired2.slice(mydate_min_ind, mydate_max_ind+1), values_min, values_max, range_interval);
       createplot2(paired3.slice(mydate_min_ind, mydate_max_ind+1), paired4.slice(mydate_min_ind, mydate_max_ind+1), values_min, values_max, range_interval);

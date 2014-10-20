@@ -42,7 +42,7 @@ $(document).ready(function() {
 				$('#crop1').html(crop + " <span class='deleteCrop'>[x]</span>");
 				crop_list_array.push(crop);
 			} else {
-				if (crop_list_array.indexOf(crop) == -1) {
+				if ($.inArray(crop, crop_list_array) == -1) {
 					$('#crop1').closest('tr')
 					.after('<tr><th></th><td>' + crop + " <span class='deleteCrop'>[x]</span>" + '</td></tr>');
 					crop_list_array.push(crop);
@@ -57,7 +57,7 @@ $(document).ready(function() {
 
 	$('table').on('click', 'span', function() {
 		var removedCropName = $(this).closest('td').text().split(' ')[0];
-		var removedCropName_index = crop_list_array.indexOf(removedCropName);
+		var removedCropName_index = $.inArray(removedCropName, crop_list_array);
 		if (removedCropName_index < 4) {
 			$('#id_crop').prop('disabled', false);
 		}

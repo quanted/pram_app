@@ -15,7 +15,7 @@ class SamInp_chem(forms.Form):
 		(1, 'Atrazine - Corn'),
 		(2, 'Chlorpyrifos - Corn'),
 		(3, 'Chlorpyrifos - Soybeans'),
-		(4, 'Fibronil - Corn'),
+		(4, 'Fipronil - Corn'),
 		(5, 'Metolachlor - Corn'),
 		(0, 'Custom')
 	)
@@ -110,7 +110,7 @@ class SamInp_app(forms.Form):
 	application_rate = forms.FloatField(
 			required=False,
 			label='Application Rate (kg/ha)',
-			initial=0.75,
+			initial=1.3,
 			validators=[validation.validate_positive])
 
 
@@ -124,7 +124,8 @@ class SamInp_app_refine(forms.Form):
 	refine = forms.ChoiceField(
 			required=False,
 			choices=REFINEMENT_CHOICES,
-			label="Refinements")
+			label="Refinements",
+			initial=2)
 	refine_time_window1 = forms.FloatField(
 			required=False,
 			label='Time Window (days)',

@@ -335,15 +335,15 @@ def table_all(sam_obj):
     html = html + table_4(sam_obj)
     
     if (sam_obj.scenario_selection == '1'):
-        link = 'https://s3.amazonaws.com/super_przm/SAM_IB2QZS.zip'
+        link = 'https://s3.amazonaws.com/super_przm/postprocessed/Atrazine_corn.zip'
     elif (sam_obj.scenario_selection == '2'):
-        link = ''
+        link = 'https://s3.amazonaws.com/super_przm/postprocessed/Chlorpyrifos_corn.zip'
     elif (sam_obj.scenario_selection == '3'):
-        link = ''
+        link = 'https://s3.amazonaws.com/super_przm/postprocessed/Chlorpyrifos_soybeans.zip'
     elif (sam_obj.scenario_selection == '4'):
-        link = ''
+        link = 'https://s3.amazonaws.com/super_przm/postprocessed/Fipronil_corn.zip'
     elif (sam_obj.scenario_selection == '5'):
-        link = ''
+        link = 'https://s3.amazonaws.com/super_przm/postprocessed/Metolachlor_corn.zip'
     else:
         link = ''
 

@@ -10,20 +10,33 @@ from models.forms import validation
 
 
 class SamInp_chem(forms.Form):
-    chemical_name = forms.CharField(
-    		required=True,
-    		widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-    		initial="Atrazine")
-    koc = forms.FloatField(
-    		required=True,
-    		label='Koc (mL/g)',
-    		initial=100,
-    		validators=[validation.validate_positive])
-    soil_metabolism_hl = forms.FloatField(
-    		required=True,
-    		label='Soil Metabolism Halflife (days)',
-    		initial=123,
-    		validators=[validation.validate_positive])
+
+	SCENARIO_CHOICES = (
+		(1, 'Atrazine - Corn'),
+		(2, 'Chlorpyrifos - Corn'),
+		(3, 'Chlorpyrifos - Soybeans'),
+		(4, 'Fibronil - Corn'),
+		(5, 'Metolachlor - Corn'),
+		(0, 'Custom')
+	)
+
+	scenario_selection = forms.ChoiceField(
+			choices = SCENARIO_CHOICES,
+			label = 'Choose a Scenario')
+	chemical_name = forms.CharField(
+			required=True,
+			widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
+			initial="Atrazine")
+	koc = forms.FloatField(
+			required=True,
+			label='Koc (mL/g)',
+			initial=100,
+			validators=[validation.validate_positive])
+	soil_metabolism_hl = forms.FloatField(
+			required=True,
+			label='Soil Metabolism Halflife (days)',
+			initial=123,
+			validators=[validation.validate_positive])
 
 
 class SamInp_app(forms.Form):
@@ -88,7 +101,7 @@ class SamInp_app(forms.Form):
 	noa = forms.FloatField(
 			required=True,
 			label='Total Number of Applications',
-			initial=1,
+			initial=1500,
 			validators=[validation.validate_greaterthan0])
 	application_method = forms.ChoiceField(
 			choices=APP_METH_CHOICES)
@@ -157,7 +170,7 @@ class SamInp_sim(forms.Form):
 	region = forms.ChoiceField(
 			required=True,
 			choices=SIM_STATE,
-			label='Sate/Region')
+			label='State/Region')
 	sim_type = forms.ChoiceField(
 			required=True,
 			widget=forms.RadioSelect,

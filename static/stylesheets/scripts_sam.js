@@ -11,7 +11,7 @@ $(document).ready(function() {
 	$('#id_crop_number').css('color', 'grey');
 	$('#id_refine_time_window2, #id_refine_percent_applied2').prop('disabled', true).closest('tr').hide();
 	$('#id_crop').closest('tr').after('<tr><th>Chosen Crop(s):</th><td id="crop1"></td></tr>');
-	$('#id_output_format').closest('tr').before(
+	$('#id_output_tox_value').closest('tr').after(
 		'<tr><th>Output Summary:</th><td>21-d Average Concentrations - 90<sup>th</sup> percentile</td></tr>' +
 		'<tr><th></th><td>60-d Average Concentrations - 90<sup>th</sup> percentile</td></tr>' +
 		'<tr><th></th><td>Toxicity Threshold - Average Duration of Daily Exceedances</td></tr>' +

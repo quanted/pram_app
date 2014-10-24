@@ -6,20 +6,25 @@ $(document).ready(function() {
 	);
 
 	// Default inputs
-	$('#id_sim_type_0, #id_output_format_0, #id_output_format_1').prop('checked', true);
+	$('#id_sim_type_0, #id_output_format_0, #id_output_format_1, #id_output_tox_0, #id_output_tox_1').prop('checked', true);
 	$('#id_region').val('Ohio Valley');
 	$('#id_crop_number').css('color', 'grey');
-	$('#id_output_tox_value, #id_output_tox').closest('tr').hide();
-	$('#id_refine_time_window2, #id_refine_percent_applied2').prop('disabled', true).closest('tr').hide();;
+	$('#id_refine_time_window2, #id_refine_percent_applied2').prop('disabled', true).closest('tr').hide();
 	$('#id_crop').closest('tr').after('<tr><th>Chosen Crop(s):</th><td id="crop1"></td></tr>');
+	$('#id_output_format').closest('tr').before(
+		'<tr><th>Output Summary:</th><td>21-d Average Concentrations - 90<sup>th</sup> percentile</td></tr>' +
+		'<tr><th></th><td>60-d Average Concentrations - 90<sup>th</sup> percentile</td></tr>' +
+		'<tr><th></th><td>Toxicity Threshold - Average Duration of Daily Exceedances</td></tr>' +
+		'<tr><th></th><td>Toxicity Threshold - Percentage of Days with Exceedances</td></tr>'
+	);
 	var cropsArray_soybeans = ['Soybeans', 'Soybeans/cotton', 'Soybeans/wheat', 'Soybeans/grains'];
 	var cropsArray_corn = ['Corn', 'Corn/soybeans', 'Corn/wheat', 'Corn/grains'];
 	var crop_list_array = [];
-	var samScenarioInputs_atrazine_corn = ["1", "Atrazine", "100", "123", "0", "4", "1500", "1", "1.3", "2", "7", "50", "43", "50", "Ohio Valley", "1", "2", "3", "01/01/1984", "12/31/2013", "04/20/1984", "1", "1", "", "1", "2", "Defaults", "Clear", "on", "Back", "Next", "", ""];
-	var samScenarioInputs_chlorpyrifos_corn = ["2", "Chlorpyrifos", "6040", "109", "0", "4", "900", "1", "1.1", "1", "30", "100", "", "", "Ohio Valley", "1", "2", "3", "01/01/1984", "12/31/2013", "04/20/1984", "1", "1", "", "1", "2", "Defaults", "Clear", "on", "Back", "Next", "", ""];
-	var samScenarioInputs_chlorpyrifos_soybeans = ["3", "Chlorpyrifos", "6040", "109", "0", "4", "1260", "1", "1.1", "1", "42", "100", "", "", "Ohio Valley", "1", "2", "3", "01/01/1984", "12/31/2013", "04/20/1984", "1", "1", "", "1", "2", "Defaults", "Clear", "on", "Back", "Next", "", ""];
-	var samScenarioInputs_fipronil_corn = ["4", "Fipronil", "727", "128", "0", "4", "1500", "1", "0.1", "2", "7", "50", "43", "50", "Ohio Valley", "1", "2", "3", "01/01/1984", "12/31/2013", "04/20/1984", "1", "1", "", "1", "2", "Defaults", "Clear", "on", "Back", "Next", "", ""];
-	var samScenarioInputs_metolachlor_corn = ["5", "Metolachlor", "181", "49", "0", "4", "1500", "1", "1.05", "2", "7", "50", "43", "50", "Ohio Valley", "1", "2", "3", "01/01/1984", "12/31/2013", "04/20/1984", "1", "1", "", "1", "2", "Defaults", "Clear", "on", "Back", "Next", "", ""];
+	var samScenarioInputs_atrazine_corn = ["1", "Atrazine", "100", "123", "0", "4", "1500", "1", "1.3", "2", "7", "50", "43", "50", "Ohio Valley", "1", "2", "3", "01/01/1984", "12/31/2013", "04/20/1984", "1", "", "", "4"];
+	var samScenarioInputs_chlorpyrifos_corn = ["2", "Chlorpyrifos", "6040", "109", "0", "4", "900", "1", "1.1", "1", "30", "100", "", "", "Ohio Valley", "1", "2", "3", "01/01/1984", "12/31/2013", "04/20/1984", "1", "", "", "4"];
+	var samScenarioInputs_chlorpyrifos_soybeans = ["3", "Chlorpyrifos", "6040", "109", "0", "4", "1260", "1", "1.1", "1", "42", "100", "", "", "Ohio Valley", "1", "2", "3", "01/01/1984", "12/31/2013", "04/20/1984", "1", "", "", "4"];
+	var samScenarioInputs_fipronil_corn = ["4", "Fipronil", "727", "128", "0", "4", "1500", "1", "0.1", "2", "7", "50", "43", "50", "Ohio Valley", "1", "2", "3", "01/01/1984", "12/31/2013", "04/20/1984", "1", "", "", "4"];
+	var samScenarioInputs_metolachlor_corn = ["5", "Metolachlor", "181", "49", "0", "4", "1500", "1", "1.05", "2", "7", "50", "43", "50", "Ohio Valley", "1", "2", "3", "01/01/1984", "12/31/2013", "04/20/1984", "1", "", "", "4"];
 	var selectedScenarioValue = $('#id_scenario_selection').val();
 	if (selectedScenarioValue !== '0') {
 		$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
@@ -77,7 +82,7 @@ $(document).ready(function() {
 
 	// Scenario Selector
 	function samFillScenarioValues(scenario) {
-		$('form :input').each(function(i) {
+		$('form :input').not(':button').each(function(i) {
 			$(this).val(scenario[i]);
 		});
 	}	
@@ -239,17 +244,6 @@ $(document).ready(function() {
 		else if (refinement == "3") {
 			$('#id_refine_percent_applied1, #id_refine_time_window2, #id_refine_percent_applied2')
 				.prop('disabled', true).closest('tr').hide();
-		}
-	});
-
-	// Toxicity Threshold
-	$('#id_output_type').change(function() {
-		var outputType = $(this).val();
-		if (outputType == '3') {
-			$('#id_output_tox_value, #id_output_tox').closest('tr').show();
-		}
-		else {
-			$('#id_output_tox_value, #id_output_tox').closest('tr').hide();
 		}
 	});
 

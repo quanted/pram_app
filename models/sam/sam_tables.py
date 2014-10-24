@@ -182,7 +182,7 @@ def gett2data(sam_obj):
     
     if (refinements == 'Uniform Step Application over Window'):
         data = {
-            "Parameter": ['Crop', 'Total Number of Crops', 'Total Number of Applications',
+            "Parameter": ['Crop(s)', 'Total Number of Crops', 'Total Number of Applications',
                             'Application method', 'Application Rate', 'Refinements',
                             'Time Window #1', 'Percent Applied #1', 'Time Window #2', 'Percent Applied #2' ],
             "Value": [crop, no_of_crops, noa,
@@ -241,9 +241,12 @@ def gett4data(sam_obj):
     #     output_tox = ""
 
     data = {
-        "Parameter": ['Output Preference', 'Output Format'],
-        "Value": ['Daily Concentrations', 'Table & Map'],
-        "Units": ['', '']
+        "Parameter": ['Output Preference', '', '', '', 'Threshold Time Period', mark_safe('Threshold (&micro;g/L)'), 'Output Format'],
+        "Value": ['21-d Average Concentrations - 90th percentile',
+                    '60-d Average Concentrations - 90th percentile',
+                    'Toxicity Threshold - Average Duration of Daily Exceedances',
+                    'Toxicity Threshold - Percentage of Days with Exceedances',
+                    '30-d, Annual', '4', 'CSVs & Map'],
     }
 
     # data = {
@@ -304,8 +307,8 @@ def table_4(sam_obj):
                 <div class="out_ container_output">
         """
         tdata = gett4data(sam_obj)
-        trows = gethtmlrowsfromcols(tdata,pvuheadings)
-        html = html + tmpl.render(Context(dict(data=trows, headings=pvuheadings)))
+        trows = gethtmlrowsfromcols(tdata,pvheadings)
+        html = html + tmpl.render(Context(dict(data=trows, headings=pvheadings)))
         html = html + """
                 </div>
         </div>

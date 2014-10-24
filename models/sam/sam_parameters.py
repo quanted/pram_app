@@ -196,17 +196,23 @@ class SamInp_sim(forms.Form):
 
 
 class SamInp_output(forms.Form):
+	# OUTPUT_TYPE_CHOICES = (
+	# 	(1, 'Daily Concentrations'),
+	# 	(2, '30-day Maximum Concentrations'),
+	# 	(3, 'Toxicity Threshold Exceedances')
+	# )
 	OUTPUT_TYPE_CHOICES = (
-		(1, 'Daily Concentrations'),
-		(2, '30-day Maximum Concentrations'),
-		(3, 'Toxicity Threshold Exceedances')
+		(1, '21-d Average Concentrations - 90th percentile'),
+		(2, '60-d Average Concentrations - 90th percentile'),
+		(3, 'Toxicity Threshold - Average Duration of Daily Exceedances'),
+		(4, 'Toxicity Threshold - Percentage of Days with Exceedances')
 	)
 	TOX_PERIOD_CHOICES = (
 		(1, '30-d'),
 		(2, 'Annual')
 	)
 	OUTPUT_FORMAT_CHOICES = (
-		(1, 'Generate Table'),
+		(1, 'Generate CSVs'),
 		(2, 'Generate Map')
 	)
 
@@ -216,11 +222,13 @@ class SamInp_output(forms.Form):
 			label='Output Preference')
 	output_tox = forms.ChoiceField(
 			required=False,
+			widget=forms.CheckboxSelectMultiple,
 			choices=TOX_PERIOD_CHOICES,
 			label='Threshold Time Period')
 	output_tox_value = forms.FloatField(
 			required=False,
-			label=mark_safe('Threshold (&micro;g/L)')) # jQuery hides onLoad
+			label=mark_safe('Threshold (&micro;g/L)'),
+			initial=4)
 	output_format = forms.MultipleChoiceField(
 			required=False,
 			widget=forms.CheckboxSelectMultiple,

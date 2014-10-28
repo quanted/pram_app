@@ -513,6 +513,11 @@ $( document ).ready(function() {
 		});
 	});
 
+	// Remove query string from 'pathSlice' var
+	if ($.inArray("?", pathPage)) {
+		pathPage = pathPage.split('.html?')[0];
+	}
+
 });
 
 var pathArray = document.URL.split('/');
@@ -528,7 +533,3 @@ var wintop = (browserHeight / 2) - 30 + "px";
 var doneDiv = document.getElementById("popup");
 // Model name
 var model = pathSlice.slice(0, -5).split('_')[0];
-// Remove query string from 'pathSlice' var
-if (pathPage.indexOf("?")) {
-	pathPage = pathPage.split('.html?')[0];
-}

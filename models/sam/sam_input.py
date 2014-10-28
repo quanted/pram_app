@@ -27,6 +27,7 @@ def samInputPage(request, model='', header='', formData=None):
     html = html + str(sam_parameters.SamInp_sim(formData))
     html = html + """</table><table class="input_table tab tab_Output" style="display:none">"""
     html = html + str(sam_parameters.SamInp_output(formData))
+#    html = html + """<iframe src="http://134.67.114.4/maptest/" width="640" height="480"></iframe>"""
     html = html + render_to_string('04uberinput_tabbed_end.html', {'sub_title': 'Submit'})
     # Check if tooltips dictionary exists
     try:

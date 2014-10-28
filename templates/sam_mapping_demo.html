@@ -5,6 +5,22 @@
 
         <H4 class="out_1 collapsible" id="section1"><span></span>Visualization</H4>
             <div class="out_ container_output">
+                <table>
+                    <tr>
+                        <th>Choose Summary Statistics to Display</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="id_stat_selection" name="stat_selection">
+                                <!-- <option value="AvgC_21d_90pct">21-d Average Concentrations - 90th percentile</option> -->
+                                <!-- <option value="AvgC_60d_90pct">60-d Average Concentrations - 90th percentile</option> -->
+                                <option value="exceed_tox_avg_dur">Toxicity Threshold - Average Duration of Daily Exceedances</option>
+                                <option value="exceed_tox_pct">Toxicity Threshold - Percentage of Days with Exceedances</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <br>
                 <div id="map"></div>
             </div>
 
@@ -12,6 +28,56 @@
 
                 // Enable the visual refresh
                 google.maps.visualRefresh = true;
+                var map;
+                var stat_selection = document.getElementById('id_stat_selection');
+                var scenario = {{ SCENARIO }};
+
+                var huc12_sect1 = new google.maps.KmlLayer(null);
+                var huc12_sect2 = new google.maps.KmlLayer(null);
+                var huc12_sect3 = new google.maps.KmlLayer(null);
+
+                function toggle(scenario) {
+                    var kmz_type, stat = "exceed_tox_avg_dur";
+
+                    huc12_sect1.setMap(null);
+                    huc12_sect2.setMap(null);
+                    huc12_sect3.setMap(null);
+
+                    switch (scenario) {
+                        case 1:
+                            kmz_type = "atrazine_corn";
+                            break;
+                        case 2:
+                            kmz_type = "chlorpyrifos_corn";
+                            break;
+                        case 3:
+                            kmz_type = "chlorpyrifos_soybeans";
+                            break;
+                        case 4:
+                            kmz_type = "fipronil_corn";
+                            break;
+                        case 5:
+                            kmz_type = "metolachlor_corn";
+                            break;
+                        default:
+                            kmz_type = "atrazine_corn";
+                    }
+                    console.log(kmz_type);
+
+                    stat = stat_selection.options[stat_selection.selectedIndex].value;
+
+                    var sect1 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/" + kmz_type + "_" + stat + "_sect1.kmz";
+                    console.log(sect1);
+                    huc12_sect1 = new google.maps.KmlLayer(sect1);
+                    huc12_sect1.setMap(map);
+                    var sect2 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/" + kmz_type + "_" + stat + "_sect2.kmz";
+                    huc12_sect2 = new google.maps.KmlLayer(sect2);
+                    huc12_sect2.setMap(map);
+                    var sect3 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/" + kmz_type + "_" + stat + "_sect3.kmz";
+                    huc12_sect3 = new google.maps.KmlLayer(sect3);                    
+                    huc12_sect3.setMap(map);
+
+                }
 
                 function initialize() {
                     var mapDiv = document.getElementById('map');
@@ -23,45 +89,19 @@
                         scaleControl: true
                     };
                     // Creating the map
-                    var map = new google.maps.Map(mapDiv,options);
+                    map = new google.maps.Map(mapDiv,options);
 
-                    // Creating an InfoWindow with content text
-                    var infowindow = new google.maps.InfoWindow({
-                        content : 'test!!!'
-                    });
+                    toggle(scenario);
 
-                    //Creating overlays for USDACropScape
-                    var huc1 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/huc1.kmz";
-                    var huc12_1 = new google.maps.KmlLayer(huc1);
-                    huc12_1.setMap(map);
-                    var huc2 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/huc2.kmz";
-                    var huc12_2 = new google.maps.KmlLayer(huc2) ;
-                    huc12_2.setMap(map);
-                    var huc3 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/huc3.kmz";
-                    var huc12_3 = new google.maps.KmlLayer(huc3) ;
-                    huc12_3.setMap(map);
-                    var huc4 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/huc4.kmz";
-                    var huc12_4 = new google.maps.KmlLayer(huc4) ;
-                    huc12_4.setMap(map);
-                    var huc5 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/huc5.kmz";
-                    var huc12_5 = new google.maps.KmlLayer(huc5);
-                    huc12_5.setMap(map);
-                    var huc6 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/huc6.kmz";
-                    var huc12_6 = new google.maps.KmlLayer(huc6);
-                    huc12_6.setMap(map);
-                                      
-                    
-                    
-                    
-                    console.log('Mapping ;kasjf');
                 }
 
                 google.maps.event.addDomListener(window, 'load', initialize);
+                stat_selection.addEventListener("change", function(){toggle(scenario)}, false);
 
             </script>
             <!-- CSS to control the layout of the map -->
             <style type="text/css">
-                #map {width:700px; height:500px;}
+                #map {width:800px; height:600px;}
                 #map div { font-weight:bold;}
                 #map #iwsw p { font-weight:normal !important;}
             </style>

@@ -322,7 +322,7 @@ def timestamp(sam_obj="", batch_jid=""):
         st = datetime.datetime.strptime(batch_jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
     html="""
     <div class="out_">
-    <b>Surface Aquatic Model (SAM) Beta<br>
+    <b>Spatial Aquatic Model (SAM) Beta<br>
     """
     html = html + st
     html = html + " (EST)</b>"
@@ -369,6 +369,6 @@ def table_all(sam_obj):
             </div>
     """ % link
 
-    html = html + render_to_string('sam_mapping_demo.html', {})
+    html = html + render_to_string('sam_mapping_demo.html', {'SCENARIO' : sam_obj.scenario_selection})
 
     return html

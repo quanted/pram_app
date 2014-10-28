@@ -12,8 +12,8 @@
                     <tr>
                         <td>
                             <select id="id_stat_selection" name="stat_selection">
-                                <!-- <option value="AvgC_21d_90pct">21-d Average Concentrations - 90th percentile</option> -->
-                                <!-- <option value="AvgC_60d_90pct">60-d Average Concentrations - 90th percentile</option> -->
+                                <option value="AvgC_21d_90pct">21-d Average Concentrations - 90th percentile</option>
+                                <option value="AvgC_60d_90pct">60-d Average Concentrations - 90th percentile</option>
                                 <option value="exceed_tox_avg_dur">Toxicity Threshold - Average Duration of Daily Exceedances</option>
                                 <option value="exceed_tox_pct">Toxicity Threshold - Percentage of Days with Exceedances</option>
                             </select>
@@ -59,7 +59,7 @@
                     huc12_sect3.setMap(map);
 
                     // Update charts
-                    document.getElementById("stat_chart1").src="/static/images/sam/"+scenario+"/"+stat+".png";
+                    document.getElementById("stat_chart1").src="/static/images/sam/"+scenario+"/"+stat+"_box.png";
                     document.getElementById("stat_chart2").src="/static/images/sam/"+scenario+"/"+stat+"_hist.png";
 
                 }

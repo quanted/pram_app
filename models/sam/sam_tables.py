@@ -9,6 +9,22 @@ import datetime
 from django.template.loader import render_to_string
 import sam_parameters
 
+
+def timestamp(sam_obj="", batch_jid=""):
+    if sam_obj:
+        st = datetime.datetime.strptime(sam_obj.jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
+    else:
+        st = datetime.datetime.strptime(batch_jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
+    html="""
+    <div class="out_">
+    <b>Spatial Aquatic Model (SAM) Beta<br>
+    """
+    html = html + st
+    html = html + " (EST)</b>"
+    html = html + """
+    </div>"""
+    return html
+
 def getheaderpvu():
     headings = ["Parameter", "Value", "Units"]
     return headings
@@ -315,21 +331,6 @@ def table_4(sam_obj):
         """
         return html
 
-def timestamp(sam_obj="", batch_jid=""):
-    if sam_obj:
-        st = datetime.datetime.strptime(sam_obj.jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
-    else:
-        st = datetime.datetime.strptime(batch_jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
-    html="""
-    <div class="out_">
-    <b>Spatial Aquatic Model (SAM) Beta<br>
-    """
-    html = html + st
-    html = html + " (EST)</b>"
-    html = html + """
-    </div>"""
-    return html
-
 def table_all(sam_obj):
 
     html = table_1(sam_obj)
@@ -339,16 +340,22 @@ def table_all(sam_obj):
     
     if (sam_obj.scenario_selection == '1'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Atrazine_corn.zip'
+        scenario = 'atrazine_corn'
     elif (sam_obj.scenario_selection == '2'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Chlorpyrifos_corn.zip'
+        scenario = 'chlorpyrifos_corn'
     elif (sam_obj.scenario_selection == '3'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Chlorpyrifos_soybeans.zip'
+        scenario = 'chlorpyrifos_soybeans'
     elif (sam_obj.scenario_selection == '4'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Fipronil_corn.zip'
+        scenario = 'fipronil_corn'
     elif (sam_obj.scenario_selection == '5'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Metolachlor_corn.zip'
+        scenario = 'metolachlor_corn'
     else:
         link = ''
+        scenario = 'atrazine_corn'
 
     html = html + """
     <br>
@@ -369,6 +376,7 @@ def table_all(sam_obj):
             </div>
     """ % link
 
-    html = html + render_to_string('sam_mapping_demo.html', {'SCENARIO' : sam_obj.scenario_selection})
+    html = html + render_to_string('sam_mapping_demo.html', {'SCENARIO' : scenario})
+    html = html + render_to_string('sam_charts_demo.html', {'SCENARIO' : scenario})
 
     return html

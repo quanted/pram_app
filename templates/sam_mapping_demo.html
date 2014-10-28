@@ -30,7 +30,7 @@
                 google.maps.visualRefresh = true;
                 var map;
                 var stat_selection = document.getElementById('id_stat_selection');
-                var scenario = {{ SCENARIO }};
+                var scenario = "{{ SCENARIO }}";
 
                 var huc12_sect1 = new google.maps.KmlLayer(null);
                 var huc12_sect2 = new google.maps.KmlLayer(null);
@@ -43,25 +43,7 @@
                     huc12_sect2.setMap(null);
                     huc12_sect3.setMap(null);
 
-                    switch (scenario) {
-                        case 1:
-                            kmz_type = "atrazine_corn";
-                            break;
-                        case 2:
-                            kmz_type = "chlorpyrifos_corn";
-                            break;
-                        case 3:
-                            kmz_type = "chlorpyrifos_soybeans";
-                            break;
-                        case 4:
-                            kmz_type = "fipronil_corn";
-                            break;
-                        case 5:
-                            kmz_type = "metolachlor_corn";
-                            break;
-                        default:
-                            kmz_type = "atrazine_corn";
-                    }
+                    kmz_type = scenario;
                     console.log(kmz_type);
 
                     stat = stat_selection.options[stat_selection.selectedIndex].value;
@@ -75,6 +57,10 @@
                     var sect3 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/" + kmz_type + "_" + stat + "_sect3.kmz";
                     huc12_sect3 = new google.maps.KmlLayer(sect3);                    
                     huc12_sect3.setMap(map);
+
+                    // Update charts
+                    document.getElementById("stat_chart1").src="/static/images/sam/"+scenario+"/"+stat+".png";
+                    document.getElementById("stat_chart2").src="/static/images/sam/"+scenario+"/"+stat+"_hist.png";
 
                 }
 
@@ -105,4 +91,3 @@
                 #map #iwsw p { font-weight:normal !important;}
             </style>
             <!-- end CSS -->
-    </div>

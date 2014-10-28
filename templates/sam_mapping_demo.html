@@ -38,7 +38,7 @@
 
                 function toggle(scenario) {
                     var kmz_type, stat = "exceed_tox_avg_dur";
-
+                    // Clear map layers
                     huc12_sect1.setMap(null);
                     huc12_sect2.setMap(null);
                     huc12_sect3.setMap(null);
@@ -65,9 +65,8 @@
                     console.log(kmz_type);
 
                     stat = stat_selection.options[stat_selection.selectedIndex].value;
-
+                    // Set map layers
                     var sect1 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/" + kmz_type + "_" + stat + "_sect1.kmz";
-                    console.log(sect1);
                     huc12_sect1 = new google.maps.KmlLayer(sect1);
                     huc12_sect1.setMap(map);
                     var sect2 = "https://s3.amazonaws.com/sammapping/OhioRiverValley/huc12/" + kmz_type + "_" + stat + "_sect2.kmz";
@@ -81,7 +80,7 @@
 
                 function initialize() {
                     var mapDiv = document.getElementById('map');
-                    // // Crating a MapOptions object with properties
+                    // Creating a MapOptions object with properties
                     var options = {
                         center: new google.maps.LatLng(37.09, -95.71),
                         zoom: 4,

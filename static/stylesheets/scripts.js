@@ -514,9 +514,9 @@ $( document ).ready(function() {
 	});
 
 	// Remove query string from 'pathSlice' var
-	if (pathPage && $.inArray("?", pathPage)) {
-		pathPage = pathPage.split('.html?')[0];
-	}
+	// if (pathPage && jQuery.inArray("?", pathPage)) {
+	// 	pathPage = pathPage.split('.html?')[0];
+	// }
 
 });
 

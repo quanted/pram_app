@@ -81,7 +81,13 @@
                 }
 
                 google.maps.event.addDomListener(window, 'load', initialize);
-                stat_selection.addEventListener("change", function(){toggle(scenario)}, false);
+                // IE8 compatibility
+                if (stat_selection.addEventListener) {
+                    stat_selection.addEventListener("change", function(){toggle(scenario)}, false);
+                }
+                else {
+                    stat_selection.attachEvent("onchange", function(){toggle(scenario)});
+                }
 
             </script>
             <!-- CSS to control the layout of the map -->

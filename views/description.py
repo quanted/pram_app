@@ -4,6 +4,7 @@ import importlib
 import linksLeft
 import os
 
+
 def descriptionPage(request, model='none', header='none'):
     viewmodule = importlib.import_module('.views', 'models.'+model)
     header = viewmodule.header

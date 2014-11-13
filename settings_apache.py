@@ -41,10 +41,15 @@ DEBUG = True
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = [
-    '134.67.114.1'
+    '134.67.114.1',
+#    'intranet.epa.gov/ubertool'
     #'ord-uber-vm001',
     #'ord-uber-vm001.'
 ]
+
+ADMINS = (
+    ('Jon F.', 'funkswing@gmail.com')
+)
 
 APPEND_SLASH = True
 
@@ -86,7 +91,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'urls'
 
-#WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = 'wsgi_apache.application'
 
 
 # Database

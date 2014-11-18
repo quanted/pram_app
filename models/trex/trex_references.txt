@@ -11,7 +11,8 @@ Specific EPA guidance and the Microsoft Excel version of the model on the T-Rex 
 Current github source code:
 </p>
 <ul class="bullet">
-  <li><a href="https://github.com/puruckertom/ubertool_src/tree/master/trex">ubertool_src on GitHub</a></li>
+  <li><a href="https://github.com/puruckertom/ubertool_eco/tree/master/models/trex">ubertool_src on GitHub (front end)</a></li>
+  <li><a href="https://github.com/puruckertom/ubertool_ecorest/tree/master/REST_UBER/trex2_rest">ubertool_src on GitHub (back end model)</a></li>
 </ul>
 
 <p>

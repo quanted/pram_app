@@ -100,28 +100,6 @@
     color: White;
     border: solid 1px #5f9000;
 }
-/*blue*/.blue
-{
-    background-color: #356697;
-}
-.blue.normal
-{
-    background-color: #356697;
-    color: #f7f9f4;
-    border: solid 1px #406f97;
-}
-.blue.active
-{
-    background-color: #344C00;
-    color: #f7f9f4;
-    border: solid 1px #406f97;
-}
-.pager.blue .btn
-{
-    background-color: #356697;
-    color: #f7f9f4;
-    border: solid 1px #406f97;
-}
 /*black*/.black
 {
     background-color: #202020;

@@ -1306,4 +1306,28 @@ table.ui-datepicker-calendar {
   min-width: 22px;
 }
 
+/* History Pagination */
+.smartpagination
+{
+    background-color: #79973F;
+}
+.smartpagination.normal
+{
+    background-color: #588500;
+    color: White;
+    border: solid 1px #5f9000;
+}
+.smartpagination.active
+{
+    background-color: #344C00;
+    color: #F8EB00;
+    border: solid 1px #5f9000;
+}
+.pager.smartpagination .btn
+{
+    background-color: #588500;
+    color: White;
+    border: solid 1px #5f9000;
+}
+
 /* Testing */

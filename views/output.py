@@ -3,10 +3,33 @@ from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 import importlib
 import linksLeft
-import logging
 import os
 
+def outputPageHTML(header, model, tables_html):
+    """Generates HTML to fill '.articles_output' div on output page"""
+
+    # Render output page view
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' Output'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'output'})
+    html = html + linksLeft.linksLeft()
+    html = html + render_to_string('04uberoutput_start.html', {
+            'model_attributes': header+' Output'})
+    html = html + tables_html
+    html = html + render_to_string('export.html', {})
+    html = html + render_to_string('04uberoutput_end.html', {'model':model})
+    html = html + render_to_string('06uberfooter.html', {'links': ''})
+
+    return html
+
 def outputPageView(request, model='none', header=''):
+    """
+    Django view render method for model output pages
+    """
 
     outputmodule = importlib.import_module('.'+model+'_output', 'models.'+model)
     tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
@@ -32,24 +55,22 @@ def outputPageView(request, model='none', header=''):
             modelOutputHTML = "table_all() Returned Wrong Type"
 
     # Render output page view
-    html = render_to_string('01uberheader.html', {
-            'site_skin' : os.environ['SITE_SKIN'],
-            'title': header+' Output'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
-            'site_skin' : os.environ['SITE_SKIN'],
-            'model':model,
-            'page':'output'})
-    html = html + linksLeft.linksLeft()
-    html = html + render_to_string('04uberoutput_start.html', {
-            'model_attributes': header+' Output'})
-    html = html + modelOutputHTML
-    html = html + render_to_string('export.html', {})
-    html = html + render_to_string('04uberoutput_end.html', {'model':model})
-    html = html + render_to_string('06uberfooter.html', {'links': ''})
+    html = outputPageHTML(header, model, modelOutputHTML)
+
+    # Call method to save model object to Mongo DB
+    saveToMongoDB(model_obj)
     
-    # Handle Trex, which is not objectified yet
-    if model != 'trex':
-        rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
+    def saveToMongoDB(model_obj):
+        """
+        Method to check if model run is to be saved to MongoDB.  If true,
+        the fest_func meothd to save the model object instance is called
+        """
+        # Handle Trex, which is not objectified yet; therefore, not saved in MongoDB
+        if model != 'trex':
+            # save_dic() rest_func method saves HTML & model object
+            # rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
+            # save_model_object() rest_func method saves only the model object
+            rest_funcs.save_model_object(model_obj.__dict__, model, "single")
 
     response = HttpResponse()
     response.write(html)
@@ -57,6 +78,11 @@ def outputPageView(request, model='none', header=''):
 
 @require_POST
 def outputPage(request, model='none', header=''):
+    """
+    Django HTTP POST handler for output page.  Receives form data and
+    validates it.  If valid it calls method to render the output page
+    view.  If invalid, it returns the error to the model input page.
+    """
 
     viewmodule = importlib.import_module('.views', 'models.'+model)
 

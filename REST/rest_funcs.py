@@ -49,6 +49,17 @@ def save_dic(output_html, model_object_dict, model_name, run_type):
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
     except:
         pass
+
+###########################function to save a single run to MongoDB################################ 
+def save_model_object(model_object_dict, model_name, run_type):
+    all_dic = {"model_name":model_name, "_id":model_object_dict['jid'], "run_type":run_type, "model_object_dict":model_object_dict}
+    data = json.dumps(all_dic, cls=NumPyArangeEncoder)
+    url = url_part1 + '/save_history_test'
+    try:
+        # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)
+        response = requests.post(url, data=data, headers=http_headers, timeout=60)   
+    except:
+        pass
  
 ###########################function to save batch runs to MongoDB################################ 
 def batch_save_dic(output_html, model_object_dict, model_name, run_type, jid_batch, linksleft=''):
@@ -98,6 +109,25 @@ def get_output_html(jid, model_name):
     else:
         html_output =""
     return html_output
+
+"""
+    Model Object Testing
+"""
+def get_model_object(jid, model_name):
+    """Retrieves JSON from MongoDB representing model (Python) object and returns it as Python dictionary"""
+    all_dic = {"jid":jid, "model_name":model_name}
+    data = json.dumps(all_dic)
+    url = url_part1 + '/get_model_object'
+    try:
+        # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
+        response = requests.post(url, data=data, headers=http_headers, timeout=60)   
+    except:
+        pass
+    if response:
+        model_object = json.loads(response.content)['model_object']
+    else:
+        model_object =""
+    return model_object
 
 ###########################function to retrive html from MongoDB################################ 
 def create_batchoutput_html(jid, model_name):

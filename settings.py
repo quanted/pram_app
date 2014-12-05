@@ -21,8 +21,8 @@ os.environ.update({
     'UBERTOOL_BATCH_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com/',
     'UBERTOOL_MONGO_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
     'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',   
-    #'UBERTOOL_REST_SERVER': 'http://localhost:80',                         # Local REST server
-    'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',                      # Tao's EC2 REST server 
+    'UBERTOOL_REST_SERVER': 'http://localhost:80',                         # Local REST server
+    #'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',                      # Tao's EC2 REST server 
     #'UBERTOOL_REST_SERVER': 'http://54.210.118.56'                         # EB Pilot REST server
     # 'UBERTOOL_REST_SERVER': 'http://'                           # New EB Pilot REST server
     'PROJECT_PATH': PROJECT_ROOT,
@@ -152,3 +152,11 @@ STATIC_URL = '/static/'
 DOCS_ROOT = os.path.join(PROJECT_ROOT, 'docs', '_build', 'html')
 
 DOCS_ACCESS = 'public'
+
+# Log to console in Debug mode
+if DEBUG:
+    import logging
+    logging.basicConfig(
+        level = logging.DEBUG,
+        format = '%(asctime)s %(levelname)s %(message)s',
+    )

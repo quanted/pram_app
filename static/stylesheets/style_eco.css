@@ -1325,5 +1325,13 @@ table.ui-datepicker-calendar {
     color: White;
     border: solid 1px #5f9000;
 }
+#ajax-panel {
+  height: 436px;
+}
+#ajax_loader{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* Testing */

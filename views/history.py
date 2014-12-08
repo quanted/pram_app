@@ -7,7 +7,8 @@ import os
 
 def historyPage(request, model='none', header='none'):
     """
-    Django view render method for model's history page
+    Django view render method for model's history page, showing 
+    all of the user's previously saved model runs.
     """
 
     viewmodule = importlib.import_module('.views', 'models.'+model)
@@ -23,14 +24,14 @@ def historyPage(request, model='none', header='none'):
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberalgorithm_start.html', {
             'model_attributes': header+' User History'})
-    html = html + render_to_string('history_pagination.html', {})   
+    html = html + render_to_string('history_query.html', {'model' : model})
 
-    """
-    rest_func method call to return user's model runs for the current model
-    rest_funcs.user_hist('user_id', 'model_name')
-    """
-    hist_obj = rest_funcs.user_hist('admin', model)
-    html = html + table_all(hist_obj)
+    # """
+    # rest_func method call to return user's model runs for the current model
+    # rest_funcs.user_hist('user_id', 'model_name')
+    # """
+    # hist_obj = rest_funcs.user_hist('admin', model)
+    # html = html + table_all(hist_obj)
 
     html = html + render_to_string('04ubertext_end.html', {})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
@@ -41,6 +42,7 @@ def historyPage(request, model='none', header='none'):
 
 def historyPageRevist(request, model='none', header='none'):
     """
+    Renders the model output page for the specified previously-saved model run. 
     Queries MongoDB and returns model object formatted by model's 'tables' module
     """
     
@@ -169,7 +171,27 @@ def historyOutputTableRedraw(model, model_obj):
 
 #######################################################################################
 ########################## Generate History Page Tables ###############################
-#######################################################################################
+################################ From AJAX Call #######################################
+
+def historyQueryAjax(request, model):
+    """
+    rest_func method call to return user's model runs for the current model
+    rest_funcs.user_hist('user_id', 'model_name')
+    Must return a valid HTML reponse
+    """
+    
+    html = render_to_string('history_pagination.html', {'model' : model})
+
+    """
+    rest_func method call to return user's model runs for the current model
+    rest_funcs.user_hist('user_id', 'model_name')
+    """
+    hist_obj = rest_funcs.user_hist('admin', model)
+    html = html + table_all(hist_obj)
+
+    response = HttpResponse()
+    response.write(html)
+    return response
 
 def table_all(user_hist_obj):
     """HTML Table showing list of model runs"""
@@ -197,7 +219,7 @@ def table_1(user_hist_obj):
         html = html + "<td>%s</td>"%(user_hist_obj.user_id[i])
         html = html + "<td>%s</td>"%(user_hist_obj.time_id[i])
         html = html + '''<td style="display:none"><input name="jid" id="jid" value=%s type="text"></td>'''%(user_hist_obj.jid[i])
-        html = html + '''<td>%s</td>'''%(user_hist_obj.run_type[i])
+        html = html + '''<td>%s</td>'''%(user_hist_obj.run_type[i].upper())
         html = html + '''<td><input type="submit" value="View" Class="input_button_%s" ></td></tr>'''%(i+1)
         html = html + "</form>"
 

@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import importlib
 import linksLeft
 import os
+import logging
 
 def outputPageHTML(header, model, tables_html):
     """Generates HTML to fill '.articles_output' div on output page"""
@@ -56,9 +57,6 @@ def outputPageView(request, model='none', header=''):
 
     # Render output page view
     html = outputPageHTML(header, model, modelOutputHTML)
-
-    # Call method to save model object to Mongo DB
-    saveToMongoDB(model_obj)
     
     def saveToMongoDB(model_obj):
         """
@@ -71,6 +69,9 @@ def outputPageView(request, model='none', header=''):
             # rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
             # save_model_object() rest_func method saves only the model object
             rest_funcs.save_model_object(model_obj.__dict__, model, "single")
+
+    # Call method to save model object to Mongo DB
+    saveToMongoDB(model_obj)
 
     response = HttpResponse()
     response.write(html)

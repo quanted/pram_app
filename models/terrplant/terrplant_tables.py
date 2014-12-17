@@ -98,7 +98,7 @@ def gett1dataqaqc(terrplant_obj):
 def gett2data(terrplant_obj):
     data = { 
         "Parameter": ['Incorporation', 'Application Rate', 'Drift Fraction', 'Runoff Fraction',],
-        "Value": [terrplant_obj.I, terrplant_obj.A, terrplant_obj.D, terrplant_obj.R,],
+        "Value": [terrplant_obj.incorporation_depth, terrplant_obj.application_rate, terrplant_obj.drift_fraction, terrplant_obj.runoff_fraction,],
         "Units": ['in', 'lbs ai/A', '','', ],
     }
     return data
@@ -122,10 +122,10 @@ def gett3dataqaqc(terrplant_obj):
 def gett4data(terrplant_obj):
     data = { 
         "Plant Type": ['Monocot', 'Dicot',],
-        "EC25": [terrplant_obj.nms,terrplant_obj.nds,],
-        "NOAEC": [terrplant_obj.lms,terrplant_obj.lds,],
-        "EC25": [terrplant_obj.nmv,terrplant_obj.ndv,],
-        "NOAEC":[terrplant_obj.lmv,terrplant_obj.ldv,],
+        "EC25": [terrplant_obj.EC25_for_nonlisted_seedling_emergence_monocot,terrplant_obj.NOAEC_for_listed_seedling_emergence_monocot,],
+        "NOAEC": [terrplant_obj.EC25_for_nonlisted_seedling_emergence_dicot,terrplant_obj.NOAEC_for_listed_seedling_emergence_dicot,],
+        "EC25": [terrplant_obj.EC25_for_nonlisted_vegetative_vigor_monocot,terrplant_obj.NOAEC_for_listed_vegetative_vigor_monocot,],
+        "NOAEC":[terrplant_obj.EC25_for_nonlisted_vegetative_vigor_dicot,terrplant_obj.NOAEC_for_listed_vegetative_vigor_dicot,],
     }
     return data
 
@@ -163,19 +163,19 @@ def gett5dataqaqc(terrplant_obj):
     }
     return data
 
-def gettsumdata(A, I, R, D, nms, lms, nds, lds):
+def gettsumdata(application_rate, incorporation_depth, runoff_fraction, drift_fraction, EC25_for_nonlisted_seedling_emergence_monocot, EC25_for_nonlisted_seedling_emergence_dicot, NOAEC_for_listed_seedling_emergence_monocot, NOAEC_for_listed_seedling_emergence_dicot):
     data = { 
         "Parameter": ['Incorporation', 'Application Rate', 'Drift Fraction', 'Runoff Fraction', 
                     'Noaec for listed seedling emergence monocot','Ec25 for nonlisted seedling emergence monocot',
                     'Noaec for listed seedling emergence dicot','Noaec for listed seedling emergence dicot'],
-        "Mean": ['%.2e' % numpy.mean(A),'%.2e' % numpy.mean(I),'%.2e' % numpy.mean(R), '%.2e' % numpy.mean(D), 
-                 '%.2e' % numpy.mean(nms), '%.2e' % numpy.mean(lms), '%.2e' % numpy.mean(nds), '%.2e' % numpy.mean(lds),],
-        "Std": ['%.2e' % numpy.std(A),'%.2e' % numpy.std(I),'%.2e' % numpy.std(R), '%.2e' % numpy.std(D), 
-                '%.2e' % numpy.std(nms), '%.2e' % numpy.std(lms), '%.2e' % numpy.std(nds), '%.2e' % numpy.std(lds),],
-        "Min": ['%.2e' % numpy.min(A),'%.2e' % numpy.min(I),'%.2e' % numpy.min(R), '%.2e' % numpy.min(D), 
-                '%.2e' % numpy.min(nms), '%.2e' % numpy.min(lms), '%.2e' % numpy.min(nds), '%.2e' % numpy.min(lds),],
-         "Max": ['%.2e' % numpy.max(A),'%.2e' % numpy.max(I),'%.2e' % numpy.max(R), '%.2e' % numpy.max(D), 
-                '%.2e' % numpy.max(nms), '%.2e' % numpy.max(lms), '%.2e' % numpy.max(nds), '%.2e' % numpy.max(lds),],
+        "Mean": ['%.2e' % numpy.mean(application_rate),'%.2e' % numpy.mean(incorporation_depth),'%.2e' % numpy.mean(runoff_fraction), '%.2e' % numpy.mean(drift_fraction), 
+                 '%.2e' % numpy.mean(EC25_for_nonlisted_seedling_emergence_monocot), '%.2e' % numpy.mean(EC25_for_nonlisted_seedling_emergence_dicot), '%.2e' % numpy.mean(NOAEC_for_listed_seedling_emergence_monocot), '%.2e' % numpy.mean(NOAEC_for_listed_seedling_emergence_dicot),],
+        "Std": ['%.2e' % numpy.std(application_rate),'%.2e' % numpy.std(incorporation_depth),'%.2e' % numpy.std(runoff_fraction), '%.2e' % numpy.std(drift_fraction), 
+                '%.2e' % numpy.std(EC25_for_nonlisted_seedling_emergence_monocot), '%.2e' % numpy.std(EC25_for_nonlisted_seedling_emergence_dicot), '%.2e' % numpy.std(NOAEC_for_listed_seedling_emergence_monocot), '%.2e' % numpy.std(NOAEC_for_listed_seedling_emergence_dicot),],
+        "Min": ['%.2e' % numpy.min(application_rate),'%.2e' % numpy.min(incorporation_depth),'%.2e' % numpy.min(runoff_fraction), '%.2e' % numpy.min(drift_fraction), 
+                '%.2e' % numpy.min(EC25_for_nonlisted_seedling_emergence_monocot), '%.2e' % numpy.min(EC25_for_nonlisted_seedling_emergence_dicot), '%.2e' % numpy.min(NOAEC_for_listed_seedling_emergence_monocot), '%.2e' % numpy.min(NOAEC_for_listed_seedling_emergence_dicot),],
+         "Max": ['%.2e' % numpy.max(application_rate),'%.2e' % numpy.max(incorporation_depth),'%.2e' % numpy.max(runoff_fraction), '%.2e' % numpy.max(drift_fraction), 
+                '%.2e' % numpy.max(EC25_for_nonlisted_seedling_emergence_monocot), '%.2e' % numpy.max(EC25_for_nonlisted_seedling_emergence_dicot), '%.2e' % numpy.max(NOAEC_for_listed_seedling_emergence_monocot), '%.2e' % numpy.max(NOAEC_for_listed_seedling_emergence_dicot),],
         "Unit": ['', '', '', '', '','', '', '',],
     }
     return data
@@ -257,13 +257,13 @@ def table_all_qaqc(terrplant_obj):
     html_all = html_all + table_5_qaqc(terrplant_obj)
     return html_all
 
-def table_all_sum(sumheadings, tmpl, A, I, R, D, nms, lms, nds, lds, 
+def table_all_sum(sumheadings, tmpl, application_rate, incorporation_depth, runoff_fraction, drift_fraction, EC25_for_nonlisted_seedling_emergence_monocot, EC25_for_nonlisted_seedling_emergence_dicot, NOAEC_for_listed_seedling_emergence_monocot, NOAEC_for_listed_seedling_emergence_dicot, 
                     rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
                     nmsRQdry_out, nmsRQsemi_out, nmsRQspray_out, 
                     lmsRQdry_out, lmsRQsemi_out, lmsRQspray_out, 
                     ndsRQdry_out, ndsRQsemi_out, ndsRQspray_out, 
                     ldsRQdry_out, ldsRQsemi_out, ldsRQspray_out):
-    html_all_sum = table_sum_input(sumheadings, tmpl, A, I, R, D, nms, lms, nds, lds)
+    html_all_sum = table_sum_input(sumheadings, tmpl, application_rate, incorporation_depth, runoff_fraction, drift_fraction, EC25_for_nonlisted_seedling_emergence_monocot, EC25_for_nonlisted_seedling_emergence_dicot, NOAEC_for_listed_seedling_emergence_monocot, NOAEC_for_listed_seedling_emergence_dicot)
     html_all_sum += table_sum_output(sumheadings, tmpl, rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
                     nmsRQdry_out, nmsRQsemi_out, nmsRQspray_out, 
                     lmsRQdry_out, lmsRQsemi_out, lmsRQspray_out, 
@@ -271,7 +271,7 @@ def table_all_sum(sumheadings, tmpl, A, I, R, D, nms, lms, nds, lds,
                     ldsRQdry_out, ldsRQsemi_out, ldsRQspray_out)
     return html_all_sum
 
-def table_sum_input(sumheadings, tmpl, A, I, R, D, nms, lms, nds, lds):
+def table_sum_input(sumheadings, tmpl, application_rate, incorporation_depth, runoff_fraction, drift_fraction, EC25_for_nonlisted_seedling_emergence_monocot, EC25_for_nonlisted_seedling_emergence_dicot, NOAEC_for_listed_seedling_emergence_monocot, NOAEC_for_listed_seedling_emergence_dicot):
         #pre-table sum_input
         html = """
         <H3 class="out_1 collapsible" id="section1"><span></span>Summary Statistics</H3>
@@ -280,7 +280,7 @@ def table_sum_input(sumheadings, tmpl, A, I, R, D, nms, lms, nds, lds):
                 <div class="out_ container_output">
         """
         #table sum_input
-        tsuminputdata = gettsumdata(A, I, R, D, nms, lms, nds, lds)
+        tsuminputdata = gettsumdata(application_rate, incorporation_depth, runoff_fraction, drift_fraction, EC25_for_nonlisted_seedling_emergence_monocot, EC25_for_nonlisted_seedling_emergence_dicot, NOAEC_for_listed_seedling_emergence_monocot, NOAEC_for_listed_seedling_emergence_dicot)
         tsuminputrows = gethtmlrowsfromcols(tsuminputdata, sumheadings)
         html = html + tmpl.render(Context(dict(data=tsuminputrows, headings=sumheadings)))
         html = html + """

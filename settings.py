@@ -42,7 +42,9 @@ TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = [
     '.ubertool.org',
-    '.ubertool.org.'
+    '.ubertool.org.',
+    'localhost',
+    '127.0.0.1'
 ]
 
 APPEND_SLASH = True

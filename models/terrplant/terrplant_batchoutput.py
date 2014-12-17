@@ -15,14 +15,14 @@ from threading import Thread
 import Queue
 from collections import OrderedDict
 
-A=[]
-I=[]
-R=[]
-D=[]
-nms=[]
-lms=[]
-nds=[]
-lds=[]
+application_rate=[]
+incorporation_depth=[]
+runoff_fraction=[]
+drift_fraction=[]
+EC25_for_nonlisted_seedling_emergence_monocot=[]
+EC25_for_nonlisted_seedling_emergence_dicot=[]
+NOAEC_for_listed_seedling_emergence_monocot=[]
+NOAEC_for_listed_seedling_emergence_dicot=[]
 
 ######Pre-defined outputs########
 rundry_out = []
@@ -75,21 +75,21 @@ def html_table(row_inp_all):
             iter = row_inp_temp_all[1]
 
             A_temp=float(row_inp[0])
-            A.append(A_temp)
+            application_rate.append(A_temp)
             I_temp=float(row_inp[1])
-            I.append(I_temp)
+            incorporation_depth.append(I_temp)
             R_temp=float(row_inp[2])
-            R.append(R_temp)
+            runoff_fraction.append(R_temp)
             D_temp=float(row_inp[3])
-            D.append(D_temp)
+            drift_fraction.append(D_temp)
             nms_temp=float(row_inp[4])
-            nms.append(nms_temp)
+            EC25_for_nonlisted_seedling_emergence_monocot.append(nms_temp)
             lms_temp=float(row_inp[5])        
-            lms.append(lms_temp)
+            EC25_for_nonlisted_seedling_emergence_dicot.append(lms_temp)
             nds_temp=float(row_inp[6])   
-            nds.append(nds_temp)
+            NOAEC_for_listed_seedling_emergence_monocot.append(nds_temp)
             lds_temp=float(row_inp[7])
-            lds.append(lds_temp)
+            NOAEC_for_listed_seedling_emergence_dicot.append(lds_temp)
             terr = terrplant_model.terrplant(True,True,"batch",A_temp,I_temp,R_temp,D_temp,nms_temp,lms_temp,nds_temp,lds_temp)
             logger.info("===============")
             rundry_temp=terr.rundry_results
@@ -188,7 +188,7 @@ def loop_html(thefile):
 
     html_timestamp = terrplant_tables.timestamp("", jid_batch[0])
     out_html_all_sort = OrderedDict(sorted(out_html_all.items()))
-    sum_html = terrplant_tables.table_all_sum(terrplant_tables.sumheadings, terrplant_tables.tmpl, A, I, R, D, nms, lms, nds, lds, 
+    sum_html = terrplant_tables.table_all_sum(terrplant_tables.sumheadings, terrplant_tables.tmpl, application_rate, incorporation_depth, runoff_fraction, drift_fraction, EC25_for_nonlisted_seedling_emergence_monocot, EC25_for_nonlisted_seedling_emergence_dicot, NOAEC_for_listed_seedling_emergence_monocot, NOAEC_for_listed_seedling_emergence_dicot, 
                     rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
                     nmsRQdry_out, nmsRQsemi_out, nmsRQspray_out, 
                     lmsRQdry_out, lmsRQsemi_out, lmsRQspray_out, 

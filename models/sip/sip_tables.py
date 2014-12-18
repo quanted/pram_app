@@ -66,7 +66,7 @@ def getdjtemplate():
 def gett1data(sip_obj):
     data = { 
         "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),'Body Weight of Tested Mammal','Body Weight of Assessed Mammal','Mammalian NOAEL',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Body Weight of Assessed Bird','Mineau Scaling Factor','Avian NOAEC',],
-        "Value": [sip_obj.chemical_name,sip_obj.sol,sip_obj.ld50_m,sip_obj.bw_mamm,sip_obj.aw_mamm,sip_obj.noael,sip_obj.ld50_a,sip_obj.bw_bird,sip_obj.aw_bird,sip_obj.mineau,sip_obj.noaec,],
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.bodyweight_assessed_mammal,sip_obj.noael_mammal_water,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.bodyweight_assessed_bird,sip_obj.mineau_scaling_factor,sip_obj.noael_avian_water,],
         "Units": ['','mg/L','mg/kg-bw','g','g','mg/kg-bw','mg/kg-bw','g','g','','mg/kg-diet'],
     }
     return data
@@ -74,7 +74,7 @@ def gett1data(sip_obj):
 def gett1dataqaqc(sip_obj):
     data = { 
         "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),'Body Weight of Tested Mammal','Body Weight of Assessed Mammal','Mammalian NOAEL',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Body Weight of Assessed Bird','Mineau Scaling Factor','Avian NOAEC',],
-        "Value": [sip_obj.chemical_name_expected,sip_obj.sol,sip_obj.ld50_m,sip_obj.bw_mamm,sip_obj.aw_mamm,sip_obj.noael,sip_obj.ld50_a,sip_obj.bw_bird,sip_obj.aw_bird,sip_obj.mineau,sip_obj.noaec,],
+        "Value": [sip_obj.chemical_name_expected,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.bodyweight_assessed_mammal,sip_obj.noael_mammal_water,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.bodyweight_assessed_bird,sip_obj.mineau_scaling_factor,sip_obj.noael_avian_water,],
         "Units": ['','mg/L','mg/kg-bw','g','g','mg/kg-bw','mg/kg-bw','g','g','','mg/kg-diet'],
     }
     return data
@@ -119,27 +119,27 @@ def gett3dataqaqc(sip_obj):
     }
     return data
 
-def gettsumdata(bw_quail,bw_duck,bwb_other,bw_rat,bwm_other,sol,
-                    avian_ld50,mammalian_ld50,aw_bird,mineau,aw_mamm,noaec,noael):
+def gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                    avian_ld50,mammalian_ld50,bodyweight_assessed_bird,mineau_scaling_factor,bodyweight_assessed_mammal,noael_avian_water,noael_mammal_water):
     data = { 
         "Parameter": ['BW Quail', 'BW Duck', 'BW Bird Other', 'BW Rat', 'BW Mammal Other', 'Avian LD50', 'Mammalian LD50', 
                     'Solubility','AW Bird' , 'Mineau', 'AW Mammalian', 'NOAEC','NOAEL'],
-        "Mean": ['%.2e' % numpy.mean(bw_quail),'%.2e' % numpy.mean(bw_duck),'%.2e' % numpy.mean(bwb_other), '%.2e' % numpy.mean(bw_rat), 
-                 '%.2e' % numpy.mean(bwm_other), '%.2e' % numpy.mean(sol), '%.2e' % numpy.mean(avian_ld50), '%.2e' % numpy.mean(mammalian_ld50),
-                 '%.2e' % numpy.mean(aw_bird), '%.2e' % numpy.mean(mineau), '%.2e' % numpy.mean(aw_mamm),
-                 '%.2e' % numpy.mean(noaec), '%.2e' % numpy.mean(noael),],
-        "Std": ['%.2e' % numpy.std(bw_quail),'%.2e' % numpy.std(bw_duck),'%.2e' % numpy.std(bwb_other), '%.2e' % numpy.std(bw_rat), 
-                '%.2e' % numpy.std(bwm_other), '%.2e' % numpy.std(sol), '%.2e' % numpy.std(avian_ld50), '%.2e' % numpy.std(mammalian_ld50),
-                 '%.2e' % numpy.std(aw_bird), '%.2e' % numpy.std(mineau), '%.2e' % numpy.std(aw_mamm),
-                 '%.2e' % numpy.std(noaec),'%.2e' % numpy.std(noael),],
-        "Min": ['%.2e' % numpy.min(bw_quail),'%.2e' % numpy.min(bw_duck),'%.2e' % numpy.min(bwb_other), '%.2e' % numpy.min(bw_rat), 
-                '%.2e' % numpy.min(bwm_other), '%.2e' % numpy.min(sol), '%.2e' % numpy.min(avian_ld50), '%.2e' % numpy.min(mammalian_ld50),
-                 '%.2e' % numpy.min(aw_bird), '%.2e' % numpy.min(mineau), '%.2e' % numpy.min(aw_mamm),
-                 '%.2e' % numpy.min(noaec),'%.2e' % numpy.min(noael),],
-         "Max": ['%.2e' % numpy.max(bw_quail),'%.2e' % numpy.max(bw_duck),'%.2e' % numpy.max(bwb_other), '%.2e' % numpy.max(bw_rat), 
-                '%.2e' % numpy.max(bwm_other), '%.2e' % numpy.max(sol), '%.2e' % numpy.max(avian_ld50), '%.2e' % numpy.max(mammalian_ld50),
-                 '%.2e' % numpy.max(aw_bird), '%.2e' % numpy.max(mineau), '%.2e' % numpy.max(aw_mamm),
-                 '%.2e' % numpy.max(noaec),'%.2e' % numpy.max(noael),],
+        "Mean": ['%.2e' % numpy.mean(bodyweight_quail),'%.2e' % numpy.mean(bodyweight_duck),'%.2e' % numpy.mean(bodyweight_bird_other), '%.2e' % numpy.mean(bodyweight_rat), 
+                 '%.2e' % numpy.mean(bodyweight_tested_mammal_other), '%.2e' % numpy.mean(solubility), '%.2e' % numpy.mean(avian_ld50), '%.2e' % numpy.mean(mammalian_ld50),
+                 '%.2e' % numpy.mean(bodyweight_assessed_bird), '%.2e' % numpy.mean(mineau_scaling_factor), '%.2e' % numpy.mean(bodyweight_assessed_mammal),
+                 '%.2e' % numpy.mean(noael_avian_water), '%.2e' % numpy.mean(noael_mammal_water),],
+        "Std": ['%.2e' % numpy.std(bodyweight_quail),'%.2e' % numpy.std(bodyweight_duck),'%.2e' % numpy.std(bodyweight_bird_other), '%.2e' % numpy.std(bodyweight_rat), 
+                '%.2e' % numpy.std(bodyweight_tested_mammal_other), '%.2e' % numpy.std(solubility), '%.2e' % numpy.std(avian_ld50), '%.2e' % numpy.std(mammalian_ld50),
+                 '%.2e' % numpy.std(bodyweight_assessed_bird), '%.2e' % numpy.std(mineau_scaling_factor), '%.2e' % numpy.std(bodyweight_assessed_mammal),
+                 '%.2e' % numpy.std(noael_avian_water),'%.2e' % numpy.std(noael_mammal_water),],
+        "Min": ['%.2e' % numpy.min(bodyweight_quail),'%.2e' % numpy.min(bodyweight_duck),'%.2e' % numpy.min(bodyweight_bird_other), '%.2e' % numpy.min(bodyweight_rat), 
+                '%.2e' % numpy.min(bodyweight_tested_mammal_other), '%.2e' % numpy.min(solubility), '%.2e' % numpy.min(avian_ld50), '%.2e' % numpy.min(mammalian_ld50),
+                 '%.2e' % numpy.min(bodyweight_assessed_bird), '%.2e' % numpy.min(mineau_scaling_factor), '%.2e' % numpy.min(bodyweight_assessed_mammal),
+                 '%.2e' % numpy.min(noael_avian_water),'%.2e' % numpy.min(noael_mammal_water),],
+         "Max": ['%.2e' % numpy.max(bodyweight_quail),'%.2e' % numpy.max(bodyweight_duck),'%.2e' % numpy.max(bodyweight_bird_other), '%.2e' % numpy.max(bodyweight_rat), 
+                '%.2e' % numpy.max(bodyweight_tested_mammal_other), '%.2e' % numpy.max(solubility), '%.2e' % numpy.max(avian_ld50), '%.2e' % numpy.max(mammalian_ld50),
+                 '%.2e' % numpy.max(bodyweight_assessed_bird), '%.2e' % numpy.max(mineau_scaling_factor), '%.2e' % numpy.max(bodyweight_assessed_mammal),
+                 '%.2e' % numpy.max(noael_avian_water),'%.2e' % numpy.max(noael_mammal_water),],
         "Unit": ['g', 'g', 'g', 'g', 'g','mg/kg-bw', 'mg/kg-bw', 'mg/L','g', '', 'g','mg/kg-diet', 'mg/kg-bw',],
     }
     return data
@@ -257,7 +257,7 @@ def table_2(sip_obj):
         <div class="out_1">
             <H4 class="out_1 collapsible" id="section4"><span></span>Mammalian Results (%s g)</H4>
                 <div class="out_ container_output">
-        """%(sip_obj.aw_mamm)
+        """%(sip_obj.bodyweight_assessed_mammal)
         t2data = gett2data(sip_obj)
         t2rows = gethtmlrowsfromcols(t2data,pvrheadings)
         html = html + tmpl.render(Context(dict(data=t2rows, headings=pvrheadings)))
@@ -273,7 +273,7 @@ def table_2_qaqc(sip_obj):
         <div class="out_1">
             <H4 class="out_1 collapsible" id="section4"><span></span>Mammalian Results (%s g)</H4>
                 <div class="out_ container_output">
-        """%(sip_obj.aw_mamm)
+        """%(sip_obj.bodyweight_assessed_mammal)
         t2data = gett2dataqaqc(sip_obj)
         t2rows = gethtmlrowsfromcols(t2data,pvrheadingsqaqc)
         html = html + tmpl.render(Context(dict(data=t2rows, headings=pvrheadingsqaqc)))
@@ -286,7 +286,7 @@ def table_3(sip_obj):
         html = """
             <H4 class="out_1 collapsible" id="section4"><span></span>Avian Results (%s g)</H4>
                 <div class="out_ container_output">
-        """%(sip_obj.aw_bird)
+        """%(sip_obj.bodyweight_assessed_bird)
         t3data = gett3data(sip_obj)
         t3rows = gethtmlrowsfromcols(t3data,pvrheadings)
         html = html + tmpl.render(Context(dict(data=t3rows, headings=pvrheadings)))
@@ -300,7 +300,7 @@ def table_3_qaqc(sip_obj):
         html = """
             <H4 class="out_1 collapsible" id="section4"><span></span>Avian Results (%s g)</H4>
                 <div class="out_ container_output">
-        """%(sip_obj.aw_bird)
+        """%(sip_obj.bodyweight_assessed_bird)
         t3data = gett3dataqaqc(sip_obj)
         t3rows = gethtmlrowsfromcols(t3data,pvrheadingsqaqc)
         html = html + tmpl.render(Context(dict(data=t3rows, headings=pvrheadingsqaqc)))
@@ -311,26 +311,26 @@ def table_3_qaqc(sip_obj):
         return html
 
 
-def table_all_sum(sumheadings, tmpl, bw_quail,bw_duck,bwb_other,bw_rat,bwm_other,sol,
-                    avian_ld50,mammalian_ld50,aw_bird,mineau,aw_mamm,noaec,noael,
+def table_all_sum(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                    avian_ld50,mammalian_ld50,bodyweight_assessed_bird,mineau_scaling_factor,bodyweight_assessed_mammal,noael_avian_water,noael_mammal_water,
                     dose_bird_out, dose_mamm_out, at_bird_out, 
                     at_mamm_out, det_out, act_out, acute_bird_out, acute_mamm_out, 
                     chron_bird_out, chron_mamm_out):
-    html_all_sum = table_sum_input(sumheadings, tmpl, bw_quail,bw_duck,bwb_other,bw_rat,bwm_other,sol,
-                    avian_ld50,mammalian_ld50,aw_bird,mineau,aw_mamm,noaec,noael)
+    html_all_sum = table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                    avian_ld50,mammalian_ld50,bodyweight_assessed_bird,mineau_scaling_factor,bodyweight_assessed_mammal,noael_avian_water,noael_mammal_water)
     html_all_sum += table_sum_output(sumheadings,tmpl,dose_bird_out,dose_mamm_out,at_bird_out, 
                     at_mamm_out,det_out,act_out,acute_bird_out,acute_mamm_out,chron_bird_out,chron_mamm_out)
     return html_all_sum
 
-def table_sum_input(sumheadings, tmpl, bw_quail,bw_duck,bwb_other,bw_rat,bwm_other,sol,
-                    avian_ld50,mammalian_ld50,aw_bird,mineau,aw_mamm,noaec,noael):
+def table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                    avian_ld50,mammalian_ld50,bodyweight_assessed_bird,mineau_scaling_factor,bodyweight_assessed_mammal,noael_avian_water,noael_mammal_water):
         html = """
         <H3 class="out_1 collapsible" id="section1"><span></span>Summary Statistics</H3>
         <div class="out_">
             <H4 class="out_1 collapsible" id="section4"><span></span>Batch Inputs</H4>
                 <div class="out_ container_output">
         """
-        tsuminputdata = gettsumdata(bw_quail,bw_duck,bwb_other,bw_rat,bwm_other,sol,avian_ld50,mammalian_ld50,aw_bird,mineau,aw_mamm,noaec,noael)
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,bodyweight_assessed_bird,mineau_scaling_factor,bodyweight_assessed_mammal,noael_avian_water,noael_mammal_water)
         tsuminputrows = gethtmlrowsfromcols(tsuminputdata, sumheadings)
         html = html + tmpl.render(Context(dict(data=tsuminputrows, headings=sumheadings)))
         html = html + """

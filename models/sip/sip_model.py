@@ -19,14 +19,14 @@ url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 
 class sip(object):
-    def __init__(self, set_variables=True,run_methods=True,run_type = "single",chemical_name='', species_tested_bird='', species_tested_mammal='', bodyweight_quail=1, bodyweight_duck=1, bodyweight_bird_other=1, bodyweight_rat=1, bodyweight_tested_mammal_other=1, solubility=1, ld50_avian_water=1, ld50_mammal_water=1, bodyweight_assessed_bird=1, mineau_scaling_factor=1, bodyweight_assessed_mammal=1, noaec_d=1, noaec_q=1, noaec_o=1, Species_of_the_bird_NOAEC_CHOICES=1, noael_mammal_water=1,vars_dict=None):
+    def __init__(self, set_variables=True,run_methods=True,run_type = "single",chemical_name='', species_tested_bird='', species_tested_mammal='', bodyweight_quail=1, bodyweight_duck=1, bodyweight_bird_other=1, bodyweight_rat=1, bodyweight_tested_mammal_other=1, solubility=1, ld50_avian_water=1, ld50_mammal_water=1, bodyweight_assessed_bird=1, mineau_scaling_factor=1, bodyweight_assessed_mammal=1, noaec_duck=1, noaec_quail=1, noaec_other=1, Species_of_the_bird_NOAEC_CHOICES=1, noael_mammal_water=1,vars_dict=None):
         self.set_default_variables()
         self.jid = rest_funcs.gen_jid()
         if set_variables:
             if vars_dict != None:
                 self.__dict__.update(vars_dict)
             else:
-                self.set_variables(run_type, chemical_name, species_tested_bird, species_tested_mammal, bodyweight_quail, bodyweight_duck, bodyweight_bird_other, bodyweight_rat, bodyweight_tested_mammal_other, solubility, ld50_avian_water, ld50_mammal_water, bodyweight_assessed_bird, mineau_scaling_factor, bodyweight_assessed_mammal, noaec_d, noaec_q, noaec_o, Species_of_the_bird_NOAEC_CHOICES, noael_mammal_water)
+                self.set_variables(run_type, chemical_name, species_tested_bird, species_tested_mammal, bodyweight_quail, bodyweight_duck, bodyweight_bird_other, bodyweight_rat, bodyweight_tested_mammal_other, solubility, ld50_avian_water, ld50_mammal_water, bodyweight_assessed_bird, mineau_scaling_factor, bodyweight_assessed_mammal, noaec_duck, noaec_quail, noaec_other, Species_of_the_bird_NOAEC_CHOICES, noael_mammal_water)
 
     def set_default_variables(self):
         self.run_type = "single"
@@ -50,7 +50,10 @@ class sip(object):
         self.noael_avian_water = -1
         self.noael_mammal_water = -1
 
-    def set_variables(self, run_type, chemical_name, species_tested_bird, species_tested_mammal, bodyweight_quail, bodyweight_duck, bodyweight_bird_other, bodyweight_rat, bodyweight_tested_mammal_other, solubility, ld50_avian_water, ld50_mammal_water, bodyweight_assessed_bird, mineau_scaling_factor, bodyweight_assessed_mammal, noaec_d, noaec_q, noaec_o, Species_of_the_bird_NOAEC_CHOICES, noael_mammal_water):
+    def set_variables(self, run_type, chemical_name, species_tested_bird, species_tested_mammal, 
+                bodyweight_quail, bodyweight_duck, bodyweight_bird_other, bodyweight_rat, bodyweight_tested_mammal_other, 
+                solubility, ld50_avian_water, ld50_mammal_water, bodyweight_assessed_bird, mineau_scaling_factor, bodyweight_assessed_mammal, 
+                noaec_duck, noaec_quail, noaec_other, Species_of_the_bird_NOAEC_CHOICES, noael_mammal_water):
         self.run_type = run_type
         self.chemical_name = chemical_name
         self.bodyweight_quail = bodyweight_quail
@@ -76,15 +79,15 @@ class sip(object):
         self.bodyweight_assessed_bird = bodyweight_assessed_bird
         self.mineau_scaling_factor = mineau_scaling_factor
         self.bodyweight_assessed_mammal = bodyweight_assessed_mammal
-        self.noaec_d = noaec_d
-        self.noaec_q = noaec_q
-        self.noaec_o = noaec_o
+        self.noaec_duck = noaec_duck
+        self.noaec_quail = noaec_quail
+        self.noaec_other = noaec_other
         if Species_of_the_bird_NOAEC_CHOICES == '1':
-            self.noael_avian_water = self.noaec_q
+            self.noael_avian_water = self.noaec_quail
         elif Species_of_the_bird_NOAEC_CHOICES == '2':
-            self.noael_avian_water = self.noaec_d
+            self.noael_avian_water = self.noaec_duck
         elif Species_of_the_bird_NOAEC_CHOICES == '3':
-            self.noael_avian_water = self.noaec_o
+            self.noael_avian_water = self.noaec_other
         # else:
         #     try:
         #         self.noael_avian_water = noael_avian_water

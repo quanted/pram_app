@@ -68,15 +68,15 @@ class SIPBatchRunner():
         species_tested_bird = None
         if 'species_tested_bird' in config_properties:
             species_tested_bird = config_properties['id_Species_of_the_tested_bird']
-        noaec_d = None
-        if 'noaec_d' in config_properties:
-            noaec_d = config_properties['noaec_d']
-        noaec_q = None
-        if 'noaec_q' in config_properties:
-            noaec_q = config_properties['noaec_q']
-        noaec_o = None
-        if 'noaec_o' in config_properties:
-            noaec_o = config_properties['noaec_o']
-        sip_obj = sip_model.sip(True,True,True,chemical_name, species_tested_bird, species_tested_mammal, bodyweight_quail, bodyweight_duck, bodyweight_bird_other, bodyweight_rat, bodyweight_tested_mammal_other, solubility, ld50_avian_water, ld50_mammal_water, bodyweight_assessed_bird, mineau_scaling_factor, bodyweight_assessed_mammal, noaec_d, noaec_q, noaec_o, Species_of_the_bird_NOAEC_CHOICES, noael_mammal_water)
+        noaec_duck = None
+        if 'noaec_duck' in config_properties:
+            noaec_duck = config_properties['noaec_duck']
+        noaec_quail = None
+        if 'noaec_quail' in config_properties:
+            noaec_quail = config_properties['noaec_quail']
+        noaec_other = None
+        if 'noaec_other' in config_properties:
+            noaec_other = config_properties['noaec_other']
+        sip_obj = sip_model.sip(True,True,True,chemical_name, species_tested_bird, species_tested_mammal, bodyweight_quail, bodyweight_duck, bodyweight_bird_other, bodyweight_rat, bodyweight_tested_mammal_other, solubility, ld50_avian_water, ld50_mammal_water, bodyweight_assessed_bird, mineau_scaling_factor, bodyweight_assessed_mammal, noaec_duck, noaec_quail, noaec_other, Species_of_the_bird_NOAEC_CHOICES, noael_mammal_water)
         results_dict['sip'] = vars(sip_obj)
         return results_dict

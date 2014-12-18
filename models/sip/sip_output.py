@@ -23,9 +23,9 @@ def sipOutputPage(request):
     # tw_mamm = request.POST.get('body_weight_of_the_tested_mammal')
     mineau_scaling_factor = request.POST.get('mineau_scaling_factor')
     noael_mammal_water = request.POST.get('NOAEL')
-    noaec_d = request.POST.get('NOAEC_d')
-    noaec_q = request.POST.get('NOAEC_q')
-    noaec_o = request.POST.get('NOAEC_o')
+    noaec_duck = request.POST.get('NOAEC_d')
+    noaec_quail = request.POST.get('NOAEC_q')
+    noaec_other = request.POST.get('NOAEC_o')
     # noaec_o2 = request.POST.get('NOAEC_o2')
     Species_of_the_bird_NOAEC_CHOICES = request.POST.get('NOAEC_species')
     bodyweight_quail = request.POST.get('bodyweight_quail')
@@ -36,6 +36,6 @@ def sipOutputPage(request):
     species_tested_bird = request.POST.get('species_tested_bird')
     species_tested_mammal = request.POST.get('species_tested_mammal')
 
-    sip_obj = sip_model.sip(True,True,'single',chemical_name, species_tested_bird, species_tested_mammal, bodyweight_quail, bodyweight_duck, bodyweight_bird_other, bodyweight_rat, bodyweight_tested_mammal_other, solubility, ld50_avian_water, ld50_mammal_water, bodyweight_assessed_bird, mineau_scaling_factor, bodyweight_assessed_mammal, noaec_d, noaec_q, noaec_o, Species_of_the_bird_NOAEC_CHOICES, noael_mammal_water)
+    sip_obj = sip_model.sip(True,True,'single',chemical_name, species_tested_bird, species_tested_mammal, bodyweight_quail, bodyweight_duck, bodyweight_bird_other, bodyweight_rat, bodyweight_tested_mammal_other, solubility, ld50_avian_water, ld50_mammal_water, bodyweight_assessed_bird, mineau_scaling_factor, bodyweight_assessed_mammal, noaec_duck, noaec_quail, noaec_other, Species_of_the_bird_NOAEC_CHOICES, noael_mammal_water)
 
     return sip_obj

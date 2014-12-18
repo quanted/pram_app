@@ -29,9 +29,9 @@ solubility=[]
 bodyweight_assessed_bird=[]
 mineau_scaling_factor=[]
 bodyweight_assessed_mammal=[]
-noaec_d=[]
-noaec_q=[]
-noaec_o=[]
+noaec_duck=[]
+noaec_quail=[]
+noaec_other=[]
 noael_mammal_water=[]
 Species_of_the_bird_NOAEC_CHOICES=[]
 noael_avian_water=[]
@@ -85,9 +85,9 @@ def html_table(row_inp_all):
             bodyweight_assessed_bird.append(float(row_inp[11]))
             mineau_scaling_factor.append(float(row_inp[12]))
             bodyweight_assessed_mammal.append(float(row_inp[13]))
-            noaec_d.append(float(row_inp[14]))
-            noaec_q.append(float(row_inp[15]))
-            noaec_o.append(float(row_inp[16]))
+            noaec_duck.append(float(row_inp[14]))
+            noaec_quail.append(float(row_inp[15]))
+            noaec_other.append(float(row_inp[16]))
             noael_mammal_water.append(float(row_inp[17]))
             Species_of_the_bird_NOAEC_CHOICES.append(str(row_inp[18]))
             if Species_of_the_bird_NOAEC_CHOICES[iter] == '1':
@@ -111,15 +111,15 @@ def html_table(row_inp_all):
             logger.info(bodyweight_assessed_bird)
             logger.info(mineau_scaling_factor)
             logger.info(bodyweight_assessed_mammal)
-            logger.info(noaec_d)
-            logger.info(noaec_q)
-            logger.info(noaec_o)
+            logger.info(noaec_duck)
+            logger.info(noaec_quail)
+            logger.info(noaec_other)
             logger.info(noael_mammal_water)
             logger.info(Species_of_the_bird_NOAEC_CHOICES)
 
             sip_obj = sip_model.sip(True,True,'batch',chemical_name[iter], species_tested_bird[iter], species_tested_mammal[iter], bodyweight_quail[iter],
                             bodyweight_duck[iter], bodyweight_bird_other[iter], bodyweight_rat[iter], bodyweight_tested_mammal_other[iter], solubility[iter], avian_ld50[iter],
-                            mammalian_ld50[iter], bodyweight_assessed_bird[iter], mineau_scaling_factor[iter], bodyweight_assessed_mammal[iter], noaec_d[iter], noaec_q[iter], noaec_o[iter], Species_of_the_bird_NOAEC_CHOICES[iter], noael_mammal_water[iter])
+                            mammalian_ld50[iter], bodyweight_assessed_bird[iter], mineau_scaling_factor[iter], bodyweight_assessed_mammal[iter], noaec_duck[iter], noaec_quail[iter], noaec_other[iter], Species_of_the_bird_NOAEC_CHOICES[iter], noael_mammal_water[iter])
 
             dose_bird_out.append(sip_obj.dose_bird_out)
             dose_mamm_out.append(sip_obj.dose_mamm_out)

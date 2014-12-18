@@ -29,9 +29,9 @@ solubility = []
 bodyweight_assessed_bird=[]
 mineau_scaling_factor=[]
 bodyweight_assessed_mammal=[]
-noaec_d=[]
-noaec_q=[]
-noaec_o=[]
+noaec_duck=[]
+noaec_quail=[]
+noaec_other=[]
 noael_mammal_water=[]
 Species_of_the_bird_NOAEC_CHOICES = []
 
@@ -71,9 +71,9 @@ for row in data:
     bodyweight_assessed_bird.append(float(row[11]))
     mineau_scaling_factor.append(float(row[12]))
     bodyweight_assessed_mammal.append(float(row[13]))
-    noaec_d.append(float(row[14]))
-    noaec_q.append(float(row[15]))
-    noaec_o.append(float(row[16]))
+    noaec_duck.append(float(row[14]))
+    noaec_quail.append(float(row[15]))
+    noaec_other.append(float(row[16]))
     noael_mammal_water.append(float(row[17]))
     dose_bird_out.append(float(row[18]))
     dose_mamm_out.append(float(row[19])) 
@@ -261,7 +261,7 @@ def suite(TestCaseName, **kwargs):
     return test_out
 
 
-sip_obj = sip_model.sip(True,True,'qaqc',chemical_name[0], species_tested_bird[0], species_tested_mammal[0], bodyweight_quail[0], bodyweight_duck[0], bodyweight_bird_other[0], bodyweight_rat[0], bodyweight_tested_mammal_other[0], solubility[0], avian_ld50[0], mammalian_ld50[0], bodyweight_assessed_bird[0], mineau_scaling_factor[0], bodyweight_assessed_mammal[0], noaec_d[0], noaec_q[0], noaec_o[0], Species_of_the_bird_NOAEC_CHOICES[0], noael_mammal_water[0])
+sip_obj = sip_model.sip(True,True,'qaqc',chemical_name[0], species_tested_bird[0], species_tested_mammal[0], bodyweight_quail[0], bodyweight_duck[0], bodyweight_bird_other[0], bodyweight_rat[0], bodyweight_tested_mammal_other[0], solubility[0], avian_ld50[0], mammalian_ld50[0], bodyweight_assessed_bird[0], mineau_scaling_factor[0], bodyweight_assessed_mammal[0], noaec_duck[0], noaec_quail[0], noaec_other[0], Species_of_the_bird_NOAEC_CHOICES[0], noael_mammal_water[0])
 sip_obj.set_unit_testing_variables()
 
 sip_obj.chemical_name_expected = chemical_name[0]

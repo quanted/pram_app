@@ -196,7 +196,11 @@ class user_hist(object):
                 self.user_id.append(element['user_id'])
                 self.jid.append(element['_id'])
                 self.time_id.append(datetime.datetime.strptime(element['_id'], '%Y%m%d%H%M%S%f').strftime('%Y-%m-%d %H:%M:%S'))
-                self.run_type.append(element['run_type'])
+                try:
+                    # Gennec doesn't have 'run_type' key
+                    self.run_type.append(element['run_type'])
+                except:
+                    pass
         else:
             self.total_num = 0
 

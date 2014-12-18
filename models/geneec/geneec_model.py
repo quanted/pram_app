@@ -88,11 +88,15 @@ class geneec(object):
         if run_type == "single" or "qaqc":
             # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
             response = requests.post(url=url, data=data, headers=http_headers, timeout=60)
-
-            self.output_val = json.loads(response.content)['result']
-
+            
+            output_val = json.loads(response.content)['result']
+            for key, value in output_val.items():
+                setattr(self, key, value)
 
         if run_type == "batch":
+            """
+                Needs to be updated to object like above (e.g. 'single' run)
+            """
             response = ""
             while response =="":
                 # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   

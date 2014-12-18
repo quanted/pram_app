@@ -21,7 +21,7 @@ class terrplant(object):
             chemical_name='', pc_code='', use='', application_method='', application_form='', solubility=1, 
             vars_dict=None,):
         self.set_default_variables()
-        self.jid = rest_funcs.gen_jid()
+        # self.jid = rest_funcs.gen_jid()
 
         if set_variables:
             if vars_dict != None:

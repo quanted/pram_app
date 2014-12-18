@@ -99,24 +99,30 @@ def pfamOutputPage(request):
                         zero_height_ref,days_zero_full,days_zero_removal,max_frac_cov,mas_tras_cof,leak,ref_d,ben_d,
                         ben_por,dry_bkd,foc_wat,foc_ben,ss,wat_c_doc,chl,dfac,q10,area_app)
     
-    x_date1=json.dumps(pfam_obj.final_res[1][1]) 
-    x_re_v_f = [float(i) for i in pfam_obj.final_res[1][2]]
-    x_re_c_f = [float(i) for i in pfam_obj.final_res[1][3]]
-    setattr(pfam_obj, "x_date1", x_date1)
-    setattr(pfam_obj, "x_re_v_f", x_re_v_f)
-    setattr(pfam_obj, "x_re_c_f", x_re_c_f)
+    """
+        Below was removed because I changed return value from the 
+        REST server to be an object instance instead of a list of
+        output results, which were added to the object here. 
+        I thought it better to pass around an object for consistancy 
+        across all the models
+    """
+    # x_date1=json.dumps(pfam_obj.final_res[1][1]) 
+    # x_re_v_f = [float(i) for i in pfam_obj.final_res[1][2]]
+    # x_re_c_f = [float(i) for i in pfam_obj.final_res[1][3]]
+    # setattr(pfam_obj, "x_date1", x_date1)
+    # setattr(pfam_obj, "x_re_v_f", x_re_v_f)
+    # setattr(pfam_obj, "x_re_c_f", x_re_c_f)
 
-    x_date2=json.dumps(pfam_obj.final_res[1][4]) 
-    x_water = [float(i) for i in pfam_obj.final_res[1][5]]
-    x_water_level = [float(i) for i in pfam_obj.final_res[1][6]]
-    x_ben_tot = [float(i) for i in pfam_obj.final_res[1][7]]
-    x_ben_por = [float(i)*1000000 for i in pfam_obj.final_res[1][8]]
-    setattr(pfam_obj, "x_date2", x_date2)
-    setattr(pfam_obj, "x_water", x_water)
-    setattr(pfam_obj, "x_water_level", x_water_level)
-    setattr(pfam_obj, "x_ben_tot", x_ben_tot)
-    setattr(pfam_obj, "x_ben_por", x_ben_por)
-
+    # x_date2=json.dumps(pfam_obj.final_res[1][4]) 
+    # x_water = [float(i) for i in pfam_obj.final_res[1][5]]
+    # x_water_level = [float(i) for i in pfam_obj.final_res[1][6]]
+    # x_ben_tot = [float(i) for i in pfam_obj.final_res[1][7]]
+    # x_ben_por = [float(i)*1000000 for i in pfam_obj.final_res[1][8]]
+    # setattr(pfam_obj, "x_date2", x_date2)
+    # setattr(pfam_obj, "x_water", x_water)
+    # setattr(pfam_obj, "x_water_level", x_water_level)
+    # setattr(pfam_obj, "x_ben_tot", x_ben_tot)
+    # setattr(pfam_obj, "x_ben_por", x_ben_por)
 
     html = pfam_tables.timestamp(pfam_obj)
     html = html + pfam_tables.table_all(pfam_obj)

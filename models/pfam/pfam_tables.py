@@ -373,7 +373,7 @@ def table_8(pfam_obj):
                 </tr>
               </table>
             </div>
-      """%(pfam_obj.final_res[1][0], pfam_obj.x_date1, pfam_obj.x_re_v_f, pfam_obj.x_re_c_f, 
+      """%(pfam_obj.link, pfam_obj.x_date1, pfam_obj.x_re_v_f, pfam_obj.x_re_c_f, 
            pfam_obj.x_date2, pfam_obj.x_water, pfam_obj.x_water_level, pfam_obj.x_ben_tot, pfam_obj.x_ben_por)  
     return html
 

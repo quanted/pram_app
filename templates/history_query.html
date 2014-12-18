@@ -25,6 +25,17 @@ $(document).ready(function() {
 		}
 	});
 
+	// Add handler to dynamically loaded content & manually fire get request
+	$("#history-results").on('click', 'input', function() { 
+		var id = $(this).attr('class').slice(13);
+		var tds = $('tr#'+id).children('td');
+		var model_name = $(tds).children('input#model_name').val();
+		var jid = $(tds).children('input#jid').val();
+		// console.log(model_name + ", " + jid);
+		// window.open("history/revisit?model_name=" + model_name + "&jid=" + jid);
+		window.open("history/revisit?model_name={{ model }}&jid=" + jid);
+	});
+
 });
 
 </script>

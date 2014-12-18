@@ -51,7 +51,7 @@ class TerrplantInp(forms.Form):
             label='Solubility',
             initial=240,
             validators=[validation.validate_positive])
-    incorporation = forms.ChoiceField(
+    incorporation_depth = forms.ChoiceField(
             choices=SELECT_INCORPORATION, 
             label='Incorporation Depth (in)')    
     application_rate = forms.FloatField(

@@ -11,7 +11,7 @@ def terrplantOutputPage(request):
     import terrplant_model
 
     version_terrplant = request.POST.get('version_terrplant')
-    incorporation_depth = request.POST.get('incorporation')
+    incorporation_depth = request.POST.get('incorporation_depth')
     application_rate = request.POST.get('application_rate')
     drift_fraction = request.POST.get('drift_fraction')
     runoff_fraction = request.POST.get('runoff_fraction')
@@ -32,7 +32,10 @@ def terrplantOutputPage(request):
     # terr.application_form = application_form
     solubility = request.POST.get('solubility')
     # terr.solubility = solubility
-    terr = terrplant_model.terrplant(True,True,version_terrplant,"single",application_rate,incorporation_depth,runoff_fraction,drift_fraction,EC25_for_nonlisted_seedling_emergence_monocot,EC25_for_nonlisted_seedling_emergence_dicot,NOAEC_for_listed_seedling_emergence_monocot,NOAEC_for_listed_seedling_emergence_dicot,chemical_name,pc_code,use,application_method,application_form,solubility)
+    terr = terrplant_model.terrplant(True,True,version_terrplant,"single",application_rate,incorporation_depth,
+        runoff_fraction,drift_fraction,EC25_for_nonlisted_seedling_emergence_monocot,EC25_for_nonlisted_seedling_emergence_dicot,
+        NOAEC_for_listed_seedling_emergence_monocot,NOAEC_for_listed_seedling_emergence_dicot,chemical_name,pc_code,use,
+        application_method,application_form,solubility)
 
     EC25_for_nonlisted_vegetative_vigor_monocot = request.POST.get('EC25_for_nonlisted_vegetative_vigor_monocot')
     terr.EC25_for_nonlisted_vegetative_vigor_monocot = EC25_for_nonlisted_vegetative_vigor_monocot

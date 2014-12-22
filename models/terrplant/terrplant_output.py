@@ -15,10 +15,10 @@ def terrplantOutputPage(request):
     application_rate = request.POST.get('application_rate')
     drift_fraction = request.POST.get('drift_fraction')
     runoff_fraction = request.POST.get('runoff_fraction')
-    EC25_for_nonlisted_seedling_emergence_monocot = request.POST.get('EC25_for_nonlisted_seedling_emergence_monocot')
-    NOAEC_for_listed_seedling_emergence_monocot = request.POST.get('EC25_for_nonlisted_seedling_emergence_dicot')
-    EC25_for_nonlisted_seedling_emergence_dicot = request.POST.get('NOAEC_for_listed_seedling_emergence_monocot')
-    NOAEC_for_listed_seedling_emergence_dicot = request.POST.get('NOAEC_for_listed_seedling_emergence_dicot')
+    ec25_nonlisted_seedling_emergence_monocot = request.POST.get('ec25_nonlisted_seedling_emergence_monocot')
+    noaec_listed_seedling_emergence_monocot = request.POST.get('ec25_nonlisted_seedling_emergence_dicot')
+    ec25_nonlisted_seedling_emergence_dicot = request.POST.get('noaec_listed_seedling_emergence_monocot')
+    noaec_listed_seedling_emergence_dicot = request.POST.get('noaec_listed_seedling_emergence_dicot')
     #fill out terrplant object with yet to be used data
     chemical_name = request.POST.get('chemical_name')
     # terr.chemical_name = chemical_name
@@ -33,17 +33,17 @@ def terrplantOutputPage(request):
     solubility = request.POST.get('solubility')
     # terr.solubility = solubility
     terr = terrplant_model.terrplant(True,True,version_terrplant,"single",application_rate,incorporation_depth,
-        runoff_fraction,drift_fraction,EC25_for_nonlisted_seedling_emergence_monocot,EC25_for_nonlisted_seedling_emergence_dicot,
-        NOAEC_for_listed_seedling_emergence_monocot,NOAEC_for_listed_seedling_emergence_dicot,chemical_name,pc_code,use,
+        runoff_fraction,drift_fraction,ec25_nonlisted_seedling_emergence_monocot,ec25_nonlisted_seedling_emergence_dicot,
+        noaec_listed_seedling_emergence_monocot,noaec_listed_seedling_emergence_dicot,chemical_name,pc_code,use,
         application_method,application_form,solubility)
 
-    EC25_for_nonlisted_vegetative_vigor_monocot = request.POST.get('EC25_for_nonlisted_vegetative_vigor_monocot')
-    terr.EC25_for_nonlisted_vegetative_vigor_monocot = EC25_for_nonlisted_vegetative_vigor_monocot
-    NOAEC_for_listed_vegetative_vigor_monocot = request.POST.get('EC25_for_nonlisted_vegetative_vigor_dicot')
-    terr.NOAEC_for_listed_vegetative_vigor_monocot = NOAEC_for_listed_vegetative_vigor_monocot
-    EC25_for_nonlisted_vegetative_vigor_dicot = request.POST.get('NOAEC_for_listed_vegetative_vigor_monocot')
-    terr.EC25_for_nonlisted_vegetative_vigor_dicot = EC25_for_nonlisted_vegetative_vigor_dicot
-    NOAEC_for_listed_vegetative_vigor_dicot = request.POST.get('NOAEC_for_listed_vegetative_vigor_dicot')
-    terr.NOAEC_for_listed_vegetative_vigor_dicot = NOAEC_for_listed_vegetative_vigor_dicot
+    ec25_nonlisted_vegetative_vigor_monocot = request.POST.get('ec25_nonlisted_vegetative_vigor_monocot')
+    terr.ec25_nonlisted_vegetative_vigor_monocot = ec25_nonlisted_vegetative_vigor_monocot
+    noaec_listed_vegetative_vigor_monocot = request.POST.get('ec25_nonlisted_vegetative_vigor_dicot')
+    terr.noaec_listed_vegetative_vigor_monocot = noaec_listed_vegetative_vigor_monocot
+    ec25_nonlisted_vegetative_vigor_dicot = request.POST.get('noaec_listed_vegetative_vigor_monocot')
+    terr.ec25_nonlisted_vegetative_vigor_dicot = ec25_nonlisted_vegetative_vigor_dicot
+    noaec_listed_vegetative_vigor_dicot = request.POST.get('noaec_listed_vegetative_vigor_dicot')
+    terr.noaec_listed_vegetative_vigor_dicot = noaec_listed_vegetative_vigor_dicot
 
     return terr

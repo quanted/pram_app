@@ -29,18 +29,18 @@ class TerrPlantBatchRunner():
         drift_fraction = None
         if 'spray_drift' in config_properties:
             drift_fraction = config_properties['spray_drift']
-        EC25_for_nonlisted_seedling_emergence_monocot = None
-        if 'EC25_for_nonlisted_seedling_emergence_monocot' in config_properties:
-            EC25_for_nonlisted_seedling_emergence_monocot = config_properties['EC25_for_nonlisted_seedling_emergence_monocot']
-        EC25_for_nonlisted_seedling_emergence_dicot = None
-        if 'NOAEC_for_listed_seedling_emergence_monocot' in config_properties:
-            EC25_for_nonlisted_seedling_emergence_dicot = config_properties['NOAEC_for_listed_seedling_emergence_monocot']
-        NOAEC_for_listed_seedling_emergence_monocot = None
-        if 'EC25_for_nonlisted_seedling_emergence_dicot' in config_properties:
-            NOAEC_for_listed_seedling_emergence_monocot = config_properties['EC25_for_nonlisted_seedling_emergence_dicot']
-        NOAEC_for_listed_seedling_emergence_dicot = None
-        if 'NOAEC_for_listed_vegetative_vigor_dicot' in config_properties:
-            NOAEC_for_listed_seedling_emergence_dicot = config_properties['NOAEC_for_listed_vegetative_vigor_dicot']
-        terr = terrplant_model.terrplant(True,True,application_rate,incorporation_depth,runoff_fraction,drift_fraction,EC25_for_nonlisted_seedling_emergence_monocot,EC25_for_nonlisted_seedling_emergence_dicot,NOAEC_for_listed_seedling_emergence_monocot,NOAEC_for_listed_seedling_emergence_dicot)
+        ec25_nonlisted_seedling_emergence_monocot = None
+        if 'ec25_nonlisted_seedling_emergence_monocot' in config_properties:
+            ec25_nonlisted_seedling_emergence_monocot = config_properties['ec25_nonlisted_seedling_emergence_monocot']
+        ec25_nonlisted_seedling_emergence_dicot = None
+        if 'noaec_listed_seedling_emergence_monocot' in config_properties:
+            ec25_nonlisted_seedling_emergence_dicot = config_properties['noaec_listed_seedling_emergence_monocot']
+        noaec_listed_seedling_emergence_monocot = None
+        if 'ec25_nonlisted_seedling_emergence_dicot' in config_properties:
+            noaec_listed_seedling_emergence_monocot = config_properties['ec25_nonlisted_seedling_emergence_dicot']
+        noaec_listed_seedling_emergence_dicot = None
+        if 'noaec_listed_vegetative_vigor_dicot' in config_properties:
+            noaec_listed_seedling_emergence_dicot = config_properties['noaec_listed_vegetative_vigor_dicot']
+        terr = terrplant_model.terrplant(True,True,application_rate,incorporation_depth,runoff_fraction,drift_fraction,ec25_nonlisted_seedling_emergence_monocot,ec25_nonlisted_seedling_emergence_dicot,noaec_listed_seedling_emergence_monocot,noaec_listed_seedling_emergence_dicot)
         results_dict['terrplant'] = vars(terr)
         return results_dict

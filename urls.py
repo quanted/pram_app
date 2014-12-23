@@ -8,6 +8,7 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('views',
     url(r'^docs/', include('docs.urls')),
     (r'^eco/webice/', include('models.webice.urls')),
+    (r'^eco/test/?$', include('models.test.urls')),
     (r'^$', 'landing.ecoLandingPage'),
     (r'^eco/?$', 'landing.ecoLandingPage'),
     (r'^eco/(?P<model>.*?)/description/?$', 'description.descriptionPage'),

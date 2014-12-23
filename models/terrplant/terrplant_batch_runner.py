@@ -41,6 +41,8 @@ class TerrPlantBatchRunner():
         noaec_listed_seedling_emergence_dicot = None
         if 'noaec_listed_vegetative_vigor_dicot' in config_properties:
             noaec_listed_seedling_emergence_dicot = config_properties['noaec_listed_vegetative_vigor_dicot']
-        terr = terrplant_model.terrplant(True,True,application_rate,incorporation_depth,runoff_fraction,drift_fraction,ec25_nonlisted_seedling_emergence_monocot,ec25_nonlisted_seedling_emergence_dicot,noaec_listed_seedling_emergence_monocot,noaec_listed_seedling_emergence_dicot)
+        terr = terrplant_model.terrplant(True, True, application_rate, incorporation_depth, runoff_fraction, drift_fraction, 
+            ec25_nonlisted_seedling_emergence_monocot, ec25_nonlisted_seedling_emergence_dicot, noaec_listed_seedling_emergence_monocot, 
+            noaec_listed_seedling_emergence_dicot)
         results_dict['terrplant'] = vars(terr)
         return results_dict

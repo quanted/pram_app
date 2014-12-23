@@ -16,25 +16,25 @@ from collections import OrderedDict
 logger = logging.getLogger("SIPBatchOutput")
 
 chemical_name=[]
-b_species=[]
-m_species=[]
-bw_quail=[]
-bw_duck=[]
-bwb_other=[]
-bw_rat=[]
-bwm_other=[]
+species_tested_bird=[]
+species_tested_mammal=[]
+bodyweight_quail=[]
+bodyweight_duck=[]
+bodyweight_bird_other=[]
+bodyweight_rat=[]
+bodyweight_tested_mammal_other=[]
 avian_ld50=[]
 mammalian_ld50=[]
-sol=[]
-aw_bird=[]
-mineau=[]
-aw_mamm=[]
-noaec_d=[]
-noaec_q=[]
-noaec_o=[]
-noael=[]
+solubility=[]
+bodyweight_assessed_bird=[]
+mineau_scaling_factor=[]
+bodyweight_assessed_mammal=[]
+noaec_duck=[]
+noaec_quail=[]
+noaec_other=[]
+noael_mammal_water=[]
 Species_of_the_bird_NOAEC_CHOICES=[]
-noaec=[]
+noael_avian_water=[]
 
 ######Pre-defined outputs########
 dose_bird_out = []
@@ -72,54 +72,54 @@ def html_table(row_inp_all):
 
             logger.info("iteration: " + str(iter))
             chemical_name.append(str(row_inp[0]))
-            b_species.append(float(row_inp[1]))
-            m_species.append(float(row_inp[2]))
-            bw_quail.append(float(row_inp[3]))
-            bw_duck.append(float(row_inp[4]))
-            bwb_other.append(float(row_inp[5])) 
-            bw_rat.append(float(row_inp[6]))
-            bwm_other.append(float(row_inp[7]))
-            sol.append(float(row_inp[8]))
+            species_tested_bird.append(float(row_inp[1]))
+            species_tested_mammal.append(float(row_inp[2]))
+            bodyweight_quail.append(float(row_inp[3]))
+            bodyweight_duck.append(float(row_inp[4]))
+            bodyweight_bird_other.append(float(row_inp[5])) 
+            bodyweight_rat.append(float(row_inp[6]))
+            bodyweight_tested_mammal_other.append(float(row_inp[7]))
+            solubility.append(float(row_inp[8]))
             avian_ld50.append(float(row_inp[9])) 
             mammalian_ld50.append(float(row_inp[10]))
-            aw_bird.append(float(row_inp[11]))
-            mineau.append(float(row_inp[12]))
-            aw_mamm.append(float(row_inp[13]))
-            noaec_d.append(float(row_inp[14]))
-            noaec_q.append(float(row_inp[15]))
-            noaec_o.append(float(row_inp[16]))
-            noael.append(float(row_inp[17]))
+            bodyweight_assessed_bird.append(float(row_inp[11]))
+            mineau_scaling_factor.append(float(row_inp[12]))
+            bodyweight_assessed_mammal.append(float(row_inp[13]))
+            noaec_duck.append(float(row_inp[14]))
+            noaec_quail.append(float(row_inp[15]))
+            noaec_other.append(float(row_inp[16]))
+            noael_mammal_water.append(float(row_inp[17]))
             Species_of_the_bird_NOAEC_CHOICES.append(str(row_inp[18]))
             if Species_of_the_bird_NOAEC_CHOICES[iter] == '1':
-                noaec.append(float(row_inp[14]))
+                noael_avian_water.append(float(row_inp[14]))
             elif Species_of_the_bird_NOAEC_CHOICES[iter] == '2':
-                noaec.append(float(row_inp[15]))
+                noael_avian_water.append(float(row_inp[15]))
             elif Species_of_the_bird_NOAEC_CHOICES[iter] == '3':
-                noaec.append(float(row_inp[16]))
+                noael_avian_water.append(float(row_inp[16]))
 
             logger.info(chemical_name)
-            logger.info(b_species)
-            logger.info(m_species)
-            logger.info(bw_quail)
-            logger.info(bw_duck)
-            logger.info(bwb_other)
-            logger.info(bw_rat)
-            logger.info(bwm_other)
-            logger.info(sol)
+            logger.info(species_tested_bird)
+            logger.info(species_tested_mammal)
+            logger.info(bodyweight_quail)
+            logger.info(bodyweight_duck)
+            logger.info(bodyweight_bird_other)
+            logger.info(bodyweight_rat)
+            logger.info(bodyweight_tested_mammal_other)
+            logger.info(solubility)
             logger.info(avian_ld50)
             logger.info(mammalian_ld50)
-            logger.info(aw_bird)
-            logger.info(mineau)
-            logger.info(aw_mamm)
-            logger.info(noaec_d)
-            logger.info(noaec_q)
-            logger.info(noaec_o)
-            logger.info(noael)
+            logger.info(bodyweight_assessed_bird)
+            logger.info(mineau_scaling_factor)
+            logger.info(bodyweight_assessed_mammal)
+            logger.info(noaec_duck)
+            logger.info(noaec_quail)
+            logger.info(noaec_other)
+            logger.info(noael_mammal_water)
             logger.info(Species_of_the_bird_NOAEC_CHOICES)
 
-            sip_obj = sip_model.sip(True,True,'batch',chemical_name[iter], b_species[iter], m_species[iter], bw_quail[iter],
-                            bw_duck[iter], bwb_other[iter], bw_rat[iter], bwm_other[iter], sol[iter], avian_ld50[iter],
-                            mammalian_ld50[iter], aw_bird[iter], mineau[iter], aw_mamm[iter], noaec_d[iter], noaec_q[iter], noaec_o[iter], Species_of_the_bird_NOAEC_CHOICES[iter], noael[iter])
+            sip_obj = sip_model.sip(True,True,'batch',chemical_name[iter], species_tested_bird[iter], species_tested_mammal[iter], bodyweight_quail[iter],
+                            bodyweight_duck[iter], bodyweight_bird_other[iter], bodyweight_rat[iter], bodyweight_tested_mammal_other[iter], solubility[iter], avian_ld50[iter],
+                            mammalian_ld50[iter], bodyweight_assessed_bird[iter], mineau_scaling_factor[iter], bodyweight_assessed_mammal[iter], noaec_duck[iter], noaec_quail[iter], noaec_other[iter], Species_of_the_bird_NOAEC_CHOICES[iter], noael_mammal_water[iter])
 
             dose_bird_out.append(sip_obj.dose_bird_out)
             dose_mamm_out.append(sip_obj.dose_mamm_out)
@@ -170,8 +170,8 @@ def loop_html(thefile):
 
     html_timestamp = sip_tables.timestamp("", jid_batch[0])
     out_html_all_sort = OrderedDict(sorted(out_html_all.items()))
-    sum_html = sip_tables.table_all_sum(sip_tables.sumheadings, sip_tables.tmpl, bw_quail,bw_duck,bwb_other,bw_rat,bwm_other,sol,
-                    avian_ld50,mammalian_ld50,aw_bird,mineau,aw_mamm,noaec,noael,
+    sum_html = sip_tables.table_all_sum(sip_tables.sumheadings, sip_tables.tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                    avian_ld50,mammalian_ld50,bodyweight_assessed_bird,mineau_scaling_factor,bodyweight_assessed_mammal,noael_avian_water,noael_mammal_water,
                     dose_bird_out, dose_mamm_out, at_bird_out, 
                     at_mamm_out, det_out, act_out, acute_bird_out, acute_mamm_out, 
                     chron_bird_out, chron_mamm_out)

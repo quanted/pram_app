@@ -16,23 +16,23 @@ logger = logging.getLogger('SIPQaqcPage')
 data = csv.reader(open(os.path.join(os.environ['PROJECT_PATH'], 'models','sip','sip_qaqc.csv')))
 
 chemical_name=[]
-b_species=[]
-m_species=[]
-bw_quail=[]
-bw_duck=[]
-bwb_other=[]
-bw_rat=[]
-bwm_other=[]
+species_tested_bird=[]
+species_tested_mammal=[]
+bodyweight_quail=[]
+bodyweight_duck=[]
+bodyweight_bird_other=[]
+bodyweight_rat=[]
+bodyweight_tested_mammal_other=[]
 avian_ld50=[]
 mammalian_ld50=[]
-sol = []
-aw_bird=[]
-mineau=[]
-aw_mamm=[]
-noaec_d=[]
-noaec_q=[]
-noaec_o=[]
-noael=[]
+solubility = []
+bodyweight_assessed_bird=[]
+mineau_scaling_factor=[]
+bodyweight_assessed_mammal=[]
+noaec_duck=[]
+noaec_quail=[]
+noaec_other=[]
+noael_mammal_water=[]
 Species_of_the_bird_NOAEC_CHOICES = []
 
 ######Pre-defined outputs########
@@ -58,23 +58,23 @@ chronconm_out = []
 data.next()
 for row in data:
     chemical_name.append(row[0])
-    b_species.append(row[1])
-    m_species.append(row[2])
-    bw_quail.append(float(row[3]))
-    bw_duck.append(float(row[4]))
-    bwb_other.append(float(row[5])) 
-    bw_rat.append(float(row[6]))
-    bwm_other.append(float(row[7]))
-    sol.append(float(row[8]))
+    species_tested_bird.append(row[1])
+    species_tested_mammal.append(row[2])
+    bodyweight_quail.append(float(row[3]))
+    bodyweight_duck.append(float(row[4]))
+    bodyweight_bird_other.append(float(row[5])) 
+    bodyweight_rat.append(float(row[6]))
+    bodyweight_tested_mammal_other.append(float(row[7]))
+    solubility.append(float(row[8]))
     avian_ld50.append(float(row[9])) 
     mammalian_ld50.append(float(row[10]))
-    aw_bird.append(float(row[11]))
-    mineau.append(float(row[12]))
-    aw_mamm.append(float(row[13]))
-    noaec_d.append(float(row[14]))
-    noaec_q.append(float(row[15]))
-    noaec_o.append(float(row[16]))
-    noael.append(float(row[17]))
+    bodyweight_assessed_bird.append(float(row[11]))
+    mineau_scaling_factor.append(float(row[12]))
+    bodyweight_assessed_mammal.append(float(row[13]))
+    noaec_duck.append(float(row[14]))
+    noaec_quail.append(float(row[15]))
+    noaec_other.append(float(row[16]))
+    noael_mammal_water.append(float(row[17]))
     dose_bird_out.append(float(row[18]))
     dose_mamm_out.append(float(row[19])) 
     at_bird_out.append(float(row[20]))
@@ -261,7 +261,7 @@ def suite(TestCaseName, **kwargs):
     return test_out
 
 
-sip_obj = sip_model.sip(True,True,'qaqc',chemical_name[0], b_species[0], m_species[0], bw_quail[0], bw_duck[0], bwb_other[0], bw_rat[0], bwm_other[0], sol[0], avian_ld50[0], mammalian_ld50[0], aw_bird[0], mineau[0], aw_mamm[0], noaec_d[0], noaec_q[0], noaec_o[0], Species_of_the_bird_NOAEC_CHOICES[0], noael[0])
+sip_obj = sip_model.sip(True,True,'qaqc',chemical_name[0], species_tested_bird[0], species_tested_mammal[0], bodyweight_quail[0], bodyweight_duck[0], bodyweight_bird_other[0], bodyweight_rat[0], bodyweight_tested_mammal_other[0], solubility[0], avian_ld50[0], mammalian_ld50[0], bodyweight_assessed_bird[0], mineau_scaling_factor[0], bodyweight_assessed_mammal[0], noaec_duck[0], noaec_quail[0], noaec_other[0], Species_of_the_bird_NOAEC_CHOICES[0], noael_mammal_water[0])
 sip_obj.set_unit_testing_variables()
 
 sip_obj.chemical_name_expected = chemical_name[0]

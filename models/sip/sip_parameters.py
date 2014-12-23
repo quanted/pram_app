@@ -24,27 +24,27 @@ class SipInp(forms.Form):
             label='Solubility',
             initial=0.128,
             validators=[validation.validate_greaterthan0])
-    ld50_m = forms.FloatField(
+    ld50_mammal_water = forms.FloatField(
             required=True, 
             label=mark_safe('Mammalian LD<sub>50</sub> (mg/kg-bw)'), 
             initial=5000,
             validators=[validation.validate_greaterthan0])
-    m_species = forms.ChoiceField(required=True,
+    species_tested_mammal = forms.ChoiceField(required=True,
             label='Species of the tested mammal',
             choices=Species_of_the_tested_mamm_CHOICES,
             initial='Laboratory rat',
             validators=[validation.validate_choicefield])
-    bw_rat=forms.FloatField(
+    bodyweight_rat=forms.FloatField(
             required=True,
             label='Body weight of the tested mammal (g)',
             initial=350,
             validators=[validation.validate_greaterthan0])
-    bwm_other=forms.FloatField(
+    bodyweight_tested_mammal_other=forms.FloatField(
             required=True,
             label='Body weight of the "other" mammal (g)',
             initial=500,
             validators=[validation.validate_greaterthan0])
-    aw_mamm = forms.FloatField(
+    bodyweight_assessed_mammal = forms.FloatField(
             required=True,
             label='Body weight of assessed mammal (g)',
             initial=1000,
@@ -54,33 +54,33 @@ class SipInp(forms.Form):
             label='Mammalian NOAEL (mg/kg-bw)',
             initial=20,
             validators=[validation.validate_positive])
-    ld50_a = forms.FloatField(
+    ld50_avian_water = forms.FloatField(
             required=True,
             label=mark_safe('Avian LD<sub>50</sub> (mg/kg-bw) of the tested bird'),
             initial=2292,
             validators=[validation.validate_positive])
-    b_species = forms.ChoiceField(
+    species_tested_bird = forms.ChoiceField(
             required=True,
             label=mark_safe('Species of the tested bird with LD<sub>50</sub> data'),
             choices=Species_of_the_tested_bird_CHOICES,
             initial='Mallard duck',
             validators=[validation.validate_choicefield])
-    bw_quail = forms.FloatField(
+    bodyweight_quail = forms.FloatField(
             required=True,
             label='Weight of the tested bird (g)',
             initial= 178,
             validators=[validation.validate_greaterthan0])
-    bw_duck = forms.FloatField(
+    bodyweight_duck = forms.FloatField(
             required=True,
             label='Weight of the tested bird (g)',
             initial=1580,
             validators=[validation.validate_greaterthan0])
-    bwb_other = forms.FloatField(
+    bodyweight_bird_other = forms.FloatField(
             required=True,
             label='Weight of the "other" bird (g)',
             initial= 200,
             validators=[validation.validate_greaterthan0])
-    aw_bird = forms.FloatField(
+    bodyweight_assessed_bird = forms.FloatField(
             required=True,
             label='Body weight of assessed bird (g)',
             initial=20,
@@ -119,5 +119,5 @@ class SipInp(forms.Form):
 #  select_receptor = forms.ChoiceField(required=True, choices=SELECT_RECEPTOR, initial='Both')
 #  body_weight_of_bird = forms.FloatField(required=True, label='Body weight of bird (kg)', initial='4')
 #  body_weight_of_mammal = forms.FloatField(required=True,label='Body weight of mammal (kg)', initial='5')
-#  body_weight_of_the_assessed_bird = forms.FloatField(required=True, label='Body weight of assessed bird (g)', initial='8')
+#  bodyweight_tested_bird = forms.FloatField(required=True, label='Body weight of assessed bird (g)', initial='8')
 #  body_weight_of_the_assessed_mammal = forms.FloatField(required=True, label='Body weight of assessed mammal (kg)', initial='5')

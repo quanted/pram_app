@@ -4,7 +4,7 @@ import importlib
 import linksLeft
 import os
 
-def qaqcPage(request, model='none'):
+def qaqcRun(request, model='none', runID=''):
     viewmodule = importlib.import_module('.views', 'models.'+model)
     qaqcmodule = importlib.import_module('.'+model+'_qaqc', 'models.'+model)
     tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
@@ -31,6 +31,33 @@ def qaqcPage(request, model='none'):
         pass
     html = html + render_to_string('export.html', {})
     html = html + render_to_string('04uberoutput_end.html', {'sub_title': ''})
+    html = html + render_to_string('06uberfooter.html', {'links': ''})
+
+    response = HttpResponse()
+    response.write(html)
+    return response
+
+
+def qaqcPage(request, model='none'):
+    """
+        View to render QAQC page HTML for each model
+    """
+
+    viewmodule = importlib.import_module('.views', 'models.'+model)
+    header = viewmodule.header
+
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' QA/QC'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'qaqc'})
+    html = html + linksLeft.linksLeft()
+    html = html + render_to_string('04uberqaqc_start.html', {
+            'model':model,
+            'model_attributes': header+' QAQC'})
+    
     html = html + render_to_string('06uberfooter.html', {'links': ''})
 
     response = HttpResponse()

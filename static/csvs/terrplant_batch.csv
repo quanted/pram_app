@@ -1,1 +1,67 @@
-A,I,R,D,nms,lms,nds,lds1,1,1,1,1,1,1,12,2,2,2,2,2,2,20.1,0.1,0.1,0.1,0.1,0.1,0.1,0.10.2,0.2,0.2,0.2,0.2,0.2,0.2,0.20.5,0.5,0.5,0.5,0.5,0.5,0.5,0.50.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75
+original property,terrplant property,units,type,valid range,run1,run2,run3,run4,run5
+model,model,--,string,--,terrplant,terrplant,terrplant,terrplant,terrplant
+version_terrplant,version_terrplant,--,string,--,1.2.2,1.2.2,1.2.2,1.2.2,1.2.2
+chemical_name,chemical_name,--,string,--,Alachlor,Alachlor2,Alachlor3,Alachlor4,Alachlor5
+pc_code,pc_code,,string,--,90501,90501,90501,90501,90501
+use,use,--,string,--,Corn,Corn,Corn,Corn,Corn
+application_method,application_method,lbs ai/A,float,"[0,inf)",Ground,Ground,Ground,Ground,Ground
+application_form,application_form,--,string,--,Spray,Spray,Spray,Spray,Spray
+sol,solubility,--,string,--,240,120,99,333,500
+I,incorporation_depth,ppm,float,"[0,inf)",1,1,1,1,1
+A,application_rate,unitless,,"[0, .01, .05]",4,8,12,5,7
+D,drift_fraction,unitless,integer,"[1,2,3,4,5,6]",0.01,0.01,0.01,0.01,0.01
+R,runoff_fraction,unitless,float,"[0.01,0.02, 0.05]",0.05,0.05,0.05,0.05,0.05
+nms,ec25_nonlisted_seedling_emergence_monocot,lbs ai/acre,float,"[0,inf)",0.0067,0.0067,0.0067,0.0067,0.0067
+nds,noaec_listed_seedling_emergence_monocot,lbs ai/acre,float,"[0,inf)",0.034,0.034,0.034,0.034,0.034
+lms,ec25_nonlisted_seedling_emergence_dicot,lbs ai/acre,float,"[0,inf)",0.0023,0.0023,0.0023,0.0023,0.0023
+lds,noaec_listed_seedling_emergence_dicot,lbs ai/acre,float,"[0,inf)",0.019,0.019,0.019,0.019,0.019
+nmv,ec25_nonlisted_vegetative_vigor_monocot,lbs ai/acre,float,"[0,inf)",0.068,0.068,0.068,0.068,0.068
+ndv,noaec_listed_vegetative_vigor_monocot,lbs ai/acre,float,"[0,inf)",1.4,1.4,1.4,1.4,1.4
+lmv,ec25_nonlisted_vegetative_vigor_dicot,lbs ai/acre,float,"[0,inf)",0.037,0.037,0.037,0.037,0.037
+ldv,noaec_listed_vegetative_vigor_dicot,lbs ai/acre,float,"[0,inf)",0.67,0.67,0.67,0.67,0.67
+rundry_results,out_rundry,lbs ai/A,float,"[0,inf)",,,,,
+runsemi_results,out_runsemi,lbs ai/A,float,"[0,inf)",,,,,
+spray_results,out_spray,lbs ai/A,float,"[0,inf)",,,,,
+totaldry_results,out_totaldry,lbs ai/A,float,"[0,inf)",,,,,
+totalsemi_results,out_totalsemi,lbs ai/A,float,"[0,inf)",,,,,
+nmsRQdry_results,out_nms_rq_dry,unitless,float,"[0,inf)",,,,,
+lmsRQdry_results,out_lms_rq_dry,unitless,float,"[0,inf)",,,,,
+ndsRQdry_results,out_nds_rq_dry,unitless,float,"[0,inf)",,,,,
+ldsRQdry_results,out_lds_rq_dry,unitless,float,"[0,inf)",,,,,
+nmsRQsemi_results,out_nms_rq_semi,unitless,float,"[0,inf)",,,,,
+lmsRQsemi_results,out_lms_rq_semi,unitless,float,"[0,inf)",,,,,
+ndsRQsemi_results,out_nds_rq_semi,unitless,float,"[0,inf)",,,,,
+ldsRQsemi_results,out_lds_rq_semi,unitless,float,"[0,inf)",,,,,
+nmsRQspray_results,out_nms_rq_spray,unitless,float,"[0,inf)",,,,,
+lmsRQspray_results,out_lms_rq_spray,unitless,float,"[0,inf)",,,,,
+ndsRQspray_results,out_nds_rq_spray,unitless,float,"[0,inf)",,,,,
+ldsRQspray_results,out_lds_rq_spray,unitless,float,"[0,inf)",,,,,
+LOCnmsdry_results,out_nms_loc_dry,unitless,String,--,,,,,
+LOCnmssemi_results,out_nms_loc_semi,unitless,String,--,,,,,
+LOCnmsout_spray,out_nms_loc_spray,unitless,String,--,,,,,
+LOClmsdry_results,out_lms_loc_dry,unitless,String,--,,,,,
+LOClmssemi_results,out_lms_loc_semi,unitless,String,--,,,,,
+LOClmsout_spray,out_lms_loc_spray,unitless,String,--,,,,,
+LOCndsdry_results,out_nds_loc_dry,unitless,String,--,,,,,
+LOCndssemi_results,out_nds_loc_semi,unitless,String,--,,,,,
+LOCndsout_spray,out_nds_loc_spray,unitless,String,--,,,,,
+LOCldsdry_results,out_lds_loc_dry,unitless,String,--,,,,,
+LOCldssemi_results,out_lds_loc_semi,unitless,String,--,,,,,
+LOCldsout_spray,out_lds_loc_spray,unitless,String,--,,,,,
+rundry_results,exp_rundry,lbs ai/A,float,"[0,inf)",0.2,,,,
+runsemi_results,exp_runsemi,lbs ai/A,float,"[0,inf)",2,,,,
+spray_results,exp_spray,lbs ai/A,float,"[0,inf)",0.04,,,,
+totaldry_results,exp_totaldry,lbs ai/A,float,"[0,inf)",0.24,,,,
+totalsemi_results,exp_totalsemi,lbs ai/A,float,"[0,inf)",2.04,,,,
+nmsRQdry_results,exp_nms_rq_dry,unitless,float,"[0,inf)",35.82,,,,
+lmsRQdry_results,exp_lms_rq_dry,unitless,float,"[0,inf)",104.35,,,,
+ndsRQdry_results,exp_nds_rq_dry,unitless,float,"[0,inf)",7.06,,,,
+ldsRQdry_results,exp_lds_rq_dry,unitless,float,"[0,inf)",12.63,,,,
+nmsRQsemi_results,exp_nms_rq_semi,unitless,float,"[0,inf)",304.48,,,,
+lmsRQsemi_results,exp_lms_rq_semi,unitless,float,"[0,inf)",886.96,,,,
+ndsRQsemi_results,exp_nds_rq_semi,unitless,float,"[0,inf)",60,,,,
+ldsRQsemi_results,exp_lds_rq_semi,unitless,float,"[0,inf)",107.37,,,,
+nmsRQspray_results,exp_nms_rq_spray,unitless,float,"[0,inf)",5.97,,,,
+lmsRQspray_results,exp_lms_rq_spray,unitless,float,"[0,inf)",17.39,,,,
+ndsRQspray_results,exp_nds_rq_spray,unitless,float,"[0,inf)",1.18,,,,
+ldsRQspray_results,exp_lds_rq_spray,unitless,float,"[0,inf)",2.11,,,,

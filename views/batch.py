@@ -5,6 +5,97 @@ import linksLeft
 import os
 import logging
 
+
+def batchRun(request, model):
+    """
+        Sets up and executes model batch run.
+        Returns: ModelBatch object
+    """
+    batchoutputmodule = importlib.import_module('.'+model+'_batchoutput', 'models.'+model)
+
+    batchOutputPageFunc = getattr(batchoutputmodule, model+'BatchOutputPage')  # function name = 'model'BatchOutputPage  (e.g. 'sipBatchOutputPage')
+
+    dataFrame = batchOutputPageFunc(request)
+
+    # Convert DataFrame to JSON string
+    json_inputs = dataFrame.to_json()
+
+    # Add 'run_type' : 'qaqc' to the JSON string
+    json = '{"inputs":' + json_inputs + ',"run_type":"batch"}'
+
+    # logging.info(json)
+
+    # Send JSON to model_handler module
+    from models import model_handler
+    batch_output = model_handler.call_model_server(model, json)
+
+    # logging.info(batch_output.json())
+    # return batch_output
+
+    # ModelList = model_handler.ModelList(batch_output)
+    ModelList = model_handler.generate_model_object_list(batch_output)
+
+    return ModelList
+
+
+def batchOutputPage(request, model='none', header='none'):
+
+    viewmodule = importlib.import_module('.views', 'models.'+model)
+    
+    from REST import rest_funcs
+    header = viewmodule.header
+    linksleft = linksLeft.linksLeft()
+
+    html = render_to_string('04uberbatch_start.html', {
+            'model': model,
+            'model_attributes': header+' Batch Output'})
+
+    
+    if model == 'terrplant':
+        # New way
+        modelBatch_obj = batchRun(request, model)
+
+        tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
+
+        batch_output_html = ""
+        
+        i = 0
+        for model in modelBatch_obj:
+           batch_output_html += tablesmodule.table_all(modelBatch_obj[i])
+           i += 1
+
+        html = html + batch_output_html
+        html = html + render_to_string('export.html', {})
+        html = html + render_to_string('04uberoutput_end.html', {})
+
+    elif model == 'przm':
+        # PRZM way
+        logging.info(batchOutputTuple)
+        html = html + ''
+
+    else:
+        # Old way
+        batchoutputmodule = importlib.import_module('.'+model+'_batchoutput', 'models.'+model)
+        batchOutputPageFunc = getattr(batchoutputmodule, model+'BatchOutputPage')  # function name = 'model'BatchOutputPage  (e.g. 'sipBatchOutputPage')
+        batchOutputTuple = batchOutputPageFunc(request)
+
+        html = html + batchOutputTuple[0]
+        html = html + render_to_string('export.html', {})
+        html = html + render_to_string('04uberoutput_end.html', {})
+
+        model_all = batchOutputTuple[1]
+        jid_batch = batchOutputTuple[2]
+        
+        try:
+            rest_funcs.batch_save_dic(html, [x.__dict__ for x in model_all], model, 'batch', jid_batch[0], linksleft)
+        except:
+            pass
+
+    response = HttpResponse()
+    response.write(html)
+    return response
+
+
 def batchInputPage(request, model='none', header='none'):
     viewmodule = importlib.import_module('.views', 'models.'+model)
     header = viewmodule.header
@@ -26,35 +117,6 @@ def batchInputPage(request, model='none', header='none'):
         html = html + render_to_string('04uberbatchinput_jquery.html', {'model':model, 'header':header})
     html = html + render_to_string('05ubertext_links_right.html', {})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
-
-    response = HttpResponse()
-    response.write(html)
-    return response
-
-def batchOutputPage(request, model='none', header='none'):
-    viewmodule = importlib.import_module('.views', 'models.'+model)
-    batchoutputmodule = importlib.import_module('.'+model+'_batchoutput', 'models.'+model)
-    from REST import rest_funcs
-    header = viewmodule.header
-    linksleft = linksLeft.linksLeft()
-
-    html = render_to_string('04uberbatch_start.html', {
-            'model': model,
-            'model_attributes': header+' Batch Output'})
-
-    batchOutputPageFunc = getattr(batchoutputmodule, model+'BatchOutputPage')  # function name = 'model'BatchOutputPage  (e.g. 'sipBatchOutputPage')
-    batchOutputTuple = batchOutputPageFunc(request)
-    if model == 'przm':
-        logging.info(batchOutputTuple)
-        html = html + ''
-    else:
-        html = html + batchOutputTuple[0]
-        html = html + render_to_string('export.html', {})
-        html = html + render_to_string('04uberoutput_end.html', {})
-
-        model_all = batchOutputTuple[1]
-        jid_batch = batchOutputTuple[2]
-        rest_funcs.batch_save_dic(html, [x.__dict__ for x in model_all], model, 'batch', jid_batch[0], linksleft)
 
     response = HttpResponse()
     response.write(html)

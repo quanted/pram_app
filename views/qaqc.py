@@ -92,8 +92,9 @@ def qaqcRunView(request, model='none', runID=''):
     if model == "terrplant":
         modelQAQC_obj = qaqcRun(model)
 
+        html = html + tablesmodule.timestamp(modelQAQC_obj[0])
+
         qaqc_output_html = ""
-        
         i = 0
         for model in modelQAQC_obj:
            qaqc_output_html += tablesmodule.table_all_qaqc(modelQAQC_obj[i])

@@ -56,8 +56,9 @@ def batchOutputPage(request, model='none', header='none'):
 
         tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
 
+        html = html + tablesmodule.timestamp(modelBatch_obj[0])
+
         batch_output_html = ""
-        
         i = 0
         for model in modelBatch_obj:
            batch_output_html += tablesmodule.table_all(modelBatch_obj[i])

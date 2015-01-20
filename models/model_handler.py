@@ -128,12 +128,12 @@ class ModelQAQC(object):
         # for col in self.pd_obj_out:
         #     setattr(self, self.pd_obj_out[col].name, self.pd_obj_out[col].iloc[0])
 
-        for col in pd_obj_in:
-            setattr(self, pd_obj_in[col].name, pd_obj_in[col][0])
-        for col in pd_obj_out:
-            setattr(self, pd_obj_out[col].name, pd_obj_out[col][0])
-        for col in pd_obj_exp:
-            setattr(self, pd_obj_exp[col].name, pd_obj_exp[col][0])
+        for col in self.pd_obj_in:
+            setattr(self, self.pd_obj_in[col].name, self.pd_obj_in[col].iloc[0])
+        for col in self.pd_obj_out:
+            setattr(self, self.pd_obj_out[col].name, self.pd_obj_out[col].iloc[0])
+        for col in self.pd_obj_exp:
+            setattr(self, self.pd_obj_exp[col].name, self.pd_obj_exp[col].iloc[0])
 
 
 # class ModelList(object):

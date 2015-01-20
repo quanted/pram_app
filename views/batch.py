@@ -16,11 +16,14 @@ def batchRun(request, model):
     batchOutputPageFunc = getattr(batchoutputmodule, model+'BatchOutputPage')  # function name = 'model'BatchOutputPage  (e.g. 'sipBatchOutputPage')
 
     dataFrame = batchOutputPageFunc(request)
+    dataFrame = dataFrame.transpose()
+
+    logging.info(dataFrame)
 
     # Convert DataFrame to JSON string
     json_inputs = dataFrame.to_json()
 
-    # Add 'run_type' : 'qaqc' to the JSON string
+    # Add 'run_type' : 'batch' to the JSON string
     json = '{"inputs":' + json_inputs + ',"run_type":"batch"}'
 
     # logging.info(json)
@@ -29,10 +32,6 @@ def batchRun(request, model):
     from models import model_handler
     batch_output = model_handler.call_model_server(model, json)
 
-    # logging.info(batch_output.json())
-    # return batch_output
-
-    # ModelList = model_handler.ModelList(batch_output)
     ModelList = model_handler.generate_model_object_list(batch_output)
 
     return ModelList

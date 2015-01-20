@@ -28,7 +28,8 @@ def outputPageHTML(header, model, tables_html):
 
 def outputPageView(request, model='none', header=''):
     """
-    Django view render method for model output pages
+    Django view render method for model output pages.  This method is called 
+    by outputPage() method.
     """
 
     # If model is updated to be generic, use generic Model object
@@ -36,6 +37,9 @@ def outputPageView(request, model='none', header=''):
     if model == 'terrplant':
         from models import model_handler
         model_obj = model_handler.modelInputPOSTReceiver(request, model)
+    if model == 'ore':
+        import models.ore.ore_output
+        model_obj = models.ore.ore_output.oreOutputPage(request)
     else:
         # Dynamically import the model output module
         outputmodule = importlib.import_module('.'+model+'_output', 'models.'+model)
@@ -100,6 +104,7 @@ def outputPage(request, model='none', header=''):
     Django HTTP POST handler for output page.  Receives form data and
     validates it.  If valid it calls method to render the output page
     view.  If invalid, it returns the error to the model input page.
+    This method maps to: '/eco/<model>/output'
     """
 
     viewmodule = importlib.import_module('.views', 'models.'+model)

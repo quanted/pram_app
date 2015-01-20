@@ -23,10 +23,10 @@ def qaqcRun(model):
     pd_obj_exp_out = pandas_read_csv[1]
     
     # Rename index column, renumber columns, and transpose the DataFrames
-    pd_obj_inputs.index.name = None
-    pd_obj_inputs.columns = pd_obj_inputs.columns - 1
-    pd_obj_exp_out.index.name = None
-    pd_obj_exp_out.columns = pd_obj_exp_out.columns - 1
+    # pd_obj_inputs.index.name = None
+    # pd_obj_inputs.columns = pd_obj_inputs.columns - 1
+    # pd_obj_exp_out.index.name = None
+    # pd_obj_exp_out.columns = pd_obj_exp_out.columns - 1
     pd_obj_in_out_transpose = pd_obj_inputs.transpose()
     pd_obj_exp_out_transpose = pd_obj_exp_out.transpose()
 
@@ -58,15 +58,18 @@ def qaqcRun(model):
 
     # Send JSON to model_handler module
     from models import model_handler
-    return model_handler.ModelQAQC(model, json)
+    # return model_handler.ModelQAQC(model, json)
+    qaqc_output = model_handler.call_model_server(model, json)
+
+    ModelList = model_handler.generate_model_object_list(qaqc_output)
+
+    return ModelList
 
 
 def qaqcRunView(request, model='none', runID=''):
     """
         View to render the QAQC output page HTML
     """
-
-    modelQAQC_obj = qaqcRun(model)
 
     viewmodule = importlib.import_module('.views', 'models.'+model)
     tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
@@ -84,8 +87,30 @@ def qaqcRunView(request, model='none', runID=''):
     html = html + render_to_string('04uberoutput_start.html', {
             'model':model,
             'model_attributes': header+' QAQC'})
-    html = html + tablesmodule.timestamp(modelQAQC_obj)
-    html = html + tablesmodule.table_all_qaqc(modelQAQC_obj)
+    
+    # Temporary logic to handle Pandas verions, else use old way
+    if model == "terrplant":
+        modelQAQC_obj = qaqcRun(model)
+
+        qaqc_output_html = ""
+        
+        i = 0
+        for model in modelQAQC_obj:
+           qaqc_output_html += tablesmodule.table_all_qaqc(modelQAQC_obj[i])
+           i += 1
+
+        html = html + qaqc_output_html
+
+    else:
+        try:
+            modelQAQC_obj = getattr(qaqcmodule, model+'_obj')      # Calling model object, e.g. 'sip_obj'
+
+            html = html + tablesmodule.timestamp(modelQAQC_obj)
+            html = html + tablesmodule.table_all_qaqc(modelQAQC_obj)
+
+        except:
+            html += ""
+        
     try:
         rest_funcs.save_dic(html, modelQAQC_obj.__dict__, model, 'qaqc')
     except:

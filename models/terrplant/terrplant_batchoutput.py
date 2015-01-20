@@ -4,7 +4,7 @@
 """
 
 from django.views.decorators.http import require_POST
-import terrplant_tables
+# import terrplant_tables
 import logging
 
 # import csv
@@ -201,18 +201,11 @@ def read_batch_csv(csv):
 
     pd_obj = pd.read_csv(csv, index_col=1, header=None, skiprows=1, skipfooter=46, engine='python')
     # logging.info(pd_obj)
-    pd_obj = pd_obj.drop(labels=pd_obj.columns[[0, 1, 2, 3]], axis=1)
+    pd_obj = pd_obj.drop(labels=pd_obj.columns[range(4)], axis=1)
     pd_obj.index.name = None
     pd_obj.columns = pd_obj.columns - 5
 
-    logging.info(pd_obj)
-
-    logging.info("=============================================")
-    pd_obj_transpose = pd_obj.transpose()
-
-    logging.info(pd_obj_transpose)
-
-    return pd_obj_transpose
+    return pd_obj
 
 @require_POST
 def terrplantBatchOutputPage(request):

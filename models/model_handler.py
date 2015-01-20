@@ -21,8 +21,8 @@ url_part1 = os.environ['UBERTOOL_REST_SERVER']
 class Model(object):
     def __init__(self, run_type, jid, pd_obj_in, pd_obj_out):
         """
-            Generic Model object created from Requests Response object 
-            received from the backend model server or JSON.
+            Generic Python 'Model' object created from two Pandas 
+            DataFrame objects, one for inputs and one for outputs.
         """
 
         self.pd_obj_in = pd_obj_in
@@ -31,36 +31,14 @@ class Model(object):
         self.run_type = run_type
 
         # Set object attributes to model inputs and outputs
-        # if self.run_type == 'single':
         """
             Set each column of the DataFrames as object attribute with
             a value equal to the first row's value
         """
-        logging.info("'SINGLE' run")
         for col in self.pd_obj_in:
             setattr(self, self.pd_obj_in[col].name, self.pd_obj_in[col].iloc[0])
         for col in self.pd_obj_out:
             setattr(self, self.pd_obj_out[col].name, self.pd_obj_out[col].iloc[0])
-
-        # elif self.response.json()['run_type'] == 'batch':
-        #     """
-        #         Set each column of the DataFrames as object attribute (ListType) 
-        #         with a value equal to the each row's value
-        #     """
-        #     logging.info("Not a 'SINGLE' run")
-        #     for col in pd_obj:
-        #         logging.info(col)
-        #         # Create empty list for each model output attribute
-        #         # self.
-        #         # setattr(self, pd_obj[col].name, [])
-        #         i = 0
-        #         # logging.info(pd_obj[col].iteritems())
-        #         for row in pd_obj[col]:
-        #             logging.info(row)
-        #             self.pd_obj[col].name.append(row)
-        #             i += 1
-        #     for col in pd_obj_out:
-        #         setattr(self, pd_obj_out[col].name, pd_obj_out[col][0])      
  
 
 def call_model_server(model, args):
@@ -127,54 +105,31 @@ def modelInputPOSTReceiver(request, model):
 
 
 class ModelQAQC(object):
-    def __init__(self, model="", json=""):
+    def __init__(self, run_type, jid, pd_obj_in, pd_obj_out, pd_obj_exp):
         """
-            Generic Model object for QAQC model runs consisting of 
-            the model's input, output, and expected output values 
-            as well as other model run specific information.
-        """
-
-        self.model = model
-        self.json = json
-        self.call_model_server()
-
-    def call_model_server(self):
-        """
-            Sends JSON from "*_qaqc" model module to the backend 
-            server.  The JSON string is formatted such 
-            that it can be converted to a Pandas DataFrame.
+            Generic Python 'Model' object created from two Pandas 
+            DataFrame objects, one for inputs and one for outputs.
         """
 
-        from REST import rest_funcs
-        import json, requests
+        self.pd_obj_in = pd_obj_in
+        self.pd_obj_out = pd_obj_out
+        self.pd_obj_exp = pd_obj_exp
+        self.jid = jid
+        self.run_type = run_type
 
-        self.jid = rest_funcs.gen_jid()
-        # url = url_part1 + '/terrplant/' + self.jid
-        url = url_part1 + '/' + self.model + '/' + self.jid
-        # POST JSON to model server
-        response = requests.post(url, data=self.json, headers=http_headers, timeout=60)
 
-        # logging.info(json.dumps(response.json()['inputs']))
-        # logging.info(json.dumps(response.json()['outputs']))
-        # logging.info(json.dumps(response.json()['exp_out']))
-        # logging.info(json.dumps(response.json()))
-
-        logging.info("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-
-        import pandas as pd
-        # Load 'inputs' key from JSON response to Pandas DataFrame
-        pd_obj = pd.io.json.read_json(json.dumps(response.json()['inputs']))
-        # Load 'outputs' key from JSON response to Pandas DataFrame
-        pd_obj_out = pd.io.json.read_json(json.dumps(response.json()['outputs']))
-        # Load 'exp_out' key from JSON response to Pandas DataFrame
-        pd_obj_exp = pd.io.json.read_json(json.dumps(response.json()['exp_out']))
-
+        # Set object attributes to model inputs and outputs
         """
             Set each column of the DataFrames as object attribute with
             a value equal to the first row's value
         """
-        for col in pd_obj:
-            setattr(self, pd_obj[col].name, pd_obj[col][0])
+        # for col in self.pd_obj_in:
+        #     setattr(self, self.pd_obj_in[col].name, self.pd_obj_in[col].iloc[0])
+        # for col in self.pd_obj_out:
+        #     setattr(self, self.pd_obj_out[col].name, self.pd_obj_out[col].iloc[0])
+
+        for col in pd_obj_in:
+            setattr(self, pd_obj_in[col].name, pd_obj_in[col][0])
         for col in pd_obj_out:
             setattr(self, pd_obj_out[col].name, pd_obj_out[col][0])
         for col in pd_obj_exp:
@@ -203,7 +158,9 @@ class ModelQAQC(object):
 
 def generate_model_object_list(response):
     """
-        Extracts each model run out from batch run.
+        Loops over the input and output DataFrames creating 
+        a Python object 'Model' for each model run and appends
+        the object to a Python list.  Returns the list of objects.
     """
 
     ModelList = []
@@ -217,6 +174,9 @@ def generate_model_object_list(response):
     pd_obj_in = pd.io.json.read_json(json.dumps(response.json()['inputs']))
     # Load 'outputs' key from JSON response to Pandas DataFrame
     pd_obj_out = pd.io.json.read_json(json.dumps(response.json()['outputs']))
+
+    if run_type == "qaqc":
+        pd_obj_exp = pd.io.json.read_json(json.dumps(response.json()['exp_out']))
 
     no_of_runs = len(pd_obj_out.index)
     logging.info(no_of_runs)
@@ -233,10 +193,11 @@ def generate_model_object_list(response):
 
         pd_obj_in_slice = pd_obj_in.drop(run_list)
         pd_obj_out_slice = pd_obj_out.drop(run_list)
-        model_obj = Model(run_type, jid, pd_obj_in_slice, pd_obj_out_slice)
-
-        logging.info(model_obj.solubility)
-        logging.info(model_obj.out_rundry)
+        if run_type == "batch":
+            model_obj = Model(run_type, jid, pd_obj_in_slice, pd_obj_out_slice)
+        elif run_type == "qaqc":
+            pd_obj_exp_slice = pd_obj_exp.drop(run_list)
+            model_obj = ModelQAQC(run_type, jid, pd_obj_in_slice, pd_obj_out_slice, pd_obj_exp_slice)
 
         ModelList.append(model_obj)
         i += 1

@@ -50,7 +50,8 @@ def batchOutputPage(request, model='none', header='none'):
             'model_attributes': header+' Batch Output'})
 
     
-    if model == 'terrplant':
+    # Temporary logic to handle Pandas verions, else use old way
+    if model in {'terrplant', 'sip'}:
         # New way
         modelBatch_obj = batchRun(request, model)
 

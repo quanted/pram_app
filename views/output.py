@@ -34,10 +34,11 @@ def outputPageView(request, model='none', header=''):
 
     # If model is updated to be generic, use generic Model object
     # if not, use old method with '*_output' module
-    if model == 'terrplant':
+    if model in {'terrplant', 'sip'}:
+        logging.info('=========== New Model Handler ===========')
         from models import model_handler
         model_obj = model_handler.modelInputPOSTReceiver(request, model)
-    if model == 'ore':
+    elif model == 'ore':
         import models.ore.ore_output
         model_obj = models.ore.ore_output.oreOutputPage(request)
     else:

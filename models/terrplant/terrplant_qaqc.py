@@ -12,6 +12,11 @@ import pandas as pd
 
 
 def terrplantQaqc(model, csv_path):
+    """
+        Read in QAQC CSV as Pandas DataFrame, removing 
+        any uneeded columns, setting the index_col name 
+        to None, and renumbering the data columns.
+    """
     
     # Read QAQC csv and create a Pandas DataFrame with only the relevant columns for the input values
     pd_obj_inputs = pd.read_csv(csv_path, index_col=1, header=None, skiprows=1, skipfooter=46, engine='python')

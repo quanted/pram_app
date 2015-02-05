@@ -4,10 +4,8 @@
 """
 
 import numpy
-#import django
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
-import terrplant_model,terrplant_parameters
 import logging
 import time
 import datetime
@@ -91,7 +89,7 @@ def gett1data(terrplant_obj):
 def gett1dataqaqc(terrplant_obj):
     data = { 
         "Parameter": ['Chemical Name', 'PC Code', 'Use', 'Application Method','Application Form',],
-        "Value": [terrplant_obj.chemical_name_expected, terrplant_obj.pc_code_expected, terrplant_obj.use_expected, terrplant_obj.application_method_expected,terrplant_obj.application_form_expected,],
+        "Value": [terrplant_obj.chemical_name, terrplant_obj.pc_code, terrplant_obj.use, terrplant_obj.application_method,terrplant_obj.application_form,],
     }
     return data
 
@@ -106,16 +104,16 @@ def gett2data(terrplant_obj):
 def gett3data(terrplant_obj):
     data = { 
         "Description": ['Runoff to Dry Areas', 'Runoff to Semi-Aquatic Areas', 'Spray Drift','Total to Dry Areas', 'Total to Semi-Aquatic Areas',],
-        "EEC": ['%.2f' % terrplant_obj.rundry_results,'%.2f' % terrplant_obj.runsemi_results,'%.2f' % terrplant_obj.spray_results,
-                '%.2f' % terrplant_obj.totaldry_results,'%.2f' % terrplant_obj.totalsemi_results, ],
+        "EEC": ['%g' % terrplant_obj.out_rundry,'%g' % terrplant_obj.out_runsemi,'%g' % terrplant_obj.out_spray,
+                '%g' % terrplant_obj.out_totaldry,'%g' % terrplant_obj.out_totalsemi, ],
     }
     return data
 
 def gett3dataqaqc(terrplant_obj):
     data = { 
         "Description": ['Runoff to Dry Areas', 'Runoff to Semi-Aquatic Areas', 'Spray Drift','Total to Dry Areas', 'Total to Semi-Aquatic Areas',],
-        "EEC": ['%.2f' % terrplant_obj.rundry_results,'%.2f' % terrplant_obj.runsemi_results,'%.2f' % terrplant_obj.spray_results,
-                '%.2f' % terrplant_obj.totaldry_results,'%.2f' % terrplant_obj.totalsemi_results, ],
+        "EEC": ['%g' % terrplant_obj.exp_rundry,'%g' % terrplant_obj.exp_runsemi,'%g' % terrplant_obj.exp_spray,
+                '%g' % terrplant_obj.exp_totaldry,'%g' % terrplant_obj.exp_totalsemi, ],
     }
     return data
 
@@ -132,10 +130,10 @@ def gett4data(terrplant_obj):
 def gett4dataqaqc(terrplant_obj):
     data = { 
         "Plant Type": ['Monocot', 'Dicot',],
-        "ec25": [terrplant_obj.nms_expected,terrplant_obj.nds_expected,],
-        "noaec": [terrplant_obj.lms_expected,terrplant_obj.lds_expected,],
-        "ec25": [terrplant_obj.nmv_expected,terrplant_obj.ndv_expected,],
-        "noaec":[terrplant_obj.lmv_expected,terrplant_obj.ldv_expected,],
+        "ec25": [terrplant_obj.ec25_nonlisted_seedling_emergence_monocot,terrplant_obj.noaec_listed_seedling_emergence_monocot,],
+        "noaec": [terrplant_obj.ec25_nonlisted_seedling_emergence_dicot,terrplant_obj.noaec_listed_seedling_emergence_dicot,],
+        "ec25": [terrplant_obj.ec25_nonlisted_vegetative_vigor_monocot,terrplant_obj.noaec_listed_vegetative_vigor_monocot,],
+        "noaec":[terrplant_obj.ec25_nonlisted_vegetative_vigor_dicot,terrplant_obj.noaec_listed_vegetative_vigor_dicot,],
     }
     return data
 
@@ -143,9 +141,9 @@ def gett5data(terrplant_obj):
     data = { 
         "Plant Type": ['Monocot', 'Monocot', 'Dicot', 'Dicot',],
         "Listed Status": ['non-listed','listed','non-listed','listed',],
-        "Dry": ['%.2f' % terrplant_obj.nms_rq_dry_results,'%.2f' % terrplant_obj.lms_rq_dry_results,'%.2f' % terrplant_obj.nds_rq_dry_results,'%.2f' % terrplant_obj.lds_rq_dry_results,],
-        "Semi-Aquatic": ['%.2f' % terrplant_obj.nms_rq_semi_results,'%.2f' % terrplant_obj.lms_rq_semi_results,'%.2f' % terrplant_obj.nds_rq_semi_results,'%.2f' % terrplant_obj.lds_rq_semi_results,],
-        "Spray Drift":['%.2f' % terrplant_obj.nms_rq_spray_results,'%.2f' % terrplant_obj.lms_rq_spray_results,'%.2f' % terrplant_obj.nds_rq_spray_results,'%.2f' % terrplant_obj.lds_rq_spray_results,],
+        "Dry": ['%g' % terrplant_obj.out_nms_rq_dry,'%g' % terrplant_obj.out_lms_rq_dry,'%g' % terrplant_obj.out_nds_rq_dry,'%g' % terrplant_obj.out_lds_rq_dry,],
+        "Semi-Aquatic": ['%g' % terrplant_obj.out_nms_rq_semi,'%g' % terrplant_obj.out_lms_rq_semi,'%g' % terrplant_obj.out_nds_rq_semi,'%g' % terrplant_obj.out_lds_rq_semi,],
+        "Spray Drift":['%g' % terrplant_obj.out_nms_rq_spray,'%g' % terrplant_obj.out_lms_rq_spray,'%g' % terrplant_obj.out_nds_rq_spray,'%g' % terrplant_obj.out_lds_rq_spray,],
     }
     return data
 
@@ -154,12 +152,12 @@ def gett5dataqaqc(terrplant_obj):
     data = { 
         "Plant Type": ['Monocot', 'Monocot', 'Dicot', 'Dicot',],
         "Listed Status": ['non-listed','listed','non-listed','listed',],
-        "Dry": ['%.2f' % terrplant_obj.nms_rq_dry_results,'%.2f' % terrplant_obj.lms_rq_dry_results,'%.2f' % terrplant_obj.nds_rq_dry_results,'%.2f' % terrplant_obj.lds_rq_dry_results,],
-        "Dry-Expected": ['%.2f' % terrplant_obj.nms_rq_dry_results_expected,'%.2f' % terrplant_obj.lms_rq_dry_results_expected,'%.2f' % terrplant_obj.nds_rq_dry_results_expected,'%.2f' % terrplant_obj.lds_rq_dry_results_expected,],
-        "Semi-Aquatic": ['%.2f' % terrplant_obj.nms_rq_semi_results,'%.2f' % terrplant_obj.lms_rq_semi_results,'%.2f' % terrplant_obj.nds_rq_semi_results,'%.2f' % terrplant_obj.lds_rq_semi_results,],
-        "Semi-Aquatic-Expected": ['%.2f' % terrplant_obj.nms_rq_semi_results_expected,'%.2f' % terrplant_obj.lms_rq_semi_results_expected,'%.2f' % terrplant_obj.nds_rq_semi_results_expected,'%.2f' % terrplant_obj.lds_rq_semi_results_expected,],
-        "Spray Drift":['%.2f' % terrplant_obj.nms_rq_spray_results,'%.2f' % terrplant_obj.lms_rq_spray_results,'%.2f' % terrplant_obj.nds_rq_spray_results,'%.2f' % terrplant_obj.lds_rq_spray_results,],
-        "Spray Drift-Expected":['%.2f' % terrplant_obj.nms_rq_spray_results_expected,'%.2f' % terrplant_obj.lms_rq_spray_results_expected,'%.2f' % terrplant_obj.nds_rq_spray_results_expected,'%.2f' % terrplant_obj.lds_rq_spray_results_expected,],
+        "Dry": ['%g' % terrplant_obj.out_nms_rq_dry,'%g' % terrplant_obj.out_lms_rq_dry,'%g' % terrplant_obj.out_nds_rq_dry,'%g' % terrplant_obj.out_lds_rq_dry,],
+        "Dry-Expected": ['%g' % terrplant_obj.exp_nms_rq_dry,'%g' % terrplant_obj.exp_lms_rq_dry,'%g' % terrplant_obj.exp_nds_rq_dry,'%g' % terrplant_obj.exp_lds_rq_dry,],
+        "Semi-Aquatic": ['%g' % terrplant_obj.out_nms_rq_semi,'%g' % terrplant_obj.out_lms_rq_semi,'%g' % terrplant_obj.out_nds_rq_semi,'%g' % terrplant_obj.out_lds_rq_semi,],
+        "Semi-Aquatic-Expected": ['%g' % terrplant_obj.exp_nms_rq_semi,'%g' % terrplant_obj.exp_lms_rq_semi,'%g' % terrplant_obj.exp_nds_rq_semi,'%g' % terrplant_obj.exp_lds_rq_semi,],
+        "Spray Drift":['%g' % terrplant_obj.out_nms_rq_spray,'%g' % terrplant_obj.out_lms_rq_spray,'%g' % terrplant_obj.out_nds_rq_spray,'%g' % terrplant_obj.out_lds_rq_spray,],
+        "Spray Drift-Expected":['%g' % terrplant_obj.exp_nms_rq_spray,'%g' % terrplant_obj.exp_lms_rq_spray,'%g' % terrplant_obj.exp_nds_rq_spray,'%g' % terrplant_obj.exp_lds_rq_spray,],
     }
     return data
 
@@ -472,8 +470,8 @@ def table_5_qaqc(terrplant_obj):
         """%(terrplant_obj.chemical_name)
         #table 5
         t5data = gett5dataqaqc(terrplant_obj)
-        t5rows = gethtmlrowsfromcols(t5data,plantecdrysemisprayheadings)
-        html = html + tmpl.render(Context(dict(data=t5rows, headings=plantecdrysemisprayheadings)))
+        t5rows = gethtmlrowsfromcols(t5data,plantecdrysemisprayheadingsqaqc)
+        html = html + tmpl.render(Context(dict(data=t5rows, headings=plantecdrysemisprayheadingsqaqc)))
         html = html + """
                 <H4>*If _rq_ > 1.0, the LOC is exceeded, resulting in potential for risk to that plant group</H4>
                 </div>

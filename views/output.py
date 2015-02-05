@@ -9,7 +9,6 @@ import logging
 def outputPageHTML(header, model, tables_html):
     """Generates HTML to fill '.articles_output' div on output page"""
 
-    # Render output page view
     html = render_to_string('01uberheader.html', {
             'site_skin' : os.environ['SITE_SKIN'],
             'title': header+' Output'})
@@ -29,25 +28,40 @@ def outputPageHTML(header, model, tables_html):
 
 def outputPageView(request, model='none', header=''):
     """
-    Django view render method for model output pages
+    Django view render method for model output pages.  This method is called 
+    by outputPage() method.
     """
 
-    outputmodule = importlib.import_module('.'+model+'_output', 'models.'+model)
-    tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
-    from REST import rest_funcs
-
-    outputPageFunc = getattr(outputmodule, model+'OutputPage')      # function name = 'model'OutputPage  (e.g. 'sipOutputPage')
-    model_obj = outputPageFunc(request)
+    # If model is updated to be generic, use generic Model object
+    # if not, use old method with '*_output' module
+    if model in {'terrplant', 'sip'}:
+        logging.info('=========== New Model Handler ===========')
+        from models import model_handler
+        model_obj = model_handler.modelInputPOSTReceiver(request, model)
+    elif model == 'ore':
+        import models.ore.ore_output
+        model_obj = models.ore.ore_output.oreOutputPage(request)
+    else:
+        # Dynamically import the model output module
+        outputmodule = importlib.import_module('.'+model+'_output', 'models.'+model)
+        # Call '*_output' function; function name = 'model'OutputPage  (e.g. 'sipOutputPage')
+        outputPageFunc = getattr(outputmodule, model+'OutputPage')
+        model_obj = outputPageFunc(request)
 
     if type(model_obj) is tuple:
         modelOutputHTML = model_obj[0]
         model_obj = model_obj[1]
     else:
+        # Dynamically import the model table module
+        tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
+
         # logging.info(model_obj.__dict__)
+        """ Generate Timestamp HTML from "*_tables" module """
         modelOutputHTML = tablesmodule.timestamp(model_obj)
-        
+        """ Generate Model input & output tables HTML from "*_tables" module """
         tables_output = tablesmodule.table_all(model_obj)
         
+        """ Append Timestamp & model input & output table's HTML """
         if type(tables_output) is tuple:
             modelOutputHTML = modelOutputHTML + tables_output[0]
         elif type(tables_output) is str or type(tables_output) is unicode:
@@ -55,23 +69,31 @@ def outputPageView(request, model='none', header=''):
         else:
             modelOutputHTML = "table_all() Returned Wrong Type"
 
-    # Render output page view
+    """ Render output page view HTML """
     html = outputPageHTML(header, model, modelOutputHTML)
     
     def saveToMongoDB(model_obj):
         """
         Method to check if model run is to be saved to MongoDB.  If true,
-        the fest_func meothd to save the model object instance is called
+        'rest_funcs.save_model_object()' is called to save the model object.
         """
         # Handle Trex, which is not objectified yet; therefore, not saved in MongoDB
         if model != 'trex':
+            from REST import rest_funcs
             # save_dic() rest_func method saves HTML & model object
             # rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
             # save_model_object() rest_func method saves only the model object
             rest_funcs.save_model_object(model_obj.__dict__, model, "single")
 
-    # Call method to save model object to Mongo DB
-    saveToMongoDB(model_obj)
+    # If model has been updated to new method do not store in Mongo
+    # because the above method does not work properly for them
+    if model != 'terrplant':
+        try:
+            # Call method to save model object to Mongo DB
+            saveToMongoDB(model_obj)
+        except:
+            # If exception is thrown, skip saving to MongoDB
+            pass
 
     response = HttpResponse()
     response.write(html)
@@ -83,6 +105,7 @@ def outputPage(request, model='none', header=''):
     Django HTTP POST handler for output page.  Receives form data and
     validates it.  If valid it calls method to render the output page
     view.  If invalid, it returns the error to the model input page.
+    This method maps to: '/eco/<model>/output'
     """
 
     viewmodule = importlib.import_module('.views', 'models.'+model)
@@ -98,9 +121,11 @@ def outputPage(request, model='none', header=''):
 
         # Form validation testing
         if form.is_valid():
+            # If form is valid return the output page view
             return outputPageView(request, model, header)
 
         else:
+            # If not valid...
             logging.info(form.errors)
             inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
 

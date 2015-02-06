@@ -88,8 +88,8 @@ def qaqcRunView(request, model='none', runID=''):
             'model':model,
             'model_attributes': header+' QAQC'})
     
-    # Temporary logic to handle Pandas verions, else use old way
-    if model in {'terrplant', 'sip'}:
+    # Temporary logic to handle Pandas versions, else use old way
+    if model in {'terrplant', 'sip', 'stir'}:
         import logging
         logging.info('=========== New Model QAQC ===========')
         modelQAQC_obj = qaqcRun(model)

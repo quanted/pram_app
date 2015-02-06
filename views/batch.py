@@ -51,7 +51,7 @@ def batchOutputPage(request, model='none', header='none'):
 
     
     # Temporary logic to handle Pandas verions, else use old way
-    if model in {'terrplant', 'sip'}:
+    if model in {'terrplant', 'sip', 'stir'}:
         # New way
         modelBatch_obj = batchRun(request, model)
 

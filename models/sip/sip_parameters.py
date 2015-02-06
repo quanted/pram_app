@@ -17,6 +17,11 @@ class SipInp(forms.Form):
             initial='Quinoxyfen',
             required=True,
             validators=[validators.validate_slug])
+    pc_code = forms.CharField(
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            label='PC Code',
+            initial='055459',
+            validators=[validators.validate_slug])
     solubility = forms.FloatField(
             required=True,
             label=mark_safe('Solubility (in water at 25&deg;C; mg/L)'),

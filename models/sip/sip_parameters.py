@@ -12,6 +12,10 @@ Species_of_the_tested_mamm_CHOICES=(('350','Laboratory rat'),('1','Other'))
 
 
 class SipInp(forms.Form):
+    version_sip = forms.ChoiceField(
+            choices=SELECT_VERSION, 
+            label='Version',
+            initial='1.0')
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
             initial='Quinoxyfen',

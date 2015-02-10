@@ -11,9 +11,18 @@ from models.forms import validation
 Species_of_the_tested_bird_CHOICES=(('Bobwhite quail','Bobwhite quail'),('Mallard duck','Mallard duck'),('Other','Other'))
  
 class therpsInp_chem(forms.Form):    
+    version_therps = forms.ChoiceField(
+            choices=SELECT_VERSION, 
+            label='Version',
+            initial='1.0')
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
             initial='Fluxapyroxad')
+    pc_code = forms.CharField(
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            label='PC Code',
+            initial='00',
+            validators=[validators.validate_slug])
     Use = forms.CharField(
             max_length=255,
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),

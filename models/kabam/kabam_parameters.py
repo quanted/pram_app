@@ -16,9 +16,20 @@ Rate_constants_CHOICES=(('0','Make a selection'),('a','Use default values'),('b'
 
 
 class KabamInp_chem(forms.Form):
-    name = forms.CharField(
+    version_kabam = forms.ChoiceField(
+            choices=SELECT_VERSION, 
+            label='Version',
+            initial='1.0')
+    chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
-            initial='Chemical X')
+            label='Chemical Name',
+            initial='Alachlor',
+            validators=[validators.validate_slug])
+    pc_code = forms.CharField(
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            label='PC Code',
+            initial='00',
+            validators=[validators.validate_slug])
     lkow = forms.FloatField(
             label=mark_safe('Log K<sub>OW</sub>'),
             initial=5,

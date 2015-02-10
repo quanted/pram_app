@@ -23,6 +23,20 @@ Calculation_input_CHOICES=(('0','Make a selection'), ('Distance','Distance to wa
 class AgdriftInp(forms.Form):
 #    waterbody_type = forms.ChoiceField(
             # label='Water body type', choices=Waterbody_type_CHOICES,initial='Make a selection')
+    version_agdrift = forms.ChoiceField(
+            choices=SELECT_VERSION, 
+            label='Version',
+            initial='1.2.2')
+    chemical_name = forms.CharField(
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
+            label='Chemical Name',
+            initial='Alachlor',
+            validators=[validators.validate_slug])
+    pc_code = forms.CharField(
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            label='PC Code',
+            initial='00',
+            validators=[validators.validate_slug])
     application_method = forms.ChoiceField(
             label='Application Method',
             choices=Application_method_CHOICES,

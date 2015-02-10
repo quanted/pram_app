@@ -15,9 +15,18 @@ Species_of_the_tested_bird_CHOICES=(('Bobwhite quail','Bobwhite quail'),('Mallar
 
 
 class trexInp_chem(forms.Form):
+    version_trex = forms.ChoiceField(
+            choices=SELECT_VERSION, 
+            label='Version',
+            initial='1.X')
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
             initial='Atrazine')
+    pc_code = forms.CharField(
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            label='PC Code',
+            initial='00',
+            validators=[validators.validate_slug])
     use = forms.CharField(
             max_length=255, widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
             initial='Corn')   

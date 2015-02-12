@@ -257,6 +257,7 @@ class SamInp_output(forms.Form):
 			required=False,
 			label='',
 			widget=forms.RadioSelect,
+			initial=2,
 			choices = TIME_AVG_CHOICES
 	)
 	output_time_avg_conc = forms.ChoiceField(
@@ -273,7 +274,7 @@ class SamInp_output(forms.Form):
 			required=False,
 			widget=forms.Select(attrs={'size' : 4}),
 			choices=TOX_THRES_EXCEED_CHOICES,
-			initial=1,
+			initial=4,
 			label='')
 	output_format = forms.MultipleChoiceField(
 			required=False,

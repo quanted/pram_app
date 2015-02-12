@@ -39,7 +39,29 @@ class Model(object):
             setattr(self, self.pd_obj_in[col].name, self.pd_obj_in[col].iloc[0])
         for col in self.pd_obj_out:
             setattr(self, self.pd_obj_out[col].name, self.pd_obj_out[col].iloc[0])
- 
+
+
+class ModelFortran(object):
+    def __init__(self, run_type, jid, inputs, outputs):
+        """
+            Generic Python 'Model' object created from two Pandas 
+            DataFrame objects, one for inputs and one for outputs.
+        """
+
+        self.inputs = inputs
+        self.outputs = outputs
+        self.jid = jid
+        self.run_type = run_type
+
+        # Set object attributes to model inputs and outputs
+        """
+            Set inputs and ouputs as model object atributes
+        """
+        for k, v in self.inputs:
+            setattr(self, k, v)
+        for k, v in self.outputs:
+            setattr(self, k, v)
+
 
 def call_model_server(model, args):
     """
@@ -100,6 +122,30 @@ def modelInputPOSTReceiver(request, model):
     dataframes = create_dataframe(response)
 
     model_obj = Model(run_type, jid, dataframes[0], dataframes[1])
+
+    return model_obj
+
+
+def modelInputPOSTReceiverFortran(request, model):
+    """
+        Converts the POSTed data from the model's input page form 
+        to a Python dictonary and passes it to the Model object where  
+        it is to be converted to JSON and passed to the backend server. 
+        FORTAN version.
+    """
+
+    args = { "inputs" : {} }
+    for key in request.POST:
+        args["inputs"][key] = request.POST.get(key)
+    args["run_type"] = "single"
+
+    response = call_model_server(model, args)
+
+    jid = response.json()['_id']
+    run_type = response.json()['run_type']
+    # dataframes = create_dataframe(response)
+
+    model_obj = ModelFortran(run_type, jid, args['inputs'], response['inputs'])
 
     return model_obj
 

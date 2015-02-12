@@ -19,6 +19,10 @@ class SamInp_chem(forms.Form):
 		(5, 'Metolachlor - Corn'),
 		(0, 'Custom')
 	)
+	COEFFICIENT_CHOICES = (
+		(1, 'Koc'),
+		(2, 'Kd')
+	)
 
 	scenario_selection = forms.ChoiceField(
 			choices = SCENARIO_CHOICES,
@@ -29,9 +33,14 @@ class SamInp_chem(forms.Form):
 			initial="Atrazine")
 	koc = forms.FloatField(
 			required=False,
-			label='Koc (mL/g)',
+			label='Sorption Coefficient (mL/g)',
 			initial=100,
 			validators=[validation.validate_positive])
+	coefficient = forms.ChoiceField(
+			widget = forms.RadioSelect,
+			choices = COEFFICIENT_CHOICES,
+			initial = 1,
+			label = '')
 	soil_metabolism_hl = forms.FloatField(
 			required=False,
 			label='Soil Metabolism Halflife (days)',
@@ -99,10 +108,10 @@ class SamInp_app(forms.Form):
 			label='Total Number of Crops',
 			initial=0,
 			widget=forms.TextInput(attrs={'readonly': 'true'}))
-	noa = forms.FloatField(
+	apps_per_year = forms.FloatField(
 			required=False,
-			label='Total Number of Applications',
-			initial=1500,
+			label='Number of Applications per Year',
+			initial=1,
 			validators=[validation.validate_greaterthan0])
 	application_method = forms.ChoiceField(
 			required=False,
@@ -116,16 +125,16 @@ class SamInp_app(forms.Form):
 
 class SamInp_app_refine(forms.Form):
 	REFINEMENT_CHOICES = (
-		(1, 'Uniform Application over Window'),
-		(2, 'Uniform Step Application over Window'),
-		(3, 'Triangular Application over Window')
+		('uniform', 'Uniform Application over Window'),
+		('uniform_step', 'Uniform Step Application over Window'),
+		('triangular', 'Triangular Application over Window')
 	)
 
 	refine = forms.ChoiceField(
 			required=False,
 			choices=REFINEMENT_CHOICES,
 			label="Refinements",
-			initial=2)
+			initial='uniform_step')
 	refine_time_window1 = forms.FloatField(
 			required=False,
 			label='Time Window (days)',
@@ -146,9 +155,9 @@ class SamInp_app_refine(forms.Form):
 
 class SamInp_sim(forms.Form):
 	SIM_CHOICES = (
-		(1, 'Eco'),
-		(2, 'DW Reservoirs'),
-		(3, 'DW Flowing')
+		('eco', 'Eco'),
+		('dwr', 'DW Reservoirs'),
+		('dwf', 'DW Flowing')
 	)
 	SIM_DATE_START_CHOICES = (
 		(1, 'Thursday, January 1, 1970'),
@@ -196,39 +205,76 @@ class SamInp_sim(forms.Form):
 
 
 class SamInp_output(forms.Form):
+
 	# OUTPUT_TYPE_CHOICES = (
-	# 	(1, 'Daily Concentrations'),
-	# 	(2, '30-day Maximum Concentrations'),
-	# 	(3, 'Toxicity Threshold Exceedances')
+	# 	(1, '21-d Average Concentrations - 90th percentile'),
+	# 	(2, '60-d Average Concentrations - 90th percentile'),
+	# 	(3, 'Toxicity Threshold - Average Duration of Daily Exceedances'),
+	# 	(4, 'Toxicity Threshold - Percentage of Days with Exceedances')
 	# )
 	OUTPUT_TYPE_CHOICES = (
-		(1, '21-d Average Concentrations - 90th percentile'),
-		(2, '60-d Average Concentrations - 90th percentile'),
-		(3, 'Toxicity Threshold - Average Duration of Daily Exceedances'),
-		(4, 'Toxicity Threshold - Percentage of Days with Exceedances')
+		(1, 'Daily Concentrations'),
+		(2, 'Time-Averaged Results'),
 	)
-	TOX_PERIOD_CHOICES = (
-		(1, '30-d'),
-		(2, 'Annual')
+	TIME_AVG_CHOICES = (
+		(1, 'Time-Averaged Concentrations'),
+		(2, 'Toxicity Threshold Exceedances'),
+	)
+	TIME_AVG_CONC_CHOICES = (
+		(1, 'Daily time-average concentrations'),
+		(2, 'Annual max time-average concentrations')
+	)
+	TOX_THRES_EXCEED_CHOICES = (
+		(1, 'Frequency of exceeding threshold (%), by year'),
+		(2, 'Frequency of exceeding threshold (%), by month'),
+		(3, 'Average duration of exceedance (days), by year'),
+		(4, 'Average duration of exceedance (days), by month')
 	)
 	OUTPUT_FORMAT_CHOICES = (
 		(1, 'Generate CSVs'),
-		(2, 'Generate Map')
+		(2, 'Generate Map'),
+		(3, 'Plots / Histograms')
 	)
 
+	# output_type = forms.ChoiceField(
+	# 		required=False,
+	# 		choices=OUTPUT_TYPE_CHOICES,
+	# 		initial = 2,
+	# 		label='Output Preference')
 	output_type = forms.ChoiceField(
-			required=False,
+			required=True,
 			choices=OUTPUT_TYPE_CHOICES,
+			widget = forms.RadioSelect,
+			initial = 2,
 			label='Output Preference')
-	output_tox = forms.ChoiceField(
+	output_avg_days = forms.IntegerField(
 			required=False,
-			widget=forms.CheckboxSelectMultiple,
-			choices=TOX_PERIOD_CHOICES,
-			label='Threshold Time Period')
+			label='Averaging Period (days)',
+			initial=4,
+			min_value=1,
+			max_value=365)
+	output_time_avg_option = forms.ChoiceField(
+			required=False,
+			label='',
+			widget=forms.RadioSelect,
+			choices = TIME_AVG_CHOICES
+	)
+	output_time_avg_conc = forms.ChoiceField(
+			required=False,
+			widget=forms.Select(attrs={'size' : 2}),
+			choices=TIME_AVG_CONC_CHOICES,
+			initial=1,
+			label='')
 	output_tox_value = forms.FloatField(
 			required=False,
 			label=mark_safe('Threshold (&micro;g/L)'),
 			initial=4)
+	output_tox_thres_exceed = forms.ChoiceField(
+			required=False,
+			widget=forms.Select(attrs={'size' : 4}),
+			choices=TOX_THRES_EXCEED_CHOICES,
+			initial=1,
+			label='')
 	output_format = forms.MultipleChoiceField(
 			required=False,
 			widget=forms.CheckboxSelectMultiple,

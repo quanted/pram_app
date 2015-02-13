@@ -9,17 +9,15 @@ from models.forms import validation
 
 
 SELECT_RECEPTOR = (('Avian','Avian'),('Mammalian','Mammalian'),('Both','Both'))
-
 SELECT_HEIGHT = (('3.3','3.3'),('1','1'))
-
 SELECT_DURATION = (('1.5','1.5'),('0.5','0.5'))
-
+SELECT_VERSION = (('1.0','1.0'),)
 
 class StirInp(forms.Form):
     version_stir = forms.ChoiceField(
             choices=SELECT_VERSION, 
             label='Version',
-            initial='1.2.2')
+            initial='1.0')
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
             label='Chemical Name',

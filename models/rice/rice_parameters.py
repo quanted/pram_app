@@ -20,7 +20,7 @@ class RiceInp(forms.Form):
 	chemical_name = forms.CharField(
 			widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
 			initial='Fipronil')
-    pc_code = forms.CharField(
+	pc_code = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
             label='PC Code',
             initial='00',

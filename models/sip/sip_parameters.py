@@ -9,7 +9,7 @@ from models.forms import validation
 
 Species_of_the_tested_bird_CHOICES=(('178','Northern bobwhite quail'),('1580','Mallard duck'),('1','Other'))
 Species_of_the_tested_mamm_CHOICES=(('350','Laboratory rat'),('1','Other'))
-
+SELECT_VERSION = (('1.0','1.0'),)
 
 class SipInp(forms.Form):
     version_sip = forms.ChoiceField(

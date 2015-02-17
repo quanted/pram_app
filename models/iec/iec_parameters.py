@@ -7,19 +7,20 @@ from django.utils.safestring import mark_safe
 from django.core import validators
 from models.forms import validation
 
+SELECT_VERSION = (('1.0','1.0'),)
 
 class IecInp(forms.Form):
     version_iec = forms.ChoiceField(
-            choices=SELECT_VERSION, 
+            choices = SELECT_VERSION, 
             label='Version',
             initial='1.0')
     chemical_name = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
+            widget=forms.Textarea (attrs={'cols': 30, 'rows': 1}),
             label='Chemical Name',
             initial='Alachlor',
             validators=[validators.validate_slug])
     pc_code = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), 
             label='PC Code',
             initial='00',
             validators=[validators.validate_slug])

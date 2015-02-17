@@ -10,7 +10,8 @@ import logging
 def read_batch_csv(csv):
     import pandas as pd
 
-    pd_obj = pd.read_csv(csv, index_col=1, header=None, skiprows=1, skip_footer=32, engine='python')
+    pd_obj = pd.read_csv(csv, index_col=0, header=None, skiprows=1, 
+        skip_footer=32, engine='python')
     logging.info(pd_obj)
     pd_obj = pd_obj.drop(labels=pd_obj.columns[range(4)], axis=1)
     pd_obj.index.name = None

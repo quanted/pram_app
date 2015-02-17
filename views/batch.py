@@ -18,6 +18,7 @@ def batchRun(request, model):
     dataFrame = batchOutputPageFunc(request)
     dataFrame = dataFrame.transpose()
 
+    logging.info("===== batch.batchRun")
     logging.info(dataFrame)
 
     # Convert DataFrame to JSON string
@@ -41,6 +42,7 @@ def batchOutputPage(request, model='none', header='none'):
 
     viewmodule = importlib.import_module('.views', 'models.'+model)
     
+    logging.info("===== batch.batchOutputPage")
     from REST import rest_funcs
     header = viewmodule.header
     linksleft = linksLeft.linksLeft()
@@ -51,8 +53,8 @@ def batchOutputPage(request, model='none', header='none'):
 
     
     # Temporary logic to handle Pandas verions, else use old way
-    if model in {'terrplant', 'sip', 'stir', 'trex2', 'therps', 'iec', 'agdrift', 
-            'earthworm', 'rice', 'kabam'}:
+    if model in {'terrplant', 'sip', 'stir', 'trex2', 'therps', 'iec', 
+            'agdrift', 'earthworm', 'rice', 'kabam'}:
         logging.info('=========== New Model Handler - Batch Run ===========')
         # New way
         modelBatch_obj = batchRun(request, model)

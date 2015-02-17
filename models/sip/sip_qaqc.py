@@ -19,7 +19,8 @@ def sipQaqc(model, csv_path):
     """
     
     # Read QAQC csv and create a Pandas DataFrame with only the relevant columns for the input values
-    pd_obj_inputs = pd.read_csv(csv_path, index_col=0, header=None, skiprows=1, skipfooter=32, engine='python')
+    pd_obj_inputs = pd.read_csv(csv_path, index_col=0, header=None, skiprows=1, 
+      skipfooter=32, engine='python')
     pd_obj_inputs = pd_obj_inputs.drop(labels=pd_obj_inputs.columns[range(4)], axis=1)
     pd_obj_inputs.index.name = None
     pd_obj_inputs.columns = pd_obj_inputs.columns - 5

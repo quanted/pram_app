@@ -18,7 +18,7 @@ Ecosystem_type_CHOICES=(('0','Make a selection'),('EPA Pond','Aquatic Assessment
 Orchard_CHOICES=(('0','Make a selection'),('Normal','Normal (Stone and Pome Fruit Vineyard)'),('Dense','Dense (Citrus, tall trees)'), ('Sparse', 'Sparse (Young, dormant)'),('Vineyard', 'Vineyard'),('Orchard','Orchard'))
 Aquatic_type_CHOICES=(('0','Make a selection'),('1','EPA Defined Pond'),('2', 'EPA Defined Wetland'))
 Calculation_input_CHOICES=(('0','Make a selection'), ('Distance','Distance to waterbody or field'), ('Fraction','Fraction of applied'),('Initial Average Deposition (g/ha)','Initial Average Deposition (g/ha)'),('Initial Average Deposition (lb/ac)', 'Initial Average Deposition (lb/ac)'),('Initial Average Concentration (ng/L)', 'Initial Average Concentration (ng/L)'), ('Initial Average Deposiion (mg/cm2)','Initial Average Deposition (mg/cm2)'))
-
+SELECT_VERSION = (('1.0','1.0'),)
 
 class AgdriftInp(forms.Form):
 #    waterbody_type = forms.ChoiceField(
@@ -28,12 +28,12 @@ class AgdriftInp(forms.Form):
             label='Version',
             initial='1.2.2')
     chemical_name = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
+            widget=forms.Textarea (attrs={'cols': 30, 'rows': 1}),
             label='Chemical Name',
             initial='Alachlor',
             validators=[validators.validate_slug])
     pc_code = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), 
             label='PC Code',
             initial='00',
             validators=[validators.validate_slug])

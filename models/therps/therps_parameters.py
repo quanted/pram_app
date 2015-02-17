@@ -9,6 +9,7 @@ from models.forms import validation
 
 
 Species_of_the_tested_bird_CHOICES=(('Bobwhite quail','Bobwhite quail'),('Mallard duck','Mallard duck'),('Other','Other'))
+SELECT_VERSION = (('1.0','1.0'),)
  
 class therpsInp_chem(forms.Form):    
     version_therps = forms.ChoiceField(
@@ -16,10 +17,10 @@ class therpsInp_chem(forms.Form):
             label='Version',
             initial='1.0')
     chemical_name = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
+            widget=forms.Textarea (attrs={'cols': 30, 'rows': 1}),
             initial='Fluxapyroxad')
     pc_code = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), 
             label='PC Code',
             initial='00',
             validators=[validators.validate_slug])

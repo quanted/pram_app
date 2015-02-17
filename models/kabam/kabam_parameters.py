@@ -14,6 +14,7 @@ Characteristics_of_aquatic_biota_CHOICES=(('Large Fish','Large Fish'),('Medium F
 Respire_CHOICES=(('Yes','Yes'),('No','No'))
 Rate_constants_CHOICES=(('0','Make a selection'),('a','Use default values'),('b','Input rate constants'))
 
+SELECT_VERSION = (('1.0','1.0'),)
 
 class KabamInp_chem(forms.Form):
     version_kabam = forms.ChoiceField(
@@ -21,12 +22,12 @@ class KabamInp_chem(forms.Form):
             label='Version',
             initial='1.0')
     chemical_name = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
+            widget=forms.Textarea (attrs={'cols': 30, 'rows': 1}),
             label='Chemical Name',
             initial='Alachlor',
             validators=[validators.validate_slug])
     pc_code = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), 
             label='PC Code',
             initial='00',
             validators=[validators.validate_slug])

@@ -17,12 +17,12 @@ class SipInp(forms.Form):
             label='Version',
             initial='1.0')
     chemical_name = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            widget=forms.Textarea (attrs={'cols': 30, 'rows': 1}), 
             initial='Quinoxyfen',
             required=True,
             validators=[validators.validate_slug])
     pc_code = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), 
             label='PC Code',
             initial='055459',
             validators=[validators.validate_slug])

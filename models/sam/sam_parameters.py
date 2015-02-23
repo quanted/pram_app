@@ -91,7 +91,12 @@ class SamInp_app(forms.Form):
 		(1, 'Ground'),
 		(2, 'Foliar')
 	)
-
+	
+	crop_list_no = forms.CharField(
+			# This field is hidden by jQuery and holds the list of choosen crops
+			required=False,
+			widget=forms.Textarea({'cols': 20, 'rows': 1}))
+	
 	crop = forms.ChoiceField(
 			required=False,
 			choices=CROP_CHOICES,

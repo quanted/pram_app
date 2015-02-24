@@ -41,7 +41,24 @@ def outputPageView(request, model='none', header=''):
     elif model in {'sam'}:
         logging.info('=========== New Model Handler FORTRAN ===========')
         from models import model_handler
-        model_obj = model_handler.modelInputPOSTReceiverFortran(request, model)
+
+        if model == 'sam':
+            """
+            SAM takes a long time to run relative to other models; therefore, 
+            it will not return model results on form submit, but will instead 
+            return a confirmation of model submission to the user. Model results 
+            will be available at a later time (e.g. from the History page).
+            """
+            modelOutputHTML = model_handler.modelInputPOSTReceiverFortran(request, model)
+            html = outputPageHTML(header, model, modelOutputHTML)
+
+            response = HttpResponse()
+            response.write(html)
+            return response
+
+        else:
+            model_obj = model_handler.modelInputPOSTReceiverFortran(request, model)
+
     elif model == 'ore':
         import models.ore.ore_output
         model_obj = models.ore.ore_output.oreOutputPage(request)

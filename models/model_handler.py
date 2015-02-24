@@ -131,7 +131,8 @@ def modelInputPOSTReceiverFortran(request, model):
         Converts the POSTed data from the model's input page form 
         to a Python dictonary and passes it to the Model object where  
         it is to be converted to JSON and passed to the backend server. 
-        FORTAN version.
+        
+        ==> FORTAN version <==
     """
 
     args = { "inputs" : {} }
@@ -141,13 +142,19 @@ def modelInputPOSTReceiverFortran(request, model):
 
     response = call_model_server(model, args)
 
-    jid = response.json()['_id']
-    run_type = response.json()['run_type']
-    # dataframes = create_dataframe(response)
+    if model in {'sam'}:
 
-    model_obj = ModelFortran(run_type, jid, args['inputs'], response['inputs'])
+        return "<h3>Model Submited</h3>"
 
-    return model_obj
+    else:
+
+        jid = response.json()['_id']
+        run_type = response.json()['run_type']
+        # dataframes = create_dataframe(response)
+
+        model_obj = ModelFortran(run_type, jid, args['inputs'], response['inputs'])
+
+        return model_obj
 
 
 class ModelQAQC(object):

@@ -166,7 +166,6 @@ $(document).ready(function() {
 				$(':input:not(#id_scenario_selection)').attr('disabled', false);
 				// $('button.submit').attr('disabled', true);
 				// Add 'crop_list_no_array' array to 'crop_list_no' input field before submit
-				alert('Yup');
 				// $('button.submit').click(function(e) {
 				$('form').submit(function(e) {
 					// console.log(isCropListNoArraySet());

@@ -143,8 +143,9 @@ def modelInputPOSTReceiverFortran(request, model):
     response = call_model_server(model, args)
 
     if model in {'sam'}:
+        logging.info(response.json()['outputs'])
 
-        return "<h3>Model Submited</h3>"
+        return str(response.json()['outputs'])
 
     else:
 

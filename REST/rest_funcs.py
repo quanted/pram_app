@@ -46,7 +46,7 @@ def save_dic(output_html, model_object_dict, model_name, run_type):
     """
     warnings.warn("DEPRECATED: Use save_model_object(model_object_dict, model_name, run_type) instead", DeprecationWarning)
 
-    all_dic = {"model_name":model_name, "_id":model_object_dict['jid'], "run_type":run_type, "output_html":output_html, "model_object_dict":model_object_dict}
+    all_dic = {"model_name": model_name, "_id": model_object_dict['jid'], "run_type": run_type, "output_html": output_html, "model_object_dict": model_object_dict}
     data = json.dumps(all_dic, cls=NumPyArangeEncoder)
     url = url_part1 + '/save_history_html'
     try:
@@ -57,8 +57,11 @@ def save_dic(output_html, model_object_dict, model_name, run_type):
 
 ###########################function to save a single run to MongoDB################################ 
 def save_model_object(model_object_dict, model_name, run_type):
-    all_dic = {"model_name":model_name, "_id":model_object_dict['jid'], "run_type":run_type, "model_object_dict":model_object_dict}
-    data = json.dumps(all_dic, cls=NumPyArangeEncoder)
+
+    logging.info("save_model_object() called")
+
+    all_dic = {"model_name":model_name, "_id":model_object_dict['jid'], "run_type":run_type}
+    data = json.dumps(all_dic)
     url = url_part1 + '/save_history'
     try:
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   

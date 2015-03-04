@@ -69,6 +69,9 @@ def outputPageView(request, model='none', header=''):
         outputPageFunc = getattr(outputmodule, model+'OutputPage')
         model_obj = outputPageFunc(request)
 
+    logging.info(model_obj)
+
+
     if type(model_obj) is tuple:
         modelOutputHTML = model_obj[0]
         model_obj = model_obj[1]
@@ -92,29 +95,30 @@ def outputPageView(request, model='none', header=''):
 
     """ Render output page view HTML """
     html = outputPageHTML(header, model, modelOutputHTML)
+
     
+    """ =============== To be removed =============== """
+    """ ========= For Non-Pandas models only ========= """
+    """ ============================================== """
     def saveToMongoDB(model_obj):
         """
         Method to check if model run is to be saved to MongoDB.  If true,
-        'rest_funcs.save_model_object()' is called to save the model object.
+        the fest_func meothd to save the model object instance is called
         """
-        # Handle Trex, which is not objectified yet; therefore, not saved in MongoDB
-        if model != 'trex':
-            from REST import rest_funcs
-            # save_dic() rest_func method saves HTML & model object
-            # rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
-            # save_model_object() rest_func method saves only the model object
-            rest_funcs.save_model_object(model_obj.__dict__, model, "single")
 
-    # If model has been updated to new method do not store in Mongo
-    # because the above method does not work properly for them
-    if model != 'terrplant':
-        try:
-            # Call method to save model object to Mongo DB
-            saveToMongoDB(model_obj)
-        except:
-            # If exception is thrown, skip saving to MongoDB
-            pass
+        from REST import rest_funcs
+
+        # Handle Trex, which is not objectified yet; therefore, not saved in MongoDB
+        # if model != 'trex':
+        if model not in {'terrplant', 'sip', 'stir', 'trex'}:
+            logging.info("rest_funcs.save_model_object() called")
+            # save_dic() rest_func method saves HTML & model object
+            rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
+
+    # Call method to save model object to Mongo DB
+    saveToMongoDB(model_obj)
+    """ ============================================== """
+    """ ============================================== """
 
     response = HttpResponse()
     response.write(html)

@@ -64,6 +64,9 @@ def historyPageRevist(request, model='none', header='none'):
     if model_name == 'sam':
         """ 
         This is all temporary for development testing
+
+        Load output (list of file lines) from Mongo and 
+        write them to memory (StringIO) and send to user
         """
         import StringIO, logging
 

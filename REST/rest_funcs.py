@@ -188,22 +188,32 @@ class user_hist(object):
         try:
             # self.response = urlfetch.fetch(url=self.url, payload=self.data, method=urlfetch.POST, headers=http_headers, deadline=60)
             self.response = requests.post(self.url, data=self.data, headers=http_headers, timeout=60)   
-        # logger.info(self.response.content)
         except:
             self.response = None
+
+        # logging.info(self.response.content)
+
         if self.response:
             self.output_val = json.loads(self.response.content)['hist_all']
             self.total_num = len(self.output_val)
 
             for element in self.output_val:
-                self.user_id.append(element['user_id'])
-                self.jid.append(element['_id'])
-                self.time_id.append(datetime.datetime.strptime(element['_id'], '%Y%m%d%H%M%S%f').strftime('%Y-%m-%d %H:%M:%S'))
+
                 try:
+                    # Catch if any erroneous DB entries exist and ignore them
+
+                    self.user_id.append(element['user_id'])
+
+                    self.jid.append(element['_id'])
+                    self.time_id.append(datetime.datetime.strptime(element['_id'], '%Y%m%d%H%M%S%f').strftime('%Y-%m-%d %H:%M:%S'))
+                    
                     # Gennec doesn't have 'run_type' key
                     self.run_type.append(element['run_type'])
+
                 except:
-                    pass
+                    # Subtract erroneous entry from total number of entries
+                    self.total_num = self.total_num - 1
+                    
         else:
             self.total_num = 0
 

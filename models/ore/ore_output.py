@@ -4,35 +4,36 @@
 """
 
 from django.views.decorators.http import require_POST
+from django.template.loader import render_to_string
 import logging 
+
 @require_POST
 def oreOutputPage(request):
 
-    # html = template.render(templatepath + '04uberoutput_start.html', {
-    #         'model':'ore', 
-    #         'model_attributes':'ORE Output'})
-    # html = html + """
-    # <div class="out_">
-    #     <table >
-    #         <th>Output</th>
-    #         <tr><td>Default</td></tr>
-    #     </table>
-    # </div>
-    # """
+    print request.POST
 
-    # return html
+    html = """
+    <div class="out_">
+        <table >
+            <th>Output</th>
+            <tr><td>Default</td></tr>
+        </table>
+    </div>
+    """
 
-    args = { "inputs" : {} }
-    for key in request.POST:
-        # args["inputs"][key] = {"0" : request.POST.get(key)}
-        args["inputs"][key] = request.POST.get(key)
-        # logging.info(args["inputs"][key])
-    args["run_type"] = "single"
+    return html
 
-    logging.info(args)
+    # args = { "inputs" : {} }
+    # for key in request.POST:
+    #     # args["inputs"][key] = {"0" : request.POST.get(key)}
+    #     args["inputs"][key] = request.POST.get(key)
+    #     # logging.info(args["inputs"][key])
+    # args["run_type"] = "single"
 
-    exp_category = request.POST.get('exp_category')
+    # logging.info(args)
 
-    logging.info('exp_category: ' + exp_category)
+    # exp_category = request.POST.get('exp_category')
 
-    return "Test"
+    # logging.info('exp_category: ' + exp_category)
+
+    # return "Test"

@@ -9,28 +9,8 @@ from django import forms
 from django.utils.safestring import mark_safe
 from django.core import validators
 from models.forms import validation
-import requests
-from REST import auth_s3
-import json
-import os, logging
+import logging
 
-# Set HTTP header
-http_headers = auth_s3.setHTTPHeaders()
-url_part1 = os.environ['UBERTOOL_REST_SERVER']
-
-def restCall(query):
-	""" Call to backend server to query DB """
-	url = url_part1 + '/ore/' + query
-	all_dic = {
-		'query': query
-		}
-	data = json.dumps(all_dic)
-
-	# response = urlfetch.fetch(url=url, payload=data, method=urlfetch.GET)
-	response = requests.get(url, data=data, headers=http_headers, timeout=60)
-	
-	logging.info(json.loads(response.content)['result'])
-	return json.loads(response.content)['result']
 
 def extractListFromList(dbListComplete, columnIndex):
 	"""
@@ -108,7 +88,7 @@ tmpl_OccHandler = Template(tmpl_OccHandler())
 # Method(s) called from *_inputs.py
 def form(formData):
 	""" Input form builder """
-	# Chemical and Exposure Duration
+	# Chemical and Exp.ure Duration
 	form_ChemicalInp = ore_ChemicalInp()
 	html = tmpl_ChemicalInp.render(Context(dict(form=form_ChemicalInp)))
 	# Dermal Short Term
@@ -279,8 +259,8 @@ class ore_CropTargetSel(forms.Form):
 
 	cursorObject: DB Cursor object
 	"""
-	
-	cursorObject = restCall('oreDb')
+	import ore_rest_calls
+	cursorObject = ore_rest_calls.rest_call('oreDb')
 	# print cursorObject
 
 	CHOICES_CROPS = convertListOfListsToTupleOfTuples(extractListFromList(cursorObject, 0))
@@ -332,11 +312,14 @@ class ore_ExposureScenario(forms.Form):
 	CHOICES_APP_TYPE = (
 			(0, 'Broadcast'),
 		)
-	CHOICES_WORKER_ACTIVITY = (
-			(0, '[M/L, Applicator, Flagger]'),
-		)
+	# CHOICES_WORKER_ACTIVITY = (
+	# 		(0, '[M/L, Applicator, Flagger]'),
+	# 	)
 
-	exp_category = forms.CharField(label="Handler Crop/Target Category", widget=forms.Textarea(attrs={ 'cols': 50, 'rows': 1, 'readonly': True }))
+	exp_category = forms.CharField(
+			label="Handler Crop/Target Category",
+			widget=forms.Textarea(
+				attrs={ 'cols': 50, 'rows': 1, 'readonly': True }))
 	exp_formulation = forms.ChoiceField(
 			choices=CHOICES_FORMULATION,
 			label='Formulation')
@@ -349,6 +332,10 @@ class ore_ExposureScenario(forms.Form):
 	exp_app_type = forms.ChoiceField(
 			choices=CHOICES_APP_TYPE,
 			label='Application Type')
-	exp_worker_activity = forms.ChoiceField(
-			choices=CHOICES_WORKER_ACTIVITY,
-			label='Worker Activity')
+	# exp_worker_activity = forms.ChoiceField(
+	# 		choices=CHOICES_WORKER_ACTIVITY,
+	# 		label='Worker Activity')
+	exp_worker_activity = forms.CharField(
+			label='Worker Activity',
+			widget=forms.Textarea(
+				attrs={ 'cols': 50, 'rows': 1, 'readonly': True }))

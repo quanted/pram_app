@@ -59,9 +59,35 @@ def outputPageView(request, model='none', header=''):
         else:
             model_obj = model_handler.modelInputPOSTReceiverFortran(request, model)
 
-    elif model == 'ore':
+    
+    elif model in {'ore'}:
+        """ 
+            TEMPORARY FOR ORE TESTING / DEVELOPMENT ON ECO
+        """
         import models.ore.ore_output
-        model_obj = models.ore.ore_output.oreOutputPage(request)
+        tables_html = models.ore.ore_output.oreOutputPage(request)
+
+
+        html = render_to_string('01uberheader.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'title': header+' Output'})
+        html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'model':model,
+                'page':'output'})
+        html = html + linksLeft.linksLeft()
+        html = html + render_to_string('04uberoutput_start.html', {
+                'model_attributes': header+' Output'})
+        html = html + tables_html
+        html = html + render_to_string('export.html', {})
+        html = html + render_to_string('04uberoutput_end.html', {'model':model})
+        html = html + render_to_string('06uberfooter.html', {'links': ''})
+
+
+        response = HttpResponse()
+        response.write(html)
+        return response
+    
     else:
         # Dynamically import the model output module
         outputmodule = importlib.import_module('.'+model+'_output', 'models.'+model)

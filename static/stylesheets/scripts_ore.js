@@ -47,6 +47,20 @@ $( document ).ready(function() {
 
 	});
 
+	// NOT FINISHED
+	$('.ToxInp').click(function() {
+		if ( $.inArray('id_expDurationType_0', selectedArray) !== -1 ) {
+			$('.tab_tox_it, .tab_tox_lt').hide();
+			$('.tab_tox_st').show();
+		} else if ( $.inArray('id_expDurationType_1', selectedArray) !== -1 ) {
+			$('.tab_tox_st, .tab_tox_lt').hide();
+			$('.tab_tox_it').show();
+		} else if ( $.inArray('id_expDurationType_2', selectedArray) !== -1 ) {
+			$('.tab_tox_st, .tab_tox_it').hide();
+			$('.tab_tox_lt').show();
+		}
+	});
+
 	// Crop-Target Lookup
 	$('#id_group_no, #id_group_name, #id_subgroup_no, #id_subgroup_name, #id_crop_category').prop('disabled', true);
 	var cropTargetFieldsArray = [];
@@ -62,6 +76,7 @@ $( document ).ready(function() {
 		var value = $('#id_crop_category option:selected').text();
 		console.log(value);
 		$('#id_exp_category').val(value);
+		category_queury(value);
 	});
 	// $('#id_crop_category').change(function() {
 	// 	var value = $(this).text();
@@ -69,19 +84,49 @@ $( document ).ready(function() {
 	// 	$('#id_exp_category').text(value);
 	// });
 
-	// NOT FINISHED
-	$('.ToxInp').click(function() {
-		if ( $.inArray('id_expDurationType_0', selectedArray) !== -1 ) {
-			$('.tab_tox_it, .tab_tox_lt').hide();
-			$('.tab_tox_st').show();
-		} else if ( $.inArray('id_expDurationType_1', selectedArray) !== -1 ) {
-			$('.tab_tox_st, .tab_tox_lt').hide();
-			$('.tab_tox_it').show();
-		} else if ( $.inArray('id_expDurationType_2', selectedArray) !== -1 ) {
-			$('.tab_tox_st, .tab_tox_it').hide();
-			$('.tab_tox_lt').show();
+	// Exposure Scenario
+	function category_queury(crop_category) {
+		$.ajax({
+			url: "category",
+			type: "POST",
+			data: {'category': crop_category},
+			success: function(json) { 
+				console.log(json.result);
+
+				var worker_activites = json.result[0];
+				// $('#id_exp_worker_activity').val(worker_activites);
+				create_checkboxes("worker_activity", worker_activites);
+
+				var app_type = json.result[1];
+				create_checkboxes("app_type", app_type);
+
+				var app_equipment = json.result[2];
+				create_checkboxes("app_equipment", app_equipment);
+
+				var formulation = json.result[3];
+				create_checkboxes("formulation", formulation);
+				
+			}
+		});
+	}
+
+	function create_checkboxes(type, item_list) {
+
+
+		console.log(item_list);
+
+		var checkboxes = "<td>";
+
+		for (i = 0; i < item_list.length; i++) {
+			checkboxes = checkboxes + "<input type='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "<br>"
 		}
-	});
+
+		checkboxes = checkboxes + "</td>"
+
+		// $('#id_exp_' + type).replaceWith(checkboxes);
+		$('label[for=id_exp_' + type + ']').closest('th').next().replaceWith(checkboxes);
+
+	}
 
 	// Enabled Crop-Target Category Lookup form fields before form submit
 	// ***Not needed with how the fields are populated currently; must re-query DB after form submit***

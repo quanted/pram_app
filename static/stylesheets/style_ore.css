@@ -4,3 +4,6 @@
 .input_table {
 	width: 92%;
 }
+.articles_output ul {
+	list-style: none;
+}

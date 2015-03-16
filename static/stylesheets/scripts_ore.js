@@ -115,13 +115,20 @@ $( document ).ready(function() {
 
 		console.log(item_list);
 
-		var checkboxes = "<td>";
+		var checkboxes = "<td><ul>";
 
-		for (i = 0; i < item_list.length; i++) {
-			checkboxes = checkboxes + "<input type='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "<br>"
+		if (type !== 'formulation') {
+			for (i = 0; i < item_list.length; i++) {
+				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label></li>"
+			}
+		} else {
+			checkboxes = checkboxes + "<li style='text-align: right;'>Application Rate (lb ai/acre): </li>"
+			for (i = 0; i < item_list.length; i++) {
+				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label><input class='formulation_rate' name='" + item_list[i] + " type='number'></li>"
+			}
 		}
 
-		checkboxes = checkboxes + "</td>"
+		checkboxes = checkboxes + "</ul></td>"
 
 		// $('#id_exp_' + type).replaceWith(checkboxes);
 		$('label[for=id_exp_' + type + ']').closest('th').next().replaceWith(checkboxes);

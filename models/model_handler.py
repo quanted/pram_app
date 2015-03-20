@@ -88,9 +88,10 @@ def create_dataframe(response):
 def modelInputPOSTReceiver(request, model):
     """
         Converts the POSTed data from the model's input page form 
-        to a Python dictonary and passes it to the Model object where  
+        to a Python dictonary and passes it to the Model object where
         it is to be converted to JSON and passed to the backend server.
     """
+
 
     logging.info("=========== model_handler.modelInputPOSTReceiver")
     args = { "inputs" : {} }

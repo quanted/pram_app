@@ -16,11 +16,12 @@ def timestamp():
     #     st = datetime.datetime.strptime(sam_obj.jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
     # else:
     #     st = datetime.datetime.strptime(batch_jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
+    st = datetime.datetime.today().strftime('%A, %Y-%B-%d %H:%M:%S')
     html="""
     <div class="out_">
     <b>Spatial Aquatic Model (SAM) Beta<br>
     """
-    # html = html + st
+    html = html + st
     html = html + " (EST)</b>"
     html = html + """
     </div>"""

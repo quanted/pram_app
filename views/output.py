@@ -49,8 +49,20 @@ def outputPageView(request, model='none', header=''):
             return a confirmation of model submission to the user. Model results 
             will be available at a later time (e.g. from the History page).
             """
-            modelOutputHTML = model_handler.modelInputPOSTReceiverFortran(request, model)
+
+            import models.sam.sam_tables as tablesmodule
+
+            """ Generate Timestamp HTML from "*_tables" module """
+            modelOutputHTML = tablesmodule.timestamp()
+            """ Generate Model input & output tables HTML from "*_tables" module """
+            tables_output = tablesmodule.table_all(request)
+
+            modelOutputHTML = modelOutputHTML + tables_output
+
+            """ Render output page view HTML """
             html = outputPageHTML(header, model, modelOutputHTML)
+            # modelOutputHTML = model_handler.modelInputPOSTReceiverFortran(request, model)
+            # html = outputPageHTML(header, model, modelOutputHTML)
 
             response = HttpResponse()
             response.write(html)

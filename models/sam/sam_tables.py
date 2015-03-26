@@ -10,16 +10,17 @@ from django.template.loader import render_to_string
 import sam_parameters
 
 
-def timestamp(sam_obj="", batch_jid=""):
-    if sam_obj:
-        st = datetime.datetime.strptime(sam_obj.jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
-    else:
-        st = datetime.datetime.strptime(batch_jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
+# def timestamp(sam_obj="", batch_jid=""):
+def timestamp():
+    # if sam_obj:
+    #     st = datetime.datetime.strptime(sam_obj.jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
+    # else:
+    #     st = datetime.datetime.strptime(batch_jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
     html="""
     <div class="out_">
     <b>Spatial Aquatic Model (SAM) Beta<br>
     """
-    html = html + st
+    # html = html + st
     html = html + " (EST)</b>"
     html = html + """
     </div>"""
@@ -85,29 +86,29 @@ tmpl = Template(djtemplate)
 ########################
 # Table Initialization #
 ########################
-def gett1data(sam_obj):
-    
-    if (sam_obj.scenario_selection == '1'):
+def gett1data(request):
+
+    if (request.POST["scenario_selection"] == '1'):
         scenario = 'Atrazine - Corn'
         chemical_name = 'Atrazine'
         koc = '100'
         soil_hl = '123'
-    elif (sam_obj.scenario_selection == '2'):
+    elif (request.POST["scenario_selection"] == '2'):
         scenario = 'Chlorpyrifos - Corn'
         chemical_name = 'Chlorpyrifos'
         koc = '6040'
         soil_hl = '109'
-    elif (sam_obj.scenario_selection == '3'):
+    elif (request.POST["scenario_selection"] == '3'):
         scenario = 'Chlorpyrifos - Soybeans'
         chemical_name = 'Chlorpyrifos'
         koc = '6040'
         soil_hl = '109'
-    elif (sam_obj.scenario_selection == '4'):
+    elif (request.POST["scenario_selection"] == '4'):
         scenario = 'Fipronil - Corn'
         chemical_name = 'Fipronil'
         koc = '727'
         soil_hl = '128'
-    elif (sam_obj.scenario_selection == '5'):
+    elif (request.POST["scenario_selection"] == '5'):
         scenario = 'Metolachlor - Corn'
         chemical_name = 'Metolachlor'
         koc = '181'
@@ -130,7 +131,7 @@ def gett1data(sam_obj):
     # }
     return data
 
-def gett2data(sam_obj):
+def gett2data(request):
     # Convert tuple into dictionary
     # CROP_CHOICES = dict(sam_parameters.SamInp_app.CROP_CHOICES)
     
@@ -145,7 +146,7 @@ def gett2data(sam_obj):
     #     refine = ""
     no_of_crops = '4'
     app_meth = 'Ground'
-    if (sam_obj.scenario_selection == '1'):
+    if (request.POST["scenario_selection"] == '1'):
         crop = 'Corn, Corn/grains, Corn/wheat, Corn/soybeans'
         noa = '1500'
         app_rate = '1.3'
@@ -154,21 +155,21 @@ def gett2data(sam_obj):
         percent_app = '50'
         time_win2 = '43'
         percent_app2 = '50'
-    elif (sam_obj.scenario_selection == '2'):
+    elif (request.POST["scenario_selection"] == '2'):
         crop = 'Corn, Corn/grains, Corn/wheat, Corn/soybeans'
         noa = '900'
         app_rate = '1.1'
         refinements = 'Uniform Application over Window'
         time_win = '30'
         percent_app = '100'
-    elif (sam_obj.scenario_selection == '3'):
+    elif (request.POST["scenario_selection"] == '3'):
         crop = 'Soybeans, Soybeans/grains, Soybeans/wheat, Soybeans/cotton'
         noa = '1260'
         app_rate = '1.1'
         refinements = 'Uniform Application over Window'
         time_win = '42'
         percent_app = '100'
-    elif (sam_obj.scenario_selection == '4'):
+    elif (request.POST["scenario_selection"] == '4'):
         crop = 'Corn, Corn/grains, Corn/wheat, Corn/soybeans'
         noa = '1500'
         app_rate = '0.1'
@@ -177,7 +178,7 @@ def gett2data(sam_obj):
         percent_app = '50'
         time_win2 = '43'
         percent_app2 = '50'
-    elif (sam_obj.scenario_selection == '5'):
+    elif (request.POST["scenario_selection"] == '5'):
         crop = 'Corn, Corn/grains, Corn/wheat, Corn/soybeans'
         noa = '1500'
         app_rate = '1.05'
@@ -227,7 +228,7 @@ def gett2data(sam_obj):
     # }
     return data
 
-def gett3data(sam_obj):
+def gett3data(request):
     # try:
     #     sim_type = sam_parameters.SamInp_sim.SIM_CHOICES[int(sam_obj.sim_type) - 1][1]
     # except:
@@ -245,7 +246,7 @@ def gett3data(sam_obj):
     # }
     return data
 
-def gett4data(sam_obj):
+def gett4data(request):
     # try:
     #     output_type = sam_parameters.SamInp_output.OUTPUT_TYPE_CHOICES[int(sam_obj.output_type) - 1][1]
     # except:
@@ -276,14 +277,14 @@ def gett4data(sam_obj):
 ###################
 # Table Formating #
 ###################
-def table_1(sam_obj):
+def table_1(request):
         html = """
         <H3 class="out_1 collapsible" id="section1"><span></span>User Inputs:</H3>
         <div class="out_">
             <H4 class="out_1 collapsible" id="section2"><span></span>Chemical Properties</H4>
                 <div class="out_ container_output">
         """
-        tdata = gett1data(sam_obj)
+        tdata = gett1data(request)
         trows = gethtmlrowsfromcols(tdata,pvuheadings)
         html = html + tmpl.render(Context(dict(data=trows, headings=pvuheadings)))
         html = html + """
@@ -291,12 +292,12 @@ def table_1(sam_obj):
         """
         return html
 
-def table_2(sam_obj):
+def table_2(request):
         html = """
             <H4 class="out_1 collapsible" id="section2"><span></span>Application</H4>
                 <div class="out_ container_output">
         """
-        tdata = gett2data(sam_obj)
+        tdata = gett2data(request)
         trows = gethtmlrowsfromcols(tdata,pvuheadings)
         html = html + tmpl.render(Context(dict(data=trows, headings=pvuheadings)))
         html = html + """
@@ -304,12 +305,12 @@ def table_2(sam_obj):
         """
         return html
 
-def table_3(sam_obj):
+def table_3(request):
         html = """
             <H4 class="out_1 collapsible" id="section2"><span></span>Simulation</H4>
                 <div class="out_ container_output">
         """
-        tdata = gett3data(sam_obj)
+        tdata = gett3data(request)
         trows = gethtmlrowsfromcols(tdata,pvheadings)
         html = html + tmpl.render(Context(dict(data=trows, headings=pvheadings)))
         html = html + """
@@ -317,12 +318,12 @@ def table_3(sam_obj):
         """
         return html
 
-def table_4(sam_obj):
+def table_4(request):
         html = """
             <H4 class="out_1 collapsible" id="section2"><span></span>Output Settings</H4>
                 <div class="out_ container_output">
         """
-        tdata = gett4data(sam_obj)
+        tdata = gett4data(request)
         trows = gethtmlrowsfromcols(tdata,pvheadings)
         html = html + tmpl.render(Context(dict(data=trows, headings=pvheadings)))
         html = html + """
@@ -331,26 +332,26 @@ def table_4(sam_obj):
         """
         return html
 
-def table_all(sam_obj):
+def table_all(request):
 
-    html = table_1(sam_obj)
-    html = html + table_2(sam_obj)
-    html = html + table_3(sam_obj)
-    html = html + table_4(sam_obj)
+    html = table_1(request)
+    html = html + table_2(request)
+    html = html + table_3(request)
+    html = html + table_4(request)
     
-    if (sam_obj.scenario_selection == '1'):
+    if (request.POST["scenario_selection"] == '1'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Atrazine_corn.zip'
         scenario = 'atrazine_corn'
-    elif (sam_obj.scenario_selection == '2'):
+    elif (request.POST["scenario_selection"] == '2'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Chlorpyrifos_corn.zip'
         scenario = 'chlorpyrifos_corn'
-    elif (sam_obj.scenario_selection == '3'):
+    elif (request.POST["scenario_selection"] == '3'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Chlorpyrifos_soybeans.zip'
         scenario = 'chlorpyrifos_soybeans'
-    elif (sam_obj.scenario_selection == '4'):
+    elif (request.POST["scenario_selection"] == '4'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Fipronil_corn.zip'
         scenario = 'fipronil_corn'
-    elif (sam_obj.scenario_selection == '5'):
+    elif (request.POST["scenario_selection"] == '5'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Metolachlor_corn.zip'
         scenario = 'metolachlor_corn'
     else:

@@ -241,6 +241,18 @@ class SamInp_output(forms.Form):
         (2, 'Generate Map'),
         (3, 'Plots / Histograms')
     )
+    OUTPUT_WORKER_CHOICES = (
+        (1, '1 Worker'),
+        (2, '2 Workers'),
+        (4, '4 Workers'),
+        (8, '8 Workers'),
+        (16, '16 Workers')
+    )
+    OUTPUT_PROCESS_CHOICES = (
+        (1, '1x Workers'),
+        (2, '2x Workers'),
+        (3, '3x Workers')
+    )
 
     # output_type = forms.ChoiceField(
     # 		required=False,
@@ -287,12 +299,16 @@ class SamInp_output(forms.Form):
             widget=forms.CheckboxSelectMultiple,
             choices=OUTPUT_FORMAT_CHOICES,
             label='Output Format')
-    workers = forms.IntegerField(
+    workers = forms.ChoiceField(
             required=False,
-            label='Number of Workers (TESTING)',
-            initial=10,
-            min_value=1,
-            max_value=1000)
+            choices=OUTPUT_WORKER_CHOICES,
+            label='Number of Concurrent Processes (Workers)',
+            initial=4)
+    processes = forms.ChoiceField(
+            required=False,
+            choices=OUTPUT_PROCESS_CHOICES,
+            label='Total Number of Processes',
+            initial=1)
 
  
 class SamInp(SamInp_chem, SamInp_app, SamInp_app_refine, SamInp_sim, SamInp_output):

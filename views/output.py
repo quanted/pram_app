@@ -130,7 +130,7 @@ def outputPage(request, model='none', header=''):
     Django HTTP POST handler for output page.  Receives form data and
     validates it.  If valid it calls method to render the output page
     view.  If invalid, it returns the error to the model input page.
-    This method maps to: '/eco/<model>/output'
+    This method maps to: '/ubertool/<model>/output'
     """
 
     viewmodule = importlib.import_module('.views', 'models.'+model)

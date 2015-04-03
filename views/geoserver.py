@@ -57,19 +57,18 @@ def sam_done_query(request, jid):
     from REST import rest_funcs
     request = rest_funcs.get_model_object(jid, "sam")
 
-    print request
+    # print request
 
     if request == None:
         html = "working"
     else:
         try:
-            print request[0]['model_object_dict']
+            if request['output'] == '':
+                html = "working, first process finished"
+            else:
+                html = "done"
         except:
-            pass
-        if len(request[0]['model_object_dict']['output']) == 0:
             html = "working, first process finished"
-        else:
-            html = "done"
 
     response = HttpResponse()
     response.write(html)

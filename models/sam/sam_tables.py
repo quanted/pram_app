@@ -446,7 +446,7 @@ def custom_run_tables(request, jid):
 
     return html
 
-def table_all(request, jid):
+def table_all(request, jid=None):
 
     html = table_1(request)
     html = html + table_2(request)

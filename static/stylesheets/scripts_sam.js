@@ -5,6 +5,15 @@ $(document).ready(function() {
 		{   "isSubTabs":false   }
 	);
 
+    // BETA disclaimer
+    alert("Disclaimer: " +
+        "Ecological risk calculations contained here should be used for no purpose other than quality " +
+        "assurance and peer review of the presented web applications. This web site is under " +
+        "development. It is available for the purposes of receiving feedback and quality assurance from " +
+        "personnel in the EPA Office of Chemical Safety and Pollution Prevention and from interested " +
+        "members of the ecological risk assessment community."
+    );
+
 	// Default inputs
 	$('#id_sim_type_0, #id_output_format_0, #id_output_format_1, #id_output_format_2').prop('checked', true);
 	$('#id_region').val('Ohio Valley');
@@ -67,7 +76,7 @@ $(document).ready(function() {
 		}
 	}
 	else {
-		// $('button.submit').attr('disabled', true);
+		samFillScenarioCrops('0');
 	}
 
 	// Set default start date
@@ -164,6 +173,15 @@ $(document).ready(function() {
 				break;
 			default:
 				$(':input:not(#id_scenario_selection)').attr('disabled', false);
+                $('#id_output_tox_thres_exceed, #id_output_time_avg_conc,' +
+                '#id_output_type_0, #id_output_type_1,' +
+                '#id_output_time_avg_option_0, #id_output_time_avg_option_1,' +
+                '#id_sim_type_0, #id_sim_type_1, #id_sim_type_2').attr('disabled', true);
+                $('#id_workers').attr('readonly', true).val('16');
+                $('#id_processes').attr('readonly', true).val('1');
+                $('#id_region').attr('readonly', true);
+                // Force Refinement method to be 'Uniform with Step'
+                $('#id_refine').val('uniform_step');
 				// $('button.submit').attr('disabled', true);
 				// Add 'crop_list_no_array' array to 'crop_list_no' input field before submit
 				// $('button.submit').click(function(e) {
@@ -176,6 +194,12 @@ $(document).ready(function() {
 					// 	$('#id_crop_list_no').val(crop_list_no_array);
 					// 	console.log($('#id_crop_list_no').val());
 					// }
+
+                    $('#id_output_tox_thres_exceed, #id_output_time_avg_conc,' +
+                    '#id_output_type_0, #id_output_type_1,' +
+                    '#id_output_time_avg_option_0, #id_output_time_avg_option_1,' +
+                    '#id_sim_type_0, #id_sim_type_1, #id_sim_type_2').attr('disabled', false);
+
 					$('#id_crop_list_no').val(crop_list_no_array);
 					console.log($('#id_crop_list_no').val());
 				});
@@ -302,20 +326,30 @@ $(document).ready(function() {
 	// Refinements
 	$('#id_refine').change(function() {
 		var refinement = $(this).val();
-		if (refinement == "1") {
+		if (refinement == "uniform") {
+            refine_warning();
+            console.log('1');
 			$('#id_refine_time_window2, #id_refine_percent_applied2')
-				.prop('disabled', true).closest('tr').hide();
+				.attr('disabled', true).closest('tr').hide();
 			$('#id_refine_percent_applied1')
-				.prop('disabled', false).closest('tr').show();
+				.attr('disabled', false).closest('tr').show();
 		}
-		else if (refinement == "2") {
+		else if (refinement == "uniform_step") {
+            console.log('2');
 			$('#id_refine_percent_applied1, #id_refine_time_window2, #id_refine_percent_applied2')
-				.prop('disabled', false).closest('tr').show();
+				.attr('disabled', false).closest('tr').show();
 		}
-		else if (refinement == "3") {
+		else if (refinement == "triangular") {
+            refine_warning();
+            console.log('3');
 			$('#id_refine_percent_applied1, #id_refine_time_window2, #id_refine_percent_applied2')
-				.prop('disabled', true).closest('tr').hide();
+				.attr('disabled', true).closest('tr').hide();
 		}
 	});
+
+    function refine_warning() {
+        alert("Only 'Uniform Step Application over Window' is currently allowed.  Upon model submission," +
+        "the 'Refinement' will automatically switch to that option.");
+    }
 
 });

@@ -174,21 +174,27 @@ class SamInp_sim(forms.Form):
     SIM_DATE_1STAPP_CHOICES = (
         (1, 'Monday, April 20, 1970'),
     )
-    SIM_STATE = (
-        ('Illinois', 'Illinois'),
-        ('Indiana', 'Indiana'),
-        ('Kentucky', 'Kentucky'),
-        ('Ohio', 'Ohio'),
-        ('Ohio Valley', 'Ohio Valley'),
-        ('Pennsylvania', 'Pennsylvania'),
-        ('Tennessee', 'Tennessee'),
-        ('West Virginia', 'West Virginia')
-    )
+    # SIM_STATE = (
+    #     ('Illinois', 'Illinois'),
+    #     ('Indiana', 'Indiana'),
+    #     ('Kentucky', 'Kentucky'),
+    #     ('Ohio', 'Ohio'),
+    #     ('Ohio Valley', 'Ohio Valley'),
+    #     ('Pennsylvania', 'Pennsylvania'),
+    #     ('Tennessee', 'Tennessee'),
+    #     ('West Virginia', 'West Virginia')
+    # )
 
-    region = forms.ChoiceField(
+    # region = forms.ChoiceField(
+    #         required=False,
+    #         choices=SIM_STATE,
+    #         label='State/Region')
+    region = forms.CharField(
             required=False,
-            choices=SIM_STATE,
-            label='State/Region')
+            label='State/Region',
+            initial='Ohio River Valley',
+            widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
+    )
     sim_type = forms.ChoiceField(
             required=False,
             widget=forms.RadioSelect,
@@ -241,18 +247,18 @@ class SamInp_output(forms.Form):
         (2, 'Generate Map'),
         (3, 'Plots / Histograms')
     )
-    OUTPUT_WORKER_CHOICES = (
-        (1, '1 Worker'),
-        (2, '2 Workers'),
-        (4, '4 Workers'),
-        (8, '8 Workers'),
-        (16, '16 Workers')
-    )
-    OUTPUT_PROCESS_CHOICES = (
-        (1, '1x Workers'),
-        (2, '2x Workers'),
-        (3, '3x Workers')
-    )
+    # OUTPUT_WORKER_CHOICES = (
+    #     (1, '1 Worker'),
+    #     (2, '2 Workers'),
+    #     (4, '4 Workers'),
+    #     (8, '8 Workers'),
+    #     (16, '16 Workers')
+    # )
+    # OUTPUT_PROCESS_CHOICES = (
+    #     (1, '1x Workers'),
+    #     (2, '2x Workers'),
+    #     (3, '3x Workers')
+    # )
 
     # output_type = forms.ChoiceField(
     # 		required=False,
@@ -299,15 +305,23 @@ class SamInp_output(forms.Form):
             widget=forms.CheckboxSelectMultiple,
             choices=OUTPUT_FORMAT_CHOICES,
             label='Output Format')
-    workers = forms.ChoiceField(
+    # workers = forms.ChoiceField(
+    #         required=False,
+    #         choices=OUTPUT_WORKER_CHOICES,
+    #         label='Number of Concurrent Processes (Workers)',
+    #         initial=4)
+    # processes = forms.ChoiceField(
+    #         required=False,
+    #         choices=OUTPUT_PROCESS_CHOICES,
+    #         label='Total Number of Processes',
+    #         initial=1)
+    workers = forms.FloatField(
             required=False,
-            choices=OUTPUT_WORKER_CHOICES,
             label='Number of Concurrent Processes (Workers)',
-            initial=4)
-    processes = forms.ChoiceField(
+            initial=16)
+    processes = forms.FloatField(
             required=False,
-            choices=OUTPUT_PROCESS_CHOICES,
-            label='Total Number of Processes',
+            label='Number of Processes Multiplier',
             initial=1)
 
  

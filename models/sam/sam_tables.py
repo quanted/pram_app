@@ -115,10 +115,16 @@ def gett1data(request):
         koc = '181'
         soil_hl = '49'
     else:
-        scenario = 'n/a'
-        chemical_name = 'n/a'
-        koc = 'n/a'
-        soil_hl = 'n/a'    
+        try:
+            scenario = 'Custom Run'
+            chemical_name = request.POST['chemical_name']
+            koc = request.POST['koc']
+            soil_hl = request.POST['soil_metabolism_hl']
+        except:
+            scenario = 'n/a'
+            chemical_name = 'n/a'
+            koc = 'n/a'
+            soil_hl = 'n/a'
 
     data = {
         "Parameter": ['Scenario', 'Chemical Name', 'Koc', 'Soil Metabolism Halflife'],
@@ -189,14 +195,24 @@ def gett2data(request):
         time_win2 = '43'
         percent_app2 = '50'
     else:
-        crop = 'n/a'
-        no_of_crops = 'n/a'
-        noa = 'n/a'
-        app_meth = 'n/a'
-        app_rate = 'n/a'
-        refinements = 'n/a'
-        time_win = 'n/a'
-        percent_app = 'n/a'
+        try:
+            crop = request.POST['crop_list_no']
+            no_of_crops = request.POST['crop_number']
+            noa = request.POST['apps_per_year']
+            app_meth = request.POST['application_method']
+            app_rate = request.POST['application_rate']
+            refinements = request.POST['refine']
+            time_win = request.POST['refine_time_window1']
+            percent_app = request.POST['refine_percent_applied1']
+        except:
+            crop = 'n/a'
+            no_of_crops = 'n/a'
+            noa = 'n/a'
+            app_meth = 'n/a'
+            app_rate = 'n/a'
+            refinements = 'n/a'
+            time_win = 'n/a'
+            percent_app = 'n/a'
     
     if (refinements == 'Uniform Step Application over Window'):
         data = {
@@ -234,10 +250,21 @@ def gett3data(request):
     #     sim_type = sam_parameters.SamInp_sim.SIM_CHOICES[int(sam_obj.sim_type) - 1][1]
     # except:
     #     sim_type = ""
-    
+
+
+    if (request.POST["scenario_selection"] == '0'):
+        date_start = request.POST['sim_date_start']
+        date_end = request.POST['sim_date_end']
+        date_1st_app = request.POST['sim_date_1stapp']
+        date_1st_app = request.POST['sim_date_1stapp']
+    else:
+        date_start = '01/01/1984'
+        date_end = '12/31/2013'
+        date_1st_app = '04/20/1984'
+
     data = {
         "Parameter": ['Sate/Region', 'Simulation Type', 'Start Date', 'End Date', 'First Application Date'],
-        "Value": [ 'Ohio Valley', 'Eco', '01/01/1984', '12/31/2013', '04/20/1984' ]
+        "Value": [ 'Ohio Valley', 'Eco', date_start, date_end, date_1st_app ]
     }
 
     # data = {
@@ -258,14 +285,38 @@ def gett4data(request):
     # except:
     #     output_tox = ""
 
-    data = {
-        "Parameter": ['Output Preference', '', '', '', 'Threshold Time Period', mark_safe('Threshold (&micro;g/L)'), 'Output Format'],
-        "Value": ['21-d Average Concentrations - 90th percentile',
-                    '60-d Average Concentrations - 90th percentile',
-                    'Toxicity Threshold - Average Duration of Daily Exceedances',
-                    'Toxicity Threshold - Percentage of Days with Exceedances',
-                    '30-d, Annual', '4', 'CSVs & Map'],
-    }
+    if (request.POST["scenario_selection"] == '0'):
+        try:
+            avg_period = request.POST["output_avg_days"]
+        except:
+            avg_period = "4"
+        try:
+            tox_thres = request.POST["output_tox_value"]
+        except:
+            tox_thres = "4"
+        data = {
+            "Parameter": [
+                'Output Preference',
+                'Averaging Period (days)',
+                mark_safe('Threshold (&micro;g/L)'),
+                'Exceedance Type',
+            ],
+            "Value": [
+                'Time-Averaged Results',
+                avg_period,
+                tox_thres,
+                'Average duration of exceedance (days), by month',
+            ],
+        }
+    else:
+        data = {
+            "Parameter": ['Output Preference', '', '', '', 'Threshold Time Period', mark_safe('Threshold (&micro;g/L)'), 'Output Format'],
+            "Value": ['21-d Average Concentrations - 90th percentile',
+                        '60-d Average Concentrations - 90th percentile',
+                        'Toxicity Threshold - Average Duration of Daily Exceedances',
+                        'Toxicity Threshold - Percentage of Days with Exceedances',
+                        '30-d, Annual', '4', 'CSVs & Map'],
+        }
 
     # data = {
     #     "Parameter": ['Output Preference', 'Threshold Time Period', 'Threshold', 'Output Format'],
@@ -333,13 +384,8 @@ def table_4(request):
         """
         return html
 
-def table_all(request):
+def pre_canned_tables(request):
 
-    html = table_1(request)
-    html = html + table_2(request)
-    html = html + table_3(request)
-    html = html + table_4(request)
-    
     if (request.POST["scenario_selection"] == '1'):
         link = 'https://s3.amazonaws.com/super_przm/postprocessed/Atrazine_corn.zip'
         scenario = 'atrazine_corn'
@@ -359,7 +405,7 @@ def table_all(request):
         link = ''
         scenario = 'atrazine_corn'
 
-    html = html + """
+    html = """
     <br>
     <H3 class="out_3 collapsible" id="section1"><span></span>Model Outputs</H3>
     <div class="out_3">
@@ -368,7 +414,7 @@ def table_all(request):
                 <table class="out_">
                     <tr>
                         <th scope="col">Outputs</div></th>
-                        <th scope="col">Value</div></th>                            
+                        <th scope="col">Value</div></th>
                     </tr>
                     <tr>
                         <td>Simulation is finished. Please download your file from here</td>
@@ -380,5 +426,38 @@ def table_all(request):
 
     html = html + render_to_string('sam_mapping_demo.html', {'SCENARIO' : scenario})
     html = html + render_to_string('sam_charts_demo.html', {'SCENARIO' : scenario})
+
+    return html
+
+def custom_run_tables(request, jid):
+
+    html = """
+    <br>
+    <H3 class="out_3 collapsible" id="section1"><span></span>Model Outputs</H3>
+    <div class="out_3">
+        <H4 class="out_1 collapsible" id="section1"><span></span>Visualization</H4>
+            <div id="sam_still_working"><em>SAM is processing spatial data.  Map will show when model has completed.</em></div>
+            <div class="out_ container_output sam_map">
+    """
+    html += render_to_string('geoserver_template.html', { 'jid': jid })
+    html += """
+            </div>
+    """
+
+    return html
+
+def table_all(request, jid):
+
+    html = table_1(request)
+    html = html + table_2(request)
+    html = html + table_3(request)
+    html = html + table_4(request)
+
+    if request.POST['scenario_selection'] == '0':
+        html += custom_run_tables(request, jid)
+        html += "</div>"
+
+    else:
+        html += pre_canned_tables(request)
 
     return html

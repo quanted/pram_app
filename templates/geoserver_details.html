@@ -1,0 +1,29 @@
+<table>
+    <tr>
+        <th></th>
+        <th colspan="12">Average duration of exceedance (days), by month</th>
+    </tr>
+    <tr>
+        <th>HUC ID</th>
+        <th>Jan</th>
+        <th>Feb</th>
+        <th>Mar</th>
+        <th>Apr</th>
+        <th>May</th>
+        <th>Jun</th>
+        <th>Jul</th>
+        <th>Aug</th>
+        <th>Sep</th>
+        <th>Oct</th>
+        <th>Nov</th>
+        <th>Dec</th>
+    </tr>
+    <tr>
+        {% for k, v in sam_out.iteritems %}
+        <td>{{ k }}</td>
+            {% for item in v %}
+                <td>{{ item }}</td>
+            {% endfor %}
+        {% endfor %}
+    </tr>
+</table>

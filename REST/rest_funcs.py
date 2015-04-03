@@ -128,7 +128,7 @@ def get_output_html(jid, model_name):
         html_output =""
     return html_output
 
-###########################function to retrive model object from MongoDB################################ 
+###########################function to retrieve model object from MongoDB################################
 def get_model_object(jid, model_name):
     """Retrieves JSON from MongoDB representing model (Python) object and returns it as Python dictionary"""
     all_dic = {"jid":jid, "model_name":model_name}
@@ -144,7 +144,23 @@ def get_model_object(jid, model_name):
         model_object =""
     return model_object
 
-###########################function to retrive html from MongoDB################################ 
+###########################function to retrieve model object from MongoDB################################
+def get_sam_huc_output(jid, huc12):
+    """Retrieves JSON from MongoDB representing model (Python) object and returns it as Python dictionary"""
+    all_dic = {"jid": jid, "model_name": "sam", "huc12": huc12}
+    data = json.dumps(all_dic)
+    url = url_part1 + '/get_sam_huc_output'
+    try:
+        response = requests.post(url, data=data, headers=http_headers, timeout=60)
+    except:
+        logging.exception(Exception)
+    if response:
+        model_object = json.loads(response.content)['huc12_output']
+    else:
+        model_object =""
+    return model_object
+
+###########################function to retrieve html from MongoDB################################
 def create_batchoutput_html(jid, model_name):
     all_dic = {"jid":jid, "model_name":model_name}
     data = json.dumps(all_dic)
@@ -168,6 +184,13 @@ def create_batchoutput_html(jid, model_name):
 class Struct:
     def __init__(self, **entries): 
         self.__dict__.update(entries)
+
+
+###########################################################
+
+
+
+###########################################################
 
 ###########################creat an object to display history runs################################ 
 class user_hist(object):

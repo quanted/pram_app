@@ -72,7 +72,7 @@ def historyPageRevist(request, model='none', header='none'):
 
         # Retrieve model's MongoDB entry as Python dictionary
         model_dict = rest_funcs.get_model_object(jid, model_name)
-        logging.info(model_dict)
+        # logging.info(model_dict)
 
         # Write output string from Mongo to file in memory
         output_str = model_dict['output']

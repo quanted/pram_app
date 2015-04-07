@@ -8,6 +8,7 @@ $( document ).ready(function() {
         'This will result in duplicate model submissions and will slow down returning of model results.');
 
     var jid_ajax = document.getElementById('jid').innerHTML // SAM run 'jid'
+    var timer = null;
 
     function updateTimer() {
 
@@ -17,12 +18,14 @@ $( document ).ready(function() {
             // dataType: "text",
             success: function(data) {
                 
-                // console.log(data);
+                console.log(data);
 
                 if (data == "done") {
+                    console.log("ending timeout (hopefully)");
+                    clearTimeout(timer);
                     showMap();
                 } else {
-                    setTimeout(updateTimer, 10000); // poll every 10s until success
+                    timer = setTimeout(updateTimer, 10000); // poll every 10s until success
                 }
 
             },

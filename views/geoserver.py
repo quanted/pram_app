@@ -57,7 +57,7 @@ def sam_done_query(request, jid):
     from REST import rest_funcs
     request = rest_funcs.get_model_object(jid, "sam")
 
-    # print request
+    logging.info(request)
 
     if request == None:
         html = "working"
@@ -67,8 +67,8 @@ def sam_done_query(request, jid):
                 html = "working, first process finished"
             else:
                 html = "done"
-        except:
-            html = "working, first process finished"
+        except Exception as e: 
+            html = "except: {}".format(e)
 
     response = HttpResponse()
     response.write(html)

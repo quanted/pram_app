@@ -159,6 +159,7 @@ function setHTML(response){
     data = response.responseText;  // HUC clicked data from Geoserver
     jid = document.getElementById('jid').innerHTML // SAM run 'jid'
     console.log(jid)
+    console.log(data)
 
     httpRequest.onreadystatechange = showHUCData;  // Callback method
     httpRequest.open("POST", "/geoserver/query/" + jid, true);

@@ -44,7 +44,7 @@ def sam_huc_query(request, jid):
     try:
         html = render_to_string('geoserver_details.html', {"sam_out": sam_out[0]['model_object_dict']['output']})
     except:
-        html = "SAM is still processing the spatial data...please wait..."
+        html = "SAM is still processing the spatial data for job: " + str(jid)
 
     response = HttpResponse()
     response.write(html)

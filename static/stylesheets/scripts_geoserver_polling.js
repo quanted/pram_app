@@ -1,7 +1,7 @@
 // Long polling for SAM results
 $( document ).ready(function() {
 
-    $('.sam_map').hide();
+    $('.sam_map').show();
 
     // Warn user not to refresh page
     alert('SAM run successfully submitted.  Do NOT refresh page.  ' +
@@ -34,7 +34,7 @@ $( document ).ready(function() {
                 console.log(textStatus);
                 console.log(errorThrown);
 
-                setTimeout(updateTimer, 10000); // poll every 10s until success
+                timer = setTimeout(updateTimer, 10000); // poll every 10s until success
             }
 
         });
@@ -42,7 +42,7 @@ $( document ).ready(function() {
     }
 
     function showMap() {
-        $('#sam_still_working').hide();
+        $('#sam_still_working').show();
         $('.sam_map').show();
     }
 

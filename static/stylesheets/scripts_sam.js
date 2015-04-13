@@ -46,7 +46,7 @@ $(document).ready(function() {
 	var cropsArray_soybeans = ['Soybeans', 'Soybeans/cotton', 'Soybeans/wheat', 'Soybeans/grains'];
 	var cropsArray_corn = ['Corn', 'Corn/soybeans', 'Corn/wheat', 'Corn/grains'];
 	var crop_list_array = [];
-	var crop_list_no_array = [];
+	var crop_list_no_array = ["10", "14", "15", "18"];
     var samScenarioInputs_atrazine_corn = ["1", "Atrazine", "100", "1", "2", "123", "10 14 15 18", "0", "4", "1", "1", "1.3", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
 	var samScenarioInputs_chlorpyrifos_corn = ["2", "Chlorpyrifos", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "30", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
 	var samScenarioInputs_chlorpyrifos_soybeans = ["3", "Chlorpyrifos", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "42", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];

@@ -124,6 +124,7 @@ $(document).ready(function() {
 				$('button.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').show();
 				samFillScenarioValues(samScenarioInputs_atrazine_corn);
+                $('#id_crop').val("10 14 15 18");
 				//cropsArray = cropsArray_corn;
 				//for (i=0;i<cropsArray.length;i++) {
 				//	cropArrayGenerator(cropsArray[i]);
@@ -134,6 +135,7 @@ $(document).ready(function() {
 				$('button.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').hide();
 				samFillScenarioValues(samScenarioInputs_chlorpyrifos_corn);
+                $('#id_crop').val("10 14 15 18");
 				//cropsArray = cropsArray_corn;
 				//for (i=0;i<cropsArray.length;i++) {
 				//	console.log(i);
@@ -146,6 +148,7 @@ $(document).ready(function() {
 				$('button.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').hide();
 				samFillScenarioValues(samScenarioInputs_chlorpyrifos_soybeans);
+                $('#id_crop').val("40 42 45 48 14");
 				//cropsArray = cropsArray_soybeans;
 				//for (i=0;i<cropsArray.length;i++) {
 				//	cropArrayGenerator(cropsArray[i]);
@@ -156,6 +159,7 @@ $(document).ready(function() {
 				$('button.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').show();
 				samFillScenarioValues(samScenarioInputs_fipronil_corn);
+                $('#id_crop').val("10 14 15 18");
 				//cropsArray = cropsArray_corn;
 				//for (i=0;i<cropsArray.length;i++) {
 				//	cropArrayGenerator(cropsArray[i]);
@@ -166,6 +170,7 @@ $(document).ready(function() {
 				$('button.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').show();
 				samFillScenarioValues(samScenarioInputs_metolachlor_corn);
+                $('#id_crop').val("10 14 15 18");
 				//cropsArray = cropsArray_corn;
 				//for (i=0;i<cropsArray.length;i++) {
 				//	cropArrayGenerator(cropsArray[i]);

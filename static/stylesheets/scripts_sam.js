@@ -292,7 +292,15 @@ $(document).ready(function() {
 						$('#crop1').text('');
 					}
 					else {
-						$('table.tab_Application tr').get(3).remove();
+						try {
+                            $('.tab_Application tr')[3].remove();
+                        }
+                        catch(e) {
+                            // IE support
+                            var appTable = document.getElementsByClassName('tab_Application')[0].children(0);
+                            var childToRemove = appTable.children(3);
+                            appTable.removeChild(childToRemove);
+                        }
 					}
 				}
 				$('#id_crop_number').val('0');

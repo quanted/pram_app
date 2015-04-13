@@ -51,42 +51,56 @@ class SamInp_chem(forms.Form):
 
 class SamInp_app(forms.Form):
     CROP_CHOICES = (
-        (0, "Choose up to 4 crops"),
-        (10, "Corn"),
-        #(14, "Corn/soybeans"),
-        #(15, "Corn/wheat"),
-        #(18, "Corn/grains"),
-        (20, "Cotton"),
-        #(25, "Cotton/wheat"),
-        #(26, "Cotton/vegetables"),
-        #(30, "Rice"),
-        (40, "Soybeans"),
-        #(42, "Soybeans/cotton"),
-        #(45, "Soybeans/wheat"),
-        #(48, "Soybeans/grains"),
-        (50, "Wheat"),
-        #(56, "Wheat/vegetables"),
-        #(58, "Wheat/grains"),
-        #(60, "Vegetables/ground fruit"),
-        (61, "Ground fruit"),
-        #(68, "Vegetables/grains"),
-        #(70, "Orchards/grapes"),
-        (75, "Other trees"),
-        (80, "Other grains"),
-        (90, "Other row crops"),
-        (100, "Other crops")
-        #(110, "Pasture/hay/forage"),
-        #(121, "Developed - open"),
-        #(122, "Developed - low"),
-        #(123, "Developed - med"),
-        #(124, "Developed - high"),
-        #(140, "Forest"),
-        #(150, "Grassland"),
-        #(160, "Shrubland"),
-        #(180, "Water"),
-        #(190, "Wetlands - woods"),
-        #(195, "Wetlands - herbaceous"),
-        #(200, "Miscellaneous land")
+        ("10 14 15 18", "Corn"),
+        ("20 25 26 42", "Cotton"),
+        ("40 42 45 48 14", "Soybeans"),
+        ("50 56 58 15 45", "Wheat"),
+        ("60 56 26 68", "Vegetables"),
+        ("60 61", "Ground fruit"),
+        ("70", "Orchards"),
+        ("70", "Grapes, vineyards"),
+        ("75", "Other trees"),
+        ("80 48 18 58", "Other grains"),
+        ("90", "Other row crops"),
+        ("100", "Other crops"),
+        ("110 150", "Pasture/hay/forage/grass"),
+
+        # (0, "Choose up to 4 crops"),
+        # (10, "Corn"),
+        # #(14, "Corn/soybeans"),
+        # #(15, "Corn/wheat"),
+        # #(18, "Corn/grains"),
+        # (20, "Cotton"),
+        # #(25, "Cotton/wheat"),
+        # #(26, "Cotton/vegetables"),
+        # #(30, "Rice"),
+        # (40, "Soybeans"),
+        # #(42, "Soybeans/cotton"),
+        # #(45, "Soybeans/wheat"),
+        # #(48, "Soybeans/grains"),
+        # (50, "Wheat"),
+        # #(56, "Wheat/vegetables"),
+        # #(58, "Wheat/grains"),
+        # #(60, "Vegetables/ground fruit"),
+        # (61, "Ground fruit"),
+        # #(68, "Vegetables/grains"),
+        # #(70, "Orchards/grapes"),
+        # (75, "Other trees"),
+        # (80, "Other grains"),
+        # (90, "Other row crops"),
+        # (100, "Other crops")
+        # #(110, "Pasture/hay/forage"),
+        # #(121, "Developed - open"),
+        # #(122, "Developed - low"),
+        # #(123, "Developed - med"),
+        # #(124, "Developed - high"),
+        # #(140, "Forest"),
+        # #(150, "Grassland"),
+        # #(160, "Shrubland"),
+        # #(180, "Water"),
+        # #(190, "Wetlands - woods"),
+        # #(195, "Wetlands - herbaceous"),
+        # #(200, "Miscellaneous land")
     )
     APP_METH_CHOICES = (
         (1, 'Ground'),
@@ -94,14 +108,19 @@ class SamInp_app(forms.Form):
     )
 
     crop_list_no = forms.CharField(
-            # This field is hidden by jQuery and holds the list of choosen crops
+            # This field is hidden by jQuery and holds the list of chosen crops
             required=False,
             widget=forms.Textarea({'cols': 20, 'rows': 1}))
 
     crop = forms.ChoiceField(
             required=False,
+            widget=forms.Select(attrs={'size' : 4}),
             choices=CROP_CHOICES,
-            validators=[validation.validate_choicefield])
+            initial=1)
+    # crop = forms.ChoiceField(
+    #         required=False,
+    #         choices=CROP_CHOICES,
+    #         validators=[validation.validate_choicefield])
     try:
         crop_number = forms.FloatField(
             required=False,
@@ -127,6 +146,11 @@ class SamInp_app(forms.Form):
             label='Application Rate (kg/ha)',
             initial=1.3,
             validators=[validation.validate_positive])
+    sim_date_1stapp = forms.DateField(
+            required=False,
+            widget=forms.DateInput(attrs={'class': 'datePicker'}),
+            label='First Application Date',
+            initial="04/20/1984")
 
 
 class SamInp_app_refine(forms.Form):
@@ -209,11 +233,7 @@ class SamInp_sim(forms.Form):
             widget=forms.DateInput(attrs={'class': 'datePicker'}),
             label='End Date',
             initial="12/31/2013") #choices=SIM_DATE_END_CHOICES  6/2/2014 is latest possible end date
-    sim_date_1stapp = forms.DateField(
-            required=False,
-            widget=forms.DateInput(attrs={'class': 'datePicker'}),
-            label='First Application Date',
-            initial="04/20/1984") #choices=SIM_DATE_1STAPP_CHOICES
+     #choices=SIM_DATE_1STAPP_CHOICES
 
 
 class SamInp_output(forms.Form):

@@ -436,9 +436,8 @@ def custom_run_tables(request, jid):
     <H3 class="out_3 collapsible" id="section1"><span></span>Model Outputs</H3>
     <div class="out_3">
         <H4 class="out_1 collapsible" id="section1"><span></span>Visualization</H4>
-            <div id="sam_still_working"><em>SAM is processing spatial data.  Map will show when model has completed.</em></div>
             <div class="out_ container_output sam_map">
-    """
+    """ # <div id="sam_still_working"><em>SAM is processing spatial data.  Map will show when model has completed.</em></div>
     html += render_to_string('geoserver_template.html', { 'jid': jid })
     html += """
             </div>

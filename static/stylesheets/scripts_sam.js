@@ -6,19 +6,19 @@ $(document).ready(function() {
 	);
 
     // BETA disclaimer
-    alert("Disclaimer: " +
+    setTimeout(function() {alert("Disclaimer: " +
         "Ecological risk calculations contained here should be used for no purpose other than quality " +
         "assurance and peer review of the presented web applications. This web site is under " +
         "development. It is available for the purposes of receiving feedback and quality assurance from " +
         "personnel in the EPA Office of Chemical Safety and Pollution Prevention and from interested " +
         "members of the ecological risk assessment community."
-    );
+    )}, 500);
 
 	// Default inputs
 	$('#id_sim_type_0, #id_output_format_0, #id_output_format_1, #id_output_format_2').prop('checked', true);
 	$('#id_region').val('Ohio Valley');
-	$('#id_crop_number').css('color', 'grey');
-	$('#id_crop').closest('tr').after('<tr><th>Chosen Crop(s):</th><td id="crop1"></td></tr>');
+	//$('#id_crop_number').css('color', 'grey');
+	//$('#id_crop').closest('tr').after('<tr><th>Chosen Crop(s):</th><td id="crop1"></td></tr>');
 	// $('#id_output_tox_value').closest('tr').after(
 	// 	'<tr><th>Output Summary:</th><td>21-d Average Concentrations - 90<sup>th</sup> percentile</td></tr>' +
 	// 	'<tr><th></th><td>60-d Average Concentrations - 90<sup>th</sup> percentile</td></tr>' +
@@ -47,11 +47,11 @@ $(document).ready(function() {
 	var cropsArray_corn = ['Corn', 'Corn/soybeans', 'Corn/wheat', 'Corn/grains'];
 	var crop_list_array = [];
 	var crop_list_no_array = [];
-	var samScenarioInputs_atrazine_corn = ["1", "Atrazine", "100", "1", "2", "123", "", "0", "4", "1", "1", "1.3", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "04/20/1984", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_chlorpyrifos_corn = ["2", "Chlorpyrifos", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "uniform", "30", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "04/20/1984", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_chlorpyrifos_soybeans = ["3", "Chlorpyrifos", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "uniform", "42", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "04/20/1984", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_fipronil_corn = ["4", "Fipronil", "727", "1", "2", "128", "", "0", "4", "1", "1", "0.1", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "04/20/1984", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_metolachlor_corn = ["5", "Metolachlor", "181", "1", "2", "49", "", "0", "4", "1", "1", "1.05", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "04/20/1984", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+    var samScenarioInputs_atrazine_corn = ["1", "Atrazine", "100", "1", "2", "123", "10 14 15 18", "0", "4", "1", "1", "1.3", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_chlorpyrifos_corn = ["2", "Chlorpyrifos", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "30", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_chlorpyrifos_soybeans = ["3", "Chlorpyrifos", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "42", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_fipronil_corn = ["4", "Fipronil", "727", "1", "2", "128", "", "0", "4", "1", "1", "0.1", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_metolachlor_corn = ["5", "Metolachlor", "181", "1", "2", "49", "", "0", "4", "1", "1", "1.05", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
 	var selectedScenarioValue = $('#id_scenario_selection').val();
 	if (selectedScenarioValue !== '0') {
 		$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
@@ -114,7 +114,7 @@ $(document).ready(function() {
 		});
 	}	
 	function samFillScenarioCrops(scenario) {
-		resetCropRows();
+		//resetCropRows();
 		var cropsArray;
 		
 		switch (scenario) {
@@ -124,52 +124,52 @@ $(document).ready(function() {
 				$('button.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').show();
 				samFillScenarioValues(samScenarioInputs_atrazine_corn);
-				cropsArray = cropsArray_corn;
-				for (i=0;i<cropsArray.length;i++) {
-					cropArrayGenerator(cropsArray[i]);
-				}
+				//cropsArray = cropsArray_corn;
+				//for (i=0;i<cropsArray.length;i++) {
+				//	cropArrayGenerator(cropsArray[i]);
+				//}
 				break;
 			case '2':
 				$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
 				$('button.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').hide();
 				samFillScenarioValues(samScenarioInputs_chlorpyrifos_corn);
-				cropsArray = cropsArray_corn;
-				for (i=0;i<cropsArray.length;i++) {
-					console.log(i);
-					cropArrayGenerator(cropsArray[i]);
-				}
-				cropArrayNumberGenerator(crop_list_array);
+				//cropsArray = cropsArray_corn;
+				//for (i=0;i<cropsArray.length;i++) {
+				//	console.log(i);
+				//	cropArrayGenerator(cropsArray[i]);
+				//}
+				//cropArrayNumberGenerator(crop_list_array); // Delete this line???
 				break;
 			case '3':
 				$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
 				$('button.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').hide();
 				samFillScenarioValues(samScenarioInputs_chlorpyrifos_soybeans);
-				cropsArray = cropsArray_soybeans;
-				for (i=0;i<cropsArray.length;i++) {
-					cropArrayGenerator(cropsArray[i]);
-				}
+				//cropsArray = cropsArray_soybeans;
+				//for (i=0;i<cropsArray.length;i++) {
+				//	cropArrayGenerator(cropsArray[i]);
+				//}
 				break;
 			case '4':
 				$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
 				$('button.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').show();
 				samFillScenarioValues(samScenarioInputs_fipronil_corn);
-				cropsArray = cropsArray_corn;
-				for (i=0;i<cropsArray.length;i++) {
-					cropArrayGenerator(cropsArray[i]);
-				}
+				//cropsArray = cropsArray_corn;
+				//for (i=0;i<cropsArray.length;i++) {
+				//	cropArrayGenerator(cropsArray[i]);
+				//}
 				break;
 			case '5':
 				$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
 				$('button.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').show();
 				samFillScenarioValues(samScenarioInputs_metolachlor_corn);
-				cropsArray = cropsArray_corn;
-				for (i=0;i<cropsArray.length;i++) {
-					cropArrayGenerator(cropsArray[i]);
-				}
+				//cropsArray = cropsArray_corn;
+				//for (i=0;i<cropsArray.length;i++) {
+				//	cropArrayGenerator(cropsArray[i]);
+				//}
 				break;
 			default:
 				$(':input:not(#id_scenario_selection)').attr('disabled', false);
@@ -226,40 +226,40 @@ $(document).ready(function() {
 	});
 
 	// Selected Crops Rows
-	function cropArrayGenerator(crop) {
-		var scenario = $('#id_scenario_selection').val();
-		if (crop_list_array.length < 4) {
-			if ($('#crop1').text() == '') {
-				if (scenario == '0') {
-					// CUstom scenario
-					$('#crop1').html(crop + " <span class='deleteCrop'>[x]</span>");
-				}
-				else {
-					// Pre-canned scenario
-					$('#crop1').html(crop);	
-				}
-				crop_list_array.push(crop);
-			} else {
-				if ($.inArray(crop, crop_list_array) == -1) {
-					if (scenario == '0') {
-						// CUstom scenario
-						$('#crop1').closest('tr')
-							.after('<tr><th></th><td>' + crop + " <span class='deleteCrop'>[x]</span>" + '</td></tr>');
-					}
-					else {
-						// Pre-canned scenario
-						$('#crop1').closest('tr')
-							.after('<tr><th></th><td>' + crop + '</td></tr>');
-					}
-					crop_list_array.push(crop);
-				}
-			}
-		}
-		if (crop_list_array.length == 4) {
-			$('#id_crop').prop('disabled', true);
-		}
-		$('#id_crop_number').val(crop_list_array.length);
-	}
+	//function cropArrayGenerator(crop) {
+		//var scenario = $('#id_scenario_selection').val();
+		//if (crop_list_array.length < 4) {
+		//	if ($('#crop1').text() == '') {
+		//		if (scenario == '0') {
+		//			// CUstom scenario
+		//			$('#crop1').html(crop + " <span class='deleteCrop'>[x]</span>");
+		//		}
+		//		else {
+		//			// Pre-canned scenario
+		//			$('#crop1').html(crop);
+		//		}
+		//		crop_list_array.push(crop);
+		//	} else {
+		//		if ($.inArray(crop, crop_list_array) == -1) {
+		//			if (scenario == '0') {
+		//				// CUstom scenario
+		//				$('#crop1').closest('tr')
+		//					.after('<tr><th></th><td>' + crop + " <span class='deleteCrop'>[x]</span>" + '</td></tr>');
+		//			}
+		//			else {
+		//				// Pre-canned scenario
+		//				$('#crop1').closest('tr')
+		//					.after('<tr><th></th><td>' + crop + '</td></tr>');
+		//			}
+		//			crop_list_array.push(crop);
+		//		}
+		//	}
+		//}
+		//if (crop_list_array.length == 4) {
+		//	$('#id_crop').prop('disabled', true);
+		//}
+		//$('#id_crop_number').val(crop_list_array.length);
+	//}
 	function cropArrayNumberGenerator(crop_list_array){
 		// Generate JS array of Crop IDs
 		for (i=0; i<crop_list_array.length; i++) {
@@ -275,9 +275,13 @@ $(document).ready(function() {
 	}
 	$('#id_crop').change(function() {
 		if ($(this).val() !== '0') {
-			var crop = $("#id_crop option:selected").text();
-			cropArrayGenerator(crop);
-			cropArrayNumberGenerator(crop_list_array);
+			//var crop = $("#id_crop option:selected").text();
+            var crop_IDs = $("#id_crop option:selected").val();
+            //cropArrayGenerator(crop);
+			//cropArrayNumberGenerator(crop_list_array);
+            crop_list_no_array = crop_IDs.split(" ");
+            console.log(crop_list_no_array);
+            $('#id_crop_number').val(crop_list_no_array.length);
 		}
 	});
 	function resetCropRows() {
@@ -308,28 +312,28 @@ $(document).ready(function() {
 			}
 		}
 	}
-	$('table').on('click', 'span', function() {
-		// '[x]' to delete crops from "Choosen Crop(s)" list
-		var removedCropName = $(this).closest('td').text().split(' ')[0];
-		var removedCropName_index = $.inArray(removedCropName, crop_list_array);
-		if (removedCropName_index < 4) {
-			$('#id_crop').prop('disabled', false);
-		}
-		if ($(this).closest('td').prop('id') == 'crop1') {
-			if (crop_list_array.length > 1) {
-				$(this).closest('tr').next().find('th').text('Chosen Crop(s):');
-				$(this).closest('tr').next().find('td').attr('id', 'crop1');
-				$(this).closest('tr').remove();
-				crop_list_array.splice(removedCropName_index, 1);
-				crop_list_no_array.splice(removedCropName_index, 1);
-			}
-		} else {
-			$(this).closest('tr').remove();
-			crop_list_array.splice(removedCropName_index, 1);
-			crop_list_no_array.splice(removedCropName_index, 1);
-		}
-		$('#id_crop_number').val(crop_list_array.length);
-	});
+	//$('table').on('click', 'span', function() {
+	//	// '[x]' to delete crops from "Choosen Crop(s)" list
+	//	var removedCropName = $(this).closest('td').text().split(' ')[0];
+	//	var removedCropName_index = $.inArray(removedCropName, crop_list_array);
+	//	if (removedCropName_index < 4) {
+	//		$('#id_crop').prop('disabled', false);
+	//	}
+	//	if ($(this).closest('td').prop('id') == 'crop1') {
+	//		if (crop_list_array.length > 1) {
+	//			$(this).closest('tr').next().find('th').text('Chosen Crop(s):');
+	//			$(this).closest('tr').next().find('td').attr('id', 'crop1');
+	//			$(this).closest('tr').remove();
+	//			crop_list_array.splice(removedCropName_index, 1);
+	//			crop_list_no_array.splice(removedCropName_index, 1);
+	//		}
+	//	} else {
+	//		$(this).closest('tr').remove();
+	//		crop_list_array.splice(removedCropName_index, 1);
+	//		crop_list_no_array.splice(removedCropName_index, 1);
+	//	}
+	//	$('#id_crop_number').val(crop_list_array.length);
+	//});
 
 	// Refinements
 	$('#id_refine').change(function() {

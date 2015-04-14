@@ -265,29 +265,40 @@ $(document).ready(function() {
 		//}
 		//$('#id_crop_number').val(crop_list_array.length);
 	//}
-	function cropArrayNumberGenerator(crop_list_array){
-		// Generate JS array of Crop IDs
-		for (i=0; i<crop_list_array.length; i++) {
-			var crop_id = $('#id_crop option:selected').val();
-
-			if ($.inArray(crop_id, crop_list_no_array) == -1) {
-				console.log('i = ' + i);
-				console.log('crop_id = ' + crop_id);
-				crop_list_no_array.push(crop_id);
-			}
-		}
-		console.log(crop_list_no_array);
-	}
+	//function cropArrayNumberGenerator(crop_list_array){
+	//	// Generate JS array of Crop IDs
+	//	for (i=0; i<crop_list_array.length; i++) {
+	//		var crop_id = $('#id_crop option:selected').val();
+    //
+	//		if ($.inArray(crop_id, crop_list_no_array) == -1) {
+	//			console.log('i = ' + i);
+	//			console.log('crop_id = ' + crop_id);
+	//			crop_list_no_array.push(crop_id);
+	//		}
+	//	}
+	//	console.log(crop_list_no_array);
+	//}
 	$('#id_crop').change(function() {
-		if ($(this).val() !== '0') {
-			//var crop = $("#id_crop option:selected").text();
-            var crop_IDs = $("#id_crop option:selected").val();
-            //cropArrayGenerator(crop);
-			//cropArrayNumberGenerator(crop_list_array);
-            crop_list_no_array = crop_IDs.split(" ");
-            console.log(crop_list_no_array);
-            $('#id_crop_number').val(crop_list_no_array.length);
-		}
+        crop_list_no_array.length = 0; // Clear existing array
+        var crop_IDs_list = $(this).val(); // Get selected crop id values
+
+        for (i=0; i<crop_IDs_list.length; i++) {
+            var crop_IDs = crop_IDs_list[i].split(" ");
+            for (j=0; j<crop_IDs.length; j++) {
+                crop_list_no_array.push(crop_IDs[j]);
+            }
+        }
+        console.log(crop_list_no_array);
+        $('#id_crop_number').val(crop_list_no_array.length);
+		//if ($(this).val() !== '0') {
+		//	//var crop = $("#id_crop option:selected").text();
+         //   var crop_IDs = $("#id_crop option:selected").val();
+         //   //cropArrayGenerator(crop);
+		//	//cropArrayNumberGenerator(crop_list_array);
+         //   crop_list_no_array = crop_IDs.split(" ");
+         //   //console.log(crop_list_no_array);
+         //   $('#id_crop_number').val(crop_list_no_array.length);
+		//}
 	});
 	function resetCropRows() {
 		// Remember first row ('tr') is hidden

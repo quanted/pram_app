@@ -7,8 +7,8 @@ $( document ).ready(function() {
     alert('SAM run successfully submitted.  Do NOT refresh page.  ' +
         'This will result in duplicate model submissions and will slow down returning of model results.');
 
-    var jid_ajax = document.getElementById('jid').innerHTML // SAM run 'jid'
-    var timer = null;
+    var jid_ajax = document.getElementById('jid').innerHTML; // SAM run 'jid'
+    //var timer = null;
 
     function updateTimer() {
 
@@ -18,23 +18,23 @@ $( document ).ready(function() {
             // dataType: "text",
             success: function(data) {
                 
-                console.log(data);
+                //console.log(data);
 
                 if (data == "done") {
-                    console.log("ending timeout (hopefully)");
-                    clearTimeout(timer);
-                    showMap();
+                    //clearTimeout(timer);
+                    //showMap();
+                    $('.sam_link').show();
                 } else {
-                    timer = setTimeout(updateTimer, 10000); // poll every 10s until success
+                    setTimeout(updateTimer, 10000); // poll every 10s until success
                 }
-
+1
             },
             error: function( jqXHR, textStatus, errorThrown ){
                 console.log(jqXHR);
                 console.log(textStatus);
                 console.log(errorThrown);
 
-                timer = setTimeout(updateTimer, 10000); // poll every 10s until success
+                setTimeout(updateTimer, 10000); // poll every 10s until success
             }
 
         });

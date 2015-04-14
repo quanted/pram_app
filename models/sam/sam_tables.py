@@ -139,6 +139,22 @@ def gett1data(request):
     return data
 
 def gett2data(request):
+
+    crop_id_dict = {
+        "10 14 15 18": "Corn",
+        "20 25 26 42": "Cotton",
+        "40 42 45 48 14": "Soybeans",
+        "50 56 58 15 45": "Wheat",
+        "60 56 26 68": "Vegetables",
+        "60 61": "Ground fruit",
+        "70": "Orchards, Grapes, or vineyards",
+        "75": "Other trees",
+        "80 48 18 58": "Other grains",
+        "90": "Other row crops",
+        "100": "Other crops",
+        "110 150": "Pasture/hay/forage/grass",
+    }
+
     # Convert tuple into dictionary
     # CROP_CHOICES = dict(sam_parameters.SamInp_app.CROP_CHOICES)
     
@@ -157,6 +173,7 @@ def gett2data(request):
         crop = 'Corn, Corn/grains, Corn/wheat, Corn/soybeans'
         noa = '1500'
         app_rate = '1.3'
+        date_1st_app = '04/20/1984'
         refinements = 'Uniform Step Application over Window'
         time_win = '7'
         percent_app = '50'
@@ -166,6 +183,7 @@ def gett2data(request):
         crop = 'Corn, Corn/grains, Corn/wheat, Corn/soybeans'
         noa = '900'
         app_rate = '1.1'
+        date_1st_app = '04/20/1984'
         refinements = 'Uniform Application over Window'
         time_win = '30'
         percent_app = '100'
@@ -173,6 +191,7 @@ def gett2data(request):
         crop = 'Soybeans, Soybeans/grains, Soybeans/wheat, Soybeans/cotton'
         noa = '1260'
         app_rate = '1.1'
+        date_1st_app = '04/20/1984'
         refinements = 'Uniform Application over Window'
         time_win = '42'
         percent_app = '100'
@@ -180,6 +199,7 @@ def gett2data(request):
         crop = 'Corn, Corn/grains, Corn/wheat, Corn/soybeans'
         noa = '1500'
         app_rate = '0.1'
+        date_1st_app = '04/20/1984'
         refinements = 'Uniform Step Application over Window'
         time_win = '7'
         percent_app = '50'
@@ -189,6 +209,7 @@ def gett2data(request):
         crop = 'Corn, Corn/grains, Corn/wheat, Corn/soybeans'
         noa = '1500'
         app_rate = '1.05'
+        date_1st_app = '04/20/1984'
         refinements = 'Uniform Step Application over Window'
         time_win = '7'
         percent_app = '50'
@@ -196,11 +217,16 @@ def gett2data(request):
         percent_app2 = '50'
     else:
         try:
+            # crop_list_no = request.POST['crop_list_no']
+            # for x in crop_list_no:
+            #
+            # [1:-1]
             crop = request.POST['crop_list_no']
             no_of_crops = request.POST['crop_number']
             noa = request.POST['apps_per_year']
             app_meth = request.POST['application_method']
             app_rate = request.POST['application_rate']
+            date_1st_app = request.POST['sim_date_1stapp']
             refinements = request.POST['refine']
             time_win = request.POST['refine_time_window1']
             percent_app = request.POST['refine_percent_applied1']
@@ -210,6 +236,7 @@ def gett2data(request):
             noa = 'n/a'
             app_meth = 'n/a'
             app_rate = 'n/a'
+            date_1st_app = 'n/a'
             refinements = 'n/a'
             time_win = 'n/a'
             percent_app = 'n/a'
@@ -217,20 +244,20 @@ def gett2data(request):
     if (refinements == 'Uniform Step Application over Window'):
         data = {
             "Parameter": ['Crop(s)', 'Total Number of Crops', 'Total Number of Applications',
-                            'Application method', 'Application Rate', 'Refinements',
+                            'Application method', 'Application Rate', 'First Application Date', 'Refinements',
                             'Time Window #1', 'Percent Applied #1', 'Time Window #2', 'Percent Applied #2' ],
             "Value": [crop, no_of_crops, noa,
-                        app_meth, app_rate, refinements,
+                        app_meth, app_rate, date_1st_app, refinements,
                         time_win, percent_app, time_win2, percent_app2 ],
             "Units": ['', '', '', '', 'kg/ha', '', 'days', '%', 'days', '%']
         }
     else:
         data = {
-            "Parameter": ['Crop', 'Total Number of Crops', 'Total Number of Applications',
-                            'Application method', 'Application Rate', 'Refinements',
+            "Parameter": ['Crop Groups', 'Total Number of Crops', 'Total Number of Applications',
+                            'Application method', 'Application Rate', 'First Application Date', 'Refinements',
                             'Time Window', 'Percent Applied' ],
             "Value": [crop, no_of_crops, noa,
-                        app_meth, app_rate, refinements,
+                        app_meth, app_rate, date_1st_app, refinements,
                         time_win, percent_app ],
             "Units": ['', '', '', '', 'kg/ha', '', 'days', '%']
         }
@@ -255,16 +282,13 @@ def gett3data(request):
     if (request.POST["scenario_selection"] == '0'):
         date_start = request.POST['sim_date_start']
         date_end = request.POST['sim_date_end']
-        date_1st_app = request.POST['sim_date_1stapp']
-        date_1st_app = request.POST['sim_date_1stapp']
     else:
         date_start = '01/01/1984'
         date_end = '12/31/2013'
-        date_1st_app = '04/20/1984'
 
     data = {
-        "Parameter": ['Sate/Region', 'Simulation Type', 'Start Date', 'End Date', 'First Application Date'],
-        "Value": [ 'Ohio Valley', 'Eco', date_start, date_end, date_1st_app ]
+        "Parameter": ['Sate/Region', 'Simulation Type', 'Start Date', 'End Date'],
+        "Value": [ 'Ohio Valley', 'Eco', date_start, date_end ]
     }
 
     # data = {
@@ -440,8 +464,18 @@ def custom_run_tables(request, jid):
     """ # <div id="sam_still_working"><em>SAM is processing spatial data.  Map will show when model has completed.</em></div>
     html += render_to_string('geoserver_template.html', { 'jid': jid })
     html += """
+            <div class="out_ container_output sam_link" style="display: none;">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Output Data Link:</th>
+                            <td><a href="history/revisit?model_name=sam&jid=%s">Download SAM Output</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-    """
+        </div>
+    """ % (jid)
 
     return html
 

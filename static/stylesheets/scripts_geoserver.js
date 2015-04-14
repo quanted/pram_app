@@ -1,6 +1,7 @@
 var map;
 var untiled;
 var tiled;
+var ol_wms;
 var pureCoverage = false;
 // pink tile avoidance
 OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
@@ -69,6 +70,12 @@ function init(){
            isBaseLayer: true,
            yx : {'EPSG:3857' : false}
         } 
+    );
+
+    ol_wms = new OpenLayers.Layer.WMS(
+        "OpenLayers WMS",
+        "http://vmap0.tiles.osgeo.org/wms/vmap0",
+        {layers: 'basic'}
     );
 
     // map.addLayers([untiled, tiled]);

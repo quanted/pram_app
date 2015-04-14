@@ -112,11 +112,11 @@ class SamInp_app(forms.Form):
             required=False,
             widget=forms.Textarea({'cols': 20, 'rows': 1}))
 
-    crop = forms.ChoiceField(
+    crop = forms.MultipleChoiceField (
             required=False,
-            widget=forms.Select(attrs={'size' : 4}),
+            widget=forms.SelectMultiple(attrs={'size' : 4}),
             choices=CROP_CHOICES,
-            initial=1)
+            label=mark_safe("Crop Groups<br>('Ctrl' to select multiple)"))
     # crop = forms.ChoiceField(
     #         required=False,
     #         choices=CROP_CHOICES,

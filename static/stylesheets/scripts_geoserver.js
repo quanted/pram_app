@@ -44,7 +44,7 @@ function init(){
     tiled = new OpenLayers.Layer.WMS(
         "cite:huc12s05 - Tiled", "http://134.67.114.4/geoserver/cite/wms",
         {
-            "LAYERS": 'cite:huc12s05',
+            "LAYERS": 'cite:test2',
             "STYLES": '',
             format: format
         },
@@ -54,28 +54,6 @@ function init(){
             isBaseLayer: true,
             yx : {'EPSG:3857' : false}
         } 
-    );
-
-    // setup single tiled layer
-    untiled = new OpenLayers.Layer.WMS(
-        "cite:huc12s05 - Untiled", "http://134.67.114.4/geoserver/cite/wms",
-        {
-            "LAYERS": 'cite:huc12s05',
-            "STYLES": '',
-            format: format
-        },
-        {
-           singleTile: true, 
-           ratio: 1, 
-           isBaseLayer: true,
-           yx : {'EPSG:3857' : false}
-        } 
-    );
-
-    ol_wms = new OpenLayers.Layer.WMS(
-        "OpenLayers WMS",
-        "http://vmap0.tiles.osgeo.org/wms/vmap0",
-        {layers: 'basic'}
     );
 
     // map.addLayers([untiled, tiled]);
@@ -110,7 +88,7 @@ function init(){
             WIDTH: map.size.w,
             HEIGHT: map.size.h,
             format: format,
-            styles: map.layers[0].params.STYLES,
+            //styles: map.layers[0].params.STYLES,
             srs: map.layers[0].params.SRS};
         
         // handle the wms 1.3 vs wms 1.1 madness
@@ -143,7 +121,8 @@ function init(){
 // sets the HTML provided into the nodelist element
 function setHTML(response){
     // document.getElementById('nodelist').innerHTML = response.responseText;
-    
+
+    // Pure JS AJAX call
     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
       httpRequest = new XMLHttpRequest();
     } else if (window.ActiveXObject) { // IE
@@ -164,9 +143,9 @@ function setHTML(response){
     }
 
     data = response.responseText;  // HUC clicked data from Geoserver
-    jid = document.getElementById('jid').innerHTML // SAM run 'jid'
-    console.log(jid)
-    console.log(data)
+    jid = document.getElementById('jid').innerHTML; // SAM run 'jid'
+    console.log(jid);
+    console.log(data);
 
     httpRequest.onreadystatechange = showHUCData;  // Callback method
     httpRequest.open("POST", "/geoserver/query/" + jid, true);

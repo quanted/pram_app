@@ -22,7 +22,7 @@ $( document ).ready(function() {
 
                 if (data == "done") {
                     //clearTimeout(timer);
-                    //showMap();
+                    showMap();
                     $('.sam_link').show();
                 } else {
                     setTimeout(updateTimer, 10000); // poll every 10s until success
@@ -42,8 +42,28 @@ $( document ).ready(function() {
     }
 
     function showMap() {
-        $('#sam_still_working').show();
-        $('.sam_map').show();
+
+        sam_output_layer = new OpenLayers.Layer.WMS(
+            "cite:huc12s05 - Tiled",
+            "http://134.67.114.4/geoserver/cite/wms",
+            {
+                "LAYERS": 'cite:joinTest',
+                "STYLES": 'joinTestStyle',
+                "format": format,
+                "viewparams": 'jid:test1',
+                "env": 'r1:2;r2:4;r3:6;r4:8;r5:10'
+            },
+            {
+                buffer: 0,
+                displayOutsideMaxExtent: true,
+                isBaseLayer: true,
+                yx : {'EPSG:3857' : false}
+            }
+        );
+
+        map.removeLayer(tiled);
+        map.addLayers([sam_output_layer]);
+        console.log("Tried to switch baselayer");
     }
 
     updateTimer(); //initiate the timer

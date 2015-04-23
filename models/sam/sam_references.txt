@@ -1,5 +1,7 @@
 
 <p>
-<a href="http://sam-manual.s3-website-us-east-1.amazonaws.com/SAM_ubertool_user_manual_21Apr2015.pdf">SAM User Manual 
+<ul class="bullet">
+<li><a href="http://sam-manual.s3-website-us-east-1.amazonaws.com/SAM_ubertool_user_manual_21Apr2015.pdf">SAM User Manual 
 4/21/2015</a>
+</ul>
 </p>

@@ -60,7 +60,7 @@ $( document ).ready(function() {
                         break;
                     case '2':
                         sqlView = "samAnnStyle";
-                        arg = "yr:year29";
+                        arg = "yr:29";
                         colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
                 }
@@ -68,7 +68,7 @@ $( document ).ready(function() {
                 switch (output_tox_thres_exceed) {
                     case '1':
                         sqlView = "samAnnStyle";
-                        arg = "yr:year29";
+                        arg = "yr:29";
                         colorRange = 'r1:0.06;r2:0.12;r3:0.18;r4:0.24;r5:0.3';
                         break;
                     case '2':
@@ -78,7 +78,7 @@ $( document ).ready(function() {
                         break;
                     case '3':
                         sqlView = "samAnnStyle";
-                        arg = "yr:year29";
+                        arg = "yr:29";
                         colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
                     case '4':

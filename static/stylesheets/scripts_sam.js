@@ -186,7 +186,7 @@ $(document).ready(function() {
 				break;
 			default:
 				$(':input:not(#id_scenario_selection)').attr('disabled', false);
-                $('#id_output_time_avg_conc,' +
+                $('#id_output_time_avg_conc, #id_output_type_0, id_output_type_1,' +
                 '#id_output_time_avg_option_0, #id_output_time_avg_option_1,' +
                 '#id_sim_type_0, #id_sim_type_1, #id_sim_type_2').attr('disabled', true);
                 $('#id_workers').attr('readonly', true).val('16');
@@ -207,7 +207,7 @@ $(document).ready(function() {
 					// 	console.log($('#id_crop_list_no').val());
 					// }
 
-                    $('#id_output_time_avg_conc,' +
+                    $('#id_output_time_avg_conc, #id_output_type_0, id_output_type_1' +
                     '#id_output_time_avg_option_0, #id_output_time_avg_option_1,' +
                     '#id_sim_type_0, #id_sim_type_1, #id_sim_type_2').attr('disabled', false);
 

@@ -44,7 +44,7 @@ $( document ).ready(function() {
         var output_time_avg_option = input.output_time_avg_option;
         var output_time_avg_conc = input.output_time_avg_conc;
         var output_tox_thres_exceed = input.output_tox_thres_exceed;
-        var sqlView;
+        var sqlView, arg;
 
         if (output_type == '1') {
             console.log('Not Mapping Daily Conc. Yet...');
@@ -55,24 +55,30 @@ $( document ).ready(function() {
                     case '1':
                         console.log('Not Mapping Daily Conc. Yet...');
                         sqlView = "samMthStyle";
+                        arg = "mth:jun";
                         break;
                     case '2':
                         sqlView = "samAnnStyle";
+                        arg = "yr:2012";
                         break;
                 }
             } else {
                 switch (output_tox_thres_exceed) {
                     case '1':
                         sqlView = "samAnnStyle";
+                        arg = "yr:2012";
                         break;
                     case '2':
                         sqlView = "samMthStyle";
+                        arg = "mth:jun";
                         break;
                     case '3':
                         sqlView = "samAnnStyle";
+                        arg = "yr:2012";
                         break;
                     case '4':
                         sqlView = "samMthStyle";
+                        arg = "mth:jun";
                         break;
                 }
             }
@@ -86,7 +92,7 @@ $( document ).ready(function() {
                 "LAYERS": 'cite:' + sqlView,
                 "STYLES": 'samStyle',
                 "format": format,
-                //"viewparams": 'jid:1234;yr:2012',
+                "viewparams": 'jid:' + jid_ajax + ';' + arg,
                 "env": 'r1:2;r2:4;r3:6;r4:8;r5:10'
             },
             {

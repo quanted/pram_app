@@ -1,11 +1,8 @@
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
-import importlib
-import requests
 import logging
 import json
-import os
 
 
 def test_page(request):
@@ -57,20 +54,23 @@ def sam_done_query(request, jid):
     from REST import rest_funcs
     request = rest_funcs.get_model_object(jid, "sam")
 
-    logging.info(request)
+    response = {}
 
     if request == None:
-        html = "working"
+        response['done'] = False
     else:
         try:
             if request['output'] == '':
-                html = "working, first process finished"
+                response['done'] = False
             else:
-                html = "done"
+                logging.info('SAM dumped output to Mongo')
+                response['done'] = True
+                response['input'] = request['input']
         except Exception as e: 
-            html = "except: {}".format(e)
+            # html = "except: {}".format(e)
+            logging.exception(e)
 
-    response = HttpResponse()
-    response.write(html)
+    # response = HttpResponse()
+    # response.write(html)
 
-    return response
+    return HttpResponse(json.dumps(response), content_type="application/json")

@@ -15,17 +15,14 @@ $( document ).ready(function() {
         $.ajax({ 
             url: "/geoserver/sam_done/" + jid_ajax,
             method: 'POST',
-            // dataType: "text",
+            dataType: "json",
             success: function(data) {
-                
-                //console.log(data);
 
-                if (data == "done") {
-                    //clearTimeout(timer);
-                    showMap();
+                if (data.done) {
+                    showMap(data.input);
                     $('.sam_link').show();
                 } else {
-                    setTimeout(updateTimer, 10000); // poll every 10s until success
+                    setTimeout(updateTimer, 10000); // poll again in 10s until: data == 'done'
                 }
 1
             },
@@ -34,23 +31,62 @@ $( document ).ready(function() {
                 console.log(textStatus);
                 console.log(errorThrown);
 
-                setTimeout(updateTimer, 10000); // poll every 10s until success
+                setTimeout(updateTimer, 10000); // poll again in 10s
             }
 
         });
 
     }
 
-    function showMap() {
+    function showMap(input) {
+
+        var output_type = input.output_type;
+        var output_time_avg_option = input.output_time_avg_option;
+        var output_time_avg_conc = input.output_time_avg_conc;
+        var output_tox_thres_exceed = input.output_tox_thres_exceed;
+        var sqlView;
+
+        if (output_type == '1') {
+            console.log('Not Mapping Daily Conc. Yet...');
+            sqlView = "samMthStyle";
+        } else {
+            if (output_time_avg_option == '1') {
+                switch (output_time_avg_conc) {
+                    case '1':
+                        console.log('Not Mapping Daily Conc. Yet...');
+                        sqlView = "samMthStyle";
+                        break;
+                    case '2':
+                        sqlView = "samAnnStyle";
+                        break;
+                }
+            } else {
+                switch (output_tox_thres_exceed) {
+                    case '1':
+                        sqlView = "samAnnStyle";
+                        break;
+                    case '2':
+                        sqlView = "samMthStyle";
+                        break;
+                    case '3':
+                        sqlView = "samAnnStyle";
+                        break;
+                    case '4':
+                        sqlView = "samMthStyle";
+                        break;
+                }
+            }
+        }
+
 
         sam_output_layer = new OpenLayers.Layer.WMS(
             "SAM SQL View",
             "http://134.67.114.4/geoserver/cite/wms",
             {
-                "LAYERS": 'cite:joinTest',
-                "STYLES": 'joinTestStyle',
+                "LAYERS": 'cite:' + sqlView,
+                "STYLES": 'samStyle',
                 "format": format,
-                "viewparams": 'jid:test1',
+                //"viewparams": 'jid:1234;yr:2012',
                 "env": 'r1:2;r2:4;r3:6;r4:8;r5:10'
             },
             {

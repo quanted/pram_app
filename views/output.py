@@ -20,7 +20,9 @@ def outputPageHTML(header, model, tables_html):
     html = html + render_to_string('04uberoutput_start.html', {
             'model_attributes': header+' Output'})
     html = html + tables_html
-    html = html + render_to_string('export.html', {})
+    if model is not "sam":
+        print " N O T   S A M "
+        html = html + render_to_string('export.html', {})
     html = html + render_to_string('04uberoutput_end.html', {'model':model})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
 
@@ -54,15 +56,8 @@ def outputPageView(request, model='none', header=''):
 
             if request.POST['scenario_selection'] == '0':
                 """ Custom Run """
-
                 # Run SAM - no return expected
-                """
-                TURN ME BACK ON - I RUN SAM:
-                """
                 jid = model_handler.modelInputPOSTReceiverFortran(request, model)
-                """
-                TURN ME BACK ON - I RUN SAM ^^^
-                """
 
                 disclaimer_html = """
                 <h3>Disclaimer:</h3>
@@ -87,25 +82,6 @@ def outputPageView(request, model='none', header=''):
 
                 """ Render output page view HTML """
                 html = outputPageHTML(header, model, modelOutputHTML)
-
-                """ Below code re-draws input page with POST values """
-                # input_module = importlib.import_module('.'+model+'_input', 'models.'+model)
-                # # Render input page view with POSTed values and show errors
-                # html = render_to_string('01uberheader.html', {
-                #         'site_skin' : os.environ['SITE_SKIN'],
-                #         'title': header+' Inputs'})
-                # html = html + render_to_string('02uberintroblock_wmodellinks.html', {
-                #         'site_skin' : os.environ['SITE_SKIN'],
-                #         'model':model,
-                #         'page':'input'})
-                # html = html + linksLeft.linksLeft()
-                #
-                # inputPageFunc = getattr(input_module, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
-                # html = html + inputPageFunc(request, model, header, formData=request.POST)  # formData contains the already POSTed form data
-                #
-                # html = html + """ <br>Test """
-                #
-                # html = html + render_to_string('06uberfooter.html', {'links': ''})
 
             else:
                 """ Pre-Canned Run """

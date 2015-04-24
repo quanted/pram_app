@@ -131,7 +131,7 @@ def get_output_html(jid, model_name):
 ###########################function to retrieve model object from MongoDB################################
 def get_model_object(jid, model_name):
     """Retrieves JSON from MongoDB representing model (Python) object and returns it as Python dictionary"""
-    all_dic = {"jid":jid, "model_name":model_name}
+    all_dic = {"jid": jid, "model_name": model_name}
     data = json.dumps(all_dic)
     url = url_part1 + '/get_model_object'
     try:
@@ -219,7 +219,7 @@ class user_hist(object):
         if self.response:
             self.output_val = json.loads(self.response.content)['hist_all']
             self.total_num = len(self.output_val)
-
+            print self.output_val
             for element in self.output_val:
 
                 try:
@@ -227,8 +227,12 @@ class user_hist(object):
 
                     self.user_id.append(element['user_id'])
 
-                    self.jid.append(element['_id'])
-                    self.time_id.append(datetime.datetime.strptime(element['_id'], '%Y%m%d%H%M%S%f').strftime('%Y-%m-%d %H:%M:%S'))
+                    if model_name == 'sam':  # SAM changed "_id" to "jid" Mongo key
+                        self.jid.append(element['jid'])
+                        self.time_id.append(datetime.datetime.strptime(element['jid'], '%Y%m%d%H%M%S%f').strftime('%Y-%m-%d %H:%M:%S'))
+                    else:
+                        self.jid.append(element['_id'])
+                        self.time_id.append(datetime.datetime.strptime(element['_id'], '%Y%m%d%H%M%S%f').strftime('%Y-%m-%d %H:%M:%S'))
                     
                     # Gennec doesn't have 'run_type' key
                     self.run_type.append(element['run_type'])

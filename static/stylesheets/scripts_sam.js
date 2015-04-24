@@ -28,12 +28,20 @@ $(document).ready(function() {
 	// Formatting
 	$('#id_crop_list_no').closest('tr').hide();
 	$('#id_coefficient').children().css('display', 'inline');
+    var output_pref_trs = $(
+        '#id_output_avg_days, #id_output_time_avg_option, #id_output_time_avg_conc,' +
+        '#id_output_tox_value, #id_output_tox_thres_exceed'
+        ).closest('tr');
 	$('#id_output_type').change(function() {
 		// Output Preference
 		var val = $(this).find('input:checked').val();
 		if (val == "1") {
-
-		}
+            // Daily Concentrations
+            output_pref_trs.hide();
+		} else {
+            // Time-Averaged Concentrations
+            output_pref_trs.show();
+        }left
 	});
 	$('#id_output_time_avg_option').change(function() {
 		// Time-Averaged Results
@@ -178,8 +186,7 @@ $(document).ready(function() {
 				break;
 			default:
 				$(':input:not(#id_scenario_selection)').attr('disabled', false);
-                $('#id_output_tox_thres_exceed, #id_output_time_avg_conc,' +
-                '#id_output_type_0, #id_output_type_1,' +
+                $('#id_output_time_avg_conc,' +
                 '#id_output_time_avg_option_0, #id_output_time_avg_option_1,' +
                 '#id_sim_type_0, #id_sim_type_1, #id_sim_type_2').attr('disabled', true);
                 $('#id_workers').attr('readonly', true).val('16');
@@ -200,8 +207,7 @@ $(document).ready(function() {
 					// 	console.log($('#id_crop_list_no').val());
 					// }
 
-                    $('#id_output_tox_thres_exceed, #id_output_time_avg_conc,' +
-                    '#id_output_type_0, #id_output_type_1,' +
+                    $('#id_output_time_avg_conc,' +
                     '#id_output_time_avg_option_0, #id_output_time_avg_option_1,' +
                     '#id_sim_type_0, #id_sim_type_1, #id_sim_type_2').attr('disabled', false);
 

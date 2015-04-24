@@ -98,7 +98,7 @@ $( document ).ready(function() {
                 "LAYERS": 'cite:' + sqlView,
                 "STYLES": 'samStyle',
                 "format": format,
-                "viewparams": 'jid:' + jid_ajax + ';' + arg,
+                "viewparams": 'jid:' + jid_ajax,
                 "env": colorRange
             },
             {

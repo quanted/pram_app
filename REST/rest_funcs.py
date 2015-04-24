@@ -120,12 +120,13 @@ def get_output_html(jid, model_name):
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
+        if response:
+            html_output = json.loads(response.content)['html_output']
+        else:
+            html_output = ""
     except:
-        pass
-    if response:
-        html_output = json.loads(response.content)['html_output']
-    else:
-        html_output =""
+        return "error"
+
     return html_output
 
 ###########################function to retrieve model object from MongoDB################################
@@ -136,12 +137,14 @@ def get_model_object(jid, model_name):
     url = url_part1 + '/get_model_object'
     try:
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
+        if response:
+            model_object = json.loads(response.content)['model_object']
+        else:
+            model_object = ""
+
     except:
-        pass
-    if response:
-        model_object = json.loads(response.content)['model_object']
-    else:
-        model_object =""
+        return { "error": "error" }
+
     return model_object
 
 ###########################function to retrieve model object from MongoDB################################
@@ -152,12 +155,15 @@ def get_sam_huc_output(jid, huc12):
     url = url_part1 + '/get_sam_huc_output'
     try:
         response = requests.post(url, data=data, headers=http_headers, timeout=60)
+        if response:
+            model_object = json.loads(response.content)['huc12_output']
+        else:
+            model_object =""
+
     except:
         logging.exception(Exception)
-    if response:
-        model_object = json.loads(response.content)['huc12_output']
-    else:
-        model_object =""
+        return "error"
+
     return model_object
 
 ###########################function to retrieve html from MongoDB################################
@@ -168,17 +174,19 @@ def create_batchoutput_html(jid, model_name):
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
+        if response:
+            result = response.content
+            result_dict = ast.literal_eval(result)['result']
+            result_obj_all = []
+            for i in result_dict:
+                result_obj_temp = Struct(**i)
+                result_obj_all.append(result_obj_temp)
+        else:
+            result_obj_all =[]
+
     except:
-        pass
-    if response:
-        result = response.content
-        result_dict = ast.literal_eval(result)['result']
-        result_obj_all = []
-        for i in result_dict:
-            result_obj_temp = Struct(**i)
-            result_obj_all.append(result_obj_temp)
-    else:
-        result_obj_all =[]
+        return "error"
+
     return result_obj_all
 
 class Struct:
@@ -219,7 +227,7 @@ class user_hist(object):
         if self.response:
             self.output_val = json.loads(self.response.content)['hist_all']
             self.total_num = len(self.output_val)
-            print self.output_val
+            # print self.output_val
             for element in self.output_val:
 
                 try:

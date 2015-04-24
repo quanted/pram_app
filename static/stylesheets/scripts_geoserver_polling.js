@@ -44,7 +44,7 @@ $( document ).ready(function() {
         var output_time_avg_option = input.output_time_avg_option;
         var output_time_avg_conc = input.output_time_avg_conc;
         var output_tox_thres_exceed = input.output_tox_thres_exceed;
-        var sqlView, arg;
+        var sqlView, arg, colorRange;
 
         if (output_type == '1') {
             console.log('Not Mapping Daily Conc. Yet...');
@@ -56,10 +56,12 @@ $( document ).ready(function() {
                         console.log('Not Mapping Daily Conc. Yet...');
                         sqlView = "samMthStyle";
                         arg = "mth:jun";
+                        colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
                     case '2':
                         sqlView = "samAnnStyle";
                         arg = "yr:2012";
+                        colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
                 }
             } else {
@@ -67,18 +69,22 @@ $( document ).ready(function() {
                     case '1':
                         sqlView = "samAnnStyle";
                         arg = "yr:2012";
+                        colorRange = 'r1:0.06;r2:0.12;r3:0.18;r4:0.24;r5:0.3';
                         break;
                     case '2':
                         sqlView = "samMthStyle";
                         arg = "mth:jun";
+                        colorRange = 'r1:0.06;r2:0.12;r3:0.18;r4:0.24;r5:0.3';
                         break;
                     case '3':
                         sqlView = "samAnnStyle";
                         arg = "yr:2012";
+                        colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
                     case '4':
                         sqlView = "samMthStyle";
                         arg = "mth:jun";
+                        colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
                 }
             }
@@ -93,7 +99,7 @@ $( document ).ready(function() {
                 "STYLES": 'samStyle',
                 "format": format,
                 "viewparams": 'jid:' + jid_ajax + ';' + arg,
-                "env": 'r1:2;r2:4;r3:6;r4:8;r5:10'
+                "env": colorRange
             },
             {
                 buffer: 0,

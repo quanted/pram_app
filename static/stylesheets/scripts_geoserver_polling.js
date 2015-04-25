@@ -133,7 +133,7 @@ $( document ).ready(function() {
                 WIDTH: map.size.w,
                 HEIGHT: map.size.h,
                 QUERY_LAYERS: 'cite:' + sqlViewQuery,
-                INFO_FORMAT: 'application/vnd.ogc.gml', // 'application/json',  // If set to 'text/html', returned HTML is formatted using templates on Geoserver
+                INFO_FORMAT: 'application/json',  // 'application/vnd.ogc.gml', // If set to 'text/html', returned HTML is formatted using templates on Geoserver
                 FEATURE_COUNT: 1,
                 EXCEPTIONS: 'application/json' // "application/vnd.ogc.se_xml"
             };
@@ -165,8 +165,7 @@ $( document ).ready(function() {
             OpenLayers.Request.GET({
                 url: "http://134.67.114.4/geoserver/cite/wms",
                 params: params,
-                success: setHTML,
-                failure: alert('Failure')
+                callback: setHTML
             });
 
             OpenLayers.Event.stop(e);

@@ -105,7 +105,9 @@ $( document ).ready(function() {
                 "STYLES": 'samStyle',
                 "format": format,
                 "viewparams": 'jid:' + jid_ajax,
-                "env": colorRange
+                "env": colorRange,
+                minZoomLevel: 1,
+                maxZoomLevel: 5
             },
             {
                 buffer: 0,

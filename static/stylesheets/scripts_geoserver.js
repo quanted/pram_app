@@ -34,7 +34,7 @@ function init(){
         maxResolution: 5018.62890625,
         projection: "EPSG:3857",
         units: 'm',
-        numZoomLevels: 10
+        numZoomLevels: 5
     };
     map = new OpenLayers.Map('map', options);
     
@@ -49,7 +49,7 @@ function init(){
             "STYLES": '',
             format: format,
             minZoomLevel: 1,
-            maxZoomLevel: 10
+            maxZoomLevel: 5
         },
         {
             buffer: 0,

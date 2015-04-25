@@ -44,7 +44,7 @@ function init(){
     tiled = new OpenLayers.Layer.WMS(
         "cite:huc12s05 - Tiled", "http://134.67.114.4/geoserver/cite/wms",
         {
-            "LAYERS": 'cite:test2',
+            "LAYERS": 'cite:huc12s05',
             "STYLES": '',
             format: format
         },

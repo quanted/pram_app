@@ -247,8 +247,9 @@
                         BBOX: map.getExtent().toBBOX(),
                         SERVICE: "WMS",
                         INFO_FORMAT: 'application/json',  // If set to 'text/html', returned HTML is formatted using templates on Geoserver
-                        QUERY_LAYERS: map.layers[0].params.LAYERS,
+                        QUERY_LAYERS: 'cite:joinTest',
                         FEATURE_COUNT: 50,
+{#                        "Layers": 'cite:joinTest',#}
                         "Layers": 'cite:joinTest',
                         WIDTH: map.size.w,
                         HEIGHT: map.size.h,

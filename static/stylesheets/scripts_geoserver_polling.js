@@ -44,22 +44,24 @@ $( document ).ready(function() {
         var output_time_avg_option = input.output_time_avg_option;
         var output_time_avg_conc = input.output_time_avg_conc;
         var output_tox_thres_exceed = input.output_tox_thres_exceed;
-        var sqlView, arg, colorRange;
+        var sqlViewStyle, sqlViewQuery, arg, colorRange;
 
         if (output_type == '1') {
             console.log('Not Mapping Daily Conc. Yet...');
-            sqlView = "samMthStyle";
+            sqlViewStyle = "samMthStyle";
         } else {
             if (output_time_avg_option == '1') {
                 switch (output_time_avg_conc) {
                     case '1':
                         console.log('Not Mapping Daily Conc. Yet...');
-                        sqlView = "samMthStyle";
+                        sqlViewStyle = "samMthStyle";
+                        sqlViewQuery = "samMthAll";
                         arg = "mth:jun";
                         colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
                     case '2':
-                        sqlView = "samAnnStyle";
+                        sqlViewStyle = "samAnnStyle";
+                        sqlViewQuery = "samAnnAll";
                         arg = "yr:29";
                         colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
@@ -67,22 +69,26 @@ $( document ).ready(function() {
             } else {
                 switch (output_tox_thres_exceed) {
                     case '1':
-                        sqlView = "samAnnStyle";
+                        sqlViewStyle = "samAnnStyle";
+                        sqlViewQuery = "samAnnAll";
                         arg = "yr:29";
                         colorRange = 'r1:0.1;r2:0.2;r3:0.3;r4:0.4;r5:0.5';
                         break;
                     case '2':
-                        sqlView = "samMthStyle";
+                        sqlViewStyle = "samMthStyle";
+                        sqlViewQuery = "samMthAll";
                         arg = "mth:jun";
                         colorRange = 'r1:0.1;r2:0.2;r3:0.3;r4:0.4;r5:0.5';
                         break;
                     case '3':
-                        sqlView = "samAnnStyle";
+                        sqlViewStyle = "samAnnStyle";
+                        sqlViewQuery = "samAnnAll";
                         arg = "yr:29";
                         colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
                     case '4':
-                        sqlView = "samMthStyle";
+                        sqlViewStyle = "samMthStyle";
+                        sqlViewQuery = "samMthAll";
                         arg = "mth:jun";
                         colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
@@ -95,7 +101,7 @@ $( document ).ready(function() {
             "SAM SQL View",
             "http://134.67.114.4/geoserver/cite/wms",
             {
-                "LAYERS": 'cite:' + sqlView,
+                "LAYERS": 'cite:' + sqlViewStyle,
                 "STYLES": 'samStyle',
                 "format": format,
                 "viewparams": 'jid:' + jid_ajax,
@@ -123,9 +129,9 @@ $( document ).ready(function() {
                 BBOX: map.getExtent().toBBOX(),
                 SERVICE: "WMS",
                 INFO_FORMAT: 'application/json',  // If set to 'text/html', returned HTML is formatted using templates on Geoserver
-                QUERY_LAYERS: map.layers[0].params.LAYERS,
+                QUERY_LAYERS: 'cite:' + sqlViewQuery,
                 FEATURE_COUNT: 50,
-                "Layers": 'cite:' + sqlView,
+                "Layers": 'cite:' + sqlViewQuery,
                 WIDTH: map.size.w,
                 HEIGHT: map.size.h,
                 format: format,

@@ -30,7 +30,7 @@ def sam_huc_query(request, jid):
     geoserver_post_dict = json.loads(request.body)
 
     try:
-        huc12_id =  geoserver_post_dict['features'][0]['properties']['huc12']
+        huc12_id = geoserver_post_dict['features'][0]['properties']['huc12']
         print huc12_id
     except IndexError:
 
@@ -41,14 +41,17 @@ def sam_huc_query(request, jid):
 
         return response
 
-    #                                       jid   huc12
-    # sam_out = rest_funcs.get_sam_huc_output(jid, huc12_id)
-
-    # sam_json = json.dumps(sam_out['output'])
-
     try:
-        # html = render_to_string('geoserver_details.html', {"sam_out": sam_out[0]['model_object_dict']['output']})
-        html = render_to_string('geoserver_details.html', { "sam_out": geoserver_post_dict['features'][0]['properties'] } )
+        #                                       jid   huc12
+        sam_out = rest_funcs.get_sam_huc_output(jid, huc12_id)
+        spatial = geoserver_post_dict['features'][0]['properties']
+        html = render_to_string('geoserver_details.html', {
+            "sam_out": sam_out[0]['model_object_dict']['output'],
+            "spatial": spatial
+        })
+
+        # If Geoserver returns actual values, below can be used without have to query Mongo for SAM output data
+        # html = render_to_string('geoserver_details.html', { "sam_out": geoserver_post_dict['features'][0]['properties'] } )
     except:
         html = "Try again..."
 

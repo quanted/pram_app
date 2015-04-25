@@ -127,7 +127,7 @@ $( document ).ready(function() {
                 SERVICE: "WMS",
                 REQUEST: "GetFeatureInfo",
                 "Layers": 'cite:' + sqlViewQuery,
-                styles: map.layers[0].params.STYLES,
+                styles: null,
                 srs: map.layers[0].params.SRS,
                 BBOX: map.getExtent().toBBOX(),
                 WIDTH: map.size.w,
@@ -160,7 +160,15 @@ $( document ).ready(function() {
                 params.featureid = map.layers[0].params.FEATUREID;
             }
             //                                                                 caller onComplete onFailure
-            OpenLayers.loadURL("http://134.67.114.4/geoserver/cite/wms", params, this, setHTML, setHTML);
+            //OpenLayers.loadURL("http://134.67.114.4/geoserver/cite/wms", params, this, setHTML, setHTML);
+
+            OpenLayers.Request.GET({
+                url: "http://134.67.114.4/geoserver/cite/wms",
+                params: params,
+                success: setHTML,
+                failure: alert('Failure')
+            });
+
             OpenLayers.Event.stop(e);
         });
     }

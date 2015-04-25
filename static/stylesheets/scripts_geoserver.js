@@ -112,16 +112,20 @@ function init(){
         if(map.layers[0].params.FEATUREID) {
             params.featureid = map.layers[0].params.FEATUREID;
         }
-        //                                                                 caller onComplete onFailure
-        OpenLayers.loadURL("http://134.67.114.4/geoserver/cite/wms", params, this, setHTML, setHTML);
+        //                                                                    caller onComplete    onFailure
+        OpenLayers.loadURL("http://134.67.114.4/geoserver/cite/wms", params, this, setHTMLLoading, setHTMLLoading);
         OpenLayers.Event.stop(e);
     });
 }
 
+function setHTMLLoading(response){
+    //document.getElementById('nodelist').innerHTML = response.responseText;
+    document.getElementById('nodelist').innerHTML = "<em>SAM is still running...please wait...</em>";
+    console.log(response.responseText);
+}
+
 // sets the HTML provided into the nodelist element
 function setHTML(response){
-    // document.getElementById('nodelist').innerHTML = response.responseText;
-
     // Pure JS AJAX call
     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
       httpRequest = new XMLHttpRequest();

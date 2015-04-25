@@ -124,19 +124,19 @@ $( document ).ready(function() {
 
             document.getElementById('nodelist').innerHTML = "Loading... please wait...";
             var params = {
-                REQUEST: "GetFeatureInfo",
-                EXCEPTIONS: "application/vnd.ogc.se_xml",
-                BBOX: map.getExtent().toBBOX(),
                 SERVICE: "WMS",
-                INFO_FORMAT: 'application/json',  // If set to 'text/html', returned HTML is formatted using templates on Geoserver
-                QUERY_LAYERS: 'cite:' + sqlViewQuery,
-                FEATURE_COUNT: 50,
+                REQUEST: "GetFeatureInfo",
                 "Layers": 'cite:' + sqlViewQuery,
+                styles: map.layers[0].params.STYLES,
+                srs: map.layers[0].params.SRS,
+                BBOX: map.getExtent().toBBOX(),
                 WIDTH: map.size.w,
                 HEIGHT: map.size.h,
-                format: format,
-                //styles: map.layers[0].params.STYLES,
-                srs: map.layers[0].params.SRS};
+                QUERY_LAYERS: 'cite:' + sqlViewQuery,
+                INFO_FORMAT: 'application/json',  // If set to 'text/html', returned HTML is formatted using templates on Geoserver
+                FEATURE_COUNT: 50,
+                EXCEPTIONS: "application/vnd.ogc.se_xml"
+            };
 
             // handle the wms 1.3 vs wms 1.1 madness
             if(map.layers[0].params.VERSION == "1.3.0") {

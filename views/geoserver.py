@@ -30,16 +30,14 @@ def sam_huc_query(request, jid):
     geoserver_post_dict = json.loads(request.body)
     huc12_id =  geoserver_post_dict['features'][0]['properties']['huc12']
     print huc12_id
-    #                                          jid                  huc12
-    sam_out = rest_funcs.get_sam_huc_output(jid, huc12_id)
+    #                                       jid   huc12
+    # sam_out = rest_funcs.get_sam_huc_output(jid, huc12_id)
 
     # sam_json = json.dumps(sam_out['output'])
 
-    print sam_out
-    print type(sam_out)
-
     try:
-        html = render_to_string('geoserver_details.html', {"sam_out": sam_out[0]['model_object_dict']['output']})
+        # html = render_to_string('geoserver_details.html', {"sam_out": sam_out[0]['model_object_dict']['output']})
+        html = render_to_string('geoserver_details.html', { "sam_out": geoserver_post_dict['features'][0]['properties'] } )
     except:
         html = "SAM is still processing the spatial data for job: " + str(jid)
 

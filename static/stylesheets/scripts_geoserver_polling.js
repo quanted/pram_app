@@ -122,7 +122,7 @@ $( document ).ready(function() {
         // support GetFeatureInfo
         map.events.register('click', map, function (e) {
 
-            document.getElementById('nodelist').innerHTML = "Loading... please wait...";
+            document.getElementById('nodelist').innerHTML = "SAM has finished processing the spatial data.  Select HUC to view data.";
             var params = {
                 SERVICE: "WMS",
                 REQUEST: "GetFeatureInfo",

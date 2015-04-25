@@ -28,11 +28,18 @@ def sam_huc_query(request, jid):
     print jid
 
     geoserver_post_dict = json.loads(request.body)
+
     try:
         huc12_id =  geoserver_post_dict['features'][0]['properties']['huc12']
         print huc12_id
     except IndexError:
-        return    HttpResponse().write("Try again...")
+
+        html = "Try again..."
+
+        response = HttpResponse()
+        response.write(html)
+
+        return response
 
     #                                       jid   huc12
     # sam_out = rest_funcs.get_sam_huc_output(jid, huc12_id)

@@ -24,7 +24,7 @@ $( document ).ready(function() {
                 } else {
                     setTimeout(updateTimer, 10000); // poll again in 10s until: data == 'done'
                 }
-1
+
             },
             error: function( jqXHR, textStatus, errorThrown ){
                 console.log(jqXHR);
@@ -69,12 +69,12 @@ $( document ).ready(function() {
                     case '1':
                         sqlView = "samAnnStyle";
                         arg = "yr:29";
-                        colorRange = 'r1:0.06;r2:0.12;r3:0.18;r4:0.24;r5:0.3';
+                        colorRange = 'r1:0.1;r2:0.2;r3:0.3;r4:0.4;r5:0.5';
                         break;
                     case '2':
                         sqlView = "samMthStyle";
                         arg = "mth:jun";
-                        colorRange = 'r1:0.06;r2:0.12;r3:0.18;r4:0.24;r5:0.3';
+                        colorRange = 'r1:0.1;r2:0.2;r3:0.3;r4:0.4;r5:0.5';
                         break;
                     case '3':
                         sqlView = "samAnnStyle";
@@ -125,7 +125,7 @@ $( document ).ready(function() {
                 INFO_FORMAT: 'application/json',  // If set to 'text/html', returned HTML is formatted using templates on Geoserver
                 QUERY_LAYERS: map.layers[0].params.LAYERS,
                 FEATURE_COUNT: 50,
-                "Layers": 'cite:joinTest',
+                "Layers": 'cite:' + sqlView,
                 WIDTH: map.size.w,
                 HEIGHT: map.size.h,
                 format: format,

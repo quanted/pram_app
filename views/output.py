@@ -21,7 +21,7 @@ def outputPageHTML(header, model, tables_html):
             'model_attributes': header+' Output'})
     html = html + tables_html
     if model is not "sam":
-        print " N O T   S A M "
+        print " model: " + model
         html = html + render_to_string('export.html', {})
     html = html + render_to_string('04uberoutput_end.html', {'model':model})
     html = html + render_to_string('06uberfooter.html', {'links': ''})

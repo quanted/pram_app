@@ -73,49 +73,49 @@ function init(){
     options.onclick = toggleControlPanel;
     
     // support GetFeatureInfo
-    map.events.register('click', map, function (e) {
-
-        document.getElementById('nodelist').innerHTML = "Loading... please wait...";
-        var params = {
-            REQUEST: "GetFeatureInfo",
-            EXCEPTIONS: "application/vnd.ogc.se_xml",
-            BBOX: map.getExtent().toBBOX(),
-            SERVICE: "WMS",
-            INFO_FORMAT: 'application/json',  // If set to 'text/html', returned HTML is formatted using templates on Geoserver
-            QUERY_LAYERS: map.layers[0].params.LAYERS,
-            FEATURE_COUNT: 50,
-            "Layers": 'cite:huc12s05',
-            WIDTH: map.size.w,
-            HEIGHT: map.size.h,
-            format: format,
-            //styles: map.layers[0].params.STYLES,
-            srs: map.layers[0].params.SRS};
-        
-        // handle the wms 1.3 vs wms 1.1 madness
-        if(map.layers[0].params.VERSION == "1.3.0") {
-            params.version = "1.3.0";
-            params.j = parseInt(e.xy.x);
-            params.i = parseInt(e.xy.y);
-        } else {
-            params.version = "1.1.1";
-            params.x = parseInt(e.xy.x);
-            params.y = parseInt(e.xy.y);
-        }
-            
-        // merge filters
-        if(map.layers[0].params.CQL_FILTER != null) {
-            params.cql_filter = map.layers[0].params.CQL_FILTER;
-        } 
-        if(map.layers[0].params.FILTER != null) {
-            params.filter = map.layers[0].params.FILTER;
-        }
-        if(map.layers[0].params.FEATUREID) {
-            params.featureid = map.layers[0].params.FEATUREID;
-        }
-        //                                                                    caller onComplete    onFailure
-        OpenLayers.loadURL("http://134.67.114.4/geoserver/cite/wms", params, this, setHTMLLoading, setHTMLLoading);
-        OpenLayers.Event.stop(e);
-    });
+    //map.events.register('click', map, function (e) {
+    //
+    //    document.getElementById('nodelist').innerHTML = "Loading... please wait...";
+    //    var params = {
+    //        REQUEST: "GetFeatureInfo",
+    //        EXCEPTIONS: "application/vnd.ogc.se_xml",
+    //        BBOX: map.getExtent().toBBOX(),
+    //        SERVICE: "WMS",
+    //        INFO_FORMAT: 'application/json',  // If set to 'text/html', returned HTML is formatted using templates on Geoserver
+    //        QUERY_LAYERS: map.layers[0].params.LAYERS,
+    //        FEATURE_COUNT: 50,
+    //        "Layers": 'cite:huc12s05',
+    //        WIDTH: map.size.w,
+    //        HEIGHT: map.size.h,
+    //        format: format,
+    //        //styles: map.layers[0].params.STYLES,
+    //        srs: map.layers[0].params.SRS};
+    //
+    //    // handle the wms 1.3 vs wms 1.1 madness
+    //    if(map.layers[0].params.VERSION == "1.3.0") {
+    //        params.version = "1.3.0";
+    //        params.j = parseInt(e.xy.x);
+    //        params.i = parseInt(e.xy.y);
+    //    } else {
+    //        params.version = "1.1.1";
+    //        params.x = parseInt(e.xy.x);
+    //        params.y = parseInt(e.xy.y);
+    //    }
+    //
+    //    // merge filters
+    //    if(map.layers[0].params.CQL_FILTER != null) {
+    //        params.cql_filter = map.layers[0].params.CQL_FILTER;
+    //    }
+    //    if(map.layers[0].params.FILTER != null) {
+    //        params.filter = map.layers[0].params.FILTER;
+    //    }
+    //    if(map.layers[0].params.FEATUREID) {
+    //        params.featureid = map.layers[0].params.FEATUREID;
+    //    }
+    //    //                                                                    caller onComplete    onFailure
+    //    OpenLayers.loadURL("http://134.67.114.4/geoserver/cite/wms", params, this, setHTMLLoading, setHTMLLoading);
+    //    OpenLayers.Event.stop(e);
+    //});
 }
 
 function setHTMLLoading(response){

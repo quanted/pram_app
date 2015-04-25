@@ -39,8 +39,7 @@ def sam_huc_query(request, jid):
     print type(sam_out)
 
     try:
-        html = str(sam_out) + "<br>" + huc12_id
-        # html = render_to_string('geoserver_details.html', {"sam_out": sam_out[0]['model_object_dict']['output']})
+        html = render_to_string('geoserver_details.html', {"sam_out": sam_out[0]['model_object_dict']['output']})
     except:
         html = "SAM is still processing the spatial data for job: " + str(jid)
 

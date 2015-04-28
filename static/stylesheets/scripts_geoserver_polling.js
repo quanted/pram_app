@@ -19,7 +19,7 @@ $( document ).ready(function() {
             success: function(data) {
 
                 if (data.done) {
-                    showMap(data.input);
+                    showMap(data.input, data.jid);
                     $('.sam_link').show();
                 } else {
                     setTimeout(updateTimer, 10000); // poll again in 10s until: data == 'done'
@@ -38,13 +38,13 @@ $( document ).ready(function() {
 
     }
 
-    function showMap(input) {
+    function showMap(input, jid) {
 
         var output_type = input.output_type;
         var output_time_avg_option = input.output_time_avg_option;
         var output_time_avg_conc = input.output_time_avg_conc;
         var output_tox_thres_exceed = input.output_tox_thres_exceed;
-        var sqlViewStyle, sqlViewQuery, arg, colorRange;
+        var sqlViewStyle, sqlViewQuery, arg, colorRange, graphFileName;
 
         if (output_type == '1') {
             console.log('Not Mapping Daily Conc. Yet...');
@@ -66,36 +66,42 @@ $( document ).ready(function() {
                         colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
                         break;
                 }
-            } else {
+            }
+            else {
                 switch (output_tox_thres_exceed) {
                     case '1':
                         sqlViewStyle = "samAnnStyle";
                         sqlViewQuery = "samAnnAll";
                         arg = "yr:29";
                         colorRange = 'r1:0.1;r2:0.2;r3:0.3;r4:0.4;r5:0.5';
+                        //graphFileName =
                         break;
                     case '2':
                         sqlViewStyle = "samMthStyle";
                         sqlViewQuery = "samMthAll";
                         arg = "mth:jun";
                         colorRange = 'r1:0.1;r2:0.2;r3:0.3;r4:0.4;r5:0.5';
+                        //graphFileName =
                         break;
                     case '3':
                         sqlViewStyle = "samAnnStyle";
                         sqlViewQuery = "samAnnAll";
                         arg = "yr:29";
                         colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
+                        //graphFileName =
                         break;
                     case '4':
                         sqlViewStyle = "samMthStyle";
                         sqlViewQuery = "samMthAll";
                         arg = "mth:jun";
                         colorRange = 'r1:2;r2:4;r3:6;r4:8;r5:10';
+                        //graphFileName = jid + "_month_streak_boxplot.png";
                         break;
                 }
             }
         }
 
+        //$('#sam_graph_1').attr( { 'src': graphFileName } );
 
         sam_output_layer = new OpenLayers.Layer.WMS(
             "SAM SQL View",

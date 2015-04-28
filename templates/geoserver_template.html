@@ -53,16 +53,12 @@
     #wrapper {
         width: 512px;
     }
-    
-    #location {
-        float: right;
-    }
-    
-    #options {
+
+    #legend {
         position: absolute;
-        left: 13px;
-        top: 7px;
-        z-index: 3000;
+        top: 5px;
+        right: 5px;
+        z-index: 99999;
     }
 
     /* Styles used by the default GetFeatureInfo output, added to make IE happy */
@@ -104,7 +100,7 @@
 <br>
 <div id="jid" style="display: none">{{ jid }}</div>
 <div id="map">
-    <img id="options" title="Toggle options toolbar" src="http://134.67.114.4/geoserver/options.png"/>
+    <div id="legend"><img alt="Map legend" src="http://134.67.114.4/geoserver/cite/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=cite:samMthStyle" /></div>
 </div>
 <div id="wrapper">
     <div id="scale"></div>

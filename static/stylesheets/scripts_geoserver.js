@@ -64,16 +64,12 @@ function init(){
 
     // build up all controls
     map.addControl(new OpenLayers.Control.PanZoomBar({
-        position: new OpenLayers.Pixel(2, 15)
+        position: new OpenLayers.Pixel(2, 2)
     }));
     map.addControl(new OpenLayers.Control.Navigation());
     map.addControl(new OpenLayers.Control.Scale($('scale')));
     map.addControl(new OpenLayers.Control.MousePosition({element: $('location')}));
     map.zoomToExtent(bounds);
-    
-    // wire up the option button
-    var options = document.getElementById("options");
-    options.onclick = toggleControlPanel;
     
     // support GetFeatureInfo
     //map.events.register('click', map, function (e) {

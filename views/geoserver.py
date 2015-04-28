@@ -78,6 +78,7 @@ def sam_done_query(request, jid):
                 logging.info('SAM dumped output to Mongo')
                 response['done'] = True
                 response['input'] = request['input']
+                response['jid'] = jid
         except Exception as e: 
             # html = "except: {}".format(e)
             logging.exception(e)

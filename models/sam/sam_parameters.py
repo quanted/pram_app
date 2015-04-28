@@ -257,8 +257,8 @@ class SamInp_output(forms.Form):
         (2, 'Annual max time-average concentrations')
     )
     TOX_THRES_EXCEED_CHOICES = (
-        (1, 'Frequency of exceeding threshold (%), by year'),
-        (2, 'Frequency of exceeding threshold (%), by month'),
+        (1, 'Frequency of exceeding threshold, by year'),
+        (2, 'Frequency of exceeding threshold, by month'),
         (3, 'Average duration of exceedance (days), by year'),
         (4, 'Average duration of exceedance (days), by month')
     )
@@ -318,7 +318,6 @@ class SamInp_output(forms.Form):
             required=False,
             widget=forms.Select(attrs={'size' : 4}),
             choices=TOX_THRES_EXCEED_CHOICES,
-            initial=4,
             label='')
     output_format = forms.MultipleChoiceField(
             required=False,

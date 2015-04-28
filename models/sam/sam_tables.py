@@ -310,26 +310,38 @@ def gett4data(request):
     #     output_tox = ""
 
     if (request.POST["scenario_selection"] == '0'):
+
+        if request.POST["output_tox_thres_exceed"] == '1':
+            type_tox_exceed = "Frequency of exceeding threshold, by year"
+        elif request.POST["output_tox_thres_exceed"] == '2':
+            type_tox_exceed = "Frequency of exceeding threshold, by month"
+        elif request.POST["output_tox_thres_exceed"] == '3':
+            type_tox_exceed = "Average duration of exceedance (days), by year"
+        else:  # request.POST["output_tox_thres_exceed"] == '4':
+            type_tox_exceed = "Average duration of exceedance (days), by month"
+
         try:
             avg_period = request.POST["output_avg_days"]
         except:
-            avg_period = "4"
+            avg_period = ""
         try:
             tox_thres = request.POST["output_tox_value"]
         except:
-            tox_thres = "4"
+            tox_thres = ""
         data = {
             "Parameter": [
                 'Output Preference',
                 'Averaging Period (days)',
+                'Type',
                 mark_safe('Threshold (&micro;g/L)'),
                 'Exceedance Type',
             ],
             "Value": [
                 'Time-Averaged Results',
                 avg_period,
+                'Toxicity Threshold Exceedances',
                 tox_thres,
-                'Average duration of exceedance (days), by month',
+                type_tox_exceed
             ],
         }
     else:

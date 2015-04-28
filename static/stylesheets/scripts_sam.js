@@ -191,6 +191,7 @@ $(document).ready(function() {
                 '#id_sim_type_0, #id_sim_type_1, #id_sim_type_2').attr('disabled', true);
                 $('#id_workers').attr('readonly', true).val('16');
                 $('#id_processes').attr('readonly', true).val('1');
+                $('#id_output_tox_thres_exceed').val('1');
                 $('#id_region').attr('readonly', true);
                 // Force Refinement method to be 'Uniform with Step'
                 $('#id_refine').val('uniform_step');

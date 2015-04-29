@@ -102,6 +102,11 @@ $( document ).ready(function() {
         }
 
         //$('#sam_graph_1').attr( { 'src': graphFileName } );
+        var colorRangeArray = colorRange.split(';');
+        for (i=0;i<colorRangeArray.length;i++) {
+            range = colorRangeArray[i].split(':');
+            $('#legend_scale_' + (i + 1)).text(range[1]);
+        }
 
         sam_output_layer = new OpenLayers.Layer.WMS(
             "SAM SQL View",

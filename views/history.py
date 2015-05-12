@@ -4,6 +4,8 @@ import importlib
 import linksLeft
 from REST import rest_funcs
 import os
+import StringIO, logging
+
 
 def historyPage(request, model='none', header='none'):
     """
@@ -68,20 +70,21 @@ def historyPageRevist(request, model='none', header='none'):
         Load output (list of file lines) from Mongo and 
         write them to memory (StringIO) and send to user
         """
-        import StringIO, logging
 
         # Retrieve model's MongoDB entry as Python dictionary
         model_dict = rest_funcs.get_model_object(jid, model_name)
-        logging.info(model_dict)
+        # logging.info(model_dict)
+        # output_str = model_dict['output']
+
+        output_str = dict_to_flat_file(model_dict['output'])
 
         # Write output string from Mongo to file in memory
-        output_str = model_dict['output']
-        packet = StringIO.StringIO(output_str) #write to memory
+        # packet = StringIO.StringIO(output_str) #write to memory
 
         # html = output.outputPageHTML(header, model, output_tables)
 
-        response = HttpResponse(packet.getvalue(), content_type='application/txt')
-        response['Content-Disposition'] = 'attachment; filename=' + model_dict['filename']
+        response = HttpResponse(output_str.getvalue(), content_type='application/txt')
+        response['Content-Disposition'] = 'attachment; filename=' + model_dict['filename'] + '.csv'
         
         return response
     
@@ -109,6 +112,18 @@ def historyPageRevist(request, model='none', header='none'):
         response = HttpResponse()
         response.write(html)
         return response
+
+
+def dict_to_flat_file(dict):
+    # print dict
+    f = StringIO.StringIO()
+
+    for k in dict:
+        f.write(k)
+        for item in dict[k]:
+            f.write("," + item)
+
+    return f
 
 def recreateModelObject(obj_as_dict):
     """

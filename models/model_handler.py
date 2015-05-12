@@ -55,7 +55,7 @@ class ModelFortran(object):
 
         # Set object attributes to model inputs and outputs
         """
-            Set inputs and ouputs as model object atributes
+            Set inputs and outputs as model object attributes
         """
         for k, v in self.inputs:
             setattr(self, k, v)
@@ -106,7 +106,7 @@ def create_dataframe(response):
 def modelInputPOSTReceiver(request, model):
     """
         Converts the POSTed data from the model's input page form 
-        to a Python dictonary and passes it to the Model object where  
+        to a Python dictionary and passes it to the Model object where
         it is to be converted to JSON and passed to the backend server.
     """
 
@@ -129,7 +129,7 @@ def modelInputPOSTReceiver(request, model):
 def modelInputPOSTReceiverFortran(request, model):
     """
         Converts the POSTed data from the model's input page form 
-        to a Python dictonary and passes it to the Model object where  
+        to a Python dictionary and passes it to the Model object where
         it is to be converted to JSON and passed to the backend server. 
         
         ==> FORTAN version <==

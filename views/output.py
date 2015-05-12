@@ -20,7 +20,9 @@ def outputPageHTML(header, model, tables_html):
     html = html + render_to_string('04uberoutput_start.html', {
             'model_attributes': header+' Output'})
     html = html + tables_html
-    html = html + render_to_string('export.html', {})
+    if model is not "sam":
+        print " model: " + model
+        html = html + render_to_string('export.html', {})
     html = html + render_to_string('04uberoutput_end.html', {'model':model})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
 
@@ -49,8 +51,49 @@ def outputPageView(request, model='none', header=''):
             return a confirmation of model submission to the user. Model results 
             will be available at a later time (e.g. from the History page).
             """
-            modelOutputHTML = model_handler.modelInputPOSTReceiverFortran(request, model)
-            html = outputPageHTML(header, model, modelOutputHTML)
+
+            import models.sam.sam_tables as tablesmodule
+
+            if request.POST['scenario_selection'] == '0':
+                """ Custom Run """
+                # Run SAM - no return expected
+                jid = model_handler.modelInputPOSTReceiverFortran(request, model)
+
+                disclaimer_html = """
+                <h3>Disclaimer:</h3>
+                <p>Ecological risk calculations contained here should be used for
+                no purpose other than quality assurance and peer review of the
+                presented web applications. This web site is under development.
+                It is available for the purposes of receiving feedback and quality
+                assurance from personnel in the EPA Office of Chemical Safety and
+                Pollution Prevention and from interested members of the ecological
+                risk assessment community.</p>
+                """
+
+                """ Generate Timestamp HTML from "*_tables" module """
+                modelOutputHTML = tablesmodule.timestamp()
+                """ Generate Model input & output tables HTML from "*_tables" module """
+
+                try:
+                    tables_output = tablesmodule.table_all(request, jid)
+                except:
+                    tables_output = tablesmodule.table_all(request, "20150402133114784000")
+                modelOutputHTML = disclaimer_html + modelOutputHTML + tables_output
+
+                """ Render output page view HTML """
+                html = outputPageHTML(header, model, modelOutputHTML)
+
+            else:
+                """ Pre-Canned Run """
+                """ Generate Timestamp HTML from "*_tables" module """
+                modelOutputHTML = tablesmodule.timestamp()
+                """ Generate Model input & output tables HTML from "*_tables" module """
+                tables_output = tablesmodule.table_all(request)
+
+                modelOutputHTML = modelOutputHTML + tables_output
+
+                """ Render output page view HTML """
+                html = outputPageHTML(header, model, modelOutputHTML)
 
             response = HttpResponse()
             response.write(html)
@@ -156,7 +199,7 @@ def outputPage(request, model='none', header=''):
     Django HTTP POST handler for output page.  Receives form data and
     validates it.  If valid it calls method to render the output page
     view.  If invalid, it returns the error to the model input page.
-    This method maps to: '/eco/<model>/output'
+    This method maps to: '/ubertool/<model>/output'
     """
 
     viewmodule = importlib.import_module('.views', 'models.'+model)
@@ -178,7 +221,7 @@ def outputPage(request, model='none', header=''):
         else:
             # If not valid...
             logging.info(form.errors)
-            inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
+            input_module = importlib.import_module('.'+model+'_input', 'models.'+model)
 
             # Render input page view with POSTed values and show errors
             html = render_to_string('01uberheader.html', {
@@ -190,7 +233,7 @@ def outputPage(request, model='none', header=''):
                     'page':'input'})
             html = html + linksLeft.linksLeft()
 
-            inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
+            inputPageFunc = getattr(input_module, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
             html = html + inputPageFunc(request, model, header, formData=request.POST)  # formData contains the already POSTed form data
 
             html = html + render_to_string('06uberfooter.html', {'links': ''})

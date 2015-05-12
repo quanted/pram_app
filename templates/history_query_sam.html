@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 	$.ajax({
 		type: 'POST',
-		url: '/eco/{{ model }}/history/query',
+		url: '/ubertool/{{ model }}/history/query',
 		data: { postVar1: 'theValue1', postVar2: 'theValue2' },
 		beforeSend:function(){
 			// this is where we append a loading image
@@ -40,7 +40,7 @@ $(document).ready(function() {
 	// function queryMongo() {
 	// 	$.ajax({
 	// 		type: 'POST',
-	// 		url: '/eco/{{ model }}/history/query',
+	// 		url: '/ubertool/{{ model }}/history/query',
 	// 		data: { postVar1: 'theValue1', postVar2: 'theValue2' },
 	// 	});
 	// }

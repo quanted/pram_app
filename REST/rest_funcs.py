@@ -120,31 +120,53 @@ def get_output_html(jid, model_name):
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
+        if response:
+            html_output = json.loads(response.content)['html_output']
+        else:
+            html_output = ""
     except:
-        pass
-    if response:
-        html_output = json.loads(response.content)['html_output']
-    else:
-        html_output =""
+        return "error"
+
     return html_output
 
-###########################function to retrive model object from MongoDB################################ 
+###########################function to retrieve model object from MongoDB################################
 def get_model_object(jid, model_name):
     """Retrieves JSON from MongoDB representing model (Python) object and returns it as Python dictionary"""
-    all_dic = {"jid":jid, "model_name":model_name}
+    all_dic = {"jid": jid, "model_name": model_name}
     data = json.dumps(all_dic)
     url = url_part1 + '/get_model_object'
     try:
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
+        if response:
+            model_object = json.loads(response.content)['model_object']
+        else:
+            model_object = ""
+
     except:
-        pass
-    if response:
-        model_object = json.loads(response.content)['model_object']
-    else:
-        model_object =""
+        return { "error": "error" }
+
     return model_object
 
-###########################function to retrive html from MongoDB################################ 
+###########################function to retrieve model object from MongoDB################################
+def get_sam_huc_output(jid, huc12):
+    """Retrieves JSON from MongoDB representing model (Python) object and returns it as Python dictionary"""
+    all_dic = {"jid": jid, "model_name": "sam", "huc12": huc12}
+    data = json.dumps(all_dic)
+    url = url_part1 + '/get_sam_huc_output'
+    try:
+        response = requests.post(url, data=data, headers=http_headers, timeout=60)
+        if response:
+            model_object = json.loads(response.content)['huc12_output']
+        else:
+            model_object =""
+
+    except:
+        logging.exception(Exception)
+        return "error"
+
+    return model_object
+
+###########################function to retrieve html from MongoDB################################
 def create_batchoutput_html(jid, model_name):
     all_dic = {"jid":jid, "model_name":model_name}
     data = json.dumps(all_dic)
@@ -152,22 +174,31 @@ def create_batchoutput_html(jid, model_name):
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
+        if response:
+            result = response.content
+            result_dict = ast.literal_eval(result)['result']
+            result_obj_all = []
+            for i in result_dict:
+                result_obj_temp = Struct(**i)
+                result_obj_all.append(result_obj_temp)
+        else:
+            result_obj_all =[]
+
     except:
-        pass
-    if response:
-        result = response.content
-        result_dict = ast.literal_eval(result)['result']
-        result_obj_all = []
-        for i in result_dict:
-            result_obj_temp = Struct(**i)
-            result_obj_all.append(result_obj_temp)
-    else:
-        result_obj_all =[]
+        return "error"
+
     return result_obj_all
 
 class Struct:
     def __init__(self, **entries): 
         self.__dict__.update(entries)
+
+
+###########################################################
+
+
+
+###########################################################
 
 ###########################creat an object to display history runs################################ 
 class user_hist(object):
@@ -196,7 +227,7 @@ class user_hist(object):
         if self.response:
             self.output_val = json.loads(self.response.content)['hist_all']
             self.total_num = len(self.output_val)
-
+            # print self.output_val
             for element in self.output_val:
 
                 try:
@@ -204,8 +235,12 @@ class user_hist(object):
 
                     self.user_id.append(element['user_id'])
 
-                    self.jid.append(element['_id'])
-                    self.time_id.append(datetime.datetime.strptime(element['_id'], '%Y%m%d%H%M%S%f').strftime('%Y-%m-%d %H:%M:%S'))
+                    if model_name == 'sam':  # SAM changed "_id" to "jid" Mongo key
+                        self.jid.append(element['jid'])
+                        self.time_id.append(datetime.datetime.strptime(element['jid'], '%Y%m%d%H%M%S%f').strftime('%Y-%m-%d %H:%M:%S'))
+                    else:
+                        self.jid.append(element['_id'])
+                        self.time_id.append(datetime.datetime.strptime(element['_id'], '%Y%m%d%H%M%S%f').strftime('%Y-%m-%d %H:%M:%S'))
                     
                     # Gennec doesn't have 'run_type' key
                     self.run_type.append(element['run_type'])

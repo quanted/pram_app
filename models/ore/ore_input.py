@@ -15,6 +15,7 @@ def oreInputPage(request, model='', header='', formData=None):
                 }
             })
     html = html + str(ore_parameters.form(formData))
+    html = html + "<div id='ore_output'></div>"
     html = html + render_to_string('04uberinput_ore_end.html', {'sub_title': 'Submit'})
     
     return html

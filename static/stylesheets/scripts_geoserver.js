@@ -32,7 +32,7 @@ function init(){
         maxResolution: 5018.62890625,
         projection: "EPSG:3857",
         units: 'm',
-        numZoomLevels: 10
+        numZoomLevels: 15
     };
     map = new OpenLayers.Map('map', options);
     
@@ -57,7 +57,7 @@ function init(){
             yx : {'EPSG:3857' : false}
         } 
     );
-    tiled.setOpacity(0.5);
+    tiled.setOpacity(0.3);
 
     var gmap = new OpenLayers.Layer.Google("Google Maps",
         { type: google.maps.MapTypeId.TERRAIN }

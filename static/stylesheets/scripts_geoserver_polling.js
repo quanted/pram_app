@@ -118,15 +118,17 @@ $( document ).ready(function() {
                 "viewparams": 'jid:' + jid_ajax,
                 "env": colorRange,
                 minZoomLevel: 1,
-                maxZoomLevel: 5
+                maxZoomLevel: 5,
+                transparent: true
             },
             {
                 buffer: 0,
                 displayOutsideMaxExtent: true,
-                isBaseLayer: true,
+                isBaseLayer: false,
                 yx : {'EPSG:3857' : false}
             }
         );
+        sam_output_layer.setOpacity(0.5);
 
         map.removeLayer(tiled);
         map.addLayers([sam_output_layer]);

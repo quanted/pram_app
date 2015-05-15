@@ -145,6 +145,7 @@
                     maxResolution: 5018.62890625,
                     projection: "EPSG:3857",
                     units: 'm',
+                    numZoomLevels: 10
                 };
                 map = new OpenLayers.Map('map', options);
                 
@@ -155,9 +156,12 @@
                 tiled = new OpenLayers.Layer.WMS(
                     "cite:huc12s05 - Tiled", "http://134.67.114.4/geoserver/cite/wms",
                     {
-                        "LAYERS": 'cite:test2',
+                        "LAYERS": 'cite:huc12s05',
+                        // "LAYERS": 'cite:test2',
                         "STYLES": '',
                         format: format,
+                        // minZoomLevel: 1,
+                        // maxZoomLevel: 5,
                         transparent: true
                     },
                     {

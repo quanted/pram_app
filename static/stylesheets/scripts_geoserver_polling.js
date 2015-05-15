@@ -117,8 +117,8 @@ $( document ).ready(function() {
                 "format": format,
                 "viewparams": 'jid:' + jid_ajax,
                 "env": colorRange,
-                minZoomLevel: 1,
-                maxZoomLevel: 5,
+                // minZoomLevel: 1,
+                // maxZoomLevel: 5,
                 transparent: true
             },
             {

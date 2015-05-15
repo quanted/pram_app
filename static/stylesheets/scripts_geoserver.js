@@ -59,7 +59,9 @@ function init(){
     );
     tiled.setOpacity(0.5);
 
-    var gmap = new OpenLayers.Layer.Google("Google Streets");
+    var gmap = new OpenLayers.Layer.Google("Google Maps",
+        { type: google.maps.MapTypeId.TERRAIN }
+    );
 
     map.addLayers([gmap, tiled]);
 

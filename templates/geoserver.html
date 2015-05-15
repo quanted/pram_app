@@ -199,7 +199,9 @@
 {#                    {isBaseLayer: true}#}
 {#                );#}
 
-                var gmap = new OpenLayers.Layer.Google("Google Streets");
+                var gmap = new OpenLayers.Layer.Google("Google Maps",
+                    {type: google.maps.MapTypeId.TERRAIN}
+                );
 
                 map.addLayers([gmap, tiled]);
 {#                map.addLayers([ol_wms, tiled]);#}

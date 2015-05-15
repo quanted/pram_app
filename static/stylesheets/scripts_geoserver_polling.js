@@ -128,7 +128,7 @@ $( document ).ready(function() {
                 yx : {'EPSG:3857' : false}
             }
         );
-        sam_output_layer.setOpacity(0.5);
+        sam_output_layer.setOpacity(0.7);
 
         map.removeLayer(tiled);
         map.addLayers([sam_output_layer]);
@@ -143,7 +143,7 @@ $( document ).ready(function() {
                 REQUEST: "GetFeatureInfo",
                 "Layers": 'cite:' + sqlViewQuery,
                 styles: null,
-                srs: map.layers[0].params.SRS,
+                srs: map.layers[1].params.SRS,
                 BBOX: map.getExtent().toBBOX(),
                 WIDTH: map.size.w,
                 HEIGHT: map.size.h,
@@ -154,7 +154,7 @@ $( document ).ready(function() {
             };
 
             // handle the wms 1.3 vs wms 1.1 madness
-            if(map.layers[0].params.VERSION == "1.3.0") {
+            if(map.layers[1].params.VERSION == "1.3.0") {
                 params.version = "1.3.0";
                 params.j = parseInt(e.xy.x);
                 params.i = parseInt(e.xy.y);
@@ -165,14 +165,14 @@ $( document ).ready(function() {
             }
 
             // merge filters
-            if(map.layers[0].params.CQL_FILTER != null) {
-                params.cql_filter = map.layers[0].params.CQL_FILTER;
+            if(map.layers[1].params.CQL_FILTER != null) {
+                params.cql_filter = map.layers[1].params.CQL_FILTER;
             }
-            if(map.layers[0].params.FILTER != null) {
-                params.filter = map.layers[0].params.FILTER;
+            if(map.layers[1].params.FILTER != null) {
+                params.filter = map.layers[1].params.FILTER;
             }
-            if(map.layers[0].params.FEATUREID) {
-                params.featureid = map.layers[0].params.FEATUREID;
+            if(map.layers[1].params.FEATUREID) {
+                params.featureid = map.layers[1].params.FEATUREID;
             }
             //                                                                 caller onComplete onFailure
             //OpenLayers.loadURL("http://134.67.114.4/geoserver/cite/wms", params, this, setHTML, setHTML);

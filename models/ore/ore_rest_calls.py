@@ -53,7 +53,7 @@ def category_query(request):
 
     print response.content
 
-    # Return RespnseObject with JSON from DB query (response.content['results'] = worker activites)
+    # Return ResponseObject with JSON from DB query (response.content['results'] = worker activities)
     return HttpResponse(
         response.content,
         content_type="application/json"

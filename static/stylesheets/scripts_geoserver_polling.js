@@ -128,7 +128,7 @@ $( document ).ready(function() {
                 yx : {'EPSG:3857' : false}
             }
         );
-        //sam_output_layer.setOpacity(0.3);
+        sam_output_layer.setOpacity(0.3);
 
         map.removeLayer(tiled);
         map.addLayers([sam_output_layer]);

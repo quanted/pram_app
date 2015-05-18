@@ -27,7 +27,7 @@ def rest_call(query):
     return json.loads(response.content)['result']
 
 def category_query(request):
-    """ Fill Exposure Scenario tab inputs based on choosen Crop/Target Category """
+    """ Fill Exposure Scenario tab inputs based on chosen Crop/Target Category """
 
     from django.http import HttpResponse
 
@@ -43,6 +43,7 @@ def category_query(request):
     }
     try:
         all_dic['filter'] = request.POST['filter']
+        all_dic['es_type'] = request.POST['es_type']
 
     except:
         logging.exception(Exception)

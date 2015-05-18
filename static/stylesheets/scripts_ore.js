@@ -89,6 +89,8 @@ $( document ).ready(function() {
 	}
 
 	// Exposure Scenario
+
+	var test_result;
 	function category_query(ore_object) {
 
 		$.ajax({
@@ -97,19 +99,23 @@ $( document ).ready(function() {
 			data: ore_object,
 			success: function(json) { 
 				console.log(json.result);
+				test_result = json.result;
+				//for (key in json.result) {
+				//
+				//}
 
-				var worker_activities = json.result[0];
-				// $('#id_exp_worker_activity').val(worker_activities);
-				create_checkboxes("worker_activity", worker_activities);
-
-				var app_type = json.result[1];
-				create_checkboxes("app_type", app_type);
-
-				var app_equipment = json.result[2];
-				create_checkboxes("app_equipment", app_equipment);
-
-				var formulation = json.result[3];
-				create_checkboxes("formulation", formulation);
+				//var worker_activities = json.result[0];
+				//// $('#id_exp_worker_activity').val(worker_activities);
+				//create_checkboxes("worker_activity", worker_activities);
+                //
+				//var app_type = json.result[1];
+				//create_checkboxes("app_type", app_type);
+                //
+				//var app_equipment = json.result[2];
+				//create_checkboxes("app_equipment", app_equipment);
+                //
+				//var formulation = json.result[3];
+				//create_checkboxes("formulation", formulation);
 				
 			}
 		});
@@ -117,44 +123,17 @@ $( document ).ready(function() {
 
 	function create_checkboxes(type, item_list) {
 
-        var checkboxes;
+        var checkboxes = "<td><ul id=" + type + ">";
 
-        switch (type) {
-            case 'formulation':
-                checkboxes = "<td><ul id='formulation'>";
-                for (i = 0; i < item_list.length; i++) {
-                    checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label><input class='formulation_rate' name='" + item_list[i] + " type='number'></li>"
-                }
-                break;
-            case 'app_type':
-                checkboxes = "<td><ul id='app_type'>";
-                for (i = 0; i < item_list.length; i++) {
-                    checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label></li>"
-                }
-                break;
-            case 'app_equipment':
-                checkboxes = "<td><ul id='app_equipment'>";
-                for (i = 0; i < item_list.length; i++) {
-                    checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label></li>"
-                }
-                break;
-            case 'worker_activity':
-                checkboxes = "<td><ul id='worker_activity'>";
-                for (i = 0; i < item_list.length; i++) {
-                    checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label></li>"
-                }
-                break;
-        }
-		//if (type !== 'formulation') {
-		//	for (i = 0; i < item_list.length; i++) {
-		//		checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label></li>"
-		//	}
-		//} else {
-		//	checkboxes = checkboxes + "<li style='text-align: right;'>Application Rate (lb ai/acre): </li>"
-		//	for (i = 0; i < item_list.length; i++) {
-		//		checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label><input class='formulation_rate' name='" + item_list[i] + " type='number'></li>"
-		//	}
-		//}
+		if (type == 'formulation') {
+			for (i = 0; i < item_list.length; i++) {
+				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label><input class='formulation_rate' name='" + item_list[i] + " type='number'></li>"
+			}
+		} else {
+			for (i = 0; i < item_list.length; i++) {
+				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label></li>"
+			}
+		}
 
 		checkboxes = checkboxes + "</ul></td>"
 
@@ -214,8 +193,10 @@ $( document ).ready(function() {
 
         console.log(checkboxItems);
 
+		var es_type = $(this).closest('ul').attr('id');
+		console.log(type);
         category_query({ 'crop_category': cropCategory,
-                        'type': type,
+                        'es_type': es_type,
                         'filter': checkboxItems });
     });
 

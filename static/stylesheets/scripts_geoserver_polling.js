@@ -21,6 +21,7 @@ $( document ).ready(function() {
                 if (data.done) {
                     showMap(data.input, data.jid);
                     $('.sam_link').show();
+                    $('#nodelist').html("SAM has finished processing the spatial data.  Select HUC to view data.");
                     alert('SAM is finished processing.  Results are now available to download and view on the map.');
                 } else {
                     setTimeout(updateTimer, 10000); // poll again in 10s until: data == 'done'
@@ -138,7 +139,6 @@ $( document ).ready(function() {
         // support GetFeatureInfo
         map.events.register('click', map, function (e) {
 
-            document.getElementById('nodelist').innerHTML = "SAM has finished processing the spatial data.  Select HUC to view data.";
             var params = {
                 SERVICE: "WMS",
                 REQUEST: "GetFeatureInfo",

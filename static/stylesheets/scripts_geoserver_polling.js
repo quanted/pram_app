@@ -21,6 +21,7 @@ $( document ).ready(function() {
                 if (data.done) {
                     showMap(data.input, data.jid);
                     $('.sam_link').show();
+                    alert('SAM is finished processing.  Results are now available to download and view on the map.');
                 } else {
                     setTimeout(updateTimer, 10000); // poll again in 10s until: data == 'done'
                 }

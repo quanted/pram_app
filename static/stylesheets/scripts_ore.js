@@ -12,7 +12,7 @@ $( document ).ready(function() {
 	$('#id_expDurationType_0').prop("checked",true);
     $('#id_expComboType_0').prop("checked",true);
     $('input.submit.input_button').val('Filter');
-    update_exposure_scenario();
+    updateExposureScenario();
 
 	// Checkboxes
 	var selectedArray = ["id_expDurationType_0"];  // default with Short-term selected
@@ -77,55 +77,54 @@ $( document ).ready(function() {
 		for (var i = 0; i < noOfCropTargetFields; i++) {
 			$('#'+cropTargetFieldsArray[i]).val(curr_crop);
 		}
-        update_exposure_scenario();
+        updateExposureScenario();
 	});
 
     // Get current Crop/Target Category and update Exposure Scenario tab
-    function update_exposure_scenario() {
+    function updateExposureScenario() {
         cropCategory = $('#id_crop_category option:selected').text();
         console.log(cropCategory);
 		$('#id_exp_category').val(cropCategory);
-		category_query( { 'crop_category': cropCategory } );
+		categoryQuery( { 'crop_category': cropCategory }, false );
 	}
 
 	// Exposure Scenario
 
-	var test_result;
-	function category_query(ore_object) {
-
+	var sqlData;
+	function categoryQuery(ore_object, update_checkboxes) {
+		var key;
 		$.ajax({
 			url: "query/category",
 			type: "POST",
 			data: ore_object,
 			success: function(json) { 
 				console.log(json.result);
-				test_result = json.result;
-				//for (key in json.result) {
-				//
-				//}
-
-				//var worker_activities = json.result[0];
-				//// $('#id_exp_worker_activity').val(worker_activities);
-				//create_checkboxes("worker_activity", worker_activities);
-                //
-				//var app_type = json.result[1];
-				//create_checkboxes("app_type", app_type);
-                //
-				//var app_equipment = json.result[2];
-				//create_checkboxes("app_equipment", app_equipment);
-                //
-				//var formulation = json.result[3];
-				//create_checkboxes("formulation", formulation);
-				
+				sqlData = json.result;
+				if (update_checkboxes) {
+					for (key in sqlData) {
+						if (sqlData.hasOwnProperty(key)) {
+							if (ore_object.es_type !== key ||
+								ore_object.es_type == 'Formulation') {
+									updateCheckboxes(key, sqlData[key]);
+							}
+						}
+					}
+				} else {
+					for (key in sqlData) {
+						if (sqlData.hasOwnProperty(key)) {
+							createCheckboxes(key, sqlData[key]);
+						}
+					}
+				}
 			}
 		});
 	}
 
-	function create_checkboxes(type, item_list) {
+	function createCheckboxes(type, item_list) {
 
         var checkboxes = "<td><ul id=" + type + ">";
 
-		if (type == 'formulation') {
+		if (type == 'Formulation') {
 			for (i = 0; i < item_list.length; i++) {
 				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label><input class='formulation_rate' name='" + item_list[i] + " type='number'></li>"
 			}
@@ -135,11 +134,30 @@ $( document ).ready(function() {
 			}
 		}
 
-		checkboxes = checkboxes + "</ul></td>"
+		checkboxes = checkboxes + "</ul></td>";
 
 		$('label[for=id_exp_' + type + ']').closest('th').next().replaceWith(checkboxes);
 
 	}
+
+	function updateCheckboxes(type, item_list) {
+		$('#' + type).children('li').each(function() {
+			// Loop over each child of <li>, e.g. <input>
+			var elem = $(this).find('input');
+			if ($.inArray(elem.attr('name'), item_list) == -1) {
+				elem.prop('checked', false);
+				if (type == 'Formulation') {
+					elem.closest('label').next('input').prop('disabled', true);
+				}
+			} else {
+				elem.prop('checked', true);
+				if (type == 'Formulation') {
+					elem.closest('label').next('input').prop('disabled', false);
+				}
+			}
+		});
+	}
+
     var articlesWidth = $('.articles_output').width();
     var articlesHeight = $('.articles_output').height();
     var oreOutputDivLeft = (articlesWidth / 2) - 200;
@@ -149,7 +167,7 @@ $( document ).ready(function() {
 		e.preventDefault();
 
         $.ajax({
-			url: "query/asses",
+			url: "query/assess",
 			type: "POST",
 			data: {'category': crop_category},
 			success: function(json) {
@@ -181,23 +199,18 @@ $( document ).ready(function() {
     });
     // Watch the '.tab_OccHandler' class for new items added to the DOM
     $('.tab_OccHandler').on('click', 'input.checkbox', function() {
-        var checkboxItems = [];
-        $(this).closest('ul').children('li').each(function(i) {
-			// Loop over each child of <li>, e.g. <input>
-            var checkbox = $(this).find('input:checked');
-            var value = checkbox.val();
-            if (value) {
-                checkboxItems.push(value);
-            }
+        var checkboxUnselItems = [];
+		$(this).each(function() {
+			if (!$(this).is(':checked')) {
+				checkboxUnselItems.push($(this).val());
+			}
         });
-
-        console.log(checkboxItems);
-
+        //console.log(checkboxUnselItems);
 		var es_type = $(this).closest('ul').attr('id');
-		console.log(type);
-        category_query({ 'crop_category': cropCategory,
+        categoryQuery({ 'crop_category': cropCategory,
                         'es_type': es_type,
-                        'filter': checkboxItems });
+                        'es_type_filter': checkboxUnselItems },
+						true );
     });
 
 });

@@ -35,27 +35,33 @@ def category_query(request):
 
     crop_category = request.POST['crop_category']
     print crop_category
-    # print request.POST
+    print request.POST
 
     all_dic = {
-        # request.POST['crop_category']
         'crop_category': crop_category
     }
     try:
-        all_dic['filter'] = request.POST['filter']
-        all_dic['es_type'] = request.POST['es_type']
+        es_type_filter = request.POST.getlist('es_type_filter[]')
+        print es_type_filter
+        all_dic['es_type_filter'] = es_type_filter
+        es_type = request.POST['es_type']
+        print es_type
+        all_dic['es_type'] = es_type
 
-    except:
-        logging.exception(Exception)
+    except Exception, e:
+        logging.exception(e)
+        pass
 
     data = json.dumps(all_dic)
+    print data
 
     response = requests.get(url, data=data, headers=http_headers, timeout=60)
 
-    print response.content
+    # print response.content
 
     # Return ResponseObject with JSON from DB query (response.content['results'] = worker activities)
     return HttpResponse(
         response.content,
         content_type="application/json"
     )
+

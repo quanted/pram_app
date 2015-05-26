@@ -36,12 +36,14 @@ os.environ.update({
 SECRET_KEY = secret.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = [
     '134.67.114.1',
+    '134.67.114.3',
+    'qed.epa.gov'
 #    'intranet.epa.gov/ubertool'
     #'ord-uber-vm001',
     #'ord-uber-vm001.'

@@ -4,3 +4,12 @@
 .input_table {
 	width: 92%;
 }
+.articles_output ul {
+	list-style: none;
+}
+.formulation_rate {
+	float: right;
+	display: inline-block;
+	text-align: right;
+	max-width: 60px;
+}

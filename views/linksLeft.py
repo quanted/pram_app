@@ -21,7 +21,7 @@ def linksLeft():
         ),
         ('Aquatic Models', OrderedDict([
                 ('RICE', 'rice'),
-                ('GENEEC', 'geneec'),
+                # ('GENEEC', 'geneec'),
                 ('Kabam', 'kabam'),
                 # ('PRZM', 'przm'),
                 # ('PRZM 5', 'przm5'),

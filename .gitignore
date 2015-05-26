@@ -9,7 +9,6 @@
 *~
 *.py~
 *.pptx
-*.py~
 .elasticbeanstalk/config
 GA2.tif
 .VolumeIcon.icns
@@ -23,3 +22,4 @@ Thumbs.db
 *.wsgi
 env/*
 build/*
+.idea/*

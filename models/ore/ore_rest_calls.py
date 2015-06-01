@@ -3,7 +3,7 @@ Created on Tue Apr 23 2014
 
 @author: J. Flaishans
 """
-
+from django.template.loader import render_to_string
 import requests
 from REST import auth_s3
 import json
@@ -15,7 +15,7 @@ url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 def rest_call(query):
     """ Call to backend server to query DB """
-    url = url_part1 + '/ore/' + query
+    url = url_part1 + '/ore/load/' + query
     all_dic = {
         'query': query
     }
@@ -55,7 +55,7 @@ def category_query(request):
     data = json.dumps(all_dic)
     print data
 
-    response = requests.get(url, data=data, headers=http_headers, timeout=60)
+    response = requests.post(url, data=data, headers=http_headers, timeout=60)
 
     # print response.content
 
@@ -65,3 +65,30 @@ def category_query(request):
         content_type="application/json"
     )
 
+def output_query(request):
+
+    from django.http import HttpResponse
+
+    url = url_part1 + '/ore/output'
+    print request.body
+
+    data = request.body  #  Where Django stores POSTed JSON
+
+    response = requests.post(url, data=data, headers=http_headers, timeout=60)
+
+    html = render_to_string('ore_output.html', {
+        'input': {
+            'dermal': True,
+            'inhal': True,
+        },
+        'output': {
+            'mix_loader': [['Mixing/Loading', 'Corn, Field crop, high-acreage', '100', '220 [SL/No G]', '0.219 [No-R]', '2', '1200', '1.65', '30', '0.00658', '3800']],
+            'applicator': [['Applicator', 'Corn, Field crop, high-acreage', '100', '2.06 [EC]', '0.043 [EC]', '2', '1200', '0.0156', '3200', '0.000148', '170000']],
+            'flagger': [['Flagger', 'Corn, Field crop, high-acreage', '100', '11 [EC]', '0.35 [No-R]', '2', '350', '0.0241', '2100', '0.00306', '8200']]
+        }
+    })
+
+    return HttpResponse(
+        html,
+        # content_type="application/json"
+    )

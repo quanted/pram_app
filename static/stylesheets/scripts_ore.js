@@ -8,7 +8,7 @@ $( document ).ready(function() {
 
 	// Initial setup
 	$('.tab_tox_st').show();
-	$('.tab_tox_it, .tab_tox_lt, .tab_CropTargetSel, .tab_OccHandler').hide();
+	$('.tab_tox_it, .tab_tox_lt, .tab_CropTargetSel, .tab_OccHandler, #ore_output').hide();
 	$('#id_expDurationType_0').prop("checked",true);
     $('#id_expComboType_0').prop("checked",true);
     $('input.submit.input_button').val('Filter');
@@ -125,8 +125,9 @@ $( document ).ready(function() {
         var checkboxes = "<td><ul id=" + type + ">";
 
 		if (type == 'Formulation') {
+            checkboxes = checkboxes + "<li style='text-align: right'>Application Rate:</li>";
 			for (i = 0; i < item_list.length; i++) {
-				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label><input class='formulation_rate' name='" + item_list[i] + " type='number'></li>"
+				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label><input class='formulation_rate' name='app_rate_" + item_list[i] + "' type='number'></li>"
 			}
 		} else {
 			for (i = 0; i < item_list.length; i++) {
@@ -150,38 +151,43 @@ $( document ).ready(function() {
 					elem.closest('label').next('input').prop('disabled', true);
 				}
 			} else {
-				elem.prop('checked', true);
-				if (type == 'Formulation') {
-					elem.closest('label').next('input').prop('disabled', false);
+                if (!elem.checked) { // Do not re-checked previously unchecked boxes
+                    return;
+                } else {
+				    if (type == 'Formulation') {
+					    elem.closest('label').next('input').prop('disabled', false);
+                    }
 				}
+                elem.prop('checked', true);
 			}
 		});
 	}
 
-    var articlesWidth = $('.articles_output').width();
-    var articlesHeight = $('.articles_output').height();
-    var oreOutputDivLeft = (articlesWidth / 2) - 200;
-    var oreOutputDivTop = (articlesHeight / 2) - 30;
-
 	$('.submit').click(function(e) {
 		e.preventDefault();
+        //var formData = createFormData();
+        //console.log(JSON.stringify(formData));
+        var formData = {'test': 'test_data'};
 
         $.ajax({
-			url: "query/assess",
+			url: "query/output",
 			type: "POST",
-			data: {'category': crop_category},
+			data: JSON.stringify(formData),
+            contentType: "application/json; charset=utf-8",
 			success: function(json) {
-				console.log(json.result);
+				//console.log(json.result);
 
                 $('#ore_output').html(
-                    "<h3>asdf;lasdfsadfDSFJSDk</h3>"
+                    "<h3>" + json + "</h3>"
                 ).css({
                     "position": "absolute",
-                    "top": oreOutputDivTop,
-                    "left": oreOutputDivLeft,
-                    "padding": "30px 20px",
-                    "width": "400px",
-                    "height": "60px",
+                    //"top": "50%",
+                    //"left": "50%",
+                    //'margin-left' : $('#ore_output').outerWidth()/2,
+                    //'margin-top' : $('#ore_output').outerHeight()/2,
+                    //"padding": "30px 20px",
+                    //"width": "400px",
+                    //"height": "60px",
                     "border": "0 none",
                     "border-radius": "4px",
                     "-webkit-border-radius": "4px",
@@ -190,8 +196,19 @@ $( document ).ready(function() {
                     "-webkit-box-shadow": "3px 3px 15px #333",
                     "-moz-box-shadow": "3px 3px 15px #333"
                 });
-
-			}
+                $.fn.center = function () {
+                   this.css("position","absolute");
+                   this.css("top", ( $(window).height() - this.height() ) / 2  + "px");
+                   this.css("left", ( $(window).width() - this.width() ) / 2 + "px");
+                   return this;
+                };
+                $('#ore_output').center().fadeIn().on('click', 'table', function() {
+                    $('#ore_output').fadeOut();
+                });
+			},
+            error: function() {
+                alert('Error');
+            }
 		});
 	});
     $('#ore_output').click(function() {
@@ -212,5 +229,53 @@ $( document ).ready(function() {
                         'es_type_filter': checkboxUnselItems },
 						true );
     });
+
+    function createFormData() {
+        var neededTables = ['tab_ToxInp', 'tab_tox_st', 'tab_tox_it', 'tab_tox_lt', 'tab_OccHandler'];
+        var formulations = [], app_eqips = [], app_types = [], activities = [];
+        var formData = {};
+        $("form").find("table").each(function() {
+            var className = $(this).attr('class').split(' ')[2]; // 3rd .class name
+            if ($.inArray(className, neededTables) !== -1) {
+                $(this).find('input, textarea, select').each(function() {
+                    var inputType = this.tagName.toUpperCase() === "INPUT" && this.type.toUpperCase();
+                    if (inputType !== "BUTTON" && inputType !== "SUBMIT") {
+                        if (inputType == 'CHECKBOX') { // if checked = true, if not checked = false
+                            if (className == 'tab_OccHandler') { // exp_scenario types
+                                if ($(this).is(':checked')) {
+                                    var exp_scenario = $(this).closest('ul').attr('id');
+                                    switch(exp_scenario) { // Save checked items in arrays
+                                        case 'Formulation':
+                                            formulations.push(this.name);
+                                            break;
+                                        case 'AppEquip':
+                                            app_eqips.push(this.name);
+                                            break;
+                                        case 'AppType':
+                                            app_types.push(this.name);
+                                            break;
+                                        case 'Activity':
+                                            activities.push(this.name);
+                                            break;
+                                    }
+                                }
+                            } else { // tox & exposure inputs
+                                formData[this.name + '_' + $(this).val()] = !!$(this).is(':checked');
+                            }
+                        } else { // DOM name = input value
+                            formData[this.name] = $(this).val();
+                        }
+                    }
+                });
+            }
+            // Add checked item arrays to formData object
+            formData['exp_scenario'] = {};
+            formData['exp_scenario']['Formulation'] = formulations;
+            formData['exp_scenario']['AppEquip'] = app_eqips;
+            formData['exp_scenario']['AppType'] = app_types;
+            formData['exp_scenario']['Activity'] = activities;
+        });
+        return formData;
+    }
 
 });

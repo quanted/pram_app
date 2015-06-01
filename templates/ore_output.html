@@ -1,18 +1,23 @@
 
 <style>
-.ore_output table {
+#ore_output {
+    background: #F4F7ED;
+}
+.ore_output_table table {
     border-collapse: collapse;
-}
-.ore_output table, th, td {
-    border: 1px solid #000000;
-}
-.ore_output th {
     background: #eeeeee;
+}
+.ore_output_table, .ore_output_table tr {
+    border: 1px solid #000000;
+    background-color: #F4F7ED;
+}
+.ore_output_table th, .ore_output_table td, .ore_output_table tr {
+    background-color: #eeeeee;
 }
 </style>
 
-<table class="ore_output">
-    <caption>Testing...</caption>
+<table class="ore_output_table">
+    <caption><h3 style="text-align: left; padding-left: 6px">Occupational Handler Non-Cancer Exposure and Risk Estimates for [Example 2].</h3></caption>
     <tr>
         <th rowspan="2">Exposure Scenario</th>
         <th rowspan="2">Crop or Target</th>
@@ -40,12 +45,14 @@
         <th rowspan="1">MOE<sup>7</sup></th>
         {% endif %}
     </tr>
+    {% for k, v in output.items %}
     <tr>
-        <th colspan="42">Mixer/Loader</th>
+        <th colspan="42">{{ v.0.0 }}</th>
     </tr>
     <tr>
-        {% for item in input.mix_loader %}
-        <td>item</td>
+        {% for item in v.0 %}
+        <td>{{ item }}</td>
         {% endfor %}
     </tr>
+    {% endfor %}
 </table>

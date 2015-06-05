@@ -79,7 +79,8 @@ INSTALLED_APPS = (
     # 'django.contrib.messages',
     'django.contrib.staticfiles',
     'mod_wsgi.server',
-    'docs'
+    'docs',
+    'models.ore'
 )
 
 MIDDLEWARE_CLASSES = (

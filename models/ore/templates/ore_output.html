@@ -1,0 +1,116 @@
+{% load index %} {# http://stackoverflow.com/questions/4731572/django-counter-in-loop-to-index-list #}
+
+<style>
+#ore_output {
+    background: #F4F7ED;
+}
+.ore_output_table table {
+    border-collapse: collapse;
+    background: #eeeeee;
+}
+.ore_output_table, .ore_output_table tr {
+    border: 1px solid #000000;
+    background-color: #F4F7ED;
+}
+.ore_output_table th, .ore_output_table td, .ore_output_table tr {
+    background-color: #eeeeee;
+}
+</style>
+
+<table class="ore_output_table">
+    <caption><h3 style="text-align: left; padding-left: 6px">Occupational Handler Non-Cancer Exposure and Risk Estimates for [Example 2].</h3></caption>
+    <tr>
+        <th rowspan="2">Exposure Scenario</th>
+        <th rowspan="2">Crop or Target</th>
+        <th rowspan="2">Level of <br>Concern</th>
+        <th rowspan="1">Dermal Unit <br>Exposure <br>(&micro;g/lb ai)<sup>1</sup></th>
+        <th rowspan="1">Inhalation <br>Unit Exposure <br>(&micro;g/lb ai)<sup>1</sup></th>
+        <th rowspan="2">Maximum <br>Application <br>Rate<sup>2</sup></th>
+        <th rowspan="2">Area <br>Treated of <br>Amount <br>Handled <br>Daily<sup>3</sup></th>
+        <th rowspan="1" colspan="2">Dermal</th>
+        <th rowspan="1" colspan="2">Inhalation</th>
+    </tr>
+    <tr>
+        <th rowspan="1">Mitigation <br>Level</th>
+        <th rowspan="1">Mitigation <br>Level</th>
+        <th rowspan="1">Dose <br>(mg/kg/day)<sup>4</sup></th>
+        <th rowspan="1">MOE<sup>5</sup></th>
+        <th rowspan="1">Dose <br>(mg/kg/day)<sup>6</sup></th>
+        <th rowspan="1">MOE<sup>7</sup></th>
+    </tr>
+    {% for k, v in output.items %}
+    <tr>
+        <th colspan="42">{{ v.activity }}</th>
+    </tr>
+    {% for item in v.dermal_unit_exp %}
+    <tr>
+        {% if forloop.first %} {# First row has all columns #}
+
+        <td rowspan="{{ v.dermal_unit_exp|length }}">{{ v.activity }} for {{ v.app_equip }} Applications</td>
+        <td rowspan="{{ v.dermal_unit_exp|length }}">{{ v.crop_target }}</td>
+        <td rowspan="{{ v.dermal_unit_exp|length }}">
+        {% if v.loc_dermal == v.loc_inhal %}
+            {{ v.loc_dermal }}
+        {% else %}
+            Dermal = {{ v.loc_dermal }}<br>Inhalation = {{ v.loc_inhal }}
+        {% endif %}
+        </td>
+        <td>{{ v.dermal_unit_exp.0 }}</td>
+        <td>{{ v.inhal_unit_exp.0 }}</td>
+        <td rowspan="{{ v.dermal_unit_exp|length }}">{{ v.app_rate }} {{ v.app_rate_unit }}</td>
+        <td rowspan="{{ v.dermal_unit_exp|length }}">{{ v.area_treated }} {{ v.area_treated_unit }}</td>
+        <td>{{ v.dermal_dose.0 }}</td>
+        <td>{{ v.dermal_moe.0|floatformat:"0" }}</td>
+        <td>{{ v.inhal_dose.0 }}</td>
+        <td>{{ v.inhal_moe.0|floatformat:"0" }}</td>
+
+        {% if v.total %} {# If combined output shown #}
+        <td>{{ v.total }}</td>
+        {% endif %}
+
+        {% else %} {# Additional rows only have unique data columns #}
+
+        <td>{{ v.dermal_unit_exp|index:forloop.counter0 }}</td>
+        <td>{{ v.inhal_unit_exp|index:forloop.counter0 }}</td>
+        <td>{{ v.dermal_dose|index:forloop.counter0 }}</td>
+        <td>{{ v.dermal_moe|index:forloop.counter0|floatformat:"0" }}</td>
+        <td>{{ v.inhal_dose|index:forloop.counter0 }}</td>
+        <td>{{ v.inhal_moe|index:forloop.counter0|floatformat:"0" }}</td>
+
+        {% endif %}
+    </tr>
+    {% endfor %}
+    {% endfor %}
+{#    {% for k, v in output.items %}#}
+{#    <tr>#}
+{#        <th colspan="42">{{ v.0.0 }}</th>#}
+{#    </tr>#}
+{#    {% for list in v %}#}
+{#    <tr>#}
+{#    {% if v|length_is:"1" %}#}
+{#        {% for item in list %}#}
+{#        <td>{{ item }}</td>#}
+{#        {% endfor %}#}
+{#    {% else %}#}
+{#        {% if forloop.first %}#}
+{#            {% for item in list %}#}
+{#            {% if forloop.first %}#}
+{#            <td rowspan="{{ v|length }}">{{ item }}</td>#}
+{#            {% else %}#}
+{#            <td>{{ item }}</td>#}
+{#            {% endif %}#}
+{#            {% endfor %}#}
+{#        {% else %}#}
+{#            {% for item in list %}#}
+{#            {% if forloop.first %}#}
+                {# Skip first item #}
+{#            {% else %}#}
+{#            <td>{{ item }}</td>#}
+{#            {% endif %}#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#    {% endif %}#}
+{#    </tr>#}
+{#    {% endfor %}#}
+{#    {% endfor %}#}
+</table>

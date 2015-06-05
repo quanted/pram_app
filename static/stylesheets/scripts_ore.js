@@ -11,6 +11,7 @@ $( document ).ready(function() {
 	$('.tab_tox_it, .tab_tox_lt, .tab_CropTargetSel, .tab_OccHandler, #ore_output').hide();
 	$('#id_expDurationType_0').prop("checked",true);
     $('#id_expComboType_0').prop("checked",true);
+    $('#id_expDurationType_0, #id_expDurationType_1, #id_expDurationType_2, #id_expComboType_0, #id_expComboType_1, #id_expComboType_2, #id_expComboType_3').prop('disabled', true);
     $('input.submit.input_button').val('Filter');
     updateExposureScenario();
 
@@ -85,6 +86,7 @@ $( document ).ready(function() {
         cropCategory = $('#id_crop_category option:selected').text();
         console.log(cropCategory);
 		$('#id_exp_category').val(cropCategory);
+        $('#id_exp_crop').val($('#id_crop_name option:selected').text());
 		categoryQuery( { 'crop_category': cropCategory }, false );
 	}
 
@@ -165,55 +167,47 @@ $( document ).ready(function() {
 
 	$('.submit').click(function(e) {
 		e.preventDefault();
-        //var formData = createFormData();
-        //console.log(JSON.stringify(formData));
-        var formData = {'test': 'test_data'};
+        var data = createFormData();
+        console.log(data);
+        if (data != null) {
+            console.log(JSON.stringify(data));
 
-        $.ajax({
-			url: "query/output",
-			type: "POST",
-			data: JSON.stringify(formData),
-            contentType: "application/json; charset=utf-8",
-			success: function(json) {
-				//console.log(json.result);
+            $.ajax({
+                url: "query/output",
+                type: "POST",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                success: function(json) {
+                    //console.log(json.result);
 
-                $('#ore_output').html(
-                    "<h3>" + json + "</h3>"
-                ).css({
-                    "position": "absolute",
-                    //"top": "50%",
-                    //"left": "50%",
-                    //'margin-left' : $('#ore_output').outerWidth()/2,
-                    //'margin-top' : $('#ore_output').outerHeight()/2,
-                    //"padding": "30px 20px",
-                    //"width": "400px",
-                    //"height": "60px",
-                    "border": "0 none",
-                    "border-radius": "4px",
-                    "-webkit-border-radius": "4px",
-                    "-moz-border-radius": "4px",
-                    "box-shadow": "3px 3px 15px #333",
-                    "-webkit-box-shadow": "3px 3px 15px #333",
-                    "-moz-box-shadow": "3px 3px 15px #333"
-                });
-                $.fn.center = function () {
-                   this.css("position","absolute");
-                   this.css("top", ( $(window).height() - this.height() ) / 2  + "px");
-                   this.css("left", ( $(window).width() - this.width() ) / 2 + "px");
-                   return this;
-                };
-                $('#ore_output').center().fadeIn().on('click', 'table', function() {
-                    $('#ore_output').fadeOut();
-                });
-			},
-            error: function() {
-                alert('Error');
-            }
-		});
+                    $('#ore_output').html(
+                        "<h3>" + json + "</h3>"
+                    ).css({
+                        "position": "absolute",
+                        "border": "0 none",
+                        "border-radius": "4px",
+                        "-webkit-border-radius": "4px",
+                        "-moz-border-radius": "4px",
+                        "box-shadow": "3px 3px 15px #333",
+                        "-webkit-box-shadow": "3px 3px 15px #333",
+                        "-moz-box-shadow": "3px 3px 15px #333"
+                    });
+                    $.fn.center = function () {
+                       this.css("top", ( $(window).height() - this.height() ) / 2  + "px");
+                       this.css("left", ( $(window).width() - this.width() ) / 2 + "px");
+                       return this;
+                    };
+                    $('#ore_output').center().fadeIn().on('click', 'table', function() {
+                        $('#ore_output').fadeOut();
+                    });
+                },
+                error: function() {
+                    alert('Error');
+                }
+            });
+        }
 	});
-    $('#ore_output').click(function() {
 
-    });
     // Watch the '.tab_OccHandler' class for new items added to the DOM
     $('.tab_OccHandler').on('click', 'input.checkbox', function() {
         var checkboxUnselItems = [];
@@ -234,6 +228,7 @@ $( document ).ready(function() {
         var neededTables = ['tab_ToxInp', 'tab_tox_st', 'tab_tox_it', 'tab_tox_lt', 'tab_OccHandler'];
         var formulations = [], app_eqips = [], app_types = [], activities = [];
         var formData = {};
+        formData.app_rate = {};
         $("form").find("table").each(function() {
             var className = $(this).attr('class').split(' ')[2]; // 3rd .class name
             if ($.inArray(className, neededTables) !== -1) {
@@ -263,17 +258,29 @@ $( document ).ready(function() {
                                 formData[this.name + '_' + $(this).val()] = !!$(this).is(':checked');
                             }
                         } else { // DOM name = input value
-                            formData[this.name] = $(this).val();
+                            if ($(this).attr('class') == 'formulation_rate') {
+                                if (!this.disabled) {  // only check app_rate value if field is not disabled
+                                    if ($.isNumeric($(this).val())) {
+                                        formData.app_rate[this.name] = $(this).val();
+                                    } else {
+                                        alert("Must enter Application Rate value for " + this.name + " formulation");
+                                        return formData = null;  // exit function, and return formData as null bc it is invalid
+                                    }
+                                }
+                            } else {
+                                formData[this.name] = $(this).val();
+                            }
                         }
                     }
                 });
             }
-            // Add checked item arrays to formData object
-            formData['exp_scenario'] = {};
-            formData['exp_scenario']['Formulation'] = formulations;
-            formData['exp_scenario']['AppEquip'] = app_eqips;
-            formData['exp_scenario']['AppType'] = app_types;
-            formData['exp_scenario']['Activity'] = activities;
+            if (formData != null) {  // Add checked item arrays to valid formData object
+                formData.exp_scenario = {};
+                formData.exp_scenario.Formulation = formulations;
+                formData.exp_scenario.AppEquip = app_eqips;
+                formData.exp_scenario.AppType = app_types;
+                formData.exp_scenario.Activity = activities;
+            }
         });
         return formData;
     }

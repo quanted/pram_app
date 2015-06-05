@@ -48,7 +48,7 @@ def tmpl_ToxInp():
         <tr><th colspan="3">Exposure Duration: {{header}}</th></tr>
     {% endif %}
     {% if expMethod %}
-        <tr><th colspan="2">{{ expMethod }}</th></tr>
+        <tr><th colspan="2" style="padding: 8px">{{ expMethod }}</th></tr>
     {% endif %}
         <tr><th rowspan="{{ noOfItems }}">{{ label }}</th>
     {% for field in form %}
@@ -95,34 +95,34 @@ def form(formData):
     form_ToxInpDermal_NC_st = ore_ToxInpDermal_NC_st()
     html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpDermal_NC_st, tab_name="tab_tox_st", header="Short-Term", expMethod="Dermal", label="Non-Cancer", noOfItems="4")))
     form_ToxInpDermal_abs_st = ore_ToxInpDermal_abs_st()
-    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpDermal_abs_st, label="Absorption", noOfItems="2")))
+    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpDermal_abs_st, label="Absorption", noOfItems="3")))
     # Inhalation Short Term
     form_ToxInpInhalation_NC_st = ore_ToxInpInhalation_NC_st()
     html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpInhalation_NC_st, expMethod="Inhalation", label="Non-Cancer", noOfItems="6")))
     form_ToxInpInhalation_abs_st = ore_ToxInpInhalation_abs_st()
-    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpInhalation_abs_st, label="Absorption", noOfItems="2")))
+    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpInhalation_abs_st, label="Absorption", noOfItems="3")))
 
     # Dermal Intermediate Term
     form_ToxInpDermal_NC_it = ore_ToxInpDermal_NC_it()
     html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpDermal_NC_it, tab_name="tab_tox_it", header="Intermediate-Term", expMethod="Dermal", label="Non-Cancer", noOfItems="4")))
     form_ToxInpDermal_abs_it = ore_ToxInpDermal_abs_it()
-    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpDermal_abs_it, label="Absorption", noOfItems="2")))
+    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpDermal_abs_it, label="Absorption", noOfItems="3")))
     # Inhalation Intermediate Term
     form_ToxInpInhalation_NC_it = ore_ToxInpInhalation_NC_it()
     html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpInhalation_NC_it, expMethod="Inhalation", label="Non-Cancer", noOfItems="6")))
     form_ToxInpInhalation_abs_it = ore_ToxInpInhalation_abs_it()
-    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpInhalation_abs_it, label="Absorption", noOfItems="2")))
+    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpInhalation_abs_it, label="Absorption", noOfItems="3")))
 
     # Dermal Long Term
     form_ToxInpDermal_NC_lt = ore_ToxInpDermal_NC_lt()
     html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpDermal_NC_lt, tab_name="tab_tox_lt", header="Long-Term", expMethod="Dermal", label="Non-Cancer", noOfItems="4")))
     form_ToxInpDermal_abs_lt = ore_ToxInpDermal_abs_lt()
-    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpDermal_abs_lt, label="Absorption", noOfItems="2")))
+    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpDermal_abs_lt, label="Absorption", noOfItems="3")))
     # Inhalation Long Term
     form_ToxInpInhalation_NC_lt = ore_ToxInpInhalation_NC_lt()
     html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpInhalation_NC_lt, expMethod="Inhalation", label="Non-Cancer", noOfItems="6")))
     form_ToxInpInhalation_abs_lt = ore_ToxInpInhalation_abs_lt()
-    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpInhalation_abs_lt, label="Absorption", noOfItems="2")))
+    html = html + tmpl_ToxInp.render(Context(dict(form=ore_ToxInpInhalation_abs_lt, label="Absorption", noOfItems="3")))
 
 
     # Crop Target Category Lookup
@@ -164,7 +164,7 @@ class ore_ChemicalInp(forms.Form):
 dermal_NC_POD_source_CHOICES = (('Oral','Oral'), ('Route-specific','Route-specific'))
 abs_source_CHOICES = 	(('Human study','Human study'), ('Animal study','Animal study'), ('Estimated by POD or LOAEL/NOAEL comparison','Estimated by POD or LOAEL/NOAEL comparison'),
                         ('In vitro study','In vitro study'), ('Other','Other'))
-bw_CHOICES = (('80','80'), ('69','69'), ('86','86'))
+bw_CHOICES = (('80','Combined Adults (16 < 80 years old): 80kg'), ('69','Female Adults (13 < 49 years old): 69kg'), ('86','Male Adults (16 < 80 years old): 86kg'))
 yesNo_CHOICES = (('No', 'No'), ('Yes', 'Yes'))
 
 # Dermal Short Term Non-Cancer
@@ -177,8 +177,9 @@ class ore_ToxInpDermal_NC_st(forms.Form):
 # Dermal Short Term Inhalation
 class ore_ToxInpDermal_abs_st(forms.Form):
     """ Toxicity & Exposure tab, Exposure Duration: Short-Term (Dermal, Absorption) section """
-    dermal_abs_frac_st = forms.FloatField(required=True, label='Absorption (0-1)', initial=0.25)
+    dermal_abs_frac_st = forms.FloatField(required=True, label='Absorption Percentage (0 - 100)', initial=25, validators=[validation.validate_range0100])
     dermal_abs_source_st = forms.ChoiceField(required=True, choices=abs_source_CHOICES, label='Animal study')
+    bw_dermal_NC_st = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (dermal)')
 # Inhalation Short Term Non-Cancer
 class ore_ToxInpInhalation_NC_st(forms.Form):
     """ Toxicity & Exposure tab, Exposure Duration: Short-Term (Inhalation, Non-Cancer) section """
@@ -191,11 +192,9 @@ class ore_ToxInpInhalation_NC_st(forms.Form):
 # Inhalation Short Term Absorption
 class ore_ToxInpInhalation_abs_st(forms.Form):
     """ Toxicity & Exposure tab, Exposure Duration: Short-Term (Inhalation, Absoprtion) section """
-    inhalation_abs_frac_st = forms.FloatField(required=True, label='Absorption Fraction (0-1)', initial=1)
+    inhalation_abs_frac_st = forms.FloatField(required=True, label='Absorption Percentage (0 - 100)', initial=100, validators=[validation.validate_range0100])
     inhalation_abs_source_st = forms.ChoiceField(required=True, choices=abs_source_CHOICES, label='Animal study')
-
-    # bw_dermal_NC_st = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (dermal kg)')
-    # bw_inhalation_NC_st = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (inhalation kg)')
+    bw_inhalation_NC_st = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (inhalation)')
 
     # lifetimeExp_jobTenure_st = forms.FloatField(required=True, label='Handler Job Tenure (years)', initial=35)
     # lifetimeExp_lifeExpectancy_st = forms.FloatField(required=True, label='Life Expectancy (years)', initial=78)
@@ -210,8 +209,9 @@ class ore_ToxInpDermal_NC_it(forms.Form):
 # Dermal Intermediate Term Inhalation
 class ore_ToxInpDermal_abs_it(forms.Form):
     """ Toxicity & Exposure tab, Exposure Duration: Intermediate-Term (Dermal, Absorption) section """
-    dermal_abs_frac_it = forms.FloatField(required=True, label='Absorption (0-1)', initial=0.25)
+    dermal_abs_frac_it = forms.FloatField(required=True, label='Absorption Percentage (0 - 100)', initial=25, validators=[validation.validate_range0100])
     dermal_abs_source_it = forms.ChoiceField(required=True, choices=abs_source_CHOICES, label='Animal study')
+    bw_dermal_NC_it = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (dermal)')
 # Inhalation Intermediate Term Non-Cancer
 class ore_ToxInpInhalation_NC_it(forms.Form):
     """ Toxicity & Exposure tab, Exposure Duration: Intermediate-Term (Inhalation, Non-Cancer) section """
@@ -224,11 +224,9 @@ class ore_ToxInpInhalation_NC_it(forms.Form):
 # Inhalation Intermediate Term Absorption
 class ore_ToxInpInhalation_abs_it(forms.Form):
     """ Toxicity & Exposure tab, Exposure Duration: Intermediate-Term (Inhalation, Absoprtion) section """
-    inhalation_abs_frac_it = forms.FloatField(required=True, label='Absorption Fraction (0-1)', initial=1)
+    inhalation_abs_frac_it = forms.FloatField(required=True, label='Absorption Percentage (0 - 100)', initial=100, validators=[validation.validate_range0100])
     inhalation_abs_source_it = forms.ChoiceField(required=True, choices=abs_source_CHOICES, label='Animal study')
-
-    # bw_dermal_NC_it = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (dermal kg)')
-    # bw_inhalation_NC_it = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (inhalation kg)')
+    bw_inhalation_NC_it = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (inhalation)')
 
     # lifetimeExp_jobTenure_it = forms.FloatField(required=True, label='Handler Job Tenure (years)', initial=35)
     # lifetimeExp_lifeExpectancy_it = forms.FloatField(required=True, label='Life Expectancy (years)', initial=78)
@@ -243,8 +241,9 @@ class ore_ToxInpDermal_NC_lt(forms.Form):
 # Dermal Long Term Inhalation
 class ore_ToxInpDermal_abs_lt(forms.Form):
     """ Toxicity & Exposure tab, Exposure Duration: Long-Term (Dermal, Absorption) section """
-    dermal_abs_frac_lt = forms.FloatField(required=True, label='Absorption (0-1)', initial=0.25)
+    dermal_abs_frac_lt = forms.FloatField(required=True, label='Absorption Percentage (0 - 100)', initial=25, validators=[validation.validate_range0100])
     dermal_abs_source_lt = forms.ChoiceField(required=True, choices=abs_source_CHOICES, label='Animal study')
+    bw_dermal_NC_lt = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (dermal)')
 # Inhalation Long Term Non-Cancer
 class ore_ToxInpInhalation_NC_lt(forms.Form):
     """ Toxicity & Exposure tab, Exposure Duration: Long-Term (Inhalation, Non-Cancer) section """
@@ -257,11 +256,9 @@ class ore_ToxInpInhalation_NC_lt(forms.Form):
 # Inhalation Long Term Absorption
 class ore_ToxInpInhalation_abs_lt(forms.Form):
     """ Toxicity & Exposure tab, Exposure Duration: Long-Term (Inhalation, Absoprtion) section """
-    inhalation_abs_frac_lt = forms.FloatField(required=True, label='Absorption Fraction (0-1)', initial=1)
+    inhalation_abs_frac_lt = forms.FloatField(required=True, label='Absorption Percentage (0 - 100)', initial=100, validators=[validation.validate_range0100])
     inhalation_abs_source_lt = forms.ChoiceField(required=True, choices=abs_source_CHOICES, label='Animal study')
-
-    # bw_dermal_NC_lt = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (dermal kg)')
-    # bw_inhalation_NC_lt = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (inhalation kg)')
+    bw_inhalation_NC_lt = forms.ChoiceField(required=True, choices=bw_CHOICES, label='Adult weights (inhalation)')
 
     # lifetimeExp_jobTenure_lt = forms.FloatField(required=True, label='Handler Job Tenure (years)', initial=35)
     # lifetimeExp_lifeExpectancy_lt = forms.FloatField(required=True, label='Life Expectancy (years)', initial=78)
@@ -330,6 +327,10 @@ class ore_ExposureScenario(forms.Form):
     # 		(0, '[M/L, Applicator, Flagger]'),
     # 	)
 
+    exp_crop = forms.CharField(
+            label="Crop Name",
+            widget=forms.Textarea(
+                attrs={ 'cols': 50, 'rows': 1, 'readonly': True }))
     exp_category = forms.CharField(
             label="Handler Crop/Target Category",
             widget=forms.Textarea(

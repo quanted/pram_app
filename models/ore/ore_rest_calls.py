@@ -75,17 +75,66 @@ def output_query(request):
     data = request.body  #  Where Django stores POSTed JSON
 
     response = requests.post(url, data=data, headers=http_headers, timeout=60)
+    output = json.loads(response.content)
+
+    # html = render_to_string('ore_output.html', {
+    #     'output': {
+    #         'mix_loader': {
+    #             'activity': "Mixing/Loading",
+    #             'app_equip': 'Aerial',
+    #             'crop_target': "Corn[field crop, high acreage]",
+    #             'loc_dermal': '100',
+    #             'loc_inhal': '100',
+    #             'app_rate': '2',
+    #             'app_rate_unit': 'lb ai/A',
+    #             'area_treated': '1200',
+    #             'area_treated_unit': 'acre',
+    #             'dermal_unit_exp': ['220 [SL/No G]', '37.6 [SL/G]'],
+    #             'inhal_unit_exp': ['0.219 [No-R]', '0.219 [No-R]'],
+    #             'dermal_dose': ['1.65', '0.282'],
+    #             'dermal_moe': ['30', '180'],
+    #             'inhal_dose': ['0.00658', '0.00658'],
+    #             'inhal_moe': ['3800', '3800']
+    #         },
+    #         'applicator': {
+    #             'activity': "Aerial Application",
+    #             'app_equip': 'Aerial',
+    #             'crop_target': "Corn[field crop, high acreage]",
+    #             'loc_dermal': '100',
+    #             'loc_inhal': '100',
+    #             'app_rate': '2',
+    #             'app_rate_unit': 'lb ai/A',
+    #             'area_treated': '1200',
+    #             'area_treated_unit': 'acre',
+    #             'dermal_unit_exp': ['2.06 [EC]'],
+    #             'inhal_unit_exp': ['0.043 [EC]'],
+    #             'dermal_dose': ['0.0156'],
+    #             'dermal_moe': ['3200'],
+    #             'inhal_dose': ['0.000148'],
+    #             'inhal_moe': ['170000']
+    #         },
+    #         'flagger': {
+    #             'activity': "Flagging for Aerial Applications",
+    #             'app_equip': 'Aerial',
+    #             'crop_target': "Corn[field crop, high acreage]",
+    #             'loc_dermal': '100',
+    #             'loc_inhal': '100',
+    #             'app_rate': '2',
+    #             'app_rate_unit': 'lb ai/A',
+    #             'area_treated': '350',
+    #             'area_treated_unit': 'acre',
+    #             'dermal_unit_exp': ['11 [EC]'],
+    #             'inhal_unit_exp': ['0.35 [No-R]'],
+    #             'dermal_dose': ['0.0156'],
+    #             'dermal_moe': ['3200'],
+    #             'inhal_dose': ['0.000148'],
+    #             'inhal_moe': ['170000']
+    #         }
+    #     }
+    # })
 
     html = render_to_string('ore_output.html', {
-        'input': {
-            'dermal': True,
-            'inhal': True,
-        },
-        'output': {
-            'mix_loader': [['Mixing/Loading', 'Corn, Field crop, high-acreage', '100', '220 [SL/No G]', '0.219 [No-R]', '2', '1200', '1.65', '30', '0.00658', '3800']],
-            'applicator': [['Applicator', 'Corn, Field crop, high-acreage', '100', '2.06 [EC]', '0.043 [EC]', '2', '1200', '0.0156', '3200', '0.000148', '170000']],
-            'flagger': [['Flagger', 'Corn, Field crop, high-acreage', '100', '11 [EC]', '0.35 [No-R]', '2', '350', '0.0241', '2100', '0.00306', '8200']]
-        }
+        'output': output['result']
     })
 
     return HttpResponse(

@@ -179,14 +179,15 @@ $( document ).ready(function() {
                 contentType: "application/json; charset=utf-8",
                 success: function(json) {
                     //console.log(json.result);
-
+                    var html = "<div id='ore_output_x'></div>";
                     $('#ore_output').html(
-                        "<div id='ore_output_x'></div><h3>" + json + "</h3>"
+                        html + "<h3>" + json + "</h3>"
                     ).css({
                         "position": "absolute",
                         "border": "0 none",
                         "border-radius": "4px",
                         "padding": "8px",
+                        "max-height": $(document).height() - 40 + "px",
                         "-webkit-border-radius": "4px",
                         "-moz-border-radius": "4px",
                         "box-shadow": "3px 3px 15px #333",
@@ -198,8 +199,11 @@ $( document ).ready(function() {
                        this.css("left", ( $(window).width() - this.width() ) / 2 + "px");
                        return this;
                     };
-                    $('#ore_output').center().fadeIn().on('click', 'table', function() {
+                    $('#ore_output').center().fadeIn().on('click', 'div#ore_output_x', function() {
                         $('#ore_output').fadeOut();
+                    });
+                    $('#ore_output_x').css({
+                        "left": ($('#ore_output').width() / 2) + 8 + "px"
                     });
                 },
                 error: function() {

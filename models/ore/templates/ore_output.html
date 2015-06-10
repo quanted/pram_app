@@ -18,7 +18,12 @@
 </style>
 
 <table class="ore_output_table">
-    <caption><h3 style="text-align: left; padding-left: 6px">Occupational Handler Non-Cancer Exposure and Risk Estimates for [Example 2].</h3></caption>
+    <caption><h3 style="text-align: left; padding-left: 6px">
+        Occupational Handler Non-Cancer Exposure and Risk Estimates for {{ output.1.crop_name }}
+        {% if output.1.active_ingredient != '' %}
+            with {{ output.1.active_ingredient }} as the active ingredient
+        {% endif %}
+        </h3></caption>
     <tr>
         <th rowspan="2">Exposure Scenario</th>
         <th rowspan="2">Crop or Target</th>
@@ -29,6 +34,9 @@
         <th rowspan="2">Area <br>Treated of <br>Amount <br>Handled <br>Daily<sup>3</sup></th>
         <th rowspan="1" colspan="2">Dermal</th>
         <th rowspan="1" colspan="2">Inhalation</th>
+        {% if output.1.combined %}
+        <th rowspan="1">Total</th>
+        {% endif %}
     </tr>
     <tr>
         <th rowspan="1">Mitigation <br>Level</th>
@@ -37,6 +45,9 @@
         <th rowspan="1">MOE<sup>5</sup></th>
         <th rowspan="1">Dose <br>(mg/kg/day)<sup>6</sup></th>
         <th rowspan="1">MOE<sup>7</sup></th>
+        {% if output.1.combined %} {# If combined output shown #}
+        <th rowspan="1">{{ output.1.combined }}</th>
+        {% endif %}
     </tr>
     {% for k, v in output.items %}
     <tr>
@@ -64,8 +75,12 @@
         <td>{{ v.inhal_dose.0 }}</td>
         <td>{{ v.inhal_moe.0|floatformat:"0" }}</td>
 
-        {% if v.total %} {# If combined output shown #}
-        <td>{{ v.total }}</td>
+        {% if output.1.combined %} {# If combined output shown #}
+            {% if v.combined_list|index:forloop.counter0 < 2 %}
+            <td>{{ v.combined_list.0|floatformat:"2" }}</td>
+            {% else %}
+            <td>{{ v.combined_list.0|floatformat:"0" }}</td>
+            {% endif %}
         {% endif %}
 
         {% else %} {# Additional rows only have unique data columns #}
@@ -76,41 +91,26 @@
         <td>{{ v.dermal_moe|index:forloop.counter0|floatformat:"0" }}</td>
         <td>{{ v.inhal_dose|index:forloop.counter0 }}</td>
         <td>{{ v.inhal_moe|index:forloop.counter0|floatformat:"0" }}</td>
+        {% if output.1.combined %} {# If combined output shown #}
+            {% if v.combined_list|index:forloop.counter0 < 2 %}
+            <td>{{ v.combined_list|index:forloop.counter0|floatformat:"2" }}</td>
+            {% else %}
+            <td>{{ v.combined_list|index:forloop.counter0|floatformat:"0" }}</td>
+            {% endif %}
+        {% endif %}
 
         {% endif %}
     </tr>
     {% endfor %}
     {% endfor %}
-{#    {% for k, v in output.items %}#}
-{#    <tr>#}
-{#        <th colspan="42">{{ v.0.0 }}</th>#}
-{#    </tr>#}
-{#    {% for list in v %}#}
-{#    <tr>#}
-{#    {% if v|length_is:"1" %}#}
-{#        {% for item in list %}#}
-{#        <td>{{ item }}</td>#}
-{#        {% endfor %}#}
-{#    {% else %}#}
-{#        {% if forloop.first %}#}
-{#            {% for item in list %}#}
-{#            {% if forloop.first %}#}
-{#            <td rowspan="{{ v|length }}">{{ item }}</td>#}
-{#            {% else %}#}
-{#            <td>{{ item }}</td>#}
-{#            {% endif %}#}
-{#            {% endfor %}#}
-{#        {% else %}#}
-{#            {% for item in list %}#}
-{#            {% if forloop.first %}#}
-                {# Skip first item #}
-{#            {% else %}#}
-{#            <td>{{ item }}</td>#}
-{#            {% endif %}#}
-{#            {% endfor %}#}
-{#        {% endif %}#}
-{#    {% endif %}#}
-{#    </tr>#}
-{#    {% endfor %}#}
-{#    {% endfor %}#}
 </table>
+<br><sup>1</sup> - Based on the "Occupational Pesticide Handler Unit Exposure Surrogate Reference Table" ([DATE]); Level of mitigation: Baseline, PPE, Eng. Controls.
+<br><sup>2</sup> - Based on registered or proposed label (Reg. No. XXXXXX).
+<br><sup>3</sup> - Exposure Science Advisory Council Policy #9.1.
+<br><sup>4</sup> - Dermal Dose = Dermal Unit Exposure (?g/lb ai) x Conversion Factor (0.001 mg/?g) x Application Rate (lb ai/acre or gal) x Area Treated or Amount  Handled Daily (A or gal/day) x DAF (%) / BW (kg).
+<br><sup>5</sup> - Dermal MOE = Dermal NOAEL (X 25 mg/kg/day) / Dermal Dose (mg/kg/day).
+<br><sup>6</sup> - Inhalation Dose = Dermal Unit Exposure (?g/lb ai) x Conversion Factor (0.001 mg/?g) x Application Rate (lb ai/acre or gal) x Area Treated or Amount  Handled Daily (A or gal/day) / BW (kg).
+<br><sup>7</sup> - Inhalation MOE = Inhalation NOAEL (X 25 mg/kg/day) / Inhalation Dose (mg/kg/day).
+{% if output.1.combined %} {# If combined output shown #}
+<br><sup>8</sup> - {{ output.1.combined_approach }}
+{% endif %}

@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.filter
 def index(sequence, position):
-
+    print sequence, position
     try:
         return sequence[position]
     except IndexError:

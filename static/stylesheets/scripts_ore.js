@@ -11,7 +11,7 @@ $( document ).ready(function() {
 	$('.tab_tox_it, .tab_tox_lt, .tab_CropTargetSel, .tab_OccHandler, #ore_output').hide();
 	$('#id_expDurationType_0').prop("checked",true);
     $('#id_expComboType_0').prop("checked",true);
-    $('#id_expDurationType_0, #id_expDurationType_1, #id_expDurationType_2, #id_expComboType_0, #id_expComboType_1, #id_expComboType_2, #id_expComboType_3').prop('disabled', true);
+    $('#id_expDurationType_0, #id_expDurationType_1, #id_expDurationType_2').prop('disabled', true);
     $('input.submit.input_button').val('Filter');
     updateExposureScenario();
 
@@ -181,11 +181,12 @@ $( document ).ready(function() {
                     //console.log(json.result);
 
                     $('#ore_output').html(
-                        "<h3>" + json + "</h3>"
+                        "<div id='ore_output_x'></div><h3>" + json + "</h3>"
                     ).css({
                         "position": "absolute",
                         "border": "0 none",
                         "border-radius": "4px",
+                        "padding": "8px",
                         "-webkit-border-radius": "4px",
                         "-moz-border-radius": "4px",
                         "box-shadow": "3px 3px 15px #333",
@@ -268,7 +269,13 @@ $( document ).ready(function() {
                                     }
                                 }
                             } else {
-                                formData[this.name] = $(this).val();
+                                if (this.name == 'expComboType') {
+                                    if (this.checked) {  //  only put checked Radio Button into formData
+                                        formData[this.name] = $(this).val();
+                                    }
+                                } else {
+                                    formData[this.name] = $(this).val();
+                                }
                             }
                         }
                     }

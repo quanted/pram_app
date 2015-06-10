@@ -154,10 +154,10 @@ class ore_ChemicalInp(forms.Form):
             (2, 'Combined: Additive Dose'),
             (3, 'Combined: 1/MOE Approach'),
             (4, 'Aggregate Risk Index'))
-    expComboType = forms.MultipleChoiceField(
+    expComboType = forms.ChoiceField(
             label='Risk Estimation Combination Type',
             choices=expComboType_CHOICES,
-            widget=forms.CheckboxSelectMultiple())
+            widget=forms.RadioSelect())
 
 
 # These ChoiceField Options are used across multiple classes

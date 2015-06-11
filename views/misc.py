@@ -35,7 +35,8 @@ def login_auth(request):
     import base64
 
     username = request.POST['username']
-    password = base64.b64decode(request.POST['password'])
+#     password = base64.b64decode(request.POST['password'])
+    password = request.POST['password']
     next = request.POST['next']
     print username, password, next
     user = authenticate(username=username, password=password)

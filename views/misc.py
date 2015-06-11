@@ -19,7 +19,7 @@ def login(request):
     html = html + render_to_string('04ubertext_start.html', {
             'model_attributes': 'User Login',
             'text_paragraph': ""})
-    html = html + render_to_string('login_prompt', {'next': next})
+    html = html + render_to_string('login_prompt.html', {'next': next})
     html = html + render_to_string('04ubertext_end.html', {})
     html = html + render_to_string('05ubertext_links_right.html', {})
     html = html + render_to_string('06uberfooter.html', {'links': ''})

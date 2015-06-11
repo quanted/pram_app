@@ -52,9 +52,10 @@ ALLOWED_HOSTS = [
     #'ord-uber-vm001.'
 ]
 
-ADMINS = (
-    ('Ubertool Dev Team', 'ubertool-dev@googlegroups.com')
-)
+# Disable this because Django wants to email errors and there is no email server set up
+# ADMINS = (
+#     ('Ubertool Dev Team', 'ubertool-dev@googlegroups.com')
+# )
 
 APPEND_SLASH = True
 

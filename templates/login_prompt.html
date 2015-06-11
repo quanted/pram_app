@@ -29,7 +29,6 @@
                 $('.input_button').click(function(e) {
                     e.preventDefault();
                     $('#password').val(btoa($('#password').val()));
-                    console.log($('#password').val());
                     $('form').submit();
                 });
             });

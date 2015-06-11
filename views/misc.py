@@ -32,10 +32,12 @@ def login(request):
 
 def login_auth(request):
     from django.contrib.auth import authenticate, login
+    import base64
 
     username = request.POST['username']
-    password = request.POST['password']
+    password = base64.b64decode(request.POST['password'])
     next = request.POST['next']
+    print username, password, next
     user = authenticate(username=username, password=password)
     if user is not None:
         if user.is_active:

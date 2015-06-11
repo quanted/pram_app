@@ -99,10 +99,10 @@ WSGI_APPLICATION = 'wsgi_local.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
+    }
 }
 
 # Authentication

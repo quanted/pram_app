@@ -13,7 +13,7 @@ import secret
 
 
 # Get machine IP address
-IP_ADDR = socket.gethostbyname(socket.gethostname())
+MACHINE_ID = socket.gethostname()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))

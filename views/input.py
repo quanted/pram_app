@@ -12,7 +12,7 @@ def inputPage(request, model='none', header='none'):
 
     # If on public server, test user authentication
     if settings.AUTH:
-        if settings.IP_ADDR == secret.IP_ADDR_PUBLIC:
+        if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
             if not request.user.is_authenticated():
                 return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 

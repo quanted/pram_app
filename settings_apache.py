@@ -8,9 +8,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-import os, sys
+import os, sys, socket
 import secret
 
+
+# Get machine IP address
+IP_ADDR = socket.gethostbyname(socket.gethostname())
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -50,7 +53,7 @@ ALLOWED_HOSTS = [
 ]
 
 ADMINS = (
-    ('Jon F.', 'funkswing@gmail.com')
+    ('Ubertool Dev Team', 'ubertool-dev@googlegroups.com')
 )
 
 APPEND_SLASH = True
@@ -73,8 +76,8 @@ TEMPLATE_LOADERS = (
 
 INSTALLED_APPS = (
     # 'django.contrib.admin',
-    # 'django.contrib.auth',
-    # 'django.contrib.contenttypes',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
     'django.contrib.sessions',
     # 'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -84,12 +87,12 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    # 'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
-    # 'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -101,11 +104,16 @@ WSGI_APPLICATION = 'wsgi_apache.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
+    }
 }
+
+# Authentication
+AUTH = True
+LOGIN_URL = '/ubertool/login'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Setups databse-less test runner (Only needed for running test)
 TEST_RUNNER = 'testing.DatabaselessTestRunner'

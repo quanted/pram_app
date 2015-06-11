@@ -3,8 +3,19 @@ from django.http import HttpResponse, HttpResponseRedirect
 import importlib
 import linksLeft
 import os
+import secret
+from django.conf import settings
+from django.shortcuts import redirect
+
 
 def inputPage(request, model='none', header='none'):
+
+    # If on public server, test user authentication
+    if settings.AUTH:
+        if settings.IP_ADDR == secret.IP_ADDR_PUBLIC:
+            if not request.user.is_authenticated():
+                return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
     viewmodule = importlib.import_module('.views', 'models.'+model)
     inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
     header = viewmodule.header

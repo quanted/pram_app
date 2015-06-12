@@ -13,7 +13,7 @@ def login(request):
     next = request.GET['next']  #  Page to redirect to with successful login
     html = render_to_string('01uberheader.html', {
             'site_skin' : os.environ['SITE_SKIN'],
-            'title': 'Error'})
+            'title': 'Login Page'})
     html = html + render_to_string('02uberintroblock_nomodellinks.html', {'site_skin' : os.environ['SITE_SKIN']})
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04ubertext_start.html', {

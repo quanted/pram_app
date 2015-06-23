@@ -30,7 +30,8 @@ def ecoLandingPage(request):
     return response
 
 def ubertoolLandingPage(request):
-    html = render_to_string('00landing_page.html', {'title':'Ubertool'})
+    # html = render_to_string('00landing_page_qed.html', { 'title': 'Ubertool' })
+    html = render_to_string('00landing_page_qed_slides.html', { 'title': 'Ubertool' })
 
     response = HttpResponse()
     response.write(html)

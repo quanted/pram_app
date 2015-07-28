@@ -89,6 +89,18 @@ def call_model_server(model, args):
     # logging.info(json.dumps(response.json()))
     # logging.info(type(json.loads(json.dumps(response.json()))))
 
+
+
+
+
+
+
+
+
+
+
+
+
     return response
 
 

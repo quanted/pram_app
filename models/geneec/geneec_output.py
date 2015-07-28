@@ -112,3 +112,4 @@ def geneecOutputPage(request):
 ##########################################################################################                                        
     geneec_obj = geneec_model.geneec('single', chem_name, application_target, application_rate, number_of_applications, interval_between_applications, Koc, aerobic_soil_metabolism, wet_in, application_method, application_method_label, aerial_size_dist, ground_spray_type, airblast_type, spray_quality, no_spray_drift, incorporation_depth, solubility, aerobic_aquatic_metabolism, hydrolysis, photolysis_aquatic_half_life)
     return geneec_obj
+

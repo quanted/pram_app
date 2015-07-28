@@ -193,7 +193,7 @@ def outputPageView(request, model='none', header=''):
     response.write(html)
     return response
 
-@require_POST
+# @require_POST
 def outputPage(request, model='none', header=''):
     """
     Django HTTP POST handler for output page.  Receives form data and

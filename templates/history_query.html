@@ -5,9 +5,8 @@
 $(document).ready(function() {
 
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/ubertool/{{ model }}/history/query',
-		data: { postVar1: 'theValue1', postVar2: 'theValue2' },
 		beforeSend:function(){
 			// this is where we append a loading image
 			$('#ajax-panel').html('<div class="loading"><img id="ajax_loader" src="/static/images/loader.gif" alt="Loading..." /></div>');

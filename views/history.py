@@ -24,7 +24,7 @@ def historyPage(request, model='none', header='none'):
             'model':model,
             'page':'history'})
     html = html + linksLeft.linksLeft()
-    html = html + render_to_string('04uberalgorithm_start.html', {
+    html = html + render_to_string('04ubertext_start.html', {
             'model_attributes': header+' User History'})
     
     # Conditional template loading

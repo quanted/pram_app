@@ -303,24 +303,76 @@ class OreXls(object):
             return _list
 
         def generate_dermal_class_instances(attr_list):
+            clean_attr_list = []
+            for item in attr_list:
+                if item is not None:
+                    clean_item = float((item.split(' ')[0]))
+                else:
+                    clean_item = None
+                clean_attr_list.append(clean_item)
+
             return ore_xls_formatter.OreXlsOccHndlerOutputsDermal(
                 #  sl_no_g, sl_g, dl_g, sl_g_crh, dl_g_crh, ec
-                attr_list[0],
-                attr_list[1],
-                attr_list[2],
-                attr_list[3],
-                attr_list[4],
-                attr_list[5]
+                clean_attr_list[0],
+                clean_attr_list[1],
+                clean_attr_list[2],
+                clean_attr_list[3],
+                clean_attr_list[4],
+                clean_attr_list[5]
             )
 
         def generate_inhal_class_instances(attr_list):
+            clean_attr_list = []
+            for item in attr_list:
+                if item is not None:
+                    clean_item = float((item.split(' ')[0]))
+                else:
+                    clean_item = None
+                clean_attr_list.append(clean_item)
+
             return ore_xls_formatter.OreXlsOccHndlerOutputsInhal(
-                #  sl_no_g, sl_g, dl_g, sl_g_crh, dl_g_crh, ec
-                attr_list[0],
-                attr_list[1],
-                attr_list[2],
-                attr_list[3]
+                #  no_r, pf5_r, pf10_r, ec
+                clean_attr_list[0],
+                clean_attr_list[1],
+                clean_attr_list[2],
+                clean_attr_list[3]
             )
+
+        def convert_sig_fig(x, no_of_sig_fig=2):
+            """
+            http://stackoverflow.com/a/3411435/2136394
+            """
+            if x is None:
+                return None
+
+            # Determine number of sig figs (default is 2, 1 if value is less than 10)
+            if x < 100:
+                no_of_sig_fig = 3
+            if x < 10:
+                no_of_sig_fig = 4
+
+            if x < 0:  # Don't allow negative values
+                return 0
+            elif x == 0:  # Can't take log of zero...
+                return 0
+            else:
+                from math import log10, floor
+                return round(x, -int(floor(log10(x))) + (no_of_sig_fig - 1))
+
+
+        def value_writer(class_instance, start_col):
+            ordered_attrs = class_instance.get_attrs()
+
+            i = 0
+            while i < len(ordered_attrs):
+                if type(ordered_attrs[i]) == float:
+                    value = convert_sig_fig(ordered_attrs[i])
+                else:
+                    value = ordered_attrs[i]
+                    if value == None:
+                        value = '---'
+                self.ws_occ_handler.write(count + 2, i + start_col, value)
+                i += 1
 
         output = self.ore_obj.output
 
@@ -365,15 +417,24 @@ class OreXls(object):
                 data['area_treated'],
                 data['area_treated_unit']
             )
-            ordered_attrs = occ_hndler_tab_input.get_attrs()
+            value_writer(occ_hndler_tab_input, 0)
 
-            i = 0
-            while i < len(ordered_attrs):
-                self.ws_occ_handler.write(count + 2, i, ordered_attrs[i])
-                i += 1
-
-            # Populate Columns J-end (outputs)
-
+            # Populate Columns J-O
+            value_writer(occ_hndler_tab_output_dermal_unit_exp, 9)
+            # Populate Columns P-S
+            value_writer(occ_hndler_tab_output_inhal_unit_exp, 15)
+            # Populate Columns T-Y
+            value_writer(occ_hndler_tab_output_dermal_exp, 19)
+            # Populate Columns Z-AE
+            value_writer(occ_hndler_tab_output_dermal_dose, 25)
+            # Populate Columns AF-AK
+            value_writer(occ_hndler_tab_output_dermal_moe, 31)
+            # Populate Columns AL-AO
+            value_writer(occ_hndler_tab_output_inhal_exp, 37)
+            # Populate Columns AP-AS
+            value_writer(occ_hndler_tab_output_inhal_dose, 41)
+            # Populate Columns AT-AW
+            value_writer(occ_hndler_tab_output_inhal_moe, 45)
 
             # Iterator counter for each set of output "rows"
             count += 1

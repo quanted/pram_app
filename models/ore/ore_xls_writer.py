@@ -1,10 +1,8 @@
-import StringIO
 import logging
 import os
 import shutil
 import string
 import random
-import sys
 
 __author__ = 'jflaisha'
 
@@ -258,6 +256,7 @@ class OreXls(object):
 
     def crop_target_sheet_user(self):
         # TODO: This only works for 1 crop chosen.  Multiple crops will be implemented later.
+        # TODO: 'null' values need to be changed to actual values
         crop_target_tab = ore_xls_formatter.OreXlsCropTarget(
             #  crop, group_no, group_name, subgroup_no, subgroup_name, crop_target
             self.ore_obj.input['exp_crop'],

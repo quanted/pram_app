@@ -130,7 +130,7 @@ def output_export(request):
     else:
         return HttpResponse(
             json.dumps( {
-                'error': 'Error processing request.',
+                'error': 'Error processing request. temp_path_name=' + str(temp_path_name),
             } ),
             content_type="application/json"
         )

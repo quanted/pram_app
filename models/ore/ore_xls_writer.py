@@ -595,9 +595,11 @@ def generate_xlsx(json):
             ore_xlsx.close()
 
         else:
+            logging.info('ore_xls_writer.py: "output_file" == None')
             return None
 
-    except:
+    except Exception, e:
+        logging.exception(e)
         return None
 
     return temp_path_name[1]

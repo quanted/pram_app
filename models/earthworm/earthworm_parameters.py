@@ -13,6 +13,11 @@ class EarthwormInp(forms.Form):
 			# widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}))
 	# body_weight_of_bird = forms.FloatField(
 			# label='NEED TO GET INPUTS.')
+    chemical_name = forms.CharField(
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
+            label='Chemical Name',
+            initial='Earthworm Example',
+            validators=[validators.validate_slug])
 	k_ow = forms.FloatField(
 			label = mark_safe('Octanol to water partition coefficient K<sub>OW</sub>'),
 			initial = 57544,

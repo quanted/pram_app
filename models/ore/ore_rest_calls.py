@@ -122,7 +122,7 @@ def output_export(request):
         # return response
         return HttpResponse(
             json.dumps( {
-                'link': '/static/ore/' + temp_path_name,# + '/ore.xlsx',
+                'link': temp_path_name,
             } ),
             content_type="application/json"
         )
@@ -142,13 +142,19 @@ def output_download(request):
 
     if link is not None or link != '':
 
-        print os.path.join(os.environ['PROJECT_PATH'], 'models', 'ore', 'static', 'ore')
-        xlsx_path = os.path.join(os.environ['PROJECT_PATH'], 'models', 'ore', 'static', 'ore', link, 'ore.xlsx')
-        file_xlsx = open(xlsx_path)
+        xlsx_path = os.path.join(os.environ['PROJECT_PATH'], 'models', 'ore', 'static', 'ore', str(link), 'ore.xlsx')
+        file_xlsx = open(xlsx_path, "rb")  # open Excel file (read-binary mode)
         response = HttpResponse(
             file_xlsx.read(),
             content_type='application/vnd.ms-excel'
-            # content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         )
         response['Content-Disposition'] = 'attachment; filename="ore.xlsx"'
         return response
+
+    else:
+        return HttpResponse(
+            json.dumps( {
+                'error': 'Error processing request.',
+            } ),
+            content_type="application/json"
+        )

@@ -24,7 +24,7 @@ class trexInp_chem(forms.Form):
     Formulated_product_name = forms.CharField(
             max_length=255, widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
             label='Product name and form',
-            initial='Aatrex')    
+            initial='T-Rex Example')
     percent_ai=forms.FloatField(
             label='% a.i. (%)',
             initial=42.6,

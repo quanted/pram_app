@@ -14,7 +14,7 @@ Species_of_the_tested_mamm_CHOICES=(('350','Laboratory rat'),('1','Other'))
 class SipInp(forms.Form):
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
-            initial='Quinoxyfen',
+            initial='SIP Example',
             required=True,
             validators=[validators.validate_slug])
     pc_code = forms.CharField(

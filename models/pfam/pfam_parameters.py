@@ -11,6 +11,11 @@ from models.forms import validation
 weather_CHOICES=(('0','Make a selection'),('wTest','test1'))
 
 class PFAMInp_chem(forms.Form):
+    chemical_name = forms.CharField(
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
+            label='Chemical Name',
+            initial='PFAM Example',
+            validators=[validators.validate_slug])
     wat_hl = forms.FloatField(
             label='Water Column Half life (days)',
             initial=30,

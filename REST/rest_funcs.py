@@ -106,7 +106,7 @@ def update_html(output_html, jid, model_name):
         response = requests.post(url, data=data, headers=http_headers, timeout=60)   
     except:
         pass
-###########################function to retrive html from MongoDB################################ 
+###########################function to retrieve html from MongoDB################################
 
 def get_output_html(jid, model_name):
     """

@@ -1,0 +1,23 @@
+************* Module qed.ubertool_eco.models.sip.sip_input
+C: 12, 0: No space allowed after bracket
+    html = render_to_string('04uberinput_jquery.html', { 'model': model })
+                                                       ^ (bad-whitespace)
+C: 12, 0: No space allowed before bracket
+    html = render_to_string('04uberinput_jquery.html', { 'model': model })
+                                                                        ^ (bad-whitespace)
+C: 14, 0: Wrong hanging indentation.
+            'model':model, 
+        |   ^ (bad-continuation)
+C: 14, 0: Trailing whitespace (trailing-whitespace)
+C: 15, 0: Wrong hanging indentation.
+            'model_attributes': header+' Inputs'})
+        |   ^ (bad-continuation)
+C: 31, 0: Trailing whitespace (trailing-whitespace)
+C: 33, 0: Final newline missing (missing-final-newline)
+C:  9, 0: Invalid function name "sipInputPage" (invalid-name)
+C:  9, 0: Invalid argument name "formData" (invalid-name)
+C:  9, 0: Missing function docstring (missing-docstring)
+W: 10, 4: Relative import 'sip_parameters', should be 'qed.ubertool_eco.models.sip.sip_parameters' (relative-import)
+W: 29, 4: No exception type(s) specified (bare-except)
+W: 26, 8: Relative import 'sip_tooltips', should be 'qed.ubertool_eco.models.sip.sip_tooltips' (relative-import)
+W:  9,17: Unused argument 'request' (unused-argument)

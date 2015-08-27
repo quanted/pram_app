@@ -23,3 +23,5 @@ Thumbs.db
 env/*
 build/*
 .idea/*
+db.sqlite3
+secret.py

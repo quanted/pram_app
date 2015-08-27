@@ -1,0 +1,35 @@
+        <form method="post" action="/ubertool/login/auth" name="auth">
+        <table class="input_table">
+            <caption><h3>Must login to continue to model input page</h3></caption>
+            <tr>
+                <th>Username:</th><td><input type="text" name="username" id="username"></td>
+            </tr>
+            <tr>
+                <th>Password:</th><td><input type="password" name="password" id="password"></td>
+            </tr>
+        </table>
+        <div class="input_nav">
+            <input type="hidden" value="{{ next }}" name="next" id="'next">
+{#			<div class="input_left">#}
+{#				<ul>#}
+{#					<li><input type="button" value="Defaults" id="resetbutton" class="input_button"></li>#}
+{#					<li><input type="button" value="Clear" id="clearbutton" class="input_button"></li>#}
+{#				</ul>#}
+{#			</div>#}
+			<div class="input_right">
+				<ul>
+					<li><button type="submit" class="input_button">Login</button></li>
+				</ul>
+			</div>
+		</div> <!-- End "submit" div -->
+        </form>
+
+{#        <script type="application/javascript">#}
+{#            $( document ).ready(function() {#}
+{#                $('.input_button').click(function(e) {#}
+{#                    e.preventDefault();#}
+{#                    $('#password').val(btoa($('#password').val()));#}
+{#                    $('form').submit();#}
+{#                });#}
+{#            });#}
+{#        </script>#}

@@ -19,7 +19,7 @@ class StirInp(forms.Form):
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
             label='Chemical Name',
-            initial='Quinoxyfen',
+            initial='STIR Example',
             validators=[validators.validate_slug])
     pc_code = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 

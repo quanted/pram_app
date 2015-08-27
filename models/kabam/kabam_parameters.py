@@ -18,7 +18,7 @@ Rate_constants_CHOICES=(('0','Make a selection'),('a','Use default values'),('b'
 class KabamInp_chem(forms.Form):
     name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
-            initial='Chemical X')
+            initial='Kabam Example')
     lkow = forms.FloatField(
             label=mark_safe('Log K<sub>OW</sub>'),
             initial=5,

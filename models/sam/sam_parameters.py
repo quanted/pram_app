@@ -12,11 +12,11 @@ from models.forms import validation
 class SamInp_chem(forms.Form):
 
     SCENARIO_CHOICES = (
-        (1, 'Corn 1'),  #Atrazine
-        (2, 'Corn 2'),  #Chlorpyrifos
-        (3, 'Soybeans'),  #Chlorpyrifos
-        (4, 'Corn 3'),  #Fipronil
-        (5, 'Corn 4'),  #Metolachlor
+        (1, 'Chemical A - Corn'),  #Atrazine
+        (2, 'Chemical B - Corn'),  #Chlorpyrifos
+        (3, 'Chemical C - Soybeans'),  #Chlorpyrifos
+        (4, 'Chemical D - Corn'),  #Fipronil
+        (5, 'Chemical E - Corn'),  #Metolachlor
         (0, 'Custom')
     )
     COEFFICIENT_CHOICES = (
@@ -30,7 +30,7 @@ class SamInp_chem(forms.Form):
     chemical_name = forms.CharField(
             required=False,
             widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-            initial="Atrazine")
+            initial="Chemical A") # Atrazine
     koc = forms.FloatField(
             required=False,
             label='Sorption Coefficient (mL/g)',

@@ -55,11 +55,11 @@ $(document).ready(function() {
 	var cropsArray_corn = ['Corn', 'Corn/soybeans', 'Corn/wheat', 'Corn/grains'];
 	var crop_list_array = [];
 	var crop_list_no_array = ["10", "14", "15", "18"];
-    var samScenarioInputs_atrazine_corn = ["1", "Unknown", "100", "1", "2", "123", "10 14 15 18", "0", "4", "1", "1", "1.3", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_chlorpyrifos_corn = ["2", "Unknown", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "30", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_chlorpyrifos_soybeans = ["3", "Unknown", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "42", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_fipronil_corn = ["4", "Unknown", "727", "1", "2", "128", "", "0", "4", "1", "1", "0.1", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_metolachlor_corn = ["5", "Unknown", "181", "1", "2", "49", "", "0", "4", "1", "1", "1.05", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_atrazine_corn = ["1", "Chemical A", "100", "1", "2", "123", "10 14 15 18", "0", "4", "1", "1", "1.3", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_chlorpyrifos_corn = ["2", "Chemical B", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "30", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_chlorpyrifos_soybeans = ["3", "Chemical C", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "42", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_fipronil_corn = ["4", "Chemical D", "727", "1", "2", "128", "", "0", "4", "1", "1", "0.1", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_metolachlor_corn = ["5", "Chemical E", "181", "1", "2", "49", "", "0", "4", "1", "1", "1.05", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
 	var selectedScenarioValue = $('#id_scenario_selection').val();
 	if (selectedScenarioValue !== '0') {
 		$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
@@ -195,6 +195,7 @@ $(document).ready(function() {
                 $('#id_region').attr('readonly', true);
                 // Force Refinement method to be 'Uniform with Step'
                 $('#id_refine').val('uniform_step');
+								$('#id_chemical_name').val('Custom');
 				// $('button.submit').attr('disabled', true);
 				// Add 'crop_list_no_array' array to 'crop_list_no' input field before submit
 				// $('button.submit').click(function(e) {

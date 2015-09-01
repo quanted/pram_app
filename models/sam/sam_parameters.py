@@ -12,11 +12,11 @@ from models.forms import validation
 class SamInp_chem(forms.Form):
 
     SCENARIO_CHOICES = (
-        (1, 'Atrazine - Corn'),
-        (2, 'Chlorpyrifos - Corn'),
-        (3, 'Chlorpyrifos - Soybeans'),
-        (4, 'Fipronil - Corn'),
-        (5, 'Metolachlor - Corn'),
+        (1, 'Corn 1'),  #Atrazine
+        (2, 'Corn 2'),  #Chlorpyrifos
+        (3, 'Soybeans'),  #Chlorpyrifos
+        (4, 'Corn 3'),  #Fipronil
+        (5, 'Corn 4'),  #Metolachlor
         (0, 'Custom')
     )
     COEFFICIENT_CHOICES = (

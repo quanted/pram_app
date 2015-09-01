@@ -55,11 +55,11 @@ $(document).ready(function() {
 	var cropsArray_corn = ['Corn', 'Corn/soybeans', 'Corn/wheat', 'Corn/grains'];
 	var crop_list_array = [];
 	var crop_list_no_array = ["10", "14", "15", "18"];
-    var samScenarioInputs_atrazine_corn = ["1", "Atrazine", "100", "1", "2", "123", "10 14 15 18", "0", "4", "1", "1", "1.3", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_chlorpyrifos_corn = ["2", "Chlorpyrifos", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "30", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_chlorpyrifos_soybeans = ["3", "Chlorpyrifos", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "42", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_fipronil_corn = ["4", "Fipronil", "727", "1", "2", "128", "", "0", "4", "1", "1", "0.1", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
-	var samScenarioInputs_metolachlor_corn = ["5", "Metolachlor", "181", "1", "2", "49", "", "0", "4", "1", "1", "1.05", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+    var samScenarioInputs_atrazine_corn = ["1", "Unknown", "100", "1", "2", "123", "10 14 15 18", "0", "4", "1", "1", "1.3", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_chlorpyrifos_corn = ["2", "Unknown", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "30", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_chlorpyrifos_soybeans = ["3", "Unknown", "6040", "1", "2", "109", "", "0", "4", "1", "1", "1.1", "04/20/1984", "uniform", "42", "100", "", "", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_fipronil_corn = ["4", "Unknown", "727", "1", "2", "128", "", "0", "4", "1", "1", "0.1", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
+	var samScenarioInputs_metolachlor_corn = ["5", "Unknown", "181", "1", "2", "49", "", "0", "4", "1", "1", "1.05", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
 	var selectedScenarioValue = $('#id_scenario_selection').val();
 	if (selectedScenarioValue !== '0') {
 		$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
@@ -320,14 +320,14 @@ $(document).ready(function() {
 					}
 					else {
 						try {
-                            $('.tab_Application tr')[3].remove();
-                        }
-                        catch(e) {
-                            // IE support
-                            var appTable = document.getElementsByClassName('tab_Application')[0].children(0);
-                            var childToRemove = appTable.children(3);
-                            appTable.removeChild(childToRemove);
-                        }
+							$('.tab_Application tr')[3].remove();
+						}
+						catch(e) {
+								// IE support
+								var appTable = document.getElementsByClassName('tab_Application')[0].children(0);
+								var childToRemove = appTable.children(3);
+								appTable.removeChild(childToRemove);
+						}
 					}
 				}
 				$('#id_crop_number').val('0');

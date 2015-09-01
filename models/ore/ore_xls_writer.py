@@ -546,6 +546,7 @@ def create_temp_dir():
     try:  # try to create temp dir
         os.mkdir(temp_path)
     except OSError, os_e:
+        # Remove the directory
         shutil.rmtree(temp_path)
         try:  # try again!! this time with the temp_path removed
             os.mkdir(temp_path)

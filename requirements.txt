@@ -1,3 +1,5 @@
+numpy
+pandas
 Django>=1.8.2
 pytz
 xlsxwriter

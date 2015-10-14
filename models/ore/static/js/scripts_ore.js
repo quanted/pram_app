@@ -160,14 +160,15 @@ $( document ).ready(function() {
     Creates the actual checkbox HTML layout for the Exposure Scenario tab based on the results from categoryQuery().
      */
     var checkboxes = "<td><ul id=" + type + ">";
+    var type_class = type.toLowerCase();
 		if (type == 'Formulation') {
             checkboxes = checkboxes + "<li><input id='deselect_button' class='input_button' type='button' value='Deselect All'><span style='float: right'>Application rate (lb ai/acre):</span></li>";
 			for (i = 0; i < item_list.length; i++) {
-				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label><input class='formulation_rate' name='app_rate_" + item_list[i] + "' type='number'></li>"
+				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox " + type_class + "' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label><input class='formulation_rate' name='app_rate_" + item_list[i] + "' type='number'></li>"
 			}
 		} else {
 			for (i = 0; i < item_list.length; i++) {
-				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label></li>"
+				checkboxes = checkboxes + "<li><label for='id_" + item_list[i] + "'><input type='checkbox' class='checkbox " + type_class + "' id='id_" + item_list[i] + "' name='" + item_list[i] + "' value='" + item_list[i] + "' checked='checked'>" + item_list[i] + "</label></li>"
 			}
 		}
 		checkboxes = checkboxes + "</ul></td>";
@@ -178,13 +179,13 @@ $( document ).ready(function() {
   var deselect_button_altValue = 'Select All';
   esTab.on('click', 'input#deselect_button', function() {
     if (this.value == deselect_button_defValue) {
-      esTab.find('input.checkbox').each(function() {
+      // Deselect all Formulations
+      esTab.find('input.formulation').each(function() {
         $(this).trigger('click');
       });
       this.value = deselect_button_altValue;
     } else {  // (this.value == deselect_button_altValue)
       esTab.find('input.checkbox').each(function () {
-        //$(this).trigger('click');
         $(this).prop('checked', true);
       });
       esTab.find('input.formulation_rate').each(function() {
@@ -201,7 +202,7 @@ $( document ).ready(function() {
     */
 		$('#' + type).children('li').each(function() {  // Loop over each child of <li>, e.g. <input>
 			var elem = $(this).find('input');
-      if (!$(elem).is('input')) {  // Make sure the 'elem' found is an 'input' elem
+      if (!$(elem).is('input') || $(elem).attr('type') == 'button') {  // Make sure the 'elem' found is an 'input' elem and no a button
         return true;
       }
       var app_rate;
@@ -209,7 +210,7 @@ $( document ).ready(function() {
         app_rate = elem[1];
         elem = elem[0];
       }
-			if ($.inArray($(elem).attr('name'), item_list) == -1) {  // Check if elem (e.g. Aerial) is in the SQL query; if not uncheck
+			if ($.inArray($(elem).attr('name'), item_list) == -1 || item_list.length == 0) {  // Check if elem (e.g. Aerial) is in the SQL query; if not uncheck
 				$(elem).prop('checked', false);
 				if (type == 'Formulation') {
 					$(app_rate).prop('disabled', true);
@@ -398,7 +399,13 @@ $( document ).ready(function() {
               formData.exp_scenario.AppType = app_types;
               formData.exp_scenario.Activity = activities;
           }
-      });
+      });  // End of ".each()" loop
+      console.log(formulations.length, app_eqips.length, app_types.length, activities.length);
+      var submitValidateAlert = "Please select at least one ";
+      if (formulations.length == 0) {alert(submitValidateAlert + "Formulation"); return formData = null;}
+      if (app_eqips.length == 0) {alert(submitValidateAlert + "Application Equipment"); return formData = null;}
+      if (app_types.length == 0) {alert(submitValidateAlert + "Application Type"); return formData = null;}
+      if (activities.length == 0) {alert(submitValidateAlert + "Worker Activity"); return formData = null;}
       return formData;
   }
 

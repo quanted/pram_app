@@ -30,8 +30,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -46,29 +46,34 @@
         <li class="right" >
           <a href="api.html" title="API"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="ubertool-quality-assurance-project-plan">
 <h1>ubertool Quality Assurance Project Plan<a class="headerlink" href="#ubertool-quality-assurance-project-plan" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="project-management">
 <h2>Project Management<a class="headerlink" href="#project-management" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="title-and-approval-sheet">
+<h3>Title and Approval Sheet<a class="headerlink" href="#title-and-approval-sheet" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="title-of-qa-project-plan">
+<h4>Title of QA Project Plan<a class="headerlink" href="#title-of-qa-project-plan" title="Permalink to this headline">¶</a></h4>
+</div>
 <div class="section" id="revision-number-of-qa-project-plan">
-<h3>Revision number of QA Project Plan<a class="headerlink" href="#revision-number-of-qa-project-plan" title="Permalink to this headline">¶</a></h3>
+<h4>Revision number of QA Project Plan<a class="headerlink" href="#revision-number-of-qa-project-plan" title="Permalink to this headline">¶</a></h4>
 <p>1.0</p>
 </div>
 <div class="section" id="effective-data-of-qa-project-plan">
-<h3>Effective Data of QA Project Plan<a class="headerlink" href="#effective-data-of-qa-project-plan" title="Permalink to this headline">¶</a></h3>
-<p>October 1, 2014</p>
+<h4>Effective Data of QA Project Plan<a class="headerlink" href="#effective-data-of-qa-project-plan" title="Permalink to this headline">¶</a></h4>
+<p>December 1, 2015</p>
 </div>
 <div class="section" id="names-of-all-organizations-involved-in-the-modeling-project">
-<h3>Names of all organizations involved in the modeling project<a class="headerlink" href="#names-of-all-organizations-involved-in-the-modeling-project" title="Permalink to this headline">¶</a></h3>
+<h4>Names of all organizations involved in the modeling project<a class="headerlink" href="#names-of-all-organizations-involved-in-the-modeling-project" title="Permalink to this headline">¶</a></h4>
 <p>U.S. Environmental Protection Agency
 Office of Research and Development
 National Exposure Research Laboratory (NERL)
@@ -79,23 +84,451 @@ Office of Pesticide Programs
 Ecological Fate and Effects Division (EFED)
 Arlington, Virginia XXXXX USA</p>
 </div>
-<div class="section" id="names-of-all-key-project-officials-with-space-for-dataed-signatures">
-<h3>Names of all key project officials, with space for dataed signatures<a class="headerlink" href="#names-of-all-key-project-officials-with-space-for-dataed-signatures" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="names-of-all-key-project-officials-with-space-for-dated-signatures">
+<h4>Names of all key project officials, with space for dated signatures<a class="headerlink" href="#names-of-all-key-project-officials-with-space-for-dated-signatures" title="Permalink to this headline">¶</a></h4>
 </div>
 </div>
-<div class="section" id="project-task-organization">
-<h2>Project/Task Organization<a class="headerlink" href="#project-task-organization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="table-of-contents-and-document-control-format">
+<h3>Table of Contents and Document Control Format<a class="headerlink" href="#table-of-contents-and-document-control-format" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="distribution-list-a3">
+<h3>Distribution List (A3)<a class="headerlink" href="#distribution-list-a3" title="Permalink to this headline">¶</a></h3>
+<p>List of all individuals (and their role on the project) who will be provided copies of the approved QA Project
+Plan, including all persons responsible for implementation, including project managers, QA Managers, and
+representatives of all groups involved.</p>
+<p>Kate Sullivan
+Roy Sidle
+Bill Eckel
+Ed Odenkirchen
+Tom Steeger</p>
+</div>
+<div class="section" id="project-task-organization-a4">
+<h3>Project/Task Organization (A4)<a class="headerlink" href="#project-task-organization-a4" title="Permalink to this headline">¶</a></h3>
+<p>The übertool is a web application implementation of ecological risk models used by the EPA in pesticide registration
+under FIFRA and for the assessment of pesticide risks to endangered species. Modern software development methods
+are used to develop the web application, proceeding according to the principles of “scrum” development, an iterative
+and incremental agile software development process for developing software applications (Lacey 2012). This approach
+is centered around deploying applications in short time increments and getting rapid feedback from end users.  Both
+of these occur at the end of each defined sprint period (4-6 weeks) in length. This deployment and feedback approach
+is paired with modern industry standard approaches from XP programming and agile development.  XP programming
+approaches include test-driven development, pair programming, collective code ownership, sustainable development
+pace, coding standards, continuous integration, and code refactoring. Agile development processes include approaches
+for</p>
+<p>Scrum meetings are weekly on the same day every week (currently Thursday) at 3pm with monthly sprints replacing the
+scrum meeting the first Thursday of every month.</p>
+<p>Daily checkins are likely to be conducted on Google Hangout at 3pm for approximately 15 minutes.</p>
+<p>Monthly ubertool progress reports are also scheduled with EFED via conference call.</p>
+<p>There are three core roles involved in this process, these roles are:
+- Product Owner: represents the stakeholders via stories backlog and priorities (Tom Purucker)
+- Development Team: delivers product increments at the end of each sprint (ORISE fellowships working at the Athens
+lab and others identified by Bill Eckel of OPP/EFED)
+- Scrum Master: scrum facilitator who removes impediments for delivering sprint goals/deliverables, performs tasking,</p>
+<blockquote>
+<div>bug priority, task followup, etc. (contracted)</div></blockquote>
+<p>Ancillary roles on the scrum team are:
+- Stakeholders: (Bill Eckel, Ed Odenkirchen, Dirk Young, Nelson Thurman, Ron Parker, Katrina White, others
+identified by Bill Eckel)
+- Managers: People who control the environment (Kate Sullivan [Branch Chief], Roy Sidle [Division Director],
+John Kenneke [CSS Matrix Interface], Tina Bohardi [CSS], Jim Cowles [Associate Director at EFED])</p>
+</div>
+<div class="section" id="problem-definition-background-a5">
+<h3>Problem Definition/Background (A5)<a class="headerlink" href="#problem-definition-background-a5" title="Permalink to this headline">¶</a></h3>
+<p>Safety evaluations for pesticides are required for ecological and human health risks under a number of regulatory
+statutes (e.g., Federal Insecticide, Fungicide, and Rodenticide Act (FIFRA), Pesticide Registration improvement
+Extension Act (PRIA 3), Federal food, Drug, and Cosmetic Act (FD&amp;C Act), Food Quality Protection Act (FQPA),
+Endangered Species Act (ESA)). Ecological risk assessments under FIRFA and ESA are often implemented by the
+Ecological Fate and Effects Division with OCSPP by accessing model tools and databases that have been developed
+since the early 1980s on a range of software development platforms. These tools include Microsoft Excel
+Spreadsheets, Windows-based interfaces, legacy Fortran code compiled as DOS executables, as well as programs
+originally written in other programming languages (e.g., C, Perl, R). These models are parameterized with available
+information from a number of different source data sets that also may vary in format. The results are documented
+as risk assessment and management decisions for conventional active ingredients used in pesticide formulations.
+The National Pesticide Program manages 1100 active ingredients and 19000 products that must be reevaluated on a
+regular basis. The program also evaluates new pesticide formulations, ingredients, and novel uses of approved
+active ingredients. The result of this process is that there are a large number of models to be run for many
+chemicals with many possible adverse outcomes that must be summarized and reported. The current system of
+distributed models and databases result in inefficiencies when conducting assessment and prevents transparency
+regarding the evaluation process for regulatory risk evaluation.</p>
+<div class="section" id="goals-and-objectives-of-this-project-that-will-address-this-problem">
+<h4>Goals and objectives of this project that will address this problem<a class="headerlink" href="#goals-and-objectives-of-this-project-that-will-address-this-problem" title="Permalink to this headline">¶</a></h4>
+<p>Efficiently conduct environmental assessments for pesticide registration and endangered species effects assessments
+for models that currently are deployed in a number of different ways (Fortran DOS executables, Windows programs,
+Excel spreadsheets) using data from a number of different data sources.</p>
+</div>
+<div class="section" id="definition-of-the-population-the-problem-targets-and-what-measures-within-this-population-the-problem-addresses">
+<h4>Definition of the population the problem targets and what measures within this population the problem addresses<a class="headerlink" href="#definition-of-the-population-the-problem-targets-and-what-measures-within-this-population-the-problem-addresses" title="Permalink to this headline">¶</a></h4>
+<p>EFED risk assessors are the target audience for the ecological models. Main contacts include Bill Eckel,
+Ed Odenkirchen, and Tom Steeger. Three divisions within OPP will use the human health version of the product-
+HED, AD, and RD. Contacts include Vickie Dellarco, Jennifer McClain, Matt Lloyd, and Dana Vogel from the initial
+meeting.</p>
+<p>The ecological and human health divisions of OPP already share implementation of some of the models.
+There may be instances where OPPT personnel used similar models as the OPP human health risk assessment divisions
+and may use some of the models a la carte.  Members of the public, academia, and the registrants may use the product
+via a public facing web page in the future.</p>
+<p>As python code, it can be run on a computer locally using a web browser as an interface (without being on the Internet,
+which will be necessary for the EPA to use it for applications involving confidential business information) and/or it
+can be hosted on the Internet as a web domain so that the public can access the public domain models that are used to
+determine pesticide registration and label restrictions (available at <a class="reference external" href="http://www.ubertool.org">http://www.ubertool.org</a>).  Component libraries
+for the ubertool can be accessed individually in non-HTML applications.  Alternatively, the code could be hosted on an
+EPA server with the requisite technologies to provide online access to the python code.  Regardless of how it is
+accessed, some of the models (these are mostly older Fortran codes in the public domain, not web applications) are
+of interest to the EPA pesticide office and could potentially realize significant efficiencies in regulating
+pesticides, transparency for the ecological risk assessment process, and higher levels of quality assurance given
+the larger audience that might use the models&#8211;whether for chemical regulation or for educational purposes.</p>
+</div>
+<div class="section" id="reason-the-project-includes-a-modeling-approach-to-address-the-problem-is-it-a-new-predictive-tool">
+<h4>Reason the project includes a modeling approach to address the problem (is it a new predictive tool?)<a class="headerlink" href="#reason-the-project-includes-a-modeling-approach-to-address-the-problem-is-it-a-new-predictive-tool" title="Permalink to this headline">¶</a></h4>
+<p>EPA is responsible for registering pesticides under FIFRA; as part of the registration process, the EPA’s Ecological
+Fate and Effects Division of the Office of Chemical Safety and Pollution is responsible for analyzing data and
+developing/ implementing ecological models that estimate risks to non-target receptors. The Food Quality Protection
+Act of 1996 mandated the Environmental Protection Agency (EPA) to implement a new program for assessing the risks of
+pesticides, registration review. The decision to register a pesticide is based on the consideration of scientific data
+and other factors showing that it will not cause unreasonable risks to human health, workers, or the environment when
+used as directed on product labeling. The registration review program is intended to ensure that, as the ability to
+assess risk evolves and as policies and practices change, all registered pesticides continue to meet the statutory
+standard of no unreasonable adverse effects to human health and the environment. Changes in science, public policy,
+and pesticide use practices will occur over time. Through the new registration review program, EPA periodically
+reevaluates pesticides to ensure that as change occurs, products in the marketplace can be used safely. As part
+of the registration review process, EFED is assessing risks of pesticides to Federally-listed threatened and/or
+endangered (listed) species from registered uses of pesticides.  These assessments are conducted in accordance
+with the Overview Document[1], provisions of the Endangered Species Act (ESA), and the Services’ Endangered
+Species Consultation Handbook (NMFS 1998). The models used are periodically updated in view of new pesticides,
+changing science, and as novel exposure pathways come to light.</p>
+<p>created an integrated web-based tool, the übertool, designed to estimate exposure doses and ecological risks
+under the Federal Insecticide, Fungicide, and Rodenticide Act (FIFRA) and the Endangered Species Act (ESA).
+This involved combining a number of individual software models into web applications so they can be more
+easily parameterized, run, and documented by the EPA regulatory program office as well as federal,
+industry, and academic researchers outside the agency. These models include a range of aquatic, terrestrial,
+and atmospheric deposition fate and transport models used to estimate pesticide exposures and effects for a wide
+range of ecological receptors. Risk assessments based on these models are evaluated when seeking approval for
+pesticide formulations by the Environmental Protection Agency (EPA). Übertool integration of the ecological
+risk models creates a unified environment where data inputs and outputs are shared amongst models and saved
+for each user. This web-based approach takes advantage of new technologies including on-demand cloud computation
+of models written in a variety of programming languages (e.g., Python, Fortran, C) as well as spreadsheet calculators
+(e.g., Microsoft Excel) to support complex and screening level models. The übertool can also batch run multiple
+models simultaneously given the appropriate inputs providing an efficient and previously unavailable ecological
+risk service.</p>
+<p>Übertool’s web-based framework has also extended to population dynamic models not currently used by FIFRA and
+ESA that are publicly available for educational and research purposes. Traditionally, ecological assessment
+of pesticides is based on the ratio between estimated environmental concentrations and extrapolated toxicity
+effects levels that can be difficult to relate to ecological endpoints that are actually valued and regulated
+(e.g., populations).  By aggregating these models into a virtual dashboard, we enable linkages to be created
+in the gap between the traditional ecological hazard assessment of screening models (risk quotients) and
+assessing ecological endpoints at the population level. Closing this gap has been identified in a recent
+National Academy of Science’s report as being necessary to create a common, scientifically credible approach
+to resolve discrepancies between how FIFRA and the ESA manage ecological risks. The new framework (Untertool)
+incorporates a variety of models including basic models of population dynamics (e.g. logistic model), intra-colony
+honey bee population dynamic models, and links to other online models and resources.</p>
+</div>
+<div class="section" id="types-of-decisions-that-may-be-made-as-a-result-of-this-project">
+<h4>Types of decisions that may be made as a result of this project<a class="headerlink" href="#types-of-decisions-that-may-be-made-as-a-result-of-this-project" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="names-of-those-responsible-for-making-these-decisions">
+<h4>Names of those responsible for making these decisions<a class="headerlink" href="#names-of-those-responsible-for-making-these-decisions" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="any-other-types-of-problems-that-the-project-may-address">
+<h4>Any other types of problems that the project may address<a class="headerlink" href="#any-other-types-of-problems-that-the-project-may-address" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="background-information-on-the-problem">
+<h4>Background information on the problem<a class="headerlink" href="#background-information-on-the-problem" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div>EPA (2004) provides an overview of OPP’s ecological risk assessment process:</div></blockquote>
+<p>www.epa.gov/espp/consultation/ecorisk-overview.pdf</p>
+</div>
+<div class="section" id="reasons-the-project-is-important-how-it-supports-other-existing-research-programs-or-regulations">
+<h4>Reasons the project is important, how it supports other existing research, programs, or regulations<a class="headerlink" href="#reasons-the-project-is-important-how-it-supports-other-existing-research-programs-or-regulations" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="conflicts-or-uncertainties-that-will-be-resolved-by-this-project">
+<h4>Conflicts or uncertainties that will be resolved by this project<a class="headerlink" href="#conflicts-or-uncertainties-that-will-be-resolved-by-this-project" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="reasons-one-model-is-determined-to-be-better-than-another-for-this-application">
+<h4>Reasons one model is determined to be better than another for this application<a class="headerlink" href="#reasons-one-model-is-determined-to-be-better-than-another-for-this-application" title="Permalink to this headline">¶</a></h4>
+<p>The program office uses them, after a review process...</p>
+</div>
+</div>
+<div class="section" id="project-task-description-and-schedule-a6">
+<h3>Project/Task Description and Schedule (A6)<a class="headerlink" href="#project-task-description-and-schedule-a6" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>1.6.1. Summary of all work to be performed, products to be produced, and the schedule for implementation</dt>
+<dd>To create an aggregate ubertool assessment, a user will have created the above data objects for each of the tables above, and will combine them to create a batched assessment.  A tree with dropdown comboboxes that reflect available data objects saved to the user account will be presented to the user.  By selecting an appropriate data object for each of the 8 data node objects on the tree, the user can then execute the aggregate ubertool to run the included models.  At this point, there will be no option to deselect a constituent model in the aggregate ubertool.  We need a figure of a mock-up of the ubertool aggregate data tree.</dd>
+</dl>
+<p>An additional priority is development of the spatial overlay tool to compare endangered species ranges to crop and pesticide application distributions.  This will develop will proceed separately from the aggregate ubertool initially.</p>
+<p>A future priority is using the fate and transport models to create exposure concentrations data objects that are used by a number of the ecological models.
+1.6.2. List of products, deliverables, and milestones to be completed in the various stages of the project</p>
+<p>1.6.3. Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each</p>
+<p>1.7. Quality Objectives and Criteria for Model Inputs/Outputs (A7)</p>
+<p>1.7.1. Project data quality objectives (DQOs), performance criteria, and acceptance criteria</p>
+<p>All model components will be developed using an appropriate approach to quality assurance and documentation.
+1.7.2. Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task</p>
+<p>1.7.2.1 Ecological Models</p>
+<p>A number of models are used to estimate risk to non-target species in this process.  These models are listed in Table 1 and their current development status within the ubertool.</p>
+<p>Table 1. Models used in OPP’s ecological risk assessment process
+Table 1. Models used in OPP’s ecological risk assessment process
+Model   In or Out for v1 of Integrated Ubertool?        Standalone version for website  Link
+EXAMS   Out     Possibly, but low priority
+PRZM    Out     Yes, functional but not QAed
+Geneec  In      Yes, functional but not QAed
+AgDrift/AgDisp  In      Spring deliverable
+First   Out     No, Human health
+PFAM    In      Unclear
+Tim     Out     Unclear
+Tier I Rice     In      Yes, functional but not QAed
+T-Herps In      Yes, functional but not QAed
+T-Rex   In      Yes, functional but not QAed
+Kabam   In      Yes, functional but not QAed
+TerrPlant       In      Yes, functional but not QAed
+Sip     In      Yes, functional but not QAed
+Stir    In      Yes, functional but not QAed
+Dust    In      Yes, early version
+Super PRZM      Unclear, not for v1     Unclear
+Downstream Dilution Tool        Unclear, not sure current relationship to SAM   Unclear
+Spatial Aquatic Model   Not for V1      Unclear, summer development by EFED
+Perfum/Inhalation model Unclear, in development Unclear
+VVWM (similar to PFAM)  I don’t know    Not currently
+IEC     In      Yes
+PRZM-GW Out
+PlantX  Out     In development</p>
+<p>In addition, there are a number of ecological population models that are currently available that are designed to facilitate interaction with NHEERL and OPP concerning potential future development efforts that may be of interest to OCSPP.  These models are summarized in Table 2 but are not part of the integrated ubertool effort.</p>
+<p>Table 2. Ecological population models currently available
+Model   Description     Link
+Exponential
+Logistic
+Gompertz
+Fox Surplus Yield
+Maximum Sustainable Yield
+Yule-Furry Markov Process
+Feller-Arley Markov Process
+Leslie Projection Matrix
+Leslie with Logistic Dose Response</p>
+<p>1.7.2.3 Database Sources</p>
+<p>It will be necessary to crosswalk the data that is available in the database sources with the listed data object tables. The crosswalk is available at <a class="reference external" href="http://tiny.cc/ubertool_crosswalk">http://tiny.cc/ubertool_crosswalk</a></p>
+<p>Database backbone details (MongoDB, possibly Amazon-based via EC2) and mapping technologies (maybe Google maps plus postgis/postgresql) are still undecided.
+<a class="reference external" href="http://www.mongodb.org/display/DOCS/Amazon+EC2">http://www.mongodb.org/display/DOCS/Amazon+EC2</a>
+<a class="reference external" href="http://aws.amazon.com/rds/">http://aws.amazon.com/rds/</a>
+<a class="reference external" href="https://developers.google.com/maps/documentation/webservices/">https://developers.google.com/maps/documentation/webservices/</a>
+<a class="reference external" href="http://postgis.refractions.net/">http://postgis.refractions.net/</a>
+<a class="reference external" href="http://www.postgresql.org/">http://www.postgresql.org/</a></p>
+<p>Table 3. Available databases with parameters of interest</p>
+<p>Database        Location        Description
+Ecological Incident Information System  C:Documents and SettingsAll UsersprogramsEIISEIISv2.1.mdb  Data on incidents of adverse field effects plants and wild animals. (Nick Mastrota)
+Avian Incident Monitoring System        http://www.abcbirds.org/abcprograms/policy/pesticides/aims/aims/index.cfm       An American Bird Conservancy database of avian incidents. (Nick Mastrota)
+Pesticide Ecotoxicity Database  G:Science DatabasesEcotoxicityToxdataEcoToxData.mdb        Data of toxicity of pesticides to plants and animals from EPA-reviewed studies. (Brian Montague)
+Pesticide Fate Database http://cfpub.epa.gov/pfate/home.cfm     Environmental fate data from EPA-reviewed studies. (Larry Liu)
+EFED Ingredients        N:EFED_ApplicaitionsdatabasesEFED IngredientsEFED Ingredients.mdb   Data on pesticide ingredients reviewed by EFED. (Nick Mastrota)
+LOCATES C:Documents and SettingsAll UsersprogramsLOCATESLOCATES FE.mdb     Co-ocurrence of endangered species and crop locations. (Kurt Pluntke)
+EFED library    G:Information ResourcesEFED LibraryEFED Library.mdb Information on books and articles in the EFED library. (Nick Mastrota)
+ChemFiles       N:EFED_ApplicationsdatabasesChemFilesChemFiles_FE.mdb       Tracking data on EFED’s chemical files. (Nick Mastrota)
+Birds in Agricultural Areas     http://www.abcbirds.org/abcprograms/policy/pesticides/biaa/index.html   An American Bird Conservancy database of use of crops by birds. (Brian Montague)
+STORET  http://www.epa.gov/storet       An EPA database of water quality data from U.S. surface and ground water monitoring. (Nelson Thurman)
+LUIS</p>
+<p>1.7.3. List of requirements associated with the hardware/software configuration for those studies involving software evaluation</p>
+<blockquote>
+<div>Python uses web application frameworks that conform to a common standard called the Web Server Gateway Interface (WSGI).  We currently use two frameworks, webapp2 and Django, that help automate the integration of the Python backend and the web application frontend allowing for rapid development.</div></blockquote>
+<p>Web hosting services provide the cloud storage and host the web site containing the web applications.  These web services are vital to the übertool in terms of accessibility and data processing.  The Python web application frameworks work with the web hosting services to ultimately provide the deliverable to the end user.</p>
+<p>The nature of web application development allows for the use of many cross-platform (i.e. Microsoft Windows, Apple OSX, Redhat Linux, etc.) software programs.  Python itself is a cross-platform language designed to easily integrate various programming languages.  The software development environment includes text editors such as Sublime Text, Python IDEs such as Spyder, Python extensions such as NumPy, and web browsers such as Microsoft’s Internet Explorer, Google’s Chrome, and Mozilla’s Firefox.</p>
+<p>The source code for the übertool is version controlled using GitHub.  GitHub manages all changes to the source code, allowing for simultaneous development from multiple developers on the same source code.  Each developer has his/her own “branch” of the source code on which they work.  These branches are merged back into the “trunk” or master branch of the source code as the software is updated.  Software can be rolled back as necessary as GitHub tracks the history of the software development.</p>
+<p>The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is cross-platform, flexible, and open source.</p>
+<p>1.8. Special Training Requirements/Certification (A8)</p>
+<p>1.8.1. Types of required training and certification needed by the project team</p>
+<p>1.8.2. Plan for obtaining training and/or certification</p>
+<p>1.8.3. Documentation of training and/or certification</p>
+<p>1.9. Documentation and Records (A9)</p>
+<blockquote>
+<div>Project progress will be documented annually in terms of the annual reports. In addition, conference presentations and publications will be prepared as appropriate and archived in the EPA knowledge management systems (Google doc?, github wiki?).</div></blockquote>
+<p>An updated version of the quality assurance plan will be developed annually and distributed by email. The date of the latest update will be included in the plan. Records of yearly quality assurance audits performed by the QA manager and QA officer are maintained by the QA manager. The auditor uses a checklist to mark which portions of the QAPP are followed, and to document deviations or absence of any QA measures. The results of such audits shall be documented and filed by the Quality Assurance Manager. The audit process itself shall be designed to objectively measure compliance with written procedures and assess the effectiveness of the process. The evaluation shall include interviews with development team members, and a review of research project work and quality records.</p>
+<p>Before submission of a paper to an archival journal, the work will be reviewed for conformance with the applicable quality assurance criteria. Program code and output will be maintained in electronic data files and backed up on cloud platform (www.github.com). These documents will be maintained for a minimum of 5 years after the completion of the project.</p>
+<p>1.9.1. Description of information to be included in reports</p>
+<p>1.9.2. Proper document control and distribution procedures</p>
+<p>1.9.3. Details on document storage</p>
+<p>1.9.4. Backup plan for records stored electronically</p>
+<p>1.9.5. Description of the change control process (who approves changes, etc.)</p>
+<p>1.9.6. Length of retention periods for each record</p>
+<p>1.9.7. Data assessment reports, interim project progress reports</p>
+<p>1.9.8. Model science formulation report, peer review reports</p>
+<p>1.9.9. Model assessment reports, interim project progress reports</p>
+<dl class="docutils">
+<dt>1.9.10. Code standards, code auditing and testing reports, interim project progress reports</dt>
+<dd>Potential collaboration/development tools include:</dd>
+</dl>
+<ul class="simple">
+<li>kunagi (agile/scrum management system)</li>
+</ul>
+<p><a class="reference external" href="http://kunagi.org/">http://kunagi.org/</a>
+- chiliproject (bug and feature tracking for agile development and quality)
+<a class="reference external" href="https://www.chiliproject.org/">https://www.chiliproject.org/</a>
+- jenkins (continuous integration and testing server)
+<a class="reference external" href="http://jenkins-ci.org/">http://jenkins-ci.org/</a>
+- sonar (code quality/bug prevention)
+<a class="reference external" href="http://www.sonarsource.org/">http://www.sonarsource.org/</a>
+- teambox collaboration (ubertool project currently active)
+<a class="reference external" href="http://teambox.com/">http://teambox.com/</a>
+- Google hangout (requires a Google+ account)
+<a class="reference external" href="http://www.google.com/+/learnmore/hangouts/">http://www.google.com/+/learnmore/hangouts/</a></p>
+<p>Some of these development tools may be accessible through ubertool subdomains in order to allow access from within the EPA firewall.</p>
+<p>1.9.11. Model calibration report</p>
+<p>1.9.12. Model evaluation records (How well does the model report variability and uncertainty in its output?)</p>
+<p>1.9.13. User’s manual</p>
+<p>1.9.14. Configuration management (after production version) and code maintenance (e.g., or software internal documentation of logic and structure) manuals</p>
+<p>1.9.15 Licensing Issues
+There are still a lot of questions about the use of open source licenses by federal agencies. If the software is developed solely by government employees, the questions are even more open.  A developer can release software under an OSS because he or she has a copyright in the software, a property right that can be licensed.  A government work, like employee-developed software, is not entitled to U.S. copyright protection.   NASA and others address this dilemma with this argument: The software is still property (if not intellectual property) of the U.S. government.  Since the U.S. government can choose not to release its property, it can also choose to release it only under the conditions of a license.</p>
+<ol class="arabic simple" start="2">
+<li>GROUP B: Measurement and Data Acquisition</li>
+</ol>
+<blockquote>
+<div>This chapter provides a summary of guidelines for preparing QA Project Plans in projects that</div></blockquote>
+<p>involve model development, modification, or application.
+2.1. Calibration (B7)</p>
+<p>2.1.1. Objectives of model calibration activities, including acceptance criteria
+2.1.2. Frequency of model calibration activities</p>
+<p>2.1.3. Details on the model calibration procedure</p>
+<p>2.1.4. Method(s) of acquiring input data</p>
+<p>2.1.5. Types of output generated by the model calibration</p>
+<p>2.1.6. Approach to characterize uncertainty (e.g., sensitivity analysis)</p>
+<p>2.1.7. Corrective action to be taken if criteria are not met</p>
+<dl class="docutils">
+<dt>2.1.8. Resources and responsibilities for calibrating the model</dt>
+<dd>In addition to input data, government publications and publically available scientific liberature will be considered for the development of the model. For example, the Agency’s Wildlife Exposure Factors Handbook will be considered for estimating the dose to birds, mammals, terrestrial phase amphibians, reptiles, and terrestrial insects via ingestion of water by determining the appropriate allometric equations for each taxa’s drinking water intake.</dd>
+</dl>
+<p>2.1.9. Analysis of model output relative to acceptance criteria</p>
+<p>2.2. Non-direct Measurements (Data Acquisition Requirements) (B9)</p>
+<p>2.2.1. Types of data needed for implementing a project that are obtained from non-measurement sources such as databases, literature files</p>
+<p>2.2.2. Need for non-direct measurements, intended use of data</p>
+<p>2.2.3. Method(s) of identifying and acquiring data</p>
+<p>2.2.4. Method of determining the underlying quality of the data</p>
+<p>2.2.5. SOPs and field or lab-specific deviations associated with these procedures</p>
+<p>2.2.6. Acceptance criteria for non-direct measurements: such as completeness, representativeness, bias, precision, qualifying data</p>
+<p>2.3. Data Management and Hardware/Software Configuration (B10)</p>
+<p>2.3.0.1. Information on the project data management process (field, office, and lab)</p>
+<p>2.3.0.2. Record-keeping procedures, document control system, audit trails</p>
+<p>2.3.0.3. Control mechanism for detecting and correcting errors, preventing loss of data</p>
+<p>2.3.0.4. Procedures for assuring applicable Agency resource management requirements are satisfied</p>
+<p>2.3.0.5. Required computer hardware/software and any specific performance requirements</p>
+<p>2.3.1. Data Management (Element B10a)</p>
+<p>2.3.1.1. Any data forms, checklists, on-line interactive screens used in the modeling process</p>
+<p>2.3.1.2. Any graphics developed to document the data management process (process flow diagrams, modeling flow charts, etc.)</p>
+<p>2.3.1.3. Documentation of internal checks used during data entry</p>
+<p>2.3.1.4. Data calculations and analyses that should to be highlighted in the QA Project Plan</p>
+<p>2.3.1.5. Plans for characterization of uncertainty and variability in the model results (e.g., summary statistics, frequency distributions, goodness-of-fit tests)</p>
+<p>2.3.2. Hardware/software Configuration (Element B10b)</p>
+<p>2.3.2.1. List of equipment, hardware, and software that will be used on the project</p>
+<p>2.3.2.2. Description of performance requirements</p>
+<p>2.3.2.3. Decisions regarding security issues</p>
+<p>2.3.2.4. Decision regarding communication issues</p>
+<p>2.3.2.5. Decisions regarding software installation issues</p>
+<p>2.3.2.6. Decisions regarding response time issues</p>
+<p>2.3.2.7. Plans for requirements documentation</p>
+<p>2.3.2.8. Coding standards</p>
+<p>2.3.2.9. Testing plans</p>
+<p>2.3.2.10. Plans for data dictionary (may not need to be a separate document)</p>
+<p>2.3.2.11. Plans for a user’s manual</p>
+<p>2.3.2.12. Plans for a maintenance manual (explaining software logic and organization)</p>
+<p>2.3.2.13. Plans for source code for the ultimate user of the model or model framework</p>
+<p>2.3.2.14. Configuration management plan (procedures to control software/hardware configuration during development of the original model version)</p>
+<ol class="arabic simple" start="3">
+<li>GROUP C: Assessment and Oversight</li>
+</ol>
+<p>3.1. Assessment and Response Actions (C1)
+The EPA Quality Assurance Manager will conduct a Technical Systems Audit (TSA) to ensure that this QAPP is being followed during the execution of the research project. The research team is responsible for documenting the response to any significant findings. Work conducted for this project will undergo ongoing technical review by personnel at EPA/ORD/NERL/ERD who are implementing the project.</p>
+<p>The project team leader will have responsibility for monitoring project activities and identifying or confirming any quality problems. Any problems will be brought to the attention of the ORD Management Team and the ORD QA Team, who will initiate corrective actions, document the nature of the problem, and ensure that the recommended corrective action is carried out.
+This QAPP describes processes for model sensitivity and uncertainty analysis (Section B7), data quality assessment (Section B9), data management and error checking (Section B9) and model performance evaluations (section B7). The project team will assess model sensitivity to parameters in calibration steps as well as in analysis steps to understand model performance specific to modeling objectives. It has provisions for data validation and usability (Section D)
+Many of the technical problems that might occur can be solved on the spot by the technical staff, for example, by modifying the technical approach or correcting errors or deficiencies in documentation. Immediate corrective actions form part of normal operating procedures and are noted in records for the project. Problems that cannot be solved in this way require more formalized, long-term corrective action. If quality problems that require attention are identified, the QA Officers will determine whether attaining acceptable quality requires either short- or long-term actions.</p>
+<p>The Project Team Leader will perform surveillance activities to ensure that management and technical aspects are being properly implemented according to the schedule and quality requirements specified in this QAPP. These surveillance activities will include assessing how project milestones are achieved and documented, corrective actions are implemented, budgets are adhered to, reviews are performed, and data are managed.</p>
+<p>The technical systems assessment will include assessment of data collection activities, documentation, quality checks, record management, and reporting.</p>
+<p>Assessments of internal code validity and consistency of model structure will be ongoing. The first assessment will occur when the model is initially structured and will emphasize internal code validation. At this point numerical comparisons will be executed between model outputs and verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations will be compared against simple analytical cases in order to localize the source of the error in the code. This will be conducted iteratively until the errors are found. Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments to model structure as indicated by the feedback. Revisions will be performed either by Tom Purucker or by a team member under the close supervision of Tom Purucker. Documentation of QA procedures will occur when a draft paper is being vetted for submission to an archival journal. If necessary based on the QA review, changes will be made to the paper proposed for publication.</p>
+<p>3.1.0.1. Assessment/oversight strategies and schedule of assessment activities, order of events</p>
+<p>3.1.0.2. Organizations and individuals expected to participate in assessments, including peer reviews</p>
+<p>3.1.0.3. Information expected, success criteria</p>
+<p>3.1.0.4. Scope of authority of assessors to recommend or direct changes to the model (corrective actions)</p>
+<p>3.1.0.5. Qualitative and quantitative assessments</p>
+<p>3.1.0.6. Internal assessments (internal QA officer’s review of input data, code verification, calibration, benchmarking) and external assessments (peer review of model theory or mathematical structure)</p>
+<p>3.1.0.7. Surveillance activities (continued monitoring of status and progress of the project, tracking project milestones and budgets)</p>
+<p>3.1.0.8. Plans for model performance evaluations</p>
+<p>3.1.0.9. Plans for sensitivity analysis</p>
+<p>3.1.0.10. Plans for uncertainty analysis</p>
+<p>3.1.0.11. Plans for data quality assessment</p>
+<p>3.1.0.12. Plans for code testing</p>
+<p>3.1.1. Hardware/Software Assessments</p>
+<p>3.1.1.1. Plans for hardware and software configuration testing, if appropriate</p>
+<p>3.1.1.2. Plans for code verification tests</p>
+<p>3.1.1.3. Plans for internal and external peer reviews</p>
+<p>3.1.1.4. Plans for checking for programming errors</p>
+<p>3.1.1.5. Plans for checking for correct insertion of model equations</p>
+<p>3.1.1.6. Plans for checking for code’s linkage to analysis of uncertainty</p>
+<p>3.1.2. Hardware/Software Configuration Tests</p>
+<p>3.1.2.1. Plans for software code development inspections</p>
+<p>3.1.2.2. Plans for software code performance testing</p>
+<p>3.1.2.3. Plans for a test of the model framework</p>
+<p>3.1.2.4. Plans for integration tests (check computational and transfer interfaces between modules)</p>
+<p>3.1.2.5. Plans for regression tests</p>
+<p>3.1.2.6. Plans for stress testing of complex models (to ensure that maximum load during peak usage does not exceed limits of the system)</p>
+<p>3.1.2.7. Plans for acceptance testing (contractually-required testing needed before a new model or model application is accepted by the customer and final payment is made)</p>
+<p>3.1.2.8. Plans for beta testing of pre-release hardware/software, recording of anomalies</p>
+<p>3.1.2.9. Plans for checking for programming errors</p>
+<p>3.1.3. Plans for science and product peer review</p>
+<p>3.1.3.1. Theoretical basis for the model</p>
+<p>3.1.3.2. Mathematical model structure</p>
+<p>3.1.3.3. Model algorithms</p>
+<p>3.1.3.4. Model predictions</p>
+<p>3.1.3.5. Model calibration</p>
+<p>3.1.3.6. Plans for data quality assessment</p>
+<p>3.1.3.7. Plans for peer review of final technical product</p>
+<p>3.2. Reports to Management (C2)</p>
+<p>3.2.1. Project reporting schedule</p>
+<p>This QAPP will be distributed to the ubertool project team and stored on the G-drive in the ubertool folder. The model, user guidance, and technical documentation will be stored on the XXX drive XXXX folder. The model and technical documentation will also be made available on the ubertool web page. Backup copies of all the development documentation will be kept by the project lead.</p>
+<p>Periodic updates/progress reports will be given to ORD management, the XXXX and end users as needed to discuss the progress of the project. A written QC, technical assessments, and documentation will be made available to interested parties. Management will be kept informed of the project’s progress through the managerial advisor and/or periodic briefings.</p>
+<p>Any identified errors, deficiencies, and anomalies will be documented and reported to the team. If needed, an error analysis will be performed and the model processes will be reviewed and/or modified.
+3.2.2. Frequency, content, and distribution of reports</p>
+<p>3.2.3. Deviations from approved QA Project Plan</p>
+<p>3.2.4. Need for response actions to correct deviations</p>
+<p>3.2.5. Potential uncertainties in decisions based on input data and model limitations</p>
+<p>3.2.6. Data Quality Assessment findings</p>
+<ol class="arabic simple" start="4">
+<li>GROUP D: Data Validation and Usability</li>
+</ol>
+<p>4.1. Departures from Validation Criteria (D1)</p>
+<p>To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come from verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations will be compared against simple analytical cases in order to localize the source of the error in the code. Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments to model structure as indicated by the feedback.</p>
+<p>4.1.1. Criteria used to review and validate (accept, reject, or qualify) model components such as theory, mathematical procedures, code, and calibration (convergence criteria, etc.)
+This section is not related
+4.1.2. Criteria used to review and validate input data
+Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification, and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.</p>
+<p>Figure #. User input table from the QA/QC page</p>
+<p>4.1.3. Criteria used to test model performance
+Model performance is checked through the ‘Batch’ mode, which sequentially calculates scenarios provided in the template. Two testing criterion are considered here: 1. repeat the same scenarios in the template (e.g. 10 times), and check the consistency of model inputs and outputs among 10 scenarios; 2. list a large number of scenarios (e.g. 10,000) and estimate the time consumed during the computation.</p>
+<p>4.1.4. Criteria used to review or validate model outputs
+The integrity of model output data will be verified and validated by project technical staff. Reviews may include a thorough evaluation of content and/or a “spot-check” of calculated between output tables (Figure below) in the QA/QC page and verified EPA reports. Should a review identify an aberration, the reviewer will notify those responsible for taking corrective actions. The QA officers will be notified if corrective action is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel during the model calibration and validation stage of the project. In-progress assessments of validation issues will be discussed between a team including both technical and QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well any corrective actions that were implemented.</p>
+<blockquote>
+<div>Figure #. Output tables from the QA/QC page</div></blockquote>
+<p>4.2. Validation Methods (D2)</p>
+<p>4.2.1. Methods for review of model components such as theory, mathematical procedures, code, and calibration (peer review, etc.)</p>
+<p>4.2.2. Methods for review of input data</p>
+<p>4.2.3. Methods for review of model performance tests</p>
+<p>4.2.4. Methods for assessment of model output and usability</p>
+<p>4.3. Reconciliation with User Requirements (D3)</p>
+<p>4.3.1. Discussion of project or task results</p>
+<p>4.3.2. List of departures from assumptions set in the planning phase of the model</p>
+<p>4.3.3. Report on limitations on use of output data for decision makers or users</p>
+<p>5. REFERENCES
+Apandi, T., 2009 Extreme Programming Pocket Guide. O’Reilly Media, Sebastopol, CA.</p>
+<p>USEPA. 2004. Overview of the Ecological Risk Assessment Process in the Office of Pesticide Programs. U.S. Environmental Protection Agency, Office of Prevention, Pesticides and Toxic Substances, Office of Pesticide Programs, Washington DC. 100 pp. January 23, 2004.</p>
+<p>Helms, J.C., 2013. Web-Based Application Quality Assurance Testing. Accessed at  <a class="reference external" href="http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf">http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf</a> on 9/5/2013.</p>
+<p>U.S. FWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species Consultation Handbook: Procedures for Conducting Consultation and Conference Activities Under Section 7 of the Endangered Species Act. Final Draft. March 1998.</p>
+</div>
+</div>
+</div>
 <div class="section" id="objective-and-product-vision">
-<h3>Objective and Product Vision<a class="headerlink" href="#objective-and-product-vision" title="Permalink to this headline">¶</a></h3>
-<p>The objective of this effort is to implement appropriate technologies and update the source code base for the übertool, a web application system that executes algorithms for pesticide registration and endangered species effects assessments, so that it can be deployed in scalable computational environments that provide front end access to cloud-executed models and database backbone capabilities for querying and storing parameter inputs/outputs. This system is to be deployed internally within the EPA for government users and externally on a public-facing server for use by the public, academia, and the regulated community. The intent of this implementation is to accomplish EPA goals concerning transparency of the data analyses and scientific algorithm estimation components of the pesticide registration process. The project vision is an Agency collaboration platform that serves as an integrated scientific workflow application to implement relevant assessment methods, respond to changing empirical data availability (e.g., required toxicity tests, bioassays) and incorporate current fate, exposure, and effect algorithms in a model selection framework. Unlike the time-inefficient and outdated collection of legacy science components, this scientific modeling platform will replace critical regulatory data analysis and modeling processes with a more efficient, 21st century system at a reasonable cost.</p>
+<h1>Objective and Product Vision<a class="headerlink" href="#objective-and-product-vision" title="Permalink to this headline">¶</a></h1>
+<p>The objective of this effort is to implement appropriate technologies and update the source code base for the übertool,
+a web application system that executes algorithms for pesticide registration and endangered species effects assessments,</p>
+<blockquote>
+<div>so that it can be deployed in scalable computational environments that provide front end access to cloud-executed models and database backbone capabilities for querying and storing parameter inputs/outputs. This system is to be deployed internally within the EPA for government users and externally on a public-facing server for use by the public, academia, and the regulated community. The intent of this implementation is to accomplish EPA goals concerning transparency of the data analyses and scientific algorithm estimation components of the pesticide registration process. The project vision is an Agency collaboration platform that serves as an integrated scientific workflow application to implement relevant assessment methods, respond to changing empirical data availability (e.g., required toxicity tests, bioassays) and incorporate current fate, exposure, and effect algorithms in a model selection framework. Unlike the time-inefficient and outdated collection of legacy science components, this scientific modeling platform will replace critical regulatory data analysis and modeling processes with a more efficient, 21st century system at a reasonable cost.</div></blockquote>
 </div>
 <div class="section" id="context-of-the-research">
-<h3>Context of the research<a class="headerlink" href="#context-of-the-research" title="Permalink to this headline">¶</a></h3>
+<h1>Context of the research<a class="headerlink" href="#context-of-the-research" title="Permalink to this headline">¶</a></h1>
 <p>Pesticide evaluations are required for ecological and human health risks under a number of regulatory statutes (e.g., Federal Insecticide, Fungicide, and Rodenticide Act (FIFRA), Pesticide Registration improvement Extension Act (PRIA 3), Federal Food, Drug, and Cosmetic Act (FD&amp;C Act), Food Quality Protection Act (FQPA), Endangered Species Act (ESA)). Ecological risk assessments under FIRFA and ESA are often implemented by the Ecological Fate and Effects Division within the Office of Chemical Safety and Pollution Prevention by accessing model tools and databases that have been in continual development since the early 1980s on a range of software development platforms. These tools include Microsoft Excel Spreadsheets, Windows-based interfaces, legacy Fortran code compiled as DOS executables, as well as programs originally written in other programming languages (e.g., C, Perl, R). These models are parameterized with available information from a number of different source data sets that also may vary in format. The results are documented as risk assessment and management decisions for conventional active ingredients used in pesticide formulations. The National Pesticide Program manages 1100 active ingredients and 19000 products that must be reevaluated on a regular basis. The program also evaluates new pesticide formulations, ingredients, and novel uses of approved active ingredients. The result of this process is a large number of models to be run for many chemicals with many possible adverse outcomes that must be summarized and reported. The current system of distributed models and databases result in inefficiencies when conducting assessment and prevents transparency regarding the evaluation process for regulatory risk evaluation.</p>
 <p>The decision to register a pesticide is based on the consideration of scientific data and other factors showing that it will not cause unreasonable risks to human health, workers, or the environment when used as directed on product labeling. The registration review program is intended to ensure that, as the ability to assess risk evolves and as policies and practices change, all registered pesticides continue to meet the statutory standard of no unreasonable adverse effects to human health and the environment. Changes in science, public policy, and pesticide use practices occur over time. Through the registration review program, EPA periodically reevaluates pesticides to ensure that as change occurs, products in the marketplace can be used safely. As part of the registration review process, EFED assesses risks of pesticides to Federally-listed threatened and/or endangered (listed) species from registered uses of pesticides.  These assessments are conducted in accordance with provisions of the Endangered Species Act (ESA), and the Services’ Endangered Species Consultation Handbook (NMFS). The models used are periodically updated in view of new pesticides, changing science, and as novel exposure pathways come to light.</p>
 </div>
 <div class="section" id="team-organization-and-task-implementation">
-<h3>Team Organization and Task Implementation<a class="headerlink" href="#team-organization-and-task-implementation" title="Permalink to this headline">¶</a></h3>
+<h1>Team Organization and Task Implementation<a class="headerlink" href="#team-organization-and-task-implementation" title="Permalink to this headline">¶</a></h1>
 <p>Modern software development methods are used to develop the web application, proceeding according to the principles of “scrum” development, an iterative and incremental agile software development process for developing software applications (Lacey 2012). This approach is centered around deploying applications in short time increments and getting rapid feedback from end users.  Both of these occur at the end of each defined sprint period (2-6 weeks)in length. This deployment and feedback approach is paired with modern industry standard approaches from XP programming and agile development.  XP programming approaches include test-driven development, pair programming, collective code ownership, sustainable development pace, coding standards, continuous integration, and code refactoring. Agile development processes include approaches for</p>
 <p>Scrum meetings are weekly on the same day every week at 3pm with monthly sprints replacing the scrum meeting the first Thursday of every month.  Daily checkins are likely to be conducted in Athens and via phone at 3pm EST for approximately 15-30 minutes. Monthly ubertool progress reports are also scheduled with EFED via conference call.</p>
 <p>There are three core roles involved in this process, these roles are:
@@ -124,83 +557,71 @@ Arlington, Virginia XXXXX USA</p>
 <li>Kate Sullivan [EAB Branch Chief]</li>
 </ul>
 </div>
-</div>
-<div class="section" id="problem-definition-background">
-<h2>Problem definition/Background<a class="headerlink" href="#problem-definition-background" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="goals-and-objectives-of-this-project-that-will-address-this-problem">
-<h3>Goals and objectives of this project that will address this problem<a class="headerlink" href="#goals-and-objectives-of-this-project-that-will-address-this-problem" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h1>Goals and objectives of this project that will address this problem<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>Efficiently conduct environmental assessments for pesticide registration and endangered species effects assessments for models that currently are deployed in a number of different ways (Fortran DOS executables, Windows programs, Excel spreadsheets) using data from a number of different data source.</p>
 </div>
-<div class="section" id="definition-of-the-population-the-problem-targets-and-what-measures-within-this-population-the-problem-addresses">
-<h3>Definition of the population the problem targets and what measures within this population the problem addresses<a class="headerlink" href="#definition-of-the-population-the-problem-targets-and-what-measures-within-this-population-the-problem-addresses" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h1>Definition of the population the problem targets and what measures within this population the problem addresses<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h1>
 <p>EFED risk assessors are the target audience for the ecological models. Main contacts include Bill Eckel, Ed Odenkirchen, and Tom Steeger. Three divisions within OPP will use the human health version of the product- HED, AD, and RD. Contacts include Vickie Dellarco, Jennifer McClain, Matt Lloyd, and Dana Vogel from the initial meeting.</p>
 <p>The ecological and human health divisions of OPP already share implementation of some of the models. There may be instances where OPPT personnel used similar models as the OPP human health risk assessment divisions and may use some of the models a la carte.  Members of the public, academia, and the registrants may use the product via a public facing web page in the future.</p>
 <p>As python code, it can be run on a computer locally using a web browser as an interface (without being on the Internet, which will be necessary for the EPA to use it for applications involving confidential business information) and/or it can be hosted on the Internet as a web domain so that the public can access the public domain models that are used to determine pesticide registration and label restrictions (available at <a class="reference external" href="http://www.ubertool.org">http://www.ubertool.org</a>).  Component libraries for the ubertool can be accessed individually in non-HTML applications.  Alternatively, the code could be hosted on an EPA server with the requisite technologies to provide online access to the python code.  Regardless of how it is accessed, some of the models (these are mostly older Fortran codes in the public domain, not web applications) are of interest to the EPA pesticide office and could potentially realize significant efficiencies in regulating pesticides, transparency for the ecological risk assessment process, and higher levels of quality assurance given the larger audience that might use the models&#8211;whether for chemical regulation or for educational purposes.</p>
 </div>
-<div class="section" id="reason-the-project-includes-a-modeling-approach-to-address-the-problem-is-it-a-new-predictive-tool">
-<h3>Reason the project includes a modeling approach to address the problem (is it a new predictive tool?)<a class="headerlink" href="#reason-the-project-includes-a-modeling-approach-to-address-the-problem-is-it-a-new-predictive-tool" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h1>Reason the project includes a modeling approach to address the problem (is it a new predictive tool?)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
 <p>EPA is responsible for registering pesticides under FIFRA; as part of the registration process, the EPA’s Ecological Fate and Effects Division of the Office of Chemical Safety and Pollution is responsible for analyzing data and developing/ implementing ecological models that estimate risks to non-target receptors. The Food Quality Protection Act of 1996 mandated the Environmental Protection Agency (EPA) to implement a new program for assessing the risks of pesticides, registration review. The decision to register a pesticide is based on the consideration of scientific data and other factors showing that it will not cause unreasonable risks to human health, workers, or the environment when used as directed on product labeling. The registration review program is intended to ensure that, as the ability to assess risk evolves and as policies and practices change, all registered pesticides continue to meet the statutory standard of no unreasonable adverse effects to human health and the environment. Changes in science, public policy, and pesticide use practices will occur over time. Through the new registration review program, EPA periodically reevaluates pesticides to ensure that as change occurs, products in the marketplace can be used safely. As part of the registration review process, EFED is assessing risks of pesticides to Federally-listed threatened and/or endangered (listed) species from registered uses of pesticides.  These assessments are conducted in accordance with the Overview Document[1], provisions of the Endangered Species Act (ESA), and the Services’ Endangered Species Consultation Handbook (NMFS 1998). The models used are periodically updated in view of new pesticides, changing science, and as novel exposure pathways come to light.</p>
 </div>
 <div class="section" id="models-to-be-incorporated">
-<h3>Models to be incorporated<a class="headerlink" href="#models-to-be-incorporated" title="Permalink to this headline">¶</a></h3>
+<h1>Models to be incorporated<a class="headerlink" href="#models-to-be-incorporated" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="databases-to-be-incorporated">
-<h3>Databases to be incorporated<a class="headerlink" href="#databases-to-be-incorporated" title="Permalink to this headline">¶</a></h3>
+<h1>Databases to be incorporated<a class="headerlink" href="#databases-to-be-incorporated" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="projected-outcomes-and-findings">
-<h3>Projected outcomes and findings<a class="headerlink" href="#projected-outcomes-and-findings" title="Permalink to this headline">¶</a></h3>
+<h1>Projected outcomes and findings<a class="headerlink" href="#projected-outcomes-and-findings" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="summary-of-relevant-literature">
-<h3>Summary of relevant literature<a class="headerlink" href="#summary-of-relevant-literature" title="Permalink to this headline">¶</a></h3>
+<h1>Summary of relevant literature<a class="headerlink" href="#summary-of-relevant-literature" title="Permalink to this headline">¶</a></h1>
 </div>
-<div class="section" id="types-of-decisions-that-may-be-made-as-a-result-of-this-project">
-<h3>Types of decisions that may be made as a result of this project<a class="headerlink" href="#types-of-decisions-that-may-be-made-as-a-result-of-this-project" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h1>Types of decisions that may be made as a result of this project<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h1>
 </div>
-<div class="section" id="background-information-on-the-problem">
-<h3>Background information on the problem<a class="headerlink" href="#background-information-on-the-problem" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h1>Background information on the problem<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h1>
 <p>EPA (2004) provides an overview of OPP’s ecological risk assessment process:
 www.epa.gov/espp/consultation/ecorisk-overview.pdf</p>
 </div>
-</div>
-<div class="section" id="project-task-description-and-schedule">
-<h2>Project Task Description and Schedule<a class="headerlink" href="#project-task-description-and-schedule" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="summary-of-work-to-be-performed-products-to-be-produced-and-the-schedule-for-implementation">
-<h3>Summary of work to be performed, products to be produced, and the schedule for implementation<a class="headerlink" href="#summary-of-work-to-be-performed-products-to-be-produced-and-the-schedule-for-implementation" title="Permalink to this headline">¶</a></h3>
+<h1>Summary of work to be performed, products to be produced, and the schedule for implementation<a class="headerlink" href="#summary-of-work-to-be-performed-products-to-be-produced-and-the-schedule-for-implementation" title="Permalink to this headline">¶</a></h1>
 <p>To create an aggregate ubertool assessment, a user will have created the above data objects for each of the tables above, and will combine them to reate a batched assessment.  A tree with dropdown comboboxes that reflect available data objects saved to the user account will be presented to the user.  By selecting an appropriate data object for each of the 8 data node objects on the tree, the user can then execute the aggregate ubertool to run the included models.  At this point, there will be no option to deselect a constituent model in the aggregate ubertool.  We need a figure of a mock-up of the ubertool aggregate data tree.</p>
 <p>An additional priority is development of the spatial overlay tool to compare endangered species ranges to crop and pesticide application distributions.  This will develop will proceed separately from the aggregate ubertool initially.</p>
 <p>A future priority is using the fate and transport models to create exposure concentrations data objects that are used by a number of the ecological models.</p>
 </div>
 <div class="section" id="list-of-products-deliverables-and-milestones-to-be-completed-in-the-various-stages-of-the-project">
-<h3>List of products, deliverables, and milestones to be completed in the various stages of the project<a class="headerlink" href="#list-of-products-deliverables-and-milestones-to-be-completed-in-the-various-stages-of-the-project" title="Permalink to this headline">¶</a></h3>
+<h1>List of products, deliverables, and milestones to be completed in the various stages of the project<a class="headerlink" href="#list-of-products-deliverables-and-milestones-to-be-completed-in-the-various-stages-of-the-project" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="schedule-of-anticipated-start-and-completion-dates-for-the-milestones-and-deliverables-and-persons-responsible-for-each">
-<h3>Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each<a class="headerlink" href="#schedule-of-anticipated-start-and-completion-dates-for-the-milestones-and-deliverables-and-persons-responsible-for-each" title="Permalink to this headline">¶</a></h3>
+<h1>Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each<a class="headerlink" href="#schedule-of-anticipated-start-and-completion-dates-for-the-milestones-and-deliverables-and-persons-responsible-for-each" title="Permalink to this headline">¶</a></h1>
 </div>
-</div>
-<div class="section" id="quality-objectives-and-criteria-for-model-inputs-outputs-a7">
-<h2>Quality Objectives and Criteria for Model Inputs/Outputs (A7)<a class="headerlink" href="#quality-objectives-and-criteria-for-model-inputs-outputs-a7" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="project-data-quality-objectives-dqos-performance-criteria-and-acceptance-criteria">
-<h3>Project data quality objectives (DQOs), performance criteria, and acceptance criteria<a class="headerlink" href="#project-data-quality-objectives-dqos-performance-criteria-and-acceptance-criteria" title="Permalink to this headline">¶</a></h3>
+<h1>Project data quality objectives (DQOs), performance criteria, and acceptance criteria<a class="headerlink" href="#project-data-quality-objectives-dqos-performance-criteria-and-acceptance-criteria" title="Permalink to this headline">¶</a></h1>
 <p>All model components will be developed using an appropriate approach to quality assurance and documentation.</p>
 </div>
 <div class="section" id="description-of-task-that-needs-to-be-addressed-and-the-intended-uses-of-the-output-of-the-modeling-project-to-achieve-the-task">
-<h3>Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task<a class="headerlink" href="#description-of-task-that-needs-to-be-addressed-and-the-intended-uses-of-the-output-of-the-modeling-project-to-achieve-the-task" title="Permalink to this headline">¶</a></h3>
+<h1>Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task<a class="headerlink" href="#description-of-task-that-needs-to-be-addressed-and-the-intended-uses-of-the-output-of-the-modeling-project-to-achieve-the-task" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="list-of-requirements-associated-with-the-hardware-software-configuration-for-those-studies-involving-software-evaluation">
-<h3>List of requirements associated with the hardware/software configuration for those studies involving software evaluation<a class="headerlink" href="#list-of-requirements-associated-with-the-hardware-software-configuration-for-those-studies-involving-software-evaluation" title="Permalink to this headline">¶</a></h3>
+<h1>List of requirements associated with the hardware/software configuration for those studies involving software evaluation<a class="headerlink" href="#list-of-requirements-associated-with-the-hardware-software-configuration-for-those-studies-involving-software-evaluation" title="Permalink to this headline">¶</a></h1>
 <p>Python uses web application frameworks that conform to a common standard called the Web Server Gateway Interface (WSGI).  We currently use two frameworks, webapp2 and Django, that help automate the integration of the Python backend and the web application frontend allowing for rapid development.</p>
 <p>Web hosting services provide the cloud storage and host the web site containing the web applications.  These web services are vital to the übertool in terms of accessibility and data processing.  The Python web application frameworks work with the web hosting services to ultimately provide the deliverable to the end user.</p>
 <p>The nature of web application development allows for the use of many cross-platform (i.e. Microsoft Windows, Apple OSX, Redhat Linux, etc.) software programs.  Python itself is a cross-platform language designed to easily integrate various programming languages.  The software development environment includes text editors such as Sublime Text, Python IDEs such as Spyder, Python extensions such as NumPy, and web browsers such as Microsoft’s Internet Explorer, Google’s Chrome, and Mozilla’s Firefox.</p>
 <p>The source code for the übertool is version controlled using GitHub.  GitHub manages all changes to the source code, allowing for simultaneous development from multiple developers on the same source code.  Each developer has his/her own “branch” of the source code on which they work.  These branches are merged back into the “trunk” or master branch of the source code as the software is updated.  Software can be rolled back as necessary as GitHub tracks the history of the software development.</p>
 <p>The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is cross-platform, flexible, and open source.</p>
-</div>
-</div>
-<div class="section" id="documentation-and-records">
-<h2>Documentation and records<a class="headerlink" href="#documentation-and-records" title="Permalink to this headline">¶</a></h2>
 <p>An updated version of the quality assurance plan will be developed annually and distributed by email. The date of the latest update will be included in the plan. Records of yearly quality assurance audits performed by the QA manager and QA officer are maintained by the QA manager. The auditor uses a checklist to mark which portions of the QAPP are followed, and to document deviations or absence of any QA measures. The results of such audits shall be documented and filed by the Quality Assurance Manager. The audit process itself shall be designed to objectively measure compliance with written procedures and assess the effectiveness of the process. The evaluation shall include interviews with development team members, and a review of research project work and quality records.</p>
 <p>Before submission of a paper to an archival journal, the work will be reviewed for conformance with the applicable quality assurance criteria. Program code and output will be maintained in electronic data files and backed up on cloud platform (www.github.com). These documents will be maintained for a minimum of 5 years after the completion of the project.</p>
+</div>
 <div class="section" id="code-standards-code-auditing-and-testing-reports-interim-project-progress-reports">
-<h3>Code standards, code auditing and testing reports, interim project progress reports<a class="headerlink" href="#code-standards-code-auditing-and-testing-reports-interim-project-progress-reports" title="Permalink to this headline">¶</a></h3>
+<h1>Code standards, code auditing and testing reports, interim project progress reports<a class="headerlink" href="#code-standards-code-auditing-and-testing-reports-interim-project-progress-reports" title="Permalink to this headline">¶</a></h1>
 <blockquote>
 <div>Potential collaboration/development tools include:</div></blockquote>
 <ul class="simple">
@@ -220,78 +641,66 @@ www.epa.gov/espp/consultation/ecorisk-overview.pdf</p>
 <p>Some of these development tools may be accessible through ubertool subdomains in order to allow access from within the EPA firewall.</p>
 </div>
 <div class="section" id="configuration-management-after-production-version-and-code-maintenance-e-g-or-software-internal-documentation-of-logic-and-structure-manuals">
-<h3>Configuration management (after production version) and code maintenance (e.g., or software internal documentation of logic and structure) manuals<a class="headerlink" href="#configuration-management-after-production-version-and-code-maintenance-e-g-or-software-internal-documentation-of-logic-and-structure-manuals" title="Permalink to this headline">¶</a></h3>
+<h1>Configuration management (after production version) and code maintenance (e.g., or software internal documentation of logic and structure) manuals<a class="headerlink" href="#configuration-management-after-production-version-and-code-maintenance-e-g-or-software-internal-documentation-of-logic-and-structure-manuals" title="Permalink to this headline">¶</a></h1>
 </div>
-</div>
-<div class="section" id="quality-assurance-quality-control-processes">
-<h2>Quality Assurance/Quality Control Processes<a class="headerlink" href="#quality-assurance-quality-control-processes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="resources-and-responsibilities-for-verification-of-model-output">
-<h3>Resources and responsibilities for verification of model output<a class="headerlink" href="#resources-and-responsibilities-for-verification-of-model-output" title="Permalink to this headline">¶</a></h3>
+<h1>Resources and responsibilities for verification of model output<a class="headerlink" href="#resources-and-responsibilities-for-verification-of-model-output" title="Permalink to this headline">¶</a></h1>
 <p>In addition to input data, government publications and publically available scientific liberature will be considered for the development of the model. For example, the Agency’s Wildlife Exposure Factors Handbook will be considered for estimating the dose to birds, mammals, terrestrial phase amphibians, reptiles, and terrestrial insects via ingestion of water by determining the appropriate allometric equations for each taxa’s drinking water intake.</p>
 </div>
 <div class="section" id="analysis-of-model-output-relative-to-acceptance-criteria">
-<h3>Analysis of model output relative to acceptance criteria<a class="headerlink" href="#analysis-of-model-output-relative-to-acceptance-criteria" title="Permalink to this headline">¶</a></h3>
+<h1>Analysis of model output relative to acceptance criteria<a class="headerlink" href="#analysis-of-model-output-relative-to-acceptance-criteria" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="corrective-action-to-be-taken-if-criteria-are-not-met">
-<h3>Corrective action to be taken if criteria are not met<a class="headerlink" href="#corrective-action-to-be-taken-if-criteria-are-not-met" title="Permalink to this headline">¶</a></h3>
+<h1>Corrective action to be taken if criteria are not met<a class="headerlink" href="#corrective-action-to-be-taken-if-criteria-are-not-met" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="standard-operating-procedures">
-<h3>Standard Operating Procedures<a class="headerlink" href="#standard-operating-procedures" title="Permalink to this headline">¶</a></h3>
+<h1>Standard Operating Procedures<a class="headerlink" href="#standard-operating-procedures" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="criteria-used-to-review-and-validate-accept-reject-or-qualify-model-components-such-as-theory-mathematical-procedures-code-and-calibration-convergence-criteria-etc">
-<h3>Criteria used to review and validate (accept, reject, or qualify) model components such as theory, mathematical procedures, code, and calibration (convergence criteria, etc.)<a class="headerlink" href="#criteria-used-to-review-and-validate-accept-reject-or-qualify-model-components-such-as-theory-mathematical-procedures-code-and-calibration-convergence-criteria-etc" title="Permalink to this headline">¶</a></h3>
+<h1>Criteria used to review and validate (accept, reject, or qualify) model components such as theory, mathematical procedures, code, and calibration (convergence criteria, etc.)<a class="headerlink" href="#criteria-used-to-review-and-validate-accept-reject-or-qualify-model-components-such-as-theory-mathematical-procedures-code-and-calibration-convergence-criteria-etc" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="criteria-used-to-review-and-validate-input-data">
-<h3>Criteria used to review and validate input data<a class="headerlink" href="#criteria-used-to-review-and-validate-input-data" title="Permalink to this headline">¶</a></h3>
+<h1>Criteria used to review and validate input data<a class="headerlink" href="#criteria-used-to-review-and-validate-input-data" title="Permalink to this headline">¶</a></h1>
 <p>To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come from verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations will be compared against simple analytical cases in order to localize the source of the error in the code. Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments to model structure as indicated by the feedback.</p>
 <p>Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification, and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.</p>
 </div>
 <div class="section" id="criteria-used-to-test-model-performance">
-<h3>Criteria used to test model performance<a class="headerlink" href="#criteria-used-to-test-model-performance" title="Permalink to this headline">¶</a></h3>
+<h1>Criteria used to test model performance<a class="headerlink" href="#criteria-used-to-test-model-performance" title="Permalink to this headline">¶</a></h1>
 <p>Model performance is checked through the ‘Batch’ mode, which sequentially calculates scenarios provided in the template. Two testing criterion are considered here: 1. repeat the same scenarios in the template (e.g. 10 times), and check the consistency of model inputs and outputs among 10 scenarios; 2. list a large number of scenarios (e.g. 10,000) and estimate the time consumed during the computation.</p>
 </div>
 <div class="section" id="criteria-used-to-review-or-validate-model-outputs">
-<h3>Criteria used to review or validate model outputs<a class="headerlink" href="#criteria-used-to-review-or-validate-model-outputs" title="Permalink to this headline">¶</a></h3>
+<h1>Criteria used to review or validate model outputs<a class="headerlink" href="#criteria-used-to-review-or-validate-model-outputs" title="Permalink to this headline">¶</a></h1>
 <p>The integrity of model output data will be verified and validated by project technical staff. Reviews may include a thorough evaluation of content and/or a “spot-check” of calculated between output tables (Figure below) in the QA/QC page and verified EPA reports. Should a review identify an aberration, the reviewer will notify those responsible for taking corrective actions. The QA officers will be notified if corrective action is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel during the model calibration and validation stage of the project. In-progress assessments of validation issues will be discussed between a team including both technical and QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well any corrective actions that were implemented.</p>
 </div>
-</div>
-<div class="section" id="hardware-software-configuration">
-<h2>Hardware/Software Configuration<a class="headerlink" href="#hardware-software-configuration" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="list-of-equipment-hardware-and-software-that-will-be-used-on-the-project">
-<h3>List of equipment, hardware, and software that will be used on the project<a class="headerlink" href="#list-of-equipment-hardware-and-software-that-will-be-used-on-the-project" title="Permalink to this headline">¶</a></h3>
+<h1>List of equipment, hardware, and software that will be used on the project<a class="headerlink" href="#list-of-equipment-hardware-and-software-that-will-be-used-on-the-project" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="decisions-regarding-security-issues">
-<h3>Decisions regarding security issues<a class="headerlink" href="#decisions-regarding-security-issues" title="Permalink to this headline">¶</a></h3>
+<h1>Decisions regarding security issues<a class="headerlink" href="#decisions-regarding-security-issues" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="decisions-regarding-software-installation-issues">
-<h3>Decisions regarding software installation issues<a class="headerlink" href="#decisions-regarding-software-installation-issues" title="Permalink to this headline">¶</a></h3>
+<h1>Decisions regarding software installation issues<a class="headerlink" href="#decisions-regarding-software-installation-issues" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="coding-standards">
-<h3>Coding standards<a class="headerlink" href="#coding-standards" title="Permalink to this headline">¶</a></h3>
+<h1>Coding standards<a class="headerlink" href="#coding-standards" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="testing-plans">
-<h3>Testing plans<a class="headerlink" href="#testing-plans" title="Permalink to this headline">¶</a></h3>
+<h1>Testing plans<a class="headerlink" href="#testing-plans" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="plans-for-an-api">
-<h3>Plans for an API<a class="headerlink" href="#plans-for-an-api" title="Permalink to this headline">¶</a></h3>
+<h1>Plans for an API<a class="headerlink" href="#plans-for-an-api" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="plans-for-a-maintenance-manual-explaining-software-logic-and-organization">
-<h3>Plans for a maintenance manual (explaining software logic and organization)<a class="headerlink" href="#plans-for-a-maintenance-manual-explaining-software-logic-and-organization" title="Permalink to this headline">¶</a></h3>
+<h1>Plans for a maintenance manual (explaining software logic and organization)<a class="headerlink" href="#plans-for-a-maintenance-manual-explaining-software-logic-and-organization" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="plans-for-source-code-for-the-ultimate-user-of-the-model-or-model-framework">
-<h3>Plans for source code for the ultimate user of the model or model framework<a class="headerlink" href="#plans-for-source-code-for-the-ultimate-user-of-the-model-or-model-framework" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="document-compliance">
-<h2>Document Compliance<a class="headerlink" href="#document-compliance" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="statement-of-question-objectives-and-hypotheses">
-<h2>Statement of Question, Objectives, and Hypotheses<a class="headerlink" href="#statement-of-question-objectives-and-hypotheses" title="Permalink to this headline">¶</a></h2>
+<h1>Plans for source code for the ultimate user of the model or model framework<a class="headerlink" href="#plans-for-source-code-for-the-ultimate-user-of-the-model-or-model-framework" title="Permalink to this headline">¶</a></h1>
 <p>Overarching research question, derived from problem statement</p>
 <p>Intended outcome of this piece of research (usually to test hypotheses and define relationships), including an estimate of time and resources needed</p>
 <p>Specific mechanistic hypotheses, tests in summary, populations to which the hypotheses are to be applied</p>
+</div>
 <div class="section" id="methods">
-<h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
+<h1>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h1>
 <ol class="upperalpha simple">
 <li>List of variables and sources of variation, sorted byindepen- dent and dependent variables, with reasons for their selection</li>
 <li>Other sources of variation and how they will be dealt with</li>
@@ -300,81 +709,86 @@ www.epa.gov/espp/consultation/ecorisk-overview.pdf</p>
 </ol>
 </div>
 <div class="section" id="budget-and-schedule">
-<h3>Budget and Schedule<a class="headerlink" href="#budget-and-schedule" title="Permalink to this headline">¶</a></h3>
+<h1>Budget and Schedule<a class="headerlink" href="#budget-and-schedule" title="Permalink to this headline">¶</a></h1>
 <ol class="upperalpha simple">
 <li>A comprehensive three-column budget for the duration of the study</li>
 <li>A schedule of tasks with initiation and completion target dates, with designated responsibilities and reporting requirements and dates</li>
 </ol>
 </div>
 <div class="section" id="reports-and-publications">
-<h3>Reports and Publications<a class="headerlink" href="#reports-and-publications" title="Permalink to this headline">¶</a></h3>
+<h1>Reports and Publications<a class="headerlink" href="#reports-and-publications" title="Permalink to this headline">¶</a></h1>
 <ol class="upperalpha simple">
 <li>Intended disposition of research results, in terms of audience, publication type, and timing</li>
 <li>Fiscal, accounting, and procedural reporting requirements and how they will be met</li>
 </ol>
 </div>
 <div class="section" id="references">
-<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
 <p>Apandi, T., 2009 Extreme Programming Pocket Guide. O’Reilly Media, Sebastopol, CA.</p>
 <p>USEPA. 2004. Overview of the Ecological Risk Assessment Process in the Office of Pesticide Programs. U.S. Environmental Protection Agency, Office of Prevention, Pesticides and Toxic Substances, Office of Pesticide Programs, Washington DC. 100 pp. January 23, 2004.</p>
 <p>Helms, J.C., 2013. Web-Based Application Quality Assurance Testing. Accessed at  <a class="reference external" href="http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf">http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf</a> on 9/5/2013.</p>
 <p>U.S. FWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species Consultation Handbook: Procedures for Conducting Consultation and Conference Activities Under Section 7 of the Endangered Species Act. Final Draft. March 1998.</p>
-</div>
-</div>
 </div>
 
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">ubertool Quality Assurance Project Plan</a><ul>
 <li><a class="reference internal" href="#project-management">Project Management</a><ul>
+<li><a class="reference internal" href="#title-and-approval-sheet">Title and Approval Sheet</a><ul>
+<li><a class="reference internal" href="#title-of-qa-project-plan">Title of QA Project Plan</a></li>
 <li><a class="reference internal" href="#revision-number-of-qa-project-plan">Revision number of QA Project Plan</a></li>
 <li><a class="reference internal" href="#effective-data-of-qa-project-plan">Effective Data of QA Project Plan</a></li>
 <li><a class="reference internal" href="#names-of-all-organizations-involved-in-the-modeling-project">Names of all organizations involved in the modeling project</a></li>
-<li><a class="reference internal" href="#names-of-all-key-project-officials-with-space-for-dataed-signatures">Names of all key project officials, with space for dataed signatures</a></li>
+<li><a class="reference internal" href="#names-of-all-key-project-officials-with-space-for-dated-signatures">Names of all key project officials, with space for dated signatures</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#project-task-organization">Project/Task Organization</a><ul>
-<li><a class="reference internal" href="#objective-and-product-vision">Objective and Product Vision</a></li>
-<li><a class="reference internal" href="#context-of-the-research">Context of the research</a></li>
-<li><a class="reference internal" href="#team-organization-and-task-implementation">Team Organization and Task Implementation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#problem-definition-background">Problem definition/Background</a><ul>
+<li><a class="reference internal" href="#table-of-contents-and-document-control-format">Table of Contents and Document Control Format</a></li>
+<li><a class="reference internal" href="#distribution-list-a3">Distribution List (A3)</a></li>
+<li><a class="reference internal" href="#project-task-organization-a4">Project/Task Organization (A4)</a></li>
+<li><a class="reference internal" href="#problem-definition-background-a5">Problem Definition/Background (A5)</a><ul>
 <li><a class="reference internal" href="#goals-and-objectives-of-this-project-that-will-address-this-problem">Goals and objectives of this project that will address this problem</a></li>
 <li><a class="reference internal" href="#definition-of-the-population-the-problem-targets-and-what-measures-within-this-population-the-problem-addresses">Definition of the population the problem targets and what measures within this population the problem addresses</a></li>
 <li><a class="reference internal" href="#reason-the-project-includes-a-modeling-approach-to-address-the-problem-is-it-a-new-predictive-tool">Reason the project includes a modeling approach to address the problem (is it a new predictive tool?)</a></li>
+<li><a class="reference internal" href="#types-of-decisions-that-may-be-made-as-a-result-of-this-project">Types of decisions that may be made as a result of this project</a></li>
+<li><a class="reference internal" href="#names-of-those-responsible-for-making-these-decisions">Names of those responsible for making these decisions</a></li>
+<li><a class="reference internal" href="#any-other-types-of-problems-that-the-project-may-address">Any other types of problems that the project may address</a></li>
+<li><a class="reference internal" href="#background-information-on-the-problem">Background information on the problem</a></li>
+<li><a class="reference internal" href="#reasons-the-project-is-important-how-it-supports-other-existing-research-programs-or-regulations">Reasons the project is important, how it supports other existing research, programs, or regulations</a></li>
+<li><a class="reference internal" href="#conflicts-or-uncertainties-that-will-be-resolved-by-this-project">Conflicts or uncertainties that will be resolved by this project</a></li>
+<li><a class="reference internal" href="#reasons-one-model-is-determined-to-be-better-than-another-for-this-application">Reasons one model is determined to be better than another for this application</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#project-task-description-and-schedule-a6">Project/Task Description and Schedule (A6)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#objective-and-product-vision">Objective and Product Vision</a></li>
+<li><a class="reference internal" href="#context-of-the-research">Context of the research</a></li>
+<li><a class="reference internal" href="#team-organization-and-task-implementation">Team Organization and Task Implementation</a></li>
+<li><a class="reference internal" href="#id1">Goals and objectives of this project that will address this problem</a></li>
+<li><a class="reference internal" href="#id2">Definition of the population the problem targets and what measures within this population the problem addresses</a></li>
+<li><a class="reference internal" href="#id3">Reason the project includes a modeling approach to address the problem (is it a new predictive tool?)</a></li>
 <li><a class="reference internal" href="#models-to-be-incorporated">Models to be incorporated</a></li>
 <li><a class="reference internal" href="#databases-to-be-incorporated">Databases to be incorporated</a></li>
 <li><a class="reference internal" href="#projected-outcomes-and-findings">Projected outcomes and findings</a></li>
 <li><a class="reference internal" href="#summary-of-relevant-literature">Summary of relevant literature</a></li>
-<li><a class="reference internal" href="#types-of-decisions-that-may-be-made-as-a-result-of-this-project">Types of decisions that may be made as a result of this project</a></li>
-<li><a class="reference internal" href="#background-information-on-the-problem">Background information on the problem</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#project-task-description-and-schedule">Project Task Description and Schedule</a><ul>
+<li><a class="reference internal" href="#id4">Types of decisions that may be made as a result of this project</a></li>
+<li><a class="reference internal" href="#id5">Background information on the problem</a></li>
 <li><a class="reference internal" href="#summary-of-work-to-be-performed-products-to-be-produced-and-the-schedule-for-implementation">Summary of work to be performed, products to be produced, and the schedule for implementation</a></li>
 <li><a class="reference internal" href="#list-of-products-deliverables-and-milestones-to-be-completed-in-the-various-stages-of-the-project">List of products, deliverables, and milestones to be completed in the various stages of the project</a></li>
 <li><a class="reference internal" href="#schedule-of-anticipated-start-and-completion-dates-for-the-milestones-and-deliverables-and-persons-responsible-for-each">Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#quality-objectives-and-criteria-for-model-inputs-outputs-a7">Quality Objectives and Criteria for Model Inputs/Outputs (A7)</a><ul>
 <li><a class="reference internal" href="#project-data-quality-objectives-dqos-performance-criteria-and-acceptance-criteria">Project data quality objectives (DQOs), performance criteria, and acceptance criteria</a></li>
 <li><a class="reference internal" href="#description-of-task-that-needs-to-be-addressed-and-the-intended-uses-of-the-output-of-the-modeling-project-to-achieve-the-task">Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task</a></li>
 <li><a class="reference internal" href="#list-of-requirements-associated-with-the-hardware-software-configuration-for-those-studies-involving-software-evaluation">List of requirements associated with the hardware/software configuration for those studies involving software evaluation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#documentation-and-records">Documentation and records</a><ul>
 <li><a class="reference internal" href="#code-standards-code-auditing-and-testing-reports-interim-project-progress-reports">Code standards, code auditing and testing reports, interim project progress reports</a></li>
 <li><a class="reference internal" href="#configuration-management-after-production-version-and-code-maintenance-e-g-or-software-internal-documentation-of-logic-and-structure-manuals">Configuration management (after production version) and code maintenance (e.g., or software internal documentation of logic and structure) manuals</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#quality-assurance-quality-control-processes">Quality Assurance/Quality Control Processes</a><ul>
 <li><a class="reference internal" href="#resources-and-responsibilities-for-verification-of-model-output">Resources and responsibilities for verification of model output</a></li>
 <li><a class="reference internal" href="#analysis-of-model-output-relative-to-acceptance-criteria">Analysis of model output relative to acceptance criteria</a></li>
 <li><a class="reference internal" href="#corrective-action-to-be-taken-if-criteria-are-not-met">Corrective action to be taken if criteria are not met</a></li>
@@ -383,9 +797,6 @@ www.epa.gov/espp/consultation/ecorisk-overview.pdf</p>
 <li><a class="reference internal" href="#criteria-used-to-review-and-validate-input-data">Criteria used to review and validate input data</a></li>
 <li><a class="reference internal" href="#criteria-used-to-test-model-performance">Criteria used to test model performance</a></li>
 <li><a class="reference internal" href="#criteria-used-to-review-or-validate-model-outputs">Criteria used to review or validate model outputs</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#hardware-software-configuration">Hardware/Software Configuration</a><ul>
 <li><a class="reference internal" href="#list-of-equipment-hardware-and-software-that-will-be-used-on-the-project">List of equipment, hardware, and software that will be used on the project</a></li>
 <li><a class="reference internal" href="#decisions-regarding-security-issues">Decisions regarding security issues</a></li>
 <li><a class="reference internal" href="#decisions-regarding-software-installation-issues">Decisions regarding software installation issues</a></li>
@@ -394,18 +805,10 @@ www.epa.gov/espp/consultation/ecorisk-overview.pdf</p>
 <li><a class="reference internal" href="#plans-for-an-api">Plans for an API</a></li>
 <li><a class="reference internal" href="#plans-for-a-maintenance-manual-explaining-software-logic-and-organization">Plans for a maintenance manual (explaining software logic and organization)</a></li>
 <li><a class="reference internal" href="#plans-for-source-code-for-the-ultimate-user-of-the-model-or-model-framework">Plans for source code for the ultimate user of the model or model framework</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#document-compliance">Document Compliance</a></li>
-<li><a class="reference internal" href="#statement-of-question-objectives-and-hypotheses">Statement of Question, Objectives, and Hypotheses</a><ul>
 <li><a class="reference internal" href="#methods">Methods</a></li>
 <li><a class="reference internal" href="#budget-and-schedule">Budget and Schedule</a></li>
 <li><a class="reference internal" href="#reports-and-publications">Reports and Publications</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 
   <h4>Previous topic</h4>
@@ -414,12 +817,14 @@ www.epa.gov/espp/consultation/ecorisk-overview.pdf</p>
   <h4>Next topic</h4>
   <p class="topless"><a href="publications.html"
                         title="next chapter">Publications</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/qapp.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/qapp.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -436,7 +841,7 @@ www.epa.gov/espp/consultation/ecorisk-overview.pdf</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -451,12 +856,12 @@ www.epa.gov/espp/consultation/ecorisk-overview.pdf</p>
         <li class="right" >
           <a href="api.html" title="API"
              >previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

@@ -82,6 +82,48 @@ identified by Bill Eckel)
 - Managers: People who control the environment (Kate Sullivan [Branch Chief], Roy Sidle [Division Director],
 John Kenneke [CSS Matrix Interface], Tina Bohardi [CSS], Jim Cowles [Associate Director at EFED])
 
+Modern software development methods are used to develop the web application, proceeding according to the principles
+of “scrum” development, an iterative and incremental agile software development process for developing software
+applications (Lacey 2012). This approach is centered around deploying applications in short time increments and
+getting rapid feedback from end users.  Both of these occur at the end of each defined sprint period (2-6 weeks)
+in length. This deployment and feedback approach is paired with modern industry standard approaches from XP
+programming and agile development.  XP programming approaches include test-driven development, pair programming,
+collective code ownership, sustainable development pace, coding standards, continuous integration, and code
+refactoring. Agile development processes include approaches for
+
+Scrum meetings are weekly on the same day every week at 3pm with monthly sprints replacing the scrum meeting the
+first Thursday of every month.  Daily checkins are likely to be conducted in Athens and via phone at 3pm EST for
+approximately 15-30 minutes. Monthly ubertool progress reports are also scheduled with EFED via conference call.
+
+There are three core roles involved in this process, these roles are:
+* Product Owner: represents the stakeholders via stories backlog and priorities (Tom Purucker)
+* Development Team: delivers product increments at the end of each sprint (EPA employees, ORISE fellows, and SSA
+contractors working with ORD and EFED)
+* Scrum Master: scrum facilitator who removes impediments for delivering sprint goals/deliverables, performs
+tasking, bug priority, task followup, etc. (contracted)
+
+
+EFED Stakeholders:
+
+* Bill Eckel
+* Meridith Fry
+* Andrew Kanarek
+* Ed Odenkirchen
+* Michelle Thawley
+* Nelson Thurman
+* Dirk Young
+* others identified by Bill Eckel
+
+EPA Managers:
+
+* Mark Bagley [ERD Division Director]
+* Tina Bohardi [CSS NPD]
+* Jim Cowles [Associate Director at EFED]
+* John Kenneke [CSS Matrix Interface]
+* Matt Martin [CSS Ecological Modeling Project Lead]
+* Sandy Raimondo [CSS Dashboards Project Lead]
+* Kate Sullivan [EAB Branch Chief]
+
 Problem Definition/Background (A5)
 ==================================================
 Safety evaluations for pesticides are required for ecological and human health risks under a number of regulatory
@@ -103,6 +145,20 @@ regarding the evaluation process for regulatory risk evaluation.
 
 Goals and objectives of this project that will address this problem
 ---------------------------------------------------------------------
+The objective of this effort is to implement appropriate technologies and update the source code base for the übertool,
+a web application system that executes algorithms for pesticide registration and endangered species effects assessments,
+so that it can be deployed in scalable computational environments that provide front end access to cloud-executed
+models and database backbone capabilities for querying and storing parameter inputs/outputs. This system is to be
+deployed internally within the EPA for government users and externally on a public-facing server for use by the
+public, academia, and the regulated community. The intent of this implementation is to accomplish EPA goals
+concerning transparency of the data analyses and scientific algorithm estimation components of the pesticide
+registration process. The project vision is an Agency collaboration platform that serves as an integrated scientific
+workflow application to implement relevant assessment methods, respond to changing empirical data availability
+(e.g., required toxicity tests, bioassays) and incorporate current fate, exposure, and effect algorithms in a model
+selection framework. Unlike the time-inefficient and outdated collection of legacy science components, this scientific
+modeling platform will replace critical regulatory data analysis and modeling processes with a more efficient, 21st
+century system at a reasonable cost.
+
 Efficiently conduct environmental assessments for pesticide registration and endangered species effects assessments
 for models that currently are deployed in a number of different ways (Fortran DOS executables, Windows programs,
 Excel spreadsheets) using data from a number of different data sources.
@@ -129,6 +185,35 @@ accessed, some of the models (these are mostly older Fortran codes in the public
 of interest to the EPA pesticide office and could potentially realize significant efficiencies in regulating
 pesticides, transparency for the ecological risk assessment process, and higher levels of quality assurance given
 the larger audience that might use the models--whether for chemical regulation or for educational purposes.
+
+Pesticide evaluations are required for ecological and human health risks under a number of regulatory statutes (e.g.,
+Federal Insecticide, Fungicide, and Rodenticide Act (FIFRA), Pesticide Registration improvement Extension Act
+(PRIA 3), Federal Food, Drug, and Cosmetic Act (FD&C Act), Food Quality Protection Act (FQPA), Endangered Species
+Act (ESA)). Ecological risk assessments under FIRFA and ESA are often implemented by the Ecological Fate and
+Effects Division within the Office of Chemical Safety and Pollution Prevention by accessing model tools and
+databases that have been in continual development since the early 1980s on a range of software development platforms.
+These tools include Microsoft Excel Spreadsheets, Windows-based interfaces, legacy Fortran code compiled as DOS
+executables, as well as programs originally written in other programming languages (e.g., C, Perl, R). These models
+are parameterized with available information from a number of different source data sets that also may vary in format.
+The results are documented as risk assessment and management decisions for conventional active ingredients used in
+pesticide formulations. The National Pesticide Program manages 1100 active ingredients and 19000 products that must
+be reevaluated on a regular basis. The program also evaluates new pesticide formulations, ingredients, and novel uses
+of approved active ingredients. The result of this process is a large number of models to be run for many chemicals
+with many possible adverse outcomes that must be summarized and reported. The current system of distributed models
+and databases result in inefficiencies when conducting assessment and prevents transparency regarding the evaluation
+process for regulatory risk evaluation.
+
+The decision to register a pesticide is based on the consideration of scientific data and other factors showing that
+it will not cause unreasonable risks to human health, workers, or the environment when used as directed on product
+labeling. The registration review program is intended to ensure that, as the ability to assess risk evolves and as
+policies and practices change, all registered pesticides continue to meet the statutory standard of no unreasonable
+adverse effects to human health and the environment. Changes in science, public policy, and pesticide use practices
+occur over time. Through the registration review program, EPA periodically reevaluates pesticides to ensure that as
+change occurs, products in the marketplace can be used safely. As part of the registration review process, EFED
+assesses risks of pesticides to Federally-listed threatened and/or endangered (listed) species from registered uses
+of pesticides.  These assessments are conducted in accordance with provisions of the Endangered Species Act (ESA),
+and the Services’ Endangered Species Consultation Handbook (NMFS). The models used are periodically updated in
+view of new pesticides, changing science, and as novel exposure pathways come to light.
 
 Reason the project includes a modeling approach to address the problem (is it a new predictive tool?)
 ---------------------------------------------------------------------------------------------------------
@@ -203,74 +288,132 @@ The program office uses them, after a review process...
 Project/Task Description and Schedule (A6)
 ==================================================
 
-1.6.1. Summary of all work to be performed, products to be produced, and the schedule for implementation
- To create an aggregate ubertool assessment, a user will have created the above data objects for each of the tables above, and will combine them to create a batched assessment.  A tree with dropdown comboboxes that reflect available data objects saved to the user account will be presented to the user.  By selecting an appropriate data object for each of the 8 data node objects on the tree, the user can then execute the aggregate ubertool to run the included models.  At this point, there will be no option to deselect a constituent model in the aggregate ubertool.  We need a figure of a mock-up of the ubertool aggregate data tree.
+Summary of all work to be performed, products to be produced, and the schedule for implementation
+---------------------------------------------------------------------------------------------------------
+To create an aggregate ubertool assessment, a user will have created the above data objects for each of the
+tables above, and will combine them to create a batched assessment.  A tree with dropdown comboboxes that reflect
+available data objects saved to the user account will be presented to the user.  By selecting an appropriate data
+object for each of the 8 data node objects on the tree, the user can then execute the aggregate ubertool to run the
+included models.  At this point, there will be no option to deselect a constituent model in the aggregate ubertool.
+We need a figure of a mock-up of the ubertool aggregate data tree.
 
-An additional priority is development of the spatial overlay tool to compare endangered species ranges to crop and pesticide application distributions.  This will develop will proceed separately from the aggregate ubertool initially.
+An additional priority is development of the spatial overlay tool to compare endangered species ranges to crop and
+pesticide application distributions.  This will develop will proceed separately from the aggregate ubertool initially.
 
-A future priority is using the fate and transport models to create exposure concentrations data objects that are used by a number of the ecological models.
-1.6.2. List of products, deliverables, and milestones to be completed in the various stages of the project
+A future priority is using the fate and transport models to create exposure concentrations data objects that are used
+by a number of the ecological models.
 
-1.6.3. Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each
+List of products, deliverables, and milestones to be completed in the various stages of the project
+---------------------------------------------------------------------------------------------------------
 
+Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each
+------------------------------------------------------------------------------------------------------------------------
 
-1.7. Quality Objectives and Criteria for Model Inputs/Outputs (A7)
+Quality Objectives and Criteria for Model Inputs/Outputs (A7)
+====================================================================
 
-1.7.1. Project data quality objectives (DQOs), performance criteria, and acceptance criteria
-
+Project data quality objectives (DQOs), performance criteria, and acceptance criteria
+-------------------------------------------------------------------------------------
 All model components will be developed using an appropriate approach to quality assurance and documentation.
-1.7.2. Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task
 
-1.7.2.1 Ecological Models
+Description of task that needs to be addressed and the intended uses of the output of the modeling project
+to achieve the task
+------------------------------------------------------------------------------------------------------------------------
 
-A number of models are used to estimate risk to non-target species in this process.  These models are listed in Table 1 and their current development status within the ubertool.
+Ecological Models
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A number of models are used to estimate risk to non-target species in this process.  These models are listed in Table
+1 and their current development status within the ubertool.
 
-Table 1. Models used in OPP’s ecological risk assessment process
-Table 1. Models used in OPP’s ecological risk assessment process
-Model	In or Out for v1 of Integrated Ubertool?	Standalone version for website	Link
-EXAMS	Out	Possibly, but low priority
-PRZM	Out	Yes, functional but not QAed
-Geneec	In	Yes, functional but not QAed
-AgDrift/AgDisp	In	Spring deliverable
-First	Out	No, Human health
-PFAM	In	Unclear
-Tim	Out	Unclear
-Tier I Rice	In	Yes, functional but not QAed
-T-Herps	In	Yes, functional but not QAed
-T-Rex	In	Yes, functional but not QAed
-Kabam	In	Yes, functional but not QAed
-TerrPlant	In	Yes, functional but not QAed
-Sip	In	Yes, functional but not QAed
-Stir	In	Yes, functional but not QAed
-Dust	In	Yes, early version
-Super PRZM	Unclear, not for v1	Unclear
-Downstream Dilution Tool	Unclear, not sure current relationship to SAM	Unclear
-Spatial Aquatic Model	Not for V1	Unclear, summer development by EFED
-Perfum/Inhalation model	Unclear, in development	Unclear
-VVWM (similar to PFAM)	I don’t know	Not currently
-IEC	In	Yes
-PRZM-GW	Out
-PlantX	Out	In development
+Table 1. Models in version 1 of the ubertool
++--------------+-------------+
+|Model         | Purpose     |
++==============+=============+
+|TerrPlant     |             |
++--------------+-------------+
+|Sip           |             |
++--------------+-------------+
+|Stir          |             |
++--------------+-------------+
+|T-Rex|        |             |
++--------------+-------------+
+|T-Herps       |             |
++--------------+-------------+
+|IEC	       |             |
++--------------+-------------+
+|AgDrift       |             |
++--------------+-------------+
+|AgDrift-TRex  |             |
++--------------+-------------+
+|AgDrift-THerps|             |
++--------------+-------------+
+|Earthworm     |             |
++--------------+-------------+
+|Rice          |             |
++--------------+-------------+
+|Kabam         |             |
++--------------+-------------+
+|PFAM          |             |
++--------------+-------------+
+|SAM           |             |
++--------------+-------------+
 
-In addition, there are a number of ecological population models that are currently available that are designed to facilitate interaction with NHEERL and OPP concerning potential future development efforts that may be of interest to OCSPP.  These models are summarized in Table 2 but are not part of the integrated ubertool effort.
+Table 2. Candidate models for the untertool
++----------+----------------+
+|Model	   | Purpose        |
++==========+================+
+|EXAMS	   |                |
++----------+----------------+
+|PRZM	   |                |
++----------+----------------+
+|Geneec	   |                |
++----------+----------------+
+|VVWM      |                |
++----------+----------------+
+|First	   |                |
++----------+----------------+
+|DUST	   |                |
++----------+----------------+
+|TIM	   |                |
++----------+----------------+
+|DDM	   |                |
++----------+----------------+
+|PlantX	   |                |
++----------+----------------+
+|Bee-Rex   |                |
++----------+----------------+
+|SuperPRZM |                |
++----------+----------------+
 
-Table 2. Ecological population models currently available
-Model	Description	Link
-Exponential
-Logistic
-Gompertz
-Fox Surplus Yield
-Maximum Sustainable Yield
-Yule-Furry Markov Process
-Feller-Arley Markov Process
-Leslie Projection Matrix
-Leslie with Logistic Dose Response
+
+Table 3. Population models
++----------------------------------+-------------+
+|Model                             | Purpose     |
++==================================+=============+
+|Exponential                       |             |
++----------------------------------+-------------+
+|Logistic                          |             |
++----------------------------------+-------------+
+|Gompertz                          |             |
++----------------------------------+-------------+
+|Fox Surplus Yield                 |             |
++----------------------------------+-------------+
+|Maximum Sustainable Yield         |             |
++----------------------------------+-------------+
+|Yule-Furry Markov Process         |             |
++----------------------------------+-------------+
+|Feller-Arley Markov Process       |             |
++----------------------------------+-------------+
+|Leslie Projection Matrix          |             |
++----------------------------------+-------------+
+|Leslie with Logistic Dose Response|             |
++----------------------------------+-------------+
+
+
 
 1.7.2.3 Database Sources
 
 It will be necessary to crosswalk the data that is available in the database sources with the listed data object tables. The crosswalk is available at http://tiny.cc/ubertool_crosswalk
-
-
 
 Database backbone details (MongoDB, possibly Amazon-based via EC2) and mapping technologies (maybe Google maps plus postgis/postgresql) are still undecided.
 http://www.mongodb.org/display/DOCS/Amazon+EC2
@@ -279,7 +422,7 @@ https://developers.google.com/maps/documentation/webservices/
 http://postgis.refractions.net/
 http://www.postgresql.org/
 
-Table 3. Available databases with parameters of interest
+Table 4. Available databases with parameters of interest
 
 Database	Location	Description
 Ecological Incident Information System	C:\Documents and Settings\All Users\programs\EIIS\EIISv2.1.mdb	Data on incidents of adverse field effects plants and wild animals. (Nick Mastrota)
@@ -653,120 +796,6 @@ U.S. FWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species 
 
 
 
-Objective and Product Vision
-##########################
-The objective of this effort is to implement appropriate technologies and update the source code base for the übertool,
-a web application system that executes algorithms for pesticide registration and endangered species effects assessments,
- so that it can be deployed in scalable computational environments that provide front end access to cloud-executed models and database backbone capabilities for querying and storing parameter inputs/outputs. This system is to be deployed internally within the EPA for government users and externally on a public-facing server for use by the public, academia, and the regulated community. The intent of this implementation is to accomplish EPA goals concerning transparency of the data analyses and scientific algorithm estimation components of the pesticide registration process. The project vision is an Agency collaboration platform that serves as an integrated scientific workflow application to implement relevant assessment methods, respond to changing empirical data availability (e.g., required toxicity tests, bioassays) and incorporate current fate, exposure, and effect algorithms in a model selection framework. Unlike the time-inefficient and outdated collection of legacy science components, this scientific modeling platform will replace critical regulatory data analysis and modeling processes with a more efficient, 21st century system at a reasonable cost.
-
-Context of the research
-#########################
-Pesticide evaluations are required for ecological and human health risks under a number of regulatory statutes (e.g., Federal Insecticide, Fungicide, and Rodenticide Act (FIFRA), Pesticide Registration improvement Extension Act (PRIA 3), Federal Food, Drug, and Cosmetic Act (FD&C Act), Food Quality Protection Act (FQPA), Endangered Species Act (ESA)). Ecological risk assessments under FIRFA and ESA are often implemented by the Ecological Fate and Effects Division within the Office of Chemical Safety and Pollution Prevention by accessing model tools and databases that have been in continual development since the early 1980s on a range of software development platforms. These tools include Microsoft Excel Spreadsheets, Windows-based interfaces, legacy Fortran code compiled as DOS executables, as well as programs originally written in other programming languages (e.g., C, Perl, R). These models are parameterized with available information from a number of different source data sets that also may vary in format. The results are documented as risk assessment and management decisions for conventional active ingredients used in pesticide formulations. The National Pesticide Program manages 1100 active ingredients and 19000 products that must be reevaluated on a regular basis. The program also evaluates new pesticide formulations, ingredients, and novel uses of approved active ingredients. The result of this process is a large number of models to be run for many chemicals with many possible adverse outcomes that must be summarized and reported. The current system of distributed models and databases result in inefficiencies when conducting assessment and prevents transparency regarding the evaluation process for regulatory risk evaluation.
-
-The decision to register a pesticide is based on the consideration of scientific data and other factors showing that it will not cause unreasonable risks to human health, workers, or the environment when used as directed on product labeling. The registration review program is intended to ensure that, as the ability to assess risk evolves and as policies and practices change, all registered pesticides continue to meet the statutory standard of no unreasonable adverse effects to human health and the environment. Changes in science, public policy, and pesticide use practices occur over time. Through the registration review program, EPA periodically reevaluates pesticides to ensure that as change occurs, products in the marketplace can be used safely. As part of the registration review process, EFED assesses risks of pesticides to Federally-listed threatened and/or endangered (listed) species from registered uses of pesticides.  These assessments are conducted in accordance with provisions of the Endangered Species Act (ESA), and the Services’ Endangered Species Consultation Handbook (NMFS). The models used are periodically updated in view of new pesticides, changing science, and as novel exposure pathways come to light.
-
-Team Organization and Task Implementation
-###########################
-
-Modern software development methods are used to develop the web application, proceeding according to the principles of “scrum” development, an iterative and incremental agile software development process for developing software applications (Lacey 2012). This approach is centered around deploying applications in short time increments and getting rapid feedback from end users.  Both of these occur at the end of each defined sprint period (2-6 weeks)in length. This deployment and feedback approach is paired with modern industry standard approaches from XP programming and agile development.  XP programming approaches include test-driven development, pair programming, collective code ownership, sustainable development pace, coding standards, continuous integration, and code refactoring. Agile development processes include approaches for 
-
-Scrum meetings are weekly on the same day every week at 3pm with monthly sprints replacing the scrum meeting the first Thursday of every month.  Daily checkins are likely to be conducted in Athens and via phone at 3pm EST for approximately 15-30 minutes. Monthly ubertool progress reports are also scheduled with EFED via conference call.
-
-There are three core roles involved in this process, these roles are:
-* Product Owner: represents the stakeholders via stories backlog and priorities (Tom Purucker)
-* Development Team: delivers product increments at the end of each sprint (EPA employees, ORISE fellows, and SSA contractors working with ORD and EFED)
-* Scrum Master: scrum facilitator who removes impediments for delivering sprint goals/deliverables, performs tasking, bug priority, task followup, etc. (contracted)
-
-
-EFED Stakeholders:
-
-* Bill Eckel
-* Meridith Fry
-* Andrew Kanarek
-* Ed Odenkirchen
-* Michelle Thawley
-* Nelson Thurman
-* Dirk Young
-* others identified by Bill Eckel
-
-EPA Managers: 
-
-* Mark Bagley [ERD Division Director]
-* Tina Bohardi [CSS NPD]
-* Jim Cowles [Associate Director at EFED]
-* John Kenneke [CSS Matrix Interface]
-* Matt Martin [CSS Ecological Modeling Project Lead]
-* Sandy Raimondo [CSS Dashboards Project Lead]
-* Kate Sullivan [EAB Branch Chief]
-
-Problem definition/Background
-+++++++++++++++++++++++++++++++++++++
-
-Goals and objectives of this project that will address this problem
-##########################################
-Efficiently conduct environmental assessments for pesticide registration and endangered species effects assessments for models that currently are deployed in a number of different ways (Fortran DOS executables, Windows programs, Excel spreadsheets) using data from a number of different data source.
-
-Definition of the population the problem targets and what measures within this population the problem addresses
-#######################################################
-EFED risk assessors are the target audience for the ecological models. Main contacts include Bill Eckel, Ed Odenkirchen, and Tom Steeger. Three divisions within OPP will use the human health version of the product- HED, AD, and RD. Contacts include Vickie Dellarco, Jennifer McClain, Matt Lloyd, and Dana Vogel from the initial meeting. 
-
-The ecological and human health divisions of OPP already share implementation of some of the models. There may be instances where OPPT personnel used similar models as the OPP human health risk assessment divisions and may use some of the models a la carte.  Members of the public, academia, and the registrants may use the product via a public facing web page in the future.
-
-As python code, it can be run on a computer locally using a web browser as an interface (without being on the Internet, which will be necessary for the EPA to use it for applications involving confidential business information) and/or it can be hosted on the Internet as a web domain so that the public can access the public domain models that are used to determine pesticide registration and label restrictions (available at http://www.ubertool.org).  Component libraries for the ubertool can be accessed individually in non-HTML applications.  Alternatively, the code could be hosted on an EPA server with the requisite technologies to provide online access to the python code.  Regardless of how it is accessed, some of the models (these are mostly older Fortran codes in the public domain, not web applications) are of interest to the EPA pesticide office and could potentially realize significant efficiencies in regulating pesticides, transparency for the ecological risk assessment process, and higher levels of quality assurance given the larger audience that might use the models--whether for chemical regulation or for educational purposes.
-
-Reason the project includes a modeling approach to address the problem (is it a new predictive tool?)
-#########################################################################
-EPA is responsible for registering pesticides under FIFRA; as part of the registration process, the EPA’s Ecological Fate and Effects Division of the Office of Chemical Safety and Pollution is responsible for analyzing data and developing/ implementing ecological models that estimate risks to non-target receptors. The Food Quality Protection Act of 1996 mandated the Environmental Protection Agency (EPA) to implement a new program for assessing the risks of pesticides, registration review. The decision to register a pesticide is based on the consideration of scientific data and other factors showing that it will not cause unreasonable risks to human health, workers, or the environment when used as directed on product labeling. The registration review program is intended to ensure that, as the ability to assess risk evolves and as policies and practices change, all registered pesticides continue to meet the statutory standard of no unreasonable adverse effects to human health and the environment. Changes in science, public policy, and pesticide use practices will occur over time. Through the new registration review program, EPA periodically reevaluates pesticides to ensure that as change occurs, products in the marketplace can be used safely. As part of the registration review process, EFED is assessing risks of pesticides to Federally-listed threatened and/or endangered (listed) species from registered uses of pesticides.  These assessments are conducted in accordance with the Overview Document[1], provisions of the Endangered Species Act (ESA), and the Services’ Endangered Species Consultation Handbook (NMFS 1998). The models used are periodically updated in view of new pesticides, changing science, and as novel exposure pathways come to light.
-
-
-Models to be incorporated
-#######################################
-
-Databases to be incorporated
-############################################
-
-Projected outcomes and findings 
-############################################
-
-Summary of relevant literature
-##############################################
-
-Types of decisions that may be made as a result of this project
-##################################################
-
-Background information on the problem
-########################################################
-EPA (2004) provides an overview of OPP’s ecological risk assessment process:
-www.epa.gov/espp/consultation/ecorisk-overview.pdf
-
-Project Task Description and Schedule 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Summary of work to be performed, products to be produced, and the schedule for implementation
-#########################################################
-To create an aggregate ubertool assessment, a user will have created the above data objects for each of the tables above, and will combine them to reate a batched assessment.  A tree with dropdown comboboxes that reflect available data objects saved to the user account will be presented to the user.  By selecting an appropriate data object for each of the 8 data node objects on the tree, the user can then execute the aggregate ubertool to run the included models.  At this point, there will be no option to deselect a constituent model in the aggregate ubertool.  We need a figure of a mock-up of the ubertool aggregate data tree.
-
-An additional priority is development of the spatial overlay tool to compare endangered species ranges to crop and pesticide application distributions.  This will develop will proceed separately from the aggregate ubertool initially.
-
-A future priority is using the fate and transport models to create exposure concentrations data objects that are used by a number of the ecological models.
-
-List of products, deliverables, and milestones to be completed in the various stages of the project
-#####################################################
-
-Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each
-##########################################################
-
-Quality Objectives and Criteria for Model Inputs/Outputs (A7)
-++++++++++++++++++++++++++++++++++++++++++
-
-Project data quality objectives (DQOs), performance criteria, and acceptance criteria
-############################################################## 
-All model components will be developed using an appropriate approach to quality assurance and documentation.
-
-Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task
-############################################################
-
-
 List of requirements associated with the hardware/software configuration for those studies involving software evaluation
 ################################################################# 
 Python uses web application frameworks that conform to a common standard called the Web Server Gateway Interface (WSGI).  We currently use two frameworks, webapp2 and Django, that help automate the integration of the Python backend and the web application frontend allowing for rapid development.
@@ -803,29 +832,6 @@ http://www.google.com/+/learnmore/hangouts/
 
 Some of these development tools may be accessible through ubertool subdomains in order to allow access from within the EPA firewall.
 
-Configuration management (after production version) and code maintenance (e.g., or software internal documentation of logic and structure) manuals
-########################################################################
-
-Quality Assurance/Quality Control Processes
-++++++++++++++++++++++++++++++++++++++++++++++++++
- 
-Resources and responsibilities for verification of model output
-######################################
-In addition to input data, government publications and publically available scientific liberature will be considered for the development of the model. For example, the Agency’s Wildlife Exposure Factors Handbook will be considered for estimating the dose to birds, mammals, terrestrial phase amphibians, reptiles, and terrestrial insects via ingestion of water by determining the appropriate allometric equations for each taxa’s drinking water intake. 
-
-Analysis of model output relative to acceptance criteria
-###########################################
-
-Corrective action to be taken if criteria are not met
-###################################################
-
-Standard Operating Procedures
-################################
-
-
-Criteria used to review and validate (accept, reject, or qualify) model components such as theory, mathematical procedures, code, and calibration (convergence criteria, etc.) 
-######################################
-
 
 Criteria used to review and validate input data
 ######################################
@@ -840,41 +846,6 @@ Model performance is checked through the ‘Batch’ mode, which sequentially ca
 Criteria used to review or validate model outputs
 ######################################
 The integrity of model output data will be verified and validated by project technical staff. Reviews may include a thorough evaluation of content and/or a “spot-check” of calculated between output tables (Figure below) in the QA/QC page and verified EPA reports. Should a review identify an aberration, the reviewer will notify those responsible for taking corrective actions. The QA officers will be notified if corrective action is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel during the model calibration and validation stage of the project. In-progress assessments of validation issues will be discussed between a team including both technical and QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well any corrective actions that were implemented.  
-
-
-Hardware/Software Configuration
-+++++++++++++++++++++++++++++++++++++++
- 
- 
-List of equipment, hardware, and software that will be used on the project
-################################
-
-Decisions regarding security issues
-################################
-
-Decisions regarding software installation issues
-################################
-
-Coding standards
-################################
-
-Testing plans
-################################
-
-Plans for an API
-################################
-
-Plans for a maintenance manual (explaining software logic and organization)
-################################
-
-Plans for source code for the ultimate user of the model or model framework
-################################ 
-
-
-
-
-Document Compliance
-++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 Statement of Question, Objectives, and Hypotheses 

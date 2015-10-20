@@ -440,18 +440,31 @@ LUIS
 
 List of requirements associated with the hardware/software configuration for those studies involving software evaluation
 -----------------------------------------------------------------------
- Python uses web application frameworks that conform to a common standard called the Web Server Gateway Interface (WSGI).  We currently use two frameworks, webapp2 and Django, that help automate the integration of the Python backend and the web application frontend allowing for rapid development.
+Python uses web application frameworks that conform to a common standard called the Web Server Gateway Interface
+(WSGI).  We currently use two frameworks, webapp2 and Django, that help automate the integration of the Python backend
+and the web application frontend allowing for rapid development.
 
-Web hosting services provide the cloud storage and host the web site containing the web applications.  These web services are vital to the übertool in terms of accessibility and data processing.  The Python web application frameworks work with the web hosting services to ultimately provide the deliverable to the end user.
+Web hosting services provide the cloud storage and host the web site containing the web applications.  These web
+services are vital to the übertool in terms of accessibility and data processing.  The Python web application
+frameworks work with the web hosting services to ultimately provide the deliverable to the end user.
 
-The nature of web application development allows for the use of many cross-platform (i.e. Microsoft Windows, Apple OSX, Redhat Linux, etc.) software programs.  Python itself is a cross-platform language designed to easily integrate various programming languages.  The software development environment includes text editors such as Sublime Text, Python IDEs such as Spyder, Python extensions such as NumPy, and web browsers such as Microsoft’s Internet Explorer, Google’s Chrome, and Mozilla’s Firefox.
+The nature of web application development allows for the use of many cross-platform (i.e. Microsoft Windows, Apple
+OSX, Redhat Linux, etc.) software programs.  Python itself is a cross-platform language designed to easily integrate
+various programming languages.  The software development environment includes text editors such as Sublime Text,
+Python IDEs such as Spyder, Python extensions such as NumPy, and web browsers such as Microsoft’s Internet Explorer,
+Google’s Chrome, and Mozilla’s Firefox.
 
-The source code for the übertool is version controlled using GitHub.  GitHub manages all changes to the source code, allowing for simultaneous development from multiple developers on the same source code.  Each developer has his/her own “branch” of the source code on which they work.  These branches are merged back into the “trunk” or master branch of the source code as the software is updated.  Software can be rolled back as necessary as GitHub tracks the history of the software development.
+The source code for the übertool is version controlled using GitHub.  GitHub manages all changes to the source code,
+allowing for simultaneous development from multiple developers on the same source code.  Each developer has his/her
+own “branch” of the source code on which they work.  These branches are merged back into the “trunk” or master
+branch of the source code as the software is updated.  Software can be rolled back as necessary as GitHub tracks
+the history of the software development.
 
-The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is cross-platform, flexible, and open source.
+The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is
+cross-platform, flexible, and open source.
 
-1.8. Special Training Requirements/Certification (A8)
-
+Special Training Requirements/Certification (A8)
+====================================================================
 
 Types of required training and certification needed by the project team
 -----------------------------------------------------------------------
@@ -465,12 +478,22 @@ Documentation of training and/or certification
 
 Documentation and Records (A9)
 ======================================
+Project progress will be documented annually in terms of the annual reports. In addition, conference presentations and
+publications will be prepared as appropriate and archived in the EPA knowledge management systems (Google doc?,
+github wiki?).
 
- Project progress will be documented annually in terms of the annual reports. In addition, conference presentations and publications will be prepared as appropriate and archived in the EPA knowledge management systems (Google doc?, github wiki?).
+An updated version of the quality assurance plan will be developed annually and distributed by email. The date of the
+latest update will be included in the plan. Records of yearly quality assurance audits performed by the QA manager
+and QA officer are maintained by the QA manager. The auditor uses a checklist to mark which portions of the QAPP are
+followed, and to document deviations or absence of any QA measures. The results of such audits shall be documented and
+filed by the Quality Assurance Manager. The audit process itself shall be designed to objectively measure compliance
+with written procedures and assess the effectiveness of the process. The evaluation shall include interviews with
+development team members, and a review of research project work and quality records.
 
-An updated version of the quality assurance plan will be developed annually and distributed by email. The date of the latest update will be included in the plan. Records of yearly quality assurance audits performed by the QA manager and QA officer are maintained by the QA manager. The auditor uses a checklist to mark which portions of the QAPP are followed, and to document deviations or absence of any QA measures. The results of such audits shall be documented and filed by the Quality Assurance Manager. The audit process itself shall be designed to objectively measure compliance with written procedures and assess the effectiveness of the process. The evaluation shall include interviews with development team members, and a review of research project work and quality records.
-
-Before submission of a paper to an archival journal, the work will be reviewed for conformance with the applicable quality assurance criteria. Program code and output will be maintained in electronic data files and backed up on cloud platform (www.github.com). These documents will be maintained for a minimum of 5 years after the completion of the project.
+Before submission of a paper to an archival journal, the work will be reviewed for conformance with the applicable
+quality assurance criteria. Program code and output will be maintained in electronic data files and backed up on
+cloud platform (www.github.com). These documents will be maintained for a minimum of 5 years after the completion
+of the project.
 
 Description of information to be included in reports
 -----------------------------------------------------------------------
@@ -515,7 +538,8 @@ http://teambox.com/
 - Google hangout (requires a Google+ account)
 http://www.google.com/+/learnmore/hangouts/
 
-Some of these development tools may be accessible through ubertool subdomains in order to allow access from within the EPA firewall.
+Some of these development tools may be accessible through ubertool subdomains in order to allow access from within the
+EPA firewall.
 
 
 Model calibration report
@@ -532,7 +556,13 @@ Configuration management (after production version) and code maintenance (e.g., 
 
 Licensing Issues
 -----------------------------------------------------------------------
-There are still a lot of questions about the use of open source licenses by federal agencies. If the software is developed solely by government employees, the questions are even more open.  A developer can release software under an OSS because he or she has a copyright in the software, a property right that can be licensed.  A government work, like employee-developed software, is not entitled to U.S. copyright protection.   NASA and others address this dilemma with this argument: The software is still property (if not intellectual property) of the U.S. government.  Since the U.S. government can choose not to release its property, it can also choose to release it only under the conditions of a license.
+There are still a lot of questions about the use of open source licenses by federal agencies. If the software is
+developed solely by government employees, the questions are even more open.  A developer can release software under
+an OSS because he or she has a copyright in the software, a property right that can be licensed.  A government work,
+like employee-developed software, is not entitled to U.S. copyright protection.   NASA and others address this dilemma
+with this argument: The software is still property (if not intellectual property) of the U.S. government.  Since the
+U.S. government can choose not to release its property, it can also choose to release it only under the conditions of
+a license.
 
 GROUP B: Measurement and Data Acquisition
 **************************************
@@ -565,7 +595,10 @@ Corrective action to be taken if criteria are not met
 
 Resources and responsibilities for calibrating the model
 -----------------------------------------------------------------------
- In addition to input data, government publications and publically available scientific liberature will be considered for the development of the model. For example, the Agency’s Wildlife Exposure Factors Handbook will be considered for estimating the dose to birds, mammals, terrestrial phase amphibians, reptiles, and terrestrial insects via ingestion of water by determining the appropriate allometric equations for each taxa’s drinking water intake.
+In addition to input data, government publications and publically available scientific liberature will be
+considered for the development of the model. For example, the Agency’s Wildlife Exposure Factors Handbook will be
+considered for estimating the dose to birds, mammals, terrestrial phase amphibians, reptiles, and terrestrial insects
+via ingestion of water by determining the appropriate allometric equations for each taxa’s drinking water intake.
 
 Analysis of model output relative to acceptance criteria
 -----------------------------------------------------------------------
@@ -681,17 +714,47 @@ GROUP C: Assessment and Oversight
 
 Assessment and Response Actions (C1)
 ======================================
-The EPA Quality Assurance Manager will conduct a Technical Systems Audit (TSA) to ensure that this QAPP is being followed during the execution of the research project. The research team is responsible for documenting the response to any significant findings. Work conducted for this project will undergo ongoing technical review by personnel at EPA/ORD/NERL/ERD who are implementing the project.
+The EPA Quality Assurance Manager will conduct a Technical Systems Audit (TSA) to ensure that this QAPP is being
+followed during the execution of the research project. The research team is responsible for documenting the response
+to any significant findings. Work conducted for this project will undergo ongoing technical review by personnel at
+EPA/ORD/NERL/ERD who are implementing the project.
 
-The project team leader will have responsibility for monitoring project activities and identifying or confirming any quality problems. Any problems will be brought to the attention of the ORD Management Team and the ORD QA Team, who will initiate corrective actions, document the nature of the problem, and ensure that the recommended corrective action is carried out.
-This QAPP describes processes for model sensitivity and uncertainty analysis (Section B7), data quality assessment (Section B9), data management and error checking (Section B9) and model performance evaluations (section B7). The project team will assess model sensitivity to parameters in calibration steps as well as in analysis steps to understand model performance specific to modeling objectives. It has provisions for data validation and usability (Section D)
-Many of the technical problems that might occur can be solved on the spot by the technical staff, for example, by modifying the technical approach or correcting errors or deficiencies in documentation. Immediate corrective actions form part of normal operating procedures and are noted in records for the project. Problems that cannot be solved in this way require more formalized, long-term corrective action. If quality problems that require attention are identified, the QA Officers will determine whether attaining acceptable quality requires either short- or long-term actions.
+The project team leader will have responsibility for monitoring project activities and identifying or confirming any
+quality problems. Any problems will be brought to the attention of the ORD Management Team and the ORD QA Team, who
+will initiate corrective actions, document the nature of the problem, and ensure that the recommended corrective
+action is carried out.
 
-The Project Team Leader will perform surveillance activities to ensure that management and technical aspects are being properly implemented according to the schedule and quality requirements specified in this QAPP. These surveillance activities will include assessing how project milestones are achieved and documented, corrective actions are implemented, budgets are adhered to, reviews are performed, and data are managed.
+This QAPP describes processes for model sensitivity and uncertainty analysis (Section B7), data quality assessment
+(Section B9), data management and error checking (Section B9) and model performance evaluations (section B7).
+The project team will assess model sensitivity to parameters in calibration steps as well as in analysis steps
+to understand model performance specific to modeling objectives. It has provisions for data validation and usability
+(Section D)
 
-The technical systems assessment will include assessment of data collection activities, documentation, quality checks, record management, and reporting.
+Many of the technical problems that might occur can be solved on the spot by the technical staff, for example, by
+modifying the technical approach or correcting errors or deficiencies in documentation. Immediate corrective
+actions form part of normal operating procedures and are noted in records for the project. Problems that cannot be
+solved in this way require more formalized, long-term corrective action. If quality problems that require attention
+are identified, the QA Officers will determine whether attaining acceptable quality requires either short- or
+long-term actions.
 
-Assessments of internal code validity and consistency of model structure will be ongoing. The first assessment will occur when the model is initially structured and will emphasize internal code validation. At this point numerical comparisons will be executed between model outputs and verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations will be compared against simple analytical cases in order to localize the source of the error in the code. This will be conducted iteratively until the errors are found. Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments to model structure as indicated by the feedback. Revisions will be performed either by Tom Purucker or by a team member under the close supervision of Tom Purucker. Documentation of QA procedures will occur when a draft paper is being vetted for submission to an archival journal. If necessary based on the QA review, changes will be made to the paper proposed for publication.
+The Project Team Leader will perform surveillance activities to ensure that management and technical aspects are
+being properly implemented according to the schedule and quality requirements specified in this QAPP. These
+surveillance activities will include assessing how project milestones are achieved and documented, corrective
+actions are implemented, budgets are adhered to, reviews are performed, and data are managed.
+
+The technical systems assessment will include assessment of data collection activities, documentation, quality
+checks, record management, and reporting.
+
+Assessments of internal code validity and consistency of model structure will be ongoing. The first assessment will
+occur when the model is initially structured and will emphasize internal code validation. At this point numerical
+comparisons will be executed between model outputs and verified EPA reports. Any discrepancies will trigger an
+in-depth review of the code. Intermediate computations will be compared against simple analytical cases in order
+to localize the source of the error in the code. This will be conducted iteratively until the errors are found.
+Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments
+to model structure as indicated by the feedback. Revisions will be performed either by Tom Purucker or by a team
+member under the close supervision of Tom Purucker. Documentation of QA procedures will occur when a draft paper is
+being vetted for submission to an archival journal. If necessary based on the QA review, changes will be made to the
+paper proposed for publication.
 
 Assessment/oversight strategies and schedule of assessment activities, order of events
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -813,11 +876,18 @@ Reports to Management (C2)
 
 Project reporting schedule
 -----------------------------------------------------------------------
-This QAPP will be distributed to the ubertool project team and stored on the G-drive in the ubertool folder. The model, user guidance, and technical documentation will be stored on the XXX drive XXXX folder. The model and technical documentation will also be made available on the ubertool web page. Backup copies of all the development documentation will be kept by the project lead.
+This QAPP will be distributed to the ubertool project team and stored on the G-drive in the ubertool folder. The
+model, user guidance, and technical documentation will be stored on the XXX drive XXXX folder. The model and
+technical documentation will also be made available on the ubertool web page. Backup copies of all the development
+documentation will be kept by the project lead.
 
-Periodic updates/progress reports will be given to ORD management, the XXXX and end users as needed to discuss the progress of the project. A written QC, technical assessments, and documentation will be made available to interested parties. Management will be kept informed of the project’s progress through the managerial advisor and/or periodic briefings.
+Periodic updates/progress reports will be given to ORD management, the XXXX and end users as needed to discuss the
+progress of the project. A written QC, technical assessments, and documentation will be made available to interested
+parties. Management will be kept informed of the project’s progress through the managerial advisor and/or periodic
+briefings.
 
-Any identified errors, deficiencies, and anomalies will be documented and reported to the team. If needed, an error analysis will be performed and the model processes will be reviewed and/or modified.
+Any identified errors, deficiencies, and anomalies will be documented and reported to the team. If needed, an error
+analysis will be performed and the model processes will be reviewed and/or modified.
 
 Frequency, content, and distribution of reports
 -----------------------------------------------------------------------
@@ -843,7 +913,12 @@ Departures from Validation Criteria (D1)
 ======================================
 
 
-To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come from verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations will be compared against simple analytical cases in order to localize the source of the error in the code. Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments to model structure as indicated by the feedback.
+To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which
+validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come from
+verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations will
+be compared against simple analytical cases in order to localize the source of the error in the code. Discrepancies
+will be addressed through consideration of alternative scenarios and parameter values and adjustments to model
+structure as indicated by the feedback.
 
 Criteria used to review and validate (accept, reject, or qualify) model components such as theory, mathematical procedures, code, and calibration (convergence criteria, etc.)
 -----------------------------------------------------------------------
@@ -851,17 +926,28 @@ This section is not related
 
 Criteria used to review and validate input data
 -----------------------------------------------------------------------
-Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification, and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.
+Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification,
+and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an
+input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical
+comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the
+check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.
 
 Figure #. User input table from the QA/QC page
 
 Criteria used to test model performance
 -----------------------------------------------------------------------
-Model performance is checked through the ‘Batch’ mode, which sequentially calculates scenarios provided in the template. Two testing criterion are considered here: 1. repeat the same scenarios in the template (e.g. 10 times), and check the consistency of model inputs and outputs among 10 scenarios; 2. list a large number of scenarios (e.g. 10,000) and estimate the time consumed during the computation.
+Model performance is checked through the ‘Batch’ mode, which sequentially calculates scenarios provided in the
+template. Two testing criterion are considered here: 1. repeat the same scenarios in the template (e.g. 10 times),
+and check the consistency of model inputs and outputs among 10 scenarios; 2. list a large number of scenarios
+(e.g. 10,000) and estimate the time consumed during the computation.
 
 Criteria used to review or validate model outputs
 -----------------------------------------------------------------------
-The integrity of model output data will be verified and validated by project technical staff. Reviews may include a thorough evaluation of content and/or a “spot-check” of calculated between output tables (Figure below) in the QA/QC page and verified EPA reports. Should a review identify an aberration, the reviewer will notify those responsible for taking corrective actions. The QA officers will be notified if corrective action is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel during the model calibration and validation stage of the project. In-progress assessments of validation issues will be discussed between a team including both technical and QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well any corrective actions that were implemented.
+The integrity of model output data will be verified and validated by project technical staff. Reviews may
+include a thorough evaluation of content and/or a “spot-check” of calculated between output tables
+(Figure below) in the QA/QC page and verified EPA reports. Should a review identify an aberration, the reviewer
+will notify those responsible for taking corrective actions. The QA officers will be notified if corrective action
+is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel during the model calibration and validation stage of the project. In-progress assessments of validation issues will be discussed between a team including both technical and QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well any corrective actions that were implemented.
 
  Figure #. Output tables from the QA/QC page
 
@@ -897,36 +983,61 @@ REFERENCES
 **************************************
 Apandi, T., 2009 Extreme Programming Pocket Guide. O’Reilly Media, Sebastopol, CA.
 
-USEPA. 2004. Overview of the Ecological Risk Assessment Process in the Office of Pesticide Programs. U.S. Environmental Protection Agency, Office of Prevention, Pesticides and Toxic Substances, Office of Pesticide Programs, Washington DC. 100 pp. January 23, 2004.
+USEPA. 2004. Overview of the Ecological Risk Assessment Process in the Office of Pesticide Programs. U.S.
+Environmental Protection Agency, Office of Prevention, Pesticides and Toxic Substances, Office of Pesticide Programs,
+Washington DC. 100 pp. January 23, 2004.
 
+Helms, J.C., 2013. Web-Based Application Quality Assurance Testing. Accessed at
+http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf on 9/5/2013.
 
-
-Helms, J.C., 2013. Web-Based Application Quality Assurance Testing. Accessed at  http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf on 9/5/2013.
-
-U.S. FWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species Consultation Handbook: Procedures for Conducting Consultation and Conference Activities Under Section 7 of the Endangered Species Act. Final Draft. March 1998.
+U.S. FWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species Consultation Handbook:
+Procedures for Conducting Consultation and Conference Activities Under Section 7 of the Endangered Species Act.
+Final Draft. March 1998.
 
 
 
 List of requirements associated with the hardware/software configuration for those studies involving software evaluation
-################################################################# 
-Python uses web application frameworks that conform to a common standard called the Web Server Gateway Interface (WSGI).  We currently use two frameworks, webapp2 and Django, that help automate the integration of the Python backend and the web application frontend allowing for rapid development.
+-----------------------------------------------------------------------
+Python uses web application frameworks that conform to a common standard called the Web Server Gateway Interface
+(WSGI).  We currently use two frameworks, webapp2 and Django, that help automate the integration of the Python
+backend and the web application frontend allowing for rapid development.
 
-Web hosting services provide the cloud storage and host the web site containing the web applications.  These web services are vital to the übertool in terms of accessibility and data processing.  The Python web application frameworks work with the web hosting services to ultimately provide the deliverable to the end user.
+Web hosting services provide the cloud storage and host the web site containing the web applications.  These web
+services are vital to the übertool in terms of accessibility and data processing.  The Python web application
+frameworks work with the web hosting services to ultimately provide the deliverable to the end user.
 
-The nature of web application development allows for the use of many cross-platform (i.e. Microsoft Windows, Apple OSX, Redhat Linux, etc.) software programs.  Python itself is a cross-platform language designed to easily integrate various programming languages.  The software development environment includes text editors such as Sublime Text, Python IDEs such as Spyder, Python extensions such as NumPy, and web browsers such as Microsoft’s Internet Explorer, Google’s Chrome, and Mozilla’s Firefox.
+The nature of web application development allows for the use of many cross-platform (i.e. Microsoft Windows,
+Apple OSX, Redhat Linux, etc.) software programs.  Python itself is a cross-platform language designed to
+easily integrate various programming languages.  The software development environment includes text editors
+such as Sublime Text, Python IDEs such as Spyder, Python extensions such as NumPy, and web browsers such as
+Microsoft’s Internet Explorer, Google’s Chrome, and Mozilla’s Firefox.
 
-The source code for the übertool is version controlled using GitHub.  GitHub manages all changes to the source code, allowing for simultaneous development from multiple developers on the same source code.  Each developer has his/her own “branch” of the source code on which they work.  These branches are merged back into the “trunk” or master branch of the source code as the software is updated.  Software can be rolled back as necessary as GitHub tracks the history of the software development.
+The source code for the übertool is version controlled using GitHub.  GitHub manages all changes to the source
+code, allowing for simultaneous development from multiple developers on the same source code.  Each developer
+has his/her own “branch” of the source code on which they work.  These branches are merged back into the
+“trunk” or master branch of the source code as the software is updated.  Software can be rolled back as
+necessary as GitHub tracks the history of the software development.
 
-The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is cross-platform, flexible, and open source. 
+The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is
+cross-platform, flexible, and open source.
 
 Documentation and records
-++++++++++++++++++++++++++++++++++++++++++++++++++++
-An updated version of the quality assurance plan will be developed annually and distributed by email. The date of the latest update will be included in the plan. Records of yearly quality assurance audits performed by the QA manager and QA officer are maintained by the QA manager. The auditor uses a checklist to mark which portions of the QAPP are followed, and to document deviations or absence of any QA measures. The results of such audits shall be documented and filed by the Quality Assurance Manager. The audit process itself shall be designed to objectively measure compliance with written procedures and assess the effectiveness of the process. The evaluation shall include interviews with development team members, and a review of research project work and quality records.
+-----------------------------------------------------------------------
+An updated version of the quality assurance plan will be developed annually and distributed by email. The date of
+the latest update will be included in the plan. Records of yearly quality assurance audits performed by the QA
+manager and QA officer are maintained by the QA manager. The auditor uses a checklist to mark which portions of
+the QAPP are followed, and to document deviations or absence of any QA measures. The results of such audits shall
+be documented and filed by the Quality Assurance Manager. The audit process itself shall be designed to objectively
+measure compliance with written procedures and assess the effectiveness of the process. The evaluation shall
+include interviews with development team members, and a review of research project work and quality records.
 
-Before submission of a paper to an archival journal, the work will be reviewed for conformance with the applicable quality assurance criteria. Program code and output will be maintained in electronic data files and backed up on cloud platform (www.github.com). These documents will be maintained for a minimum of 5 years after the completion of the project. 
+Before submission of a paper to an archival journal, the work will be reviewed for conformance with the applicable
+quality assurance criteria. Program code and output will be maintained in electronic data files and backed up on cloud
+platform (www.github.com). These documents will be maintained for a minimum of 5 years after the completion of the
+project.
 
 Code standards, code auditing and testing reports, interim project progress reports
-######################################################
+-----------------------------------------------------------------------
  Potential collaboration/development tools include:
 - kunagi (agile/scrum management system)
 http://kunagi.org/
@@ -941,67 +1052,80 @@ http://teambox.com/
 - Google hangout (requires a Google+ account)
 http://www.google.com/+/learnmore/hangouts/
 
-Some of these development tools may be accessible through ubertool subdomains in order to allow access from within the EPA firewall.
+Some of these development tools may be accessible through ubertool subdomains in order to allow access from within the
+EPA firewall.
 
 
 Criteria used to review and validate input data
-######################################
-To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come from verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations will be compared against simple analytical cases in order to localize the source of the error in the code. Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments to model structure as indicated by the feedback.
+-----------------------------------------------------------------------
+To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which
+validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come
+from verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations
+will be compared against simple analytical cases in order to localize the source of the error in the code.
+Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments
+to model structure as indicated by the feedback.
 
-Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification, and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.
+Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification,
+and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an
+input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical
+comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the
+check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.
 
 Criteria used to test model performance
-######################################
-Model performance is checked through the ‘Batch’ mode, which sequentially calculates scenarios provided in the template. Two testing criterion are considered here: 1. repeat the same scenarios in the template (e.g. 10 times), and check the consistency of model inputs and outputs among 10 scenarios; 2. list a large number of scenarios (e.g. 10,000) and estimate the time consumed during the computation.
+-----------------------------------------------------------------------
+Model performance is checked through the ‘Batch’ mode, which sequentially calculates scenarios provided in the
+template. Two testing criterion are considered here: 1. repeat the same scenarios in the template (e.g. 10 times),
+and check the consistency of model inputs and outputs among 10 scenarios; 2. list a large number of scenarios (e.g.
+10,000) and estimate the time consumed during the computation.
 
 Criteria used to review or validate model outputs
-######################################
-The integrity of model output data will be verified and validated by project technical staff. Reviews may include a thorough evaluation of content and/or a “spot-check” of calculated between output tables (Figure below) in the QA/QC page and verified EPA reports. Should a review identify an aberration, the reviewer will notify those responsible for taking corrective actions. The QA officers will be notified if corrective action is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel during the model calibration and validation stage of the project. In-progress assessments of validation issues will be discussed between a team including both technical and QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well any corrective actions that were implemented.  
+-----------------------------------------------------------------------
+The integrity of model output data will be verified and validated by project technical staff. Reviews may include a
+thorough evaluation of content and/or a “spot-check” of calculated between output tables (Figure below) in the QA/QC
+page and verified EPA reports. Should a review identify an aberration, the reviewer will notify those responsible
+for taking corrective actions. The QA officers will be notified if corrective action is potentially required.
+Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel
+during the model calibration and validation stage of the project. In-progress assessments of validation issues
+will be discussed between a team including both technical and QA representatives from EPA. The results of performing
+evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well
+any corrective actions that were implemented.
 
 
 Statement of Question, Objectives, and Hypotheses 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-----------------------------------------------------------------------
 Overarching research question, derived from problem statement 
 
-Intended outcome of this piece of research (usually to test hypotheses and define relationships), including an estimate of time and resources needed 
+Intended outcome of this piece of research (usually to test hypotheses and define relationships), including an
+estimate of time and resources needed
 
 Specific mechanistic hypotheses, tests in summary, populations to which the hypotheses are to be applied 
 
 
 Methods 
-##############################
-A. List of variables and sources of variation, sorted byindepen- dent and dependent variables, with reasons for their selection 
+-----------------------------------------------------------------------
+A. List of variables and sources of variation, sorted byindepen- dent and dependent variables, with reasons for their
+selection
 
 B. Other sources of variation and how they will be dealt with 
 
-C. Study design and analysis, including models, statistical tests if used, detailed analytical procedures, graphs of potential outcomes 
+C. Study design and analysis, including models, statistical tests if used, detailed analytical procedures, graphs of
+potential outcomes
 
-D. Field, laboratory, and computational procedures, in sufficient detail so that someone other than the author could do the study 
+D. Field, laboratory, and computational procedures, in sufficient detail so that someone other than the author could
+do the study
 
 Budget and Schedule 
-##########################
+-----------------------------------------------------------------------
 
 A. A comprehensive three-column budget for the duration of the study 
 
-B. A schedule of tasks with initiation and completion target dates, with designated responsibilities and reporting requirements and dates
+B. A schedule of tasks with initiation and completion target dates, with designated responsibilities and reporting
+requirements and dates
 
 
 Reports and Publications 
-################################
+-----------------------------------------------------------------------
 A. Intended disposition of research results, in terms of audience, publication type, and timing 
 
 B. Fiscal, accounting, and procedural reporting requirements and how they will be met
 
-
-References
-################################
-
-Apandi, T., 2009 Extreme Programming Pocket Guide. O’Reilly Media, Sebastopol, CA.
-
-USEPA. 2004. Overview of the Ecological Risk Assessment Process in the Office of Pesticide Programs. U.S. Environmental Protection Agency, Office of Prevention, Pesticides and Toxic Substances, Office of Pesticide Programs, Washington DC. 100 pp. January 23, 2004.
-
-
-
-Helms, J.C., 2013. Web-Based Application Quality Assurance Testing. Accessed at  http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf on 9/5/2013.
-
-U.S. FWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species Consultation Handbook: Procedures for Conducting Consultation and Conference Activities Under Section 7 of the Endangered Species Act. Final Draft. March 1998.

@@ -411,8 +411,8 @@ Table 3. Population models
 
 
 
-1.7.2.3 Database Sources
-
+Database Sources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 It will be necessary to crosswalk the data that is available in the database sources with the listed data object tables. The crosswalk is available at http://tiny.cc/ubertool_crosswalk
 
 Database backbone details (MongoDB, possibly Amazon-based via EC2) and mapping technologies (maybe Google maps plus postgis/postgresql) are still undecided.
@@ -438,8 +438,8 @@ STORET	http://www.epa.gov/storet	An EPA database of water quality data from U.S.
 LUIS
 
 
-1.7.3. List of requirements associated with the hardware/software configuration for those studies involving software evaluation
-
+List of requirements associated with the hardware/software configuration for those studies involving software evaluation
+-----------------------------------------------------------------------
  Python uses web application frameworks that conform to a common standard called the Web Server Gateway Interface (WSGI).  We currently use two frameworks, webapp2 and Django, that help automate the integration of the Python backend and the web application frontend allowing for rapid development.
 
 Web hosting services provide the cloud storage and host the web site containing the web applications.  These web services are vital to the übertool in terms of accessibility and data processing.  The Python web application frameworks work with the web hosting services to ultimately provide the deliverable to the end user.
@@ -453,14 +453,18 @@ The übertool is requires database support for full functionality.  The database
 1.8. Special Training Requirements/Certification (A8)
 
 
-1.8.1. Types of required training and certification needed by the project team
+Types of required training and certification needed by the project team
+-----------------------------------------------------------------------
 
-1.8.2. Plan for obtaining training and/or certification
+Plan for obtaining training and/or certification
+-----------------------------------------------------------------------
 
-1.8.3. Documentation of training and/or certification
+Documentation of training and/or certification
+-----------------------------------------------------------------------
 
 
-1.9. Documentation and Records (A9)
+Documentation and Records (A9)
+======================================
 
  Project progress will be documented annually in terms of the annual reports. In addition, conference presentations and publications will be prepared as appropriate and archived in the EPA knowledge management systems (Google doc?, github wiki?).
 
@@ -468,25 +472,35 @@ An updated version of the quality assurance plan will be developed annually and 
 
 Before submission of a paper to an archival journal, the work will be reviewed for conformance with the applicable quality assurance criteria. Program code and output will be maintained in electronic data files and backed up on cloud platform (www.github.com). These documents will be maintained for a minimum of 5 years after the completion of the project.
 
-1.9.1. Description of information to be included in reports
+Description of information to be included in reports
+-----------------------------------------------------------------------
 
-1.9.2. Proper document control and distribution procedures
+Proper document control and distribution procedures
+-----------------------------------------------------------------------
 
-1.9.3. Details on document storage
+Details on document storage
+-----------------------------------------------------------------------
 
-1.9.4. Backup plan for records stored electronically
+Backup plan for records stored electronically
+-----------------------------------------------------------------------
 
-1.9.5. Description of the change control process (who approves changes, etc.)
+Description of the change control process (who approves changes, etc.)
+-----------------------------------------------------------------------
 
-1.9.6. Length of retention periods for each record
+Length of retention periods for each record
+-----------------------------------------------------------------------
 
-1.9.7. Data assessment reports, interim project progress reports
+Data assessment reports, interim project progress reports
+-----------------------------------------------------------------------
 
-1.9.8. Model science formulation report, peer review reports
+Model science formulation report, peer review reports
+-----------------------------------------------------------------------
 
-1.9.9. Model assessment reports, interim project progress reports
+Model assessment reports, interim project progress reports
+-----------------------------------------------------------------------
 
-1.9.10. Code standards, code auditing and testing reports, interim project progress reports
+Code standards, code auditing and testing reports, interim project progress reports
+-----------------------------------------------------------------------
  Potential collaboration/development tools include:
 - kunagi (agile/scrum management system)
 http://kunagi.org/
@@ -504,123 +518,169 @@ http://www.google.com/+/learnmore/hangouts/
 Some of these development tools may be accessible through ubertool subdomains in order to allow access from within the EPA firewall.
 
 
-1.9.11. Model calibration report
+Model calibration report
+-----------------------------------------------------------------------
 
-1.9.12. Model evaluation records (How well does the model report variability and uncertainty in its output?)
+Model evaluation records (How well does the model report variability and uncertainty in its output?)
+-----------------------------------------------------------------------
 
-1.9.13. User’s manual
+User’s manual
+-----------------------------------------------------------------------
 
-1.9.14. Configuration management (after production version) and code maintenance (e.g., or software internal documentation of logic and structure) manuals
+Configuration management (after production version) and code maintenance (e.g., or software internal documentation of logic and structure) manuals
+-----------------------------------------------------------------------
 
-1.9.15 Licensing Issues
+Licensing Issues
+-----------------------------------------------------------------------
 There are still a lot of questions about the use of open source licenses by federal agencies. If the software is developed solely by government employees, the questions are even more open.  A developer can release software under an OSS because he or she has a copyright in the software, a property right that can be licensed.  A government work, like employee-developed software, is not entitled to U.S. copyright protection.   NASA and others address this dilemma with this argument: The software is still property (if not intellectual property) of the U.S. government.  Since the U.S. government can choose not to release its property, it can also choose to release it only under the conditions of a license.
 
-2. GROUP B: Measurement and Data Acquisition
-
- This chapter provides a summary of guidelines for preparing QA Project Plans in projects that
+GROUP B: Measurement and Data Acquisition
+**************************************
+This chapter provides a summary of guidelines for preparing QA Project Plans in projects that
 involve model development, modification, or application.
-2.1. Calibration (B7)
 
+Calibration (B7)
+======================================
 
-2.1.1. Objectives of model calibration activities, including acceptance criteria
-2.1.2. Frequency of model calibration activities
+Objectives of model calibration activities, including acceptance criteria
+-----------------------------------------------------------------------
 
-2.1.3. Details on the model calibration procedure
+Frequency of model calibration activities
+-----------------------------------------------------------------------
 
-2.1.4. Method(s) of acquiring input data
+Details on the model calibration procedure
+-----------------------------------------------------------------------
 
-2.1.5. Types of output generated by the model calibration
+Method(s) of acquiring input data
+-----------------------------------------------------------------------
 
-2.1.6. Approach to characterize uncertainty (e.g., sensitivity analysis)
+Types of output generated by the model calibration
+-----------------------------------------------------------------------
 
-2.1.7. Corrective action to be taken if criteria are not met
+Approach to characterize uncertainty (e.g., sensitivity analysis)
+-----------------------------------------------------------------------
 
-2.1.8. Resources and responsibilities for calibrating the model
+Corrective action to be taken if criteria are not met
+-----------------------------------------------------------------------
+
+Resources and responsibilities for calibrating the model
+-----------------------------------------------------------------------
  In addition to input data, government publications and publically available scientific liberature will be considered for the development of the model. For example, the Agency’s Wildlife Exposure Factors Handbook will be considered for estimating the dose to birds, mammals, terrestrial phase amphibians, reptiles, and terrestrial insects via ingestion of water by determining the appropriate allometric equations for each taxa’s drinking water intake.
 
-2.1.9. Analysis of model output relative to acceptance criteria
+Analysis of model output relative to acceptance criteria
+-----------------------------------------------------------------------
+
+Non-direct Measurements (Data Acquisition Requirements) (B9)
+======================================
 
 
-2.2. Non-direct Measurements (Data Acquisition Requirements) (B9)
+Types of data needed for implementing a project that are obtained from non-measurement sources such as databases, literature files
+-----------------------------------------------------------------------
+
+Need for non-direct measurements, intended use of data
+-----------------------------------------------------------------------
+
+Method(s) of identifying and acquiring data
+-----------------------------------------------------------------------
+
+Method of determining the underlying quality of the data
+-----------------------------------------------------------------------
+
+SOPs and field or lab-specific deviations associated with these procedures
+-----------------------------------------------------------------------
+
+Acceptance criteria for non-direct measurements: such as completeness, representativeness, bias, precision, qualifying data
+-----------------------------------------------------------------------
+
+Data Management and Hardware/Software Configuration (B10)
+======================================
+
+Information on the project data management process (field, office, and lab)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Record-keeping procedures, document control system, audit trails
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Control mechanism for detecting and correcting errors, preventing loss of data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Procedures for assuring applicable Agency resource management requirements are satisfied
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Required computer hardware/software and any specific performance requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-2.2.1. Types of data needed for implementing a project that are obtained from non-measurement sources such as databases, literature files
+Data Management (Element B10a)
+-----------------------------------------------------------------------
 
-2.2.2. Need for non-direct measurements, intended use of data
+Any data forms, checklists, on-line interactive screens used in the modeling process
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.2.3. Method(s) of identifying and acquiring data
+Any graphics developed to document the data management process (process flow diagrams, modeling flow charts, etc.)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.2.4. Method of determining the underlying quality of the data
+Documentation of internal checks used during data entry
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.2.5. SOPs and field or lab-specific deviations associated with these procedures
+Data calculations and analyses that should to be highlighted in the QA Project Plan
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.2.6. Acceptance criteria for non-direct measurements: such as completeness, representativeness, bias, precision, qualifying data
+Plans for characterization of uncertainty and variability in the model results (e.g., summary statistics, frequency distributions, goodness-of-fit tests)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Hardware/software Configuration (Element B10b)
+-----------------------------------------------------------------------
 
-2.3. Data Management and Hardware/Software Configuration (B10)
+List of equipment, hardware, and software that will be used on the project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.0.1. Information on the project data management process (field, office, and lab)
+Description of performance requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.0.2. Record-keeping procedures, document control system, audit trails
+Decisions regarding security issues
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.0.3. Control mechanism for detecting and correcting errors, preventing loss of data
+Decision regarding communication issues
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.0.4. Procedures for assuring applicable Agency resource management requirements are satisfied
+Decisions regarding software installation issues
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.0.5. Required computer hardware/software and any specific performance requirements
+Decisions regarding response time issues
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Plans for requirements documentation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.1. Data Management (Element B10a)
+Coding standards
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Testing plans
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.1.1. Any data forms, checklists, on-line interactive screens used in the modeling process
+Plans for data dictionary (may not need to be a separate document)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.1.2. Any graphics developed to document the data management process (process flow diagrams, modeling flow charts, etc.)
+Plans for a user’s manual
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.1.3. Documentation of internal checks used during data entry
+Plans for a maintenance manual (explaining software logic and organization)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.1.4. Data calculations and analyses that should to be highlighted in the QA Project Plan
+Plans for source code for the ultimate user of the model or model framework
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.1.5. Plans for characterization of uncertainty and variability in the model results (e.g., summary statistics, frequency distributions, goodness-of-fit tests)
-
-
-2.3.2. Hardware/software Configuration (Element B10b)
-
-
-2.3.2.1. List of equipment, hardware, and software that will be used on the project
-
-2.3.2.2. Description of performance requirements
-
-2.3.2.3. Decisions regarding security issues
-
-2.3.2.4. Decision regarding communication issues
-
-2.3.2.5. Decisions regarding software installation issues
-
-2.3.2.6. Decisions regarding response time issues
-
-2.3.2.7. Plans for requirements documentation
-
-2.3.2.8. Coding standards
-
-2.3.2.9. Testing plans
-
-2.3.2.10. Plans for data dictionary (may not need to be a separate document)
-
-2.3.2.11. Plans for a user’s manual
-
-2.3.2.12. Plans for a maintenance manual (explaining software logic and organization)
-
-2.3.2.13. Plans for source code for the ultimate user of the model or model framework
-
-2.3.2.14. Configuration management plan (procedures to control software/hardware configuration during development of the original model version)
+Configuration management plan (procedures to control software/hardware configuration during development of the original model version)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
+GROUP C: Assessment and Oversight
+**************************************
 
-3. GROUP C: Assessment and Oversight
 
-
-3.1. Assessment and Response Actions (C1)
+Assessment and Response Actions (C1)
+======================================
 The EPA Quality Assurance Manager will conduct a Technical Systems Audit (TSA) to ensure that this QAPP is being followed during the execution of the research project. The research team is responsible for documenting the response to any significant findings. Work conducted for this project will undergo ongoing technical review by personnel at EPA/ORD/NERL/ERD who are implementing the project.
 
 The project team leader will have responsibility for monitoring project activities and identifying or confirming any quality problems. Any problems will be brought to the attention of the ORD Management Team and the ORD QA Team, who will initiate corrective actions, document the nature of the problem, and ensure that the recommended corrective action is carried out.
@@ -633,157 +693,208 @@ The technical systems assessment will include assessment of data collection acti
 
 Assessments of internal code validity and consistency of model structure will be ongoing. The first assessment will occur when the model is initially structured and will emphasize internal code validation. At this point numerical comparisons will be executed between model outputs and verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations will be compared against simple analytical cases in order to localize the source of the error in the code. This will be conducted iteratively until the errors are found. Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments to model structure as indicated by the feedback. Revisions will be performed either by Tom Purucker or by a team member under the close supervision of Tom Purucker. Documentation of QA procedures will occur when a draft paper is being vetted for submission to an archival journal. If necessary based on the QA review, changes will be made to the paper proposed for publication.
 
-3.1.0.1. Assessment/oversight strategies and schedule of assessment activities, order of events
+Assessment/oversight strategies and schedule of assessment activities, order of events
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.2. Organizations and individuals expected to participate in assessments, including peer reviews
+Organizations and individuals expected to participate in assessments, including peer reviews
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.3. Information expected, success criteria
+Information expected, success criteria
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.4. Scope of authority of assessors to recommend or direct changes to the model (corrective actions)
+Scope of authority of assessors to recommend or direct changes to the model (corrective actions)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.5. Qualitative and quantitative assessments
+Qualitative and quantitative assessments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.6. Internal assessments (internal QA officer’s review of input data, code verification, calibration, benchmarking) and external assessments (peer review of model theory or mathematical structure)
+Internal assessments (internal QA officer’s review of input data, code verification, calibration, benchmarking) and external assessments (peer review of model theory or mathematical structure)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.7. Surveillance activities (continued monitoring of status and progress of the project, tracking project milestones and budgets)
+Surveillance activities (continued monitoring of status and progress of the project, tracking project milestones and budgets)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.8. Plans for model performance evaluations
+Plans for model performance evaluations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.9. Plans for sensitivity analysis
+Plans for sensitivity analysis
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.10. Plans for uncertainty analysis
+Plans for uncertainty analysis
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.11. Plans for data quality assessment
+Plans for data quality assessment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0.12. Plans for code testing
+Plans for code testing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Hardware/Software Assessments
+-----------------------------------------------------------------------
 
-3.1.1. Hardware/Software Assessments
+Plans for hardware and software configuration testing, if appropriate
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Plans for code verification tests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.1.1. Plans for hardware and software configuration testing, if appropriate
+Plans for internal and external peer reviews
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.1.2. Plans for code verification tests
+Plans for checking for programming errors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Plans for checking for correct insertion of model equations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.1.3. Plans for internal and external peer reviews
+Plans for checking for code’s linkage to analysis of uncertainty
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.1.4. Plans for checking for programming errors
+Hardware/Software Configuration Tests
+-----------------------------------------------------------------------
 
-3.1.1.5. Plans for checking for correct insertion of model equations
+Plans for software code development inspections
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.1.6. Plans for checking for code’s linkage to analysis of uncertainty
+Plans for software code performance testing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Plans for a test of the model framework
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.2. Hardware/Software Configuration Tests
+Plans for integration tests (check computational and transfer interfaces between modules)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Plans for regression tests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.2.1. Plans for software code development inspections
+Plans for stress testing of complex models (to ensure that maximum load during peak usage does not exceed limits of the system)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.2.2. Plans for software code performance testing
+Plans for acceptance testing (contractually-required testing needed before a new model or model application is accepted by the customer and final payment is made)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.2.3. Plans for a test of the model framework
+Plans for beta testing of pre-release hardware/software, recording of anomalies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.2.4. Plans for integration tests (check computational and transfer interfaces between modules)
-
-3.1.2.5. Plans for regression tests
-
-3.1.2.6. Plans for stress testing of complex models (to ensure that maximum load during peak usage does not exceed limits of the system)
-
-3.1.2.7. Plans for acceptance testing (contractually-required testing needed before a new model or model application is accepted by the customer and final payment is made)
-
-3.1.2.8. Plans for beta testing of pre-release hardware/software, recording of anomalies
-
-3.1.2.9. Plans for checking for programming errors
-
-
-3.1.3. Plans for science and product peer review
-
-
-3.1.3.1. Theoretical basis for the model
-
-3.1.3.2. Mathematical model structure
-
-3.1.3.3. Model algorithms
-
-3.1.3.4. Model predictions
-
-3.1.3.5. Model calibration
-
-3.1.3.6. Plans for data quality assessment
-
-3.1.3.7. Plans for peer review of final technical product
-
-
-3.2. Reports to Management (C2)
+Plans for checking for programming errors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-3.2.1. Project reporting schedule
+Plans for science and product peer review
+-----------------------------------------------------------------------
 
+
+Theoretical basis for the model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Mathematical model structure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Model algorithms
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Model predictions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Model calibration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Plans for data quality assessment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Plans for peer review of final technical product
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Reports to Management (C2)
+======================================
+
+
+Project reporting schedule
+-----------------------------------------------------------------------
 This QAPP will be distributed to the ubertool project team and stored on the G-drive in the ubertool folder. The model, user guidance, and technical documentation will be stored on the XXX drive XXXX folder. The model and technical documentation will also be made available on the ubertool web page. Backup copies of all the development documentation will be kept by the project lead.
 
 Periodic updates/progress reports will be given to ORD management, the XXXX and end users as needed to discuss the progress of the project. A written QC, technical assessments, and documentation will be made available to interested parties. Management will be kept informed of the project’s progress through the managerial advisor and/or periodic briefings.
 
 Any identified errors, deficiencies, and anomalies will be documented and reported to the team. If needed, an error analysis will be performed and the model processes will be reviewed and/or modified.
-3.2.2. Frequency, content, and distribution of reports
 
-3.2.3. Deviations from approved QA Project Plan
+Frequency, content, and distribution of reports
+-----------------------------------------------------------------------
 
-3.2.4. Need for response actions to correct deviations
+Deviations from approved QA Project Plan
+-----------------------------------------------------------------------
 
-3.2.5. Potential uncertainties in decisions based on input data and model limitations
+Need for response actions to correct deviations
+-----------------------------------------------------------------------
 
-3.2.6. Data Quality Assessment findings
+Potential uncertainties in decisions based on input data and model limitations
+-----------------------------------------------------------------------
+
+Data Quality Assessment findings
+-----------------------------------------------------------------------
 
 
+GROUP D: Data Validation and Usability
+**************************************
 
-4. GROUP D: Data Validation and Usability
 
-
-4.1. Departures from Validation Criteria (D1)
+Departures from Validation Criteria (D1)
+======================================
 
 
 To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come from verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations will be compared against simple analytical cases in order to localize the source of the error in the code. Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments to model structure as indicated by the feedback.
 
-4.1.1. Criteria used to review and validate (accept, reject, or qualify) model components such as theory, mathematical procedures, code, and calibration (convergence criteria, etc.)
+Criteria used to review and validate (accept, reject, or qualify) model components such as theory, mathematical procedures, code, and calibration (convergence criteria, etc.)
+-----------------------------------------------------------------------
 This section is not related
-4.1.2. Criteria used to review and validate input data
+
+Criteria used to review and validate input data
+-----------------------------------------------------------------------
 Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification, and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.
 
 Figure #. User input table from the QA/QC page
 
-4.1.3. Criteria used to test model performance
+Criteria used to test model performance
+-----------------------------------------------------------------------
 Model performance is checked through the ‘Batch’ mode, which sequentially calculates scenarios provided in the template. Two testing criterion are considered here: 1. repeat the same scenarios in the template (e.g. 10 times), and check the consistency of model inputs and outputs among 10 scenarios; 2. list a large number of scenarios (e.g. 10,000) and estimate the time consumed during the computation.
 
-4.1.4. Criteria used to review or validate model outputs
+Criteria used to review or validate model outputs
+-----------------------------------------------------------------------
 The integrity of model output data will be verified and validated by project technical staff. Reviews may include a thorough evaluation of content and/or a “spot-check” of calculated between output tables (Figure below) in the QA/QC page and verified EPA reports. Should a review identify an aberration, the reviewer will notify those responsible for taking corrective actions. The QA officers will be notified if corrective action is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel during the model calibration and validation stage of the project. In-progress assessments of validation issues will be discussed between a team including both technical and QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well any corrective actions that were implemented.
 
  Figure #. Output tables from the QA/QC page
 
-4.2. Validation Methods (D2)
+Validation Methods (D2)
+======================================
+
+Methods for review of model components such as theory, mathematical procedures, code, and calibration (peer review, etc.)
+-----------------------------------------------------------------------
+
+Methods for review of input data
+-----------------------------------------------------------------------
+
+Methods for review of model performance tests
+-----------------------------------------------------------------------
+
+Methods for assessment of model output and usability
+-----------------------------------------------------------------------
+
+Reconciliation with User Requirements (D3)
+======================================
+
+Discussion of project or task results
+-----------------------------------------------------------------------
+
+List of departures from assumptions set in the planning phase of the model
+-----------------------------------------------------------------------
+
+Report on limitations on use of output data for decision makers or users
+-----------------------------------------------------------------------
 
 
-4.2.1. Methods for review of model components such as theory, mathematical procedures, code, and calibration (peer review, etc.)
-
-4.2.2. Methods for review of input data
-
-4.2.3. Methods for review of model performance tests
-
-4.2.4. Methods for assessment of model output and usability
-
-
-4.3. Reconciliation with User Requirements (D3)
-
-
-4.3.1. Discussion of project or task results
-
-4.3.2. List of departures from assumptions set in the planning phase of the model
-
-4.3.3. Report on limitations on use of output data for decision makers or users
-
-
-
-5. REFERENCES
+REFERENCES
+**************************************
 Apandi, T., 2009 Extreme Programming Pocket Guide. O’Reilly Media, Sebastopol, CA.
 
 USEPA. 2004. Overview of the Ecological Risk Assessment Process in the Office of Pesticide Programs. U.S. Environmental Protection Agency, Office of Prevention, Pesticides and Toxic Substances, Office of Pesticide Programs, Washington DC. 100 pp. January 23, 2004.

@@ -20,7 +20,9 @@ def outputPageHTML(header, model, tables_html):
     html = html + render_to_string('04uberoutput_start.html', {
             'model_attributes': header+' Output'})
     html = html + tables_html
-    html = html + render_to_string('export.html', {})
+    if model is not "sam":
+        print " model: " + model
+        html = html + render_to_string('export.html', {})
     html = html + render_to_string('04uberoutput_end.html', {'model':model})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
 
@@ -39,15 +41,106 @@ def outputPageView(request, model='none', header=''):
         logging.info('=========== New Model Handler - Single Model Run ===========')
         from models import model_handler
         model_obj = model_handler.modelInputPOSTReceiver(request, model)
-    elif model == 'ore':
+    elif model in {'sam'}:
+        logging.info('=========== New Model Handler FORTRAN ===========')
+        from models import model_handler
+
+        if model == 'sam':
+            """
+            SAM takes a long time to run relative to other models; therefore, 
+            it will not return model results on form submit, but will instead 
+            return a confirmation of model submission to the user. Model results 
+            will be available at a later time (e.g. from the History page).
+            """
+
+            import models.sam.sam_tables as tablesmodule
+
+            if request.POST['scenario_selection'] == '0':
+                """ Custom Run """
+                # Run SAM - no return expected
+                jid = model_handler.modelInputPOSTReceiverFortran(request, model)
+
+                disclaimer_html = """
+                <h3>Disclaimer:</h3>
+                <p>Ecological risk calculations contained here should be used for
+                no purpose other than quality assurance and peer review of the
+                presented web applications. This web site is under development.
+                It is available for the purposes of receiving feedback and quality
+                assurance from personnel in the EPA Office of Chemical Safety and
+                Pollution Prevention and from interested members of the ecological
+                risk assessment community.</p>
+                """
+
+                """ Generate Timestamp HTML from "*_tables" module """
+                modelOutputHTML = tablesmodule.timestamp()
+                """ Generate Model input & output tables HTML from "*_tables" module """
+
+                try:
+                    tables_output = tablesmodule.table_all(request, jid)
+                except:
+                    tables_output = tablesmodule.table_all(request, "20150402133114784000")
+                modelOutputHTML = disclaimer_html + modelOutputHTML + tables_output
+
+                """ Render output page view HTML """
+                html = outputPageHTML(header, model, modelOutputHTML)
+
+            else:
+                """ Pre-Canned Run """
+                """ Generate Timestamp HTML from "*_tables" module """
+                modelOutputHTML = tablesmodule.timestamp()
+                """ Generate Model input & output tables HTML from "*_tables" module """
+                tables_output = tablesmodule.table_all(request)
+
+                modelOutputHTML = modelOutputHTML + tables_output
+
+                """ Render output page view HTML """
+                html = outputPageHTML(header, model, modelOutputHTML)
+
+            response = HttpResponse()
+            response.write(html)
+            return response
+
+        else:
+            model_obj = model_handler.modelInputPOSTReceiverFortran(request, model)
+
+    
+    elif model in {'ore'}:
+        """ 
+            TEMPORARY FOR ORE TESTING / DEVELOPMENT ON ECO
+        """
         import models.ore.ore_output
-        model_obj = models.ore.ore_output.oreOutputPage(request)
+        tables_html = models.ore.ore_output.oreOutputPage(request)
+
+
+        html = render_to_string('01uberheader.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'title': header+' Output'})
+        html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'model':model,
+                'page':'output'})
+        html = html + linksLeft.linksLeft()
+        html = html + render_to_string('04uberoutput_start.html', {
+                'model_attributes': header+' Output'})
+        html = html + tables_html
+        html = html + render_to_string('export.html', {})
+        html = html + render_to_string('04uberoutput_end.html', {'model':model})
+        html = html + render_to_string('06uberfooter.html', {'links': ''})
+
+
+        response = HttpResponse()
+        response.write(html)
+        return response
+    
     else:
         # Dynamically import the model output module
         outputmodule = importlib.import_module('.'+model+'_output', 'models.'+model)
         # Call '*_output' function; function name = 'model'OutputPage  (e.g. 'sipOutputPage')
         outputPageFunc = getattr(outputmodule, model+'OutputPage')
         model_obj = outputPageFunc(request)
+
+    logging.info(model_obj)
+
 
     if type(model_obj) is tuple:
         modelOutputHTML = model_obj[0]
@@ -72,29 +165,30 @@ def outputPageView(request, model='none', header=''):
 
     """ Render output page view HTML """
     html = outputPageHTML(header, model, modelOutputHTML)
+
     
+    """ =============== To be removed =============== """
+    """ ========= For Non-Pandas models only ========= """
+    """ ============================================== """
     def saveToMongoDB(model_obj):
         """
         Method to check if model run is to be saved to MongoDB.  If true,
-        'rest_funcs.save_model_object()' is called to save the model object.
+        the fest_func meothd to save the model object instance is called
         """
-        # Handle Trex, which is not objectified yet; therefore, not saved in MongoDB
-        if model != 'trex':
-            from REST import rest_funcs
-            # save_dic() rest_func method saves HTML & model object
-            # rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
-            # save_model_object() rest_func method saves only the model object
-            rest_funcs.save_model_object(model_obj.__dict__, model, "single")
 
-    # If model has been updated to new method do not store in Mongo
-    # because the above method does not work properly for them
-    if model != 'terrplant':
-        try:
-            # Call method to save model object to Mongo DB
-            saveToMongoDB(model_obj)
-        except:
-            # If exception is thrown, skip saving to MongoDB
-            pass
+        from REST import rest_funcs
+
+        # Handle Trex, which is not objectified yet; therefore, not saved in MongoDB
+        # if model != 'trex':
+        if model not in {'terrplant', 'sip', 'stir', 'trex'}:
+            logging.info("rest_funcs.save_model_object() called")
+            # save_dic() rest_func method saves HTML & model object
+            rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
+
+    # Call method to save model object to Mongo DB
+    saveToMongoDB(model_obj)
+    """ ============================================== """
+    """ ============================================== """
 
     response = HttpResponse()
     response.write(html)
@@ -106,7 +200,7 @@ def outputPage(request, model='none', header=''):
     Django HTTP POST handler for output page.  Receives form data and
     validates it.  If valid it calls method to render the output page
     view.  If invalid, it returns the error to the model input page.
-    This method maps to: '/eco/<model>/output'
+    This method maps to: '/ubertool/<model>/output'
     """
 
     viewmodule = importlib.import_module('.views', 'models.'+model)
@@ -128,7 +222,7 @@ def outputPage(request, model='none', header=''):
         else:
             # If not valid...
             logging.info(form.errors)
-            inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
+            input_module = importlib.import_module('.'+model+'_input', 'models.'+model)
 
             # Render input page view with POSTed values and show errors
             html = render_to_string('01uberheader.html', {
@@ -140,7 +234,7 @@ def outputPage(request, model='none', header=''):
                     'page':'input'})
             html = html + linksLeft.linksLeft()
 
-            inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
+            inputPageFunc = getattr(input_module, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
             html = html + inputPageFunc(request, model, header, formData=request.POST)  # formData contains the already POSTed form data
 
             html = html + render_to_string('06uberfooter.html', {'links': ''})

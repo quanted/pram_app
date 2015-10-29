@@ -28,11 +28,11 @@
     <link rel="next" title="SIP" href="models.sip.html" />
     <link rel="prev" title="PRZM - EXAMS" href="models.przm_exams.html" />
 <!-- Browser FAVICON -->
-  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -47,15 +47,15 @@
         <li class="right" >
           <a href="models.przm_exams.html" title="PRZM - EXAMS"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="rice">
 <h1>RICE<a class="headerlink" href="#rice" title="Permalink to this headline">¶</a></h1>
@@ -74,17 +74,99 @@
 <div class="section" id="models-rice-rice-history-module">
 <h2>models.rice.rice_history module<a class="headerlink" href="#models-rice-rice-history-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-rice-rice-input-module">
-<h2>models.rice.rice_input module<a class="headerlink" href="#models-rice-rice-input-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.rice.rice_input">
+<span id="models-rice-rice-input-module"></span><h2>models.rice.rice_input module<a class="headerlink" href="#module-models.rice.rice_input" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-rice_input"></span><dl class="function">
+<dt id="models.rice.rice_input.riceInputPage">
+<code class="descclassname">models.rice.rice_input.</code><code class="descname">riceInputPage</code><span class="sig-paren">(</span><em>request</em>, <em>model=''</em>, <em>header=''</em>, <em>formData=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_input.html#riceInputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_input.riceInputPage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles rice input parameters.</p>
+<p>Even Longer description.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> (<em>str.</em>) &#8211; asdf.</li>
+<li><strong>model</strong> (<em>str.</em>) &#8211; asdf.</li>
+<li><strong>header</strong> (<em>str.</em>) &#8211; asdf.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">html code.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">errors.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
-<div class="section" id="models-rice-rice-model-module">
-<h2>models.rice.rice_model module<a class="headerlink" href="#models-rice-rice-model-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.rice.rice_model">
+<span id="models-rice-rice-model-module"></span><h2>models.rice.rice_model module<a class="headerlink" href="#module-models.rice.rice_model" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-rice_model"></span><dl class="class">
+<dt id="models.rice.rice_model.rice">
+<em class="property">class </em><code class="descclassname">models.rice.rice_model.</code><code class="descname">rice</code><span class="sig-paren">(</span><em>set_variables=True</em>, <em>run_methods=True</em>, <em>version_rice='1.0'</em>, <em>run_type='single'</em>, <em>chemical_name=''</em>, <em>mai=1</em>, <em>dsed=1</em>, <em>a=1</em>, <em>pb=1</em>, <em>dw=1</em>, <em>osed=1</em>, <em>kd=1</em>, <em>vars_dict=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_model.html#rice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_model.rice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="models.rice.rice_model.rice.set_default_variables">
+<code class="descname">set_default_variables</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_model.html#rice.set_default_variables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_model.rice.set_default_variables" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="models.rice.rice_model.rice.set_variables">
+<code class="descname">set_variables</code><span class="sig-paren">(</span><em>version_rice</em>, <em>run_type</em>, <em>chemical_name</em>, <em>mai</em>, <em>dsed</em>, <em>a</em>, <em>pb</em>, <em>dw</em>, <em>osed</em>, <em>kd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_model.html#rice.set_variables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_model.rice.set_variables" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="models-rice-rice-output-module">
-<h2>models.rice.rice_output module<a class="headerlink" href="#models-rice-rice-output-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.rice.rice_output">
+<span id="models-rice-rice-output-module"></span><h2>models.rice.rice_output module<a class="headerlink" href="#module-models.rice.rice_output" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-rice_output"></span><dl class="function">
+<dt id="models.rice.rice_output.riceOutputPage">
+<code class="descclassname">models.rice.rice_output.</code><code class="descname">riceOutputPage</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_output.html#riceOutputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_output.riceOutputPage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles rice output parameters.</p>
+<p>Longer description.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<em>str.</em>) &#8211; asdf.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">html code.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">errors.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
-<div class="section" id="models-rice-rice-parameters-module">
-<h2>models.rice.rice_parameters module<a class="headerlink" href="#models-rice-rice-parameters-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.rice.rice_parameters">
+<span id="models-rice-rice-parameters-module"></span><h2>models.rice.rice_parameters module<a class="headerlink" href="#module-models.rice.rice_parameters" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-rice_parameters"></span><dl class="class">
+<dt id="models.rice.rice_parameters.RiceInp">
+<em class="property">class </em><code class="descclassname">models.rice.rice_parameters.</code><code class="descname">RiceInp</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_parameters.html#RiceInp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_parameters.RiceInp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.rice.rice_parameters.RiceInp.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('version_rice', &lt;django.forms.fields.ChoiceField object at 0x0000000008B628D0&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x0000000008B624A8&gt;), ('mai', &lt;django.forms.fields.FloatField object at 0x0000000008B62470&gt;), ('area', &lt;django.forms.fields.FloatField object at 0x0000000008B62390&gt;), ('dsed', &lt;django.forms.fields.FloatField object at 0x0000000008B622B0&gt;), ('pb', &lt;django.forms.fields.FloatField object at 0x0000000008B621D0&gt;), ('dw', &lt;django.forms.fields.FloatField object at 0x0000000008B620F0&gt;), ('osed', &lt;django.forms.fields.FloatField object at 0x0000000008B62518&gt;), ('Kd', &lt;django.forms.fields.FloatField object at 0x0000000008B62358&gt;)])</em><a class="headerlink" href="#models.rice.rice_parameters.RiceInp.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.rice.rice_parameters.RiceInp.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('version_rice', &lt;django.forms.fields.ChoiceField object at 0x0000000008B628D0&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x0000000008B624A8&gt;), ('mai', &lt;django.forms.fields.FloatField object at 0x0000000008B62470&gt;), ('area', &lt;django.forms.fields.FloatField object at 0x0000000008B62390&gt;), ('dsed', &lt;django.forms.fields.FloatField object at 0x0000000008B622B0&gt;), ('pb', &lt;django.forms.fields.FloatField object at 0x0000000008B621D0&gt;), ('dw', &lt;django.forms.fields.FloatField object at 0x0000000008B620F0&gt;), ('osed', &lt;django.forms.fields.FloatField object at 0x0000000008B62518&gt;), ('Kd', &lt;django.forms.fields.FloatField object at 0x0000000008B62358&gt;)])</em><a class="headerlink" href="#models.rice.rice_parameters.RiceInp.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.rice.rice_parameters.RiceInp.media">
+<code class="descname">media</code><a class="headerlink" href="#models.rice.rice_parameters.RiceInp.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="models-rice-rice-qaqc-module">
 <h2>models.rice.rice_qaqc module<a class="headerlink" href="#models-rice-rice-qaqc-module" title="Permalink to this headline">¶</a></h2>
@@ -95,8 +177,113 @@
 <div class="section" id="models-rice-rice-qaqcoutput-module">
 <h2>models.rice.rice_qaqcoutput module<a class="headerlink" href="#models-rice-rice-qaqcoutput-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-rice-rice-tables-module">
-<h2>models.rice.rice_tables module<a class="headerlink" href="#models-rice-rice-tables-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.rice.rice_tables">
+<span id="models-rice-rice-tables-module"></span><h2>models.rice.rice_tables module<a class="headerlink" href="#module-models.rice.rice_tables" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-rice_tables"></span><dl class="function">
+<dt id="models.rice.rice_tables.getdjtemplate">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">getdjtemplate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#getdjtemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.getdjtemplate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.getheaderpvu">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">getheaderpvu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#getheaderpvu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.getheaderpvu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.getheaderpvuqaqc">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">getheaderpvuqaqc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#getheaderpvuqaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.getheaderpvuqaqc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.getheadersum">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">getheadersum</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#getheadersum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.getheadersum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.gethtmlrowsfromcols">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">gethtmlrowsfromcols</code><span class="sig-paren">(</span><em>data</em>, <em>headings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#gethtmlrowsfromcols"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.gethtmlrowsfromcols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.gett1data">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">gett1data</code><span class="sig-paren">(</span><em>rice_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#gett1data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.gett1data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.gett1dataqaqc">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">gett1dataqaqc</code><span class="sig-paren">(</span><em>rice_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#gett1dataqaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.gett1dataqaqc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.gett2data">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">gett2data</code><span class="sig-paren">(</span><em>rice_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#gett2data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.gett2data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.gett2dataqaqc">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">gett2dataqaqc</code><span class="sig-paren">(</span><em>rice_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#gett2dataqaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.gett2dataqaqc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.gettsumdata">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">gettsumdata</code><span class="sig-paren">(</span><em>mai</em>, <em>dsed</em>, <em>a</em>, <em>pb</em>, <em>dw</em>, <em>osed</em>, <em>kd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#gettsumdata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.gettsumdata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.gettsumdata_out">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">gettsumdata_out</code><span class="sig-paren">(</span><em>msed</em>, <em>vw</em>, <em>mai1</em>, <em>cw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#gettsumdata_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.gettsumdata_out" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.table_1">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">table_1</code><span class="sig-paren">(</span><em>rice_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#table_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.table_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.table_1_qaqc">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">table_1_qaqc</code><span class="sig-paren">(</span><em>rice_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#table_1_qaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.table_1_qaqc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.table_2">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">table_2</code><span class="sig-paren">(</span><em>rice_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#table_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.table_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.table_2_qaqc">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">table_2_qaqc</code><span class="sig-paren">(</span><em>rice_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#table_2_qaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.table_2_qaqc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.table_all">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">table_all</code><span class="sig-paren">(</span><em>rice_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#table_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.table_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.table_all_qaqc">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">table_all_qaqc</code><span class="sig-paren">(</span><em>rice_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#table_all_qaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.table_all_qaqc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.table_sum_all">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">table_sum_all</code><span class="sig-paren">(</span><em>sumheadings</em>, <em>tmpl</em>, <em>mai</em>, <em>dsed</em>, <em>a</em>, <em>pb</em>, <em>dw</em>, <em>osed</em>, <em>kd</em>, <em>msed</em>, <em>vw</em>, <em>mai1</em>, <em>cw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#table_sum_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.table_sum_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.table_sum_input">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">table_sum_input</code><span class="sig-paren">(</span><em>sumheadings</em>, <em>tmpl</em>, <em>mai</em>, <em>dsed</em>, <em>a</em>, <em>pb</em>, <em>dw</em>, <em>osed</em>, <em>kd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#table_sum_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.table_sum_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.table_sum_output">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">table_sum_output</code><span class="sig-paren">(</span><em>sumheadings</em>, <em>tmpl</em>, <em>msed</em>, <em>vw</em>, <em>mai1</em>, <em>cw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#table_sum_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.table_sum_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.rice.rice_tables.timestamp">
+<code class="descclassname">models.rice.rice_tables.</code><code class="descname">timestamp</code><span class="sig-paren">(</span><em>rice_obj=''</em>, <em>batch_jid=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rice/rice_tables.html#timestamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.rice.rice_tables.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="models-rice-try-module">
 <h2>models.rice.try module<a class="headerlink" href="#models-rice-try-module" title="Permalink to this headline">¶</a></h2>
@@ -113,7 +300,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -123,14 +310,14 @@
 <li><a class="reference internal" href="#models-rice-rice-batchinput-module">models.rice.rice_batchinput module</a></li>
 <li><a class="reference internal" href="#models-rice-rice-batchoutput-module">models.rice.rice_batchoutput module</a></li>
 <li><a class="reference internal" href="#models-rice-rice-history-module">models.rice.rice_history module</a></li>
-<li><a class="reference internal" href="#models-rice-rice-input-module">models.rice.rice_input module</a></li>
-<li><a class="reference internal" href="#models-rice-rice-model-module">models.rice.rice_model module</a></li>
-<li><a class="reference internal" href="#models-rice-rice-output-module">models.rice.rice_output module</a></li>
-<li><a class="reference internal" href="#models-rice-rice-parameters-module">models.rice.rice_parameters module</a></li>
+<li><a class="reference internal" href="#module-models.rice.rice_input">models.rice.rice_input module</a></li>
+<li><a class="reference internal" href="#module-models.rice.rice_model">models.rice.rice_model module</a></li>
+<li><a class="reference internal" href="#module-models.rice.rice_output">models.rice.rice_output module</a></li>
+<li><a class="reference internal" href="#module-models.rice.rice_parameters">models.rice.rice_parameters module</a></li>
 <li><a class="reference internal" href="#models-rice-rice-qaqc-module">models.rice.rice_qaqc module</a></li>
 <li><a class="reference internal" href="#models-rice-rice-qaqcinput-module">models.rice.rice_qaqcinput module</a></li>
 <li><a class="reference internal" href="#models-rice-rice-qaqcoutput-module">models.rice.rice_qaqcoutput module</a></li>
-<li><a class="reference internal" href="#models-rice-rice-tables-module">models.rice.rice_tables module</a></li>
+<li><a class="reference internal" href="#module-models.rice.rice_tables">models.rice.rice_tables module</a></li>
 <li><a class="reference internal" href="#models-rice-try-module">models.rice.try module</a></li>
 <li><a class="reference internal" href="#module-models.rice.views">models.rice.views module</a></li>
 <li><a class="reference internal" href="#module-models.rice">Module contents</a></li>
@@ -144,12 +331,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="models.sip.html"
                         title="next chapter">SIP</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/models.rice.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/models.rice.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -166,7 +355,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -181,13 +370,13 @@
         <li class="right" >
           <a href="models.przm_exams.html" title="PRZM - EXAMS"
              >previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" >Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" >Models</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

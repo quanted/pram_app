@@ -4,6 +4,8 @@ import importlib
 import linksLeft
 from REST import rest_funcs
 import os
+import StringIO, logging
+
 
 def historyPage(request, model='none', header='none'):
     """
@@ -24,7 +26,12 @@ def historyPage(request, model='none', header='none'):
     html = html + linksLeft.linksLeft()
     html = html + render_to_string('04uberalgorithm_start.html', {
             'model_attributes': header+' User History'})
-    html = html + render_to_string('history_query.html', {'model' : model})
+    
+    # Conditional template loading
+    if model == 'sam':
+        html = html + render_to_string('history_query_sam.html', {'model' : model})
+    else:
+        html = html + render_to_string('history_query.html', {'model' : model})
 
     # """
     # rest_func method call to return user's model runs for the current model
@@ -55,27 +62,68 @@ def historyPageRevist(request, model='none', header='none'):
     print jid, model_name
     # html = rest_funcs.get_output_html(jid, model_name)
 
-    # Retrieve model's MongoDB entry as Python dictionary
-    model_dict = rest_funcs.get_model_object(jid, model_name)
-    # Recreate Python objext from Python dictionary
-    model_obj = recreateModelObject(model_dict)
 
-    # Try to generate HTML from model object instance
-    try:
-        output_tables = historyOutputTableRedraw(model, model_obj)
+    if model_name == 'sam':
+        """ 
+        This is all temporary for development testing
+
+        Load output (list of file lines) from Mongo and 
+        write them to memory (StringIO) and send to user
+        """
+
+        # Retrieve model's MongoDB entry as Python dictionary
+        model_dict = rest_funcs.get_model_object(jid, model_name)
+        # logging.info(model_dict)
+        # output_str = model_dict['output']
+
+        output_str = dict_to_flat_file(model_dict['output'])
+
+        # Write output string from Mongo to file in memory
+        # packet = StringIO.StringIO(output_str) #write to memory
+
+        # html = output.outputPageHTML(header, model, output_tables)
+
+        response = HttpResponse(output_str.getvalue(), content_type='application/txt')
+        response['Content-Disposition'] = 'attachment; filename=' + model_dict['filename'] + '.csv'
+        
+        return response
+    
+    else:
+        # Retrieve model's MongoDB entry as Python dictionary
+        model_dict = rest_funcs.get_model_object(jid, model_name)
+        # Recreate Python objext from Python dictionary
+        model_obj = recreateModelObject(model_dict)
+
+        # Try to generate HTML from model object instance
+        try:
+            output_tables = historyOutputTableRedraw(model, model_obj)
+            
+        # Throw errow and return error message if exception
+        except Exception, e:
+            import logging
+            logging.exception(e)
+            output_tables = """
+            <br>
+            <b>*** Error retrieving model run ***</b>
+            """
+            
         html = output.outputPageHTML(header, model, output_tables)
-    # Throw errow and return error message if exception
-    except Exception, e:
-        import logging
-        logging.exception(e)
-        html = """
-                <br>
-                <b>*** Error retrieving model run ***</b>
-                """
 
-    response = HttpResponse()
-    response.write(html)
-    return response
+        response = HttpResponse()
+        response.write(html)
+        return response
+
+
+def dict_to_flat_file(dict):
+    # print dict
+    f = StringIO.StringIO()
+
+    for k in dict:
+        f.write(k)
+        for item in dict[k]:
+            f.write("," + item)
+
+    return f
 
 def recreateModelObject(obj_as_dict):
     """
@@ -153,9 +201,9 @@ def historyOutputTableRedraw(model, model_obj):
             logging.exception(e)
 
             return """
-                  <br>
-                  <b>*** Error retrieving model run ***</b>
-                  """
+            <br>
+            <b>*** Error retrieving model run ***</b>
+            """
 
     except Exception, e:
         """

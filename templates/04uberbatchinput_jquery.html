@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/static/stylesheets/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/js/jquery.validate.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 			$.ajax({
 				type: "POST",
-				url: "/eco/{{ model }}/batchoutput",
+				url: "/ubertool/{{ model }}/batchoutput",
 				data: form_data,
 				cache: false,
 			    contentType: false,
@@ -48,7 +48,7 @@ $(document).ready(function() {
 				error: function() {
 					$.unblockUI();
 					alert('There is a problem about your submission.')
-					// window.location = '/eco/{{ model }}/batchinput';
+					// window.location = '/ubertool/{{ model }}/batchinput';
 				}
 			});
 		}

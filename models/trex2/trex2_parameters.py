@@ -64,7 +64,7 @@ class trexInp_chem(forms.Form):
         initial='1.5.2')
     chem_name = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 30, 'rows': 1}),
-        initial='Atrazine')
+        initial='T-Rex Example')
     pc_code = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
@@ -164,6 +164,7 @@ class trexInp_bird(forms.Form):
         validators=[validation.validate_positive])
     NOAEL_bird = forms.FloatField(
         label='Avian NOAEL (mg/kg-bw)',
+        initial='50',
         validators=[validation.validate_positive])
     Species_of_the_tested_bird_avian_NOAEL = forms.ChoiceField(
         label='Test species (for Avian NOAEL)',

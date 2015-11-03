@@ -18,6 +18,7 @@ import os, logging
 http_headers = auth_s3.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
+
 class Model(object):
     def __init__(self, run_type, jid, pd_obj_in, pd_obj_out):
         """
@@ -74,14 +75,16 @@ def call_model_server(model, args):
     from REST import rest_funcs
     import json, requests
 
+    logging.info("=========== model_handler.call_model_server")
     # If 'args' is a Python dictionary, dump it to a JSON string
     if type(args) == dict:
         data = json.dumps(args)
     else:
         data = args
-    
+
     jid = rest_funcs.gen_jid()
-    
+    logging.info("===========job id = " + jid)
+
     url = url_part1 + '/' + model + '/' + jid
     # POST JSON to model server
     response = requests.post(url, data=data, headers=http_headers, timeout=60)
@@ -93,32 +96,39 @@ def call_model_server(model, args):
 
 
 def create_dataframe(response):
-        import pandas as pd
-        import json
-        # Load 'inputs' key from JSON response to Pandas DataFrame
-        pd_obj_in = pd.io.json.read_json(json.dumps(response.json()['inputs']))
-        # Load 'outputs' key from JSON response to Pandas DataFrame
-        pd_obj_out = pd.io.json.read_json(json.dumps(response.json()['outputs']))
+    import pandas as pd
+    import json
 
-        return pd_obj_in, pd_obj_out
+    logging.info("=========== model_handler.create_dataframe")
+    # Load 'inputs' key from JSON response to Pandas DataFrame
+    pd_obj_in = pd.io.json.read_json(json.dumps(response.json()['inputs']))
+    # Load 'outputs' key from JSON response to Pandas DataFrame
+    pd_obj_out = pd.io.json.read_json(json.dumps(response.json()['outputs']))
+
+    return pd_obj_in, pd_obj_out
 
 
 def modelInputPOSTReceiver(request, model):
     """
-        Converts the POSTed data from the model's input page form 
+        Converts the POSTed data from the model's input page form
         to a Python dictionary and passes it to the Model object where
         it is to be converted to JSON and passed to the backend server.
     """
 
-    args = { "inputs" : {} }
+    logging.info("=========== model_handler.modelInputPOSTReceiver")
+    args = {"inputs": {}}
     for key in request.POST:
-        args["inputs"][key] = {"0" : request.POST.get(key)}
+        args["inputs"][key] = {"0": request.POST.get(key)}
     args["run_type"] = "single"
+    logging.info(args)
 
     response = call_model_server(model, args)
 
+    logging.info("=========== returned from back end")
     jid = response.json()['_id']
+    logging.info("job id = " + str(jid))
     run_type = response.json()['run_type']
+    logging.info("run_type = " + run_type)
     dataframes = create_dataframe(response)
 
     model_obj = Model(run_type, jid, dataframes[0], dataframes[1])
@@ -135,7 +145,7 @@ def modelInputPOSTReceiverFortran(request, model):
         ==> FORTAN version <==
     """
 
-    args = { "inputs" : {} }
+    args = {"inputs": {}}
     for key in request.POST:
         args["inputs"][key] = request.POST.get(key)
     args["run_type"] = "single"
@@ -165,6 +175,7 @@ class ModelQAQC(object):
             DataFrame objects, one for inputs and one for outputs.
         """
 
+        logging.info("=========== model_handler.ModelQAQC")
         self.pd_obj_in = pd_obj_in
         self.pd_obj_out = pd_obj_out
         self.pd_obj_exp = pd_obj_exp
@@ -204,7 +215,7 @@ class ModelQAQC(object):
 #         """
 
 #         """
-        
+
 #         # self.model_obj_list = self.model_obj_list.append(model_obj)
 
 #         return self.model_obj_list
@@ -217,6 +228,7 @@ def generate_model_object_list(response):
         the object to a Python list.  Returns the list of objects.
     """
 
+    logging.info("=========== model_handler.generate_model_object_list")
     ModelList = []
 
     run_type = response.json()['run_type']
@@ -238,7 +250,7 @@ def generate_model_object_list(response):
     logging.info(pd_obj_out)
 
     i = 0
-    while (i < no_of_runs): 
+    while (i < no_of_runs):
         logging.info(i)
         run_list = range(no_of_runs)
         del run_list[i]

@@ -45,11 +45,11 @@ TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 if MACHINE_ID == "ord-uber-vm001":
-    ALLOWED_HOSTS.append( '134.67.114.1')
-    ALLOWED_HOSTS.append('qed.epa.gov')
-elif MACHINE_ID == "ord-uber-vm003":
-    ALLOWED_HOSTS.append( '134.67.114.3')
+    ALLOWED_HOSTS.append('134.67.114.1')
     ALLOWED_HOSTS.append('qedinternal.epa.gov')
+elif MACHINE_ID == "ord-uber-vm003":
+    ALLOWED_HOSTS.append('134.67.114.3')
+    ALLOWED_HOSTS.append('qed.epa.gov')
 
 # Disable this because Django wants to email errors and there is no email server set up
 # ADMINS = (

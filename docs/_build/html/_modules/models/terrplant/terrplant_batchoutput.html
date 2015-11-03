@@ -29,8 +29,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,15 +39,15 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.terrplant.terrplant_batchoutput</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -56,214 +56,36 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
-
-<span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
-
-<span class="kn">import</span> <span class="nn">terrplant_model</span><span class="o">,</span><span class="nn">terrplant_tables</span>
-
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
-<span class="kn">import</span> <span class="nn">Queue</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
-<span class="n">A</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">I</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">R</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">D</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">nms</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">lms</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">nds</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">lds</span><span class="o">=</span><span class="p">[]</span>
 
-<span class="c">######Pre-defined outputs########</span>
-<span class="n">rundry_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">runsemi_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">spray_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">totaldry_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">totalsemi_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">nmsRQdry_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOCnmsdry_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">nmsRQsemi_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOCnmssemi_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">nmsRQspray_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOCnmsspray_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">lmsRQdry_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOClmsdry_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">lmsRQsemi_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOClmssemi_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">lmsRQspray_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOClmsspray_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ndsRQdry_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOCndsdry_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ndsRQsemi_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOCndssemi_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ndsRQspray_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOCndsspray_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ldsRQdry_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOCldsdry_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ldsRQsemi_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOCldssemi_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ldsRQspray_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">LOCldsspray_out</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="viewcode-block" id="read_batch_csv"><a class="viewcode-back" href="../../../models.terrplant.html#models.terrplant.terrplant_batchoutput.read_batch_csv">[docs]</a><span class="k">def</span> <span class="nf">read_batch_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 
-<span class="n">jid_all</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">jid_batch</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">terr_all</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">all_threads</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">out_html_all</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">job_q</span> <span class="o">=</span> <span class="n">Queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
-<span class="n">thread_count</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">pd_obj</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">skipfooter</span><span class="o">=</span><span class="mi">46</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s">&#39;python&#39;</span><span class="p">)</span>
+    <span class="c"># logging.info(pd_obj)</span>
+    <span class="n">pd_obj</span> <span class="o">=</span> <span class="n">pd_obj</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">pd_obj</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">pd_obj</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">pd_obj</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd_obj</span><span class="o">.</span><span class="n">columns</span> <span class="o">-</span> <span class="mi">5</span>
 
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&quot;TerrPlantBatchOutput&quot;</span><span class="p">)</span>
-
-<div class="viewcode-block" id="html_table"><a class="viewcode-back" href="../../../models.terrplant.html#models.terrplant.terrplant_batchoutput.html_table">[docs]</a><span class="k">def</span> <span class="nf">html_table</span><span class="p">(</span><span class="n">row_inp_all</span><span class="p">):</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">row_inp_temp_all</span> <span class="o">=</span> <span class="n">row_inp_all</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">row_inp_temp_all</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">row_inp</span> <span class="o">=</span> <span class="n">row_inp_temp_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="nb">iter</span> <span class="o">=</span> <span class="n">row_inp_temp_all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-            <span class="n">A_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A_temp</span><span class="p">)</span>
-            <span class="n">I_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="n">I</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I_temp</span><span class="p">)</span>
-            <span class="n">R_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-            <span class="n">R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R_temp</span><span class="p">)</span>
-            <span class="n">D_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-            <span class="n">D</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">D_temp</span><span class="p">)</span>
-            <span class="n">nms_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-            <span class="n">nms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nms_temp</span><span class="p">)</span>
-            <span class="n">lms_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>        
-            <span class="n">lms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lms_temp</span><span class="p">)</span>
-            <span class="n">nds_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>   
-            <span class="n">nds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nds_temp</span><span class="p">)</span>
-            <span class="n">lds_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row_inp</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
-            <span class="n">lds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lds_temp</span><span class="p">)</span>
-            <span class="n">terr</span> <span class="o">=</span> <span class="n">terrplant_model</span><span class="o">.</span><span class="n">terrplant</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="s">&quot;batch&quot;</span><span class="p">,</span><span class="n">A_temp</span><span class="p">,</span><span class="n">I_temp</span><span class="p">,</span><span class="n">R_temp</span><span class="p">,</span><span class="n">D_temp</span><span class="p">,</span><span class="n">nms_temp</span><span class="p">,</span><span class="n">lms_temp</span><span class="p">,</span><span class="n">nds_temp</span><span class="p">,</span><span class="n">lds_temp</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;===============&quot;</span><span class="p">)</span>
-            <span class="n">rundry_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">rundry_results</span>
-            <span class="n">rundry_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rundry_temp</span><span class="p">)</span>
-            <span class="n">runsemi_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">runsemi_results</span>
-            <span class="n">runsemi_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">runsemi_temp</span><span class="p">)</span>
-            <span class="n">spray_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">spray_results</span>
-            <span class="n">spray_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spray_temp</span><span class="p">)</span>
-            <span class="n">totaldry_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">totaldry_results</span>
-            <span class="n">totaldry_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totaldry_temp</span><span class="p">)</span>
-            <span class="n">totalsemi_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">totalsemi_results</span>
-            <span class="n">totalsemi_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalsemi_temp</span><span class="p">)</span>
-            <span class="n">nmsRQdry_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">nmsRQdry_results</span>
-            <span class="n">nmsRQdry_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nmsRQdry_temp</span><span class="p">)</span>
-            <span class="n">LOCnmsdry_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOCnmsdry_results</span>
-            <span class="n">LOCnmsdry_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOCnmsdry_temp</span><span class="p">)</span>
-            <span class="n">nmsRQsemi_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">nmsRQsemi_results</span>
-            <span class="n">nmsRQsemi_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nmsRQsemi_temp</span><span class="p">)</span>
-            <span class="n">LOCnmssemi_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOCnmssemi_results</span>
-            <span class="n">LOCnmssemi_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOCnmssemi_temp</span><span class="p">)</span>
-            <span class="n">nmsRQspray_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">nmsRQspray_results</span>
-            <span class="n">nmsRQspray_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nmsRQspray_temp</span><span class="p">)</span>
-            <span class="n">LOCnmsspray_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOCnmsspray_results</span>
-            <span class="n">LOCnmsspray_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOCnmsspray_temp</span><span class="p">)</span>
-            <span class="n">lmsRQdry_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">lmsRQdry_results</span>
-            <span class="n">lmsRQdry_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lmsRQdry_temp</span><span class="p">)</span>
-            <span class="n">LOClmsdry_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOClmsdry_results</span>
-            <span class="n">LOClmsdry_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOClmsdry_temp</span><span class="p">)</span>
-            <span class="n">lmsRQsemi_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">lmsRQsemi_results</span>
-            <span class="n">lmsRQsemi_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lmsRQsemi_temp</span><span class="p">)</span>
-            <span class="n">LOClmssemi_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOClmssemi_results</span>
-            <span class="n">LOClmssemi_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOClmssemi_temp</span><span class="p">)</span>
-            <span class="n">lmsRQspray_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">lmsRQspray_results</span>
-            <span class="n">lmsRQspray_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lmsRQspray_temp</span><span class="p">)</span>
-            <span class="n">LOClmsspray_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOClmsspray_results</span>
-            <span class="n">LOClmsspray_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOClmsspray_temp</span><span class="p">)</span>
-            <span class="n">ndsRQdry_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">ndsRQdry_results</span>
-            <span class="n">ndsRQdry_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ndsRQdry_temp</span><span class="p">)</span>
-            <span class="n">LOCndsdry_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOCndsdry_results</span>
-            <span class="n">LOCndsdry_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOCndsdry_temp</span><span class="p">)</span>
-            <span class="n">ndsRQsemi_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">ndsRQsemi_results</span>
-            <span class="n">ndsRQsemi_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ndsRQsemi_temp</span><span class="p">)</span>
-            <span class="n">LOCndssemi_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOCndssemi_results</span>
-            <span class="n">LOCndssemi_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOCndssemi_temp</span><span class="p">)</span>
-            <span class="n">ndsRQspray_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">ndsRQspray_results</span>
-            <span class="n">ndsRQspray_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ndsRQspray_temp</span><span class="p">)</span>
-            <span class="n">LOCndsspray_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOCndsspray_results</span>
-            <span class="n">LOCndsspray_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOCndsspray_temp</span><span class="p">)</span>
-            <span class="n">ldsRQdry_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">ldsRQdry_results</span>
-            <span class="n">ldsRQdry_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ldsRQdry_temp</span><span class="p">)</span>
-            <span class="n">LOCldsdry_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOCldsdry_results</span>
-            <span class="n">LOCldsdry_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOCldsdry_temp</span><span class="p">)</span>
-            <span class="n">ldsRQsemi_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">ldsRQsemi_results</span>
-            <span class="n">ldsRQsemi_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ldsRQsemi_temp</span><span class="p">)</span>
-            <span class="n">LOCldssemi_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOCldssemi_results</span>
-            <span class="n">LOCldssemi_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOCldssemi_temp</span><span class="p">)</span>
-            <span class="n">ldsRQspray_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">ldsRQspray_results</span>
-            <span class="n">ldsRQspray_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ldsRQspray_temp</span><span class="p">)</span>
-            <span class="n">LOCldsspray_temp</span><span class="o">=</span><span class="n">terr</span><span class="o">.</span><span class="n">LOCldsspray_results</span>
-            <span class="n">LOCldsspray_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOCldsspray_temp</span><span class="p">)</span>
-
-            <span class="n">jid_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">terr</span><span class="o">.</span><span class="n">jid</span><span class="p">)</span>
-            <span class="n">terr_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">terr</span><span class="p">)</span>    
-            <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">jid_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">terr</span><span class="o">.</span><span class="n">jid</span><span class="p">)</span>
-
-            <span class="n">batch_header</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
-<span class="s">                &lt;div class=&quot;out_&quot;&gt;</span>
-<span class="s">                    &lt;br&gt;&lt;H3&gt;Batch Calculation of Iteration </span><span class="si">%s</span><span class="s">:&lt;/H3&gt;</span>
-<span class="s">                &lt;/div&gt;</span>
-<span class="s">                &quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="nb">iter</span><span class="p">)</span>
-
-            <span class="n">html_temp</span> <span class="o">=</span> <span class="n">terrplant_tables</span><span class="o">.</span><span class="n">table_all</span><span class="p">(</span><span class="n">terr</span><span class="p">)</span>
-
-            <span class="n">out_html_temp</span> <span class="o">=</span> <span class="n">batch_header</span> <span class="o">+</span> <span class="n">html_temp</span>
-            <span class="n">out_html_all</span><span class="p">[</span><span class="nb">iter</span><span class="p">]</span><span class="o">=</span><span class="n">out_html_temp</span>
-
-                </div>
-<div class="viewcode-block" id="loop_html"><a class="viewcode-back" href="../../../models.terrplant.html#models.terrplant.terrplant_batchoutput.loop_html">[docs]</a><span class="k">def</span> <span class="nf">loop_html</span><span class="p">(</span><span class="n">thefile</span><span class="p">):</span>
-    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">thefile</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
-    <span class="n">header</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-    <span class="c"># logger.info(header)</span>
-    <span class="n">i</span><span class="o">=</span><span class="mi">1</span>
-    <span class="c">####Create a job queue and add each row of batch temeplate file as a task into it</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-        <span class="n">job_q</span><span class="o">.</span><span class="n">put</span><span class="p">([</span><span class="n">row</span><span class="p">,</span> <span class="n">i</span><span class="p">])</span>
-        <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-
-    <span class="n">all_threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">html_table</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">job_q</span><span class="p">,</span> <span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">thread_count</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
-        <span class="n">x</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
-        <span class="n">job_q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
-        <span class="n">x</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-
-    <span class="n">html_timestamp</span> <span class="o">=</span> <span class="n">terrplant_tables</span><span class="o">.</span><span class="n">timestamp</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">jid_batch</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">out_html_all_sort</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">out_html_all</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-    <span class="n">sum_html</span> <span class="o">=</span> <span class="n">terrplant_tables</span><span class="o">.</span><span class="n">table_all_sum</span><span class="p">(</span><span class="n">terrplant_tables</span><span class="o">.</span><span class="n">sumheadings</span><span class="p">,</span> <span class="n">terrplant_tables</span><span class="o">.</span><span class="n">tmpl</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">nms</span><span class="p">,</span> <span class="n">lms</span><span class="p">,</span> <span class="n">nds</span><span class="p">,</span> <span class="n">lds</span><span class="p">,</span> 
-                    <span class="n">rundry_out</span><span class="p">,</span> <span class="n">runsemi_out</span><span class="p">,</span> <span class="n">spray_out</span><span class="p">,</span> <span class="n">totaldry_out</span><span class="p">,</span> <span class="n">totalsemi_out</span><span class="p">,</span> 
-                    <span class="n">nmsRQdry_out</span><span class="p">,</span> <span class="n">nmsRQsemi_out</span><span class="p">,</span> <span class="n">nmsRQspray_out</span><span class="p">,</span> 
-                    <span class="n">lmsRQdry_out</span><span class="p">,</span> <span class="n">lmsRQsemi_out</span><span class="p">,</span> <span class="n">lmsRQspray_out</span><span class="p">,</span> 
-                    <span class="n">ndsRQdry_out</span><span class="p">,</span> <span class="n">ndsRQsemi_out</span><span class="p">,</span> <span class="n">ndsRQspray_out</span><span class="p">,</span> 
-                    <span class="n">ldsRQdry_out</span><span class="p">,</span> <span class="n">ldsRQsemi_out</span><span class="p">,</span> <span class="n">ldsRQspray_out</span><span class="p">)</span>
-
-    <span class="k">return</span>  <span class="n">html_timestamp</span> <span class="o">+</span> <span class="n">sum_html</span> <span class="o">+</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_html_all_sort</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-
+    <span class="k">return</span> <span class="n">pd_obj</span>
 </div>
 <span class="nd">@require_POST</span>
 <div class="viewcode-block" id="terrplantBatchOutputPage"><a class="viewcode-back" href="../../../models.terrplant.html#models.terrplant.terrplant_batchoutput.terrplantBatchOutputPage">[docs]</a><span class="k">def</span> <span class="nf">terrplantBatchOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">thefile</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">[</span><span class="s">&#39;upfile&#39;</span><span class="p">]</span>
-    <span class="n">iter_html</span><span class="o">=</span><span class="n">loop_html</span><span class="p">(</span><span class="n">thefile</span><span class="p">)</span>
+    
+    <span class="n">csv</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">[</span><span class="s">&#39;upfile&#39;</span><span class="p">]</span>
+    <span class="n">pd_obj</span> <span class="o">=</span> <span class="n">read_batch_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">iter_html</span><span class="p">,</span> <span class="n">terr_all</span><span class="p">,</span> <span class="n">jid_batch</span></div>
+
+    <span class="k">return</span> <span class="n">pd_obj</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -280,7 +102,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -289,13 +111,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

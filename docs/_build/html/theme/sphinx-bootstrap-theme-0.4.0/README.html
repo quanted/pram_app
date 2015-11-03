@@ -28,8 +28,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -38,14 +38,14 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../index.html">übertool alpha documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">übertool alpha documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="sphinx-bootstrap-theme">
 <h1>Sphinx Bootstrap Theme<a class="headerlink" href="#sphinx-bootstrap-theme" title="Permalink to this headline">¶</a></h1>
@@ -66,7 +66,7 @@ and can use any number of different <a class="reference external" href="http://b
 <p>Examples of the theme in use for some public projects:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://ryan-roemer.github.com/sphinx-bootstrap-theme">Sphinx Bootstrap Theme</a>: This project, with the theme option
-<tt class="docutils literal"><span class="pre">'bootswatch_theme':</span> <span class="pre">&quot;flatly&quot;</span></tt> to use the &#8220;<a class="reference external" href="http://bootswatch.com/flatly">Flatly</a>&#8221; <a class="reference external" href="http://bootswatch.com">Bootswatch</a> theme.</li>
+<code class="docutils literal"><span class="pre">'bootswatch_theme':</span> <span class="pre">&quot;flatly&quot;</span></code> to use the &#8220;<a class="reference external" href="http://bootswatch.com/flatly">Flatly</a>&#8221; <a class="reference external" href="http://bootswatch.com">Bootswatch</a> theme.</li>
 <li><a class="reference external" href="http://ryan-roemer.github.com/django-cloud-browser">Django Cloud Browser</a>: A Django reusable app for browsing cloud
 datastores (e.g., Amazon Web Services S3).</li>
 </ul>
@@ -173,14 +173,14 @@ your &#8220;conf.py&#8221; file:</p>
 </pre></div>
 </div>
 <p>Note for the navigation bar title that if you don&#8217;t specify a theme option of
-<tt class="docutils literal"><span class="pre">navbar_title</span></tt> that the &#8220;conf.py&#8221; <tt class="docutils literal"><span class="pre">project</span></tt> string will be used. We don&#8217;t
-use the <tt class="docutils literal"><span class="pre">html_title</span></tt> or <tt class="docutils literal"><span class="pre">html_short_title</span></tt> values because by default those
+<code class="docutils literal"><span class="pre">navbar_title</span></code> that the &#8220;conf.py&#8221; <code class="docutils literal"><span class="pre">project</span></code> string will be used. We don&#8217;t
+use the <code class="docutils literal"><span class="pre">html_title</span></code> or <code class="docutils literal"><span class="pre">html_short_title</span></code> values because by default those
 both contain version strings, which the navigation bar treats differently.</p>
 </div>
 <div class="section" id="bootstrap-versions">
 <h3>Bootstrap Versions<a class="headerlink" href="#bootstrap-versions" title="Permalink to this headline">¶</a></h3>
-<p>The theme supports Bootstrap v2.3.2 and v3.0.0 via the <tt class="docutils literal"><span class="pre">bootstrap_version</span></tt>
-theme option (of <tt class="docutils literal"><span class="pre">&quot;2&quot;</span></tt> or <tt class="docutils literal"><span class="pre">&quot;3&quot;</span></tt>). Some notes regarding version differences:</p>
+<p>The theme supports Bootstrap v2.3.2 and v3.0.0 via the <code class="docutils literal"><span class="pre">bootstrap_version</span></code>
+theme option (of <code class="docutils literal"><span class="pre">&quot;2&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;3&quot;</span></code>). Some notes regarding version differences:</p>
 <ul class="simple">
 <li>Bootstrap 3 has dropped support for <a class="reference external" href="http://stackoverflow.com/questions/18023493">sub-menus</a>, so while supported by this
 theme, they will not show up in site or page menus.</li>
@@ -195,7 +195,7 @@ in this Sphinx theme or any others. A good candidate for changes is
 &#8220;layout.html&#8221;, which provides most of the look and feel. First, take a look
 at the &#8220;layout.html&#8221; file that the theme provides, and figure out
 what you need to override. As a side note, we have some theme-specific
-enhancements, such as the <tt class="docutils literal"><span class="pre">navbarextra</span></tt> template block for additional
+enhancements, such as the <code class="docutils literal"><span class="pre">navbarextra</span></code> template block for additional
 content in the navbar.</p>
 <p>Then, create your own &#8220;_templates&#8221; directory and &#8220;layout.html&#8221; file (assuming
 you build from a &#8220;source&#8221; directory):</p>
@@ -257,16 +257,16 @@ styling, e.g. a bold background color:</p>
 source links all in the top Bootstrap navigation bar, along with the Sphinx
 search bar on the left side.</p>
 <p>The global (site-wide) table of contents is the &#8220;Site&#8221; navigation dropdown,
-which is a configurable level rendering of the <tt class="docutils literal"><span class="pre">toctree</span></tt> for the entire site.
+which is a configurable level rendering of the <code class="docutils literal"><span class="pre">toctree</span></code> for the entire site.
 The local (page-level) table of contents is the &#8220;Page&#8221; navigation dropdown,
-which is a multi-level rendering of the current page&#8217;s <tt class="docutils literal"><span class="pre">toc</span></tt>.</p>
+which is a multi-level rendering of the current page&#8217;s <code class="docutils literal"><span class="pre">toc</span></code>.</p>
 </div>
 <div class="section" id="id3">
 <h3>Bootstrap<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>The theme offers Twitter Bootstrap v2.x and v3.x, both of which rely on
 jQuery v.1.9.x. As the jQuery that Bootstrap wants can radically depart from
 the jQuery Sphinx internal libraries use, the library from this theme is
-integrated via <tt class="docutils literal"><span class="pre">noConflict()</span></tt> as <tt class="docutils literal"><span class="pre">$jqTheme</span></tt>.</p>
+integrated via <code class="docutils literal"><span class="pre">noConflict()</span></code> as <code class="docutils literal"><span class="pre">$jqTheme</span></code>.</p>
 <p>You can override any static JS/CSS files by dropping different versions in your
 Sphinx &#8220;_static&#8221; directory.</p>
 </div>
@@ -296,7 +296,7 @@ please add a usage example to the &#8220;Examples&#8221; page.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
@@ -321,12 +321,14 @@ please add a usage example to the &#8220;Examples&#8221; page.</p>
 </li>
 </ul>
 
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../../_sources/theme/sphinx-bootstrap-theme-0.4.0/README.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/theme/sphinx-bootstrap-theme-0.4.0/README.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
       <input type="text" name="q" />
@@ -343,7 +345,7 @@ please add a usage example to the &#8220;Examples&#8221; page.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -352,12 +354,12 @@ please add a usage example to the &#8220;Examples&#8221; page.</p>
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../index.html">übertool alpha documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../index.html">übertool alpha documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

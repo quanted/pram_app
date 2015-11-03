@@ -17,8 +17,12 @@ def getheaderpvu():
 	headings = ["Parameter", "Value", "Units"]
 	return headings
 
+def getheaderpvu_calculated():
+    headings = ["Parameter", "Calculated-Value", "Units"]
+    return headings
+
 def getheaderpvuqaqc():
-    headings = ["Parameter", "Value", "Expected-Value", "Units"]
+    headings = ["Parameter", "Calculated-Value", "Expected-Value", "Units"]
     return headings
 
 def getheadersum():
@@ -62,8 +66,13 @@ def getdjtemplate():
 
 def gett1data(rice_obj):
     data = { 
-        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
-        "Value": ['%s' % rice_obj.chemical_name, '%.4f' % rice_obj.mai, '%.2f' % rice_obj.a, '%.2f' % rice_obj.dsed, '%.2f' % rice_obj.pb, '%.2f' % rice_obj.dw, '%.4f' % rice_obj.osed, '%.2f' % rice_obj.kd],
+        "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',
+            mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',
+            mark_safe('Sediment porosity, K<sub>d</sub>'), 
+            mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
+        "Value": ['%s' % rice_obj.chemical_name, '%.4f' % rice_obj.mai, '%.2f' % rice_obj.area, 
+            '%.2f' % rice_obj.dsed, '%.2f' % rice_obj.pb, '%.2f' % rice_obj.dw, 
+            '%.4f' % rice_obj.osed, '%.2f' % rice_obj.Kd],
         "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
     }
     return data
@@ -71,8 +80,8 @@ def gett1data(rice_obj):
 def gett1dataqaqc(rice_obj):
     data = { 
         "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
-        "Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
-        "Expected-Value": [rice_obj.chemical_name_expected,rice_obj.mai,rice_obj.a,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+        "Calculated-Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.area,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.Kd],
+        "Expected-Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.area,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.Kd],
         "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
     }
     return data
@@ -80,7 +89,7 @@ def gett1dataqaqc(rice_obj):
 def gett2data(rice_obj):
     data = { 
         "Parameter": ['Sediment Mass', 'Water Column Volume', 'Mass per unit area', 'Water Concentration',],
-        "Value": ['%.2f' % rice_obj.msed, '%.2f' % rice_obj.vw, '%.4f' % rice_obj.mai1, '%.4f' % rice_obj.cw,],
+        "Calculated-Value": ['%.2f' % rice_obj.out_msed, '%.2f' % rice_obj.out_vw, '%.4f' % rice_obj.out_mass_area, '%.4f' % rice_obj.out_cw,],
         "Units": ['kg', mark_safe('m<sup>3</sup>'), 'kg/ha', mark_safe('&#956;g/L'),],
     }
     return data
@@ -88,8 +97,8 @@ def gett2data(rice_obj):
 def gett2dataqaqc(rice_obj):
     data = { 
         "Parameter": ['Sediment Mass', 'Water Column Volume', 'Mass per unit area', 'Water Concentration',],
-        "Value": ['%.2f' % rice_obj.msed, '%.2f' % rice_obj.vw, '%.4f' % rice_obj.mai1, '%.4f' % rice_obj.cw,],
-        "Expected-Value": ['%.2f' % rice_obj.msed_expected, '%.2f' % rice_obj.vw_expected, '%.4f' % rice_obj.mai1_expected, '%.4f' % rice_obj.cw_expected,],
+        "Calculated-Value": ['%.2f' % rice_obj.out_msed, '%.2f' % rice_obj.out_vw, '%.4f' % rice_obj.out_mass_area, '%.4f' % rice_obj.out_cw,],
+        "Expected-Value": ['%.2f' % rice_obj.exp_msed, '%.2f' % rice_obj.exp_vw, '%.4f' % rice_obj.exp_mass_area, '%.4f' % rice_obj.exp_cw,],
         "Units": ['kg', mark_safe('m<sup>3</sup>'), 'kg/ha', mark_safe('&#956;g/L'),],
     }
     return data
@@ -109,18 +118,19 @@ def gettsumdata(mai, dsed, a, pb, dw, osed, kd):
     }
     return data
 
-def gettsumdata_out(msed, vw, mai1, cw):
+def gettsumdata_out(msed, vw, mass_area, cw):
     data = {
         "Parameter": ['Sediment Mass', 'Water Column Volume', 'Mass per unit area', 'Water Concentration',],
-        "Mean": ['%.2e' % numpy.mean(msed),'%.2e' % numpy.mean(vw),'%.2e' % numpy.mean(mai1), '%.2e' % numpy.mean(cw)],
-        "Std": ['%.2e' % numpy.std(msed),'%.2e' % numpy.std(vw),'%.2e' % numpy.std(mai1), '%.2e' % numpy.std(cw)],
-        "Min": ['%.2e' % numpy.min(msed),'%.2e' % numpy.min(vw),'%.2e' % numpy.min(mai1), '%.2e' % numpy.min(cw)],
-         "Max": ['%.2e' % numpy.max(msed),'%.2e' % numpy.max(vw),'%.2e' % numpy.max(mai1), '%.2e' % numpy.max(cw)],
+        "Mean": ['%.2e' % numpy.mean(msed),'%.2e' % numpy.mean(vw),'%.2e' % numpy.mean(mass_area), '%.2e' % numpy.mean(cw)],
+        "Std": ['%.2e' % numpy.std(msed),'%.2e' % numpy.std(vw),'%.2e' % numpy.std(mass_area), '%.2e' % numpy.std(cw)],
+        "Min": ['%.2e' % numpy.min(msed),'%.2e' % numpy.min(vw),'%.2e' % numpy.min(mass_area), '%.2e' % numpy.min(cw)],
+         "Max": ['%.2e' % numpy.max(msed),'%.2e' % numpy.max(vw),'%.2e' % numpy.max(mass_area), '%.2e' % numpy.max(cw)],
         "Unit": ['kg', mark_safe('m<sup>3</sup>'), 'kg/ha', mark_safe('&#956;g/L'),],
     }
     return data
 
 pvuheadings = getheaderpvu()
+pvuheadings_calculated = getheaderpvu_calculated()
 pvuheadingsqaqc = getheaderpvuqaqc()
 sumheadings = getheadersum()
 djtemplate = getdjtemplate()
@@ -202,8 +212,8 @@ def table_2(rice_obj):
         """
         #table 1
         t2data = gett2data(rice_obj)
-        t2rows = gethtmlrowsfromcols(t2data,pvuheadings)
-        html = html + tmpl.render(Context(dict(data=t2rows, headings=pvuheadings)))
+        t2rows = gethtmlrowsfromcols(t2data, pvuheadings_calculated)
+        html = html + tmpl.render(Context(dict(data = t2rows, headings = pvuheadings_calculated)))
         html = html + """
                 </div>
         </div>
@@ -221,17 +231,17 @@ def table_2_qaqc(rice_obj):
         """
         #table 1
         t2data = gett2dataqaqc(rice_obj)
-        t2rows = gethtmlrowsfromcols(t2data,pvuheadingsqaqc)
-        html = html + tmpl.render(Context(dict(data=t2rows, headings=pvuheadingsqaqc)))
+        t2rows = gethtmlrowsfromcols(t2data, pvuheadingsqaqc)
+        html = html + tmpl.render(Context(dict(data = t2rows, headings = pvuheadingsqaqc)))
         html = html + """
                 </div>
         </div>
         """
         return html
 
-def table_sum_all(sumheadings, tmpl, mai, dsed, a, pb, dw, osed, kd, msed, vw, mai1, cw):
+def table_sum_all(sumheadings, tmpl, mai, dsed, a, pb, dw, osed, kd, msed, vw, mass_area, cw):
     html_all_sum = table_sum_input(sumheadings, tmpl, mai, dsed, a, pb, dw, osed, kd)
-    html_all_sum += table_sum_output(sumheadings, tmpl, msed, vw, mai1, cw)
+    html_all_sum += table_sum_output(sumheadings, tmpl, msed, vw, mass_area, cw)
     return html_all_sum
 
 def table_sum_input(sumheadings, tmpl, mai, dsed, a, pb, dw, osed, kd):
@@ -251,7 +261,7 @@ def table_sum_input(sumheadings, tmpl, mai, dsed, a, pb, dw, osed, kd):
         """
         return html
 
-def table_sum_output(sumheadings, tmpl, msed, vw, mai1, cw):
+def table_sum_output(sumheadings, tmpl, msed, vw, mass_area, cw):
     #pre-table sum_input
         html = """
         <br>
@@ -259,7 +269,7 @@ def table_sum_output(sumheadings, tmpl, msed, vw, mai1, cw):
                 <div class="out_ container_output">
         """
         #table sum_input
-        tsumoutputdata = gettsumdata_out(msed, vw, mai1, cw)
+        tsumoutputdata = gettsumdata_out(msed, vw, mass_area, cw)
         tsumoutputrows = gethtmlrowsfromcols(tsumoutputdata, sumheadings)
         html = html + tmpl.render(Context(dict(data=tsumoutputrows, headings=sumheadings)))
         html = html + """

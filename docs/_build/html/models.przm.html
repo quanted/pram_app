@@ -31,8 +31,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -47,38 +47,515 @@
         <li class="right" >
           <a href="models.pfam.html" title="PFAM"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="przm">
 <h1>PRZM<a class="headerlink" href="#przm" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-przm5-przm5-input-module">
-<h2>models.przm5.przm5_input module<a class="headerlink" href="#models-przm5-przm5-input-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.przm5.przm5_input">
+<span id="models-przm5-przm5-input-module"></span><h2>models.przm5.przm5_input module<a class="headerlink" href="#module-models.przm5.przm5_input" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-przm5_input"></span><dl class="function">
+<dt id="models.przm5.przm5_input.przm5InputPage">
+<code class="descclassname">models.przm5.przm5_input.</code><code class="descname">przm5InputPage</code><span class="sig-paren">(</span><em>request</em>, <em>model=''</em>, <em>header=''</em>, <em>formData=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_input.html#przm5InputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_input.przm5InputPage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="models-przm5-przm5-model-module">
-<h2>models.przm5.przm5_model module<a class="headerlink" href="#models-przm5-przm5-model-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.przm5.przm5_model">
+<span id="models-przm5-przm5-model-module"></span><h2>models.przm5.przm5_model module<a class="headerlink" href="#module-models.przm5.przm5_model" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-przm5_model"></span><dl class="function">
+<dt id="models.przm5.przm5_model.convert_dict_key">
+<code class="descclassname">models.przm5.przm5_model.</code><code class="descname">convert_dict_key</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_model.html#convert_dict_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_model.convert_dict_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_model.get_jid">
+<code class="descclassname">models.przm5.przm5_model.</code><code class="descname">get_jid</code><span class="sig-paren">(</span><em>run_type</em>, <em>pfac</em>, <em>snowmelt</em>, <em>evapDepth</em>, <em>uslek</em>, <em>uslels</em>, <em>uslep</em>, <em>fieldSize</em>, <em>ireg</em>, <em>slope</em>, <em>hydlength</em>, <em>canopyHoldup</em>, <em>rootDepth</em>, <em>canopyCover</em>, <em>canopyHeight</em>, <em>NumberOfFactors</em>, <em>useYears</em>, <em>USLE_day</em>, <em>USLE_mon</em>, <em>USLE_year</em>, <em>USLE_c</em>, <em>USLE_n</em>, <em>USLE_cn</em>, <em>firstyear</em>, <em>lastyear</em>, <em>dayEmerge_text</em>, <em>monthEmerge_text</em>, <em>dayMature_text</em>, <em>monthMature_text</em>, <em>dayHarvest_text</em>, <em>monthHarvest_text</em>, <em>addYearM</em>, <em>addYearH</em>, <em>irflag</em>, <em>tempflag</em>, <em>fleach</em>, <em>depletion</em>, <em>rateIrrig</em>, <em>albedo</em>, <em>bcTemp</em>, <em>Q10Box</em>, <em>soilTempBox1</em>, <em>numHoriz</em>, <em>SoilProperty_thick</em>, <em>SoilProperty_compartment</em>, <em>SoilProperty_bulkden</em>, <em>SoilProperty_maxcap</em>, <em>SoilProperty_mincap</em>, <em>SoilProperty_oc</em>, <em>SoilProperty_sand</em>, <em>SoilProperty_clay</em>, <em>rDepthBox</em>, <em>rDeclineBox</em>, <em>rBypassBox</em>, <em>eDepthBox</em>, <em>eDeclineBox</em>, <em>appNumber_year</em>, <em>totalApp</em>, <em>SpecifyYears</em>, <em>ApplicationTypes</em>, <em>PestAppyDay</em>, <em>PestAppyMon</em>, <em>Rela_a</em>, <em>app_date_type</em>, <em>DepthIncorp</em>, <em>PestAppyRate</em>, <em>localEff</em>, <em>localSpray</em>, <em>PestDispHarvest</em>, <em>nchem</em>, <em>convert_Foliar1</em>, <em>parentTo3</em>, <em>deg1To2</em>, <em>foliarHalfLifeBox</em>, <em>koc_check</em>, <em>Koc</em>, <em>soilHalfLifeBox</em>, <em>convertSoil1</em>, <em>convert1to3</em>, <em>convert2to3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_model.html#get_jid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_model.get_jid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_model.get_upload">
+<code class="descclassname">models.przm5.przm5_model.</code><code class="descname">get_upload</code><span class="sig-paren">(</span><em>src1</em>, <em>name1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_model.html#get_upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_model.get_upload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_model.przm5">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_model.</code><code class="descname">przm5</code><span class="sig-paren">(</span><em>dictionary</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_model.html#przm5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_model.przm5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
 </div>
-<div class="section" id="models-przm5-przm5-output-module">
-<h2>models.przm5.przm5_output module<a class="headerlink" href="#models-przm5-przm5-output-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.przm5.przm5_output">
+<span id="models-przm5-przm5-output-module"></span><h2>models.przm5.przm5_output module<a class="headerlink" href="#module-models.przm5.przm5_output" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-przm5_output"></span><dl class="function">
+<dt id="models.przm5.przm5_output.przm5OutputPage">
+<code class="descclassname">models.przm5.przm5_output.</code><code class="descname">przm5OutputPage</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_output.html#przm5OutputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_output.przm5OutputPage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="models-przm5-przm5-parameters-module">
-<h2>models.przm5.przm5_parameters module<a class="headerlink" href="#models-przm5-przm5-parameters-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.przm5.przm5_parameters">
+<span id="models-przm5-przm5-parameters-module"></span><h2>models.przm5.przm5_parameters module<a class="headerlink" href="#module-models.przm5.przm5_parameters" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-przm5_parameters"></span><dl class="class">
+<dt id="models.przm5.przm5_parameters.Przm5Inp">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">Przm5Inp</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#Przm5Inp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.Przm5Inp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="models.przm5.html#models.przm5.przm5_parameters.przm5Inp_chem" title="models.przm5.przm5_parameters.przm5Inp_chem"><code class="xref py py-class docutils literal"><span class="pre">models.przm5.przm5_parameters.przm5Inp_chem</span></code></a>, <a class="reference internal" href="models.przm5.html#models.przm5.przm5_parameters.przm5Inp_chem0" title="models.przm5.przm5_parameters.przm5Inp_chem0"><code class="xref py py-class docutils literal"><span class="pre">models.przm5.przm5_parameters.przm5Inp_chem0</span></code></a>, <a class="reference internal" href="models.przm5.html#models.przm5.przm5_parameters.przm5Inp_chem1" title="models.przm5.przm5_parameters.przm5Inp_chem1"><code class="xref py py-class docutils literal"><span class="pre">models.przm5.przm5_parameters.przm5Inp_chem1</span></code></a>, <a class="reference internal" href="models.przm5.html#models.przm5.przm5_parameters.przm5Inp_mcf1" title="models.przm5.przm5_parameters.przm5Inp_mcf1"><code class="xref py py-class docutils literal"><span class="pre">models.przm5.przm5_parameters.przm5Inp_mcf1</span></code></a>, <a class="reference internal" href="models.przm5.html#models.przm5.przm5_parameters.przm5Inp_chem2" title="models.przm5.przm5_parameters.przm5Inp_chem2"><code class="xref py py-class docutils literal"><span class="pre">models.przm5.przm5_parameters.przm5Inp_chem2</span></code></a>, <a class="reference internal" href="models.przm5.html#models.przm5.przm5_parameters.przm5Inp_mcf2" title="models.przm5.przm5_parameters.przm5Inp_mcf2"><code class="xref py py-class docutils literal"><span class="pre">models.przm5.przm5_parameters.przm5Inp_mcf2</span></code></a>, <a class="reference internal" href="models.przm5.html#models.przm5.przm5_parameters.przm5Inp_appl" title="models.przm5.przm5_parameters.przm5Inp_appl"><code class="xref py py-class docutils literal"><span class="pre">models.przm5.przm5_parameters.przm5Inp_appl</span></code></a>, <a class="reference internal" href="models.przm5.html#models.przm5.przm5_parameters.przm5Inp_cropland" title="models.przm5.przm5_parameters.przm5Inp_cropland"><code class="xref py py-class docutils literal"><span class="pre">models.przm5.przm5_parameters.przm5Inp_cropland</span></code></a>, <a class="reference internal" href="models.przm5.html#models.przm5.przm5_parameters.przm5Inp_runoff" title="models.przm5.przm5_parameters.przm5Inp_runoff"><code class="xref py py-class docutils literal"><span class="pre">models.przm5.przm5_parameters.przm5Inp_runoff</span></code></a>, <a class="reference internal" href="models.przm5.html#models.przm5.przm5_parameters.przm5Inp_waterbody" title="models.przm5.przm5_parameters.przm5Inp_waterbody"><code class="xref py py-class docutils literal"><span class="pre">models.przm5.przm5_parameters.przm5Inp_waterbody</span></code></a></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.Przm5Inp.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('fieldSize', &lt;django.forms.fields.FloatField object at 0x0000000009012160&gt;), ('hydlength', &lt;django.forms.fields.FloatField object at 0x0000000006C629E8&gt;), ('uslek', &lt;django.forms.fields.FloatField object at 0x0000000006FBBB70&gt;), ('uslels', &lt;django.forms.fields.FloatField object at 0x0000000006FBBBE0&gt;), ('uslep', &lt;django.forms.fields.FloatField object at 0x0000000006FBBC50&gt;), ('ireg', &lt;django.forms.fields.FloatField object at 0x0000000006FBBCC0&gt;), ('slope', &lt;django.forms.fields.FloatField object at 0x0000000006FBBD30&gt;), ('rDepthBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBDA0&gt;), ('rDeclineBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBE10&gt;), ('rBypassBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBE80&gt;), ('eDepthBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBEF0&gt;), ('eDeclineBox', &lt;django.forms.fields.FloatField object at 0x0000000006C80A90&gt;), ('dvf_file', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB4A8&gt;), ('Emerge_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB518&gt;), ('Mature_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB588&gt;), ('Harvest_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB5F8&gt;), ('pfac', &lt;django.forms.fields.FloatField object at 0x0000000006FBB668&gt;), ('snowmelt', &lt;django.forms.fields.FloatField object at 0x0000000006FBB6D8&gt;), ('evapDepth', &lt;django.forms.fields.FloatField object at 0x0000000006FBB748&gt;), ('rootDepth', &lt;django.forms.fields.FloatField object at 0x0000000006FBB7B8&gt;), ('canopyCover', &lt;django.forms.fields.FloatField object at 0x0000000006FBB828&gt;), ('canopyHeight', &lt;django.forms.fields.FloatField object at 0x0000000006FBB898&gt;), ('canopyHoldup', &lt;django.forms.fields.FloatField object at 0x0000000006FBB908&gt;), ('irflag', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB978&gt;), ('fleach', &lt;django.forms.fields.FloatField object at 0x0000000006FBB9E8&gt;), ('depletion', &lt;django.forms.fields.FloatField object at 0x00000000084F4860&gt;), ('rateIrrig', &lt;django.forms.fields.FloatField object at 0x0000000006FBBA90&gt;), ('PestDispHarvest', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBBB00&gt;), ('app_date_type', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80908&gt;), ('noa', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB358&gt;), ('specifyYears', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB3C8&gt;), ('pond_res_custom', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB438&gt;), ('deg2_source', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB1D0&gt;), ('convertSoil2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB240&gt;), ('convert_Foliar2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB2B0&gt;), ('Koc_2', &lt;django.forms.fields.FloatField object at 0x0000000006C80FD0&gt;), ('soilHalfLife_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB080&gt;), ('soilHalfLifeRef_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB0F0&gt;), ('foliarHalfLife_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB160&gt;), ('convertSoil1', &lt;django.forms.fields.FloatField object at 0x0000000006C80EF0&gt;), ('convert_Foliar1', &lt;django.forms.fields.FloatField object at 0x0000000006C80F60&gt;), ('Koc_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80D68&gt;), ('soilHalfLife_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80DD8&gt;), ('soilHalfLifeRef_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80E48&gt;), ('foliarHalfLife_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80E80&gt;), ('deg_check', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80CF8&gt;), ('koc_check', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80B00&gt;), ('Koc_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80B70&gt;), ('soilHalfLife_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C18&gt;), ('soilHalfLifeRef_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C88&gt;), ('foliarHalfLife_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C50&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.Przm5Inp.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.Przm5Inp.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('fieldSize', &lt;django.forms.fields.FloatField object at 0x0000000009012160&gt;), ('hydlength', &lt;django.forms.fields.FloatField object at 0x0000000006C629E8&gt;), ('uslek', &lt;django.forms.fields.FloatField object at 0x0000000006FBBB70&gt;), ('uslels', &lt;django.forms.fields.FloatField object at 0x0000000006FBBBE0&gt;), ('uslep', &lt;django.forms.fields.FloatField object at 0x0000000006FBBC50&gt;), ('ireg', &lt;django.forms.fields.FloatField object at 0x0000000006FBBCC0&gt;), ('slope', &lt;django.forms.fields.FloatField object at 0x0000000006FBBD30&gt;), ('rDepthBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBDA0&gt;), ('rDeclineBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBE10&gt;), ('rBypassBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBE80&gt;), ('eDepthBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBEF0&gt;), ('eDeclineBox', &lt;django.forms.fields.FloatField object at 0x0000000006C80A90&gt;), ('dvf_file', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB4A8&gt;), ('Emerge_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB518&gt;), ('Mature_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB588&gt;), ('Harvest_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB5F8&gt;), ('pfac', &lt;django.forms.fields.FloatField object at 0x0000000006FBB668&gt;), ('snowmelt', &lt;django.forms.fields.FloatField object at 0x0000000006FBB6D8&gt;), ('evapDepth', &lt;django.forms.fields.FloatField object at 0x0000000006FBB748&gt;), ('rootDepth', &lt;django.forms.fields.FloatField object at 0x0000000006FBB7B8&gt;), ('canopyCover', &lt;django.forms.fields.FloatField object at 0x0000000006FBB828&gt;), ('canopyHeight', &lt;django.forms.fields.FloatField object at 0x0000000006FBB898&gt;), ('canopyHoldup', &lt;django.forms.fields.FloatField object at 0x0000000006FBB908&gt;), ('irflag', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB978&gt;), ('fleach', &lt;django.forms.fields.FloatField object at 0x0000000006FBB9E8&gt;), ('depletion', &lt;django.forms.fields.FloatField object at 0x00000000084F4860&gt;), ('rateIrrig', &lt;django.forms.fields.FloatField object at 0x0000000006FBBA90&gt;), ('PestDispHarvest', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBBB00&gt;), ('app_date_type', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80908&gt;), ('noa', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB358&gt;), ('specifyYears', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB3C8&gt;), ('pond_res_custom', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB438&gt;), ('deg2_source', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB1D0&gt;), ('convertSoil2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB240&gt;), ('convert_Foliar2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB2B0&gt;), ('Koc_2', &lt;django.forms.fields.FloatField object at 0x0000000006C80FD0&gt;), ('soilHalfLife_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB080&gt;), ('soilHalfLifeRef_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB0F0&gt;), ('foliarHalfLife_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB160&gt;), ('convertSoil1', &lt;django.forms.fields.FloatField object at 0x0000000006C80EF0&gt;), ('convert_Foliar1', &lt;django.forms.fields.FloatField object at 0x0000000006C80F60&gt;), ('Koc_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80D68&gt;), ('soilHalfLife_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80DD8&gt;), ('soilHalfLifeRef_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80E48&gt;), ('foliarHalfLife_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80E80&gt;), ('deg_check', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80CF8&gt;), ('koc_check', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80B00&gt;), ('Koc_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80B70&gt;), ('soilHalfLife_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C18&gt;), ('soilHalfLifeRef_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C88&gt;), ('foliarHalfLife_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C50&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.Przm5Inp.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.Przm5Inp.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.Przm5Inp.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_parameters.przm5Inp_appl">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">przm5Inp_appl</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#przm5Inp_appl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_appl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_appl.app_date_type_choice">
+<code class="descname">app_date_type_choice</code><em class="property"> = (('0', 'Absolute Dates'), ('1', 'Relative Dates'))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_appl.app_date_type_choice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_appl.app_nOpt">
+<code class="descname">app_nOpt</code><em class="property"> = (('0', 'Select Value'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10'), ('11', '11'), ('12', '12'), ('13', '13'), ('14', '14'), ('15', '15'), ('16', '16'), ('17', '17'), ('18', '18'), ('19', '19'), ('20', '20'), ('21', '21'), ('22', '22'), ('23', '23'), ('24', '24'), ('25', '25'), ('26', '26'), ('27', '27'), ('28', '28'), ('29', '29'), ('30', '30'), ('31', '31'), ('32', '23'), ('33', '33'), ('34', '34'), ('35', '35'), ('36', '36'), ('37', '37'), ('38', '38'), ('39', '39'), ('40', '40'), ('41', '41'), ('42', '24'), ('43', '43'), ('44', '44'), ('45', '45'), ('46', '46'), ('47', '47'), ('48', '48'), ('49', '49'), ('50', '50'))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_appl.app_nOpt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_appl.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('app_date_type', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80908&gt;), ('noa', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB358&gt;), ('specifyYears', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB3C8&gt;), ('pond_res_custom', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB438&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_appl.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_appl.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('app_date_type', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80908&gt;), ('noa', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB358&gt;), ('specifyYears', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB3C8&gt;), ('pond_res_custom', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB438&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_appl.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_appl.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_appl.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_appl.pond_res_customSel">
+<code class="descname">pond_res_customSel</code><em class="property"> = ((1, 'Pond'), (2, 'Reservoir'), (3, 'Custom'))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_appl.pond_res_customSel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_appl.specifyYearsSel">
+<code class="descname">specifyYearsSel</code><em class="property"> = (('1', 'Yes'), ('0', 'No'))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_appl.specifyYearsSel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">przm5Inp_chem</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#przm5Inp_chem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('koc_check', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80B00&gt;), ('Koc_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80B70&gt;), ('soilHalfLife_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C18&gt;), ('soilHalfLifeRef_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C88&gt;), ('foliarHalfLife_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C50&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('koc_check', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80B00&gt;), ('Koc_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80B70&gt;), ('soilHalfLife_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C18&gt;), ('soilHalfLifeRef_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C88&gt;), ('foliarHalfLife_0', &lt;django.forms.fields.FloatField object at 0x0000000006C80C50&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem.koc_check_choice">
+<code class="descname">koc_check_choice</code><em class="property"> = ((1, 'Koc'), (0, 'Kd'))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem.koc_check_choice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem0">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">przm5Inp_chem0</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#przm5Inp_chem0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem0.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('deg_check', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80CF8&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem0.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem0.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('deg_check', &lt;django.forms.fields.ChoiceField object at 0x0000000006C80CF8&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem0.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem0.deg_choice">
+<code class="descname">deg_choice</code><em class="property"> = (('0', 'None'), ('1', '1 Degradate'), ('2', '2 Degradates'))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem0.deg_choice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem0.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem0.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem1">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">przm5Inp_chem1</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#przm5Inp_chem1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem1.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('Koc_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80D68&gt;), ('soilHalfLife_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80DD8&gt;), ('soilHalfLifeRef_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80E48&gt;), ('foliarHalfLife_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80E80&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem1.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem1.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('Koc_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80D68&gt;), ('soilHalfLife_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80DD8&gt;), ('soilHalfLifeRef_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80E48&gt;), ('foliarHalfLife_1', &lt;django.forms.fields.FloatField object at 0x0000000006C80E80&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem1.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem1.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem1.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem2">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">przm5Inp_chem2</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#przm5Inp_chem2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem2.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('Koc_2', &lt;django.forms.fields.FloatField object at 0x0000000006C80FD0&gt;), ('soilHalfLife_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB080&gt;), ('soilHalfLifeRef_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB0F0&gt;), ('foliarHalfLife_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB160&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem2.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem2.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('Koc_2', &lt;django.forms.fields.FloatField object at 0x0000000006C80FD0&gt;), ('soilHalfLife_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB080&gt;), ('soilHalfLifeRef_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB0F0&gt;), ('foliarHalfLife_2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB160&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem2.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_chem2.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_chem2.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_parameters.przm5Inp_cropland">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">przm5Inp_cropland</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#przm5Inp_cropland"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_cropland" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_cropland.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('dvf_file', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB4A8&gt;), ('Emerge_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB518&gt;), ('Mature_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB588&gt;), ('Harvest_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB5F8&gt;), ('pfac', &lt;django.forms.fields.FloatField object at 0x0000000006FBB668&gt;), ('snowmelt', &lt;django.forms.fields.FloatField object at 0x0000000006FBB6D8&gt;), ('evapDepth', &lt;django.forms.fields.FloatField object at 0x0000000006FBB748&gt;), ('rootDepth', &lt;django.forms.fields.FloatField object at 0x0000000006FBB7B8&gt;), ('canopyCover', &lt;django.forms.fields.FloatField object at 0x0000000006FBB828&gt;), ('canopyHeight', &lt;django.forms.fields.FloatField object at 0x0000000006FBB898&gt;), ('canopyHoldup', &lt;django.forms.fields.FloatField object at 0x0000000006FBB908&gt;), ('irflag', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB978&gt;), ('fleach', &lt;django.forms.fields.FloatField object at 0x0000000006FBB9E8&gt;), ('depletion', &lt;django.forms.fields.FloatField object at 0x00000000084F4860&gt;), ('rateIrrig', &lt;django.forms.fields.FloatField object at 0x0000000006FBBA90&gt;), ('PestDispHarvest', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBBB00&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_cropland.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_cropland.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('dvf_file', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB4A8&gt;), ('Emerge_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB518&gt;), ('Mature_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB588&gt;), ('Harvest_text', &lt;django.forms.fields.CharField object at 0x0000000006FBB5F8&gt;), ('pfac', &lt;django.forms.fields.FloatField object at 0x0000000006FBB668&gt;), ('snowmelt', &lt;django.forms.fields.FloatField object at 0x0000000006FBB6D8&gt;), ('evapDepth', &lt;django.forms.fields.FloatField object at 0x0000000006FBB748&gt;), ('rootDepth', &lt;django.forms.fields.FloatField object at 0x0000000006FBB7B8&gt;), ('canopyCover', &lt;django.forms.fields.FloatField object at 0x0000000006FBB828&gt;), ('canopyHeight', &lt;django.forms.fields.FloatField object at 0x0000000006FBB898&gt;), ('canopyHoldup', &lt;django.forms.fields.FloatField object at 0x0000000006FBB908&gt;), ('irflag', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB978&gt;), ('fleach', &lt;django.forms.fields.FloatField object at 0x0000000006FBB9E8&gt;), ('depletion', &lt;django.forms.fields.FloatField object at 0x00000000084F4860&gt;), ('rateIrrig', &lt;django.forms.fields.FloatField object at 0x0000000006FBBA90&gt;), ('PestDispHarvest', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBBB00&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_cropland.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_cropland.dvf_choice">
+<code class="descname">dvf_choice</code><em class="property"> = (('0', 'Make a Selection'), ('test.dvf', 'test.dvf'))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_cropland.dvf_choice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_cropland.irr_choice">
+<code class="descname">irr_choice</code><em class="property"> = ((0, 'None'), (1, 'Over Canopy'), (2, 'Under Canopy'))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_cropland.irr_choice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_cropland.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_cropland.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_cropland.post_choice">
+<code class="descname">post_choice</code><em class="property"> = ((1, 'Surface Applied'), (2, 'Removed'), (3, 'Left as Foliage'))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_cropland.post_choice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_parameters.przm5Inp_mcf1">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">przm5Inp_mcf1</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#przm5Inp_mcf1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_mcf1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_mcf1.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('convertSoil1', &lt;django.forms.fields.FloatField object at 0x0000000006C80EF0&gt;), ('convert_Foliar1', &lt;django.forms.fields.FloatField object at 0x0000000006C80F60&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_mcf1.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_mcf1.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('convertSoil1', &lt;django.forms.fields.FloatField object at 0x0000000006C80EF0&gt;), ('convert_Foliar1', &lt;django.forms.fields.FloatField object at 0x0000000006C80F60&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_mcf1.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_mcf1.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_mcf1.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_parameters.przm5Inp_mcf2">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">przm5Inp_mcf2</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#przm5Inp_mcf2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_mcf2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_mcf2.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('deg2_source', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB1D0&gt;), ('convertSoil2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB240&gt;), ('convert_Foliar2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB2B0&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_mcf2.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_mcf2.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('deg2_source', &lt;django.forms.fields.ChoiceField object at 0x0000000006FBB1D0&gt;), ('convertSoil2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB240&gt;), ('convert_Foliar2', &lt;django.forms.fields.FloatField object at 0x0000000006FBB2B0&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_mcf2.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_mcf2.deg2_srcSel">
+<code class="descname">deg2_srcSel</code><em class="property"> = ((1, 'Degradate 1'), (0, 'Parent'))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_mcf2.deg2_srcSel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_mcf2.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_mcf2.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_parameters.przm5Inp_runoff">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">przm5Inp_runoff</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#przm5Inp_runoff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_runoff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_runoff.NumberOfFactors_choice">
+<code class="descname">NumberOfFactors_choice</code><em class="property"> = ((26, 26), (27, 27))</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_runoff.NumberOfFactors_choice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_runoff.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('uslek', &lt;django.forms.fields.FloatField object at 0x0000000006FBBB70&gt;), ('uslels', &lt;django.forms.fields.FloatField object at 0x0000000006FBBBE0&gt;), ('uslep', &lt;django.forms.fields.FloatField object at 0x0000000006FBBC50&gt;), ('ireg', &lt;django.forms.fields.FloatField object at 0x0000000006FBBCC0&gt;), ('slope', &lt;django.forms.fields.FloatField object at 0x0000000006FBBD30&gt;), ('rDepthBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBDA0&gt;), ('rDeclineBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBE10&gt;), ('rBypassBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBE80&gt;), ('eDepthBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBEF0&gt;), ('eDeclineBox', &lt;django.forms.fields.FloatField object at 0x0000000006C80A90&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_runoff.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_runoff.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('uslek', &lt;django.forms.fields.FloatField object at 0x0000000006FBBB70&gt;), ('uslels', &lt;django.forms.fields.FloatField object at 0x0000000006FBBBE0&gt;), ('uslep', &lt;django.forms.fields.FloatField object at 0x0000000006FBBC50&gt;), ('ireg', &lt;django.forms.fields.FloatField object at 0x0000000006FBBCC0&gt;), ('slope', &lt;django.forms.fields.FloatField object at 0x0000000006FBBD30&gt;), ('rDepthBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBDA0&gt;), ('rDeclineBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBE10&gt;), ('rBypassBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBE80&gt;), ('eDepthBox', &lt;django.forms.fields.FloatField object at 0x0000000006FBBEF0&gt;), ('eDeclineBox', &lt;django.forms.fields.FloatField object at 0x0000000006C80A90&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_runoff.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_runoff.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_runoff.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.przm5.przm5_parameters.przm5Inp_waterbody">
+<em class="property">class </em><code class="descclassname">models.przm5.przm5_parameters.</code><code class="descname">przm5Inp_waterbody</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_parameters.html#przm5Inp_waterbody"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_waterbody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_waterbody.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('fieldSize', &lt;django.forms.fields.FloatField object at 0x0000000009012160&gt;), ('hydlength', &lt;django.forms.fields.FloatField object at 0x0000000006C629E8&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_waterbody.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_waterbody.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('fieldSize', &lt;django.forms.fields.FloatField object at 0x0000000009012160&gt;), ('hydlength', &lt;django.forms.fields.FloatField object at 0x0000000006C629E8&gt;)])</em><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_waterbody.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.przm5.przm5_parameters.przm5Inp_waterbody.media">
+<code class="descname">media</code><a class="headerlink" href="#models.przm5.przm5_parameters.przm5Inp_waterbody.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="models-przm5-przm5-qaqc-module">
-<h2>models.przm5.przm5_qaqc module<a class="headerlink" href="#models-przm5-przm5-qaqc-module" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="models-przm5-przm5-tables-module">
-<h2>models.przm5.przm5_tables module<a class="headerlink" href="#models-przm5-przm5-tables-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.przm5.przm5_qaqc">
+<span id="models-przm5-przm5-qaqc-module"></span><h2>models.przm5.przm5_qaqc module<a class="headerlink" href="#module-models.przm5.przm5_qaqc" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-przm5_qaqc"></span></div>
+<div class="section" id="module-models.przm5.przm5_tables">
+<span id="models-przm5-przm5-tables-module"></span><h2>models.przm5.przm5_tables module<a class="headerlink" href="#module-models.przm5.przm5_tables" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-przm5_tables"></span><dl class="function">
+<dt id="models.przm5.przm5_tables.getdjtemplate">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">getdjtemplate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#getdjtemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.getdjtemplate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.getheader_table_2b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">getheader_table_2b</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#getheader_table_2b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.getheader_table_2b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.getheader_table_3b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">getheader_table_3b</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#getheader_table_3b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.getheader_table_3b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.getheader_table_4b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">getheader_table_4b</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#getheader_table_4b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.getheader_table_4b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.getheaderpvu">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">getheaderpvu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#getheaderpvu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.getheaderpvu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.getheaderpvu2">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">getheaderpvu2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#getheaderpvu2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.getheaderpvu2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gethtmlrowsfromcols">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gethtmlrowsfromcols</code><span class="sig-paren">(</span><em>data</em>, <em>headings</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gethtmlrowsfromcols"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gethtmlrowsfromcols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gett1data">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gett1data</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gett1data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gett1data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gett1data_b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gett1data_b</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gett1data_b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gett1data_b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gett1data_c">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gett1data_c</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gett1data_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gett1data_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gett2data">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gett2data</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gett2data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gett2data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gett2data_b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gett2data_b</code><span class="sig-paren">(</span><em>Day</em>, <em>Month</em>, <em>Amount</em>, <em>Method</em>, <em>Depth</em>, <em>Eff</em>, <em>Drift</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gett2data_b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gett2data_b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gett3data">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gett3data</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gett3data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gett3data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gett3data_b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gett3data_b</code><span class="sig-paren">(</span><em>thick</em>, <em>rho</em>, <em>max_cap</em>, <em>min_cap</em>, <em>oc</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gett3data_b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gett3data_b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gett4data">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gett4data</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gett4data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gett4data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gett4data_b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gett4data_b</code><span class="sig-paren">(</span><em>No</em>, <em>Day</em>, <em>Month</em>, <em>Year</em>, <em>CN</em>, <em>C</em>, <em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gett4data_b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gett4data_b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.gett5data">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">gett5data</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#gett5data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.gett5data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_1">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_1</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_1_b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_1_b</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_1_b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_1_b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_1_c">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_1_c</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_1_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_1_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_2">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_2</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_2_b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_2_b</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_2_b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_2_b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_3">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_3</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_3_b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_3_b</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_3_b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_3_b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_4">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_4</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_4"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_4_b">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_4_b</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_4_b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_4_b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_5">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_5</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_6">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_6</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_6"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_7">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_7</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_7"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_8">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_8</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_8"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.table_all">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">table_all</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#table_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.table_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="models.przm5.przm5_tables.timestamp">
+<code class="descclassname">models.przm5.przm5_tables.</code><code class="descname">timestamp</code><span class="sig-paren">(</span><em>przm5_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/przm5/przm5_tables.html#timestamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.przm5.przm5_tables.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="module-models.przm5.views">
 <span id="models-przm5-views-module"></span><h2>models.przm5.views module<a class="headerlink" href="#module-models.przm5.views" title="Permalink to this headline">¶</a></h2>
@@ -92,18 +569,18 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">PRZM</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#models-przm5-przm5-input-module">models.przm5.przm5_input module</a></li>
-<li><a class="reference internal" href="#models-przm5-przm5-model-module">models.przm5.przm5_model module</a></li>
-<li><a class="reference internal" href="#models-przm5-przm5-output-module">models.przm5.przm5_output module</a></li>
-<li><a class="reference internal" href="#models-przm5-przm5-parameters-module">models.przm5.przm5_parameters module</a></li>
-<li><a class="reference internal" href="#models-przm5-przm5-qaqc-module">models.przm5.przm5_qaqc module</a></li>
-<li><a class="reference internal" href="#models-przm5-przm5-tables-module">models.przm5.przm5_tables module</a></li>
+<li><a class="reference internal" href="#module-models.przm5.przm5_input">models.przm5.przm5_input module</a></li>
+<li><a class="reference internal" href="#module-models.przm5.przm5_model">models.przm5.przm5_model module</a></li>
+<li><a class="reference internal" href="#module-models.przm5.przm5_output">models.przm5.przm5_output module</a></li>
+<li><a class="reference internal" href="#module-models.przm5.przm5_parameters">models.przm5.przm5_parameters module</a></li>
+<li><a class="reference internal" href="#module-models.przm5.przm5_qaqc">models.przm5.przm5_qaqc module</a></li>
+<li><a class="reference internal" href="#module-models.przm5.przm5_tables">models.przm5.przm5_tables module</a></li>
 <li><a class="reference internal" href="#module-models.przm5.views">models.przm5.views module</a></li>
 <li><a class="reference internal" href="#module-models.przm5">Module contents</a></li>
 </ul>
@@ -116,12 +593,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="models.przm5.html"
                         title="next chapter">PRZM 5</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/models.przm.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/models.przm.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -138,7 +617,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -153,13 +632,13 @@
         <li class="right" >
           <a href="models.pfam.html" title="PFAM"
              >previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" >Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" >Models</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

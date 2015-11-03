@@ -31,8 +31,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -47,15 +47,15 @@
         <li class="right" >
           <a href="models.terrplant.html" title="TerrPlant"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="t-herps">
 <h1>T-Herps<a class="headerlink" href="#t-herps" title="Permalink to this headline">¶</a></h1>
@@ -65,17 +65,111 @@
 <div class="section" id="models-therps-therps-batchoutput-module">
 <h2>models.therps.therps_batchoutput module<a class="headerlink" href="#models-therps-therps-batchoutput-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-therps-therps-input-module">
-<h2>models.therps.therps_input module<a class="headerlink" href="#models-therps-therps-input-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.therps.therps_input">
+<span id="models-therps-therps-input-module"></span><h2>models.therps.therps_input module<a class="headerlink" href="#module-models.therps.therps_input" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-therps_input"></span><dl class="function">
+<dt id="models.therps.therps_input.therpsInputPage">
+<code class="descclassname">models.therps.therps_input.</code><code class="descname">therpsInputPage</code><span class="sig-paren">(</span><em>request</em>, <em>model=''</em>, <em>header=''</em>, <em>formData=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/therps/therps_input.html#therpsInputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.therps.therps_input.therpsInputPage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="models-therps-therps-model-module">
 <h2>models.therps.therps_model module<a class="headerlink" href="#models-therps-therps-model-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-therps-therps-output-module">
-<h2>models.therps.therps_output module<a class="headerlink" href="#models-therps-therps-output-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.therps.therps_output">
+<span id="models-therps-therps-output-module"></span><h2>models.therps.therps_output module<a class="headerlink" href="#module-models.therps.therps_output" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-therps_output"></span><dl class="function">
+<dt id="models.therps.therps_output.therpsOutputPage">
+<code class="descclassname">models.therps.therps_output.</code><code class="descname">therpsOutputPage</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/therps/therps_output.html#therpsOutputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.therps.therps_output.therpsOutputPage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="models-therps-therps-parameters-module">
-<h2>models.therps.therps_parameters module<a class="headerlink" href="#models-therps-therps-parameters-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.therps.therps_parameters">
+<span id="models-therps-therps-parameters-module"></span><h2>models.therps.therps_parameters module<a class="headerlink" href="#module-models.therps.therps_parameters" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-therps_parameters"></span><dl class="class">
+<dt id="models.therps.therps_parameters.TherpsInp">
+<em class="property">class </em><code class="descclassname">models.therps.therps_parameters.</code><code class="descname">TherpsInp</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/therps/therps_parameters.html#TherpsInp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.therps.therps_parameters.TherpsInp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.therps.therps_parameters.therpsInp_chem" title="models.therps.therps_parameters.therpsInp_chem"><code class="xref py py-class docutils literal"><span class="pre">models.therps.therps_parameters.therpsInp_chem</span></code></a>, <a class="reference internal" href="#models.therps.therps_parameters.therpsInp_bird" title="models.therps.therps_parameters.therpsInp_bird"><code class="xref py py-class docutils literal"><span class="pre">models.therps.therps_parameters.therpsInp_bird</span></code></a>, <a class="reference internal" href="#models.therps.therps_parameters.therpsInp_herp" title="models.therps.therps_parameters.therpsInp_herp"><code class="xref py py-class docutils literal"><span class="pre">models.therps.therps_parameters.therpsInp_herp</span></code></a></p>
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.TherpsInp.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('BW_herptile_a_sm', &lt;django.forms.fields.FloatField object at 0x10704d6d0&gt;), ('W_p_a_sm', &lt;django.forms.fields.FloatField object at 0x10704d750&gt;), ('BW_herptile_a_md', &lt;django.forms.fields.FloatField object at 0x10704d7d0&gt;), ('W_p_a_md', &lt;django.forms.fields.FloatField object at 0x10704d850&gt;), ('BW_herptile_a_lg', &lt;django.forms.fields.FloatField object at 0x10704d8d0&gt;), ('W_p_a_lg', &lt;django.forms.fields.FloatField object at 0x10704d950&gt;), ('body_weight_of_the_consumed_mammal_a', &lt;django.forms.fields.FloatField object at 0x10704d9d0&gt;), ('body_weight_of_the_consumed_herp_a', &lt;django.forms.fields.FloatField object at 0x10704da50&gt;), ('avian_ld50', &lt;django.forms.fields.FloatField object at 0x10704d050&gt;), ('Species_of_the_tested_bird_avian_ld50', &lt;django.forms.fields.ChoiceField object at 0x10704d0d0&gt;), ('bw_avian_ld50', &lt;django.forms.fields.FloatField object at 0x10704d150&gt;), ('avian_lc50', &lt;django.forms.fields.FloatField object at 0x10704d1d0&gt;), ('Species_of_the_tested_bird_avian_lc50', &lt;django.forms.fields.ChoiceField object at 0x10704d250&gt;), ('bw_avian_lc50', &lt;django.forms.fields.FloatField object at 0x10704d2d0&gt;), ('avian_NOAEC', &lt;django.forms.fields.FloatField object at 0x10704d350&gt;), ('Species_of_the_tested_bird_avian_NOAEC', &lt;django.forms.fields.ChoiceField object at 0x10704d3d0&gt;), ('bw_avian_NOAEC', &lt;django.forms.fields.FloatField object at 0x10704d450&gt;), ('avian_NOAEL', &lt;django.forms.fields.FloatField object at 0x10704d4d0&gt;), ('Species_of_the_tested_bird_avian_NOAEL', &lt;django.forms.fields.ChoiceField object at 0x10704d550&gt;), ('bw_avian_NOAEL', &lt;django.forms.fields.FloatField object at 0x10704d5d0&gt;), ('mineau_scaling_factor', &lt;django.forms.fields.FloatField object at 0x10704d650&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x107045bd0&gt;), ('Use', &lt;django.forms.fields.CharField object at 0x107045c50&gt;), ('Formulated_product_name', &lt;django.forms.fields.CharField object at 0x107045d10&gt;), ('percent_ai', &lt;django.forms.fields.FloatField object at 0x107045d90&gt;), ('Foliar_dissipation_half_life', &lt;django.forms.fields.FloatField object at 0x107045e10&gt;), ('number_of_applications', &lt;django.forms.fields.FloatField object at 0x107045e90&gt;), ('interval_between_applications', &lt;django.forms.fields.FloatField object at 0x107045f10&gt;), ('application_rate', &lt;django.forms.fields.FloatField object at 0x107045f90&gt;)])</em><a class="headerlink" href="#models.therps.therps_parameters.TherpsInp.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.TherpsInp.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('BW_herptile_a_sm', &lt;django.forms.fields.FloatField object at 0x10704d6d0&gt;), ('W_p_a_sm', &lt;django.forms.fields.FloatField object at 0x10704d750&gt;), ('BW_herptile_a_md', &lt;django.forms.fields.FloatField object at 0x10704d7d0&gt;), ('W_p_a_md', &lt;django.forms.fields.FloatField object at 0x10704d850&gt;), ('BW_herptile_a_lg', &lt;django.forms.fields.FloatField object at 0x10704d8d0&gt;), ('W_p_a_lg', &lt;django.forms.fields.FloatField object at 0x10704d950&gt;), ('body_weight_of_the_consumed_mammal_a', &lt;django.forms.fields.FloatField object at 0x10704d9d0&gt;), ('body_weight_of_the_consumed_herp_a', &lt;django.forms.fields.FloatField object at 0x10704da50&gt;), ('avian_ld50', &lt;django.forms.fields.FloatField object at 0x10704d050&gt;), ('Species_of_the_tested_bird_avian_ld50', &lt;django.forms.fields.ChoiceField object at 0x10704d0d0&gt;), ('bw_avian_ld50', &lt;django.forms.fields.FloatField object at 0x10704d150&gt;), ('avian_lc50', &lt;django.forms.fields.FloatField object at 0x10704d1d0&gt;), ('Species_of_the_tested_bird_avian_lc50', &lt;django.forms.fields.ChoiceField object at 0x10704d250&gt;), ('bw_avian_lc50', &lt;django.forms.fields.FloatField object at 0x10704d2d0&gt;), ('avian_NOAEC', &lt;django.forms.fields.FloatField object at 0x10704d350&gt;), ('Species_of_the_tested_bird_avian_NOAEC', &lt;django.forms.fields.ChoiceField object at 0x10704d3d0&gt;), ('bw_avian_NOAEC', &lt;django.forms.fields.FloatField object at 0x10704d450&gt;), ('avian_NOAEL', &lt;django.forms.fields.FloatField object at 0x10704d4d0&gt;), ('Species_of_the_tested_bird_avian_NOAEL', &lt;django.forms.fields.ChoiceField object at 0x10704d550&gt;), ('bw_avian_NOAEL', &lt;django.forms.fields.FloatField object at 0x10704d5d0&gt;), ('mineau_scaling_factor', &lt;django.forms.fields.FloatField object at 0x10704d650&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x107045bd0&gt;), ('Use', &lt;django.forms.fields.CharField object at 0x107045c50&gt;), ('Formulated_product_name', &lt;django.forms.fields.CharField object at 0x107045d10&gt;), ('percent_ai', &lt;django.forms.fields.FloatField object at 0x107045d90&gt;), ('Foliar_dissipation_half_life', &lt;django.forms.fields.FloatField object at 0x107045e10&gt;), ('number_of_applications', &lt;django.forms.fields.FloatField object at 0x107045e90&gt;), ('interval_between_applications', &lt;django.forms.fields.FloatField object at 0x107045f10&gt;), ('application_rate', &lt;django.forms.fields.FloatField object at 0x107045f90&gt;)])</em><a class="headerlink" href="#models.therps.therps_parameters.TherpsInp.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.TherpsInp.media">
+<code class="descname">media</code><a class="headerlink" href="#models.therps.therps_parameters.TherpsInp.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.therps.therps_parameters.therpsInp_bird">
+<em class="property">class </em><code class="descclassname">models.therps.therps_parameters.</code><code class="descname">therpsInp_bird</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/therps/therps_parameters.html#therpsInp_bird"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_bird" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.therpsInp_bird.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('avian_ld50', &lt;django.forms.fields.FloatField object at 0x10704d050&gt;), ('Species_of_the_tested_bird_avian_ld50', &lt;django.forms.fields.ChoiceField object at 0x10704d0d0&gt;), ('bw_avian_ld50', &lt;django.forms.fields.FloatField object at 0x10704d150&gt;), ('avian_lc50', &lt;django.forms.fields.FloatField object at 0x10704d1d0&gt;), ('Species_of_the_tested_bird_avian_lc50', &lt;django.forms.fields.ChoiceField object at 0x10704d250&gt;), ('bw_avian_lc50', &lt;django.forms.fields.FloatField object at 0x10704d2d0&gt;), ('avian_NOAEC', &lt;django.forms.fields.FloatField object at 0x10704d350&gt;), ('Species_of_the_tested_bird_avian_NOAEC', &lt;django.forms.fields.ChoiceField object at 0x10704d3d0&gt;), ('bw_avian_NOAEC', &lt;django.forms.fields.FloatField object at 0x10704d450&gt;), ('avian_NOAEL', &lt;django.forms.fields.FloatField object at 0x10704d4d0&gt;), ('Species_of_the_tested_bird_avian_NOAEL', &lt;django.forms.fields.ChoiceField object at 0x10704d550&gt;), ('bw_avian_NOAEL', &lt;django.forms.fields.FloatField object at 0x10704d5d0&gt;), ('mineau_scaling_factor', &lt;django.forms.fields.FloatField object at 0x10704d650&gt;)])</em><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_bird.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.therpsInp_bird.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('avian_ld50', &lt;django.forms.fields.FloatField object at 0x10704d050&gt;), ('Species_of_the_tested_bird_avian_ld50', &lt;django.forms.fields.ChoiceField object at 0x10704d0d0&gt;), ('bw_avian_ld50', &lt;django.forms.fields.FloatField object at 0x10704d150&gt;), ('avian_lc50', &lt;django.forms.fields.FloatField object at 0x10704d1d0&gt;), ('Species_of_the_tested_bird_avian_lc50', &lt;django.forms.fields.ChoiceField object at 0x10704d250&gt;), ('bw_avian_lc50', &lt;django.forms.fields.FloatField object at 0x10704d2d0&gt;), ('avian_NOAEC', &lt;django.forms.fields.FloatField object at 0x10704d350&gt;), ('Species_of_the_tested_bird_avian_NOAEC', &lt;django.forms.fields.ChoiceField object at 0x10704d3d0&gt;), ('bw_avian_NOAEC', &lt;django.forms.fields.FloatField object at 0x10704d450&gt;), ('avian_NOAEL', &lt;django.forms.fields.FloatField object at 0x10704d4d0&gt;), ('Species_of_the_tested_bird_avian_NOAEL', &lt;django.forms.fields.ChoiceField object at 0x10704d550&gt;), ('bw_avian_NOAEL', &lt;django.forms.fields.FloatField object at 0x10704d5d0&gt;), ('mineau_scaling_factor', &lt;django.forms.fields.FloatField object at 0x10704d650&gt;)])</em><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_bird.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.therpsInp_bird.media">
+<code class="descname">media</code><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_bird.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.therps.therps_parameters.therpsInp_chem">
+<em class="property">class </em><code class="descclassname">models.therps.therps_parameters.</code><code class="descname">therpsInp_chem</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/therps/therps_parameters.html#therpsInp_chem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_chem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.therpsInp_chem.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('chemical_name', &lt;django.forms.fields.CharField object at 0x107045bd0&gt;), ('Use', &lt;django.forms.fields.CharField object at 0x107045c50&gt;), ('Formulated_product_name', &lt;django.forms.fields.CharField object at 0x107045d10&gt;), ('percent_ai', &lt;django.forms.fields.FloatField object at 0x107045d90&gt;), ('Foliar_dissipation_half_life', &lt;django.forms.fields.FloatField object at 0x107045e10&gt;), ('number_of_applications', &lt;django.forms.fields.FloatField object at 0x107045e90&gt;), ('interval_between_applications', &lt;django.forms.fields.FloatField object at 0x107045f10&gt;), ('application_rate', &lt;django.forms.fields.FloatField object at 0x107045f90&gt;)])</em><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_chem.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.therpsInp_chem.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('chemical_name', &lt;django.forms.fields.CharField object at 0x107045bd0&gt;), ('Use', &lt;django.forms.fields.CharField object at 0x107045c50&gt;), ('Formulated_product_name', &lt;django.forms.fields.CharField object at 0x107045d10&gt;), ('percent_ai', &lt;django.forms.fields.FloatField object at 0x107045d90&gt;), ('Foliar_dissipation_half_life', &lt;django.forms.fields.FloatField object at 0x107045e10&gt;), ('number_of_applications', &lt;django.forms.fields.FloatField object at 0x107045e90&gt;), ('interval_between_applications', &lt;django.forms.fields.FloatField object at 0x107045f10&gt;), ('application_rate', &lt;django.forms.fields.FloatField object at 0x107045f90&gt;)])</em><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_chem.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.therpsInp_chem.media">
+<code class="descname">media</code><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_chem.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.therps.therps_parameters.therpsInp_herp">
+<em class="property">class </em><code class="descclassname">models.therps.therps_parameters.</code><code class="descname">therpsInp_herp</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/therps/therps_parameters.html#therpsInp_herp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_herp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.therpsInp_herp.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('BW_herptile_a_sm', &lt;django.forms.fields.FloatField object at 0x10704d6d0&gt;), ('W_p_a_sm', &lt;django.forms.fields.FloatField object at 0x10704d750&gt;), ('BW_herptile_a_md', &lt;django.forms.fields.FloatField object at 0x10704d7d0&gt;), ('W_p_a_md', &lt;django.forms.fields.FloatField object at 0x10704d850&gt;), ('BW_herptile_a_lg', &lt;django.forms.fields.FloatField object at 0x10704d8d0&gt;), ('W_p_a_lg', &lt;django.forms.fields.FloatField object at 0x10704d950&gt;), ('body_weight_of_the_consumed_mammal_a', &lt;django.forms.fields.FloatField object at 0x10704d9d0&gt;), ('body_weight_of_the_consumed_herp_a', &lt;django.forms.fields.FloatField object at 0x10704da50&gt;)])</em><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_herp.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.therpsInp_herp.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('BW_herptile_a_sm', &lt;django.forms.fields.FloatField object at 0x10704d6d0&gt;), ('W_p_a_sm', &lt;django.forms.fields.FloatField object at 0x10704d750&gt;), ('BW_herptile_a_md', &lt;django.forms.fields.FloatField object at 0x10704d7d0&gt;), ('W_p_a_md', &lt;django.forms.fields.FloatField object at 0x10704d850&gt;), ('BW_herptile_a_lg', &lt;django.forms.fields.FloatField object at 0x10704d8d0&gt;), ('W_p_a_lg', &lt;django.forms.fields.FloatField object at 0x10704d950&gt;), ('body_weight_of_the_consumed_mammal_a', &lt;django.forms.fields.FloatField object at 0x10704d9d0&gt;), ('body_weight_of_the_consumed_herp_a', &lt;django.forms.fields.FloatField object at 0x10704da50&gt;)])</em><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_herp.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.therps.therps_parameters.therpsInp_herp.media">
+<code class="descname">media</code><a class="headerlink" href="#models.therps.therps_parameters.therpsInp_herp.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="models-therps-therps-qaqc-module">
 <h2>models.therps.therps_qaqc module<a class="headerlink" href="#models-therps-therps-qaqc-module" title="Permalink to this headline">¶</a></h2>
@@ -98,17 +192,17 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">T-Herps</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#models-therps-therps-batchoutput-module">models.therps.therps_batchoutput module</a></li>
-<li><a class="reference internal" href="#models-therps-therps-input-module">models.therps.therps_input module</a></li>
+<li><a class="reference internal" href="#module-models.therps.therps_input">models.therps.therps_input module</a></li>
 <li><a class="reference internal" href="#models-therps-therps-model-module">models.therps.therps_model module</a></li>
-<li><a class="reference internal" href="#models-therps-therps-output-module">models.therps.therps_output module</a></li>
-<li><a class="reference internal" href="#models-therps-therps-parameters-module">models.therps.therps_parameters module</a></li>
+<li><a class="reference internal" href="#module-models.therps.therps_output">models.therps.therps_output module</a></li>
+<li><a class="reference internal" href="#module-models.therps.therps_parameters">models.therps.therps_parameters module</a></li>
 <li><a class="reference internal" href="#models-therps-therps-qaqc-module">models.therps.therps_qaqc module</a></li>
 <li><a class="reference internal" href="#models-therps-therps-tables-module">models.therps.therps_tables module</a></li>
 <li><a class="reference internal" href="#models-therps-therps-tooltips-module">models.therps.therps_tooltips module</a></li>
@@ -124,12 +218,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="models.trex.html"
                         title="next chapter">T-Rex v1.4.1</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/models.therps.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/models.therps.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -146,7 +242,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -161,13 +257,13 @@
         <li class="right" >
           <a href="models.terrplant.html" title="TerrPlant"
              >previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" >Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" >Models</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

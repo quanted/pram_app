@@ -18,9 +18,10 @@ L=[]
 Cs=[]
 Kd=[]
 Ps=[]
-Cw=[]
-MW=[]
-Pe=[]
+# the inputs cw, mw, and pe are not used in most recent version of EFED equation in earthworm model sheet
+# Cw=[]
+# MW=[]
+# Pe=[]
 
 ######Pre-defined outputs########
 Ce_out=[]
@@ -53,14 +54,15 @@ def html_table(row_inp_all):
             Kd.append(Kd_temp)
             Ps_temp=float(row_inp[4])
             Ps.append(Ps_temp)
-            Cw_temp=float(row_inp[5])        
-            Cw.append(Cw_temp)
-            MW_temp=float(row_inp[6])   
-            MW.append(MW_temp)
-            Pe_temp=float(row_inp[7])
-            Pe.append(Pe_temp)
+            # Cw_temp=float(row_inp[5])
+            # Cw.append(Cw_temp)
+            # MW_temp=float(row_inp[6])
+            # MW.append(MW_temp)
+            # Pe_temp=float(row_inp[7])
+            # Pe.append(Pe_temp)
     
-            earth = earthworm_model.earthworm(True,True,Kow_temp,L_temp,Cs_temp,Kd_temp,Ps_temp,Cw_temp,MW_temp,Pe_temp)
+            #earth = earthworm_model.earthworm(True,True,Kow_temp,L_temp,Cs_temp,Kd_temp,Ps_temp,Cw_temp,MW_temp,Pe_temp)
+            earth = earthworm_model.earthworm(True,True,Kow_temp,L_temp,Cs_temp,Kd_temp,Ps_temp)
             logger.info("===============")
             Ce_temp=earth.earthworm_fugacity_out
             Ce_out.append(Ce_temp)
@@ -103,10 +105,11 @@ def loop_html(thefile):
 
     html_timestamp = earthworm_tables.timestamp("", jid_batch[0])
     out_html_all_sort = OrderedDict(sorted(out_html_all.items()))
-    sum_html = earthworm_tables.table_all_sum(earthworm_tables.sumheadings, earthworm_tables.tmpl, Kow, L, Cs, Kd, Ps, Cw, MW, Pe, 
-                    Ce_out)
-    
-    return  html_timestamp + sum_html + "".join(out_html_all_sort.values())
+    # sum_html = earthworm_tables.table_all_sum(earthworm_tables.sumheadings, earthworm_tables.tmpl, Kow, L, Cs, Kd, Ps, Cw, MW, Pe,
+    #                 Ce_out)
+    sum_html = earthworm_tables.table_all_sum(earthworm_tables.sumheadings, earthworm_tables.tmpl, Kow, L, Cs, Kd, Ps, Ce_out)
+
+    return html_timestamp + sum_html + "".join(out_html_all_sort.values())
 
 
 @require_POST

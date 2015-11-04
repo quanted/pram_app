@@ -86,19 +86,19 @@ def earthwormoutput(earthworm_obj):
     return data
 
 
-def gettsumdata(Kow, L, Cs, Kd, Ps, Cw, MW, Pe):
+def gettsumdata(Kow, L, Cs, Kd, Ps):
     data = { 
         "Parameter": [mark_safe('Octanol to water partition coefficient K<sub>OW</sub>'), 'Lipid fraction of earthworm L', mark_safe('Chemical concentration in soil C<sub>S</sub>'), mark_safe('Soil partitioning coefficient K<sub>d</sub>'), 
                     mark_safe('Bulk density of soil &#961;<sub>s</sub>'),mark_safe('Chemical concentration in pore water of soil C<sub>W</sub>'),
                     mark_safe('Molecular weight of chemical MW'),mark_safe('Density of earthworm &#961;<sub>E</sub>')],
         "Mean": ['%.2e' % numpy.mean(Kow),'%.2e' % numpy.mean(L),'%.2e' % numpy.mean(Cs), '%.2e' % numpy.mean(Kd), 
-                 '%.2e' % numpy.mean(Ps), '%.2e' % numpy.mean(Cw), '%.2e' % numpy.mean(MW), '%.2e' % numpy.mean(Pe),],
+                 '%.2e' % numpy.mean(Ps),], # '%.2e' % numpy.mean(Cw), '%.2e' % numpy.mean(MW), '%.2e' % numpy.mean(Pe),],
         "Std":  ['%.2e' % numpy.std(Kow),'%.2e' % numpy.std(L),'%.2e' % numpy.std(Cs), '%.2e' % numpy.std(Kd), 
-                '%.2e' % numpy.std(Ps), '%.2e' % numpy.std(Cw), '%.2e' % numpy.std(MW), '%.2e' % numpy.std(Pe),],
+                '%.2e' % numpy.std(Ps),], # '%.2e' % numpy.std(Cw), '%.2e' % numpy.std(MW), '%.2e' % numpy.std(Pe),],
         "Min":  ['%.2e' % numpy.min(Kow),'%.2e' % numpy.min(L),'%.2e' % numpy.min(Cs), '%.2e' % numpy.min(Kd), 
-                '%.2e' % numpy.min(Ps), '%.2e' % numpy.min(Cw), '%.2e' % numpy.min(MW), '%.2e' % numpy.min(Pe),],
+                '%.2e' % numpy.min(Ps),], # '%.2e' % numpy.min(Cw), '%.2e' % numpy.min(MW), '%.2e' % numpy.min(Pe),],
         "Max":  ['%.2e' % numpy.max(Kow),'%.2e' % numpy.max(L),'%.2e' % numpy.max(Cs), '%.2e' % numpy.max(Kd), 
-                '%.2e' % numpy.max(Ps), '%.2e' % numpy.max(Cw), '%.2e' % numpy.max(MW), '%.2e' % numpy.max(Pe),],
+                '%.2e' % numpy.max(Ps),], # '%.2e' % numpy.max(Cw), '%.2e' % numpy.max(MW), '%.2e' % numpy.max(Pe),],
         "Units": ['none', 'none', mark_safe('mol/m<sup>3</sup>'),mark_safe('cm<sup>3</sup>/g'),mark_safe('g/cm<sup>3</sup>'),mark_safe('mol/m<sup>3</sup>'),'g/mol',mark_safe('kg/m<sup>3</sup>'),],
     }
     return data
@@ -163,10 +163,11 @@ def table_1batch(pvuheadings, tmpl, earthworm_obj):
 def getdata_batch(earthworm_obj):
     data = { 
         "Parameter": [mark_safe('Octanol to water partition coefficient K<sub>OW</sub>'), 'Lipid fraction of earthworm L', mark_safe('Chemical concentration in soil C<sub>S</sub>'), mark_safe('Soil partitioning coefficient K<sub>d</sub>'), 
-                    mark_safe('Bulk density of soil &#961;<sub>s</sub>'),mark_safe('Chemical concentration in pore water of soil C<sub>W</sub>'),
-                    mark_safe('Molecular weight of chemical MW'),mark_safe('Density of earthworm &#961;<sub>E</sub>')],
-        "Value": [earthworm_obj.k_ow, earthworm_obj.l_f_e, earthworm_obj.c_s, earthworm_obj.k_d, earthworm_obj.p_s, earthworm_obj.c_w, earthworm_obj.m_w, earthworm_obj.p_e],
-        "Units": ['none', 'none', mark_safe('mol/m<sup>3</sup>'),mark_safe('cm<sup>3</sup>/g'),mark_safe('g/cm<sup>3</sup>'),mark_safe('mol/m<sup>3</sup>'),'g/mol',mark_safe('kg/m<sup>3</sup>'),],
+                    mark_safe('Bulk density of soil &#961;<sub>s</sub>')],
+               # ,mark_safe('Chemical concentration in pore water of soil C<sub>W</sub>'),
+               #     mark_safe('Molecular weight of chemical MW'),mark_safe('Density of earthworm &#961;<sub>E</sub>')],
+        "Value": [earthworm_obj.k_ow, earthworm_obj.l_f_e, earthworm_obj.c_s, earthworm_obj.k_d, earthworm_obj.p_s], # earthworm_obj.c_w, earthworm_obj.m_w, earthworm_obj.p_e],
+        "Units": ['none', 'none', mark_safe('mol/m<sup>3</sup>'),mark_safe('cm<sup>3</sup>/g'),mark_safe('g/cm<sup>3</sup>'),], # mark_safe('mol/m<sup>3</sup>'),'g/mol',mark_safe('kg/m<sup>3</sup>'),],
     }
     return data
 
@@ -175,12 +176,12 @@ def table_all_batch(pvuheadings, sumheadings, tmpl,earthworm_obj):
     html_all = html_all + table_2(earthworm_obj)
     return html_all
 
-def table_all_sum(sumheadings, tmpl, Kow, L, Cs, Kd, Ps, Cw, MW, Pe,Ce_out):
-    html_all_sum = table_sum_input(sumheadings, tmpl, Kow, L, Cs, Kd, Ps, Cw, MW, Pe)
+def table_all_sum(sumheadings, tmpl, Kow, L, Cs, Kd, Ps, Ce_out):
+    html_all_sum = table_sum_input(sumheadings, tmpl, Kow, L, Cs, Kd, Ps) # Cw, MW, Pe)
     html_all_sum += table_sum_output(sumheadings, tmpl, Ce_out)
     return html_all_sum
 
-def table_sum_input(sumheadings, tmpl, Kow, L, Cs, Kd, Ps, Cw, MW, Pe):
+def table_sum_input(sumheadings, tmpl, Kow, L, Cs, Kd, Ps): # Cw, MW, Pe):
         #pre-table sum_input
         html = """
         <H3 class="out_1 collapsible" id="section1"><span></span>Summary Statistics</H3>
@@ -189,12 +190,10 @@ def table_sum_input(sumheadings, tmpl, Kow, L, Cs, Kd, Ps, Cw, MW, Pe):
                 <div class="out_ container_output">
         """
         #table sum_input
-        tsuminputdata = gettsumdata(Kow, L, Cs, Kd, Ps, Cw, MW, Pe)
+        tsuminputdata = gettsumdata(Kow, L, Cs, Kd, Ps) # Cw, MW, Pe)
         tsuminputrows = gethtmlrowsfromcols(tsuminputdata, sumheadings)
         html = html + tmpl.render(Context(dict(data=tsuminputrows, headings=sumheadings)))
-        html = html + """
-                </div>
-        """
+        html = html + """</div>"""
         return html
 
 def table_sum_output(sumheadings, tmpl, Ce_out):
@@ -210,8 +209,8 @@ def table_sum_output(sumheadings, tmpl, Ce_out):
         html = html + tmpl.render(Context(dict(data=tsumoutputrows, headings=sumheadings)))
         html = html + """
                 </div>
-        </div>
-        <br>
-        """
+                </div>
+                <br>
+                """
         return html
 

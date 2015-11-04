@@ -43,7 +43,7 @@ def trex2OutputPage(request):
        rate_out.append(float(rate_temp))
        day_temp = float(request.POST.get('day'+str(j)))
        day_out.append(day_temp)  
-
+    
     h_l = request.POST.get('Foliar_dissipation_half_life')
     ld50_bird = request.POST.get('avian_ld50')
     lc50_bird = request.POST.get('avian_lc50')

@@ -1,17 +1,17 @@
 rice_property,description,units,type,valid_range,run1
 chemical_name,chemical_name,unitless,,,Fipronil
 mai,mass of applied ingredient to paddy,kg/ha,,,0.056
-a,area of rice paddy,m2,,,10000
+area,area of rice paddy,m2,,,10000
 dsed,sediment depth,m,,,0.01
 pb,bulk density of sediment,kg/m3,,,1300
 dw,water column depth,m,,,0.1
 osed,sediment porosity,unitless,,,0.509
-kd,Water-sediment partitioning coefficient,L/kg,,,727
+Kd,Water-sediment partitioning coefficient,L/kg,,,727
 out_msed,sediment mass,kg/ha,,,
 out_vw,water column volume,m3,,,
-out_mai1,mass per unit area,kg/ha,,,
+out_mass_area,mass per unit area,kg/ha,,,
 out_cw,water concentration,ug/L,,,
 exp_msed,sediment mass,kg/ha,,,130000
 exp_vw,water column volume,m3,,,1050.9
-exp_mai1,mass per unit area,kg/ha,,,0.056
+exp_mass_area,mass per unit area,kg/ha,,,0.056
 exp_cw,water concentration,ug/L,,,28.0561

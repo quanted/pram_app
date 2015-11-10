@@ -1,5 +1,9 @@
+Django>=1.8.2
 numpy
 pandas
-Django>=1.8.2
 pytz
+requests
+selenium
+Sphinx
 xlsxwriter
+

@@ -1,0 +1,653 @@
+************* Module qed.ubertool_eco.models.sip.sip_tables
+W: 16, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+W: 17, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+W: 20, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 20, 0: Exactly one space required after comma
+	headings = ["Parameter", "Acute", "Chronic","Units"]
+                                            ^ (bad-whitespace)
+W: 21, 0: Found indentation with tabs instead of spaces (mixed-indentation)
+C: 24, 0: Exactly one space required after comma
+    headings = ["Parameter", "Acute", "Acute-Expected", "Chronic", "Chronic-Expected","Units"]
+                                                                                     ^ (bad-whitespace)
+C: 46, 0: Exactly one space required after assignment
+    dj_template ="""
+                ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                     ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                  ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                         ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                                                                                         ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                                                                                                                                                       ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                                                                                                                                                                                          ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                                                                                                                                                                                                                       ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                                                                                                                                                                                                                                               ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                                                                                                                                                                                                                                                                    ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                                                                                                                                                                                                                                                                                                    ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                                                                                                                                                                                                                                                                                                                                   ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^ (bad-whitespace)
+C: 68, 0: Exactly one space required after comma
+        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                       ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                          ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                    ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                     ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                                                ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                                                                                       ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                                                                                                                ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                                                                                                                                               ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                                                                                                                                                                             ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                                                                                                                                                                                                ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                                                                                                                                                                                                                    ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                                                                                                                                                                                                                                               ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                                                                                                                                                                                                                                                                               ^ (bad-whitespace)
+C: 69, 0: Exactly one space required after comma
+        "Value": [sip_obj.chemical_name,sip_obj.solubility,sip_obj.ld50_mammal_water,sip_obj.bodyweight_tested_mammal,sip_obj.noael_mammal_water,sip_obj.noael_bodyweight_tested_mammal,sip_obj.ld50_avian_water,sip_obj.bodyweight_tested_bird,sip_obj.mineau_scaling_factor,sip_obj.noaec_duck,sip_obj.noaec_quail,sip_obj.noaec_bird_other_1,sip_obj.bodyweight_bird_other_1,sip_obj.noaec_bird_other_2,sip_obj.bodyweight_bird_other_2],
+                                                                                                                                                                                                                                                                                                                                                                                                          ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                    ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                           ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                      ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                          ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                                     ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                                         ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                                                    ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                                                        ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                                                           ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                                                                        ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                                                                                     ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                                                                                                  ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                                                                                                      ^ (bad-whitespace)
+C: 70, 0: Exactly one space required after comma
+        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+                                                                                                                                   ^ (bad-whitespace)
+C: 87, 0: Exactly one space required after comma
+        "Acute-Expected": ['%g' % sip_obj.dose_mamm_exp,'%g' % sip_obj.at_mamm_exp,'%g' % sip_obj.acute_mamm_exp,'%s' % sip_obj.acuconm_exp,],
+                                                       ^ (bad-whitespace)
+C: 87, 0: Exactly one space required after comma
+        "Acute-Expected": ['%g' % sip_obj.dose_mamm_exp,'%g' % sip_obj.at_mamm_exp,'%g' % sip_obj.acute_mamm_exp,'%s' % sip_obj.acuconm_exp,],
+                                                                                  ^ (bad-whitespace)
+C: 87, 0: Exactly one space required after comma
+        "Acute-Expected": ['%g' % sip_obj.dose_mamm_exp,'%g' % sip_obj.at_mamm_exp,'%g' % sip_obj.acute_mamm_exp,'%s' % sip_obj.acuconm_exp,],
+                                                                                                                ^ (bad-whitespace)
+C: 89, 0: Exactly one space required after comma
+        "Chronic-Expected": ['%g' % sip_obj.dose_mamm_exp,'%g' % sip_obj.act_exp,'%g' % sip_obj.chron_mamm_exp,'%s' % sip_obj.chronconm_exp,],
+                                                         ^ (bad-whitespace)
+C: 89, 0: Exactly one space required after comma
+        "Chronic-Expected": ['%g' % sip_obj.dose_mamm_exp,'%g' % sip_obj.act_exp,'%g' % sip_obj.chron_mamm_exp,'%s' % sip_obj.chronconm_exp,],
+                                                                                ^ (bad-whitespace)
+C: 89, 0: Exactly one space required after comma
+        "Chronic-Expected": ['%g' % sip_obj.dose_mamm_exp,'%g' % sip_obj.act_exp,'%g' % sip_obj.chron_mamm_exp,'%s' % sip_obj.chronconm_exp,],
+                                                                                                              ^ (bad-whitespace)
+C: 97, 0: Exactly one space required after comma
+        "Acute": ['%g' % sip_obj.dose_bird_out, '%g' % sip_obj.at_bird_out,'%g' % sip_obj.acute_bird_out, '%s' % sip_obj.acuconb_out,],
+                                                                          ^ (bad-whitespace)
+C: 98, 0: Exactly one space required after comma
+        "Chronic": ['%g' % sip_obj.dose_bird_out, '%g' % sip_obj.det_out,'%g' % sip_obj.chron_bird_out, '%s' % sip_obj.chronconb_out,],
+                                                                        ^ (bad-whitespace)
+C:106, 0: Exactly one space required after comma
+        "Acute": ['%g' % sip_obj.dose_bird_out, '%g' % sip_obj.at_bird_out,'%g' % sip_obj.acute_bird_out, '%s' % sip_obj.acuconb_out,],
+                                                                          ^ (bad-whitespace)
+C:108, 0: Exactly one space required after comma
+        "Chronic": ['%g' % sip_obj.dose_bird_out, '%g' % sip_obj.det_out,'%g' % sip_obj.chron_bird_out, '%s' % sip_obj.chronconb_out,],
+                                                                        ^ (bad-whitespace)
+C:109, 0: Exactly one space required after comma
+        "Chronic-Expected": ['%g' % sip_obj.dose_bird_exp,'%g' % sip_obj.det_exp,'%g' % sip_obj.chron_bird_exp,'%s' % sip_obj.chronconb_exp,],
+                                                         ^ (bad-whitespace)
+C:109, 0: Exactly one space required after comma
+        "Chronic-Expected": ['%g' % sip_obj.dose_bird_exp,'%g' % sip_obj.det_exp,'%g' % sip_obj.chron_bird_exp,'%s' % sip_obj.chronconb_exp,],
+                                                                                ^ (bad-whitespace)
+C:109, 0: Exactly one space required after comma
+        "Chronic-Expected": ['%g' % sip_obj.dose_bird_exp,'%g' % sip_obj.det_exp,'%g' % sip_obj.chron_bird_exp,'%s' % sip_obj.chronconb_exp,],
+                                                                                                              ^ (bad-whitespace)
+C:114, 0: Exactly one space required after comma
+def gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                ^ (bad-whitespace)
+C:114, 0: Exactly one space required after comma
+def gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                ^ (bad-whitespace)
+C:114, 0: Exactly one space required after comma
+def gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                      ^ (bad-whitespace)
+C:114, 0: Exactly one space required after comma
+def gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                     ^ (bad-whitespace)
+C:114, 0: Exactly one space required after comma
+def gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                                                    ^ (bad-whitespace)
+C:115, 0: Wrong continued indentation.
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
+                |   ^ (bad-continuation)
+C:115, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
+                              ^ (bad-whitespace)
+C:115, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
+                                             ^ (bad-whitespace)
+C:115, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
+                                                                   ^ (bad-whitespace)
+C:115, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
+                                                                                     ^ (bad-whitespace)
+C:118, 0: Wrong continued indentation.
+                    'Solubility','AW Bird' , 'Mineau', 'NOAEC','NOAEL'],
+                    ^ | (bad-continuation)
+C:118, 0: Exactly one space required after comma
+                    'Solubility','AW Bird' , 'Mineau', 'NOAEC','NOAEL'],
+                                ^ (bad-whitespace)
+C:118, 0: No space allowed before comma
+                    'Solubility','AW Bird' , 'Mineau', 'NOAEC','NOAEL'],
+                                           ^ (bad-whitespace)
+C:118, 0: Exactly one space required after comma
+                    'Solubility','AW Bird' , 'Mineau', 'NOAEC','NOAEL'],
+                                                              ^ (bad-whitespace)
+C:119, 0: Exactly one space required after comma
+        "Mean": ['%g' % numpy.mean(bodyweight_quail),'%g' % numpy.mean(bodyweight_duck),'%g' % numpy.mean(bodyweight_bird_other), '%g' % numpy.mean(bodyweight_rat), 
+                                                    ^ (bad-whitespace)
+C:119, 0: Exactly one space required after comma
+        "Mean": ['%g' % numpy.mean(bodyweight_quail),'%g' % numpy.mean(bodyweight_duck),'%g' % numpy.mean(bodyweight_bird_other), '%g' % numpy.mean(bodyweight_rat), 
+                                                                                       ^ (bad-whitespace)
+C:123, 0: Exactly one space required after comma
+        "Std": ['%g' % numpy.std(bodyweight_quail),'%g' % numpy.std(bodyweight_duck),'%g' % numpy.std(bodyweight_bird_other), '%g' % numpy.std(bodyweight_rat), 
+                                                  ^ (bad-whitespace)
+C:123, 0: Exactly one space required after comma
+        "Std": ['%g' % numpy.std(bodyweight_quail),'%g' % numpy.std(bodyweight_duck),'%g' % numpy.std(bodyweight_bird_other), '%g' % numpy.std(bodyweight_rat), 
+                                                                                    ^ (bad-whitespace)
+C:125, 0: Wrong continued indentation.
+                 '%g' % numpy.std(mineau_scaling_factor),
+                |^ (bad-continuation)
+C:126, 0: Wrong continued indentation.
+                 '%g' % numpy.std(noael_avian_water),'%g' % numpy.std(noael_mammal_water),],
+                |^ (bad-continuation)
+C:126, 0: Exactly one space required after comma
+                 '%g' % numpy.std(noael_avian_water),'%g' % numpy.std(noael_mammal_water),],
+                                                    ^ (bad-whitespace)
+C:127, 0: Exactly one space required after comma
+        "Min": ['%g' % numpy.min(bodyweight_quail),'%g' % numpy.min(bodyweight_duck),'%g' % numpy.min(bodyweight_bird_other), '%g' % numpy.min(bodyweight_rat), 
+                                                  ^ (bad-whitespace)
+C:127, 0: Exactly one space required after comma
+        "Min": ['%g' % numpy.min(bodyweight_quail),'%g' % numpy.min(bodyweight_duck),'%g' % numpy.min(bodyweight_bird_other), '%g' % numpy.min(bodyweight_rat), 
+                                                                                    ^ (bad-whitespace)
+C:129, 0: Wrong continued indentation.
+                 '%g' % numpy.min(mineau_scaling_factor),
+                |^ (bad-continuation)
+C:130, 0: Wrong continued indentation.
+                 '%g' % numpy.min(noael_avian_water),'%g' % numpy.min(noael_mammal_water),],
+                |^ (bad-continuation)
+C:130, 0: Exactly one space required after comma
+                 '%g' % numpy.min(noael_avian_water),'%g' % numpy.min(noael_mammal_water),],
+                                                    ^ (bad-whitespace)
+C:131, 0: Wrong hanging indentation.
+         "Max": ['%g' % numpy.max(bodyweight_quail),'%g' % numpy.max(bodyweight_duck),'%g' % numpy.max(bodyweight_bird_other), '%g' % numpy.max(bodyweight_rat), 
+        |^ (bad-continuation)
+C:131, 0: Exactly one space required after comma
+         "Max": ['%g' % numpy.max(bodyweight_quail),'%g' % numpy.max(bodyweight_duck),'%g' % numpy.max(bodyweight_bird_other), '%g' % numpy.max(bodyweight_rat), 
+                                                   ^ (bad-whitespace)
+C:131, 0: Exactly one space required after comma
+         "Max": ['%g' % numpy.max(bodyweight_quail),'%g' % numpy.max(bodyweight_duck),'%g' % numpy.max(bodyweight_bird_other), '%g' % numpy.max(bodyweight_rat), 
+                                                                                     ^ (bad-whitespace)
+C:132, 0: Wrong continued indentation.
+                '%g' % numpy.max(bodyweight_tested_mammal_other), '%g' % numpy.max(solubility), '%g' % numpy.max(avian_ld50), '%g' % numpy.max(mammalian_ld50),
+                ^| (bad-continuation)
+C:134, 0: Exactly one space required after comma
+                 '%g' % numpy.max(noael_avian_water),'%g' % numpy.max(noael_mammal_water),],
+                                                    ^ (bad-whitespace)
+C:135, 0: Exactly one space required after comma
+        "Unit": ['g', 'g', 'g', 'g', 'g','mg/kg-bw', 'mg/kg-bw', 'mg/L','g', '', 'g','mg/kg-diet', 'mg/kg-bw',],
+                                        ^ (bad-whitespace)
+C:135, 0: Exactly one space required after comma
+        "Unit": ['g', 'g', 'g', 'g', 'g','mg/kg-bw', 'mg/kg-bw', 'mg/L','g', '', 'g','mg/kg-diet', 'mg/kg-bw',],
+                                                                       ^ (bad-whitespace)
+C:135, 0: Exactly one space required after comma
+        "Unit": ['g', 'g', 'g', 'g', 'g','mg/kg-bw', 'mg/kg-bw', 'mg/L','g', '', 'g','mg/kg-diet', 'mg/kg-bw',],
+                                                                                    ^ (bad-whitespace)
+C:144, 0: Wrong continued indentation.
+                    'Adjusted Toxicity Value (Acute) - Avian',
+                    ^ | (bad-continuation)
+C:145, 0: Wrong continued indentation.
+                    'Adjusted Toxicity Value (Acute) - Mammalian',
+                    ^ | (bad-continuation)
+C:146, 0: Wrong continued indentation.
+                    'Adjusted Toxicity Value (Chronic) - Avian',
+                    ^ | (bad-continuation)
+C:147, 0: Wrong continued indentation.
+                    'Adjusted Toxicity Value (Chronic) - Mammalian',
+                    ^ | (bad-continuation)
+C:148, 0: Wrong continued indentation.
+                    'Ratio of Exposure to Toxicity (Acute) - Avian',
+                    ^ | (bad-continuation)
+C:149, 0: Wrong continued indentation.
+                    'Ratio of Exposure to Toxicity (Acute) - Mammalian',
+                    ^ | (bad-continuation)
+C:150, 0: Wrong continued indentation.
+                    'Ratio of Exposure to Toxicity (Chronic) - Avian',
+                    ^ | (bad-continuation)
+C:151, 0: Wrong continued indentation.
+                    'Ratio of Exposure to Toxicity (Chronic) - Mammalian',],
+                    ^ | (bad-continuation)
+C:154, 0: Wrong hanging indentation.
+                 '%g' % numpy.mean(dose_bird_out), '%g' % numpy.mean(dose_mamm_out), '%g' % numpy.mean(at_bird_out),
+            |    ^ (bad-continuation)
+C:155, 0: Wrong hanging indentation.
+                 '%g' % numpy.mean(at_mamm_out), '%g' % numpy.mean(act_out), '%g' % numpy.mean(det_out),
+            |    ^ (bad-continuation)
+C:156, 0: Wrong hanging indentation.
+                 '%g' % numpy.mean(acute_bird_out), '%g' % numpy.mean(acute_mamm_out),
+            |    ^ (bad-continuation)
+C:157, 0: Wrong hanging indentation.
+                 '%g' % numpy.mean(chron_bird_out), '%g' % numpy.mean(chron_mamm_out),],
+            |    ^ (bad-continuation)
+C:169, 0: Wrong hanging indentation.
+         "Max": ['%g' % numpy.max(dose_bird_out), '%g' % numpy.min(dose_mamm_out), '%g' % numpy.min(at_bird_out),
+        |^ (bad-continuation)
+C:170, 0: Wrong continued indentation.
+                '%g' % numpy.max(at_mamm_out), '%g' % numpy.max(act_out), '%g' % numpy.min(det_out),
+                ^| (bad-continuation)
+C:171, 0: Wrong continued indentation.
+                '%g' % numpy.max(acute_bird_out), '%g' % numpy.min(acute_mamm_out),
+                ^| (bad-continuation)
+C:172, 0: Wrong continued indentation.
+                '%g' % numpy.max(chron_bird_out), '%g' % numpy.max(chron_mamm_out),],
+                ^| (bad-continuation)
+C:174, 0: Exactly one space required after comma
+        "Unit": ['mg/kg-bw', 'mg/kg-bw','mg/kg-bw', 'mg/kg-bw', 'mg/kg-bw', 'mg/kg-bw', '','', '', '',],
+                                       ^ (bad-whitespace)
+C:174, 0: Exactly one space required after comma
+        "Unit": ['mg/kg-bw', 'mg/kg-bw','mg/kg-bw', 'mg/kg-bw', 'mg/kg-bw', 'mg/kg-bw', '','', '', '',],
+                                                                                          ^ (bad-whitespace)
+C:203, 0: Exactly one space required around assignment
+    html="""
+        ^ (bad-whitespace)
+W:214, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:220, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:221, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:221, 0: Exactly one space required after comma
+        t1rows = gethtmlrowsfromcols(t1data,pvuheadings)
+                                           ^ (bad-whitespace)
+W:222, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:223, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:227, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:230, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:237, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:238, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:238, 0: Exactly one space required after comma
+        t2rows = gethtmlrowsfromcols(t2data,pvrheadings)
+                                           ^ (bad-whitespace)
+W:239, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:240, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:243, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:246, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:253, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:254, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:254, 0: Exactly one space required after comma
+        t2rows = gethtmlrowsfromcols(t2data,pvrheadingsqaqc)
+                                           ^ (bad-whitespace)
+W:255, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:256, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:259, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:262, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:266, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:267, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:267, 0: Exactly one space required after comma
+        t3rows = gethtmlrowsfromcols(t3data,pvrheadings)
+                                           ^ (bad-whitespace)
+W:268, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:269, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:273, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:276, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:280, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:281, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:281, 0: Exactly one space required after comma
+        t3rows = gethtmlrowsfromcols(t3data,pvrheadingsqaqc)
+                                           ^ (bad-whitespace)
+W:282, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:283, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:287, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:290, 0: Exactly one space required after comma
+def table_all_sum(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                     ^ (bad-whitespace)
+C:290, 0: Exactly one space required after comma
+def table_all_sum(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                     ^ (bad-whitespace)
+C:290, 0: Exactly one space required after comma
+def table_all_sum(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                           ^ (bad-whitespace)
+C:290, 0: Exactly one space required after comma
+def table_all_sum(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                                          ^ (bad-whitespace)
+C:290, 0: Exactly one space required after comma
+def table_all_sum(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                                                                         ^ (bad-whitespace)
+C:291, 0: Wrong continued indentation.
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water,
+                  | ^ (bad-continuation)
+C:291, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water,
+                              ^ (bad-whitespace)
+C:291, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water,
+                                             ^ (bad-whitespace)
+C:291, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water,
+                                                                   ^ (bad-whitespace)
+C:291, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water,
+                                                                                     ^ (bad-whitespace)
+C:292, 0: Wrong continued indentation.
+                    dose_bird_out, dose_mamm_out, at_bird_out, 
+                  | ^ (bad-continuation)
+C:293, 0: Wrong continued indentation.
+                    at_mamm_out, det_out, act_out, acute_bird_out, acute_mamm_out, 
+                  | ^ (bad-continuation)
+C:294, 0: Wrong continued indentation.
+                    chron_bird_out, chron_mamm_out):
+                  | ^ (bad-continuation)
+C:295, 0: Exactly one space required after comma
+    html_all_sum = table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                      ^ (bad-whitespace)
+C:295, 0: Exactly one space required after comma
+    html_all_sum = table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                      ^ (bad-whitespace)
+C:295, 0: Exactly one space required after comma
+    html_all_sum = table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                                            ^ (bad-whitespace)
+C:295, 0: Exactly one space required after comma
+    html_all_sum = table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                                                           ^ (bad-whitespace)
+C:295, 0: Exactly one space required after comma
+    html_all_sum = table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                                                                                          ^ (bad-whitespace)
+C:296, 0: Wrong continued indentation.
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                    ^              | (bad-continuation)
+C:296, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                              ^ (bad-whitespace)
+C:296, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                             ^ (bad-whitespace)
+C:296, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                   ^ (bad-whitespace)
+C:296, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                                     ^ (bad-whitespace)
+C:297, 0: Exactly one space required after comma
+    html_all_sum += table_sum_output(sumheadings,tmpl,dose_bird_out,dose_mamm_out,at_bird_out, 
+                                                ^ (bad-whitespace)
+C:297, 0: Exactly one space required after comma
+    html_all_sum += table_sum_output(sumheadings,tmpl,dose_bird_out,dose_mamm_out,at_bird_out, 
+                                                     ^ (bad-whitespace)
+C:297, 0: Exactly one space required after comma
+    html_all_sum += table_sum_output(sumheadings,tmpl,dose_bird_out,dose_mamm_out,at_bird_out, 
+                                                                   ^ (bad-whitespace)
+C:297, 0: Exactly one space required after comma
+    html_all_sum += table_sum_output(sumheadings,tmpl,dose_bird_out,dose_mamm_out,at_bird_out, 
+                                                                                 ^ (bad-whitespace)
+C:298, 0: Wrong continued indentation.
+                    at_mamm_out,det_out,act_out,acute_bird_out,acute_mamm_out,chron_bird_out,chron_mamm_out)
+                    ^                | (bad-continuation)
+C:298, 0: Exactly one space required after comma
+                    at_mamm_out,det_out,act_out,acute_bird_out,acute_mamm_out,chron_bird_out,chron_mamm_out)
+                               ^ (bad-whitespace)
+C:298, 0: Exactly one space required after comma
+                    at_mamm_out,det_out,act_out,acute_bird_out,acute_mamm_out,chron_bird_out,chron_mamm_out)
+                                       ^ (bad-whitespace)
+C:298, 0: Exactly one space required after comma
+                    at_mamm_out,det_out,act_out,acute_bird_out,acute_mamm_out,chron_bird_out,chron_mamm_out)
+                                               ^ (bad-whitespace)
+C:298, 0: Exactly one space required after comma
+                    at_mamm_out,det_out,act_out,acute_bird_out,acute_mamm_out,chron_bird_out,chron_mamm_out)
+                                                              ^ (bad-whitespace)
+C:298, 0: Exactly one space required after comma
+                    at_mamm_out,det_out,act_out,acute_bird_out,acute_mamm_out,chron_bird_out,chron_mamm_out)
+                                                                             ^ (bad-whitespace)
+C:298, 0: Exactly one space required after comma
+                    at_mamm_out,det_out,act_out,acute_bird_out,acute_mamm_out,chron_bird_out,chron_mamm_out)
+                                                                                            ^ (bad-whitespace)
+C:301, 0: Exactly one space required after comma
+def table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                       ^ (bad-whitespace)
+C:301, 0: Exactly one space required after comma
+def table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                       ^ (bad-whitespace)
+C:301, 0: Exactly one space required after comma
+def table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                             ^ (bad-whitespace)
+C:301, 0: Exactly one space required after comma
+def table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                                            ^ (bad-whitespace)
+C:301, 0: Exactly one space required after comma
+def table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
+                                                                                                                                           ^ (bad-whitespace)
+C:302, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
+                              ^ (bad-whitespace)
+C:302, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
+                                             ^ (bad-whitespace)
+C:302, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
+                                                                   ^ (bad-whitespace)
+C:302, 0: Exactly one space required after comma
+                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
+                                                                                     ^ (bad-whitespace)
+W:303, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:309, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:309, 0: Exactly one space required after comma
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                    ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                    ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                                          ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                                                         ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                                                                                        ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                                                                                                   ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                                                                                                              ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                                                                                                                             ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                                                                                                                                                   ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
+                                                                                                                                                                                                                     ^ (bad-whitespace)
+W:310, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:311, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:312, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:315, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:318, 0: Wrong continued indentation.
+                    at_mamm_out, det_out, act_out, acute_bird_out, acute_mamm_out, 
+                    ^| (bad-continuation)
+C:319, 0: Wrong continued indentation.
+                    chron_bird_out, chron_mamm_out):
+                    ^| (bad-continuation)
+W:320, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:325, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C:326, 0: Wrong continued indentation.
+                    at_mamm_out, det_out, act_out, acute_bird_out, acute_mamm_out, 
+                    ^                    | (bad-continuation)
+C:327, 0: Wrong continued indentation.
+                    chron_bird_out, chron_mamm_out)
+                    ^                    | (bad-continuation)
+W:328, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:329, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:330, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+W:334, 0: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+C: 13, 0: Invalid constant name "logger" (invalid-name)
+C: 15, 0: Missing function docstring (missing-docstring)
+C: 19, 0: Missing function docstring (missing-docstring)
+C: 23, 0: Missing function docstring (missing-docstring)
+C: 27, 0: Missing function docstring (missing-docstring)
+C: 31, 0: Missing function docstring (missing-docstring)
+C: 45, 0: Missing function docstring (missing-docstring)
+C: 66, 0: Missing function docstring (missing-docstring)
+C: 74, 0: Missing function docstring (missing-docstring)
+C: 83, 0: Missing function docstring (missing-docstring)
+C: 94, 0: Missing function docstring (missing-docstring)
+C:103, 0: Missing function docstring (missing-docstring)
+C:114, 0: Missing function docstring (missing-docstring)
+R:114, 0: Too many arguments (11/5) (too-many-arguments)
+E:119,24: Module 'numpy' has no 'mean' member (no-member)
+E:119,60: Module 'numpy' has no 'mean' member (no-member)
+E:119,95: Module 'numpy' has no 'mean' member (no-member)
+E:119,137: Module 'numpy' has no 'mean' member (no-member)
+E:120,24: Module 'numpy' has no 'mean' member (no-member)
+E:120,75: Module 'numpy' has no 'mean' member (no-member)
+E:120,106: Module 'numpy' has no 'mean' member (no-member)
+E:120,137: Module 'numpy' has no 'mean' member (no-member)
+E:121,24: Module 'numpy' has no 'mean' member (no-member)
+E:122,24: Module 'numpy' has no 'mean' member (no-member)
+E:122,62: Module 'numpy' has no 'mean' member (no-member)
+E:123,23: Module 'numpy' has no 'std' member (no-member)
+E:123,58: Module 'numpy' has no 'std' member (no-member)
+E:123,92: Module 'numpy' has no 'std' member (no-member)
+E:123,133: Module 'numpy' has no 'std' member (no-member)
+E:124,23: Module 'numpy' has no 'std' member (no-member)
+E:124,73: Module 'numpy' has no 'std' member (no-member)
+E:124,103: Module 'numpy' has no 'std' member (no-member)
+E:124,133: Module 'numpy' has no 'std' member (no-member)
+E:125,24: Module 'numpy' has no 'std' member (no-member)
+E:126,24: Module 'numpy' has no 'std' member (no-member)
+E:126,60: Module 'numpy' has no 'std' member (no-member)
+C:139, 0: Missing function docstring (missing-docstring)
+R:139, 0: Too many arguments (10/5) (too-many-arguments)
+E:154,24: Module 'numpy' has no 'mean' member (no-member)
+E:154,58: Module 'numpy' has no 'mean' member (no-member)
+E:154,92: Module 'numpy' has no 'mean' member (no-member)
+E:155,24: Module 'numpy' has no 'mean' member (no-member)
+E:155,56: Module 'numpy' has no 'mean' member (no-member)
+E:155,84: Module 'numpy' has no 'mean' member (no-member)
+E:156,24: Module 'numpy' has no 'mean' member (no-member)
+E:156,59: Module 'numpy' has no 'mean' member (no-member)
+E:157,24: Module 'numpy' has no 'mean' member (no-member)
+E:157,59: Module 'numpy' has no 'mean' member (no-member)
+E:159,23: Module 'numpy' has no 'std' member (no-member)
+E:159,56: Module 'numpy' has no 'std' member (no-member)
+E:159,89: Module 'numpy' has no 'std' member (no-member)
+E:160,23: Module 'numpy' has no 'std' member (no-member)
+E:160,54: Module 'numpy' has no 'std' member (no-member)
+E:160,81: Module 'numpy' has no 'std' member (no-member)
+E:161,23: Module 'numpy' has no 'std' member (no-member)
+E:161,57: Module 'numpy' has no 'std' member (no-member)
+E:162,23: Module 'numpy' has no 'std' member (no-member)
+E:162,57: Module 'numpy' has no 'std' member (no-member)
+C:179, 0: Invalid constant name "pvuheadings" (invalid-name)
+C:180, 0: Invalid constant name "pvrheadings" (invalid-name)
+C:181, 0: Invalid constant name "pvrheadingsqaqc" (invalid-name)
+C:182, 0: Invalid constant name "sumheadings" (invalid-name)
+C:183, 0: Invalid constant name "djtemplate" (invalid-name)
+C:184, 0: Invalid constant name "tmpl" (invalid-name)
+C:186, 0: Missing function docstring (missing-docstring)
+C:192, 0: Missing function docstring (missing-docstring)
+C:198, 0: Missing function docstring (missing-docstring)
+C:200, 8: Invalid variable name "st" (invalid-name)
+E:200,40: Instance of 'str' has no 'jid' member (no-member)
+C:202, 8: Invalid variable name "st" (invalid-name)
+C:213, 0: Missing function docstring (missing-docstring)
+C:229, 0: Missing function docstring (missing-docstring)
+C:245, 0: Missing function docstring (missing-docstring)
+C:261, 0: Missing function docstring (missing-docstring)
+C:275, 0: Missing function docstring (missing-docstring)
+W:290,31: Redefining name 'tmpl' from outer scope (line 184) (redefined-outer-name)
+W:290,18: Redefining name 'sumheadings' from outer scope (line 182) (redefined-outer-name)
+C:290, 0: Missing function docstring (missing-docstring)
+R:290, 0: Too many arguments (23/5) (too-many-arguments)
+R:290, 0: Too many local variables (24/15) (too-many-locals)
+W:301,33: Redefining name 'tmpl' from outer scope (line 184) (redefined-outer-name)
+W:301,20: Redefining name 'sumheadings' from outer scope (line 182) (redefined-outer-name)
+C:301, 0: Missing function docstring (missing-docstring)
+R:301, 0: Too many arguments (13/5) (too-many-arguments)
+R:301, 0: Too many local variables (16/15) (too-many-locals)
+W:317,34: Redefining name 'tmpl' from outer scope (line 184) (redefined-outer-name)
+W:317,21: Redefining name 'sumheadings' from outer scope (line 182) (redefined-outer-name)
+C:317, 0: Missing function docstring (missing-docstring)
+R:317, 0: Too many arguments (12/5) (too-many-arguments)
+W: 10, 0: Unused import time (unused-import)

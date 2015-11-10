@@ -29,12 +29,14 @@ class earthworm(object):
                 self.c_s = c_s
                 self.k_d = k_d
                 self.p_s = p_s
-                self.c_w = c_w
-                self.m_w = m_w
-                self.p_e = p_e
+                # commented input properties are not used in most recent version of EFED model equation
+                # self.c_w = c_w
+                # self.m_w = m_w
+                # self.p_e = p_e
 
-                all_dic = {"k_ow":self.k_ow, "l_f_e":self.l_f_e, "c_s":self.c_s, "k_d":self.k_d, "p_s":self.p_s, "c_w":self.c_w,
-                           "m_w":self.m_w, "p_e":self.p_e}
+                # all_dic = {"k_ow":self.k_ow, "l_f_e":self.l_f_e, "c_s":self.c_s, "k_d":self.k_d, "p_s":self.p_s, "c_w":self.c_w,
+                #            "m_w":self.m_w, "p_e":self.p_e}
+                all_dic = {"k_ow":self.k_ow, "l_f_e":self.l_f_e, "c_s":self.c_s, "k_d":self.k_d, "p_s":self.p_s}
                 data = json.dumps(all_dic)
                 self.jid = rest_funcs.gen_jid()
                 url=url_part1 + '/earthworm/' + self.jid 
@@ -49,7 +51,7 @@ class earthworm(object):
         self.c_s = -1
         self.k_d = -1
         self.p_s = -1
-        self.c_w = -1
-        self.m_w = -1
-        self.p_e = -1
+        # self.c_w = -1
+        # self.m_w = -1
+        # self.p_e = -1
         self.earthworm_fugacity_out = -1

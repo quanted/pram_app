@@ -1,58 +1,32 @@
 """
 .. module:: rice_qaqc
-   :synopsis: A useful module indeed.
+   :synopsis: Reads in CSV file containing model inputs and expected 
+   outputs and converts them into each of their own DataFrames (2 total). 
+   The DataFrames are converted to JSON strings and then concatenated 
+   into one JSON string with base keys of 'inputs' and 'exp_out'. The JSON 
+   is sent to the model_handler module to be sent to the backend model server.
 """
 
-import rice_model
-import os
-import unittest
-from StringIO import StringIO
-import csv
+import os, json#, logging
+import pandas as pd
 
+def riceQaqc(model, csv_path):
+    """
+        Read in QAQC CSV as Pandas DataFrame, removing 
+        any uneeded columns, setting the index_col name 
+        to None, and renumbering the data columns.
+    """
+    
+    # Read QAQC csv and create a Pandas DataFrame with only the relevant columns for the input values
+    pd_obj_inputs = pd.read_csv(csv_path, index_col=0, header=None, skiprows=1, skipfooter=8, engine='python')
+    pd_obj_inputs = pd_obj_inputs.drop(labels=pd_obj_inputs.columns[range(4)], axis=1)
+    pd_obj_inputs.index.name = None
+    pd_obj_inputs.columns = pd_obj_inputs.columns - 5
+    
+    # Read QAQC csv and create a Pandas DataFrame with only the relevant columns for the expected output values
+    pd_obj_exp_out = pd.read_csv(csv_path, index_col=0, header=None, skiprows=13, engine='python')
+    pd_obj_exp_out = pd_obj_exp_out.drop(labels=pd_obj_exp_out.columns[range(4)], axis=1)
+    pd_obj_exp_out.index.name = None
+    pd_obj_exp_out.columns = pd_obj_exp_out.columns - 5
 
-data = csv.reader(open(os.path.join(os.environ['PROJECT_PATH'], 'models','rice','rice_qaqc_inputs.csv')))
-version_rice="1.0"
-chemical_name=[]
-mai=[]
-a=[]
-dsed=[]
-pb=[]
-dw=[]
-osed=[]
-kd=[]
-#####Pre-defined outputs########
-msed=[]
-vw=[]
-mai1=[]
-cw=[]
-
-data.next()
-for row in data:
-    chemical_name.append(str(row[0]))
-    mai.append(float(row[1]))
-    a.append(float(row[2]))  
-    dsed.append(float(row[3]))
-    pb.append(float(row[4]))
-    dw.append(float(row[5]))
-    osed.append(float(row[6]))        
-    kd.append(float(row[7]))    
-    msed.append(float(row[8]))
-    vw.append(float(row[9]))
-    mai1.append(float(row[10]))
-    cw.append(float(row[11])) 
-
-out_fun_Msed=[]
-out_fun_Vw=[]
-out_fun_Mai1=[]            
-out_fun_Cw=[]            
-
-rice_obj = rice_model.rice(True,True,
-            version_rice,"qaqc",chemical_name[0], 
-            mai[0], dsed[0], a[0], pb[0], dw[0], osed[0], kd[0])
-
-rice_obj.chemical_name_expected=chemical_name[0]
-rice_obj.msed_expected=msed[0]
-rice_obj.vw_expected=vw[0]
-rice_obj.mai1_expected=mai1[0]
-rice_obj.cw_expected=cw[0]
-
+    return pd_obj_inputs, pd_obj_exp_out

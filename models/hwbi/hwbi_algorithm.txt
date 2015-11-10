@@ -1,0 +1,3 @@
+
+<p>HWBI algorthims...:</p>
+<img src = "/static/images/latex/iec/iec_image1.png">

@@ -1,5 +1,4 @@
 ************* Module qed.ubertool_eco.models.sip.sip_tooltips
-C:  7, 0: Line too long (107/100) (line-too-long)
 C:  9, 0: Wrong hanging indentation.
 	'chemical_name':'The common name of the chemical',
  ^  | (bad-continuation)

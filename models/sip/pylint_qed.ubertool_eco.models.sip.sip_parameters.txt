@@ -1,5 +1,4 @@
 ************* Module qed.ubertool_eco.models.sip.sip_parameters
-C: 10, 0: Line too long (108/100) (line-too-long)
 C: 10, 0: Exactly one space required around assignment
 Species_of_the_tested_bird_CHOICES=(('178','Northern bobwhite quail'),('1580','Mallard duck'),('1','Other'))
                                   ^ (bad-whitespace)
@@ -33,7 +32,6 @@ Species_of_the_tested_mamm_CHOICES=(('350','Laboratory rat'),('1','Other'))
 C: 16, 0: Wrong hanging indentation.
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
         |   ^ (bad-continuation)
-C: 16, 0: Trailing whitespace (trailing-whitespace)
 C: 16, 0: No space allowed before bracket
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
                                   ^ (bad-whitespace)
@@ -49,7 +47,6 @@ C: 19, 0: Wrong hanging indentation.
 C: 21, 0: Wrong hanging indentation.
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
         |   ^ (bad-continuation)
-C: 21, 0: Trailing whitespace (trailing-whitespace)
 C: 21, 0: No space allowed before bracket
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
                                   ^ (bad-whitespace)
@@ -77,11 +74,9 @@ C: 29, 0: Wrong hanging indentation.
 C: 31, 0: Wrong hanging indentation.
             required=True, 
         |   ^ (bad-continuation)
-C: 31, 0: Trailing whitespace (trailing-whitespace)
 C: 32, 0: Wrong hanging indentation.
             label=mark_safe('Mammalian LD<sub>50</sub> (mg/kg-bw)'), 
         |   ^ (bad-continuation)
-C: 32, 0: Trailing whitespace (trailing-whitespace)
 C: 33, 0: Wrong hanging indentation.
             initial=5000,
         |   ^ (bad-continuation)
@@ -214,7 +209,6 @@ C: 91, 0: Wrong hanging indentation.
 C: 92, 0: Wrong hanging indentation.
             validators=[validation.validate_greaterthanequalto1])
         |   ^ (bad-continuation)
-C: 93, 0: Trailing whitespace (trailing-whitespace)
 C: 95, 0: Wrong hanging indentation.
             required=True,
         |   ^ (bad-continuation)

@@ -13,8 +13,8 @@ import logging
 
 logger = logging.getLogger('KabamQaqcPage')
 
-cwd= os.getcwd()
-data = csv.reader(open(cwd+'/models/kabam/kabam_qaqc.csv'))
+
+data = csv.reader(open(os.path.join(os.environ['PROJECT_PATH'], 'models','kabam','kabam_qaqc.csv')))
 
 # Inputs
 chemical_name=[]

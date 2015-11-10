@@ -2,8 +2,20 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse, HttpResponseRedirect
 import importlib
 import linksLeft
+import os
+import secret
+from django.conf import settings
+from django.shortcuts import redirect
+
 
 def inputPage(request, model='none', header='none'):
+
+    # If on public server, test user authentication
+    if settings.AUTH:
+        if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
+            if not request.user.is_authenticated():
+                return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
     viewmodule = importlib.import_module('.views', 'models.'+model)
     inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
     header = viewmodule.header
@@ -53,8 +65,13 @@ def inputPage(request, model='none', header='none'):
     #         return response
     
     # else:
-    html = render_to_string('01uberheader.html', {'title': header+' Inputs'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'input'})
+    html = render_to_string('01uberheader.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'title': header+' Inputs'})
+    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin' : os.environ['SITE_SKIN'],
+            'model':model,
+            'page':'input'})
     html = html + linksLeft.linksLeft()
 
     inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')

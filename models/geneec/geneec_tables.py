@@ -149,18 +149,42 @@ def gett1dataGranular(geneec_obj):
     }
     return data
 
+"""
+  Old non-objectified way
+"""
+# def gett2data(geneec_obj):
+#     data = { 
+#         "Parameter": [ 'Peak GEEC','Maximum 4-day Average GEEC','Maximum 21-day Average GEEC','Maximum 60-day Average GEEC','Maximum 90-day Average GEEC' ],
+#         "Value": [ '%.1f'%geneec_obj.output_val[0], '%.1f'%geneec_obj.output_val[1], '%.1f'%geneec_obj.output_val[2], '%.1f'%geneec_obj.output_val[3], '%.1f'%geneec_obj.output_val[4] ],
+#         "Units": [ 'ppb','ppb','ppb','ppb','ppb' ]
+#     }
+#     return data
+
+# def gett2data_qaqc(geneec_obj):
+#     data = { 
+#         "Parameter": [ 'Peak GEEC','Maximum 4-day Average GEEC','Maximum 21-day Average GEEC','Maximum 60-day Average GEEC','Maximum 90-day Average GEEC' ],
+#         "Value": [ '%.1f'%geneec_obj.output_val[0], '%.1f'%geneec_obj.output_val[1], '%.1f'%geneec_obj.output_val[2], '%.1f'%geneec_obj.output_val[3], '%.1f'%geneec_obj.output_val[4] ],
+#         "Expected Value": [ '%.1f'%geneec_obj.GEEC_peak_exp, '%.1f'%geneec_obj.GEEC_4avg_exp, '%.1f'%geneec_obj.GEEC_21avg_exp, '%.1f'%geneec_obj.GEEC_60avg_exp, '%.1f'%geneec_obj.GEEC_90avg_exp ],
+#         "Units": [ 'ppb','ppb','ppb','ppb','ppb' ]
+#     }
+#     return data
+
+""" 
+  New objectified way
+"""
 def gett2data(geneec_obj):
     data = { 
         "Parameter": [ 'Peak GEEC','Maximum 4-day Average GEEC','Maximum 21-day Average GEEC','Maximum 60-day Average GEEC','Maximum 90-day Average GEEC' ],
-        "Value": [ '%.1f'%geneec_obj.output_val[0], '%.1f'%geneec_obj.output_val[1], '%.1f'%geneec_obj.output_val[2], '%.1f'%geneec_obj.output_val[3], '%.1f'%geneec_obj.output_val[4] ],
+        "Value": [ '%.1f'%geneec_obj.geec_peak, '%.1f'%geneec_obj.geec_4day_avg, '%.1f'%geneec_obj.geec_21day_avg, '%.1f'%geneec_obj.geec_60day_avg, '%.1f'%geneec_obj.geec_90day_avg ],
         "Units": [ 'ppb','ppb','ppb','ppb','ppb' ]
     }
     return data
 
 def gett2data_qaqc(geneec_obj):
+    """ This is faked for now """
     data = { 
         "Parameter": [ 'Peak GEEC','Maximum 4-day Average GEEC','Maximum 21-day Average GEEC','Maximum 60-day Average GEEC','Maximum 90-day Average GEEC' ],
-        "Value": [ '%.1f'%geneec_obj.output_val[0], '%.1f'%geneec_obj.output_val[1], '%.1f'%geneec_obj.output_val[2], '%.1f'%geneec_obj.output_val[3], '%.1f'%geneec_obj.output_val[4] ],
+        "Value": [ '%.1f'%geneec_obj.geec_peak, '%.1f'%geneec_obj.geec_4day_avg, '%.1f'%geneec_obj.geec_21day_avg, '%.1f'%geneec_obj.geec_60day_avg, '%.1f'%geneec_obj.geec_90day_avg ],
         "Expected Value": [ '%.1f'%geneec_obj.GEEC_peak_exp, '%.1f'%geneec_obj.GEEC_4avg_exp, '%.1f'%geneec_obj.GEEC_21avg_exp, '%.1f'%geneec_obj.GEEC_60avg_exp, '%.1f'%geneec_obj.GEEC_90avg_exp ],
         "Units": [ 'ppb','ppb','ppb','ppb','ppb' ]
     }

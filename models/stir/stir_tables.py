@@ -169,7 +169,7 @@ def gett1dataqaqc(sm):
     data = { 
         "Parameter": ['Chemical Name','Application Rate','Direct Spray Column Height',
             'Spray Fraction Inhaled','Direct Spray Inhalation Duration','Molecular Weight','Vapor Pressure',],
-        "Value": [sm.chemical_name_expected, sm.application_rate, sm.column_height, sm.spray_drift_fraction, sm.direct_spray_duration, 
+        "Value": [sm.chemical_name, sm.application_rate, sm.column_height, sm.spray_drift_fraction, sm.direct_spray_duration, 
             sm.molecular_weight, sm.vapor_pressure,],
         "Units": ['', 'lbs a.i./A', 'm','','minutes','g/mol','torr', ],
     }
@@ -327,9 +327,9 @@ def gett3dataqaqc(sm):
         "Value": ['%.2e' % sm.sat_air_conc,'%.2e' % sm.inh_rate_avian,'%.2e' % sm.vid_avian,
             '%.2e' % sm.estimated_avian_inhalation_ld50,'%.2e' % sm.adjusted_avian_inhalation_ld50,'%.2e' % sm.ratio_vid_avian,
             '%.2e' % sm.sid_avian,'%.2e' % sm.ratio_sid_avian,],
-        "Expected Value": ['%.2e' % sm.sat_air_conc_expected,'%.2e' % sm.inh_rate_avian_expected,'%.2e' % sm.vid_avian_expected,
-            '%.2e' % sm.estimated_avian_inhalation_ld50_expected,'%.2e' % sm.adjusted_avian_inhalation_ld50_expected,'%.2e' % sm.ratio_vid_avian_expected,
-            '%.2e' % sm.sid_avian_expected,'%.2e' % sm.ratio_sid_avian_expected,],
+        "Expected Value": ['%.2e' % sm.exp_sat_air_conc,'%.2e' % sm.exp_inh_rate_avian,'%.2e' % sm.exp_vid_avian,
+            '%.2e' % sm.exp_estimated_avian_inhalation_ld50,'%.2e' % sm.exp_adjusted_avian_inhalation_ld50,'%.2e' % sm.exp_ratio_vid_avian,
+            '%.2e' % sm.exp_sid_avian,'%.2e' % sm.exp_ratio_sid_avian,],
         "Units": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -416,9 +416,9 @@ def gett4dataqaqc(sm):
         "Value": ['%.2e' % sm.sat_air_conc,'%.2e' % sm.inh_rate_mammal,'%.2e' % sm.vid_mammal,
             '%.2e' % sm.mammal_inhalation_ld50,'%.2e' % sm.adjusted_mammal_inhalation_ld50,'%.2e' % sm.ratio_vid_mammal,
             '%.2e' % sm.sid_mammal,'%.2e' % sm.ratio_sid_mammal,],
-        "Expected Value": ['%.2e' % sm.sat_air_conc_expected,'%.2e' % sm.inh_rate_mammal_expected,'%.2e' % sm.vid_mammal_expected,
-            '%.2e' % sm.mammal_inhalation_ld50_expected,'%.2e' % sm.adjusted_mammal_inhalation_ld50_expected,'%.2e' % sm.ratio_vid_mammal_expected,
-            '%.2e' % sm.sid_mammal_expected,'%.2e' % sm.ratio_sid_mammal_expected,],
+        "Expected Value": ['%.2e' % sm.exp_sat_air_conc,'%.2e' % sm.exp_inh_rate_mammal,'%.2e' % sm.exp_vid_mammal,
+            '%.2e' % sm.exp_mammal_inhalation_ld50,'%.2e' % sm.exp_adjusted_mammal_inhalation_ld50,'%.2e' % sm.exp_ratio_vid_mammal,
+            '%.2e' % sm.exp_sid_mammal,'%.2e' % sm.exp_ratio_sid_mammal,],
         "Units": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -499,9 +499,9 @@ def gett5dataqaqc(sm):
         "Parameter": ['Avian: Ratio of Vapor Dose to Adjusted Inhalation LD50','Avian: Ratio of Droplet Dose to Adjusted Inhalation LD50',
           'Mammal: Ratio of Vapor Dose to Adjusted Inhalation LD50','Mammal: Ratio of Droplet Dose to Adjusted Inhalation LD50',],
         "Value": ['%.2e' % sm.ratio_vid_avian,'%.2e' % sm.ratio_sid_avian,'%.2e' % sm.ratio_vid_mammal,'%.2e' % sm.ratio_sid_mammal,],
-        "Expected Value": ['%.2e' % sm.ratio_vid_avian_expected,'%.2e' % sm.ratio_sid_avian_expected,'%.2e' % sm.ratio_vid_mammal_expected,'%.2e' % sm.ratio_sid_mammal_expected,],
+        "Expected Value": ['%.2e' % sm.exp_ratio_vid_avian,'%.2e' % sm.exp_ratio_sid_avian,'%.2e' % sm.exp_ratio_vid_mammal,'%.2e' % sm.exp_ratio_sid_mammal,],
         "Results": [sm.loc_vid_avian,sm.loc_sid_avian,sm.loc_vid_mammal,sm.loc_sid_mammal,],
-        "Expected Results": [sm.loc_vid_avian_expected,sm.loc_sid_avian_expected,sm.loc_vid_mammal_expected,sm.loc_sid_mammal_expected,],
+        "Expected Results": [sm.exp_loc_vid_avian,sm.exp_loc_sid_avian,sm.exp_loc_vid_mammal,sm.exp_loc_sid_mammal,],
     }
     return data
 

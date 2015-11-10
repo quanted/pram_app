@@ -4,7 +4,7 @@ Representation and utils for ranges of PDF file pages.
 
 Copyright (c) 2014, Steve Witham <switham_github@mac-guyver.com>.
 All rights reserved. This software is available under a BSD license;
-see https://github.com/mstamy2/PyPDF2/LICENSE
+see https://github.com/mstamy2/PyPDF2/blob/master/LICENSE
 """
 
 import re
@@ -79,8 +79,10 @@ class PageRange(object):
         else:
             self._slice = slice(*[int(g) if g else None 
                                   for g in m.group(4, 6, 8)])
-
-    __init__.__doc__ = __init__.__doc__.format(page_range_help=PAGE_RANGE_HELP)
+    
+    # Just formatting this when there is __doc__ for __init__
+    if __init__.__doc__:
+        __init__.__doc__ = __init__.__doc__.format(page_range_help=PAGE_RANGE_HELP)
         
     @staticmethod
     def valid(input):

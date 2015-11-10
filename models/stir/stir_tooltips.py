@@ -13,7 +13,7 @@ tooltips = {
 	'avian_oral_ld50':'Unit: mg/kg-bw',
 	'body_weight_assessed_bird':'Unit: kg',
 	'body_weight_tested_bird':'Unit: kg',
-	'mammal_inhalation_lc50':'Unit: mg/kg-bw',
+	'mammal_inhalation_lc50':'Unit: mg/L',
 	'duration_mammal_inhalation_study':'Unit: hrs',
 	'body_weight_assessed_mammal':'Unit: kg',
 	'body_weight_tested_mammal':'Unit: kg',

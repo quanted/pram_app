@@ -1,0 +1,27 @@
+agdrift_property,description,units,type,valid_range,run1
+application_rate,,lb/ac,,,0.5
+application_method,,,,,Tier I Aerial
+drop_size,,,,,Fine to Medium
+ecosystem_type,,,,,Aquatic Assessment
+boom_height,,,,,na
+aquatic_type,,,,,EPA Defined Pond
+calculation_input,,,,,Distance to waterbody or field
+distance,,,,,225
+out_nasae,scenario variable (0-9),,integer,"[0,9]",
+out_y,depositions,,,,
+out_x,distances,,,,
+out_express_y,depositions,,,,
+out_init_avg_dep_foa,,,,,
+out_avg_depo_lbac,,,,,
+out_avg_depo_gha,,,,,
+out_deposition_ngL,,,,,
+out_deposition_mgcm,,,,,
+exp_nasae,scenario variable (0-9),,integer,"[0,9]",
+exp_y,depositions,,,,
+exp_x,distances,,,,
+exp_express_y,depositions,,,,
+exp_init_avg_dep_foa,,,,,0.01281
+exp_avg_depo_lbac,,,,,0.00571
+exp_avg_depo_gha,,,,,6.405
+exp_deposition_ngL,,,,,320.25
+exp_deposition_mgcm,,,,,0.00006

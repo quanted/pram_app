@@ -19,7 +19,10 @@ class pfamQaqcPage(webapp.RequestHandler):
         templatepath = os.path.dirname(__file__) + '/../templates/'
         ChkCookie = self.request.cookies.get("ubercookie")
         html = uber_lib.SkinChk(ChkCookie, "PFAM QA/QC")
-        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {'model':'pfam','page':'qaqc'})
+        html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {
+                'site_skin' : os.environ['SITE_SKIN'],
+                'model':'pfam',
+                'page':'qaqc',})
         html = html + template.render (templatepath + '03ubertext_links_left.html', {})                
         html = html + template.render(templatepath + '04uberinput_start.html', {
                 'model':'pfam',

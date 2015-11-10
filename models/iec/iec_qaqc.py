@@ -10,8 +10,7 @@ import unittest
 from StringIO import StringIO
 import csv
 
-cwd= os.getcwd()
-data = csv.reader(open(cwd+'/models/iec/iec_unittest_inputs.csv'))
+data = csv.reader(open(os.path.join(os.environ['PROJECT_PATH'], 'models','iec','iec_unittest_inputs.csv')))
 LC50=[]
 threshold=[]
 dose_response=[]

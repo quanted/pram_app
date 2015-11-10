@@ -1,1 +1,67 @@
-A,I,R,D,nms,lms,nds,lds1,1,1,1,1,1,1,12,2,2,2,2,2,2,20.1,0.1,0.1,0.1,0.1,0.1,0.1,0.10.2,0.2,0.2,0.2,0.2,0.2,0.2,0.20.5,0.5,0.5,0.5,0.5,0.5,0.5,0.50.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75
+Description,terrplant property,units,type,valid range,run1,run2,run3,run4,run5
+model,model,--,string,--,terrplant,terrplant,terrplant,terrplant,terrplant
+Terrplant Version,version_terrplant,--,string,--,1.2.2,1.2.2,1.2.2,1.2.2,1.2.2
+Chemical Name,chemical_name,--,string,--,Alachlor,Alachlor2,Alachlor3,Alachlor4,Alachlor5
+PC Code,pc_code,,string,--,90501,90501,90501,90501,90501
+Crop Use,use,--,string,--,Corn,Corn,Corn,Corn,Corn
+Application Method,application_method,lbs ai/A,float,"[0,inf)",Ground,Ground,Ground,Ground,Ground
+Application Form,application_form,--,string,--,Spray,Spray,Spray,Spray,Spray
+Solubility,solubility,--,string,--,240,120,99,333,500
+Incorporation Depth (in),incorporation_depth,ppm,float,"[0,inf)",1,1,1,1,1
+Application rate (lbs ai/A),application_rate,unitless,,"[0, .01, .05]",4,8,12,5,7
+Drift Fraction,drift_fraction,unitless,integer,"[1,2,3,4,5,6]",0.01,0.01,0.01,0.01,0.01
+Runoff Fraction,runoff_fraction,unitless,float,"[0.01,0.02, 0.05]",0.05,0.05,0.05,0.05,0.05
+EC25 for Non-listed Seedling Emergence Monocot,ec25_nonlisted_seedling_emergence_monocot,lbs ai/acre,float,"[0,inf)",0.0067,0.0067,0.0067,0.0067,0.0067
+noaec for Non-listed Seedling Emergence Monocot,noaec_listed_seedling_emergence_monocot,lbs ai/acre,float,"[0,inf)",0.034,0.034,0.034,0.034,0.034
+EC25 for Non-listed Seedling Emergence Dicot:,ec25_nonlisted_seedling_emergence_dicot,lbs ai/acre,float,"[0,inf)",0.0023,0.0023,0.0023,0.0023,0.0023
+noaec for Non-listed Seedling Emergence Dicot,noaec_listed_seedling_emergence_dicot,lbs ai/acre,float,"[0,inf)",0.019,0.019,0.019,0.019,0.019
+EC25 for Non-listed Vegetative Vigor Monocot,ec25_nonlisted_vegetative_vigor_monocot,lbs ai/acre,float,"[0,inf)",0.068,0.068,0.068,0.068,0.068
+noaec for Non-listed Vegetative Vigor Monocot,noaec_listed_vegetative_vigor_monocot,lbs ai/acre,float,"[0,inf)",1.4,1.4,1.4,1.4,1.4
+EC25 for Non-listed Vegetative Vigor Dicot,ec25_nonlisted_vegetative_vigor_dicot,lbs ai/acre,float,"[0,inf)",0.037,0.037,0.037,0.037,0.037
+noaec for Non-listed Vegetative Vigor Dicot,noaec_listed_vegetative_vigor_dicot,lbs ai/acre,float,"[0,inf)",0.67,0.67,0.67,0.67,0.67
+rundry_results,out_rundry,lbs ai/A,float,"[0,inf)",,,,,
+runsemi_results,out_runsemi,lbs ai/A,float,"[0,inf)",,,,,
+spray_results,out_spray,lbs ai/A,float,"[0,inf)",,,,,
+totaldry_results,out_totaldry,lbs ai/A,float,"[0,inf)",,,,,
+totalsemi_results,out_totalsemi,lbs ai/A,float,"[0,inf)",,,,,
+nmsRQdry_results,out_nms_rq_dry,unitless,float,"[0,inf)",,,,,
+lmsRQdry_results,out_lms_rq_dry,unitless,float,"[0,inf)",,,,,
+ndsRQdry_results,out_nds_rq_dry,unitless,float,"[0,inf)",,,,,
+ldsRQdry_results,out_lds_rq_dry,unitless,float,"[0,inf)",,,,,
+nmsRQsemi_results,out_nms_rq_semi,unitless,float,"[0,inf)",,,,,
+lmsRQsemi_results,out_lms_rq_semi,unitless,float,"[0,inf)",,,,,
+ndsRQsemi_results,out_nds_rq_semi,unitless,float,"[0,inf)",,,,,
+ldsRQsemi_results,out_lds_rq_semi,unitless,float,"[0,inf)",,,,,
+nmsRQspray_results,out_nms_rq_spray,unitless,float,"[0,inf)",,,,,
+lmsRQspray_results,out_lms_rq_spray,unitless,float,"[0,inf)",,,,,
+ndsRQspray_results,out_nds_rq_spray,unitless,float,"[0,inf)",,,,,
+ldsRQspray_results,out_lds_rq_spray,unitless,float,"[0,inf)",,,,,
+LOCnmsdry_results,out_nms_loc_dry,unitless,String,--,,,,,
+LOCnmssemi_results,out_nms_loc_semi,unitless,String,--,,,,,
+LOCnmsout_spray,out_nms_loc_spray,unitless,String,--,,,,,
+LOClmsdry_results,out_lms_loc_dry,unitless,String,--,,,,,
+LOClmssemi_results,out_lms_loc_semi,unitless,String,--,,,,,
+LOClmsout_spray,out_lms_loc_spray,unitless,String,--,,,,,
+LOCndsdry_results,out_nds_loc_dry,unitless,String,--,,,,,
+LOCndssemi_results,out_nds_loc_semi,unitless,String,--,,,,,
+LOCndsout_spray,out_nds_loc_spray,unitless,String,--,,,,,
+LOCldsdry_results,out_lds_loc_dry,unitless,String,--,,,,,
+LOCldssemi_results,out_lds_loc_semi,unitless,String,--,,,,,
+LOCldsout_spray,out_lds_loc_spray,unitless,String,--,,,,,
+EEC Runoff to Dry Areas,exp_rundry,lbs ai/A,float,"[0,inf)",0.2,,,,
+EEC Runoff to Semi-Aquatic Areas,exp_runsemi,lbs ai/A,float,"[0,inf)",2,,,,
+EEC Spray Drift,exp_spray,lbs ai/A,float,"[0,inf)",0.04,,,,
+EEC Total to Dry Areas,exp_totaldry,lbs ai/A,float,"[0,inf)",0.24,,,,
+EEC Total to Semi-Aquatic Areas,exp_totalsemi,lbs ai/A,float,"[0,inf)",2.04,,,,
+RQ Dry nonlisted monocot,exp_nms_rq_dry,unitless,float,"[0,inf)",35.82,,,,
+RQ Dry nonlisted dicot,exp_lms_rq_dry,unitless,float,"[0,inf)",104.35,,,,
+RQ Dry listed monocot,exp_nds_rq_dry,unitless,float,"[0,inf)",7.06,,,,
+RQ Dry listed dicot,exp_lds_rq_dry,unitless,float,"[0,inf)",12.63,,,,
+RQ Semi-Aquatic nonlisted monocot,exp_nms_rq_semi,unitless,float,"[0,inf)",304.48,,,,
+RQ Semi-Aquatic nonlisted dicot,exp_lms_rq_semi,unitless,float,"[0,inf)",886.96,,,,
+RQ Semi-Aquatic listed monocot,exp_nds_rq_semi,unitless,float,"[0,inf)",60,,,,
+RQ Semi-Aquatic listed dicot,exp_lds_rq_semi,unitless,float,"[0,inf)",107.37,,,,
+RQ Spray Drift nonlisted monocot,exp_nms_rq_spray,unitless,float,"[0,inf)",5.97,,,,
+RQ Spray Drift nonlisted dicot,exp_lms_rq_spray,unitless,float,"[0,inf)",17.39,,,,
+RQ Spray Drift listed monocot,exp_nds_rq_spray,unitless,float,"[0,inf)",1.18,,,,
+RQ Spray Drift listed dicot,exp_lds_rq_spray,unitless,float,"[0,inf)",2.11,,,,

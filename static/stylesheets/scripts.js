@@ -513,31 +513,37 @@ $( document ).ready(function() {
 		});
 	});
 
+	// Remove query string from 'pathSlice' var
+	// if (pathPage && jQuery.inArray("?", pathPage)) {
+	// 	pathPage = pathPage.split('.html?')[0];
+	// }
+
 });
 
-var pathArray = document.URL.split('/');
-var pathDomain = pathArray[2];
-var pathSlice = pathArray[4] + '_' + pathArray[5];
-var pathPage = pathSlice.split('_')[1];
+try {
+	var pathArray = document.URL.split('/');
+	var pathDomain = pathArray[2];
+	var pathSlice = pathArray[4] + '_' + pathArray[5];
+	var pathPage = pathSlice.split('_')[1];
 
-var defSkinSel = {backgroundColor:'rgb(255,165,0)', color:'#FFFFFF'};
-var epaSkinSel = {backgroundColor:'rgb(255,165,0)', color:'#FFFFFF'};
-// BlockUI setup
-var browserWidth = $(window).width();
-var browserHeight = $(window).height();
-var winleft = (browserWidth / 2) - 220 + "px";
-var wintop = (browserHeight / 2) - 30 + "px";
-// Model name
-var noOfUndScr = pathSlice.split('_').length
-var model;
-if (noOfUndScr > 2) {
-	model = pathSlice.split('_').slice(0,noOfUndScr-1).join('_');
-} else {
-	model = pathSlice.split('_')[0];
+	var defSkinSel = {backgroundColor:'rgb(255,165,0)', color:'#FFFFFF'};
+	var epaSkinSel = {backgroundColor:'rgb(255,165,0)', color:'#FFFFFF'};
+	// BlockUI setup
+	var browserWidth = $(window).width();
+	var browserHeight = $(window).height();
+	var winleft = (browserWidth / 2) - 220 + "px";
+	var wintop = (browserHeight / 2) - 30 + "px";
+	// Model name
+	var noOfUndScr = pathSlice.split('_').length
+	var model;
+	if (noOfUndScr > 2) {
+		model = pathSlice.split('_').slice(0,noOfUndScr-1).join('_');
+	} else {
+		model = pathSlice.split('_')[0];
+	}
 }
-// Remove query string from 'pathSlice' var
-if (pathPage.indexOf("?")) {
-	pathPage = pathPage.split('.html?')[0];
+catch(e) {
+	console.log(e);
 }
 
 // Cross-Browser approach to searching JS array

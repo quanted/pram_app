@@ -1,9 +1,10 @@
 $( document ).ready(function() {
 
 	// BlockUI on Form Submit
-	$("input[value='Submit']").click(function (e) {
+	$("button").click(function (e) {
 		e.preventDefault();
-		var form_valid = $("form").valid();
+		// var form_valid = $("form").valid();
+		var form_valid;
 
 		if (typeof form_valid == 'undefined'){
 			$.blockUI({
@@ -14,7 +15,8 @@ $( document ).ready(function() {
 			setTimeout(function() {$('form').submit();}, 500);
 		}
 
-		if (typeof form_valid !== 'undefined' && form_valid !== false){
+		// if (typeof form_valid !== 'undefined' && form_valid !== false){
+		else {
 			e.preventDefault();
 			// ES Mapper check
 			if (model == "es_mapping") {
@@ -38,10 +40,10 @@ $( document ).ready(function() {
 	$('#resetbutton').click(
 		function(){
 			var values = [];
-      		var selected = $("input:checkbox").each(
-     		 function(){
-          		values.push( $(this).is(':checked'));
-     		});
+			var selected = $("input:checkbox").each(
+			 function(){
+				values.push( $(this).is(':checked'));
+			});
 			this.form.reset();
 			for (i=0;i<selected.length;i++) {
 				$(selected[i]).prop('checked', values[i]);
@@ -62,8 +64,16 @@ $( document ).ready(function() {
 		});
 	});
 
-	// Assign class to be jQueryUI date picker widget
-	$( ".datePicker" ).datepicker();
+	// Save Metadata
+	$('#metaDataTxtArea').prop('disabled', true);
+	$('#metaDataToggle').change(function() {
+		if ($('#metaDataToggle').prop( "checked" )) {
+			$('#metaDataTxtArea').prop('disabled', false);
+			$('#metaDataDiv').slideDown();
+		} else {
+			$('#metaDataDiv').slideUp();
+			$('#metaDataTxtArea').prop('disabled', true);
+		}
+	});
 
 });
-

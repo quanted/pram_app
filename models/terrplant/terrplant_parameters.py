@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 .. module:: terrplant_parameters
    :synopsis: A useful module indeed.
@@ -24,7 +25,7 @@ class TerrplantInp(forms.Form):
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
             label='Chemical Name',
-            initial='Alachlor',
+            initial='Terrplant Example',
             validators=[validators.validate_slug])
     pc_code = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
@@ -47,10 +48,10 @@ class TerrplantInp(forms.Form):
             initial='Spray',
             validators=[validators.validate_slug])
     solubility = forms.FloatField(
-            label='Solubility',
+            label='Solubility (ppm)',
             initial=240,
             validators=[validation.validate_positive])
-    incorporation = forms.ChoiceField(
+    incorporation_depth = forms.ChoiceField(
             choices=SELECT_INCORPORATION, 
             label='Incorporation Depth (in)')    
     application_rate = forms.FloatField(
@@ -65,35 +66,35 @@ class TerrplantInp(forms.Form):
             choices=SELECT_RUN, 
             label='Runoff Fraction',
             initial=0.05)
-    EC25_for_nonlisted_seedling_emergence_monocot = forms.FloatField(
-            label=mark_safe('EC<sub>25</sub> for Non-listed Seedling Emergence Monocot'),
+    ec25_nonlisted_seedling_emergence_monocot = forms.FloatField(
+            label=mark_safe('EC<sub>25</sub> for Non-listed Seedling Emergence Monocot (lbs ai/A)'),
             initial=0.0067,
             validators=[validation.validate_positive])
-    EC25_for_nonlisted_seedling_emergence_dicot = forms.FloatField(
-            label=mark_safe('EC<sub>25</sub> for Non-listed Seedling Emergence Dicot'),
+    ec25_nonlisted_seedling_emergence_dicot = forms.FloatField(
+            label=mark_safe('EC<sub>25</sub> for Non-listed Seedling Emergence Dicot (lbs ai/A)'),
             initial=0.034,
             validators=[validation.validate_positive])
-    NOAEC_for_listed_seedling_emergence_monocot = forms.FloatField(
-            label=mark_safe('NOAEC for Non-listed Seedling Emergence Monocot'),
+    noaec_listed_seedling_emergence_monocot = forms.FloatField(
+            label=mark_safe('noaec for Non-listed Seedling Emergence Monocot (lbs ai/A)'),
             initial=0.0023,
             validators=[validation.validate_positive])
-    NOAEC_for_listed_seedling_emergence_dicot = forms.FloatField(
-            label=mark_safe('NOAEC for Non-listed Seedling Emergence Dicot'),
+    noaec_listed_seedling_emergence_dicot = forms.FloatField(
+            label=mark_safe('noaec for Non-listed Seedling Emergence Dicot (lbs ai/A)'),
             initial=0.019,
             validators=[validation.validate_positive])
-    EC25_for_nonlisted_vegetative_vigor_monocot = forms.FloatField(
-            label=mark_safe('EC<sub>25</sub> for Non-listed Vegetative Vigor Monocot'),
+    ec25_nonlisted_vegetative_vigor_monocot = forms.FloatField(
+            label=mark_safe('EC<sub>25</sub> for Non-listed Vegetative Vigor Monocot (lbs ai/A)'),
             initial=0.068,
             validators=[validation.validate_positive])
-    EC25_for_nonlisted_vegetative_vigor_dicot = forms.FloatField(
-            label=mark_safe('EC<sub>25</sub> for Non-listed Vegetative Vigor Dicot'),
+    ec25_nonlisted_vegetative_vigor_dicot = forms.FloatField(
+            label=mark_safe('EC<sub>25</sub> for Non-listed Vegetative Vigor Dicot (lbs ai/A)'),
             initial=1.4,
             validators=[validation.validate_positive])
-    NOAEC_for_listed_vegetative_vigor_monocot = forms.FloatField(
-            label=mark_safe('NOAEC for Non-listed Vegetative Vigor Monocot'),
+    noaec_listed_vegetative_vigor_monocot = forms.FloatField(
+            label=mark_safe('noaec for Non-listed Vegetative Vigor Monocot (lbs ai/A)'),
             initial=0.037,
             validators=[validation.validate_positive])
-    NOAEC_for_listed_vegetative_vigor_dicot = forms.FloatField(
-            label=mark_safe('NOAEC for Non-listed Vegetative Vigor Dicot'),
+    noaec_listed_vegetative_vigor_dicot = forms.FloatField(
+            label=mark_safe('noaec for Non-listed Vegetative Vigor Dicot (lbs ai/A)'),
             initial=0.67,
             validators=[validation.validate_positive])

@@ -19,7 +19,7 @@ class RiceInp(forms.Form):
 			initial='1.0')
 	chemical_name = forms.CharField(
 			widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
-			initial='Fipronil')
+			initial='Rice Example')
 	mai = forms.FloatField(
 			label='Mass of Applied Ingredient to Paddy (kg)',
 			initial=0.056,

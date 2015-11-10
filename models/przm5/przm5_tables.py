@@ -166,7 +166,7 @@ def timestamp(przm5_obj):
     st = datetime.datetime.strptime(przm5_obj.jid, '%Y%m%d%H%M%S%f').strftime('%A %Y-%m-%d %H:%M:%S')
     html="""
     <div class="out_">
-        <b>PRZM<br>
+        <b>PRZM 5<br>
     """
     html = html + st
     html = html + " (EST)</b>"
@@ -196,8 +196,8 @@ def table_all(przm5_obj):
     table8_out = table_8(przm5_obj)
 
     html_plot = render_to_string('przm5-output-jqplot.html', {})
-    html_all = timestamp(przm5_obj) + table1_out + table2_out + table3_out + table4_out + html_plot
-    html_all = timestamp(przm5_obj) + table1_out_all + table2_out + table3_out + table4_out + table5_out + table6_out + table7_out + table8_out + html_plot
+    # html_all = timestamp(przm5_obj) + table1_out + table2_out + table3_out + table4_out + html_plot
+    html_all = table1_out_all + table2_out + table3_out + table4_out + table5_out + table6_out + table7_out + table8_out + html_plot
     return html_all
 
 

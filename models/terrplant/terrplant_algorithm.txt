@@ -1,10 +1,8 @@
 <p>TerrPlant derives estimated exposure concentrations (EECs) of pesticide in runoff and in drift. From the derived EECs TerrPlant develops risk quotients (RQs) are developed for non-listed and listed species of monocots and dicots inhabiting dry and semi-aquatic areas adjacent to treatment sites using the equations below.</p>
 <p>Runoff to dry areas:</p>
 <img src = "/static/images/latex/terrplant/terrplant_image1.png" alt="Terrplant_1">
-
 <p>Runoff to semi-aquatic areas:</p>
 <img src = "/static/images/latex/terrplant/terrplant_image2.png" alt="Terrplant_2">
-
 <p>Spray drift:</p>
 <img src = "/static/images/latex/terrplant/terrplant_image3.png" alt="Terrplant_3">
 <p>Total for dry areas:</p>

@@ -1,0 +1,10 @@
+iec_property,description,units,type,valid_range,run1
+LC50,tox_input,,,,1
+threshold,threshold,,,,0.25
+dose_response,slope,,,,4.5
+out_z_score_f,out_z_score,,,,
+out_F8_f,out_f8,,,,
+out_chance_f,out_iec,,,,
+exp_z_score_f,exp_z_score,,,,-2.71
+exp_F8_f,exp_f8,,,,3.37E-003
+exp_chance_f,exp_iec,,,,296.6

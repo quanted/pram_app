@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 """
 .. module:: validation
    :synopsis: Our custom defined Django validation rules
@@ -97,7 +96,7 @@ def validate_positive(value):
 	:param value: Form input field value
 	:raises: ValidationError
 	"""
-	if value < 0:
+	if float(value) < 0:
 		raise ValidationError(u'Value must be positive')
 
 def validate_greaterthanequalto1(value):
@@ -128,3 +127,11 @@ def validate_degrees_latitude(value):
 		pass
 	else:
 		raise ValidationError(u'Range between -90 and 90')
+
+def validate_always_pass(value):
+	""" Form Validation Rule: A by-bass validators that always returns True
+
+	:param value: Form input field value
+	:raises: ValidationError
+	"""
+	pass

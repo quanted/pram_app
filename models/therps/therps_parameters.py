@@ -13,7 +13,7 @@ Species_of_the_tested_bird_CHOICES=(('Bobwhite quail','Bobwhite quail'),('Mallar
 class therpsInp_chem(forms.Form):    
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),
-            initial='Fluxapyroxad')
+            initial='T-Herps Example')
     Use = forms.CharField(
             max_length=255,
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}),

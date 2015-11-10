@@ -1,0 +1,9 @@
+************* Module qed.ubertool_eco.models.sip.sip_batchoutput
+C: 23, 0: Trailing whitespace (trailing-whitespace)
+C: 28, 0: Final newline missing (missing-final-newline)
+C: 10, 0: Missing function docstring (missing-docstring)
+E: 15,13: Instance of 'tuple' has no 'drop' member (no-member)
+E: 15,32: Instance of 'tuple' has no 'columns' member (no-member)
+C: 22, 0: Invalid function name "sipBatchOutputPage" (invalid-name)
+C: 22, 0: Missing function docstring (missing-docstring)
+W:  7, 0: Unused import logging (unused-import)

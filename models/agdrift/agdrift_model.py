@@ -6,23 +6,15 @@
 import os
 from bisect import *
 import logging
-from REST import rest_funcs
+from REST import auth_s3, rest_funcs
 logger = logging.getLogger('agdrift Model')
 import json
-import keys_Picloud_S3
-import base64
 import requests
 
 
-# Daily water intake rate for birds
-
-############Provide the key and connect to EC2####################
-api_key=keys_Picloud_S3.picloud_api_key
-api_secretkey=keys_Picloud_S3.picloud_api_secretkey
-base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
-http_headers = {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
+# Set HTTP header
+http_headers = auth_s3.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
-###########################################################################
 
 
 class agdrift(object):
@@ -89,7 +81,7 @@ class agdrift(object):
         data = json.dumps(all_dic)
 
         self.jid = rest_funcs.gen_jid()
-        url=os.environ['UBERTOOL_REST_SERVER'] + '/agdrift/' + self.jid 
+        url=url_part1 + '/agdrift/' + self.jid 
         response = requests.post(url=url, data=data, headers=http_headers, timeout=60)
         output_val = json.loads(response.content)['result']
         for key, value in output_val.items():

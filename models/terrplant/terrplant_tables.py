@@ -4,10 +4,8 @@
 """
 
 import numpy
-#import django
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
-import terrplant_model,terrplant_parameters
 import logging
 import time
 import datetime
@@ -27,7 +25,7 @@ def getheaderde():
     return headings
 
 def getheaderplantec25noaec():
-    headings = ["Plant Type", "EC25", "NOAEC", "EC25", "NOAEC"]
+    headings = ["Plant Type", "ec25", "noaec", "ec25", "noaec"]
     return headings
 
 def getheaderplantecdrysemispray():
@@ -91,14 +89,14 @@ def gett1data(terrplant_obj):
 def gett1dataqaqc(terrplant_obj):
     data = { 
         "Parameter": ['Chemical Name', 'PC Code', 'Use', 'Application Method','Application Form',],
-        "Value": [terrplant_obj.chemical_name_expected, terrplant_obj.pc_code_expected, terrplant_obj.use_expected, terrplant_obj.application_method_expected,terrplant_obj.application_form_expected,],
+        "Value": [terrplant_obj.chemical_name, terrplant_obj.pc_code, terrplant_obj.use, terrplant_obj.application_method,terrplant_obj.application_form,],
     }
     return data
 
 def gett2data(terrplant_obj):
     data = { 
         "Parameter": ['Incorporation', 'Application Rate', 'Drift Fraction', 'Runoff Fraction',],
-        "Value": [terrplant_obj.I, terrplant_obj.A, terrplant_obj.D, terrplant_obj.R,],
+        "Value": [terrplant_obj.incorporation_depth, terrplant_obj.application_rate, terrplant_obj.drift_fraction, terrplant_obj.runoff_fraction,],
         "Units": ['in', 'lbs ai/A', '','', ],
     }
     return data
@@ -106,36 +104,36 @@ def gett2data(terrplant_obj):
 def gett3data(terrplant_obj):
     data = { 
         "Description": ['Runoff to Dry Areas', 'Runoff to Semi-Aquatic Areas', 'Spray Drift','Total to Dry Areas', 'Total to Semi-Aquatic Areas',],
-        "EEC": ['%.2f' % terrplant_obj.rundry_results,'%.2f' % terrplant_obj.runsemi_results,'%.2f' % terrplant_obj.spray_results,
-                '%.2f' % terrplant_obj.totaldry_results,'%.2f' % terrplant_obj.totalsemi_results, ],
+        "EEC": ['%g' % terrplant_obj.out_rundry,'%g' % terrplant_obj.out_runsemi,'%g' % terrplant_obj.out_spray,
+                '%g' % terrplant_obj.out_totaldry,'%g' % terrplant_obj.out_totalsemi, ],
     }
     return data
 
 def gett3dataqaqc(terrplant_obj):
     data = { 
         "Description": ['Runoff to Dry Areas', 'Runoff to Semi-Aquatic Areas', 'Spray Drift','Total to Dry Areas', 'Total to Semi-Aquatic Areas',],
-        "EEC": ['%.2f' % terrplant_obj.rundry_results,'%.2f' % terrplant_obj.runsemi_results,'%.2f' % terrplant_obj.spray_results,
-                '%.2f' % terrplant_obj.totaldry_results,'%.2f' % terrplant_obj.totalsemi_results, ],
+        "EEC": ['%g' % terrplant_obj.exp_rundry,'%g' % terrplant_obj.exp_runsemi,'%g' % terrplant_obj.exp_spray,
+                '%g' % terrplant_obj.exp_totaldry,'%g' % terrplant_obj.exp_totalsemi, ],
     }
     return data
 
 def gett4data(terrplant_obj):
     data = { 
         "Plant Type": ['Monocot', 'Dicot',],
-        "EC25": [terrplant_obj.nms,terrplant_obj.nds,],
-        "NOAEC": [terrplant_obj.lms,terrplant_obj.lds,],
-        "EC25": [terrplant_obj.nmv,terrplant_obj.ndv,],
-        "NOAEC":[terrplant_obj.lmv,terrplant_obj.ldv,],
+        "ec25": [terrplant_obj.ec25_nonlisted_seedling_emergence_monocot,terrplant_obj.noaec_listed_seedling_emergence_monocot,],
+        "noaec": [terrplant_obj.ec25_nonlisted_seedling_emergence_dicot,terrplant_obj.noaec_listed_seedling_emergence_dicot,],
+        "ec25": [terrplant_obj.ec25_nonlisted_vegetative_vigor_monocot,terrplant_obj.noaec_listed_vegetative_vigor_monocot,],
+        "noaec":[terrplant_obj.ec25_nonlisted_vegetative_vigor_dicot,terrplant_obj.noaec_listed_vegetative_vigor_dicot,],
     }
     return data
 
 def gett4dataqaqc(terrplant_obj):
     data = { 
         "Plant Type": ['Monocot', 'Dicot',],
-        "EC25": [terrplant_obj.nms_expected,terrplant_obj.nds_expected,],
-        "NOAEC": [terrplant_obj.lms_expected,terrplant_obj.lds_expected,],
-        "EC25": [terrplant_obj.nmv_expected,terrplant_obj.ndv_expected,],
-        "NOAEC":[terrplant_obj.lmv_expected,terrplant_obj.ldv_expected,],
+        "ec25": [terrplant_obj.ec25_nonlisted_seedling_emergence_monocot,terrplant_obj.noaec_listed_seedling_emergence_monocot,],
+        "noaec": [terrplant_obj.ec25_nonlisted_seedling_emergence_dicot,terrplant_obj.noaec_listed_seedling_emergence_dicot,],
+        "ec25": [terrplant_obj.ec25_nonlisted_vegetative_vigor_monocot,terrplant_obj.noaec_listed_vegetative_vigor_monocot,],
+        "noaec":[terrplant_obj.ec25_nonlisted_vegetative_vigor_dicot,terrplant_obj.noaec_listed_vegetative_vigor_dicot,],
     }
     return data
 
@@ -143,9 +141,9 @@ def gett5data(terrplant_obj):
     data = { 
         "Plant Type": ['Monocot', 'Monocot', 'Dicot', 'Dicot',],
         "Listed Status": ['non-listed','listed','non-listed','listed',],
-        "Dry": ['%.2f' % terrplant_obj.nmsRQdry_results,'%.2f' % terrplant_obj.lmsRQdry_results,'%.2f' % terrplant_obj.ndsRQdry_results,'%.2f' % terrplant_obj.ldsRQdry_results,],
-        "Semi-Aquatic": ['%.2f' % terrplant_obj.nmsRQsemi_results,'%.2f' % terrplant_obj.lmsRQsemi_results,'%.2f' % terrplant_obj.ndsRQsemi_results,'%.2f' % terrplant_obj.ldsRQsemi_results,],
-        "Spray Drift":['%.2f' % terrplant_obj.nmsRQspray_results,'%.2f' % terrplant_obj.lmsRQspray_results,'%.2f' % terrplant_obj.ndsRQspray_results,'%.2f' % terrplant_obj.ldsRQspray_results,],
+        "Dry": ['%g' % terrplant_obj.out_nms_rq_dry,'%g' % terrplant_obj.out_lms_rq_dry,'%g' % terrplant_obj.out_nds_rq_dry,'%g' % terrplant_obj.out_lds_rq_dry,],
+        "Semi-Aquatic": ['%g' % terrplant_obj.out_nms_rq_semi,'%g' % terrplant_obj.out_lms_rq_semi,'%g' % terrplant_obj.out_nds_rq_semi,'%g' % terrplant_obj.out_lds_rq_semi,],
+        "Spray Drift":['%g' % terrplant_obj.out_nms_rq_spray,'%g' % terrplant_obj.out_lms_rq_spray,'%g' % terrplant_obj.out_nds_rq_spray,'%g' % terrplant_obj.out_lds_rq_spray,],
     }
     return data
 
@@ -154,37 +152,37 @@ def gett5dataqaqc(terrplant_obj):
     data = { 
         "Plant Type": ['Monocot', 'Monocot', 'Dicot', 'Dicot',],
         "Listed Status": ['non-listed','listed','non-listed','listed',],
-        "Dry": ['%.2f' % terrplant_obj.nmsRQdry_results,'%.2f' % terrplant_obj.lmsRQdry_results,'%.2f' % terrplant_obj.ndsRQdry_results,'%.2f' % terrplant_obj.ldsRQdry_results,],
-        "Dry-Expected": ['%.2f' % terrplant_obj.nmsRQdry_results_expected,'%.2f' % terrplant_obj.lmsRQdry_results_expected,'%.2f' % terrplant_obj.ndsRQdry_results_expected,'%.2f' % terrplant_obj.ldsRQdry_results_expected,],
-        "Semi-Aquatic": ['%.2f' % terrplant_obj.nmsRQsemi_results,'%.2f' % terrplant_obj.lmsRQsemi_results,'%.2f' % terrplant_obj.ndsRQsemi_results,'%.2f' % terrplant_obj.ldsRQsemi_results,],
-        "Semi-Aquatic-Expected": ['%.2f' % terrplant_obj.nmsRQsemi_results_expected,'%.2f' % terrplant_obj.lmsRQsemi_results_expected,'%.2f' % terrplant_obj.ndsRQsemi_results_expected,'%.2f' % terrplant_obj.ldsRQsemi_results_expected,],
-        "Spray Drift":['%.2f' % terrplant_obj.nmsRQspray_results,'%.2f' % terrplant_obj.lmsRQspray_results,'%.2f' % terrplant_obj.ndsRQspray_results,'%.2f' % terrplant_obj.ldsRQspray_results,],
-        "Spray Drift-Expected":['%.2f' % terrplant_obj.nmsRQspray_results_expected,'%.2f' % terrplant_obj.lmsRQspray_results_expected,'%.2f' % terrplant_obj.ndsRQspray_results_expected,'%.2f' % terrplant_obj.ldsRQspray_results_expected,],
+        "Dry": ['%g' % terrplant_obj.out_nms_rq_dry,'%g' % terrplant_obj.out_lms_rq_dry,'%g' % terrplant_obj.out_nds_rq_dry,'%g' % terrplant_obj.out_lds_rq_dry,],
+        "Dry-Expected": ['%g' % terrplant_obj.exp_nms_rq_dry,'%g' % terrplant_obj.exp_lms_rq_dry,'%g' % terrplant_obj.exp_nds_rq_dry,'%g' % terrplant_obj.exp_lds_rq_dry,],
+        "Semi-Aquatic": ['%g' % terrplant_obj.out_nms_rq_semi,'%g' % terrplant_obj.out_lms_rq_semi,'%g' % terrplant_obj.out_nds_rq_semi,'%g' % terrplant_obj.out_lds_rq_semi,],
+        "Semi-Aquatic-Expected": ['%g' % terrplant_obj.exp_nms_rq_semi,'%g' % terrplant_obj.exp_lms_rq_semi,'%g' % terrplant_obj.exp_nds_rq_semi,'%g' % terrplant_obj.exp_lds_rq_semi,],
+        "Spray Drift":['%g' % terrplant_obj.out_nms_rq_spray,'%g' % terrplant_obj.out_lms_rq_spray,'%g' % terrplant_obj.out_nds_rq_spray,'%g' % terrplant_obj.out_lds_rq_spray,],
+        "Spray Drift-Expected":['%g' % terrplant_obj.exp_nms_rq_spray,'%g' % terrplant_obj.exp_lms_rq_spray,'%g' % terrplant_obj.exp_nds_rq_spray,'%g' % terrplant_obj.exp_lds_rq_spray,],
     }
     return data
 
-def gettsumdata(A, I, R, D, nms, lms, nds, lds):
+def gettsumdata(application_rate, incorporation_depth, runoff_fraction, drift_fraction, ec25_nonlisted_seedling_emergence_monocot, ec25_nonlisted_seedling_emergence_dicot, noaec_listed_seedling_emergence_monocot, noaec_listed_seedling_emergence_dicot):
     data = { 
         "Parameter": ['Incorporation', 'Application Rate', 'Drift Fraction', 'Runoff Fraction', 
                     'Noaec for listed seedling emergence monocot','Ec25 for nonlisted seedling emergence monocot',
                     'Noaec for listed seedling emergence dicot','Noaec for listed seedling emergence dicot'],
-        "Mean": ['%.2e' % numpy.mean(A),'%.2e' % numpy.mean(I),'%.2e' % numpy.mean(R), '%.2e' % numpy.mean(D), 
-                 '%.2e' % numpy.mean(nms), '%.2e' % numpy.mean(lms), '%.2e' % numpy.mean(nds), '%.2e' % numpy.mean(lds),],
-        "Std": ['%.2e' % numpy.std(A),'%.2e' % numpy.std(I),'%.2e' % numpy.std(R), '%.2e' % numpy.std(D), 
-                '%.2e' % numpy.std(nms), '%.2e' % numpy.std(lms), '%.2e' % numpy.std(nds), '%.2e' % numpy.std(lds),],
-        "Min": ['%.2e' % numpy.min(A),'%.2e' % numpy.min(I),'%.2e' % numpy.min(R), '%.2e' % numpy.min(D), 
-                '%.2e' % numpy.min(nms), '%.2e' % numpy.min(lms), '%.2e' % numpy.min(nds), '%.2e' % numpy.min(lds),],
-         "Max": ['%.2e' % numpy.max(A),'%.2e' % numpy.max(I),'%.2e' % numpy.max(R), '%.2e' % numpy.max(D), 
-                '%.2e' % numpy.max(nms), '%.2e' % numpy.max(lms), '%.2e' % numpy.max(nds), '%.2e' % numpy.max(lds),],
+        "Mean": ['%.2e' % numpy.mean(application_rate),'%.2e' % numpy.mean(incorporation_depth),'%.2e' % numpy.mean(runoff_fraction), '%.2e' % numpy.mean(drift_fraction), 
+                 '%.2e' % numpy.mean(ec25_nonlisted_seedling_emergence_monocot), '%.2e' % numpy.mean(ec25_nonlisted_seedling_emergence_dicot), '%.2e' % numpy.mean(noaec_listed_seedling_emergence_monocot), '%.2e' % numpy.mean(noaec_listed_seedling_emergence_dicot),],
+        "Std": ['%.2e' % numpy.std(application_rate),'%.2e' % numpy.std(incorporation_depth),'%.2e' % numpy.std(runoff_fraction), '%.2e' % numpy.std(drift_fraction), 
+                '%.2e' % numpy.std(ec25_nonlisted_seedling_emergence_monocot), '%.2e' % numpy.std(ec25_nonlisted_seedling_emergence_dicot), '%.2e' % numpy.std(noaec_listed_seedling_emergence_monocot), '%.2e' % numpy.std(noaec_listed_seedling_emergence_dicot),],
+        "Min": ['%.2e' % numpy.min(application_rate),'%.2e' % numpy.min(incorporation_depth),'%.2e' % numpy.min(runoff_fraction), '%.2e' % numpy.min(drift_fraction), 
+                '%.2e' % numpy.min(ec25_nonlisted_seedling_emergence_monocot), '%.2e' % numpy.min(ec25_nonlisted_seedling_emergence_dicot), '%.2e' % numpy.min(noaec_listed_seedling_emergence_monocot), '%.2e' % numpy.min(noaec_listed_seedling_emergence_dicot),],
+         "Max": ['%.2e' % numpy.max(application_rate),'%.2e' % numpy.max(incorporation_depth),'%.2e' % numpy.max(runoff_fraction), '%.2e' % numpy.max(drift_fraction), 
+                '%.2e' % numpy.max(ec25_nonlisted_seedling_emergence_monocot), '%.2e' % numpy.max(ec25_nonlisted_seedling_emergence_dicot), '%.2e' % numpy.max(noaec_listed_seedling_emergence_monocot), '%.2e' % numpy.max(noaec_listed_seedling_emergence_dicot),],
         "Unit": ['', '', '', '', '','', '', '',],
     }
     return data
 
 def gettsumdata_out(rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
-                    nmsRQdry_out, nmsRQsemi_out, nmsRQspray_out, 
-                    lmsRQdry_out, lmsRQsemi_out, lmsRQspray_out, 
-                    ndsRQdry_out, ndsRQsemi_out, ndsRQspray_out, 
-                    ldsRQdry_out, ldsRQsemi_out, ldsRQspray_out):
+                    nms_rq_dry_out, nms_rq_semi_out, nms_rq_spray_out, 
+                    lms_rq_dry_out, lms_rq_semi_out, lms_rq_spray_out, 
+                    nds_rq_dry_out, nds_rq_semi_out, nds_rq_spray_out, 
+                    lds_rq_dry_out, lds_rq_semi_out, lds_rq_spray_out):
     data = { 
         "Parameter": ['Runoff to Dry Areas', 'Runoff to Semi-Aquatic Areas', 'Spray Drift',
                     'Total to Dry Areas', 'Total to Semi-Aquatic Areas',
@@ -203,28 +201,28 @@ def gettsumdata_out(rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_
 
         "Mean": [
                  '%.2e' % numpy.mean(rundry_out), '%.2e' % numpy.mean(runsemi_out), '%.2e' % numpy.mean(spray_out), '%.2e' % numpy.mean(totaldry_out), '%.2e' % numpy.mean(totaldry_out),
-                 '%.2e' % numpy.mean(nmsRQdry_out), '%.2e' % numpy.mean(nmsRQsemi_out), '%.2e' % numpy.mean(nmsRQspray_out),
-                 '%.2e' % numpy.mean(lmsRQdry_out), '%.2e' % numpy.mean(lmsRQsemi_out), '%.2e' % numpy.mean(lmsRQspray_out),
-                 '%.2e' % numpy.mean(ndsRQdry_out), '%.2e' % numpy.mean(ndsRQsemi_out), '%.2e' % numpy.mean(ndsRQspray_out),
-                 '%.2e' % numpy.mean(ldsRQdry_out), '%.2e' % numpy.mean(ldsRQsemi_out), '%.2e' % numpy.mean(ldsRQspray_out),],
+                 '%.2e' % numpy.mean(nms_rq_dry_out), '%.2e' % numpy.mean(nms_rq_semi_out), '%.2e' % numpy.mean(nms_rq_spray_out),
+                 '%.2e' % numpy.mean(lms_rq_dry_out), '%.2e' % numpy.mean(lms_rq_semi_out), '%.2e' % numpy.mean(lms_rq_spray_out),
+                 '%.2e' % numpy.mean(nds_rq_dry_out), '%.2e' % numpy.mean(nds_rq_semi_out), '%.2e' % numpy.mean(nds_rq_spray_out),
+                 '%.2e' % numpy.mean(lds_rq_dry_out), '%.2e' % numpy.mean(lds_rq_semi_out), '%.2e' % numpy.mean(lds_rq_spray_out),],
 
         "Std": ['%.2e' % numpy.std(rundry_out), '%.2e' % numpy.std(runsemi_out), '%.2e' % numpy.std(spray_out), '%.2e' % numpy.std(totaldry_out), '%.2e' % numpy.std(totaldry_out),
-                '%.2e' % numpy.std(nmsRQdry_out), '%.2e' % numpy.std(nmsRQsemi_out), '%.2e' % numpy.std(nmsRQspray_out),
-                '%.2e' % numpy.std(lmsRQdry_out), '%.2e' % numpy.std(lmsRQsemi_out), '%.2e' % numpy.std(lmsRQspray_out),
-                '%.2e' % numpy.std(ndsRQdry_out), '%.2e' % numpy.std(ndsRQsemi_out), '%.2e' % numpy.std(ndsRQspray_out),
-                '%.2e' % numpy.std(ldsRQdry_out), '%.2e' % numpy.std(ldsRQsemi_out), '%.2e' % numpy.std(ldsRQspray_out),],
+                '%.2e' % numpy.std(nms_rq_dry_out), '%.2e' % numpy.std(nms_rq_semi_out), '%.2e' % numpy.std(nms_rq_spray_out),
+                '%.2e' % numpy.std(lms_rq_dry_out), '%.2e' % numpy.std(lms_rq_semi_out), '%.2e' % numpy.std(lms_rq_spray_out),
+                '%.2e' % numpy.std(nds_rq_dry_out), '%.2e' % numpy.std(nds_rq_semi_out), '%.2e' % numpy.std(nds_rq_spray_out),
+                '%.2e' % numpy.std(lds_rq_dry_out), '%.2e' % numpy.std(lds_rq_semi_out), '%.2e' % numpy.std(lds_rq_spray_out),],
 
         "Min": ['%.2e' % numpy.min(rundry_out), '%.2e' % numpy.min(runsemi_out), '%.2e' % numpy.min(spray_out), '%.2e' % numpy.min(totaldry_out), '%.2e' % numpy.min(totaldry_out),
-                '%.2e' % numpy.min(nmsRQdry_out), '%.2e' % numpy.min(nmsRQsemi_out), '%.2e' % numpy.min(nmsRQspray_out),
-                '%.2e' % numpy.min(lmsRQdry_out), '%.2e' % numpy.min(lmsRQsemi_out), '%.2e' % numpy.min(lmsRQspray_out),
-                '%.2e' % numpy.min(ndsRQdry_out), '%.2e' % numpy.min(ndsRQsemi_out), '%.2e' % numpy.min(ndsRQspray_out),
-                '%.2e' % numpy.min(ldsRQdry_out), '%.2e' % numpy.min(ldsRQsemi_out), '%.2e' % numpy.min(ldsRQspray_out),],
+                '%.2e' % numpy.min(nms_rq_dry_out), '%.2e' % numpy.min(nms_rq_semi_out), '%.2e' % numpy.min(nms_rq_spray_out),
+                '%.2e' % numpy.min(lms_rq_dry_out), '%.2e' % numpy.min(lms_rq_semi_out), '%.2e' % numpy.min(lms_rq_spray_out),
+                '%.2e' % numpy.min(nds_rq_dry_out), '%.2e' % numpy.min(nds_rq_semi_out), '%.2e' % numpy.min(nds_rq_spray_out),
+                '%.2e' % numpy.min(lds_rq_dry_out), '%.2e' % numpy.min(lds_rq_semi_out), '%.2e' % numpy.min(lds_rq_spray_out),],
 
          "Max": ['%.2e' % numpy.max(rundry_out), '%.2e' % numpy.max(runsemi_out), '%.2e' % numpy.max(spray_out), '%.2e' % numpy.min(totaldry_out), '%.2e' % numpy.min(totaldry_out),
-                '%.2e' % numpy.max(nmsRQdry_out), '%.2e' % numpy.max(nmsRQsemi_out), '%.2e' % numpy.min(nmsRQspray_out),
-                '%.2e' % numpy.max(lmsRQdry_out), '%.2e' % numpy.max(lmsRQsemi_out), '%.2e' % numpy.min(lmsRQspray_out),
-                '%.2e' % numpy.max(ndsRQdry_out), '%.2e' % numpy.max(ndsRQsemi_out), '%.2e' % numpy.min(ndsRQspray_out),
-                '%.2e' % numpy.max(ldsRQdry_out), '%.2e' % numpy.max(ldsRQsemi_out), '%.2e' % numpy.min(ldsRQspray_out),],
+                '%.2e' % numpy.max(nms_rq_dry_out), '%.2e' % numpy.max(nms_rq_semi_out), '%.2e' % numpy.min(nms_rq_spray_out),
+                '%.2e' % numpy.max(lms_rq_dry_out), '%.2e' % numpy.max(lms_rq_semi_out), '%.2e' % numpy.min(lms_rq_spray_out),
+                '%.2e' % numpy.max(nds_rq_dry_out), '%.2e' % numpy.max(nds_rq_semi_out), '%.2e' % numpy.min(nds_rq_spray_out),
+                '%.2e' % numpy.max(lds_rq_dry_out), '%.2e' % numpy.max(lds_rq_semi_out), '%.2e' % numpy.min(lds_rq_spray_out),],
 
         "Unit": ['', '','', '', '', '', '','', '', '', '', '','', '', '', '', '',],
     }
@@ -257,21 +255,21 @@ def table_all_qaqc(terrplant_obj):
     html_all = html_all + table_5_qaqc(terrplant_obj)
     return html_all
 
-def table_all_sum(sumheadings, tmpl, A, I, R, D, nms, lms, nds, lds, 
+def table_all_sum(sumheadings, tmpl, application_rate, incorporation_depth, runoff_fraction, drift_fraction, ec25_nonlisted_seedling_emergence_monocot, ec25_nonlisted_seedling_emergence_dicot, noaec_listed_seedling_emergence_monocot, noaec_listed_seedling_emergence_dicot, 
                     rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
-                    nmsRQdry_out, nmsRQsemi_out, nmsRQspray_out, 
-                    lmsRQdry_out, lmsRQsemi_out, lmsRQspray_out, 
-                    ndsRQdry_out, ndsRQsemi_out, ndsRQspray_out, 
-                    ldsRQdry_out, ldsRQsemi_out, ldsRQspray_out):
-    html_all_sum = table_sum_input(sumheadings, tmpl, A, I, R, D, nms, lms, nds, lds)
+                    nms_rq_dry_out, nms_rq_semi_out, nms_rq_spray_out, 
+                    lms_rq_dry_out, lms_rq_semi_out, lms_rq_spray_out, 
+                    nds_rq_dry_out, nds_rq_semi_out, nds_rq_spray_out, 
+                    lds_rq_dry_out, lds_rq_semi_out, lds_rq_spray_out):
+    html_all_sum = table_sum_input(sumheadings, tmpl, application_rate, incorporation_depth, runoff_fraction, drift_fraction, ec25_nonlisted_seedling_emergence_monocot, ec25_nonlisted_seedling_emergence_dicot, noaec_listed_seedling_emergence_monocot, noaec_listed_seedling_emergence_dicot)
     html_all_sum += table_sum_output(sumheadings, tmpl, rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
-                    nmsRQdry_out, nmsRQsemi_out, nmsRQspray_out, 
-                    lmsRQdry_out, lmsRQsemi_out, lmsRQspray_out, 
-                    ndsRQdry_out, ndsRQsemi_out, ndsRQspray_out, 
-                    ldsRQdry_out, ldsRQsemi_out, ldsRQspray_out)
+                    nms_rq_dry_out, nms_rq_semi_out, nms_rq_spray_out, 
+                    lms_rq_dry_out, lms_rq_semi_out, lms_rq_spray_out, 
+                    nds_rq_dry_out, nds_rq_semi_out, nds_rq_spray_out, 
+                    lds_rq_dry_out, lds_rq_semi_out, lds_rq_spray_out)
     return html_all_sum
 
-def table_sum_input(sumheadings, tmpl, A, I, R, D, nms, lms, nds, lds):
+def table_sum_input(sumheadings, tmpl, application_rate, incorporation_depth, runoff_fraction, drift_fraction, ec25_nonlisted_seedling_emergence_monocot, ec25_nonlisted_seedling_emergence_dicot, noaec_listed_seedling_emergence_monocot, noaec_listed_seedling_emergence_dicot):
         #pre-table sum_input
         html = """
         <H3 class="out_1 collapsible" id="section1"><span></span>Summary Statistics</H3>
@@ -280,7 +278,7 @@ def table_sum_input(sumheadings, tmpl, A, I, R, D, nms, lms, nds, lds):
                 <div class="out_ container_output">
         """
         #table sum_input
-        tsuminputdata = gettsumdata(A, I, R, D, nms, lms, nds, lds)
+        tsuminputdata = gettsumdata(application_rate, incorporation_depth, runoff_fraction, drift_fraction, ec25_nonlisted_seedling_emergence_monocot, ec25_nonlisted_seedling_emergence_dicot, noaec_listed_seedling_emergence_monocot, noaec_listed_seedling_emergence_dicot)
         tsuminputrows = gethtmlrowsfromcols(tsuminputdata, sumheadings)
         html = html + tmpl.render(Context(dict(data=tsuminputrows, headings=sumheadings)))
         html = html + """
@@ -289,10 +287,10 @@ def table_sum_input(sumheadings, tmpl, A, I, R, D, nms, lms, nds, lds):
         return html
 
 def table_sum_output(sumheadings, tmpl, rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
-                    nmsRQdry_out, nmsRQsemi_out, nmsRQspray_out, 
-                    lmsRQdry_out, lmsRQsemi_out, lmsRQspray_out, 
-                    ndsRQdry_out, ndsRQsemi_out, ndsRQspray_out, 
-                    ldsRQdry_out, ldsRQsemi_out, ldsRQspray_out):
+                    nms_rq_dry_out, nms_rq_semi_out, nms_rq_spray_out, 
+                    lms_rq_dry_out, lms_rq_semi_out, lms_rq_spray_out, 
+                    nds_rq_dry_out, nds_rq_semi_out, nds_rq_spray_out, 
+                    lds_rq_dry_out, lds_rq_semi_out, lds_rq_spray_out):
 
         #pre-table sum_input
         html = """
@@ -302,10 +300,10 @@ def table_sum_output(sumheadings, tmpl, rundry_out, runsemi_out, spray_out, tota
         """
         #table sum_input
         tsumoutputdata = gettsumdata_out(rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
-                    nmsRQdry_out, nmsRQsemi_out, nmsRQspray_out, 
-                    lmsRQdry_out, lmsRQsemi_out, lmsRQspray_out, 
-                    ndsRQdry_out, ndsRQsemi_out, ndsRQspray_out, 
-                    ldsRQdry_out, ldsRQsemi_out, ldsRQspray_out)
+                    nms_rq_dry_out, nms_rq_semi_out, nms_rq_spray_out, 
+                    lms_rq_dry_out, lms_rq_semi_out, lms_rq_spray_out, 
+                    nds_rq_dry_out, nds_rq_semi_out, nds_rq_spray_out, 
+                    lds_rq_dry_out, lds_rq_semi_out, lds_rq_spray_out)
         tsumoutputrows = gethtmlrowsfromcols(tsumoutputdata, sumheadings)
         html = html + tmpl.render(Context(dict(data=tsumoutputrows, headings=sumheadings)))
         html = html + """
@@ -420,7 +418,7 @@ def table_3_qaqc(terrplant_obj):
 def table_4(terrplant_obj):
         #pre-table 4
         html = """     
-            <H4 class="out_4 collapsible" id="section6"><span></span>Plant survival and growth data used for RQ derivation</H4>
+            <H4 class="out_4 collapsible" id="section6"><span></span>Plant survival and growth data used for _rq_ derivation</H4>
                 <div class="out_ container_output">
         """
         #table 4
@@ -435,7 +433,7 @@ def table_4(terrplant_obj):
 def table_4_qaqc(terrplant_obj):
         #pre-table 4
         html = """     
-            <H4 class="out_4 collapsible" id="section6"><span></span>Plant survival and growth data used for RQ derivation</H4>
+            <H4 class="out_4 collapsible" id="section6"><span></span>Plant survival and growth data used for _rq_ derivation</H4>
                 <div class="out_ container_output">
         """
         #table 4
@@ -450,7 +448,7 @@ def table_4_qaqc(terrplant_obj):
 def table_5(terrplant_obj):
         #pre-table 5
         html = """         
-            <H4 class="out_5 collapsible" id="section7"><span></span>RQ values for plants in dry and semi-aquatic areas exposed to %s through runoff and/or spray drift*</H4>
+            <H4 class="out_5 collapsible" id="section7"><span></span>_rq_ values for plants in dry and semi-aquatic areas exposed to %s through runoff and/or spray drift*</H4>
                 <div class="out_ container_output">
         """%(terrplant_obj.chemical_name)
         #table 5
@@ -458,7 +456,7 @@ def table_5(terrplant_obj):
         t5rows = gethtmlrowsfromcols(t5data,plantecdrysemisprayheadings)
         html = html + tmpl.render(Context(dict(data=t5rows, headings=plantecdrysemisprayheadings)))
         html = html + """
-                <H4>*If RQ > 1.0, the LOC is exceeded, resulting in potential for risk to that plant group</H4>
+                <H4>*If _rq_ > 1.0, the LOC is exceeded, resulting in potential for risk to that plant group</H4>
                 </div>
         </div>
         """
@@ -467,15 +465,15 @@ def table_5(terrplant_obj):
 def table_5_qaqc(terrplant_obj):
         #pre-table 5
         html = """         
-            <H4 class="out_5 collapsible" id="section7"><span></span>RQ values for plants in dry and semi-aquatic areas exposed to %s through runoff and/or spray drift*</H4>
+            <H4 class="out_5 collapsible" id="section7"><span></span>_rq_ values for plants in dry and semi-aquatic areas exposed to %s through runoff and/or spray drift*</H4>
                 <div class="out_ container_output">
         """%(terrplant_obj.chemical_name)
         #table 5
         t5data = gett5dataqaqc(terrplant_obj)
-        t5rows = gethtmlrowsfromcols(t5data,plantecdrysemisprayheadings)
-        html = html + tmpl.render(Context(dict(data=t5rows, headings=plantecdrysemisprayheadings)))
+        t5rows = gethtmlrowsfromcols(t5data,plantecdrysemisprayheadingsqaqc)
+        html = html + tmpl.render(Context(dict(data=t5rows, headings=plantecdrysemisprayheadingsqaqc)))
         html = html + """
-                <H4>*If RQ > 1.0, the LOC is exceeded, resulting in potential for risk to that plant group</H4>
+                <H4>*If _rq_ > 1.0, the LOC is exceeded, resulting in potential for risk to that plant group</H4>
                 </div>
         </div>
         """

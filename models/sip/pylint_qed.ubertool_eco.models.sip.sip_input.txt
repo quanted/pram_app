@@ -8,11 +8,9 @@ C: 12, 0: No space allowed before bracket
 C: 14, 0: Wrong hanging indentation.
             'model':model, 
         |   ^ (bad-continuation)
-C: 14, 0: Trailing whitespace (trailing-whitespace)
 C: 15, 0: Wrong hanging indentation.
             'model_attributes': header+' Inputs'})
         |   ^ (bad-continuation)
-C: 31, 0: Trailing whitespace (trailing-whitespace)
 C: 33, 0: Final newline missing (missing-final-newline)
 C:  9, 0: Invalid function name "sipInputPage" (invalid-name)
 C:  9, 0: Invalid argument name "formData" (invalid-name)

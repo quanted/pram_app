@@ -20,8 +20,8 @@ class SipInp(forms.Form):
     chemical_name = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 2}),
         initial='SIP Example',
-        required=True,
-        validators=[validators.validate_slug])
+        required=True)
+    # validators=[validators.validate_slug]) chokes on spaces
     pc_code = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='PC Code',

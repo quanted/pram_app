@@ -1,8 +1,9 @@
-Django==1.8.2
+Django>=1.8.2
 numpy
-selenium
 pandas
 pytz
 requests
+selenium
 Sphinx
+xlsxwriter
 

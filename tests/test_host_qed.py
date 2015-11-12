@@ -1,5 +1,6 @@
 import requests
 import unittest
+import numpy.testing as npt
 
 test = {}
 
@@ -18,7 +19,8 @@ class TestSipClient(unittest.TestCase):
         try:
             response = [requests.get(m).status_code for m in model_pages]
             #print(response.status_code)
-            self.assertArrayEquals(200, response)
+            #npt.assert_array_equal(3, 3, '', True)
+            npt.assert_array_equal(response, 200, '200 error', True)
         finally:
             pass
         return

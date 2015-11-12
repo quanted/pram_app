@@ -5,8 +5,8 @@ import numpy.testing as npt
 test = {}
 
 rooturl = ["http://qed.epa.gov/ubertool/"]
-models = ["sip/", "stir/", "rice/"]
-pages = [""]
+models = ["sip/", "stir/", "rice/", "terrplant/"]
+pages = ["", "description"]
 
 model_pages = [r + m + p for r in rooturl for m in models for p in pages]
 print(model_pages)

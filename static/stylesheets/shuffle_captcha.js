@@ -13,7 +13,7 @@ $(document).ready(function() {
 							return humantest()
 						},
 						"Please prove you are a human by draging the below numbers into order."
-					)	
+					);
 					
 					function humantest() {
 						var res = false;
@@ -45,7 +45,7 @@ $(document).ready(function() {
 								human:true
 						}
 						}
-				})	
+				});
 //				
 //	$("#formsubmit").click(function(){
 //		alert(humantest())

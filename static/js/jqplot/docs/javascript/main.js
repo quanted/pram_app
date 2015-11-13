@@ -75,13 +75,10 @@ function GetXPosition(item)
             {
             position += item.offsetLeft;
             item = item.offsetParent;
-            };
-        };
-
-    return position;
-    };
-
-
+            }
+        }
+        return position;
+    }
 function GetYPosition(item)
     {
     var position = 0;
@@ -92,13 +89,10 @@ function GetYPosition(item)
             {
             position += item.offsetTop;
             item = item.offsetParent;
-            };
-        };
-
-    return position;
-    };
-
-
+            }
+        }
+        return position;
+    }
 function MoveToPosition(item, x, y)
     {
     // Opera 5 chokes on the px extension, so it can use the Microsoft one instead.
@@ -112,10 +106,8 @@ function MoveToPosition(item, x, y)
         {
         item.style.pixelLeft = x;
         item.style.pixelTop = y;
-        };
-    };
-
-
+        }
+    }
 //
 //  Menu
 // ____________________________________________________________________________
@@ -123,10 +115,10 @@ function MoveToPosition(item, x, y)
 
 function ToggleMenu(id)
     {
-    if (!window.document.getElementById)
-        {  return;  };
-
-    var display = window.document.getElementById(id).style.display;
+    if (!window.document.getElementById) {
+        return;
+    }
+        var display = window.document.getElementById(id).style.display;
 
     if (display == "none")
         {  display = "block";  }
@@ -150,11 +142,10 @@ function HideAllBut(ids, max)
             else
                 {
                 document.getElementById("MGroupContent" + number).style.display = "none";
-                };
-
-            number++;
-            };
-        };
+                }
+                number++;
+            }
+        }
     }
 
 
@@ -167,10 +158,10 @@ var tooltipTimer = 0;
 
 function ShowTip(event, tooltipID, linkID)
     {
-    if (tooltipTimer)
-        {  clearTimeout(tooltipTimer);  };
-
-    var docX = event.clientX + window.pageXOffset;
+    if (tooltipTimer) {
+        clearTimeout(tooltipTimer);
+    }
+        var docX = event.clientX + window.pageXOffset;
     var docY = event.clientY + window.pageYOffset;
 
     var showCommand = "ReallyShowTip('" + tooltipID + "', '" + linkID + "', " + docX + ", " + docY + ")";
@@ -228,8 +219,9 @@ function ReallyShowTip(tooltipID, linkID, docX, docY)
                 {  left = docWidth - width - 1;  }
 
             // If there's a horizontal scroll bar we could go past zero because it's using the page width, not the window width.
-            if (left < 0)
-                {  left = 0;  };
+            if (left < 0) {
+                left = 0;
+            }
             }
 
         MoveToPosition(tooltip, left, top);
@@ -272,22 +264,18 @@ function NDOnLoad()
             {
             NDDoResize();
             window.onresize=NDOnResize;
-            };
-        };
-    };
-
-
+            }
+        }
+    }
 var resizeTimer = 0;
 
 function NDOnResize()
     {
-    if (resizeTimer != 0)
-        {  clearTimeout(resizeTimer);  };
-
-    resizeTimer = setTimeout(NDDoResize, 250);
-    };
-
-
+    if (resizeTimer != 0) {
+        clearTimeout(resizeTimer);
+    }
+        resizeTimer = setTimeout(NDDoResize, 250);
+    }
 function NDDoResize()
     {
     var scrollboxes = document.getElementsByTagName('blockquote');
@@ -300,16 +288,14 @@ function NDDoResize()
         {
         item.style.width = 100;
         i++;
-        };
-
-    i = 0;
+        }
+        i = 0;
     while (item = scrollboxes.item(i))
         {
         item.style.width = item.parentNode.offsetWidth;
         i++;
-        };
-
-    clearTimeout(resizeTimer);
+        }
+        clearTimeout(resizeTimer);
     resizeTimer = 0;
     }
 
@@ -334,11 +320,10 @@ function NDDoResize()
 
 function SearchPanel(name, mode, resultsPath)
     {
-    if (!name || !mode || !resultsPath)
-        {  alert("Incorrect parameters to SearchPanel.");  };
-
-
-    // Group: Variables
+    if (!name || !mode || !resultsPath) {
+        alert("Incorrect parameters to SearchPanel.");
+    }
+        // Group: Variables
     // ________________________________________________________________________
 
     /*
@@ -452,9 +437,8 @@ function SearchPanel(name, mode, resultsPath)
             {
             clearTimeout(this.keyTimeout);
             this.keyTimeout = 0;
-            };
-
-        var searchValue = this.DOMSearchField().value.replace(/ +/g, "");
+            }
+            var searchValue = this.DOMSearchField().value.replace(/ +/g, "");
 
         if (searchValue != this.lastSearchValue)
             {
@@ -464,11 +448,12 @@ function SearchPanel(name, mode, resultsPath)
                 }
             else
                 {
-                if (this.mode == "HTML")
-                    {  this.DOMPopupSearchResultsWindow().style.display = "none";  };
-                this.lastSearchValue = "";
-                };
-            };
+                if (this.mode == "HTML") {
+                    this.DOMPopupSearchResultsWindow().style.display = "none";
+                }
+                    this.lastSearchValue = "";
+                }
+            }
         };
 
 
@@ -493,7 +478,7 @@ function SearchPanel(name, mode, resultsPath)
         if (searchValue != "")
             {
             this.Search();
-            };
+            }
         };
 
 
@@ -530,10 +515,10 @@ function SearchPanel(name, mode, resultsPath)
             {  pageExtension = pageExtension.toUpperCase();  }
         else if (pageExtension.match(/^[0-9]/))
             {  pageExtension = 'Numbers';  }
-        else
-            {  pageExtension = "Symbols";  };
-
-        var resultsPage;
+        else {
+            pageExtension = "Symbols";
+        }
+            var resultsPage;
         var resultsPageWithSearch;
         var hasResultsPage;
 
@@ -549,16 +534,14 @@ function SearchPanel(name, mode, resultsPath)
             resultsPage = this.resultsPath + '/NoResults.html';
             resultsPageWithSearch = resultsPage;
             hasResultsPage = false;
-            };
-
-        var resultsFrame;
+            }
+            var resultsFrame;
         if (this.mode == "HTML")
             {  resultsFrame = window.frames.MSearchResults;  }
-        else if (this.mode == "FramedHTML")
-            {  resultsFrame = window.top.frames['Content'];  };
-
-
-        if (resultsPage != this.lastResultsPage ||
+        else if (this.mode == "FramedHTML") {
+            resultsFrame = window.top.frames['Content'];
+        }
+            if (resultsPage != this.lastResultsPage ||
 
             // Bug in IE.  If everything becomes hidden in a run, none of them will be able to be reshown in the next for some
             // reason.  It counts the right number of results, and you can even read the display as "block" after setting it, but it
@@ -581,12 +564,11 @@ function SearchPanel(name, mode, resultsPath)
                 {  resultsFrame.searchResults.Search(searchValue);  }
 
             // Otherwise just reload instead of waiting.
-            else
-                {  resultsFrame.location.href = resultsPageWithSearch;  };
-            };
-
-
-        var domPopupSearchResultsWindow = this.DOMPopupSearchResultsWindow();
+            else {
+                resultsFrame.location.href = resultsPageWithSearch;
+            }
+            }
+            var domPopupSearchResultsWindow = this.DOMPopupSearchResultsWindow();
 
         if (this.mode == "HTML" && domPopupSearchResultsWindow.style.display != "block")
             {
@@ -597,10 +579,8 @@ function SearchPanel(name, mode, resultsPath)
 
             MoveToPosition(domPopupSearchResultsWindow, left, top);
             domPopupSearchResultsWindow.style.display = 'block';
-            };
-
-
-        this.lastSearchValue = searchValue;
+            }
+            this.lastSearchValue = searchValue;
         this.lastResultsPage = resultsPage;
         };
 
@@ -631,9 +611,8 @@ function SearchPanel(name, mode, resultsPath)
                 {
                 clearTimeout(this.inactivateTimeout);
                 this.inactivateTimeout = 0;
-                };
-
-            this.DOMSearchPanel().className = 'MSearchPanelActive';
+                }
+                this.DOMSearchPanel().className = 'MSearchPanelActive';
 
             var searchField = this.DOMSearchField();
 
@@ -647,7 +626,7 @@ function SearchPanel(name, mode, resultsPath)
         else
             {
             this.InactivateAfterTimeout();
-            };
+            }
         };
 
 
@@ -669,11 +648,7 @@ function SearchPanel(name, mode, resultsPath)
 	    this.lastSearchValue = "";
 	    this.lastResultsPage = "";
         };
-    };
-
-
-
-
+    }
 /* ________________________________________________________________________________________________________
 
    Class: SearchResults
@@ -705,10 +680,10 @@ function SearchResults(name, mode)
     */
     this.Toggle = function(id)
         {
-        if (this.mode == "FramedHTML")
-            {  return;  };
-
-        var parentElement = document.getElementById(id);
+        if (this.mode == "FramedHTML") {
+            return;
+        }
+            var parentElement = document.getElementById(id);
 
         var element = parentElement.firstChild;
 
@@ -720,9 +695,8 @@ function SearchResults(name, mode)
                     {  element.style.display = "none";  }
                 else
                     {  element.style.display = 'block';  }
-                };
-
-            if (element.nodeName == 'DIV' && element.hasChildNodes())
+                }
+                if (element.nodeName == 'DIV' && element.hasChildNodes())
                 {  element = element.firstChild;  }
             else if (element.nextSibling)
                 {  element = element.nextSibling;  }
@@ -734,10 +708,11 @@ function SearchResults(name, mode)
                     }
                 while (element && element != parentElement && !element.nextSibling);
 
-                if (element && element != parentElement)
-                    {  element = element.nextSibling;  };
-                };
-            };
+                if (element && element != parentElement) {
+                    element = element.nextSibling;
+                }
+                }
+            }
         };
 
 
@@ -755,9 +730,8 @@ function SearchResults(name, mode)
             search = window.location.search;
             search = search.substring(1);  // Remove the leading ?
             search = unescape(search);
-            };
-
-        search = search.replace(/^ +/, "");
+            }
+            search = search.replace(/^ +/, "");
         search = search.replace(/ +$/, "");
         search = search.toLowerCase();
 
@@ -794,9 +768,8 @@ function SearchResults(name, mode)
             search = search.replace(/\?/g, "_que");
             search = search.replace(/\//g, "_sla");
             search = search.replace(/[^a-z0-9\_]i/gi, "_zzz");
-            };
-
-        var resultRows = document.getElementsByTagName("div");
+            }
+            var resultRows = document.getElementsByTagName("div");
         var matches = 0;
 
         var i = 0;
@@ -814,14 +787,13 @@ function SearchResults(name, mode)
                     row.style.display = "block";
                     matches++;
                     }
-                else
-                    {  row.style.display = "none";  };
-                };
-
-            i++;
-            };
-
-        document.getElementById("Searching").style.display="none";
+                else {
+                    row.style.display = "none";
+                }
+                }
+                i++;
+            }
+            document.getElementById("Searching").style.display="none";
 
         if (matches == 0)
             {  document.getElementById("NoMatches").style.display="block";  }
@@ -832,5 +804,5 @@ function SearchResults(name, mode)
 
         return true;
         };
-    };
+    }
 

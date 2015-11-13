@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 	// Menu Nav
 	function uberNavTabs( modelTabs, subTabs ) {
-		var tab_pool = [], liTabArray = [], noOfTabs = modelTabs.length
+		var tab_pool = [], liTabArray = [], noOfTabs = modelTabs.length;
 		// Create 'tab_' & 'li.' arrays
 		for (var i=0;i<noOfTabs;i++) {
 			var addTabText = ".tab_"+modelTabs[i];

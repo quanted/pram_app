@@ -18,7 +18,7 @@ $(document).ready(function() {
           $('.tab_nott').append(
           	'<tr><td><input name="jm_'+i+' " type="text" size="5" value="'+(i+1)+'"/></td><td><input type="text" size="5" name="day_t_'+i+'" id="id_day_t_'+i+'" value="'+USLE_day[i]+'"/></td><td><input type="text" size="5" name="mon_t_'+i+'" id="id_mon_t_'+i+'" value="'+USLE_mon[i]+'"/></td><td><input type="text" size="5" name="cn_t_'+i+'" id="id_cn_t_'+i+'" value="'+USLE_cn[i]+'"/></td><td><input type="text" size="5" name="c_t_'+i+'" id="id_c_t_'+i+'" value="'+USLE_c[i]+'"/></td><td><input type="text" size="5" name="n_t_'+i+'" id="id_n_t_'+i+'" value="'+USLE_n[i]+'"/></td><td class="year_not"><input type="text" size="5" name="year_t_'+i+'" id="id_year_t_'+i+'" value="1972" /></td>');
       i = i + 1;
-  };
+  }
   $('</table>').appendTo('.tab_nott');
   $(".year_not").hide();
 
@@ -28,8 +28,8 @@ $(document).ready(function() {
             $('.tab_noa').append(
               '<tr><td class="rela"><input type="text" size="5" name="rela_a_'+i_a+'" id="id_rela_a_'+i_a+'" value='+i_a+'></td><td class="abs"><input type="text" size="5" name="day_a_'+i_a+'" id="id_day_a_'+i_a+'" value="1"/></td><td class="abs"><input type="text" size="5" name="mon_a_'+i_a+'" id="id_mon_a_'+i_a+'" value="6" /></td><td><input type="text" size="5" name="rate_a_'+i_a+'" id="id_rate_a_'+i_a+'" value="1.12"/></td><td><select name="cam_a_'+i_a+'" id="id_cam_a_'+i_a+'"><option value="" disabled="disabled">Please select a name</option><option value="1">Ground</option><option value="2" selected="selected">Foliar</option><option value="4">Incorporate</option><option value="8">@Depth</option><option value="7">T-Band</option></select></td><td><input type="text" size="5" name="depth_a_'+i_a+'" id="id_depth_a_'+i_a+'" value="4" readonly="readonly"/></td><td><input type="text" size="5" name="eff_a_'+i_a+'" id="id_eff_a_'+i_a+'" value="0.95"/></td><td><input type="text" size="5" name="drift_a_'+i_a+'" id="id_drift_a_'+i_a+'" value="0.05"/></td>');
         i_a = i_a + 1;
-    };
-    $('</table>').appendTo('.tab_noa');
+    }
+  $('</table>').appendTo('.tab_noa');
     $(".rela").hide();
 
   var thick_h = [10,22,40,77,22, '', ''];
@@ -47,7 +47,7 @@ $(document).ready(function() {
           $('.tab_noh').append(
             '<tr><td><input type="text" size="5" name="thick_h_'+i_h+'" id="id_thick_h_'+i_h+'" value="'+thick_h[i_h]+'"/></td><td><input type="text" size="5" name="rho_h_'+i_h+'" id="id_rho_h_'+i_h+'" value="'+rho_h[i_h]+'"/></td><td><input type="text" size="5" name="max_h_'+i_h+'" id="id_max_h_'+i_h+'" value="'+max_h[i_h]+'"/></td><td><input type="text" size="5" name="min_h_'+i_h+'" id="id_min_h_'+i_h+'" value="'+min_h[i_h]+'"/></td><td><input type="text" size="5" name="oc_h_'+i_h+'" id="id_oc_h_'+i_h+'" value="'+oc_h[i_h]+'"/></td><td><input type="text" size="5" name="n_h_'+i_h+'" id="id_n_h_'+i_h+'" value="'+n_h[i_h]+'"/></td><td class="tempflag"><input type="text" size="5" name="sand_h_'+i_h+'" id="id_sand_h_'+i_h+'" value="'+sand_h[i_h]+'"/></td><td class="tempflag"><input type="text" size="5" name="clay_h_'+i_h+'" id="id_clay_h_'+i_h+'" value="'+clay_h[i_h]+'"/></td>');
       i_h = i_h + 1;
-  };
+  }
   $('</table>').appendTo('.tab_noh');
   $(".tempflag").hide();
 
@@ -57,14 +57,14 @@ $(document).ready(function() {
             $('.tab_noh').append(
               '<tr><td><input type="text" size="5" name="thick_h_'+i_h+'" id="id_thick_h_'+i_h+'" value="'+thick_h[i_h]+'" /></td><td><input type="text" size="5" name="rho_h_'+i_h+'" id="id_rho_h_'+i_h+'" value="'+rho_h[i_h]+'"/></td><td><input type="text" size="5" name="max_h_'+i_h+'" id="id_max_h_'+i_h+'" value="'+max_h[i_h]+'"/></td><td><input type="text" size="5" name="min_h_'+i_h+'" id="id_min_h_'+i_h+'" value="'+min_h[i_h]+'"/></td><td><input type="text" size="5" name="oc_h_'+i_h+'" id="id_oc_h_'+i_h+'" value="'+oc_h[i_h]+'"/></td><td><input type="text" size="5" name="n_h_'+i_h+'" id="id_n_h_'+i_h+'" value="'+n_h[i_h]+'"/></td><td class="tempflag"><input type="text" size="5" name="sand_h_'+i_h+'" id="id_sand_h_'+i_h+'" value="'+sand_h[i_h]+'"/></td><td class="tempflag"><input type="text" size="5" name="clay_h_'+i_h+'" id="id_clay_h_'+i_h+'" value="'+clay_h[i_h]+'"/></td>');
         i_h = i_h + 1;
-    };
+    }
     while (i_h > total_h) {
       $(".tab_noh tr:last").remove();
       i_h=i_h-1;
     }
     $('</table>').appendTo('.tab_noh');
     $(".tempflag").hide();
-  })
+  });
 
   $('#id_tempflag_check').change(function () {
     if($(this).is(":checked")) {
@@ -95,14 +95,14 @@ $(document).ready(function() {
           $('.tab_nott').append(
             '<tr><td><input name="jm_'+i+'" type="text" size="5" value="'+(i+1)+'"/></td><td><input type="text" size="5" name="day_t_'+i+'" id="id_day_t_'+i+'" value="'+USLE_day[i]+'"/></td><td><input type="text" size="5" name="mon_t_'+i+'" id="id_mon_t_'+i+'" value="'+USLE_mon[i]+'"/></td><td><input type="text" size="5" name="cn_t_'+i+'" id="id_cn_t_'+i+'" value="'+USLE_cn[i]+'"/></td><td><input type="text" size="5" name="c_t_'+i+'" id="id_c_t_'+i+'" value="'+USLE_c[i]+'"/></td><td><input type="text" size="5" name="n_t_'+i+'" id="id_n_t_'+i+'" value="'+USLE_n[i]+'"/></td><td class="year_not"><input type="text" size="5" name="year_t_'+i+'" id="id_year_t_'+i+'" value="1972"/></td>');
       i = i + 1;
-  };
+  }
     while (i > total) {
       $(".tab_nott tr:last").remove();
       i=i-1;
     }
     $('</table>').appendTo('.tab_nott');
     $(".year_not").hide();
-  })
+  });
 
   $('#id_sp_year').change(function () {
     if($(this).is(":checked")) {

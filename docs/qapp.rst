@@ -42,12 +42,10 @@ Distribution List (A3)
 List of all individuals (and their role on the project) who will be provided copies of the approved QA Project
 Plan, including all persons responsible for implementation, including project managers, QA Managers, and
 representatives of all groups involved.
-
-Kate Sullivan
-Roy Sidle
 Bill Eckel
-Ed Odenkirchen
-Tom Steeger
+Nelson Thurman
+John Johnston
+QA Manager
 
 Project/Task Organization (A4)
 ==================================================
@@ -79,7 +77,7 @@ lab and others identified by Bill Eckel of OPP/EFED)
 Ancillary roles on the scrum team are:
 - Stakeholders: (Bill Eckel, Ed Odenkirchen, Dirk Young, Nelson Thurman, Ron Parker, Katrina White, others
 identified by Bill Eckel)
-- Managers: People who control the environment (Kate Sullivan [Branch Chief], Roy Sidle [Division Director],
+- Managers: People who control the environment (John Johnston [Branch Chief], Roy Sidle [Division Director],
 John Kenneke [CSS Matrix Interface], Tina Bohardi [CSS], Jim Cowles [Associate Director at EFED])
 
 Modern software development methods are used to develop the web application, proceeding according to the principles
@@ -116,13 +114,12 @@ EFED Stakeholders:
 
 EPA Managers:
 
-* Mark Bagley [ERD Division Director]
+* Gerald [CED Division Director]
 * Tina Bohardi [CSS NPD]
 * Jim Cowles [Associate Director at EFED]
 * John Kenneke [CSS Matrix Interface]
-* Matt Martin [CSS Ecological Modeling Project Lead]
-* Sandy Raimondo [CSS Dashboards Project Lead]
-* Kate Sullivan [EAB Branch Chief]
+* Matt Etterson [CSS Ecological Modeling Project Lead]
+* John Johnsont [WEB Branch Chief]
 
 Problem Definition/Background (A5)
 ==================================================
@@ -263,7 +260,7 @@ honey bee population dynamic models, and links to other online models and resour
 
 Types of decisions that may be made as a result of this project
 ---------------------------------------------------------------------------------------------------------
-
+Pesticide registration deicsions under FIFRA. Endangered species effects determinations under the Endangered Species Act.
 Names of those responsible for making these decisions
 ---------------------------------------------------------------------------------------------------------
 

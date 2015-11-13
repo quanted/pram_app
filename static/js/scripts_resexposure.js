@@ -15,7 +15,7 @@ $(document).ready(function() {
             var vis_list = [".model"];
 
             $('input[name="model"]:checked').each(function () {
-                selec_temp = $(this).val()
+                selec_temp = $(this).val();
                 tab_pool.push(selec_temp);
                 uptab_pool.push(selec_temp.slice(4));
                 vis_list.push("."+selec_temp.slice(4));
@@ -248,14 +248,14 @@ $(document).ready(function() {
     });
 
     $('.next').click(function () {
-        console.log(curr_ind)
+        console.log(curr_ind);
         if (curr_ind < 11) {      
             var tab_pool = ["tab_model"];
             var uptab_pool = ["model"];
             var vis_list = [".model"];
             
             $('input[name="model"]:checked').each(function () {
-                selec_temp = $(this).val()
+                selec_temp = $(this).val();
                 tab_pool.push(selec_temp);
                 uptab_pool.push(selec_temp.slice(4));
                 vis_list.push("."+selec_temp.slice(4));
@@ -282,14 +282,14 @@ $(document).ready(function() {
     });
 
     $('.back').click(function () {
-        console.log(curr_ind)
+        console.log(curr_ind);
         if (curr_ind > 0) {
             var tab_pool = ["tab_model"];
             var uptab_pool = ["model"];
             var vis_list = [".model"];
 
             $('input[name="model"]:checked').each(function () {
-                selec_temp = $(this).val()
+                selec_temp = $(this).val();
                 tab_pool.push(selec_temp);
                 uptab_pool.push(selec_temp.slice(4));
                 vis_list.push("."+selec_temp.slice(4));

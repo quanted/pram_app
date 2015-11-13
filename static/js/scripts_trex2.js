@@ -77,8 +77,8 @@ $(document).ready(function() {
             $('#id_row_sp').closest('tr').show();
         }
         else{
-            $('.tab_Application').show()
-            $('#rate_head').text('Rate (lb ai/acre)')
+            $('.tab_Application').show();
+            $('#rate_head').text('Rate (lb ai/acre)');
             $("#id_noa").prop("disabled", false);
             $('.seed').remove();
             $('#id_seed_treatment_formulation_name').closest('tr').hide(); 
@@ -133,7 +133,7 @@ $(document).ready(function() {
     		i=i-1;
     	}
     	$('</table>').appendTo('.tab_Application');
-    })
+    });
 
     $('#id_Species_of_the_tested_bird_avian_ld50').change(function() { 
         if ($(this).val() == "Bobwhite quail"){

@@ -27,8 +27,8 @@
 }
 (function($) {
 	"use strict"; // Enable ECMAScript "strict" operation for this function. See more: http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/
-;// Munge the primitives - Paul Irish tip
-var TRUE = true,
+// Munge the primitives - Paul Irish tip
+	var TRUE = true,
 FALSE = false,
 NULL = null,
 
@@ -93,8 +93,8 @@ BROWSER = {
 		.replace('undefined', '3_2').replace('_', '.').replace('_', '')
 	) || FALSE
 };
-;function QTip(target, options, id, attr) {
-	// Elements and ID
+	function QTip(target, options, id, attr) {
+		// Elements and ID
 	this.id = id;
 	this.target = target;
 	this.tooltip = NULL;
@@ -296,8 +296,8 @@ PROTOTYPE.destroy = function(immediate) {
 
 	return this.target;
 };
-;function invalidOpt(a) {
-	return a === NULL || $.type(a) !== 'object';
+	function invalidOpt(a) {
+		return a === NULL || $.type(a) !== 'object';
 }
 
 function invalidContent(c) {
@@ -584,8 +584,8 @@ PROTOTYPE.set = function(option, value) {
 
 	return this;
 };
-;PROTOTYPE._update = function(content, element, reposition) {
-	var self = this,
+	PROTOTYPE._update = function (content, element, reposition) {
+		var self = this,
 		cache = this.cache;
 
 	// Make sure tooltip is rendered and content is defined. If not return
@@ -695,8 +695,8 @@ PROTOTYPE._removeTitle = function(reposition)
 		if(reposition !== FALSE) { this.reposition(); }
 	}
 };
-;PROTOTYPE._createPosClass = function(my) {
-	return NAMESPACE + '-pos-' + (my || this.options.position.my).abbrev();
+	PROTOTYPE._createPosClass = function (my) {
+		return NAMESPACE + '-pos-' + (my || this.options.position.my).abbrev();
 };
 
 PROTOTYPE.reposition = function(event, effect) {
@@ -968,8 +968,7 @@ C.abbrev = function() {
 C.clone = function() {
 	return new CORNER( this.string(), this.forceY );
 };
-;
-PROTOTYPE.toggle = function(state, event) {
+	PROTOTYPE.toggle = function(state, event) {
 	var cache = this.cache,
 		options = this.options,
 		tooltip = this.tooltip;
@@ -1127,8 +1126,8 @@ PROTOTYPE.toggle = function(state, event) {
 PROTOTYPE.show = function(event) { return this.toggle(TRUE, event); };
 
 PROTOTYPE.hide = function(event) { return this.toggle(FALSE, event); };
-;PROTOTYPE.focus = function(event) {
-	if(!this.rendered || this.destroyed) { return this; }
+	PROTOTYPE.focus = function (event) {
+		if(!this.rendered || this.destroyed) { return this; }
 
 	var qtips = $(SELECTOR),
 		tooltip = this.tooltip,
@@ -1172,8 +1171,8 @@ PROTOTYPE.blur = function(event) {
 
 	return this;
 };
-;PROTOTYPE.disable = function(state) {
-	if(this.destroyed) { return this; }
+	PROTOTYPE.disable = function (state) {
+		if(this.destroyed) { return this; }
 
 	// If 'toggle' is passed, toggle the current state
 	if(state === 'toggle') {
@@ -1196,8 +1195,7 @@ PROTOTYPE.blur = function(event) {
 };
 
 PROTOTYPE.enable = function() { return this.disable(FALSE); };
-;PROTOTYPE._createButton = function()
-{
+	PROTOTYPE._createButton = function () {
 	var self = this,
 		elements = this.elements,
 		tooltip = elements.tooltip,
@@ -1243,8 +1241,8 @@ PROTOTYPE._updateButton = function(button)
 	if(button) { this._createButton(); }
 	else { elem.remove(); }
 };
-;// Widget class creator
-function createWidgetClass(cls) {
+// Widget class creator
+	function createWidgetClass(cls) {
 	return WIDGET.concat('').join(cls ? '-'+cls+' ' : ' ');
 }
 
@@ -1272,8 +1270,8 @@ PROTOTYPE._setWidget = function()
 		elements.button.toggleClass(NAMESPACE+'-icon', !on);
 	}
 };
-;function delay(callback, duration) {
-	// If tooltip has displayed, start hide timer
+	function delay(callback, duration) {
+		// If tooltip has displayed, start hide timer
 	if(duration > 0) {
 		return setTimeout(
 			$.proxy(callback, this), duration
@@ -1660,8 +1658,8 @@ PROTOTYPE._unassignEvents = function() {
 		return typeof i === 'object';
 	})));
 };
-;// Initialization method
-function init(elem, id, opts) {
+// Initialization method
+	function init(elem, id, opts) {
 	var obj, posOptions, attr, config, title,
 
 	// Setup element references
@@ -1819,8 +1817,8 @@ $.qtip = QTip;
 
 // Populated in render method
 QTIP.api = {};
-;$.each({
-	/* Allow other plugins to successfully retrieve the title of an element with a qTip applied */
+	$.each({
+		/* Allow other plugins to successfully retrieve the title of an element with a qTip applied */
 	attr: function(attr, val) {
 		if(this.length) {
 			var self = this[0],
@@ -1887,8 +1885,8 @@ if(!$.ui) {
 		$['cleanData'+replaceSuffix].apply(this, arguments);
 	};
 }
-;// qTip version
-QTIP.version = '2.2.0-36-';
+// qTip version
+	QTIP.version = '2.2.0-36-';
 
 // Base ID for all qTips
 QTIP.nextid = 0;
@@ -1969,8 +1967,7 @@ QTIP.defaults = {
 		blur: NULL
 	}
 };
-;var TIP,
-
+	var TIP,
 // .bind()/.on() namespace
 TIPNS = '.qtip-tip',
 
@@ -2592,8 +2589,8 @@ $.extend(TRUE, QTIP.defaults, {
 		}
 	}
 });
-;var MODAL, OVERLAY,
-	MODALCLASS = 'qtip-modal',
+	var MODAL, OVERLAY,
+			MODALCLASS = 'qtip-modal',
 	MODALSELECTOR = '.'+MODALCLASS;
 
 OVERLAY = function()
@@ -2924,8 +2921,7 @@ $.extend(TRUE, QTIP.defaults, {
 		}
 	}
 });
-;PLUGINS.viewport = function(api, position, posOptions, targetWidth, targetHeight, elemWidth, elemHeight)
-{
+	PLUGINS.viewport = function (api, position, posOptions, targetWidth, targetHeight, elemWidth, elemHeight) {
 	var target = posOptions.target,
 		tooltip = api.elements.tooltip,
 		my = posOptions.my,
@@ -3035,8 +3031,8 @@ $.extend(TRUE, QTIP.defaults, {
 
 	return adjusted;
 };
-;PLUGINS.polys = {
-	// POLY area coordinate calculator
+	PLUGINS.polys = {
+		// POLY area coordinate calculator
 	//	Special thanks to Ed Cradock for helping out with this.
 	//	Uses a binary search algorithm to find suitable coordinates.
 	polygon: function(baseCoords, corner) {
@@ -3150,8 +3146,7 @@ $.extend(TRUE, QTIP.defaults, {
 		return PLUGINS.polys.ellipse(cx, cy, r, r, corner);
 	}
 };
-;PLUGINS.svg = function(api, svg, corner)
-{
+	PLUGINS.svg = function (api, svg, corner) {
 	var doc = $(document),
 		elem = svg[0],
 		root = $(elem.ownerSVGElement),
@@ -3245,8 +3240,7 @@ $.extend(TRUE, QTIP.defaults, {
 
 	return result;
 };
-;PLUGINS.imagemap = function(api, area, corner, adjustMethod)
-{
+	PLUGINS.imagemap = function (api, area, corner, adjustMethod) {
 	if(!area.jquery) { area = $(area); }
 
 	var shape = (area.attr('shape') || 'rect').toLowerCase().replace('poly', 'polygon'),
@@ -3288,9 +3282,8 @@ $.extend(TRUE, QTIP.defaults, {
 
 	return result;
 };
-;var IE6,
-
-/*
+	var IE6,
+	/*
  * BGIFrame adaption (http://plugins.jquery.com/project/bgiframe)
  * Special thanks to Brandon Aaron
  */
@@ -3427,5 +3420,5 @@ CHECKS.ie6 = {
 		this.redraw();
 	}
 };
-;}));
+}));
 }( window, document ));

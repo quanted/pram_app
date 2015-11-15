@@ -45,7 +45,7 @@ urlpatterns = patterns('views',
     (r'^(?P<model>.*?)_batchoutput\.html$', 'batch.batchOutputPage'),        #Legacy links
     (r'^(?P<model>.*?)_qaqc\.html$', 'qaqc.qaqcPage'),                       #Legacy links
     (r'^(?P<model>.*?)_history\.html$', 'history.historyPage'),              #Legacy links
-    (r'^api/', include('rest_framework_swagger.urls')),
+    (r'^ubertool/api/', include('rest_framework_swagger.urls')),
     # url(r'^admin/', include(admin.site.urls)),
 )
 

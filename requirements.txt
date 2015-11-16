@@ -1,5 +1,5 @@
 boto
-Django
+django
 django-rest-swagger
 html5lib
 nose

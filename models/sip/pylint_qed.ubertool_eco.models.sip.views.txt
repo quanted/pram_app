@@ -1,3 +1,0 @@
-************* Module qed.ubertool_eco.models.sip.views
-C:  8, 0: Final newline missing (missing-final-newline)
-C:  7, 0: Invalid constant name "header" (invalid-name)

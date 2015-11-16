@@ -1,2 +1,0 @@
-************* Module qed.ubertool_eco.models.sip
-C:  3, 0: Final newline missing (missing-final-newline)

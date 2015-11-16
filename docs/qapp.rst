@@ -119,7 +119,7 @@ EPA Managers:
 * Jim Cowles [Associate Director at EFED]
 * John Kenneke [CSS Matrix Interface]
 * Matt Etterson [CSS Ecological Modeling Project Lead]
-* John Johnsont [WEB Branch Chief]
+* John Johnston [WEB Branch Chief]
 
 Problem Definition/Background (A5)
 ==================================================
@@ -161,7 +161,7 @@ for models that currently are deployed in a number of different ways (Fortran DO
 Excel spreadsheets) using data from a number of different data sources.
 
 Definition of the population the problem targets and what measures within this population the problem addresses
------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
 EFED risk assessors are the target audience for the ecological models. Main contacts include Bill Eckel,
 Ed Odenkirchen, and Tom Steeger. Three divisions within OPP will use the human health version of the product-
 HED, AD, and RD. Contacts include Vickie Dellarco, Jennifer McClain, Matt Lloyd, and Dana Vogel from the initial
@@ -213,7 +213,7 @@ and the Services’ Endangered Species Consultation Handbook (NMFS). The models 
 view of new pesticides, changing science, and as novel exposure pathways come to light.
 
 Reason the project includes a modeling approach to address the problem (is it a new predictive tool?)
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
 EPA is responsible for registering pesticides under FIFRA; as part of the registration process, the EPA’s Ecological
 Fate and Effects Division of the Office of Chemical Safety and Pollution is responsible for analyzing data and
 developing/ implementing ecological models that estimate risks to non-target receptors. The Food Quality Protection
@@ -259,34 +259,41 @@ incorporates a variety of models including basic models of population dynamics (
 honey bee population dynamic models, and links to other online models and resources.
 
 Types of decisions that may be made as a result of this project
----------------------------------------------------------------------------------------------------------
-Pesticide registration deicsions under FIFRA. Endangered species effects determinations under the Endangered Species Act.
-Names of those responsible for making these decisions
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
+The EPA is dependent on multiple scientific computational models for the environmental regulatory process of chemicals
+and laws that codify ecological and human health protection standards. Laws include the Federal Insecticide, Fungicide,
+and Rodenticide Act (FIFRA), Endangered Species Act (ESA), Toxic Substances Control Act (TSCA) and the Federal Food,
+Drug and Cosmetic Act (FFDCA). More often than not, the effective basis of such standards are decisions about the
+selection and application of data and computational models. Over time, the relevant laws, data and computational
+models have evolved due to increased complexity of EPA regulations and scenario-dependent implementations. This
+complexity leaves a legacy of computational models, still relevant to the regulatory process, varied with incompatible
+computer languages and software that are not easily integrated or updated as the science evolves. These limitations
+are addressed by integrating EPA’s existing and developing regulatory models into a unified science application
+platform known as the ubertool.
 
 Any other types of problems that the project may address
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
 
 Background information on the problem
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
  EPA (2004) provides an overview of OPP’s ecological risk assessment process:
 www.epa.gov/espp/consultation/ecorisk-overview.pdf
 
 Reasons the project is important, how it supports other existing research, programs, or regulations
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
 
 Conflicts or uncertainties that will be resolved by this project
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
 
 Reasons one model is determined to be better than another for this application
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
 The program office uses them, after a review process...
 
 Project/Task Description and Schedule (A6)
 ==================================================
 
 Summary of all work to be performed, products to be produced, and the schedule for implementation
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
 To create an aggregate ubertool assessment, a user will have created the above data objects for each of the
 tables above, and will combine them to create a batched assessment.  A tree with dropdown comboboxes that reflect
 available data objects saved to the user account will be presented to the user.  By selecting an appropriate data
@@ -301,21 +308,22 @@ A future priority is using the fate and transport models to create exposure conc
 by a number of the ecological models.
 
 List of products, deliverables, and milestones to be completed in the various stages of the project
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
+The ubertool is developed in an iterative development environment, so that new releases of the web application are
+distributed every 3 weeks at the conclusion of each sprint.
 
 Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each
-------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------
 
 Quality Objectives and Criteria for Model Inputs/Outputs (A7)
 ====================================================================
 
 Project data quality objectives (DQOs), performance criteria, and acceptance criteria
--------------------------------------------------------------------------------------
+---------------------------------------------------------------------
 All model components will be developed using an appropriate approach to quality assurance and documentation.
 
-Description of task that needs to be addressed and the intended uses of the output of the modeling project
-to achieve the task
-------------------------------------------------------------------------------------------------------------------------
+Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task
+---------------------------------------------------------------------
 
 Ecological Models
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -460,6 +468,7 @@ the history of the software development.
 The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is
 cross-platform, flexible, and open source.
 
+
 Special Training Requirements/Certification (A8)
 ====================================================================
 
@@ -563,8 +572,37 @@ a license.
 
 GROUP B: Measurement and Data Acquisition
 **************************************
-This chapter provides a summary of guidelines for preparing QA Project Plans in projects that
-involve model development, modification, or application.
+This project is based entirely on modeling with existing publicly available mathematical and empirical
+ models and therefore follows the Guidance for Quality Assurance Project Plans for Modeling
+EPA QA/G-5m (USEPA, 2002). The project relies exclusively on secondary sources of data, also
+referred to as non-direct measurements, for parameterization. Most of this information is submitted to the EPA from
+registrants or publicly available with their own documented quality control
+procedures. Some data utilized from public and private sources that may have less well
+documented quality assurance procedures.
+
+Sampling Process Design (B1)
+======================================
+This section pertains to the acquisition of primary data and is not applicable to this project.
+
+Sampling Methods (B2)
+======================================
+This section pertains to the acquisition of primary data and is not applicable to this project.
+
+Sampling Handling and Custody (B3)
+======================================
+This section pertains to the acquisition of primary data and is not applicable to this project.
+
+Analytical Methods (B4)
+======================================
+This section pertains to the acquisition of primary data and is not applicable to this project.
+
+Quality Control (B5)
+======================================
+This section pertains to the acquisition of primary data and is not applicable to this project.
+
+Instrument/Equipment Testing, Inspection, and Maintenance (B6)
+======================================
+This section pertains to the acquisition of primary data and is not applicable to this project.
 
 Calibration (B7)
 ======================================
@@ -602,7 +640,11 @@ Analysis of model output relative to acceptance criteria
 
 Non-direct Measurements (Data Acquisition Requirements) (B9)
 ======================================
-
+The project will use secondary (non-direct) data from many sources and may generate large volumes of
+modeled data during implementation. Some parameters are accepted as inputs from users who access the web application.
+Other data sources undergo quality assurance analysis per their own project objectives. It is anticipated that all
+secondary data will be acquired in electronic format. Acquisition of data will be documented in
+electronic repositories.
 
 Types of data needed for implementing a project that are obtained from non-measurement sources such as databases, literature files
 -----------------------------------------------------------------------
@@ -624,6 +666,16 @@ Acceptance criteria for non-direct measurements: such as completeness, represent
 
 Data Management and Hardware/Software Configuration (B10)
 ======================================
+This project will will acquire data from secondary sources, manipulate
+secondary data to meet use requirements, generate data from model output, and create summary and
+processed files for further statistical and analytical treatment. It is anticipated that the project will acquire
+or generate little or no hardcopy data. The project will maintain a data management system that protects
+integrity of the data received and generated throughout the project. This includes file management
+systems, version control, archiving procedures, and quality assurance activities.
+
+The project team will conduct all work and store all electronic files on a common ORD server at the
+ERD/NERL Athens facility on the L drive. This server is backed up weekly
+and maintained by EPA’s ITI contractors under the supervision of OSIM.
 
 Information on the project data management process (field, office, and lab)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -904,7 +956,12 @@ Data Quality Assessment findings
 
 GROUP D: Data Validation and Usability
 **************************************
-
+This project uses well-known ecological assessment models to estimate risk that have a history of extensive use by
+public agencies and universities and
+documentation in peer-reviewed literature. The modeling requires input data that must be acquired
+from federal, state, and local authorities, as well as private entities. The quality of data used for and
+generated during modeling will be reviewed and verified at multiple levels by project technical staff and
+QA officers, as described in detail in other sections.
 
 Departures from Validation Criteria (D1)
 ======================================
@@ -919,7 +976,7 @@ structure as indicated by the feedback.
 
 Criteria used to review and validate (accept, reject, or qualify) model components such as theory, mathematical procedures, code, and calibration (convergence criteria, etc.)
 -----------------------------------------------------------------------
-This section is not related
+Model-dependent.
 
 Criteria used to review and validate input data
 -----------------------------------------------------------------------
@@ -929,7 +986,31 @@ input table (Figure below) is present on the QA/QC page, including values used i
 comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the
 check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.
 
+Data review, verification, and validation will focus on acceptability of the input data used for calculations
+and modeling. All original and modified data files will be reviewed for input, handling, and calculation
+errors. Any issues identified through this review process will be evaluated and, if necessary, data will be
+corrected and analysis carried out using corrected data.
+
+Deviations from the approved QAPP could occur as the project proceeds. The need for adjustments may
+arise based on data validation and quality assurance checks, outcomes of model initialization and
+calibration steps, scenario development, and so on. Deviations will be documented in writing and
+reviewed by the ORD Management Team and the ORD Quality Team. The QAPP will be revised
+accordingly and recirculated for Quality Assurance review and approval.
+
 Figure #. User input table from the QA/QC page
+
+To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which
+validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come
+from verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations
+will be compared against simple analytical cases in order to localize the source of the error in the code.
+Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments
+to model structure as indicated by the feedback.
+
+Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification,
+and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an
+input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical
+comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the
+check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team
 
 Criteria used to test model performance
 -----------------------------------------------------------------------
@@ -944,7 +1025,16 @@ The integrity of model output data will be verified and validated by project tec
 include a thorough evaluation of content and/or a “spot-check” of calculated between output tables
 (Figure below) in the QA/QC page and verified EPA reports. Should a review identify an aberration, the reviewer
 will notify those responsible for taking corrective actions. The QA officers will be notified if corrective action
-is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel during the model calibration and validation stage of the project. In-progress assessments of validation issues will be discussed between a team including both technical and QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well any corrective actions that were implemented.
+is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process
+for QA personnel during the model calibration and validation stage of the project.
+In-progress assessments of validation issues will be discussed between a team including both technical and
+QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project
+documentation at the conclusion of the project, as well any corrective actions that were implemented.
+
+Evaluation of whether model components and their outputs are satisfying the project objectives will be an ongoing
+process for QA personnel during model calibration and validation stages of the project. In-progress
+assessments of validation issues will be discussed by a team including technical and QA representatives
+from EPA.
 
  Figure #. Output tables from the QA/QC page
 
@@ -965,6 +1055,7 @@ Methods for assessment of model output and usability
 
 Reconciliation with User Requirements (D3)
 ======================================
+The objective of the project is to assess..
 
 Discussion of project or task results
 -----------------------------------------------------------------------
@@ -980,149 +1071,15 @@ REFERENCES
 **************************************
 Apandi, T., 2009 Extreme Programming Pocket Guide. O’Reilly Media, Sebastopol, CA.
 
+Helms, J.C., 2013. Web-Based Application Quality Assurance Testing. Accessed at
+http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf on 9/5/2013.
+
+USEPA, 2002. Guidance for Quality Assurance Project Plans for Modeling. EPA QA/G-5M.
+
 USEPA. 2004. Overview of the Ecological Risk Assessment Process in the Office of Pesticide Programs. U.S.
 Environmental Protection Agency, Office of Prevention, Pesticides and Toxic Substances, Office of Pesticide Programs,
 Washington DC. 100 pp. January 23, 2004.
 
-Helms, J.C., 2013. Web-Based Application Quality Assurance Testing. Accessed at
-http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf on 9/5/2013.
-
-U.S. FWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species Consultation Handbook:
+USFWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species Consultation Handbook:
 Procedures for Conducting Consultation and Conference Activities Under Section 7 of the Endangered Species Act.
 Final Draft. March 1998.
-
-
-
-List of requirements associated with the hardware/software configuration for those studies involving software evaluation
------------------------------------------------------------------------
-Python uses web application frameworks that conform to a common standard called the Web Server Gateway Interface
-(WSGI).  We currently use two frameworks, webapp2 and Django, that help automate the integration of the Python
-backend and the web application frontend allowing for rapid development.
-
-Web hosting services provide the cloud storage and host the web site containing the web applications.  These web
-services are vital to the übertool in terms of accessibility and data processing.  The Python web application
-frameworks work with the web hosting services to ultimately provide the deliverable to the end user.
-
-The nature of web application development allows for the use of many cross-platform (i.e. Microsoft Windows,
-Apple OSX, Redhat Linux, etc.) software programs.  Python itself is a cross-platform language designed to
-easily integrate various programming languages.  The software development environment includes text editors
-such as Sublime Text, Python IDEs such as Spyder, Python extensions such as NumPy, and web browsers such as
-Microsoft’s Internet Explorer, Google’s Chrome, and Mozilla’s Firefox.
-
-The source code for the übertool is version controlled using GitHub.  GitHub manages all changes to the source
-code, allowing for simultaneous development from multiple developers on the same source code.  Each developer
-has his/her own “branch” of the source code on which they work.  These branches are merged back into the
-“trunk” or master branch of the source code as the software is updated.  Software can be rolled back as
-necessary as GitHub tracks the history of the software development.
-
-The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is
-cross-platform, flexible, and open source.
-
-Documentation and records
------------------------------------------------------------------------
-An updated version of the quality assurance plan will be developed annually and distributed by email. The date of
-the latest update will be included in the plan. Records of yearly quality assurance audits performed by the QA
-manager and QA officer are maintained by the QA manager. The auditor uses a checklist to mark which portions of
-the QAPP are followed, and to document deviations or absence of any QA measures. The results of such audits shall
-be documented and filed by the Quality Assurance Manager. The audit process itself shall be designed to objectively
-measure compliance with written procedures and assess the effectiveness of the process. The evaluation shall
-include interviews with development team members, and a review of research project work and quality records.
-
-Before submission of a paper to an archival journal, the work will be reviewed for conformance with the applicable
-quality assurance criteria. Program code and output will be maintained in electronic data files and backed up on cloud
-platform (www.github.com). These documents will be maintained for a minimum of 5 years after the completion of the
-project.
-
-Code standards, code auditing and testing reports, interim project progress reports
------------------------------------------------------------------------
- Potential collaboration/development tools include:
-- kunagi (agile/scrum management system)
-http://kunagi.org/
-- chiliproject (bug and feature tracking for agile development and quality)
-https://www.chiliproject.org/
-- jenkins (continuous integration and testing server)
-http://jenkins-ci.org/
-- sonar (code quality/bug prevention)
-http://www.sonarsource.org/
-- teambox collaboration (ubertool project currently active)
-http://teambox.com/
-- Google hangout (requires a Google+ account)
-http://www.google.com/+/learnmore/hangouts/
-
-Some of these development tools may be accessible through ubertool subdomains in order to allow access from within the
-EPA firewall.
-
-
-Criteria used to review and validate input data
------------------------------------------------------------------------
-To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which
-validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come
-from verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations
-will be compared against simple analytical cases in order to localize the source of the error in the code.
-Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments
-to model structure as indicated by the feedback.
-
-Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification,
-and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an
-input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical
-comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the
-check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.
-
-Criteria used to test model performance
------------------------------------------------------------------------
-Model performance is checked through the ‘Batch’ mode, which sequentially calculates scenarios provided in the
-template. Two testing criterion are considered here: 1. repeat the same scenarios in the template (e.g. 10 times),
-and check the consistency of model inputs and outputs among 10 scenarios; 2. list a large number of scenarios (e.g.
-10,000) and estimate the time consumed during the computation.
-
-Criteria used to review or validate model outputs
------------------------------------------------------------------------
-The integrity of model output data will be verified and validated by project technical staff. Reviews may include a
-thorough evaluation of content and/or a “spot-check” of calculated between output tables (Figure below) in the QA/QC
-page and verified EPA reports. Should a review identify an aberration, the reviewer will notify those responsible
-for taking corrective actions. The QA officers will be notified if corrective action is potentially required.
-Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel
-during the model calibration and validation stage of the project. In-progress assessments of validation issues
-will be discussed between a team including both technical and QA representatives from EPA. The results of performing
-evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well
-any corrective actions that were implemented.
-
-
-Statement of Question, Objectives, and Hypotheses 
------------------------------------------------------------------------
-Overarching research question, derived from problem statement 
-
-Intended outcome of this piece of research (usually to test hypotheses and define relationships), including an
-estimate of time and resources needed
-
-Specific mechanistic hypotheses, tests in summary, populations to which the hypotheses are to be applied 
-
-
-Methods 
------------------------------------------------------------------------
-A. List of variables and sources of variation, sorted byindepen- dent and dependent variables, with reasons for their
-selection
-
-B. Other sources of variation and how they will be dealt with 
-
-C. Study design and analysis, including models, statistical tests if used, detailed analytical procedures, graphs of
-potential outcomes
-
-D. Field, laboratory, and computational procedures, in sufficient detail so that someone other than the author could
-do the study
-
-Budget and Schedule 
------------------------------------------------------------------------
-
-A. A comprehensive three-column budget for the duration of the study 
-
-B. A schedule of tasks with initiation and completion target dates, with designated responsibilities and reporting
-requirements and dates
-
-
-Reports and Publications 
------------------------------------------------------------------------
-A. Intended disposition of research results, in terms of audience, publication type, and timing 
-
-B. Fiscal, accounting, and procedural reporting requirements and how they will be met
-

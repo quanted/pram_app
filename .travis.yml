@@ -6,11 +6,12 @@ python:
   - "3.5"
 
 # command to install dependencies
-#install: "pip install -r requirements.txt"
-
-#containerized so no sudo
 install:
-  - pip install --user -r requirements.txt
+  - pip install -r requirements.txt
+
+#if containerized and no sudo install to user directory
+#install:
+#  - pip install --user -r requirements.txt
 
 # command to run tests
 script:

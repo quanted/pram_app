@@ -92,12 +92,12 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
 <dl class="attribute">
 <dt id="models.agdrift.agdrift_parameters.AgdriftInp.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('chemical_name', &lt;django.forms.fields.CharField object at 0x10525be50&gt;), ('application_method', &lt;django.forms.fields.ChoiceField object at 0x10525bed0&gt;), ('ecosystem_type', &lt;django.forms.fields.ChoiceField object at 0x10525bfd0&gt;), ('drop_size', &lt;django.forms.fields.ChoiceField object at 0x10526a090&gt;), ('boom_height', &lt;django.forms.fields.ChoiceField object at 0x10526a110&gt;), ('orchard_type', &lt;django.forms.fields.ChoiceField object at 0x10526a190&gt;), ('application_rate', &lt;django.forms.fields.FloatField object at 0x10526a210&gt;), ('aquatic_type', &lt;django.forms.fields.ChoiceField object at 0x10526a290&gt;), ('calculation_input', &lt;django.forms.fields.ChoiceField object at 0x10526a310&gt;), ('distance', &lt;django.forms.fields.FloatField object at 0x10526a390&gt;)])</em><a class="headerlink" href="#models.agdrift.agdrift_parameters.AgdriftInp.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('version_agdrift', &lt;django.forms.fields.ChoiceField object at 0x0000000006213828&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x00000000062139B0&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x0000000006213A20&gt;), ('application_method', &lt;django.forms.fields.ChoiceField object at 0x0000000006213A58&gt;), ('ecosystem_type', &lt;django.forms.fields.ChoiceField object at 0x0000000006213AC8&gt;), ('drop_size', &lt;django.forms.fields.ChoiceField object at 0x0000000006213B38&gt;), ('boom_height', &lt;django.forms.fields.ChoiceField object at 0x0000000006213BA8&gt;), ('orchard_type', &lt;django.forms.fields.ChoiceField object at 0x0000000006213C18&gt;), ('application_rate', &lt;django.forms.fields.FloatField object at 0x0000000006213C88&gt;), ('aquatic_type', &lt;django.forms.fields.ChoiceField object at 0x0000000006213CF8&gt;), ('calculation_input', &lt;django.forms.fields.ChoiceField object at 0x0000000006213D68&gt;), ('distance', &lt;django.forms.fields.FloatField object at 0x00000000061282B0&gt;)])</em><a class="headerlink" href="#models.agdrift.agdrift_parameters.AgdriftInp.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.agdrift.agdrift_parameters.AgdriftInp.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('chemical_name', &lt;django.forms.fields.CharField object at 0x10525be50&gt;), ('application_method', &lt;django.forms.fields.ChoiceField object at 0x10525bed0&gt;), ('ecosystem_type', &lt;django.forms.fields.ChoiceField object at 0x10525bfd0&gt;), ('drop_size', &lt;django.forms.fields.ChoiceField object at 0x10526a090&gt;), ('boom_height', &lt;django.forms.fields.ChoiceField object at 0x10526a110&gt;), ('orchard_type', &lt;django.forms.fields.ChoiceField object at 0x10526a190&gt;), ('application_rate', &lt;django.forms.fields.FloatField object at 0x10526a210&gt;), ('aquatic_type', &lt;django.forms.fields.ChoiceField object at 0x10526a290&gt;), ('calculation_input', &lt;django.forms.fields.ChoiceField object at 0x10526a310&gt;), ('distance', &lt;django.forms.fields.FloatField object at 0x10526a390&gt;)])</em><a class="headerlink" href="#models.agdrift.agdrift_parameters.AgdriftInp.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('version_agdrift', &lt;django.forms.fields.ChoiceField object at 0x0000000006213828&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x00000000062139B0&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x0000000006213A20&gt;), ('application_method', &lt;django.forms.fields.ChoiceField object at 0x0000000006213A58&gt;), ('ecosystem_type', &lt;django.forms.fields.ChoiceField object at 0x0000000006213AC8&gt;), ('drop_size', &lt;django.forms.fields.ChoiceField object at 0x0000000006213B38&gt;), ('boom_height', &lt;django.forms.fields.ChoiceField object at 0x0000000006213BA8&gt;), ('orchard_type', &lt;django.forms.fields.ChoiceField object at 0x0000000006213C18&gt;), ('application_rate', &lt;django.forms.fields.FloatField object at 0x0000000006213C88&gt;), ('aquatic_type', &lt;django.forms.fields.ChoiceField object at 0x0000000006213CF8&gt;), ('calculation_input', &lt;django.forms.fields.ChoiceField object at 0x0000000006213D68&gt;), ('distance', &lt;django.forms.fields.FloatField object at 0x00000000061282B0&gt;)])</em><a class="headerlink" href="#models.agdrift.agdrift_parameters.AgdriftInp.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -108,8 +108,16 @@
 </dd></dl>
 
 </div>
-<div class="section" id="models-agdrift-agdrift-qaqc-module">
-<h2>models.agdrift.agdrift_qaqc module<a class="headerlink" href="#models-agdrift-agdrift-qaqc-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.agdrift.agdrift_qaqc">
+<span id="models-agdrift-agdrift-qaqc-module"></span><h2>models.agdrift.agdrift_qaqc module<a class="headerlink" href="#module-models.agdrift.agdrift_qaqc" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="models.agdrift.agdrift_qaqc.agdriftQaqc">
+<code class="descclassname">models.agdrift.agdrift_qaqc.</code><code class="descname">agdriftQaqc</code><span class="sig-paren">(</span><em>model</em>, <em>csv_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/agdrift/agdrift_qaqc.html#agdriftQaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.agdrift.agdrift_qaqc.agdriftQaqc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in QAQC CSV as Pandas DataFrame, removing 
+any uneeded columns, setting the index_col name 
+to None, and renumbering the data columns.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="models-agdrift-agdrift-tables-module">
 <h2>models.agdrift.agdrift_tables module<a class="headerlink" href="#models-agdrift-agdrift-tables-module" title="Permalink to this headline">¶</a></h2>
@@ -137,7 +145,7 @@
 <li><a class="reference internal" href="#models-agdrift-agdrift-model-module">models.agdrift.agdrift_model module</a></li>
 <li><a class="reference internal" href="#module-models.agdrift.agdrift_output">models.agdrift.agdrift_output module</a></li>
 <li><a class="reference internal" href="#module-models.agdrift.agdrift_parameters">models.agdrift.agdrift_parameters module</a></li>
-<li><a class="reference internal" href="#models-agdrift-agdrift-qaqc-module">models.agdrift.agdrift_qaqc module</a></li>
+<li><a class="reference internal" href="#module-models.agdrift.agdrift_qaqc">models.agdrift.agdrift_qaqc module</a></li>
 <li><a class="reference internal" href="#models-agdrift-agdrift-tables-module">models.agdrift.agdrift_tables module</a></li>
 <li><a class="reference internal" href="#module-models.agdrift.views">models.agdrift.views module</a></li>
 <li><a class="reference internal" href="#module-models.agdrift">Module contents</a></li>

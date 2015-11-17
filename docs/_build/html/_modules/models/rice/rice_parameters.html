@@ -59,47 +59,52 @@
 <span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">validators</span>
 <span class="kn">from</span> <span class="nn">models.forms</span> <span class="kn">import</span> <span class="n">validation</span>
 
+<span class="n">SELECT_VERSION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1.0&#39;</span><span class="p">,</span> <span class="s">&#39;1.0&#39;</span><span class="p">),)</span>
 
-<span class="n">SELECT_VERSION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1.0&#39;</span><span class="p">,</span><span class="s">&#39;1.0&#39;</span><span class="p">),)</span>
 
 <div class="viewcode-block" id="RiceInp"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_parameters.RiceInp">[docs]</a><span class="k">class</span> <span class="nc">RiceInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
     <span class="c"># config_name = forms.CharField(</span>
-    		<span class="c"># label=&quot;Use Configuration Name&quot;, initial=&quot;use-config-%s&quot;%datetime.datetime.now())     </span>
-	<span class="n">version_rice</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
-			<span class="n">choices</span><span class="o">=</span><span class="n">SELECT_VERSION</span><span class="p">,</span>
-			<span class="n">label</span><span class="o">=</span><span class="s">&#39;Version&#39;</span><span class="p">,</span>
-			<span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.0&#39;</span><span class="p">)</span>
-	<span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-			<span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span>
-			<span class="n">initial</span><span class="o">=</span><span class="s">&#39;Rice Example&#39;</span><span class="p">)</span>
-	<span class="n">mai</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="s">&#39;Mass of Applied Ingredient to Paddy (kg)&#39;</span><span class="p">,</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mf">0.056</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">area</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Area of the Rice Paddy (m&lt;sup&gt;2&lt;/sup&gt;)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">dsed</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="s">&#39;Sediment Depth (m)&#39;</span><span class="p">,</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">pb</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Bulk Density of Sediment, &amp;#961;&lt;sub&gt;b&lt;/sub&gt; (kg/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">dw</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="s">&#39;Water Column Depth (m)&#39;</span><span class="p">,</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">osed</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Porosity of Sediment, K&lt;sub&gt;d&lt;/sub&gt;&#39;</span><span class="p">),</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mf">0.509</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">Kd</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Water-Sediment Partitioning Coefficient, K&lt;sub&gt;oc&lt;/sub&gt; (L/kg)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mi">727</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span></div>
+    <span class="c"># label=&quot;Use Configuration Name&quot;, initial=&quot;use-config-%s&quot;%datetime.datetime.now())</span>
+    <span class="n">version_rice</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_VERSION</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Version&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.0&#39;</span><span class="p">)</span>
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Fipronil&#39;</span><span class="p">)</span>
+    <span class="n">pc_code</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;PC Code&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s">&#39;00&#39;</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
+    <span class="n">mai</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Mass of Applied Ingredient to Paddy (kg)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.056</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Area of the Rice Paddy (m&lt;sup&gt;2&lt;/sup&gt;)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">dsed</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Sediment Depth (m)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">pb</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Bulk Density of Sediment, &amp;#961;&lt;sub&gt;b&lt;/sub&gt; (kg/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">dw</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Water Column Depth (m)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">osed</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Porosity of Sediment, K&lt;sub&gt;d&lt;/sub&gt;&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.509</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">Kd</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Water-Sediment Partitioning Coefficient, K&lt;sub&gt;oc&lt;/sub&gt; (L/kg)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">727</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span></div>
 </pre></div>
 
           </div>

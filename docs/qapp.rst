@@ -273,6 +273,28 @@ platform known as the ubertool.
 
 Any other types of problems that the project may address
 ---------------------------------------------------------------------
+The science models in the ubertool provide testable predictions concerning chemical concentrations in environmental
+media, exposure doses, tissue residues and ultimately predictions of effects. These predictions are relevant for a
+number of ecological species under regulations that the EPA is responsible for - including FIFRA, ESA, FFDCA, and the
+FQPA. These model predictions can be tested by comparing them to relevant data from laboratory, field and/or modeling
+investigations. From an exposure perspective, improvements to this core set of models can come in different forms --
+they may include:
+
+- better algorithms: algorithmic improvements to core EPA ecological models (e.g., updated versions of T-Rex, PRZM,
+EXAMS), many of which were initially developed at ORD, to provide better predictive capability or extend their use
+to new exposure settings,
+- identifying novel exposure areas: (receptors, environments) not adequately covered by the current set of ecological
+models (e.g., ongoing research for amphibians and honeybees),
+better input data: finding new data sources that improve ecological model (e.g., molecular bioassay endpoints, -omics
+applications, propose/modify/eliminate specific registrant data submittal requirements),
+- scaling exposure processes: enable applications of existing models in spatially and temporally realistic settings
+at scale (e.g., SAM applications for endangered species), and/or
+- replace existing models: evaluating proposed replacements for models that are currently used in pesticide
+registration decisions via model selection processes.
+All of these improvements require execution of the existing models in order to scientifically demonstrate model
+enhancements in a reproducible manner. The primary goal of these studies is to minimize false positive and false
+negative pesticide registration decisions made by the Agency, so the relevance of these types of scientific
+exercises is very high.
 
 Background information on the problem
 ---------------------------------------------------------------------
@@ -291,6 +313,7 @@ The program office uses them, after a review process...
 
 Project/Task Description and Schedule (A6)
 ==================================================
+
 
 Summary of all work to be performed, products to be produced, and the schedule for implementation
 ---------------------------------------------------------------------
@@ -315,6 +338,33 @@ distributed every 3 weeks at the conclusion of each sprint.
 Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each
 ---------------------------------------------------------------------
 
+- Code all constituent (OPP/ORD) models in Python and Fortran based on available code, users’ manuals, and qapps into a single library (complete).
+- Host all models in library on a back end rest server (bottle) so they can be called from a web browser session (complete).
+- Create front end instances (django) for all the models so that they can be fed input data and run in a web browser (complete).
+- Create parameter crosswalk between all model inputs and outputs for qaqc purposes (complete).
+- Create database system (mongodb) to record individual model inputs and outputs persistently for all user-based execution (complete).
+- Initiate OEI/NCC application deployment checklist process (complete): http://cfint.rtpnc.epa.gov/adc/reviewcenter/index.cfm?ADCNumber=3146
+- Deploy front and back end model services to multiple CGI servers (complete).
+- Use parameter crosswalk as template to collect qaqc input/output test case scenarios, 10 per model (complete).
+- Public demonstration of tool to industry at EFED workshop (October 29, 2014) (complete): https://www.federalregister.gov/articles/2014/10/08/2014-24026/spatial-aquatic-model-development-notice-of-public-meeting
+- Submit system security plan to OEI (complete).
+- Submit syscat categorizations for all models to OSIM/OEI (complete).
+- Pass system vulnerability scans performed by NCC (complete).
+- Add disclaimers regarding beta status of models (complete).
+- Setup dns, apache and nginx configurations so that epa can route traffic to appropriate cgi cloud hosted implementations (complete).
+- Submit firewall rule request for ports 80, 443 (22) to allow public access. (complete, but temporary), available on intranet and internet at http://qed.epa.gov/ubertool
+- Public workshop with industry and others providing comment on current status of tool (April 29, 2015) (complete): https://www.federalregister.gov/articles/2015/04/03/2015-07645/spatial-aquatic-model-development-notice-of-public-meeting
+- Implement betatester password protected input pages to restrict public (internet, not intranet) execution of models to those with a password (will complete on 6/12/2015).
+- Resubmit permanent firewall rule request for internet access (June 2015).
+- Migration from CGI NCC contract to CGI general services contract, redeploy all servers to more modern (more secure) EPA red hat enterprise linux implementations (July 2015).
+- Implement qa/qc testing against previously gathered test cases (mostly complete, but being refactored for efficiency). Automate for daily execution.
+- Ongoing Spatial Aquatic Model code changes in collaboration with EFED (ongoing).
+- SSL encryption of all traffic (port 443) (Fall 2015).
+- NERL web application clearance process (to be defined by David Kryak et al) (Winter 2015-2016).
+- Remove betatester authentication on approved models (Spring 2016).
+- Public rollout of ubertool (late Spring 2016).
+
+
 Quality Objectives and Criteria for Model Inputs/Outputs (A7)
 ====================================================================
 
@@ -324,6 +374,22 @@ All model components will be developed using an appropriate approach to quality 
 
 Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task
 ---------------------------------------------------------------------
+The EPA registers pesticides for use in the US under applicable federal laws. To assess potential risks, mathematical
+models are used to predict pesticide concentrations in different media and ultimately predict effects to non-target
+species.  The suite of models that the EPA uses has been in development since the 1980s, with a wide range of
+algorithmic complexity and technical implementation from Fortran executables to Microsoft Excel spreadsheets. We have
+updated these models to create an application programming interface (API) that is accessible via a web service
+implementation. Hosted in the cloud, the application combines relevant spatial information, chemical properties,
+ecological exposure parameters, pesticide use properties, and effects data into a decision support “dashboard.”
+The system is a platform-as-a-service implementation and is available to users through the use of modern web
+technologies that allow cloud-based ecological pesticide models and data to be accessed with a web browser.
+
+The larger outcome is that scientists with original ideas, models, data, and tools no longer have to secure significant
+resources for hardware and application programmers to ensure that “translational” research can find a use in regulatory
+decision support structures. This availability will lead to better data and model selection decisions and a more robust,
+defensible regulatory frameworks. The resulting dashboards can increase decision-making transparency and serve as a
+conduit for translating science improvements to the regulatory process -- all while functioning in production mode as
+a form of “Science-as-a-Service” to provide the necessary assessment tools for environmental regulation.
 
 Ecological Models
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -468,6 +534,33 @@ the history of the software development.
 The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is
 cross-platform, flexible, and open source.
 
+Environmental models may require the ability to scale their implementation. This may be in response to a need to
+execute more complex, detailed applications and/or be responsive to multiple users in a distributed modeling setting.
+Regardless, such implementations may require a combination of significant core computing capacity and concurrency
+control that is difficult to achieve in a desktop environment. Scaling these models can present challenges, but
+may be necessary for Monte Carlo simulation, for higher spatial resolution and/or geographical scale, long time
+series modeling, and/or to account for multiple simultaneous users.
+
+This hands-on workshop will allow users to deploy a combination of modern technologies that can address these
+issues. Participants will quickly build a running instance on their laptop of the leading containerization technology,
+Docker, in order to deploy a set of environmental models.  Container-based technologies separate the application
+from the underlying infrastructure, just like virtual machines separate the host operating system from the underlying
+hardware. These technologies allow for the ability to build and configure an environmental model once, and then
+deploy and run the model anywhere. The core services consist of a daemon that is installed on a machine and a
+client that interacts with the daemon. A typical workflow then consists of a containerized image that is layered
+to contain the host operating system, environmental model(s), and all dependencies. Images are used to create
+containers that can be started, stopped, moved or deleted. This technology is supported by a registry system that
+allows for public or private access to repositories that store images as well as a system for automating building
+images. This lightweight approach is portable and scalable, with the ability to launch and shut down additional
+machines as needed.
+
+To fully leverage this technology, the models in the containerization image will be in the form of application
+programming interface (API) representation state transfer (RESTful) web services. We will address approaches for
+accessing these endpoints and leveraging their deployment within cloud environments, providing Models-as-a-Service.
+RESTful endpoints opens up a number of possibilities for scaling computations and allow for model interoperability
+possibilities at both the computational/ algorithmic  level and from a user interface (mobile, desktop or web)
+development standpoint.
+
 
 Special Training Requirements/Certification (A8)
 ====================================================================
@@ -506,6 +599,7 @@ Description of information to be included in reports
 
 Proper document control and distribution procedures
 -----------------------------------------------------------------------
+github
 
 Details on document storage
 -----------------------------------------------------------------------
@@ -606,6 +700,19 @@ This section pertains to the acquisition of primary data and is not applicable t
 
 Calibration (B7)
 ======================================
+A key component for science is reproducibility. So, the science infrastructure worthy of the award would not be a
+“secret science” application executed in an infrastructure that only we hold the key to, instead the computations
+would be (first internally, then) publicly available in a reproducible manner that facilitates the comparison of
+model predictions to available data. The statistical comparison of model predictions and the data would therefore be
+part of the same system. The only computational route for us in NERL to make scalable computations and large data
+sets available to all-comers is via cloud-hosted web applications. Desktop applications do not have the ability to
+scale and are not reasonably downloadable when they contain regional level high resolution data; OEI/OSIM
+interpretations of EPA guidance memos they wrote prevents us from serving data and running models on our NERL machines;
+and we do not have anywhere near the resources that it would take to have OEI/NCC/etc stand such a system up for us --
+nor do we feel they could provide a capable science solution or a sufficient front end even if we gave them a
+significant portion of our research resources. Therefore, I think we need to be the first to fully leverage the
+cloud within the Agency for model execution purposes. The CGI cloud contract is OEI approved and OEI is under a lot
+of pressure from outside the agency to show that they are migrating applications to the cloud.
 
 Objectives of model calibration activities, including acceptance criteria
 -----------------------------------------------------------------------
@@ -737,6 +844,7 @@ Plans for requirements documentation
 
 Coding standards
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PEP-8
 
 Testing plans
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -746,6 +854,7 @@ Plans for data dictionary (may not need to be a separate document)
 
 Plans for a user’s manual
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Online
 
 Plans for a maintenance manual (explaining software logic and organization)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -940,6 +1049,38 @@ analysis will be performed and the model processes will be reviewed and/or modif
 
 Frequency, content, and distribution of reports
 -----------------------------------------------------------------------
+Models will be published as publicly consumable APIs. APIs function by linking different information sources in a
+shared network of data and services. This ensures mutually beneficial sharing of authoritative data sets, services,
+and infrastructures within and outside of the Agency in a controllable manner. EPA chemical exposure and effects
+models have been developed at different times and based on different underlying technologies over the last 40 years,
+there are a number of legacy codes that underlay important scientific processes. The resulting set of Agency models
+differ in programming languages, deployment processes, operating systems, and other technical dependencies. These
+structural differences have hindered their accessibility, transparency, interoperability and scientific use.
+Modern API development that relies on REST services, remote procedure calls and cloud server infrastructures resolves
+these difference and enhance service and model reuse by regulatory and scientific communities. This approach addresses
+scientific web services security in a federally approved manner, provides “web analytics” -- offering a supplement to
+journal metrics in documenting the impact of EPA models, and makes the algorithms more “discoverable” -- thereby
+increasing their use.
+
+Of significant scientific importance is that providing an API and the underlying web services via a cloud computing
+environment provides computational scaling abilities not currently available for chemical modeling on the desktop by
+leveraging a cloud computing infrastructure (CGI). The federal government has mandated a “Cloud First” strategy to
+help federal agencies provide highly reliable, innovative services quickly and efficiently despite resource constraints.
+Cloud computing allows for the pooling of computer servers into an integrated system even if those servers are running
+different operating systems and applications with different technological dependencies. Computational power is
+increased or decreased depending on real-time workload requirements, and the system is continually reconfigured to
+meet new types of workloads. This scalability allows for other scientific programmers to leverage the tools, whether
+they are scientific applications of the models themselves, providing dashboard services, or embedding them within
+more complex regulatory workflows (e.g., ubertool). Cloud-based scientific applications include Monte Carlo
+applications to examine parameter sensitivity and model uncertainty, frequentist and Bayesian approaches for model
+calibration and selection/weighting, distributed spatial scaling of science algorithms, and/or data intensive
+algorithms run at high temporal resolution.
+
+Cloud-based API construction can enhance regulatory transparency, increase the impact of existing Agency science,
+and greatly accelerate the translation of new science and algorithms to regulatory application. The EPA has the
+opportunity to be in the vanguard due to the significant set of science models they “own”, the existing cloud
+infrastructure, and significant progress already made for FIFRA/ESA ecological models (front end, back end).
+Similar opportunities exist for human health models and ecological models for non-FIFRA/ESA applications.
 
 Deviations from approved QA Project Plan
 -----------------------------------------------------------------------
@@ -965,8 +1106,6 @@ QA officers, as described in detail in other sections.
 
 Departures from Validation Criteria (D1)
 ======================================
-
-
 To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which
 validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come from
 verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations will

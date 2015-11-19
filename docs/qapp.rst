@@ -1,14 +1,17 @@
+#########################################
 ubertool Quality Assurance Project Plan
-######################################
+#########################################
 
+*************************************
 Project Management
-**************************************
+*************************************
 
 Title and Approval Sheet
 ======================================
 
 Title of QA Project Plan
 ------------------------------------
+Quality Assurance Project Plan for USEPA Models used for Pesticide Registration
 
 Revision number of QA Project Plan
 ------------------------------------
@@ -24,12 +27,14 @@ U.S. Environmental Protection Agency
 Office of Research and Development
 National Exposure Research Laboratory (NERL)
 Ecosystems Research Division (ERD)
+960 College Station Rd
 Athens, Georgia 30605 USA
 
 U.S. Environmental Protection Agency
 Office of Pesticide Programs
 Ecological Fate and Effects Division (EFED)
-Arlington, Virginia XXXXX USA
+One Potomac Yard
+Arlington, Virginia 22202 USA
 
 Names of all key project officials, with space for dated signatures
 ---------------------------------------------------------------------
@@ -42,10 +47,13 @@ Distribution List (A3)
 List of all individuals (and their role on the project) who will be provided copies of the approved QA Project
 Plan, including all persons responsible for implementation, including project managers, QA Managers, and
 representatives of all groups involved.
+Tina Bahadori
+Elaine Cohen Hubal
+Jim Cowles
 Bill Eckel
-Nelson Thurman
 John Johnston
-QA Manager
+James Noel (QA Manager)
+Nelson Thurman
 
 Project/Task Organization (A4)
 ==================================================
@@ -54,79 +62,65 @@ under FIFRA and for the assessment of pesticide risks to endangered species. Mod
 are used to develop the web application, proceeding according to the principles of “scrum” development, an iterative
 and incremental agile software development process for developing software applications (Lacey 2012). This approach
 is centered around deploying applications in short time increments and getting rapid feedback from end users.  Both
-of these occur at the end of each defined sprint period (4-6 weeks) in length. This deployment and feedback approach
+of these occur at the end of each defined sprint period (3 weeks) in length. This deployment and feedback approach
 is paired with modern industry standard approaches from XP programming and agile development.  XP programming
 approaches include test-driven development, pair programming, collective code ownership, sustainable development
 pace, coding standards, continuous integration, and code refactoring. Agile development processes include approaches
 for
 
-Scrum meetings are weekly on the same day every week (currently Thursday) at 3pm with monthly sprints replacing the
-scrum meeting the first Thursday of every month.
+Daily checkins are conducted on at 10am every working day for approximately 15 minutes. Scrum meetings are at the
+beginning and end of each 3 week sprint.
 
-Daily checkins are likely to be conducted on Google Hangout at 3pm for approximately 15 minutes.
-
-Monthly ubertool progress reports are also scheduled with EFED via conference call.
+Progress reports with OPP/EFED stakeholders and developers are conducted biweekly with EFED via conference call.
 
 There are three core roles involved in this process, these roles are:
-- Product Owner: represents the stakeholders via stories backlog and priorities (Tom Purucker)
-- Development Team: delivers product increments at the end of each sprint (ORISE fellowships working at the Athens
-lab and others identified by Bill Eckel of OPP/EFED)
+- Product Owner: represents the stakeholders by populating user stories in the backlog and sprint priorities
+(Tom Purucker)
+- Development Team: delivers product increments at the end of each sprint (USEPA federal Developers from OPP and ORD;
+research fellows, student contractors and contractors working for OPP and ORD; others individuals identified by OPP/EFED)
 - Scrum Master: scrum facilitator who removes impediments for delivering sprint goals/deliverables, performs tasking,
- bug priority, task followup, etc. (contracted)
+ bug priority, task followup, etc. (Tom Purucker)
 
-Ancillary roles on the scrum team are:
-- Stakeholders: (Bill Eckel, Ed Odenkirchen, Dirk Young, Nelson Thurman, Ron Parker, Katrina White, others
-identified by Bill Eckel)
-- Managers: People who control the environment (John Johnston [Branch Chief], Roy Sidle [Division Director],
-John Kenneke [CSS Matrix Interface], Tina Bohardi [CSS], Jim Cowles [Associate Director at EFED])
-
-Modern software development methods are used to develop the web application, proceeding according to the principles
-of “scrum” development, an iterative and incremental agile software development process for developing software
-applications (Lacey 2012). This approach is centered around deploying applications in short time increments and
-getting rapid feedback from end users.  Both of these occur at the end of each defined sprint period (2-6 weeks)
-in length. This deployment and feedback approach is paired with modern industry standard approaches from XP
-programming and agile development.  XP programming approaches include test-driven development, pair programming,
-collective code ownership, sustainable development pace, coding standards, continuous integration, and code
-refactoring. Agile development processes include approaches for
-
-Scrum meetings are weekly on the same day every week at 3pm with monthly sprints replacing the scrum meeting the
-first Thursday of every month.  Daily checkins are likely to be conducted in Athens and via phone at 3pm EST for
-approximately 15-30 minutes. Monthly ubertool progress reports are also scheduled with EFED via conference call.
-
-There are three core roles involved in this process, these roles are:
-* Product Owner: represents the stakeholders via stories backlog and priorities (Tom Purucker)
-* Development Team: delivers product increments at the end of each sprint (EPA employees, ORISE fellows, and SSA
-contractors working with ORD and EFED)
-* Scrum Master: scrum facilitator who removes impediments for delivering sprint goals/deliverables, performs
-tasking, bug priority, task followup, etc. (contracted)
-
-
-EFED Stakeholders:
-
-* Bill Eckel
-* Meridith Fry
-* Andrew Kanarek
-* Ed Odenkirchen
-* Michelle Thawley
-* Nelson Thurman
-* Dirk Young
-* others identified by Bill Eckel
-
-EPA Managers:
-
-* Gerald [CED Division Director]
-* Tina Bohardi [CSS NPD]
-* Jim Cowles [Associate Director at EFED]
-* John Kenneke [CSS Matrix Interface]
-* Matt Etterson [CSS Ecological Modeling Project Lead]
-* John Johnston [WEB Branch Chief]
+Additonal roles on the scrum team are:
+- Current Development Team: (Jon Flaishans, Carmen Kuan, Marcia Snyder, Andrew Kanarek, Tom Purucker, Kurt Wolfe,
+Mike Galvin, Meredith Fry, Trip Hook, Gerry Laniak)
+- Stakeholders: (Bill Eckel, Ed Odenkirchen, Dirk Young, Nelson Thurman, Kris Garber, Andrew Kanarek, Katrina White,
+Meridith Fry, others identified by OPP/EFED)
+- Managers: People who control the environment (John Johnston [Branch Chief], Tom Pierce/Gerald Brunson
+[Division Director], John Kenneke [CSS Matrix Interface], Tina Bohardi [CSS], Elaine Cohen-Hubal[CSS], Jim Cowles [Associate
+Director at EFED], James Noel [CED QA])
 
 Problem Definition/Background (A5)
 ==================================================
 Safety evaluations for pesticides are required for ecological and human health risks under a number of regulatory
 statutes (e.g., Federal Insecticide, Fungicide, and Rodenticide Act (FIFRA), Pesticide Registration improvement
 Extension Act (PRIA 3), Federal food, Drug, and Cosmetic Act (FD&C Act), Food Quality Protection Act (FQPA),
-Endangered Species Act (ESA)). Ecological risk assessments under FIRFA and ESA are often implemented by the
+Endangered Species Act (ESA)).
+
+The two primary statutes that EPA regulates pesticides under include the Federal Insecticide,
+Fungicide, and Rodenticide Act (FIFRA) and the Federal Food, Drug, and Cosmetic Act
+(FFDCA), both amended by the Food Quality Protection Act (FQPA) of 1996. Under FIFRA,
+pesticides intended for use in the United States must be registered (licensed) by EPA before they
+may be sold or distributed in commerce. EPA will register a pesticide if scientific data provided
+by the applicant show that, when used according to labeling directions, it will not cause
+“unreasonable adverse effects on the environment”. (FIFRA defines “unreasonable adverse
+effects on the environment” as “any unreasonable risk to man or the environment, taking into
+account the economic, social and environmental costs and benefits of the use of any pesticide
+.....”) Under FFDCA, the Agency is responsible for setting tolerances (maximum permissible
+residue levels) for any pesticide used on human food or animal feed.
+
+With the passage of the Food Quality Protection Act (FQPA) in 1996, both major
+pesticide statutes were amended to establish a more consistent, protective regulatory scheme
+grounded in sound science. FQPA mandated a single, health-based standard for setting
+tolerances for pesticides in foods; provided special protections for infants and children; expedited
+approval of safer pesticides; created incentives for the development and maintenance of effective
+crop protection tools; and required periodic re-evaluation of pesticide registrations and tolerances
+to ensure that the scientific data supporting pesticide registrations would remain up-to-date in the
+future. It should be noted that FQPA also limited the consideration of benefits when setting
+tolerances. FQPA did not address the consideration of ecological risk.
+
+The ubertool addresses ecological risk models under these regulations. Ecological risk assessments under
+FIRFA and the Endangered Species Act (ESA) are typically implemented by the
 Ecological Fate and Effects Division with OCSPP by accessing model tools and databases that have been developed
 since the early 1980s on a range of software development platforms. These tools include Microsoft Excel
 Spreadsheets, Windows-based interfaces, legacy Fortran code compiled as DOS executables, as well as programs
@@ -138,13 +132,14 @@ regular basis. The program also evaluates new pesticide formulations, ingredient
 active ingredients. The result of this process is that there are a large number of models to be run for many
 chemicals with many possible adverse outcomes that must be summarized and reported. The current system of
 distributed models and databases result in inefficiencies when conducting assessment and prevents transparency
-regarding the evaluation process for regulatory risk evaluation.
+regarding the evaluation process for regulatory risk evaluation. This project is addressing this limitation be
+refactoring the existing EPA pesticide registration models and data as a scalable web application.
 
 Goals and objectives of this project that will address this problem
 ---------------------------------------------------------------------
-The objective of this effort is to implement appropriate technologies and update the source code base for the übertool,
-a web application system that executes algorithms for pesticide registration and endangered species effects assessments,
-so that it can be deployed in scalable computational environments that provide front end access to cloud-executed
+The overall objective of this effort is to implement appropriate technologies and update the source code base for the übertool,
+a web application system that executes algorithms for pesticide registration and endangered species effects assessments.
+This effort allows it to be deployed in scalable computational environments that provide front end access to cloud-executed
 models and database backbone capabilities for querying and storing parameter inputs/outputs. This system is to be
 deployed internally within the EPA for government users and externally on a public-facing server for use by the
 public, academia, and the regulated community. The intent of this implementation is to accomplish EPA goals
@@ -154,34 +149,21 @@ workflow application to implement relevant assessment methods, respond to changi
 (e.g., required toxicity tests, bioassays) and incorporate current fate, exposure, and effect algorithms in a model
 selection framework. Unlike the time-inefficient and outdated collection of legacy science components, this scientific
 modeling platform will replace critical regulatory data analysis and modeling processes with a more efficient, 21st
-century system at a reasonable cost.
-
-Efficiently conduct environmental assessments for pesticide registration and endangered species effects assessments
+century system at a reasonable cost. This implementation allows for efficient environmental assessments
+for pesticide registration and endangered species effects assessments
 for models that currently are deployed in a number of different ways (Fortran DOS executables, Windows programs,
 Excel spreadsheets) using data from a number of different data sources.
 
 Definition of the population the problem targets and what measures within this population the problem addresses
 ---------------------------------------------------------------------
-EFED risk assessors are the target audience for the ecological models. Main contacts include Bill Eckel,
-Ed Odenkirchen, and Tom Steeger. Three divisions within OPP will use the human health version of the product-
-HED, AD, and RD. Contacts include Vickie Dellarco, Jennifer McClain, Matt Lloyd, and Dana Vogel from the initial
-meeting.
-
+EFED risk assessors are the target audience for the ecological models. Main contacts include EFED scientists such as
+Bill Eckel, Kris Garber, Ed Odenkirchen, and Tom Steeger. Three divisions within OPP that use human health version
+models under the same
+regulations are also a user base. Contacts include Vickie Dellarco, Jennifer McClain, Matt Lloyd, and Dana Vogel.
 The ecological and human health divisions of OPP already share implementation of some of the models.
 There may be instances where OPPT personnel used similar models as the OPP human health risk assessment divisions
-and may use some of the models a la carte.  Members of the public, academia, and the registrants may use the product
-via a public facing web page in the future.
-
-As python code, it can be run on a computer locally using a web browser as an interface (without being on the Internet,
-which will be necessary for the EPA to use it for applications involving confidential business information) and/or it
-can be hosted on the Internet as a web domain so that the public can access the public domain models that are used to
-determine pesticide registration and label restrictions (available at http://www.ubertool.org).  Component libraries
-for the ubertool can be accessed individually in non-HTML applications.  Alternatively, the code could be hosted on an
-EPA server with the requisite technologies to provide online access to the python code.  Regardless of how it is
-accessed, some of the models (these are mostly older Fortran codes in the public domain, not web applications) are
-of interest to the EPA pesticide office and could potentially realize significant efficiencies in regulating
-pesticides, transparency for the ecological risk assessment process, and higher levels of quality assurance given
-the larger audience that might use the models--whether for chemical regulation or for educational purposes.
+and may use some of the models a la carte.  In addition, members of the public, academia, and the registrants may use
+the product via a public facing web page.
 
 Pesticide evaluations are required for ecological and human health risks under a number of regulatory statutes (e.g.,
 Federal Insecticide, Fungicide, and Rodenticide Act (FIFRA), Pesticide Registration improvement Extension Act
@@ -212,12 +194,69 @@ of pesticides.  These assessments are conducted in accordance with provisions of
 and the Services’ Endangered Species Consultation Handbook (NMFS). The models used are periodically updated in
 view of new pesticides, changing science, and as novel exposure pathways come to light.
 
-Reason the project includes a modeling approach to address the problem (is it a new predictive tool?)
----------------------------------------------------------------------
-EPA is responsible for registering pesticides under FIFRA; as part of the registration process, the EPA’s Ecological
-Fate and Effects Division of the Office of Chemical Safety and Pollution is responsible for analyzing data and
+Pesticide are defined in the Code of Federal Regulations (CFR), aas:
+“Any substance or mixture of substances intended for preventing, destroying,
+repelling, or mitigating any pest, or intended for use as a plant regulator,
+defoliant, or dessicant....” (40 CFR 152.3).
+Substances that are not covered in this definition include, but are not limited to,
+deodorizers, non-toxic physical barriers against pests, fertilizers or other plant nutrient substances
+which do not target pest species. Some products meeting the definition of a pesticide are exempt
+from requirements of FIFRA, such as those for human drug use only, pesticide treated articles
+(clothing, paints, etc.), pheromones used in traps, food preservatives, or natural repellants such as
+cedar wood (40 CFR 152).
+Based on 40 CFR 152.3, an active ingredient and an inert ingredient, respectively, are
+defined as follows:
+“Any substance (or group of structurally similar substances if specified by the
+Agency) that will prevent, destroy, repel or mitigate any pest, or that functions as
+a plant regulator, dessicant, or defoliant within the meaning of FIFRA section
+2(a), except as provided in §174.3 of this chapter.”
+“Any substance (or group of structurally similar substances if specified by the
+Agency), other than an active ingredient, which is intentionally included in a
+pesticide product, except as provided in §174.3 of this chapter.”
+Many different types of pesticides are available. They may be grouped according to the
+pests they control, their use pattern, or their chemical class. The following list provides some
+examples of the categories of pesticides that are grouped according to the pests they control:
+
+- Insecticides - act pesticidally against the growth or survival of insects. Also includes
+specific types such as miticides, mosquito larvicides or adulticides;
+- Herbicides - act pesticidally against plants, weeds, or grasses;
+- Rodenticides - act pesticidally against rats or other rodents;
+- Avicides - act pesticidally against damaging bird populations;
+- Fungicides - act pesticidally against fungi on food or grain crops; • Nematicides - act pesticidally against nematodes;
+- Fumigants - gaseous pesticides used for invertebrate and fungal control;
+- Antimicrobials - act pesticidally against microscopic organisms on a variety of sites;
+- Plant Growth Regulators - accelerate or retard plant growth rates;
+- Insect Growth Regulators - retard insect growth;
+- Biopesticides - naturally occurring substances with pesticidal properties, including
+microbial pesticides, biochemical pesticides and plant incorporated protectants;
+- Piscicides - act pesticidally against unwanted or invasive fish populations; and
+- Molluscides - act pesticidally against slugs, snails, or bivalves.
+
+Pesticides may also be categorized into the following general use patterns in order to
+determine registration data requirements: terrestrial, aquatic, greenhouse, forestry, domestic
+outdoor, and indoor (40 CFR 158). The terrestrial, aquatic, and greenhouse patterns are further
+divided into food crop and nonfood applications.
+
+Pesticides that have similar chemical structures often have similar modes of action, as
+well as comparable fate and transport properties. Such chemicals may be grouped in the same
+chemical class. Some examples of chemical classes include the following:
+- Insecticides: chloronicotinyl compounds (e.g., imidacloprid, nicotine), N-methyl
+carbamates (e.g., carbaryl, aldicarb), organophosphorus compounds (e.g., chlorpyrifos,
+diazinon), and pyrethroids (e.g., cyfluthrin, cypermethrin), and others.
+- Herbicides: benzoic acids (e.g., dicamba), chloroacetanilides (e.g., alachlor,
+metolachlor), chlorophenoxy acids/esters (e.g., 2,4-D, MCPA), imidazolinones (e.g.,
+imazamox, imazapyr), sulfonylureas (e.g., bensulfuron-methyl, rimsulfuron),
+thiocarbamates (e.g., butylate, molinate), and triazines (e.g., atrazine, simazine), and
+others.
+- Fungicides: benzimidazoles (e.g., benomyl, thiabendazole), carboxamides (e.g., carboxin,
+flutolanil), and dithiocarbamates (e.g., maneb, ziram), and others.
+
+Reason the project includes a modeling approach to address the problem
+-----------------------------------------------------------------------
+EPA is responsible for registering pesticides under FIFRA; as part of the registration process, the EPA is responsible
+for analyzing data and
 developing/ implementing ecological models that estimate risks to non-target receptors. The Food Quality Protection
-Act of 1996 mandated the Environmental Protection Agency (EPA) to implement a new program for assessing the risks of
+Act of 1996 mandated a new program for assessing the risks of
 pesticides, registration review. The decision to register a pesticide is based on the consideration of scientific data
 and other factors showing that it will not cause unreasonable risks to human health, workers, or the environment when
 used as directed on product labeling. The registration review program is intended to ensure that, as the ability to
@@ -227,36 +266,19 @@ and pesticide use practices will occur over time. Through the new registration r
 reevaluates pesticides to ensure that as change occurs, products in the marketplace can be used safely. As part
 of the registration review process, EFED is assessing risks of pesticides to Federally-listed threatened and/or
 endangered (listed) species from registered uses of pesticides.  These assessments are conducted in accordance
-with the Overview Document[1], provisions of the Endangered Species Act (ESA), and the Services’ Endangered
-Species Consultation Handbook (NMFS 1998). The models used are periodically updated in view of new pesticides,
+with the Overview Document, provisions of the Endangered Species Act (ESA), and the Services’ Endangered
+Species Consultation Handbook (NMFS 1998). Models are and integral part of this process, and are periodically updated
+in view of new pesticides,
 changing science, and as novel exposure pathways come to light.
 
-created an integrated web-based tool, the übertool, designed to estimate exposure doses and ecological risks
-under the Federal Insecticide, Fungicide, and Rodenticide Act (FIFRA) and the Endangered Species Act (ESA).
-This involved combining a number of individual software models into web applications so they can be more
-easily parameterized, run, and documented by the EPA regulatory program office as well as federal,
-industry, and academic researchers outside the agency. These models include a range of aquatic, terrestrial,
-and atmospheric deposition fate and transport models used to estimate pesticide exposures and effects for a wide
-range of ecological receptors. Risk assessments based on these models are evaluated when seeking approval for
-pesticide formulations by the Environmental Protection Agency (EPA). Übertool integration of the ecological
-risk models creates a unified environment where data inputs and outputs are shared amongst models and saved
-for each user. This web-based approach takes advantage of new technologies including on-demand cloud computation
-of models written in a variety of programming languages (e.g., Python, Fortran, C) as well as spreadsheet calculators
-(e.g., Microsoft Excel) to support complex and screening level models. The übertool can also batch run multiple
-models simultaneously given the appropriate inputs providing an efficient and previously unavailable ecological
-risk service.
-
-Übertool’s web-based framework has also extended to population dynamic models not currently used by FIFRA and
-ESA that are publicly available for educational and research purposes. Traditionally, ecological assessment
-of pesticides is based on the ratio between estimated environmental concentrations and extrapolated toxicity
-effects levels that can be difficult to relate to ecological endpoints that are actually valued and regulated
-(e.g., populations).  By aggregating these models into a virtual dashboard, we enable linkages to be created
-in the gap between the traditional ecological hazard assessment of screening models (risk quotients) and
-assessing ecological endpoints at the population level. Closing this gap has been identified in a recent
-National Academy of Science’s report as being necessary to create a common, scientifically credible approach
-to resolve discrepancies between how FIFRA and the ESA manage ecological risks. The new framework (Untertool)
-incorporates a variety of models including basic models of population dynamics (e.g. logistic model), intra-colony
-honey bee population dynamic models, and links to other online models and resources.
+Specific EPA responsibilities include assessing and characterizing ecological risk from varying pesticide scenarios in a
+screening-level assessment, which includes the consideration of listed species. These
+assessments address (1) fate and transport of pesticides in water, soil, and other
+environmental media; (2) toxicity to wildlife and vegetation; (3) exposure to non-target
+vegetation, aquatic life, birds, and other wildlife; and (4) effects on listed species. More refined assessments may
+be conducted on a case-by-case basis and typically involve some combination of the models addressed here.
+An additional core responsibility is for the EPA to develop and advance methods and tools for
+environmental fate, ecological risk and drinking water assessments.
 
 Types of decisions that may be made as a result of this project
 ---------------------------------------------------------------------
@@ -270,6 +292,25 @@ complexity leaves a legacy of computational models, still relevant to the regula
 computer languages and software that are not easily integrated or updated as the science evolves. These limitations
 are addressed by integrating EPA’s existing and developing regulatory models into a unified science application
 platform known as the ubertool.
+
+By law, the Agency has the authority to obtain data under three provisions of FIFRA:
+
+- FIFRA 3(c)(1)(F) - Authorizes the Agency to require data to support an application for
+registration of a pesticide. OPP’s data requirements are set forth in 40 CFR Part 158, but
+EPA has broad authority to ask for additional data or waive requirements, as appropriate.
+These data requirements are discussed under Section IV of this document.
+- FIFRA 3(c)(2)(B) - Provides the authority to require additional data on currently
+registered products. These data must be “required to maintain in effect an existing
+registration of a pesticide.” If EPA imposes a data requirement under this authority, EPA
+must allow enough time to design the study and generate data. In addition, EPA must
+comply with the Paperwork Reduction Act.
+- FIFRA Section 6(a)(2) - Requires that pesticide registrants inform the Agency of any
+relevant adverse effects information relating to their products, even though it was not
+formally requested by EPA. Information reportable under this provision includes new
+information derived from scientific studies, such as efficacy failures of antimicrobial
+products and pest resistance. Incidents of adverse effects resulting from the use of
+pesticide products are also reported. The information collected under 6(a)(2) is tracked
+and regularly distributed to the various divisions in OPP, as appropriate.
 
 Any other types of problems that the project may address
 ---------------------------------------------------------------------
@@ -298,14 +339,156 @@ exercises is very high.
 
 Background information on the problem
 ---------------------------------------------------------------------
- EPA (2004) provides an overview of OPP’s ecological risk assessment process:
-www.epa.gov/espp/consultation/ecorisk-overview.pdf
+EPA (2004) provides an overview of OPP’s ecological risk assessment process.
 
 Reasons the project is important, how it supports other existing research, programs, or regulations
 ---------------------------------------------------------------------
+This project directly support EPA regulatory proigramsn. The two main regulatory processes for pesticides are
+registration and reregistration.
+
+Registration focuses on decisions that allow new pesticide products to enter the market place or
+that allow registrants to make changes to the way existing pesticide products are sold, distributed,
+or used. While many registration decisions involve minor changes or applications for new
+products that are identical to currently registered pesticides, EPA devotes considerable resources
+to the review of applications involving new active ingredients and applications involving new
+uses of currently registered pesticides.
+
+Section 3 of FIFRA authorizes EPA to register new pesticide products and new uses of
+existing pesticide products for use in the United States. In registering pesticide products, EPA
+may place restrictions on the site or crop on which it is used; the method, amount, frequency, and
+timing of its use; and the storage and disposal practices. Some pesticides may be registered for
+more limited use in certain states. In addition, States, Tribes and Territories can place further
+restrictions on EPA-registered pesticide products used or sold within their own jurisdictions.
+For a Section 3 registration action, the pesticide manufacturer submits to EPA a
+registration application, which includes the following information:
+
+- Required test data;
+- Information concerning the manufacturing process;
+- Product chemistry;
+- Human and environmental risk data packages;
+- Tolerance information, consisting of information about pesticide residues on food; and
+- Labeling information.
+
+The scientific review is assigned for an evaluation of human health risks and for evaluating environmental risks,
+including potential risks to listed species. Human health effects and exposure data are integrated
+into a comprehensive health risk
+assessment to assess the potential impact that the pesticide product or active ingredient will have
+on the human population. At the same time, scientific ecological effects and
+exposure information are integrated into an environmental risk assessment to assess potential impacts on the
+environment. Both the health and environmental risk assessments undergo a process of internal
+peer review by scientific experts.
+
+All new chemicals submitted for a Section 3 registration to
+EFED and HED for a complete scientific review. For ecological risk, EFED provides an initial
+review and risk assessment for non-target species, including listed species. This assessment is
+conducted using data, which are required based on the uses of the pesticide.
+Some pesticide uses, such as indoor application, are screened to determine if there
+is a potential exposure to non-target organisms. If there is no exposure, these uses may not
+require environmental fate and ecotoxicity data or a full scientific review. For example, some
+specialized uses, such as indoor greenhouse applications, are screened to determine if there is a
+potential to effect non-target organisms through pesticide disposal. If not, data are not required
+and an ecological assessment is not conducted.
+
+Section 3 amendment actions are screened to determine if there
+is an obvious change from the present labeled use. Those actions which indicate a change in the
+use are sent to the science divisions for review.
+In cases where screening-level ecological risk assessment results raise potential
+concerns related to listed species, a species-specific evaluation is conducted to refine the
+assessment.
+
+After risk assessments are completed, the registration process includes a review of the
+risk assessments and development of potential risk mitigation measures. A
+registration determination is made based on the statutory standards of FIFRA and FFDCA. If the
+application fails to meet these standards, the need for more or better data, labeling
+modifications, and/or use restrictions is noted and these facts and communicated
+to the applicant. If the
+application is approved, EPA will establish a tolerance if the pesticide is intended for use on food
+or feed and publish a notice in the Federal Register.
+
+Reregistration is the review of older pesticides to ensure that they meet current health,
+safety, and environmental standards. The goal is to update labeling and use requirements and
+reduce risks associated with older pesticides, which were registered when the standards for
+government approval were less stringent than they are today.
+
+Under Section 4 of FIFRA as amended in 1988, EPA reviews older pesticides (those
+initially registered before November 1, 1984) to ensure that they meet current scientific and
+regulatory standards. This process, called reregistration, considers the human health and
+ecological effects of pesticides and results in decisions to reduce risks that are of concern. EPA
+also is reassessing tolerances (pesticide residue limits in food) to ensure that they meet the safety
+standard established by FQPA. EPA has integrated reregistration and tolerance reassessment to
+most effectively accomplish the goals of both programs.
+
+Through the reregistration program, EPA is reviewing the human health and
+environmental effects of groups of related pesticide active ingredients. When EPA completes the
+reregistration review and risk management decision for a pesticide, the Agency generally issues a
+Reregistration Eligibility Decision (RED) document. The RED summarizes the risk assessment
+conclusions and outlines any risk reduction measures necessary for the continued registration of
+the pesticide in the U.S.
+
+EPA may also issue an Interim Reregistration Eligibility Decision (IRED) for a pesticide
+that is undergoing reregistration, requires a reregistration eligibility decision, and also needs a
+cumulative assessment under FQPA. The IRED, issued after EPA completes the individual
+pesticide's aggregate risk assessment, presents an interim decision for the pesticide undergoing
+reregistration. It may include risk reduction measures -- for example, reducing risks to workers
+or eliminating uses that the registrant no longer wishes to maintain -- to gain the benefits of these
+changes before the final RED can be issued following the Agency's consideration of cumulative
+risks.
+
+To be declared “eligible” for reregistration, pesticides must meet current scientific and
+regulatory standards. The pesticide must have a substantially complete database and must not
+cause unreasonable adverse effects to human health and the environment when used according to
+Agency approved labeling directions and precautions.
+
+In addition, all pesticides with food uses must meet the safety standard of Section 408 of
+the FFDCA, as amended by FQPA. FFDCA as amended by FQPA also requires the reassessment
+of all existing tolerances and tolerance exemptions within 10 years, to ensure that they meet the
+safety standard of the new law.
+
+Reducing risks is an important aspect of the reregistration program. EPA works with
+stakeholders including pesticide registrants, growers and other pesticide users, environmental and
+public health interest groups, the States, USDA and other Federal agencies, and others to develop
+voluntary measures or regulatory controls needed to effectively reduce risks of concern. Almost
+every RED includes some measures to reduce human health and/or ecological risks. The
+possible ways of achieving risk reduction are extensive and include measures such as canceling
+pesticide products or deleting uses; declaring certain uses ineligible or not yet eligible (and then
+proceeding with follow-up action to cancel the uses or require additional supporting data);
+phasing out uses; restricting use of products to certified applicators; limiting the amount or
+frequency of use; improving use directions and precautions; adding more protective clothing and
+equipment requirements; requiring special packaging or engineering controls; requiring notreatment
+buffer zones; requiring spray drift labeling; employing ground water, surface water, or
+other environmental and ecological safeguards; and other measures. Modeling results are often used as paret
+of these modifications.
+
+Ecological risks are an important part of the
+reregistration review process. In developing REDs and IREDs, the Agency’s internal risk
+management process includes an evaluation of each ecological effects assessment by an Ecological Review Group
+to ensure that ecological risks are fully considered and
+ecological risk mitigation options are fully vetted. Issues related to listed species are discussed by this
+group and are addressed in the regulatory document that is prepared.
+Specifically, the following procedures are implemented to ensure high quality and
+consistent management of issues related to listed species during pesticide reregistration.
+
+- History of the Chemical Relative to Listed Species - When a chemical is scheduled for
+reregistration, a determination is made to see if the following information is available: incidents involving
+listed species, earlier risk assessments indicating potential risks of concern, consultations
+with the Services, a Biological Opinion or other indications of concern for risks to listed
+species. A summary of this analysis is included in the regulatory history
+section of the RED for the chemical.
+- Summary of the Ecological Risk Assessment - When the ecological risk assessment is
+delivered, discussion of
+potential risks to listed species are highlighted.
+- Review and Recommendations - For any chemical with potential risks to nontargets,
+including listed species, a strategy to appropriately address risks to listed species is developed.
+- Develop the Risk Management Decision - Risk management decision and language that reflects
+the regulatory decision and rationale sections are also developed.
+- Ensure Any Post-RED Changes Still Meet the Risk Management Goals - If, during a
+public comment period following publication of the RED, comments are submitted
+relating to risks to listed species, additional consultations may be necessary to
+determine whether the comment affects listed species’ risks.
 
 Conflicts or uncertainties that will be resolved by this project
 ---------------------------------------------------------------------
+Endangered Species Act
 
 Reasons one model is determined to be better than another for this application
 ---------------------------------------------------------------------
@@ -317,6 +500,44 @@ Project/Task Description and Schedule (A6)
 
 Summary of all work to be performed, products to be produced, and the schedule for implementation
 ---------------------------------------------------------------------
+created an integrated web-based tool, the übertool, designed to estimate exposure doses and ecological risks
+under the Federal Insecticide, Fungicide, and Rodenticide Act (FIFRA) and the Endangered Species Act (ESA).
+This involved combining a number of individual software models into web applications so they can be more
+easily parameterized, run, and documented by the EPA regulatory program office as well as federal,
+industry, and academic researchers outside the agency. These models include a range of aquatic, terrestrial,
+and atmospheric deposition fate and transport models used to estimate pesticide exposures and effects for a wide
+range of ecological receptors. Risk assessments based on these models are evaluated when seeking approval for
+pesticide formulations by the Environmental Protection Agency (EPA). Übertool integration of the ecological
+risk models creates a unified environment where data inputs and outputs are shared amongst models and saved
+for each user. This web-based approach takes advantage of new technologies including on-demand cloud computation
+of models written in a variety of programming languages (e.g., Python, Fortran, C) as well as spreadsheet calculators
+(e.g., Microsoft Excel) to support complex and screening level models. The übertool can also batch run multiple
+models simultaneously given the appropriate inputs providing an efficient and previously unavailable ecological
+risk service.
+
+Übertool’s web-based framework has also extended to population dynamic models not currently used by FIFRA and
+ESA that are publicly available for educational and research purposes. Traditionally, ecological assessment
+of pesticides is based on the ratio between estimated environmental concentrations and extrapolated toxicity
+effects levels that can be difficult to relate to ecological endpoints that are actually valued and regulated
+(e.g., populations).  By aggregating these models into a virtual dashboard, we enable linkages to be created
+in the gap between the traditional ecological hazard assessment of screening models (risk quotients) and
+assessing ecological endpoints at the population level. Closing this gap has been identified in a recent
+National Academy of Science’s report as being necessary to create a common, scientifically credible approach
+to resolve discrepancies between how FIFRA and the ESA manage ecological risks. The new framework (Untertool)
+incorporates a variety of models including basic models of population dynamics (e.g. logistic model), intra-colony
+honey bee population dynamic models, and links to other online models and resources.
+
+As python code, it can be run on a computer locally using a web browser as an interface (without being on the Internet,
+which will be necessary for the EPA to use it for applications involving confidential business information) and/or it
+can be hosted on the Internet as a web domain so that the public can access the public domain models that are used to
+determine pesticide registration and label restrictions (available at http://www.ubertool.org).  Component libraries
+for the ubertool can be accessed individually in non-HTML applications.  Alternatively, the code could be hosted on an
+EPA server with the requisite technologies to provide online access to the python code.  Regardless of how it is
+accessed, some of the models (these are mostly older Fortran codes in the public domain, not web applications) are
+of interest to the EPA pesticide office and could potentially realize significant efficiencies in regulating
+pesticides, transparency for the ecological risk assessment process, and higher levels of quality assurance given
+the larger audience that might use the models--whether for chemical regulation or for educational purposes.
+
 To create an aggregate ubertool assessment, a user will have created the above data objects for each of the
 tables above, and will combine them to create a batched assessment.  A tree with dropdown comboboxes that reflect
 available data objects saved to the user account will be presented to the user.  By selecting an appropriate data
@@ -331,15 +552,17 @@ A future priority is using the fate and transport models to create exposure conc
 by a number of the ecological models.
 
 List of products, deliverables, and milestones to be completed in the various stages of the project
----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 The ubertool is developed in an iterative development environment, so that new releases of the web application are
-distributed every 3 weeks at the conclusion of each sprint.
+deployed every 3 weeks at the conclusion of each sprint.
 
 Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each
----------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
 
-- Code all constituent (OPP/ORD) models in Python and Fortran based on available code, users’ manuals, and qapps into a single library (complete).
-- Host all models in library on a back end rest server (bottle) so they can be called from a web browser session (complete).
+- Code all constituent (OPP/ORD) models in Python and Fortran based on available code, users’ manuals, and existing
+qapps into a single library (complete).
+- Host all models in library on a back end rest server (bottle) so they can be called from a web browser session
+(complete).
 - Create front end instances (django) for all the models so that they can be fed input data and run in a web browser (complete).
 - Create parameter crosswalk between all model inputs and outputs for qaqc purposes (complete).
 - Create database system (mongodb) to record individual model inputs and outputs persistently for all user-based execution (complete).
@@ -370,7 +593,7 @@ Quality Objectives and Criteria for Model Inputs/Outputs (A7)
 
 Project data quality objectives (DQOs), performance criteria, and acceptance criteria
 ---------------------------------------------------------------------
-All model components will be developed using an appropriate approach to quality assurance and documentation.
+All model components will be developed using an appropriate approach for quality assurance and documentation.
 
 Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task
 ---------------------------------------------------------------------
@@ -1182,6 +1405,9 @@ Validation Methods (D2)
 
 Methods for review of model components such as theory, mathematical procedures, code, and calibration (peer review, etc.)
 -----------------------------------------------------------------------
+All models included for FIFRA pesticide registration go through a Science Advisory Panel review by NIH and NSF
+appointed external reviewers. (USFCR)
+
 
 Methods for review of input data
 -----------------------------------------------------------------------
@@ -1218,6 +1444,9 @@ USEPA, 2002. Guidance for Quality Assurance Project Plans for Modeling. EPA QA/G
 USEPA. 2004. Overview of the Ecological Risk Assessment Process in the Office of Pesticide Programs. U.S.
 Environmental Protection Agency, Office of Prevention, Pesticides and Toxic Substances, Office of Pesticide Programs,
 Washington DC. 100 pp. January 23, 2004.
+
+USFCR 2015. http://www.ecfr.gov/cgi-bin/text-idx?SID=4d543e597be707174b093d3907abd312&mc=true&tpl=/ecfrbrowse/Title40/40cfrv24_02.tpl#0
+Accessed November 18, 2015.
 
 USFWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species Consultation Handbook:
 Procedures for Conducting Consultation and Conference Activities Under Section 7 of the Endangered Species Act.

@@ -459,36 +459,135 @@ buffer zones; requiring spray drift labeling; employing ground water, surface wa
 other environmental and ecological safeguards; and other measures. Modeling results are often used as paret
 of these modifications.
 
-Ecological risks are an important part of the
-reregistration review process. In developing REDs and IREDs, the Agency’s internal risk
-management process includes an evaluation of each ecological effects assessment by an Ecological Review Group
-to ensure that ecological risks are fully considered and
-ecological risk mitigation options are fully vetted. Issues related to listed species are discussed by this
-group and are addressed in the regulatory document that is prepared.
-Specifically, the following procedures are implemented to ensure high quality and
-consistent management of issues related to listed species during pesticide reregistration.
-
-- History of the Chemical Relative to Listed Species - When a chemical is scheduled for
-reregistration, a determination is made to see if the following information is available: incidents involving
-listed species, earlier risk assessments indicating potential risks of concern, consultations
-with the Services, a Biological Opinion or other indications of concern for risks to listed
-species. A summary of this analysis is included in the regulatory history
-section of the RED for the chemical.
-- Summary of the Ecological Risk Assessment - When the ecological risk assessment is
-delivered, discussion of
-potential risks to listed species are highlighted.
-- Review and Recommendations - For any chemical with potential risks to nontargets,
-including listed species, a strategy to appropriately address risks to listed species is developed.
-- Develop the Risk Management Decision - Risk management decision and language that reflects
-the regulatory decision and rationale sections are also developed.
-- Ensure Any Post-RED Changes Still Meet the Risk Management Goals - If, during a
-public comment period following publication of the RED, comments are submitted
-relating to risks to listed species, additional consultations may be necessary to
-determine whether the comment affects listed species’ risks.
-
 Conflicts or uncertainties that will be resolved by this project
 ---------------------------------------------------------------------
-Endangered Species Act
+FIFRA is the federal statute that governs the sale, distribution, and use of pesticides in the United
+States; it assigns EPA the authority to issue pesticide registrations or reregistrations, which are required
+for use of the pesticides. To obtain a registration, an applicant must demonstrate that a pesticide will
+perform its intended function and will not cause unreasonable adverse environmental effects. Once
+granted, the registration requires that the pesticide be labeled with specific product information, directions
+for use, and hazard information; the label specifies legal use of the pesticide.
+The ESA is the federal statute that assigns FWS and NMFS the authority to designate species as
+threatened or endangered—that is, to “list” species—and governs the activities that might affect listed
+species. Under the ESA, federal agencies must ensure that their actions do not harm listed species or
+jeopardize their existence. Accordingly, if EPA is deciding whether to register a pesticide, it must
+determine whether the action “may affect” a listed species. If the answer is yes, EPA has the option of
+initiating a formal consultation or conducting further analysis to determine whether the action is “likely to
+adversely affect” listed species. If EPA determines that the action is not likely to affect listed species
+adversely—and FWS or NMFS, as appropriate, agrees—no further consultation is required. However, if
+EPA determines that the action is likely to affect a listed species adversely, a formal consultation is
+required, and FWS or NMFS must determine whether the proposed action is likely to jeopardize the
+existence of the listed species. The product of that determination is called a biological opinion (BiOp)
+and is issued by FWS or NMFS.
+
+Therefore, the US Fish and Wildlife Service (FWS) and the National Marine Fisheries Service (NMFS) are responsible for
+protecting species that are listed as endangered or threatened under the Endangered Species Act (ESA) and for
+protecting habitats that are critical for their survival. The EPA is responsible for registering or reregistering
+pesticides under FIFRA and must ensure that pesticide use does not cause any unreasonable adverse effects
+on the environment, which is interpreted to
+include listed species and their critical habitats. The agencies have developed their own approaches to
+evaluating environmental risk, and their approaches differ because their legal mandates, responsibilities,
+institutional cultures, and expertise differ. Over the years, the agencies have tried to resolve their
+differences but have been unsuccessful in reaching a consensus regarding their assessment approaches.
+As a result, FWS, NMFS, EPA, and the US Department of Agriculture asked the National Research
+Council (NRC) to examine scientific and technical issues related to determining risks posed to listed
+species by pesticides. Specifically, the NRC was asked to evaluate methods for identifying the best
+scientific data available; to evaluate approaches for developing modeling assumptions; to identify
+authoritative geospatial information that might be used in risk assessments; to review approaches for
+characterizing sublethal, indirect, and cumulative effects; to assess the scientific information available for
+estimating effects of mixtures and inert ingredients; and to consider the use of uncertainty factors to
+account for gaps in data. This report was published in NAS (2014).
+
+The assessments conducted, either at the screening or the more refined species-specific
+level, need to be based on a sound scientific process. This process entails using sound scientific
+methods, developing adequate supporting tools such as databases, and conducing adequate peer
+review to further strengthen the process. These
+assessments necessarily address (1) fate and transport of pesticides in water, soil, and other
+environmental media; (2) toxicity to wildlife and vegetation; (3) exposure to non-target
+vegetation, aquatic life, birds, and other wildlife; and (4) effects on listed species. More refined assessment
+may also be conducted on a case-by-case basis.
+
+Rarely are toxicity data available for the species identified in the risk assessment
+endpoints. In the majority of cases, the screening-level risk assessment process relies on a suite
+of toxicity studies performed on a limited number of organisms in the following broad groupings:
+
+- Birds (mallard duck and bobwhite quail) used as surrogate for terrestrial-phase
+amphibians and reptiles,
+- Mammals (laboratory rat),
+- Freshwater fish (bluegill sunfish, rainbow trout, and fathead minnow) used as a surrogate
+for aquatic phase amphibians,
+- Freshwater invertebrates (Daphnia magna),
+- Estuarine/marine fish (sheepshead minnow),
+- Estuarine/marine invertebrates (Crassostrea virginica and Mysidopsis bahia),
+- Terrestrial plants (corn, soybean, carrot (radish or sugar beet), oat (wheat or ryegrass),
+tomato, onion, cabbage (cauliflower or brussels sprout), lettuce, cucumber), and
+- Algae and aquatic plants (Lemna gibba, Skeletonema costatum, Anabaena flos-aquae,
+Selenastrum capricornutum, Clorell vulgaris, Scenedesmus subspicatus)
+
+Within each of these very broad taxonomic groups, an acute and a chronic endpoint are
+selected from the available test data. The selection is made from the most sensitive species tested
+within that organism group. If additional toxicity data for more species of organisms in a
+particular group are available, the selection need not be limited to the species listed above, but
+may be expanded to include data for other species/studies.
+Available scientific information from alternate sources (e.g. searches conducted using the
+ECOTOX database) is also examined for species within a
+taxonomic group for which other taxa are typically used as surrogates. For example, fish data are
+commonly used to evaluate impacts to amphibians. But, if toxicity data are available in the open
+literature on amphibians, these data may be used instead of the data on the surrogate species. In
+situations where such additional data are available, decisions are made regarding the quality and
+utility of such information in the risk assessment (e.g., a review of the validity and reliability of
+study protocols), which is consistent with the Agency’s risk assessment guidance. The extent to
+which such additional data are either employed or rejected is described through a transparent,
+concise discussion. Regardless of the extent of data beyond the regulation-required set of
+toxicity studies, the risk assessment relies on selection of endpoints from the most sensitive
+species tested in acceptable studies.
+
+Exposures estimated in the screening-level risk assessment for non-target organisms are
+likewise not specific to a given species. Aquatic organism (plant and animals) exposures are
+based on a set of standardized water body assumptions (water body size, watershed size,
+proximity to field, etc.) that result in high-end estimates of exposure.
+Estimates of exposure for terrestrial birds and mammals assume that animals are in the treatment
+area, and exposure estimates involve grouping taxa based on food preferences (e.g., obligate
+insectivores, herbivores, granivores) and generic weight classes. Exposure for terrestrial plants
+considers surface runoff from treated fields as well as direct application via pesticide spray drift.
+
+Risk characterization integrates the results of exposure and toxicity data to evaluate the
+likelihood of adverse ecological effects on non-target species. For most chemicals, the effects
+characterization is based on a deterministic approach using one point on a concentration-response
+curve (e.g., LC50). In this approach,the risk quotient (RQ) method is used to compare
+exposure to toxicity. Estimated environmental concentrations (EECs) based on maximum
+application rates are divided by acute and chronic toxicity values.
+
+In cases where screening-level acute RQs for a given animal group equal or exceed the
+endangered species acute LOC, the Agency uses the dose response relationship from the toxicity
+study used for calculating the RQ to estimate the probability of acute effects associated with an
+exposure equivalent to the EEC. This information serves as a guide to establish the need for and
+extent of additional analysis that may be performed using Services-provided “species profiles” as
+well as evaluations of the geographical and temporal nature of the exposure to ascertain if a not
+likely to adversely affect determination can be made. The degree to which additional analyses
+are performed is commensurate with the predicted probability of adverse effects from the
+comparison of dose response information with the EECs. The greater the probability that
+exposures will produce effects on a taxa, the greater the concern for potential indirect effects for
+listed species dependant upon that taxa, and therefore, the more intensive the analysis on the
+potential listed species of concern, their locations relative to the use site, and information
+regarding the use scenario (e.g., timing, frequency, and geographical extent of pesticide
+application).
+
+When the Agency can, upon additional analysis at the screening level, support a not
+likely to adversely affect determination, the basis for the conclusion is documented in the
+endangered species section of the risk assessment. When the screening level assessment
+indicates a not likely to adversely affect can not be determined with this level of refinement, the
+findings and rationale are documented and additional analysis of the geographical and temporal
+nature of the exposure, as well as more in-depth evaluations of the biological and ecological
+requirements of potentially indirectly impacted species are addressed to ascertain whether a not
+likely to adversely affect determination can be made.
+
+On top of these issues, the NAS report suggests adding population models and the ability to do uncertainty analyses
+to these combinations of calculations. Implementation of these suggested approaches requires
+upgrading the constituent models used in the ecological risk process to an integrated implementation that can be run
+in scalable environments. This approach is necessary in order to be able to run all the combinations of chemicals,
+species, watersheds and application scenarios that must be considered when assessing the risks from a registered
+chemical to endangered species.
 
 Reasons one model is determined to be better than another for this application
 ---------------------------------------------------------------------

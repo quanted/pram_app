@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>models.sip.sip_batchoutput &mdash; übertool alpha documentation</title>
+    <title>models.rice.rice_batchoutput &mdash; übertool alpha documentation</title>
     
     <link rel="stylesheet" href="../../../_static/ubertool.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -49,9 +49,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Source code for models.sip.sip_batchoutput</h1><div class="highlight"><pre>
+  <h1>Source code for models.rice.rice_batchoutput</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">.. module:: sip_batchoutput</span>
+<span class="sd">.. module:: rice_batchoutput</span>
 <span class="sd">   :synopsis: A useful module indeed.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -59,11 +59,13 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 
 
-<div class="viewcode-block" id="read_batch_csv"><a class="viewcode-back" href="../../../models.sip.html#models.sip.sip_batchoutput.read_batch_csv">[docs]</a><span class="k">def</span> <span class="nf">read_batch_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">):</span>
+<div class="viewcode-block" id="read_batch_csv"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_batchoutput.read_batch_csv">[docs]</a><span class="k">def</span> <span class="nf">read_batch_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;===== rice_batchoutput.read_batch_csv&quot;</span><span class="p">)</span>
     <span class="n">pd_obj</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-        <span class="n">skip_footer</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s">&#39;python&#39;</span><span class="p">)</span>
+        <span class="n">skip_footer</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s">&#39;python&#39;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;===== reading rice batch csv&quot;</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">pd_obj</span><span class="p">)</span>
     <span class="n">pd_obj</span> <span class="o">=</span> <span class="n">pd_obj</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">pd_obj</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">pd_obj</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">None</span>
@@ -72,11 +74,12 @@
     <span class="k">return</span> <span class="n">pd_obj</span>
 </div>
 <span class="nd">@require_POST</span>
-<div class="viewcode-block" id="sipBatchOutputPage"><a class="viewcode-back" href="../../../models.sip.html#models.sip.sip_batchoutput.sipBatchOutputPage">[docs]</a><span class="k">def</span> <span class="nf">sipBatchOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<div class="viewcode-block" id="riceBatchOutputPage"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_batchoutput.riceBatchOutputPage">[docs]</a><span class="k">def</span> <span class="nf">riceBatchOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;==== rice_batchoutput.riceBatchOutputPage&quot;</span><span class="p">)</span>
     <span class="n">csv</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">[</span><span class="s">&#39;upfile&#39;</span><span class="p">]</span>
     <span class="n">pd_obj</span> <span class="o">=</span> <span class="n">read_batch_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">)</span>
-
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">pd_obj</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">pd_obj</span></div>
 </pre></div>

@@ -59,85 +59,87 @@
 <span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">validators</span>
 <span class="kn">from</span> <span class="nn">models.forms</span> <span class="kn">import</span> <span class="n">validation</span>
 
-
-<span class="n">SELECT_RECEPTOR</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;Avian&#39;</span><span class="p">,</span><span class="s">&#39;Avian&#39;</span><span class="p">),(</span><span class="s">&#39;Mammalian&#39;</span><span class="p">,</span><span class="s">&#39;Mammalian&#39;</span><span class="p">),(</span><span class="s">&#39;Both&#39;</span><span class="p">,</span><span class="s">&#39;Both&#39;</span><span class="p">))</span>
-
-<span class="n">SELECT_HEIGHT</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;3.3&#39;</span><span class="p">,</span><span class="s">&#39;3.3&#39;</span><span class="p">),(</span><span class="s">&#39;1&#39;</span><span class="p">,</span><span class="s">&#39;1&#39;</span><span class="p">))</span>
-
-<span class="n">SELECT_DURATION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1.5&#39;</span><span class="p">,</span><span class="s">&#39;1.5&#39;</span><span class="p">),(</span><span class="s">&#39;0.5&#39;</span><span class="p">,</span><span class="s">&#39;0.5&#39;</span><span class="p">))</span>
+<span class="n">SELECT_RECEPTOR</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;Avian&#39;</span><span class="p">,</span> <span class="s">&#39;Avian&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Mammalian&#39;</span><span class="p">,</span> <span class="s">&#39;Mammalian&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Both&#39;</span><span class="p">,</span> <span class="s">&#39;Both&#39;</span><span class="p">))</span>
+<span class="n">SELECT_HEIGHT</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;3.3&#39;</span><span class="p">,</span> <span class="s">&#39;3.3&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;1&#39;</span><span class="p">))</span>
+<span class="n">SELECT_DURATION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1.5&#39;</span><span class="p">,</span> <span class="s">&#39;1.5&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;0.5&#39;</span><span class="p">,</span> <span class="s">&#39;0.5&#39;</span><span class="p">))</span>
+<span class="n">SELECT_VERSION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1.0&#39;</span><span class="p">,</span> <span class="s">&#39;1.0&#39;</span><span class="p">),)</span>
 
 
 <div class="viewcode-block" id="StirInp"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_parameters.StirInp">[docs]</a><span class="k">class</span> <span class="nc">StirInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">version_stir</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_VERSION</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Version&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.0&#39;</span><span class="p">)</span>
     <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;STIR Example&#39;</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s">&#39;STIR Example&#39;</span><span class="p">)</span>
+    <span class="c"># validators=[validators.validate_slug]) chokes on spaces</span>
     <span class="n">pc_code</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> 
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;PC Code&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;055459&#39;</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;PC Code&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s">&#39;055459&#39;</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
     <span class="n">application_rate</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Pesticide Application Rate (lbs ai/A)&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.107</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Pesticide Application Rate (lbs ai/A)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.107</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">column_height</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Direct Spray Column Height (m)&#39;</span><span class="p">,</span>
-            <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_HEIGHT</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;3.3&#39;</span><span class="p">)</span>    
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Direct Spray Column Height (m)&#39;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_HEIGHT</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s">&#39;3.3&#39;</span><span class="p">)</span>
     <span class="n">spray_drift_fraction</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Fraction of Spray Inhaled&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_range01</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Fraction of Spray Inhaled&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_range01</span><span class="p">])</span>
     <span class="n">direct_spray_duration</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Direct Spray Inhalation Duration (min)&#39;</span><span class="p">,</span> 
-            <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_DURATION</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.5&#39;</span><span class="p">)</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Direct Spray Inhalation Duration (min)&#39;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_DURATION</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.5&#39;</span><span class="p">)</span>
     <span class="n">molecular_weight</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Molecular Weight (g/mol)&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">308.14</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>   
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Molecular Weight (g/mol)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">308.14</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">vapor_pressure</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Vapor Pressure (torr)&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">9e-8</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Vapor Pressure (torr)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">9e-8</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">avian_oral_ld50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Lowest Avian Oral LD&lt;sub&gt;50&lt;/sub&gt; (mg/kg-bw)&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mi">2292</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Lowest Avian Oral LD&lt;sub&gt;50&lt;/sub&gt; (mg/kg-bw)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">2292</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">body_weight_assessed_bird</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Assessed Bird (kg)&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Assessed Bird (kg)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">body_weight_tested_bird</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Tested Bird (kg)&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.178</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Tested Bird (kg)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.178</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">mineau_scaling_factor</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Chemical Specific Mineau Scaling Factor&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.15&#39;</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthanequalto1</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Chemical Specific Mineau Scaling Factor&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.15&#39;</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthanequalto1</span><span class="p">])</span>
     <span class="n">mammal_inhalation_lc50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Lowest Mammal (Rat) Inhalation LC&lt;sub&gt;50&lt;/sub&gt; (mg/L)&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">3.38</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Lowest Mammal (Rat) Inhalation LC&lt;sub&gt;50&lt;/sub&gt; (mg/L)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">3.38</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">duration_mammal_inhalation_study</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Duration of Mammal (Rat) Inhalation Study (hr)&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Duration of Mammal (Rat) Inhalation Study (hr)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">body_weight_assessed_mammal</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Assessed Mammal (kg)&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Assessed Mammal (kg)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">body_weight_tested_mammal</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Tested Mammal (kg)&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Body Weight of Tested Mammal (kg)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">mammal_oral_ld50</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Lowest Mammal (Rat) Oral LD&lt;sub&gt;50&lt;/sub&gt; (mg/kg-bw)&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span></div>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Lowest Mammal (Rat) Oral LD&lt;sub&gt;50&lt;/sub&gt; (mg/kg-bw)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span></div>
 </pre></div>
 
           </div>

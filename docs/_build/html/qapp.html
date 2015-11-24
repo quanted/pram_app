@@ -95,12 +95,11 @@ Arlington, Virginia XXXXX USA</p>
 <h3>Distribution List (A3)<a class="headerlink" href="#distribution-list-a3" title="Permalink to this headline">¶</a></h3>
 <p>List of all individuals (and their role on the project) who will be provided copies of the approved QA Project
 Plan, including all persons responsible for implementation, including project managers, QA Managers, and
-representatives of all groups involved.</p>
-<p>Kate Sullivan
-Roy Sidle
+representatives of all groups involved.
 Bill Eckel
-Ed Odenkirchen
-Tom Steeger</p>
+Nelson Thurman
+John Johnston
+QA Manager</p>
 </div>
 <div class="section" id="project-task-organization-a4">
 <h3>Project/Task Organization (A4)<a class="headerlink" href="#project-task-organization-a4" title="Permalink to this headline">¶</a></h3>
@@ -128,7 +127,7 @@ lab and others identified by Bill Eckel of OPP/EFED)
 <p>Ancillary roles on the scrum team are:
 - Stakeholders: (Bill Eckel, Ed Odenkirchen, Dirk Young, Nelson Thurman, Ron Parker, Katrina White, others
 identified by Bill Eckel)
-- Managers: People who control the environment (Kate Sullivan [Branch Chief], Roy Sidle [Division Director],
+- Managers: People who control the environment (John Johnston [Branch Chief], Roy Sidle [Division Director],
 John Kenneke [CSS Matrix Interface], Tina Bohardi [CSS], Jim Cowles [Associate Director at EFED])</p>
 <p>Modern software development methods are used to develop the web application, proceeding according to the principles
 of “scrum” development, an iterative and incremental agile software development process for developing software
@@ -160,13 +159,12 @@ tasking, bug priority, task followup, etc. (contracted)</p>
 </ul>
 <p>EPA Managers:</p>
 <ul class="simple">
-<li>Mark Bagley [ERD Division Director]</li>
+<li>Gerald [CED Division Director]</li>
 <li>Tina Bohardi [CSS NPD]</li>
 <li>Jim Cowles [Associate Director at EFED]</li>
 <li>John Kenneke [CSS Matrix Interface]</li>
-<li>Matt Martin [CSS Ecological Modeling Project Lead]</li>
-<li>Sandy Raimondo [CSS Dashboards Project Lead]</li>
-<li>Kate Sullivan [EAB Branch Chief]</li>
+<li>Matt Etterson [CSS Ecological Modeling Project Lead]</li>
+<li>John Johnston [WEB Branch Chief]</li>
 </ul>
 </div>
 <div class="section" id="problem-definition-background-a5">
@@ -300,12 +298,42 @@ honey bee population dynamic models, and links to other online models and resour
 </div>
 <div class="section" id="types-of-decisions-that-may-be-made-as-a-result-of-this-project">
 <h4>Types of decisions that may be made as a result of this project<a class="headerlink" href="#types-of-decisions-that-may-be-made-as-a-result-of-this-project" title="Permalink to this headline">¶</a></h4>
-</div>
-<div class="section" id="names-of-those-responsible-for-making-these-decisions">
-<h4>Names of those responsible for making these decisions<a class="headerlink" href="#names-of-those-responsible-for-making-these-decisions" title="Permalink to this headline">¶</a></h4>
+<p>The EPA is dependent on multiple scientific computational models for the environmental regulatory process of chemicals
+and laws that codify ecological and human health protection standards. Laws include the Federal Insecticide, Fungicide,
+and Rodenticide Act (FIFRA), Endangered Species Act (ESA), Toxic Substances Control Act (TSCA) and the Federal Food,
+Drug and Cosmetic Act (FFDCA). More often than not, the effective basis of such standards are decisions about the
+selection and application of data and computational models. Over time, the relevant laws, data and computational
+models have evolved due to increased complexity of EPA regulations and scenario-dependent implementations. This
+complexity leaves a legacy of computational models, still relevant to the regulatory process, varied with incompatible
+computer languages and software that are not easily integrated or updated as the science evolves. These limitations
+are addressed by integrating EPA’s existing and developing regulatory models into a unified science application
+platform known as the ubertool.</p>
 </div>
 <div class="section" id="any-other-types-of-problems-that-the-project-may-address">
 <h4>Any other types of problems that the project may address<a class="headerlink" href="#any-other-types-of-problems-that-the-project-may-address" title="Permalink to this headline">¶</a></h4>
+<p>The science models in the ubertool provide testable predictions concerning chemical concentrations in environmental
+media, exposure doses, tissue residues and ultimately predictions of effects. These predictions are relevant for a
+number of ecological species under regulations that the EPA is responsible for - including FIFRA, ESA, FFDCA, and the
+FQPA. These model predictions can be tested by comparing them to relevant data from laboratory, field and/or modeling
+investigations. From an exposure perspective, improvements to this core set of models can come in different forms &#8211;
+they may include:</p>
+<ul class="simple">
+<li>better algorithms: algorithmic improvements to core EPA ecological models (e.g., updated versions of T-Rex, PRZM,</li>
+</ul>
+<p>EXAMS), many of which were initially developed at ORD, to provide better predictive capability or extend their use
+to new exposure settings,
+- identifying novel exposure areas: (receptors, environments) not adequately covered by the current set of ecological
+models (e.g., ongoing research for amphibians and honeybees),
+better input data: finding new data sources that improve ecological model (e.g., molecular bioassay endpoints, -omics
+applications, propose/modify/eliminate specific registrant data submittal requirements),
+- scaling exposure processes: enable applications of existing models in spatially and temporally realistic settings
+at scale (e.g., SAM applications for endangered species), and/or
+- replace existing models: evaluating proposed replacements for models that are currently used in pesticide
+registration decisions via model selection processes.
+All of these improvements require execution of the existing models in order to scientifically demonstrate model
+enhancements in a reproducible manner. The primary goal of these studies is to minimize false positive and false
+negative pesticide registration decisions made by the Agency, so the relevance of these types of scientific
+exercises is very high.</p>
 </div>
 <div class="section" id="background-information-on-the-problem">
 <h4>Background information on the problem<a class="headerlink" href="#background-information-on-the-problem" title="Permalink to this headline">¶</a></h4>
@@ -341,9 +369,38 @@ by a number of the ecological models.</p>
 </div>
 <div class="section" id="list-of-products-deliverables-and-milestones-to-be-completed-in-the-various-stages-of-the-project">
 <h4>List of products, deliverables, and milestones to be completed in the various stages of the project<a class="headerlink" href="#list-of-products-deliverables-and-milestones-to-be-completed-in-the-various-stages-of-the-project" title="Permalink to this headline">¶</a></h4>
+<p>The ubertool is developed in an iterative development environment, so that new releases of the web application are
+distributed every 3 weeks at the conclusion of each sprint.</p>
 </div>
 <div class="section" id="schedule-of-anticipated-start-and-completion-dates-for-the-milestones-and-deliverables-and-persons-responsible-for-each">
 <h4>Schedule of anticipated start and completion dates for the milestones and deliverables, and persons responsible for each<a class="headerlink" href="#schedule-of-anticipated-start-and-completion-dates-for-the-milestones-and-deliverables-and-persons-responsible-for-each" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Code all constituent (OPP/ORD) models in Python and Fortran based on available code, users’ manuals, and qapps into a single library (complete).</li>
+<li>Host all models in library on a back end rest server (bottle) so they can be called from a web browser session (complete).</li>
+<li>Create front end instances (django) for all the models so that they can be fed input data and run in a web browser (complete).</li>
+<li>Create parameter crosswalk between all model inputs and outputs for qaqc purposes (complete).</li>
+<li>Create database system (mongodb) to record individual model inputs and outputs persistently for all user-based execution (complete).</li>
+<li>Initiate OEI/NCC application deployment checklist process (complete): <a class="reference external" href="http://cfint.rtpnc.epa.gov/adc/reviewcenter/index.cfm?ADCNumber=3146">http://cfint.rtpnc.epa.gov/adc/reviewcenter/index.cfm?ADCNumber=3146</a></li>
+<li>Deploy front and back end model services to multiple CGI servers (complete).</li>
+<li>Use parameter crosswalk as template to collect qaqc input/output test case scenarios, 10 per model (complete).</li>
+<li>Public demonstration of tool to industry at EFED workshop (October 29, 2014) (complete): <a class="reference external" href="https://www.federalregister.gov/articles/2014/10/08/2014-24026/spatial-aquatic-model-development-notice-of-public-meeting">https://www.federalregister.gov/articles/2014/10/08/2014-24026/spatial-aquatic-model-development-notice-of-public-meeting</a></li>
+<li>Submit system security plan to OEI (complete).</li>
+<li>Submit syscat categorizations for all models to OSIM/OEI (complete).</li>
+<li>Pass system vulnerability scans performed by NCC (complete).</li>
+<li>Add disclaimers regarding beta status of models (complete).</li>
+<li>Setup dns, apache and nginx configurations so that epa can route traffic to appropriate cgi cloud hosted implementations (complete).</li>
+<li>Submit firewall rule request for ports 80, 443 (22) to allow public access. (complete, but temporary), available on intranet and internet at <a class="reference external" href="http://qed.epa.gov/ubertool">http://qed.epa.gov/ubertool</a></li>
+<li>Public workshop with industry and others providing comment on current status of tool (April 29, 2015) (complete): <a class="reference external" href="https://www.federalregister.gov/articles/2015/04/03/2015-07645/spatial-aquatic-model-development-notice-of-public-meeting">https://www.federalregister.gov/articles/2015/04/03/2015-07645/spatial-aquatic-model-development-notice-of-public-meeting</a></li>
+<li>Implement betatester password protected input pages to restrict public (internet, not intranet) execution of models to those with a password (will complete on 6/12/2015).</li>
+<li>Resubmit permanent firewall rule request for internet access (June 2015).</li>
+<li>Migration from CGI NCC contract to CGI general services contract, redeploy all servers to more modern (more secure) EPA red hat enterprise linux implementations (July 2015).</li>
+<li>Implement qa/qc testing against previously gathered test cases (mostly complete, but being refactored for efficiency). Automate for daily execution.</li>
+<li>Ongoing Spatial Aquatic Model code changes in collaboration with EFED (ongoing).</li>
+<li>SSL encryption of all traffic (port 443) (Fall 2015).</li>
+<li>NERL web application clearance process (to be defined by David Kryak et al) (Winter 2015-2016).</li>
+<li>Remove betatester authentication on approved models (Spring 2016).</li>
+<li>Public rollout of ubertool (late Spring 2016).</li>
+</ul>
 </div>
 </div>
 <div class="section" id="quality-objectives-and-criteria-for-model-inputs-outputs-a7">
@@ -351,9 +408,24 @@ by a number of the ecological models.</p>
 <div class="section" id="project-data-quality-objectives-dqos-performance-criteria-and-acceptance-criteria">
 <h4>Project data quality objectives (DQOs), performance criteria, and acceptance criteria<a class="headerlink" href="#project-data-quality-objectives-dqos-performance-criteria-and-acceptance-criteria" title="Permalink to this headline">¶</a></h4>
 <p>All model components will be developed using an appropriate approach to quality assurance and documentation.</p>
-<p>Description of task that needs to be addressed and the intended uses of the output of the modeling project
-to achieve the task
-&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</p>
+</div>
+<div class="section" id="description-of-task-that-needs-to-be-addressed-and-the-intended-uses-of-the-output-of-the-modeling-project-to-achieve-the-task">
+<h4>Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task<a class="headerlink" href="#description-of-task-that-needs-to-be-addressed-and-the-intended-uses-of-the-output-of-the-modeling-project-to-achieve-the-task" title="Permalink to this headline">¶</a></h4>
+<p>The EPA registers pesticides for use in the US under applicable federal laws. To assess potential risks, mathematical
+models are used to predict pesticide concentrations in different media and ultimately predict effects to non-target
+species.  The suite of models that the EPA uses has been in development since the 1980s, with a wide range of
+algorithmic complexity and technical implementation from Fortran executables to Microsoft Excel spreadsheets. We have
+updated these models to create an application programming interface (API) that is accessible via a web service
+implementation. Hosted in the cloud, the application combines relevant spatial information, chemical properties,
+ecological exposure parameters, pesticide use properties, and effects data into a decision support “dashboard.”
+The system is a platform-as-a-service implementation and is available to users through the use of modern web
+technologies that allow cloud-based ecological pesticide models and data to be accessed with a web browser.</p>
+<p>The larger outcome is that scientists with original ideas, models, data, and tools no longer have to secure significant
+resources for hardware and application programmers to ensure that “translational” research can find a use in regulatory
+decision support structures. This availability will lead to better data and model selection decisions and a more robust,
+defensible regulatory frameworks. The resulting dashboards can increase decision-making transparency and serve as a
+conduit for translating science improvements to the regulatory process &#8211; all while functioning in production mode as
+a form of “Science-as-a-Service” to provide the necessary assessment tools for environmental regulation.</p>
 <div class="section" id="ecological-models">
 <h5>Ecological Models<a class="headerlink" href="#ecological-models" title="Permalink to this headline">¶</a></h5>
 <p>A number of models are used to estimate risk to non-target species in this process.  These models are listed in Table
@@ -483,6 +555,30 @@ branch of the source code as the software is updated.  Software can be rolled ba
 the history of the software development.</p>
 <p>The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is
 cross-platform, flexible, and open source.</p>
+<p>Environmental models may require the ability to scale their implementation. This may be in response to a need to
+execute more complex, detailed applications and/or be responsive to multiple users in a distributed modeling setting.
+Regardless, such implementations may require a combination of significant core computing capacity and concurrency
+control that is difficult to achieve in a desktop environment. Scaling these models can present challenges, but
+may be necessary for Monte Carlo simulation, for higher spatial resolution and/or geographical scale, long time
+series modeling, and/or to account for multiple simultaneous users.</p>
+<p>This hands-on workshop will allow users to deploy a combination of modern technologies that can address these
+issues. Participants will quickly build a running instance on their laptop of the leading containerization technology,
+Docker, in order to deploy a set of environmental models.  Container-based technologies separate the application
+from the underlying infrastructure, just like virtual machines separate the host operating system from the underlying
+hardware. These technologies allow for the ability to build and configure an environmental model once, and then
+deploy and run the model anywhere. The core services consist of a daemon that is installed on a machine and a
+client that interacts with the daemon. A typical workflow then consists of a containerized image that is layered
+to contain the host operating system, environmental model(s), and all dependencies. Images are used to create
+containers that can be started, stopped, moved or deleted. This technology is supported by a registry system that
+allows for public or private access to repositories that store images as well as a system for automating building
+images. This lightweight approach is portable and scalable, with the ability to launch and shut down additional
+machines as needed.</p>
+<p>To fully leverage this technology, the models in the containerization image will be in the form of application
+programming interface (API) representation state transfer (RESTful) web services. We will address approaches for
+accessing these endpoints and leveraging their deployment within cloud environments, providing Models-as-a-Service.
+RESTful endpoints opens up a number of possibilities for scaling computations and allow for model interoperability
+possibilities at both the computational/ algorithmic  level and from a user interface (mobile, desktop or web)
+development standpoint.</p>
 </div>
 </div>
 <div class="section" id="special-training-requirements-certification-a8">
@@ -518,6 +614,7 @@ of the project.</p>
 </div>
 <div class="section" id="proper-document-control-and-distribution-procedures">
 <h4>Proper document control and distribution procedures<a class="headerlink" href="#proper-document-control-and-distribution-procedures" title="Permalink to this headline">¶</a></h4>
+<p>github</p>
 </div>
 <div class="section" id="details-on-document-storage">
 <h4>Details on document storage<a class="headerlink" href="#details-on-document-storage" title="Permalink to this headline">¶</a></h4>
@@ -587,10 +684,54 @@ a license.</p>
 </div>
 <div class="section" id="group-b-measurement-and-data-acquisition">
 <h2>GROUP B: Measurement and Data Acquisition<a class="headerlink" href="#group-b-measurement-and-data-acquisition" title="Permalink to this headline">¶</a></h2>
-<p>This chapter provides a summary of guidelines for preparing QA Project Plans in projects that
-involve model development, modification, or application.</p>
+<dl class="docutils">
+<dt>This project is based entirely on modeling with existing publicly available mathematical and empirical</dt>
+<dd>models and therefore follows the Guidance for Quality Assurance Project Plans for Modeling</dd>
+</dl>
+<p>EPA QA/G-5m (USEPA, 2002). The project relies exclusively on secondary sources of data, also
+referred to as non-direct measurements, for parameterization. Most of this information is submitted to the EPA from
+registrants or publicly available with their own documented quality control
+procedures. Some data utilized from public and private sources that may have less well
+documented quality assurance procedures.</p>
+<div class="section" id="sampling-process-design-b1">
+<h3>Sampling Process Design (B1)<a class="headerlink" href="#sampling-process-design-b1" title="Permalink to this headline">¶</a></h3>
+<p>This section pertains to the acquisition of primary data and is not applicable to this project.</p>
+</div>
+<div class="section" id="sampling-methods-b2">
+<h3>Sampling Methods (B2)<a class="headerlink" href="#sampling-methods-b2" title="Permalink to this headline">¶</a></h3>
+<p>This section pertains to the acquisition of primary data and is not applicable to this project.</p>
+</div>
+<div class="section" id="sampling-handling-and-custody-b3">
+<h3>Sampling Handling and Custody (B3)<a class="headerlink" href="#sampling-handling-and-custody-b3" title="Permalink to this headline">¶</a></h3>
+<p>This section pertains to the acquisition of primary data and is not applicable to this project.</p>
+</div>
+<div class="section" id="analytical-methods-b4">
+<h3>Analytical Methods (B4)<a class="headerlink" href="#analytical-methods-b4" title="Permalink to this headline">¶</a></h3>
+<p>This section pertains to the acquisition of primary data and is not applicable to this project.</p>
+</div>
+<div class="section" id="quality-control-b5">
+<h3>Quality Control (B5)<a class="headerlink" href="#quality-control-b5" title="Permalink to this headline">¶</a></h3>
+<p>This section pertains to the acquisition of primary data and is not applicable to this project.</p>
+</div>
+<div class="section" id="instrument-equipment-testing-inspection-and-maintenance-b6">
+<h3>Instrument/Equipment Testing, Inspection, and Maintenance (B6)<a class="headerlink" href="#instrument-equipment-testing-inspection-and-maintenance-b6" title="Permalink to this headline">¶</a></h3>
+<p>This section pertains to the acquisition of primary data and is not applicable to this project.</p>
+</div>
 <div class="section" id="calibration-b7">
 <h3>Calibration (B7)<a class="headerlink" href="#calibration-b7" title="Permalink to this headline">¶</a></h3>
+<p>A key component for science is reproducibility. So, the science infrastructure worthy of the award would not be a
+“secret science” application executed in an infrastructure that only we hold the key to, instead the computations
+would be (first internally, then) publicly available in a reproducible manner that facilitates the comparison of
+model predictions to available data. The statistical comparison of model predictions and the data would therefore be
+part of the same system. The only computational route for us in NERL to make scalable computations and large data
+sets available to all-comers is via cloud-hosted web applications. Desktop applications do not have the ability to
+scale and are not reasonably downloadable when they contain regional level high resolution data; OEI/OSIM
+interpretations of EPA guidance memos they wrote prevents us from serving data and running models on our NERL machines;
+and we do not have anywhere near the resources that it would take to have OEI/NCC/etc stand such a system up for us &#8211;
+nor do we feel they could provide a capable science solution or a sufficient front end even if we gave them a
+significant portion of our research resources. Therefore, I think we need to be the first to fully leverage the
+cloud within the Agency for model execution purposes. The CGI cloud contract is OEI approved and OEI is under a lot
+of pressure from outside the agency to show that they are migrating applications to the cloud.</p>
 <div class="section" id="objectives-of-model-calibration-activities-including-acceptance-criteria">
 <h4>Objectives of model calibration activities, including acceptance criteria<a class="headerlink" href="#objectives-of-model-calibration-activities-including-acceptance-criteria" title="Permalink to this headline">¶</a></h4>
 </div>
@@ -625,6 +766,11 @@ via ingestion of water by determining the appropriate allometric equations for e
 </div>
 <div class="section" id="non-direct-measurements-data-acquisition-requirements-b9">
 <h3>Non-direct Measurements (Data Acquisition Requirements) (B9)<a class="headerlink" href="#non-direct-measurements-data-acquisition-requirements-b9" title="Permalink to this headline">¶</a></h3>
+<p>The project will use secondary (non-direct) data from many sources and may generate large volumes of
+modeled data during implementation. Some parameters are accepted as inputs from users who access the web application.
+Other data sources undergo quality assurance analysis per their own project objectives. It is anticipated that all
+secondary data will be acquired in electronic format. Acquisition of data will be documented in
+electronic repositories.</p>
 <div class="section" id="types-of-data-needed-for-implementing-a-project-that-are-obtained-from-non-measurement-sources-such-as-databases-literature-files">
 <h4>Types of data needed for implementing a project that are obtained from non-measurement sources such as databases, literature files<a class="headerlink" href="#types-of-data-needed-for-implementing-a-project-that-are-obtained-from-non-measurement-sources-such-as-databases-literature-files" title="Permalink to this headline">¶</a></h4>
 </div>
@@ -646,6 +792,15 @@ via ingestion of water by determining the appropriate allometric equations for e
 </div>
 <div class="section" id="data-management-and-hardware-software-configuration-b10">
 <h3>Data Management and Hardware/Software Configuration (B10)<a class="headerlink" href="#data-management-and-hardware-software-configuration-b10" title="Permalink to this headline">¶</a></h3>
+<p>This project will will acquire data from secondary sources, manipulate
+secondary data to meet use requirements, generate data from model output, and create summary and
+processed files for further statistical and analytical treatment. It is anticipated that the project will acquire
+or generate little or no hardcopy data. The project will maintain a data management system that protects
+integrity of the data received and generated throughout the project. This includes file management
+systems, version control, archiving procedures, and quality assurance activities.</p>
+<p>The project team will conduct all work and store all electronic files on a common ORD server at the
+ERD/NERL Athens facility on the L drive. This server is backed up weekly
+and maintained by EPA’s ITI contractors under the supervision of OSIM.</p>
 <div class="section" id="data-management-element-b10a">
 <h4>Data Management (Element B10a)<a class="headerlink" href="#data-management-element-b10a" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="any-data-forms-checklists-on-line-interactive-screens-used-in-the-modeling-process">
@@ -689,6 +844,7 @@ via ingestion of water by determining the appropriate allometric equations for e
 </div>
 <div class="section" id="coding-standards">
 <h5>Coding standards<a class="headerlink" href="#coding-standards" title="Permalink to this headline">¶</a></h5>
+<p>PEP-8</p>
 </div>
 <div class="section" id="testing-plans">
 <h5>Testing plans<a class="headerlink" href="#testing-plans" title="Permalink to this headline">¶</a></h5>
@@ -698,6 +854,7 @@ via ingestion of water by determining the appropriate allometric equations for e
 </div>
 <div class="section" id="plans-for-a-users-manual">
 <h5>Plans for a user’s manual<a class="headerlink" href="#plans-for-a-users-manual" title="Permalink to this headline">¶</a></h5>
+<p>Online</p>
 </div>
 <div class="section" id="plans-for-a-maintenance-manual-explaining-software-logic-and-organization">
 <h5>Plans for a maintenance manual (explaining software logic and organization)<a class="headerlink" href="#plans-for-a-maintenance-manual-explaining-software-logic-and-organization" title="Permalink to this headline">¶</a></h5>
@@ -843,6 +1000,36 @@ analysis will be performed and the model processes will be reviewed and/or modif
 </div>
 <div class="section" id="frequency-content-and-distribution-of-reports">
 <h4>Frequency, content, and distribution of reports<a class="headerlink" href="#frequency-content-and-distribution-of-reports" title="Permalink to this headline">¶</a></h4>
+<p>Models will be published as publicly consumable APIs. APIs function by linking different information sources in a
+shared network of data and services. This ensures mutually beneficial sharing of authoritative data sets, services,
+and infrastructures within and outside of the Agency in a controllable manner. EPA chemical exposure and effects
+models have been developed at different times and based on different underlying technologies over the last 40 years,
+there are a number of legacy codes that underlay important scientific processes. The resulting set of Agency models
+differ in programming languages, deployment processes, operating systems, and other technical dependencies. These
+structural differences have hindered their accessibility, transparency, interoperability and scientific use.
+Modern API development that relies on REST services, remote procedure calls and cloud server infrastructures resolves
+these difference and enhance service and model reuse by regulatory and scientific communities. This approach addresses
+scientific web services security in a federally approved manner, provides “web analytics” &#8211; offering a supplement to
+journal metrics in documenting the impact of EPA models, and makes the algorithms more “discoverable” &#8211; thereby
+increasing their use.</p>
+<p>Of significant scientific importance is that providing an API and the underlying web services via a cloud computing
+environment provides computational scaling abilities not currently available for chemical modeling on the desktop by
+leveraging a cloud computing infrastructure (CGI). The federal government has mandated a “Cloud First” strategy to
+help federal agencies provide highly reliable, innovative services quickly and efficiently despite resource constraints.
+Cloud computing allows for the pooling of computer servers into an integrated system even if those servers are running
+different operating systems and applications with different technological dependencies. Computational power is
+increased or decreased depending on real-time workload requirements, and the system is continually reconfigured to
+meet new types of workloads. This scalability allows for other scientific programmers to leverage the tools, whether
+they are scientific applications of the models themselves, providing dashboard services, or embedding them within
+more complex regulatory workflows (e.g., ubertool). Cloud-based scientific applications include Monte Carlo
+applications to examine parameter sensitivity and model uncertainty, frequentist and Bayesian approaches for model
+calibration and selection/weighting, distributed spatial scaling of science algorithms, and/or data intensive
+algorithms run at high temporal resolution.</p>
+<p>Cloud-based API construction can enhance regulatory transparency, increase the impact of existing Agency science,
+and greatly accelerate the translation of new science and algorithms to regulatory application. The EPA has the
+opportunity to be in the vanguard due to the significant set of science models they “own”, the existing cloud
+infrastructure, and significant progress already made for FIFRA/ESA ecological models (front end, back end).
+Similar opportunities exist for human health models and ecological models for non-FIFRA/ESA applications.</p>
 </div>
 <div class="section" id="deviations-from-approved-qa-project-plan">
 <h4>Deviations from approved QA Project Plan<a class="headerlink" href="#deviations-from-approved-qa-project-plan" title="Permalink to this headline">¶</a></h4>
@@ -860,6 +1047,12 @@ analysis will be performed and the model processes will be reviewed and/or modif
 </div>
 <div class="section" id="group-d-data-validation-and-usability">
 <h2>GROUP D: Data Validation and Usability<a class="headerlink" href="#group-d-data-validation-and-usability" title="Permalink to this headline">¶</a></h2>
+<p>This project uses well-known ecological assessment models to estimate risk that have a history of extensive use by
+public agencies and universities and
+documentation in peer-reviewed literature. The modeling requires input data that must be acquired
+from federal, state, and local authorities, as well as private entities. The quality of data used for and
+generated during modeling will be reviewed and verified at multiple levels by project technical staff and
+QA officers, as described in detail in other sections.</p>
 <div class="section" id="departures-from-validation-criteria-d1">
 <h3>Departures from Validation Criteria (D1)<a class="headerlink" href="#departures-from-validation-criteria-d1" title="Permalink to this headline">¶</a></h3>
 <p>To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which
@@ -870,7 +1063,7 @@ will be addressed through consideration of alternative scenarios and parameter v
 structure as indicated by the feedback.</p>
 <div class="section" id="criteria-used-to-review-and-validate-accept-reject-or-qualify-model-components-such-as-theory-mathematical-procedures-code-and-calibration-convergence-criteria-etc">
 <h4>Criteria used to review and validate (accept, reject, or qualify) model components such as theory, mathematical procedures, code, and calibration (convergence criteria, etc.)<a class="headerlink" href="#criteria-used-to-review-and-validate-accept-reject-or-qualify-model-components-such-as-theory-mathematical-procedures-code-and-calibration-convergence-criteria-etc" title="Permalink to this headline">¶</a></h4>
-<p>This section is not related</p>
+<p>Model-dependent.</p>
 </div>
 <div class="section" id="criteria-used-to-review-and-validate-input-data">
 <h4>Criteria used to review and validate input data<a class="headerlink" href="#criteria-used-to-review-and-validate-input-data" title="Permalink to this headline">¶</a></h4>
@@ -879,7 +1072,27 @@ and validation will focus on the consistency of the input data used for calculat
 input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical
 comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the
 check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.</p>
+<p>Data review, verification, and validation will focus on acceptability of the input data used for calculations
+and modeling. All original and modified data files will be reviewed for input, handling, and calculation
+errors. Any issues identified through this review process will be evaluated and, if necessary, data will be
+corrected and analysis carried out using corrected data.</p>
+<p>Deviations from the approved QAPP could occur as the project proceeds. The need for adjustments may
+arise based on data validation and quality assurance checks, outcomes of model initialization and
+calibration steps, scenario development, and so on. Deviations will be documented in writing and
+reviewed by the ORD Management Team and the ORD Quality Team. The QAPP will be revised
+accordingly and recirculated for Quality Assurance review and approval.</p>
 <p>Figure #. User input table from the QA/QC page</p>
+<p>To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which
+validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come
+from verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations
+will be compared against simple analytical cases in order to localize the source of the error in the code.
+Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments
+to model structure as indicated by the feedback.</p>
+<p>Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification,
+and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an
+input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical
+comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the
+check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team</p>
 </div>
 <div class="section" id="criteria-used-to-test-model-performance">
 <h4>Criteria used to test model performance<a class="headerlink" href="#criteria-used-to-test-model-performance" title="Permalink to this headline">¶</a></h4>
@@ -894,7 +1107,15 @@ and check the consistency of model inputs and outputs among 10 scenarios; 2. lis
 include a thorough evaluation of content and/or a “spot-check” of calculated between output tables
 (Figure below) in the QA/QC page and verified EPA reports. Should a review identify an aberration, the reviewer
 will notify those responsible for taking corrective actions. The QA officers will be notified if corrective action
-is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel during the model calibration and validation stage of the project. In-progress assessments of validation issues will be discussed between a team including both technical and QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well any corrective actions that were implemented.</p>
+is potentially required. Evaluation of whether model components and their outputs are correct will be an ongoing process
+for QA personnel during the model calibration and validation stage of the project.
+In-progress assessments of validation issues will be discussed between a team including both technical and
+QA representatives from EPA. The results of performing evaluations will be logged and integrated into the project
+documentation at the conclusion of the project, as well any corrective actions that were implemented.</p>
+<p>Evaluation of whether model components and their outputs are satisfying the project objectives will be an ongoing
+process for QA personnel during model calibration and validation stages of the project. In-progress
+assessments of validation issues will be discussed by a team including technical and QA representatives
+from EPA.</p>
 <blockquote>
 <div>Figure #. Output tables from the QA/QC page</div></blockquote>
 </div>
@@ -916,6 +1137,7 @@ is potentially required. Evaluation of whether model components and their output
 </div>
 <div class="section" id="reconciliation-with-user-requirements-d3">
 <h3>Reconciliation with User Requirements (D3)<a class="headerlink" href="#reconciliation-with-user-requirements-d3" title="Permalink to this headline">¶</a></h3>
+<p>The objective of the project is to assess..</p>
 <div class="section" id="discussion-of-project-or-task-results">
 <h4>Discussion of project or task results<a class="headerlink" href="#discussion-of-project-or-task-results" title="Permalink to this headline">¶</a></h4>
 </div>
@@ -930,107 +1152,15 @@ is potentially required. Evaluation of whether model components and their output
 <div class="section" id="references">
 <h2>REFERENCES<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p>Apandi, T., 2009 Extreme Programming Pocket Guide. O’Reilly Media, Sebastopol, CA.</p>
+<p>Helms, J.C., 2013. Web-Based Application Quality Assurance Testing. Accessed at
+<a class="reference external" href="http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf">http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf</a> on 9/5/2013.</p>
+<p>USEPA, 2002. Guidance for Quality Assurance Project Plans for Modeling. EPA QA/G-5M.</p>
 <p>USEPA. 2004. Overview of the Ecological Risk Assessment Process in the Office of Pesticide Programs. U.S.
 Environmental Protection Agency, Office of Prevention, Pesticides and Toxic Substances, Office of Pesticide Programs,
 Washington DC. 100 pp. January 23, 2004.</p>
-<p>Helms, J.C., 2013. Web-Based Application Quality Assurance Testing. Accessed at
-<a class="reference external" href="http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf">http://ils.indiana.edu/faculty/hrosenba/www/S512/pdf/helm_web-qa.pdf</a> on 9/5/2013.</p>
-<p>U.S. FWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species Consultation Handbook:
+<p>USFWS and National Marine Fisheries Service (NMFS). 1998. Endangered Species Consultation Handbook:
 Procedures for Conducting Consultation and Conference Activities Under Section 7 of the Endangered Species Act.
 Final Draft. March 1998.</p>
-<p>Python uses web application frameworks that conform to a common standard called the Web Server Gateway Interface
-(WSGI).  We currently use two frameworks, webapp2 and Django, that help automate the integration of the Python
-backend and the web application frontend allowing for rapid development.</p>
-<p>Web hosting services provide the cloud storage and host the web site containing the web applications.  These web
-services are vital to the übertool in terms of accessibility and data processing.  The Python web application
-frameworks work with the web hosting services to ultimately provide the deliverable to the end user.</p>
-<p>The nature of web application development allows for the use of many cross-platform (i.e. Microsoft Windows,
-Apple OSX, Redhat Linux, etc.) software programs.  Python itself is a cross-platform language designed to
-easily integrate various programming languages.  The software development environment includes text editors
-such as Sublime Text, Python IDEs such as Spyder, Python extensions such as NumPy, and web browsers such as
-Microsoft’s Internet Explorer, Google’s Chrome, and Mozilla’s Firefox.</p>
-<p>The source code for the übertool is version controlled using GitHub.  GitHub manages all changes to the source
-code, allowing for simultaneous development from multiple developers on the same source code.  Each developer
-has his/her own “branch” of the source code on which they work.  These branches are merged back into the
-“trunk” or master branch of the source code as the software is updated.  Software can be rolled back as
-necessary as GitHub tracks the history of the software development.</p>
-<p>The übertool is requires database support for full functionality.  The database of choice is MongoDB as it is
-cross-platform, flexible, and open source.</p>
-<p>An updated version of the quality assurance plan will be developed annually and distributed by email. The date of
-the latest update will be included in the plan. Records of yearly quality assurance audits performed by the QA
-manager and QA officer are maintained by the QA manager. The auditor uses a checklist to mark which portions of
-the QAPP are followed, and to document deviations or absence of any QA measures. The results of such audits shall
-be documented and filed by the Quality Assurance Manager. The audit process itself shall be designed to objectively
-measure compliance with written procedures and assess the effectiveness of the process. The evaluation shall
-include interviews with development team members, and a review of research project work and quality records.</p>
-<p>Before submission of a paper to an archival journal, the work will be reviewed for conformance with the applicable
-quality assurance criteria. Program code and output will be maintained in electronic data files and backed up on cloud
-platform (www.github.com). These documents will be maintained for a minimum of 5 years after the completion of the
-project.</p>
-<blockquote>
-<div>Potential collaboration/development tools include:</div></blockquote>
-<ul class="simple">
-<li>kunagi (agile/scrum management system)</li>
-</ul>
-<p><a class="reference external" href="http://kunagi.org/">http://kunagi.org/</a>
-- chiliproject (bug and feature tracking for agile development and quality)
-<a class="reference external" href="https://www.chiliproject.org/">https://www.chiliproject.org/</a>
-- jenkins (continuous integration and testing server)
-<a class="reference external" href="http://jenkins-ci.org/">http://jenkins-ci.org/</a>
-- sonar (code quality/bug prevention)
-<a class="reference external" href="http://www.sonarsource.org/">http://www.sonarsource.org/</a>
-- teambox collaboration (ubertool project currently active)
-<a class="reference external" href="http://teambox.com/">http://teambox.com/</a>
-- Google hangout (requires a Google+ account)
-<a class="reference external" href="http://www.google.com/+/learnmore/hangouts/">http://www.google.com/+/learnmore/hangouts/</a></p>
-<p>Some of these development tools may be accessible through ubertool subdomains in order to allow access from within the
-EPA firewall.</p>
-<p>To evaluate the correctness of programmed models, a quality control/quality assurance (QA/QC) page is created, which
-validates models’ inputs and outputs towards given sample calculations. The sources of sample calculations come
-from verified EPA reports. Any discrepancies will trigger an in-depth review of the code. Intermediate computations
-will be compared against simple analytical cases in order to localize the source of the error in the code.
-Discrepancies will be addressed through consideration of alternative scenarios and parameter values and adjustments
-to model structure as indicated by the feedback.</p>
-<p>Input data will be obtained from verified EPA reports, which legitimizes the sources. Thus data review, verification,
-and validation will focus on the consistency of the input data used for calculations and modeling. As a result, an
-input table (Figure below) is present on the QA/QC page, including values used in the computation. Numerical
-comparisons between QA/QC input table and verified EPA reports will be executed. Any deviations will raise the
-check of the code and will be documented in writing and reviewed by the ORD Management team and the ORD Quality team.</p>
-<p>Model performance is checked through the ‘Batch’ mode, which sequentially calculates scenarios provided in the
-template. Two testing criterion are considered here: 1. repeat the same scenarios in the template (e.g. 10 times),
-and check the consistency of model inputs and outputs among 10 scenarios; 2. list a large number of scenarios (e.g.
-10,000) and estimate the time consumed during the computation.</p>
-<p>The integrity of model output data will be verified and validated by project technical staff. Reviews may include a
-thorough evaluation of content and/or a “spot-check” of calculated between output tables (Figure below) in the QA/QC
-page and verified EPA reports. Should a review identify an aberration, the reviewer will notify those responsible
-for taking corrective actions. The QA officers will be notified if corrective action is potentially required.
-Evaluation of whether model components and their outputs are correct will be an ongoing process for QA personnel
-during the model calibration and validation stage of the project. In-progress assessments of validation issues
-will be discussed between a team including both technical and QA representatives from EPA. The results of performing
-evaluations will be logged and integrated into the project documentation at the conclusion of the project, as well
-any corrective actions that were implemented.</p>
-<p>Overarching research question, derived from problem statement</p>
-<p>Intended outcome of this piece of research (usually to test hypotheses and define relationships), including an
-estimate of time and resources needed</p>
-<p>Specific mechanistic hypotheses, tests in summary, populations to which the hypotheses are to be applied</p>
-<p>A. List of variables and sources of variation, sorted byindepen- dent and dependent variables, with reasons for their
-selection</p>
-<ol class="upperalpha simple" start="2">
-<li>Other sources of variation and how they will be dealt with</li>
-</ol>
-<p>C. Study design and analysis, including models, statistical tests if used, detailed analytical procedures, graphs of
-potential outcomes</p>
-<p>D. Field, laboratory, and computational procedures, in sufficient detail so that someone other than the author could
-do the study</p>
-<ol class="upperalpha simple">
-<li>A comprehensive three-column budget for the duration of the study</li>
-</ol>
-<p>B. A schedule of tasks with initiation and completion target dates, with designated responsibilities and reporting
-requirements and dates</p>
-<ol class="upperalpha simple">
-<li>Intended disposition of research results, in terms of audience, publication type, and timing</li>
-<li>Fiscal, accounting, and procedural reporting requirements and how they will be met</li>
-</ol>
 </div>
 </div>
 
@@ -1060,7 +1190,6 @@ requirements and dates</p>
 <li><a class="reference internal" href="#definition-of-the-population-the-problem-targets-and-what-measures-within-this-population-the-problem-addresses">Definition of the population the problem targets and what measures within this population the problem addresses</a></li>
 <li><a class="reference internal" href="#reason-the-project-includes-a-modeling-approach-to-address-the-problem-is-it-a-new-predictive-tool">Reason the project includes a modeling approach to address the problem (is it a new predictive tool?)</a></li>
 <li><a class="reference internal" href="#types-of-decisions-that-may-be-made-as-a-result-of-this-project">Types of decisions that may be made as a result of this project</a></li>
-<li><a class="reference internal" href="#names-of-those-responsible-for-making-these-decisions">Names of those responsible for making these decisions</a></li>
 <li><a class="reference internal" href="#any-other-types-of-problems-that-the-project-may-address">Any other types of problems that the project may address</a></li>
 <li><a class="reference internal" href="#background-information-on-the-problem">Background information on the problem</a></li>
 <li><a class="reference internal" href="#reasons-the-project-is-important-how-it-supports-other-existing-research-programs-or-regulations">Reasons the project is important, how it supports other existing research, programs, or regulations</a></li>
@@ -1075,7 +1204,8 @@ requirements and dates</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#quality-objectives-and-criteria-for-model-inputs-outputs-a7">Quality Objectives and Criteria for Model Inputs/Outputs (A7)</a><ul>
-<li><a class="reference internal" href="#project-data-quality-objectives-dqos-performance-criteria-and-acceptance-criteria">Project data quality objectives (DQOs), performance criteria, and acceptance criteria</a><ul>
+<li><a class="reference internal" href="#project-data-quality-objectives-dqos-performance-criteria-and-acceptance-criteria">Project data quality objectives (DQOs), performance criteria, and acceptance criteria</a></li>
+<li><a class="reference internal" href="#description-of-task-that-needs-to-be-addressed-and-the-intended-uses-of-the-output-of-the-modeling-project-to-achieve-the-task">Description of task that needs to be addressed and the intended uses of the output of the modeling project to achieve the task</a><ul>
 <li><a class="reference internal" href="#ecological-models">Ecological Models</a></li>
 <li><a class="reference internal" href="#database-sources">Database Sources</a></li>
 </ul>
@@ -1110,6 +1240,12 @@ requirements and dates</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#group-b-measurement-and-data-acquisition">GROUP B: Measurement and Data Acquisition</a><ul>
+<li><a class="reference internal" href="#sampling-process-design-b1">Sampling Process Design (B1)</a></li>
+<li><a class="reference internal" href="#sampling-methods-b2">Sampling Methods (B2)</a></li>
+<li><a class="reference internal" href="#sampling-handling-and-custody-b3">Sampling Handling and Custody (B3)</a></li>
+<li><a class="reference internal" href="#analytical-methods-b4">Analytical Methods (B4)</a></li>
+<li><a class="reference internal" href="#quality-control-b5">Quality Control (B5)</a></li>
+<li><a class="reference internal" href="#instrument-equipment-testing-inspection-and-maintenance-b6">Instrument/Equipment Testing, Inspection, and Maintenance (B6)</a></li>
 <li><a class="reference internal" href="#calibration-b7">Calibration (B7)</a><ul>
 <li><a class="reference internal" href="#objectives-of-model-calibration-activities-including-acceptance-criteria">Objectives of model calibration activities, including acceptance criteria</a></li>
 <li><a class="reference internal" href="#frequency-of-model-calibration-activities">Frequency of model calibration activities</a></li>

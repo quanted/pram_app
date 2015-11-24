@@ -84,11 +84,40 @@
 <dd></dd></dl>
 
 </div>
-<div class="section" id="models-earthworm-earthworm-parameters-module">
-<h2>models.earthworm.earthworm_parameters module<a class="headerlink" href="#models-earthworm-earthworm-parameters-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.earthworm.earthworm_parameters">
+<span id="models-earthworm-earthworm-parameters-module"></span><h2>models.earthworm.earthworm_parameters module<a class="headerlink" href="#module-models.earthworm.earthworm_parameters" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-earthworm_parameters"></span><dl class="class">
+<dt id="models.earthworm.earthworm_parameters.EarthwormInp">
+<em class="property">class </em><code class="descclassname">models.earthworm.earthworm_parameters.</code><code class="descname">EarthwormInp</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/earthworm/earthworm_parameters.html#EarthwormInp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.earthworm.earthworm_parameters.EarthwormInp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.earthworm.earthworm_parameters.EarthwormInp.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('chemical_name', &lt;django.forms.fields.CharField object at 0x0000000007BC3FD0&gt;), ('k_ow', &lt;django.forms.fields.FloatField object at 0x0000000007BC3CC0&gt;), ('l_f_e', &lt;django.forms.fields.FloatField object at 0x0000000007BC3E80&gt;), ('c_s', &lt;django.forms.fields.FloatField object at 0x0000000007BC3C18&gt;), ('k_d', &lt;django.forms.fields.FloatField object at 0x0000000007BC3D30&gt;), ('p_s', &lt;django.forms.fields.FloatField object at 0x0000000007BC3198&gt;)])</em><a class="headerlink" href="#models.earthworm.earthworm_parameters.EarthwormInp.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.earthworm.earthworm_parameters.EarthwormInp.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('chemical_name', &lt;django.forms.fields.CharField object at 0x0000000007BC3FD0&gt;), ('k_ow', &lt;django.forms.fields.FloatField object at 0x0000000007BC3CC0&gt;), ('l_f_e', &lt;django.forms.fields.FloatField object at 0x0000000007BC3E80&gt;), ('c_s', &lt;django.forms.fields.FloatField object at 0x0000000007BC3C18&gt;), ('k_d', &lt;django.forms.fields.FloatField object at 0x0000000007BC3D30&gt;), ('p_s', &lt;django.forms.fields.FloatField object at 0x0000000007BC3198&gt;)])</em><a class="headerlink" href="#models.earthworm.earthworm_parameters.EarthwormInp.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.earthworm.earthworm_parameters.EarthwormInp.media">
+<code class="descname">media</code><a class="headerlink" href="#models.earthworm.earthworm_parameters.EarthwormInp.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="models-earthworm-earthworm-qaqc-module">
-<h2>models.earthworm.earthworm_qaqc module<a class="headerlink" href="#models-earthworm-earthworm-qaqc-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.earthworm.earthworm_qaqc">
+<span id="models-earthworm-earthworm-qaqc-module"></span><h2>models.earthworm.earthworm_qaqc module<a class="headerlink" href="#module-models.earthworm.earthworm_qaqc" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="models.earthworm.earthworm_qaqc.earthwormQaqc">
+<code class="descclassname">models.earthworm.earthworm_qaqc.</code><code class="descname">earthwormQaqc</code><span class="sig-paren">(</span><em>model</em>, <em>csv_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/earthworm/earthworm_qaqc.html#earthwormQaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.earthworm.earthworm_qaqc.earthwormQaqc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in QAQC CSV as Pandas DataFrame, removing 
+any uneeded columns, setting the index_col name 
+to None, and renumbering the data columns.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="models-earthworm-earthworm-tables-module">
 <h2>models.earthworm.earthworm_tables module<a class="headerlink" href="#models-earthworm-earthworm-tables-module" title="Permalink to this headline">¶</a></h2>
@@ -115,8 +144,8 @@
 <li><a class="reference internal" href="#module-models.earthworm.earthworm_input">models.earthworm.earthworm_input module</a></li>
 <li><a class="reference internal" href="#models-earthworm-earthworm-model-module">models.earthworm.earthworm_model module</a></li>
 <li><a class="reference internal" href="#module-models.earthworm.earthworm_output">models.earthworm.earthworm_output module</a></li>
-<li><a class="reference internal" href="#models-earthworm-earthworm-parameters-module">models.earthworm.earthworm_parameters module</a></li>
-<li><a class="reference internal" href="#models-earthworm-earthworm-qaqc-module">models.earthworm.earthworm_qaqc module</a></li>
+<li><a class="reference internal" href="#module-models.earthworm.earthworm_parameters">models.earthworm.earthworm_parameters module</a></li>
+<li><a class="reference internal" href="#module-models.earthworm.earthworm_qaqc">models.earthworm.earthworm_qaqc module</a></li>
 <li><a class="reference internal" href="#models-earthworm-earthworm-tables-module">models.earthworm.earthworm_tables module</a></li>
 <li><a class="reference internal" href="#module-models.earthworm.views">models.earthworm.views module</a></li>
 <li><a class="reference internal" href="#module-models.earthworm">Module contents</a></li>

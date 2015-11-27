@@ -1,4 +1,5 @@
-Django>=1.8.2
+beautifulsoup4
+django
 nose
 numpy
 pandas

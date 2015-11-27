@@ -534,7 +534,7 @@ try {
 	var winleft = (browserWidth / 2) - 220 + "px";
 	var wintop = (browserHeight / 2) - 30 + "px";
 	// Model name
-	var noOfUndScr = pathSlice.split('_').length
+	var noOfUndScr = pathSlice.split('_').length;
 	var model;
 	if (noOfUndScr > 2) {
 		model = pathSlice.split('_').slice(0,noOfUndScr-1).join('_');

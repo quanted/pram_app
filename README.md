@@ -7,7 +7,7 @@ Outside of PyCharm - running servers from command line:
 #to run the front end server on local port 8080
 cd ubertool_eco
 python manage.py runserver 8080
-visit http://127.0.0.1:8080/ in your browser
+visit http://127.0.0.1:8080/ubertool in your browser
 
 #optional: run mongo
 mongod --dbpath “c:\path\to\MongoDB\data”

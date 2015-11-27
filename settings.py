@@ -79,7 +79,8 @@ INSTALLED_APPS = (
     #'mod_wsgi.server',  # Only needed for mod_wsgi express (Python driver for Apache) e.g. on the production server
     'docs',
     'models.ore',
-    'models.hwbi'
+    'models.hwbi',
+    'rest_framework_swagger'
 )
 
 MIDDLEWARE_CLASSES = (

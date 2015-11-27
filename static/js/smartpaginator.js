@@ -201,7 +201,7 @@
                             else {
                                 btnLast.css('display', '').addClass('disabled');
                             }
-                        };
+                        }
                     }
                     else {
                         if (!settings.controlsalways) {

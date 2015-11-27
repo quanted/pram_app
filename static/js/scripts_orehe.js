@@ -39,7 +39,7 @@ $(document).ready(function() {
             var uptab_pool = ["scenario"];
             var vis_list = [".scenario"];
             $('input[name="scenario_cm"]:checked').each(function () {
-                selec_temp = $(this).val()
+                selec_temp = $(this).val();
                 tab_pool.push(selec_temp);
                 uptab_pool.push(selec_temp.slice(4));
                 vis_list.push("."+selec_temp.slice(4));
@@ -69,7 +69,7 @@ $(document).ready(function() {
             var uptab_pool = ["scenario"];
             var vis_list = [".scenario"];
             $('input[name="scenario_cm"]:checked').each(function () {
-                selec_temp = $(this).val()
+                selec_temp = $(this).val();
                 tab_pool.push(selec_temp);
                 uptab_pool.push(selec_temp.slice(4));
                 vis_list.push("."+selec_temp.slice(4));

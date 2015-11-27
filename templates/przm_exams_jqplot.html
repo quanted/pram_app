@@ -141,7 +141,7 @@ $(document).ready(function(){
                 placement: 'inside',
                 fontSize: '11px'
             } 
-        })
+        });
 
     var Lim_ins =[];
     var Lim_24h =[];
@@ -174,9 +174,8 @@ $(document).ready(function(){
       Ben_60d.push([i/30, s16[i]]);
       Ben_90d.push([i/30, s17[i]]);
       Ben_y.push([i/30, s18[i]]);
-    };
-
-      $.jqplot('chart4', [Lim_ins, Lim_24h, Lim_96h, Lim_21d, Lim_60d, Lim_90d, Lim_y], {
+    }
+    $.jqplot('chart4', [Lim_ins, Lim_24h, Lim_96h, Lim_21d, Lim_60d, Lim_90d, Lim_y], {
       seriesDefaults: { 
           pointLabels: { show:false } 
           },

@@ -1,11 +1,17 @@
 beautifulsoup4
 django
+django-rest-swagger
+html5lib
 nose
 numpy
 pandas
+pillow
+pypdf2
 pytz
 requests
+reportlab
 selenium
 Sphinx
+xhtml2pdf
 xlsxwriter
 

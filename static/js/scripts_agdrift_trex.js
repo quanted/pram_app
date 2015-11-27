@@ -59,28 +59,28 @@ $(document).ready(function() {
             $('#id_row_sp').closest('tr').hide();
             $('#id_Foliar_dissipation_half_life').closest('tr').hide();
             $('#id_percent_incorporated').closest('tr').hide();
-            $('.tab_Application').show()
-            $('#rate_head').text('Rate (fl oz/cwt)')
-            $('#id_noa').val(1)
+            $('.tab_Application').show();
+            $('#rate_head').text('Rate (fl oz/cwt)');
+            $('#id_noa').val(1);
             $("#id_noa").prop("disabled", true);
             while (i-1 > 1) {
                 $(".tab_Application tr:last").remove();
                 i=i-1
             }
 
-            $('#id_maximum_seedling_rate_per_use').val($('#id_seed_crop').val())
-            $('#id_seed_crop_v').val($('#id_seed_crop :selected').text())
+            $('#id_maximum_seedling_rate_per_use').val($('#id_seed_crop').val());
+            $('#id_seed_crop_v').val($('#id_seed_crop :selected').text());
 
             $('#id_seed_crop').change(function () {
-                $('#id_maximum_seedling_rate_per_use').val($(this).val())
+                $('#id_maximum_seedling_rate_per_use').val($(this).val());
                 $('#id_seed_crop_v').val($('#id_seed_crop :selected').text())
             })
         }
         else if ($(this).val() == 'Row/Band/In-furrow-Granular'){
-            $('.tab_Application').show()
-            $('#rate_head').text('Rate (lb ai/acre)')
+            $('.tab_Application').show();
+            $('#rate_head').text('Rate (lb ai/acre)');
             $("#id_noa").prop("disabled", false);
-            $('.seed').remove()
+            $('.seed').remove();
             $('#id_seed_treatment_formulation_name').closest('tr').hide(); 
             $('#id_maximum_seedling_rate_per_use').closest('tr').hide();
             $('#id_density_of_product').closest('tr').hide();
@@ -91,10 +91,10 @@ $(document).ready(function() {
             $('#id_row_sp').closest('tr').show();
         }
          else if ($(this).val() == 'Row/Band/In-furrow-Liquid'){
-            $('.tab_Application').show()
-            $('#rate_head').text('Rate (lb ai/acre)')
+            $('.tab_Application').show();
+            $('#rate_head').text('Rate (lb ai/acre)');
             $("#id_noa").prop("disabled", false);
-            $('.seed').remove()
+            $('.seed').remove();
             $('#id_seed_treatment_formulation_name').closest('tr').hide(); 
             $('#id_maximum_seedling_rate_per_use').closest('tr').hide();
             $('#id_density_of_product').closest('tr').hide();
@@ -105,10 +105,10 @@ $(document).ready(function() {
             $('#id_row_sp').closest('tr').show();
         }
         else{
-            $('.tab_Application').show()
-            $('#rate_head').text('Rate (lb ai/acre)')
+            $('.tab_Application').show();
+            $('#rate_head').text('Rate (lb ai/acre)');
             $("#id_noa").prop("disabled", false);
-            $('.seed').remove()
+            $('.seed').remove();
             $('#id_seed_treatment_formulation_name').closest('tr').hide(); 
             $('#id_maximum_seedling_rate_per_use').closest('tr').hide();
             $('#id_density_of_product').closest('tr').hide();
@@ -161,7 +161,7 @@ $(document).ready(function() {
             i=i-1
         }
         $('</table>').appendTo('.tab_Application');
-    })
+    });
 
     $('#id_Species_of_the_tested_bird_avian_ld50').change(function() { 
         if ($(this).val() == "Bobwhite quail"){

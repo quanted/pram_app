@@ -18,7 +18,7 @@ $(document).ready(function(){
    	var wl_out = $.parseJSON($('#wl_out').attr('data-val'));
    	var ml_out = $.parseJSON($('#ml_out').attr('data-val'));
    	var to_out = $.parseJSON($('#to_out').attr('data-val'));
-		var k=1
+		var k=1;
 		while (k <= nof_out){
 	  $('<tr><td width=50>Event'+k+'</td><td width=50>'+nod_out[k-1]+'</td><td width=50>'+fl_out[k-1]+'</td><td width=50>'+wl_out[k-1]+'</td><td width=50>'+ml_out[k-1]+'</td><td width=50>'+to_out[k-1]+'</td></tr>').appendTo('.out_floods');
 		var k=k+1;
@@ -96,12 +96,12 @@ $(document).ready(function(){
       var values_max = $("#date_range_slider_1").dateRangeSlider("values").max;
       var range_interval = $("#display_interval_1").val();
 
-      var raw_min = String(values_min)
+      var raw_min = String(values_min);
       var raw_min_s = raw_min.split(" ");
       var new_min_s = raw_min_s.slice(1,4);
       var mydate_min = $D(new_min_s.join(" "));
 
-      var raw_max = String(values_max)
+      var raw_max = String(values_max);
       var raw_max_s = raw_max.split(" ");
       var new_max_s = raw_max_s.slice(1,4);
       var mydate_max = $D(new_max_s.join(" "));
@@ -174,8 +174,7 @@ $(document).ready(function(){
                 fontSize: '11px'
             }
         });
-    };
-
+    }
     function createplot2(data1, data2, range_min, range_max, range_interval) {
       $.jqplot.config.enablePlugins = true;
         $('#chart2').empty();
@@ -221,8 +220,7 @@ $(document).ready(function(){
                 fontSize: '11px'
             }
         });
-    };
-
+    }
     function createplot3(data1, data2, range_min, range_max, range_interval) {
       $.jqplot.config.enablePlugins = true;
         $('#chart3').empty();
@@ -268,5 +266,5 @@ $(document).ready(function(){
                 fontSize: '11px'
             }
         });
-    };
+    }
 });

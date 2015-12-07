@@ -9,10 +9,12 @@ test = {}
 
 rooturl_qed = ["http://qed.epa.gov/ubertool/"]
 rooturl_qedinternal = ["http://qedinternal.epa.gov/ubertool/"]
-#models = ["asdf/", "sip/", "stir/", "rice/", "terrplant/", "trex2/", "therps/", "iec/",
- #         "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
-  #        "rice/", "kabam/", "pfam/", "sam/"]
-models = ["asdf/", "sip/"]
+rooturl_ippublic = ["http://134.67.114.3/ubertool"]
+rooturl_ipintranet = ["http://134.67.114.1/"]
+
+models = ["asdf", "sip/", "stir/", "rice/", "terrplant/", "trex2/", "therps/", "iec/",
+          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
+          "rice/", "kabam/", "pfam/", "sam/"]
 pages = ["", "description", "input", "algorithms", "references", "qaqc",
          "batchinput", "history"]
 
@@ -22,17 +24,26 @@ model_pages_qed = [r + m + p for r in rooturl_qed for m in models for p in pages
 model_pages_qedinternal = [r + m + p for r in rooturl_qedinternal for m in models for p in pages]
 #print(model_pages_qedinternal)
 
+model_pages_ipintranet = [r + m + p for r in rooturl_ipintranet for m in models for p in pages]
+
+model_pages_ippublic = [r + m + p for r in rooturl_ippublic for m in models for p in pages]
+
 class TestQEDHost(unittest.TestCase):
     def setup(self):
         pass
 
-    def test_qed(self):
+    def test_qed_200(self):
         try:
             response = [requests.get(m).status_code for m in model_pages_qed]
-            print(response)
-            #print(response.status_code)
-            #npt.assert_array_equal(3, 3, '', True)
             npt.assert_array_equal(response, 200, '200 error', True)
+        finally:
+            pass
+        return
+
+    def test_qed_redirect(self):
+        try:
+            response = [requests.get(m).is_redirect for m in model_pages_qed]
+            npt.assert_array_equal(response, False)
         finally:
             pass
         return
@@ -40,25 +51,10 @@ class TestQEDHost(unittest.TestCase):
     def test_qed_404(self):
         try:
             response = [requests.get(m) for m in model_pages_qed]
-            #print(response[6].content)
-            #beautiful soup to check the web page content
-            #soup = BeautifulSoup(r) for r in response.content
-            #vectorize
             soup_content = [BeautifulSoup(r.content, "html.parser") for r in response]
-            #soup = BeautifulSoup(response[15].content, "html.parser")
-            #print (response[3].content)
             soup_N404s = [len(s.findAll('img',src='/static/images/404error.png')) for s in soup_content]
-            #boo404 = (len(soup_content.findAll('img',src='/static/images/404error.png'))>0)
             boo404 = [s>0 for s in soup_N404s]
-            # print boo404
             npt.assert_array_equal(boo404, True)
-            #soup.find('/static/images/404error.png')
-            #soup.find('/static/images/404error.png')
-            #if ErrorFound:
-            #    print (response)
-            #boolean
-            #npt.assert_array_equal(response, '/static/images/404error.png', '404 error', True)
-            #npt.assert_array_equal(response, 200, '200 error', True)
         finally:
             pass
         return
@@ -66,6 +62,26 @@ class TestQEDHost(unittest.TestCase):
     def test_qedinternal(self):
         try:
             response = [requests.get(m).status_code for m in model_pages_qedinternal]
+            print(response)
+            #npt.assert_array_equal(3, 3, '', True)
+            npt.assert_array_equal(response, 200, '200 error', True)
+        finally:
+            pass
+        return
+
+    def test_ipintranet(self):
+        try:
+            response = [requests.get(m).status_code for m in model_pages_ipintranet]
+            print(response)
+            #npt.assert_array_equal(3, 3, '', True)
+            npt.assert_array_equal(response, 200, '200 error', True)
+        finally:
+            pass
+        return
+
+    def test_ippublic(self):
+        try:
+            response = [requests.get(m).status_code for m in model_pages_ippublic]
             print(response)
             #npt.assert_array_equal(3, 3, '', True)
             npt.assert_array_equal(response, 200, '200 error', True)

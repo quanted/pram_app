@@ -1,8 +1,12 @@
 from django.template.loader import render_to_string
 from django.http import HttpResponse
-import importlib
+from django.shortcuts import redirect
 import linksLeft
 import os
+
+
+def ecoLandingRedirect(request):
+    return redirect('/ubertool')
 
 def ecoLandingPage(request):
     text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'views/main_text.txt'),'r')
@@ -26,7 +30,8 @@ def ecoLandingPage(request):
     return response
 
 def ubertoolLandingPage(request):
-    html = render_to_string('00landing_page.html', {'title':'Ubertool'})
+    # html = render_to_string('00landing_page_qed.html', { 'title': 'Ubertool' })
+    html = render_to_string('00landing_page_qed_slides.html', { 'title': 'Ubertool' })
 
     response = HttpResponse()
     response.write(html)

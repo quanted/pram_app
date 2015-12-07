@@ -26,11 +26,11 @@
     <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
 <!-- Browser FAVICON -->
-  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,15 +39,15 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.forms.validation</h1><div class="highlight"><pre>
 <span class="c"># -*- coding: utf-8 -*-</span>
@@ -148,7 +148,7 @@
 <span class="sd">	:param value: Form input field value</span>
 <span class="sd">	:raises: ValidationError</span>
 <span class="sd">	&quot;&quot;&quot;</span>
-	<span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+	<span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
 		<span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">u&#39;Value must be positive&#39;</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="validate_greaterthanequalto1"><a class="viewcode-back" href="../../../models.forms.html#models.forms.validation.validate_greaterthanequalto1">[docs]</a><span class="k">def</span> <span class="nf">validate_greaterthanequalto1</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
@@ -178,15 +178,23 @@
 	<span class="k">if</span> <span class="o">-</span><span class="mi">90</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="mi">90</span><span class="p">:</span>
 		<span class="k">pass</span>
 	<span class="k">else</span><span class="p">:</span>
-		<span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">u&#39;Range between -90 and 90&#39;</span><span class="p">)</span></div>
+		<span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">u&#39;Range between -90 and 90&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="validate_always_pass"><a class="viewcode-back" href="../../../models.forms.html#models.forms.validation.validate_always_pass">[docs]</a><span class="k">def</span> <span class="nf">validate_always_pass</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; Form Validation Rule: A by-bass validators that always returns True</span>
+
+<span class="sd">	:param value: Form input field value</span>
+<span class="sd">	:raises: ValidationError</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -203,7 +211,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -212,13 +220,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

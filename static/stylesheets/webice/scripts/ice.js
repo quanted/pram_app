@@ -8,8 +8,8 @@ var chosenSurrogate = '';
 var chosenPredicted = '';
 var chosenFirst = '';
 //var fileName = file.split("=")[1]+".xml";
-var SurrogateArray = new Array();
-var PredictedArray = new Array();
+var SurrogateArray = [];
+var PredictedArray = [];
 var surrXmlDoc; 
 var predXmlDoc; 
 var time1;
@@ -81,7 +81,7 @@ function loadSurr()
 {
 	if (document.getElementById('Surrogate'))
 	{
-		SurrDup = new Array();
+		SurrDup = [];
 		SurrogateArray.length = 0;
 		
 		if(surrXmlDoc.getElementsByTagName("surrogate")[0].childNodes.length > 1)
@@ -128,7 +128,7 @@ function loadPred()
 {
 	if (document.getElementById('Predicted'))
 	{
-		PredDup = new Array();
+		PredDup = [];
 		PredictedArray.length = 0;
 		
 		if(predXmlDoc.getElementsByTagName("predicted")[0].childNodes.length > 1)

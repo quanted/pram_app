@@ -5,8 +5,8 @@
     <h3 class="headerbar">{{ key|safe }}</h3>
         <ul>
             {% for valueKey, valueValue in value.items %}{% if forloop.last %}
-            <li><a href="/eco/{{ valueValue }}" id="{{ valueValue }}" class="fadeMenu submenu_last">{{ valueKey|safe }}</a></li>{% else %}
-            <li><a href="/eco/{{ valueValue }}" id="{{ valueValue }}" class="fadeMenu">{{ valueKey|safe }}</a></li>{% endif %}
+            <li><a href="/ubertool/{{ valueValue }}" id="{{ valueValue }}" class="fadeMenu submenu_last">{{ valueKey|safe }}</a></li>{% else %}
+            <li><a href="/ubertool/{{ valueValue }}" id="{{ valueValue }}" class="fadeMenu">{{ valueKey|safe }}</a></li>{% endif %}
             {% endfor %}
         </ul>
     {% endfor %}

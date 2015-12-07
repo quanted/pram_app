@@ -26,11 +26,11 @@
     <link rel="top" title="übertool alpha documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
 <!-- Browser FAVICON -->
-  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/eco/favicon.ico" />
+  <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,15 +39,15 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.earthworm.earthworm_parameters</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -61,50 +61,55 @@
 
 
 <div class="viewcode-block" id="EarthwormInp"><a class="viewcode-back" href="../../../models.earthworm.html#models.earthworm.earthworm_parameters.EarthwormInp">[docs]</a><span class="k">class</span> <span class="nc">EarthwormInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
-	<span class="c"># chemical_name = forms.CharField(</span>
-			<span class="c"># widget=forms.Textarea (attrs={&#39;cols&#39;: 20, &#39;rows&#39;: 2}))</span>
-	<span class="c"># body_weight_of_bird = forms.FloatField(</span>
-			<span class="c"># label=&#39;NEED TO GET INPUTS.&#39;)</span>
-	<span class="n">k_ow</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Octanol to water partition coefficient K&lt;sub&gt;OW&lt;/sub&gt;&#39;</span><span class="p">),</span>
-			<span class="n">initial</span> <span class="o">=</span> <span class="mi">57544</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">l_f_e</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span> <span class="o">=</span> <span class="s">&#39;Lipid fraction of earthworm L&#39;</span><span class="p">,</span>
-			<span class="n">initial</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_range01</span><span class="p">])</span>
-	<span class="n">c_s</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Chemical concentration in soil C&lt;sub&gt;S&lt;/sub&gt; (mol/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span> <span class="o">=</span> <span class="mf">0.055</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">k_d</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Soil partitioning coefficient K&lt;sub&gt;d&lt;/sub&gt; (cm&lt;sup&gt;3&lt;/sup&gt;/g)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span> <span class="o">=</span> <span class="mi">69</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">p_s</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Bulk density of soil &amp;#961;&lt;sub&gt;s&lt;/sub&gt; (g/cm&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span> <span class="o">=</span> <span class="mf">1.7</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">c_w</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Chemical concentration in pore water of soil C&lt;sub&gt;W&lt;/sub&gt; (mol/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span> <span class="o">=</span> <span class="mf">0.000447</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">m_w</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Molecular weight of chemical MW (g/mol)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span> <span class="o">=</span> <span class="mf">406.9</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">p_e</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Density of earthworm &amp;#961;&lt;sub&gt;E&lt;/sub&gt; (kg/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span></div>
+    <span class="c"># chemical_name = forms.CharField(</span>
+    <span class="c"># widget=forms.Textarea (attrs={&#39;cols&#39;: 20, &#39;rows&#39;: 2}))</span>
+    <span class="c"># body_weight_of_bird = forms.FloatField(</span>
+    <span class="c"># label=&#39;NEED TO GET INPUTS.&#39;)</span>
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="s">&#39;Earthworm Example&#39;</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
+    <span class="n">k_ow</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Octanol to water partition coefficient K&lt;sub&gt;OW&lt;/sub&gt;&#39;</span><span class="p">),</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="mi">57544</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">l_f_e</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s">&#39;Lipid fraction of earthworm L&#39;</span><span class="p">,</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_range01</span><span class="p">])</span>
+    <span class="n">c_s</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Chemical concentration in soil C&lt;sub&gt;S&lt;/sub&gt; (mol/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="mf">0.055</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">k_d</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Soil partitioning coefficient K&lt;sub&gt;d&lt;/sub&gt; (cm&lt;sup&gt;3&lt;/sup&gt;/g)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="mi">69</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">p_s</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Bulk density of soil &amp;#961;&lt;sub&gt;s&lt;/sub&gt; (g/cm&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="mf">1.7</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+<span class="c"># updated version of earthworm model uses EFED equation which does not include c_w, m_w, and p_e as inputs</span>
+<span class="c"># c_w = forms.FloatField(</span>
+<span class="c"># 		label = mark_safe(&#39;Chemical concentration in pore water of soil C&lt;sub&gt;W&lt;/sub&gt; (mol/m&lt;sup&gt;3&lt;/sup&gt;)&#39;),</span>
+<span class="c"># 		initial = 0.000447,</span>
+<span class="c"># 		validators=[validation.validate_greaterthan0])</span>
+<span class="c"># m_w = forms.FloatField(</span>
+<span class="c"># 		label = mark_safe(&#39;Molecular weight of chemical MW (g/mol)&#39;),</span>
+<span class="c"># 		initial = 406.9,</span>
+<span class="c"># 		validators=[validation.validate_greaterthan0])</span>
+<span class="c"># p_e = forms.FloatField(</span>
+<span class="c"># 		label = mark_safe(&#39;Density of earthworm &amp;#961;&lt;sub&gt;E&lt;/sub&gt; (kg/m&lt;sup&gt;3&lt;/sup&gt;)&#39;),</span>
+<span class="c"># 		initial = 1000,</span>
+<span class="c"># 		validators=[validation.validate_greaterthan0])</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -121,7 +126,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -130,13 +135,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

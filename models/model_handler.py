@@ -18,6 +18,7 @@ import os, logging
 http_headers = auth_s3.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
+
 class Model(object):
     def __init__(self, run_type, jid, pd_obj_in, pd_obj_out):
         """
@@ -39,7 +40,29 @@ class Model(object):
             setattr(self, self.pd_obj_in[col].name, self.pd_obj_in[col].iloc[0])
         for col in self.pd_obj_out:
             setattr(self, self.pd_obj_out[col].name, self.pd_obj_out[col].iloc[0])
- 
+
+
+class ModelFortran(object):
+    def __init__(self, run_type, jid, inputs, outputs):
+        """
+            Generic Python 'Model' object created from two Pandas 
+            DataFrame objects, one for inputs and one for outputs.
+        """
+
+        self.inputs = inputs
+        self.outputs = outputs
+        self.jid = jid
+        self.run_type = run_type
+
+        # Set object attributes to model inputs and outputs
+        """
+            Set inputs and outputs as model object attributes
+        """
+        for k, v in self.inputs:
+            setattr(self, k, v)
+        for k, v in self.outputs:
+            setattr(self, k, v)
+
 
 def call_model_server(model, args):
     """
@@ -58,14 +81,14 @@ def call_model_server(model, args):
         data = json.dumps(args)
     else:
         data = args
-    
+
     jid = rest_funcs.gen_jid()
     logging.info("===========job id = " + jid)
 
     url = url_part1 + '/' + model + '/' + jid
     # POST JSON to model server
     response = requests.post(url, data=data, headers=http_headers, timeout=60)
-    
+
     # logging.info(json.dumps(response.json()))
     # logging.info(type(json.loads(json.dumps(response.json()))))
 
@@ -87,16 +110,15 @@ def create_dataframe(response):
 
 def modelInputPOSTReceiver(request, model):
     """
-        Converts the POSTed data from the model's input page form 
-        to a Python dictonary and passes it to the Model object where
+        Converts the POSTed data from the model's input page form
+        to a Python dictionary and passes it to the Model object where
         it is to be converted to JSON and passed to the backend server.
     """
 
-
     logging.info("=========== model_handler.modelInputPOSTReceiver")
-    args = { "inputs" : {} }
+    args = {"inputs": {}}
     for key in request.POST:
-        args["inputs"][key] = {"0" : request.POST.get(key)}
+        args["inputs"][key] = {"0": request.POST.get(key)}
     args["run_type"] = "single"
     logging.info(args)
 
@@ -112,6 +134,38 @@ def modelInputPOSTReceiver(request, model):
     model_obj = Model(run_type, jid, dataframes[0], dataframes[1])
 
     return model_obj
+
+
+def modelInputPOSTReceiverFortran(request, model):
+    """
+        Converts the POSTed data from the model's input page form 
+        to a Python dictionary and passes it to the Model object where
+        it is to be converted to JSON and passed to the backend server. 
+        
+        ==> FORTAN version <==
+    """
+
+    args = {"inputs": {}}
+    for key in request.POST:
+        args["inputs"][key] = request.POST.get(key)
+    args["run_type"] = "single"
+
+    response = call_model_server(model, args)
+
+    if model in {'sam'}:
+        logging.info(response.json()['outputs'])
+
+        return str(response.json()['outputs'])
+
+    else:
+
+        jid = response.json()['_id']
+        run_type = response.json()['run_type']
+        # dataframes = create_dataframe(response)
+
+        model_obj = ModelFortran(run_type, jid, args['inputs'], response['inputs'])
+
+        return model_obj
 
 
 class ModelQAQC(object):
@@ -161,7 +215,7 @@ class ModelQAQC(object):
 #         """
 
 #         """
-        
+
 #         # self.model_obj_list = self.model_obj_list.append(model_obj)
 
 #         return self.model_obj_list
@@ -196,7 +250,7 @@ def generate_model_object_list(response):
     logging.info(pd_obj_out)
 
     i = 0
-    while (i < no_of_runs): 
+    while (i < no_of_runs):
         logging.info(i)
         run_list = range(no_of_runs)
         del run_list[i]

@@ -1,12 +1,12 @@
 <script>
 $(document).ready(function() {
 	data_html = $("div.articles_output").clone().html();
-	jid = "{{jid}}"
+	jid = "{{jid}}";
 
 	$.ajax({
 		type: "POST",
 	    datatype:"json",
-		url: "/eco/przm5/przm5_intermediate.html",
+		url: "/ubertool/przm5/przm5_intermediate.html",
 		data: JSON.stringify({"data_html":data_html, "jid":jid}),
 
 	    success: function() {

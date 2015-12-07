@@ -47,6 +47,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
+ADMINS = (
+    ('Ubertool Dev Team', 'ubertool-dev@googlegroups.com')
+)
+
 APPEND_SLASH = True
 
 TEMPLATE_DIRS = (
@@ -69,11 +73,14 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # 'django.contrib.auth',
     # 'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    # 'django.contrib.sessions',
     # 'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'mod_wsgi.server',
-    'docs'
+    #'mod_wsgi.server',  # Only needed for mod_wsgi express (Python driver for Apache) e.g. on the production server
+    'docs',
+    'models.ore',
+    'models.hwbi',
+    'rest_framework_swagger'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,7 +89,7 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.csrf.CsrfViewMiddleware',
     # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -94,11 +101,16 @@ WSGI_APPLICATION = 'wsgi_local.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
+    }
 }
+
+# Authentication
+AUTH = False
+LOGIN_URL = '/ubertool/login'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Setups databse-less test runner (Only needed for running test)
 TEST_RUNNER = 'testing.DatabaselessTestRunner'

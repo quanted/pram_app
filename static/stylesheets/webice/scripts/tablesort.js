@@ -1,5 +1,5 @@
 
-var HidColumns = new Array();
+var HidColumns = [];
 
 function hideCol(obj)
 {
@@ -55,7 +55,7 @@ function hideCol(num,stat)
 {
 var tbl=document.getElementById('tbl');
 if (stat=="none")
-	HidColumns
+	HidColumns;
 for(var i=0;i<tbl.rows.length;i++)
 {
 tbl.rows[i].cells[num].style.display=stat;
@@ -102,8 +102,10 @@ function ts_makeSortable(table) {
 
 function ts_getInnerText(el) {
 	if (typeof el == "string") return el;
-	if (typeof el == "undefined") { return "" };
-	if (el.innerText) return el.innerText;	//Not needed but it is faster
+    if (typeof el == "undefined") {
+        return ""
+    }
+    if (el.innerText) return el.innerText;	//Not needed but it is faster
 	var str = "";
 	
 	var cs = el.childNodes;
@@ -153,7 +155,7 @@ function ts_resortTable(lnk) {
     sortfn = ts_sort_caseinsensitive;
     if (itm.match(/^\d\d[\/-]\d\d[\/-]\d\d\d\d$/)) sortfn = ts_sort_date;
     if (itm.match(/^\d\d[\/-]\d\d[\/-]\d\d$/)) sortfn = ts_sort_date;
-    if (itm.match(/^[£$]/)) sortfn = ts_sort_currency;
+    if (itm.match(/^[ï¿½$]/)) sortfn = ts_sort_currency;
     if (itm.match(/^[-+]?[\d\.]+$/)) sortfn = ts_sort_numeric;
     if (itm.match(/^na$/)) sortfn = ts_sort_numeric;
 
@@ -170,8 +172,8 @@ function ts_resortTable(lnk) {
 	    if (sortfn == ts_sort_numeric) sortfn = ICESSD_sort_numeric_down; }  }
 
     SORT_COLUMN_INDEX = column;
-    var firstRow = new Array();
-    var newRows = new Array();
+    var firstRow = [];
+    var newRows = [];
     for (i=0;i<table.rows[0].length;i++) { firstRow[i] = table.rows[0][i]; }
     for (j=1;j<table.rows.length;j++) { newRows[j-1] = table.rows[j]; }
 

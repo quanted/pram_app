@@ -1,16 +1,16 @@
 // if (!document.URL.split("?")[1])
 // 	location.href="index.html";
 var attributes = '';
-var Params = new Object();
+var Params = {};
 var regexp = /\+/g;
-var surrogateArray = new Array;
-var toxicityArray = new Array;
-var predictedArray = new Array;
-var filenameArray = new Array;
-var dataToxArray = new Array;
-var xmlDocArray = new Array;
-var taxaSurrArray = new Array;
-var varNames = new Array;
+var surrogateArray = [];
+var toxicityArray = [];
+var predictedArray = [];
+var filenameArray = [];
+var dataToxArray = [];
+var xmlDocArray = [];
+var taxaSurrArray = [];
+var varNames = [];
 
 attributes = document.URL.split("?")[1];
 var qs = attributes.split("&");
@@ -41,7 +41,7 @@ var fileFamily=Params['file'];
 var surrogates = surrogateArray.join(", ");
 var toxicities = toxicityArray.join(", ");
 
-var allValues = new Array();
+var allValues = [];
 
 var slope;
 var intercept;
@@ -116,7 +116,7 @@ function showSigDig(value, noDig)
 		if (parseInt(textVal[0]) != 0)
 			noDig = 2;
 	if (textVal[1])
-		textVal[1]=	textVal[1].substr(0,noDig)
+		textVal[1]=	textVal[1].substr(0,noDig);
 	else
 		textVal[1]="00";
 	return textVal[0]+"."+textVal[1];
@@ -127,7 +127,9 @@ function popHeader ()
 	document.getElementById('PageName').appendChild(document.createTextNode(" - "+specType));
 	document.title = surrogates + ' | ' + document.title;
 	var linkname = "iceTNESpecies.html?filename=tneWs";
-        if (specType == 'Aquatic') {linkname="iceTNESpecies.html?filename=tneAs"};
+	if (specType == 'Aquatic') {
+		linkname = "iceTNESpecies.html?filename=tneAs"
+	}
 	// newBClink = document.createElement('a');
 	// newBClink.setAttribute('href',linkname);
 	// newBClink.appendChild(document.createTextNode(specType+' Species'));
@@ -542,8 +544,8 @@ function getBeta(mean)
     var valCount = 0;
   for (j=0;j<toxicityArray.length;j++)
   {
-	 totDiff += Math.pow((log10(toxicityArray[j])-mean),2);;
-	 valCount += 1;
+	  totDiff += Math.pow((log10(toxicityArray[j]) - mean), 2);
+	  valCount += 1;
   }
  	for (j=0;j<document.getElementsByTagName('input').length;j++)
 		if (document.getElementsByTagName('input')[j].checked)
@@ -564,7 +566,7 @@ function getHCP()
 	var alpha = getAlpha();
 	var beta = getBeta(alpha);
 	var HCP = Math.log(1/p-1);
-	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha))
+	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha));
 	if (HDVal < 1)
 		HDVal = showSigDig(HDVal,(HDVal+'').split(".")[1].search(/[1-9]/)+3);
 	else
@@ -611,7 +613,7 @@ function getHCPLower()
 	var alpha = getAlphaLower();
 	var beta = getBetaLower(alpha);
 	var HCP = Math.log(1/p-1);
-	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha))
+	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha));
 	if (HDVal < 1)
 		HDVal = showSigDig(HDVal,(HDVal+'').split(".")[1].search(/[1-9]/)+3);
 	else
@@ -658,7 +660,7 @@ function getHCPUpper()
 	var alpha = getAlphaUpper();
 	var beta = getBetaUpper(alpha);
 	var HCP = Math.log(1/p-1);
-	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha))
+	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha));
 	if (HDVal < 1)
 		HDVal = showSigDig(HDVal,(HDVal+'').split(".")[1].search(/[1-9]/)+3);
 	else
@@ -732,7 +734,7 @@ function filterData()
 {
 
 	var inputFields;
-	var textInputs = new Array();
+	var textInputs = [];
 	var pageAddress = document.URL;
 
 	if (pageAddress.indexOf("#")>1)

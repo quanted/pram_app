@@ -1,1 +1,1 @@
-SECRET_KEY = 'ThisIsTemporary'
+SECRET_KEY='TestTestTest'

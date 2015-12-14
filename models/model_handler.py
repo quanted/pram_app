@@ -22,8 +22,8 @@ url_part1 = os.environ['UBERTOOL_REST_SERVER']
 class Model(object):
     def __init__(self, run_type, jid, pd_obj_in, pd_obj_out):
         """
-            Generic Python 'Model' object created from two Pandas 
-            DataFrame objects, one for inputs and one for outputs.
+        Generic Python 'Model' object created from two Pandas
+        DataFrame objects, one for inputs and one for outputs.
         """
 
         self.pd_obj_in = pd_obj_in
@@ -33,8 +33,8 @@ class Model(object):
 
         # Set object attributes to model inputs and outputs
         """
-            Set each column of the DataFrames as object attribute with
-            a value equal to the first row's value
+        Set each column of the DataFrames as object attribute with
+        a value equal to the first row's value
         """
         for col in self.pd_obj_in:
             setattr(self, self.pd_obj_in[col].name, self.pd_obj_in[col].iloc[0])
@@ -73,7 +73,8 @@ def call_model_server(model, args):
     """
 
     from REST import rest_funcs
-    import json, requests
+    import json
+    import requests
 
     logging.info("=========== model_handler.call_model_server")
     # If 'args' is a Python dictionary, dump it to a JSON string

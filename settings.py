@@ -80,7 +80,7 @@ INSTALLED_APPS = (
     'docs',
     'models.ore',
     'models.hwbi',
-    'rest_framework_swagger'
+    # 'rest_framework_swagger'
 )
 
 MIDDLEWARE_CLASSES = (

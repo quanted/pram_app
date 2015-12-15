@@ -6,6 +6,7 @@ import linksLeft
 import os
 import logging
 
+
 def outputPageHTML(header, model, tables_html):
     """Generates HTML to fill '.articles_output' div on output page"""
 
@@ -36,7 +37,7 @@ def outputPageView(request, model='none', header=''):
 
     # If model is updated to be generic, use generic Model object
     # if not, use old method with '*_output' module
-    if model in ('terrplant', 'sip', 'stir', 'therps', 'iec', 'earthworm', 'rice'):
+    if model in ('terrplant', 'sip', 'stir', 'iec', 'earthworm', 'rice'):
         logging.info('=========== New Model Handler - Single Model Run ===========')
         from models import model_handler
         model_obj = model_handler.modelInputPOSTReceiver(request, model)
@@ -166,13 +167,11 @@ def outputPageView(request, model='none', header=''):
     html = outputPageHTML(header, model, modelOutputHTML)
 
     
-    """ =============== To be removed =============== """
-    """ ========= For Non-Pandas models only ========= """
-    """ ============================================== """
+    # TODO: this is only used for non-Pandas models, and is DEPRECATED and should be removed and not called
     def saveToMongoDB(model_obj):
         """
         Method to check if model run is to be saved to MongoDB.  If true,
-        the fest_func meothd to save the model object instance is called
+        the fest_func method to save the model object instance is called
         """
 
         from REST import rest_funcs
@@ -184,8 +183,9 @@ def outputPageView(request, model='none', header=''):
             # save_dic() rest_func method saves HTML & model object
             rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
 
+    # TODO: Remove this
     # Call method to save model object to Mongo DB
-    saveToMongoDB(model_obj)
+    # saveToMongoDB(model_obj)
     """ ============================================== """
     """ ============================================== """
 

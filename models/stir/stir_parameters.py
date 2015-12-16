@@ -22,12 +22,10 @@ class StirInp(forms.Form):
         widget=forms.Textarea(attrs={'cols': 30, 'rows': 1}),
         label='Chemical Name',
         initial='STIR Example')
-    # validators=[validators.validate_slug]) chokes on spaces
     pc_code = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
-        initial='055459',
-        validators=[validators.validate_slug])
+        initial='055459')
     application_rate = forms.FloatField(
         label='Pesticide Application Rate (lbs ai/A)',
         initial=0.107,

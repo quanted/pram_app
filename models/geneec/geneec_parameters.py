@@ -35,8 +35,7 @@ class GeneecInp(forms.Form):
     pc_code = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), 
             label='PC Code',
-            initial='00',
-            validators=[validators.validate_slug])
+            initial='00')
     application_target = forms.ChoiceField(
             choices=applicationtarget_CHOICES,
             initial='Short grass')        

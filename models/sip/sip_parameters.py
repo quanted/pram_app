@@ -21,12 +21,10 @@ class SipInp(forms.Form):
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 2}),
         initial='SIP Example',
         required=True)
-    # validators=[validators.validate_slug]) chokes on spaces
     pc_code = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
-        initial='055459',
-        validators=[validators.validate_slug])
+        initial='055459')
     solubility = forms.FloatField(
         required=True,
         label=mark_safe('Solubility (in water at 25&deg;C; mg/L)'),

@@ -364,11 +364,6 @@ $(document).ready(function () {
             "-webkit-box-shadow": "3px 3px 15px #333",
             "-moz-box-shadow": "3px 3px 15px #333"
           });
-          $.fn.center = function () {
-            this.css("top", ( $(window).height() - this.height() ) / 2 + "px");
-            this.css("left", ( $(window).width() - this.width() ) / 2 + "px");
-            return this;
-          };
           $('#ore_output').center().fadeIn().on('click', 'div#ore_output_x', function () {
             $('#ore_output').fadeOut();
           });

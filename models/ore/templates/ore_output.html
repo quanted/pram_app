@@ -12,18 +12,19 @@
           <span id="export_link" style="display: none"></span>
       </caption>
       <tr>
-          <th rowspan="2">Exposure Scenario</th>
-          <th rowspan="2">Crop or Target</th>
-          <th rowspan="2">Level of <br>Concern</th>
-          <th rowspan="1">Dermal Unit <br>Exposure <br>(&micro;g/lb ai)<sup>1</sup></th>
-          <th rowspan="1">Inhalation <br>Unit Exposure <br>(&micro;g/lb ai)<sup>1</sup></th>
-          <th rowspan="2">Maximum <br>Application <br>Rate<sup>2</sup></th>
-          <th rowspan="2">Area <br>Treated of <br>Amount <br>Handled <br>Daily<sup>3</sup></th>
+          <th class="expScenario" rowspan="2">Exposure Scenario</th>
+          <th class="cropTarget" rowspan="2">Crop or Target</th>
+          <th class="LOC" rowspan="2">Level of <br>Concern</th>
+          <th class="dermalUE" rowspan="1">Dermal Unit <br>Exposure <br>(&micro;g/lb ai)<sup>1</sup></th>
+          <th class="inhalUE" rowspan="1">Inhalation <br>Unit Exposure <br>(&micro;g/lb ai)<sup>1</sup></th>
+          <th class="appRate" rowspan="2">Maximum <br>Application <br>Rate<sup>2</sup></th>
+          <th class="amtTreated" rowspan="2">Area <br>Treated of <br>Amount <br>Handled <br>Daily<sup>3</sup></th>
           <th rowspan="1" colspan="2">Dermal</th>
           <th rowspan="1" colspan="2">Inhalation</th>
           {% if output.1.combined %}
           <th rowspan="1">Total</th>
           {% endif %}
+          <th rowspan="1" colspan="4">Data Source</th>
       </tr>
       <tr>
           <th rowspan="1">Mitigation <br>Level</th>
@@ -35,16 +36,20 @@
           {% if output.1.combined %} {# If combined output shown #}
           <th rowspan="1">{{ output.1.combined }}</th>
           {% endif %}
+          <th rowspan="1" class="sourceCols">Category</th>
+          <th rowspan="1" class="sourceCols">MRID</th>
+          <th rowspan="1" class="sourceCols">Description</th>
+          <th rowspan="1" class="sourceCols">DER</th>
       </tr>
-      {% for k, v in output.items %}
+    {% for k, v in output.items %} {# Loop over the 'output' dictionary given to this template #}
       <tr>
           <th colspan="42">{{ v.activity }}</th>
       </tr>
       {% for item in v.dermal_unit_exp %}
       <tr>
-          {% if forloop.first %} {# First row has all columns #}
+        {% if forloop.first %} {# First row has all columns #}
 
-          <td rowspan="{{ v.dermal_unit_exp|length }}">{{ v.activity }} for {{ v.app_equip }} Applications</td>
+          <td class="expScenario" rowspan="{{ v.dermal_unit_exp|length }}">{{ v.activity }} for {{ v.app_equip }} Applications</td>
           <td rowspan="{{ v.dermal_unit_exp|length }}">{{ v.crop_target }}</td>
           <td rowspan="{{ v.dermal_unit_exp|length }}">
           {% if v.loc_dermal == v.loc_inhal %}
@@ -61,16 +66,18 @@
           <td>{{ v.dermal_moe.0|floatformat:"0" }}</td>
           <td>{{ v.inhal_dose.0|floatformat:"-5" }}</td>
           <td>{{ v.inhal_moe.0|floatformat:"0" }}</td>
-
-          {% if output.1.combined %} {# If combined output shown #}
+            {% if output.1.combined %} {# If combined output shown #}
               {% if v.combined_list|index:forloop.counter0 < 2 %}
               <td>{{ v.combined_list.0|floatformat:"2" }}</td>
               {% else %}
               <td>{{ v.combined_list.0|floatformat:"0" }}</td>
               {% endif %}
-          {% endif %}
-
-          {% else %} {# Additional rows only have unique data columns #}
+            {% endif %}
+          <td rowspan="{{ v.dermal_unit_exp|length }}">{{ v.source.category }}</td>
+          <td rowspan="{{ v.dermal_unit_exp|length }}">{{ v.source.mrid }}</td>
+          <td rowspan="{{ v.dermal_unit_exp|length }}">{{ v.source.description }}</td>
+          <td rowspan="{{ v.dermal_unit_exp|length }}">{{ v.source.der }}</td>
+        {% else %} {# Additional rows only have unique data columns #}
 
           <td>{{ v.dermal_unit_exp|index:forloop.counter0 }}</td>
           <td>{{ v.inhal_unit_exp|index:forloop.counter0 }}</td>
@@ -78,18 +85,17 @@
           <td>{{ v.dermal_moe|index:forloop.counter0|floatformat:"0" }}</td>
           <td>{{ v.inhal_dose|index:forloop.counter0|floatformat:"-5" }}</td>
           <td>{{ v.inhal_moe|index:forloop.counter0|floatformat:"0" }}</td>
-          {% if output.1.combined %} {# If combined output shown #}
+            {% if output.1.combined %} {# If combined output shown #}
               {% if v.combined_list|index:forloop.counter0 < 2 %}
               <td>{{ v.combined_list|index:forloop.counter0|floatformat:"2" }}</td>
               {% else %}
               <td>{{ v.combined_list|index:forloop.counter0|floatformat:"0" }}</td>
               {% endif %}
-          {% endif %}
-
-          {% endif %}
+            {% endif %}
+        {% endif %}
       </tr>
       {% endfor %}
-      {% endfor %}
+    {% endfor %}
   </table>
   <br><sup>1</sup> - Based on the "Occupational Pesticide Handler Unit Exposure Surrogate Reference Table" ([DATE]); Level of mitigation: Baseline, PPE, Eng. Controls.
   <br><sup>2</sup> - Based on registered or proposed label (Reg. No. XXXXXX).

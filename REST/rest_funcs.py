@@ -35,7 +35,8 @@ class Struct:
 ###########################A function to generate JID################################ 
 def gen_jid():
     ts = datetime.datetime.now(pytz.UTC)
-    localDatetime = ts.astimezone(pytz.timezone('US/Eastern'))
+    #localDatetime = ts.astimezone(pytz.timezone('US/Eastern'))
+    localDatetime = ts.astimezone(pytz.timezone('America/New_York'))
     jid = localDatetime.strftime('%Y%m%d%H%M%S%f')
     return jid
 

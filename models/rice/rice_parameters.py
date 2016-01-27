@@ -23,8 +23,7 @@ class RiceInp(forms.Form):
     pc_code = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
-        initial='00',
-        validators=[validators.validate_slug])
+        initial='00')
     mai = forms.FloatField(
         label='Mass of Applied Ingredient to Paddy (kg)',
         initial=0.056,

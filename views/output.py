@@ -6,6 +6,7 @@ import linksLeft
 import os
 import logging
 
+
 def outputPageHTML(header, model, tables_html):
     """Generates HTML to fill '.articles_output' div on output page"""
 
@@ -36,11 +37,11 @@ def outputPageView(request, model='none', header=''):
 
     # If model is updated to be generic, use generic Model object
     # if not, use old method with '*_output' module
-    if model in {'terrplant', 'sip', 'stir', 'trex2', 'therps', 'iec', 'agdrift', 
-            'earthworm', 'rice', 'kabam'}:
+    if model in ('terrplant', 'sip', 'stir', 'iec', 'earthworm', 'rice'):
         logging.info('=========== New Model Handler - Single Model Run ===========')
         from models import model_handler
         model_obj = model_handler.modelInputPOSTReceiver(request, model)
+
     elif model in {'sam'}:
         logging.info('=========== New Model Handler FORTRAN ===========')
         from models import model_handler
@@ -103,7 +104,6 @@ def outputPageView(request, model='none', header=''):
         else:
             model_obj = model_handler.modelInputPOSTReceiverFortran(request, model)
 
-    
     elif model in {'ore'}:
         """ 
             TEMPORARY FOR ORE TESTING / DEVELOPMENT ON ECO
@@ -133,6 +133,7 @@ def outputPageView(request, model='none', header=''):
         return response
     
     else:
+        # All models that use the 'model_output.py' to format the inputs before sending to back end server
         # Dynamically import the model output module
         outputmodule = importlib.import_module('.'+model+'_output', 'models.'+model)
         # Call '*_output' function; function name = 'model'OutputPage  (e.g. 'sipOutputPage')
@@ -140,7 +141,6 @@ def outputPageView(request, model='none', header=''):
         model_obj = outputPageFunc(request)
 
     logging.info(model_obj)
-
 
     if type(model_obj) is tuple:
         modelOutputHTML = model_obj[0]
@@ -167,13 +167,11 @@ def outputPageView(request, model='none', header=''):
     html = outputPageHTML(header, model, modelOutputHTML)
 
     
-    """ =============== To be removed =============== """
-    """ ========= For Non-Pandas models only ========= """
-    """ ============================================== """
+    # TODO: this is only used for non-Pandas models, and is DEPRECATED and should be removed and not called
     def saveToMongoDB(model_obj):
         """
         Method to check if model run is to be saved to MongoDB.  If true,
-        the fest_func meothd to save the model object instance is called
+        the fest_func method to save the model object instance is called
         """
 
         from REST import rest_funcs
@@ -185,8 +183,9 @@ def outputPageView(request, model='none', header=''):
             # save_dic() rest_func method saves HTML & model object
             rest_funcs.save_dic(html, model_obj.__dict__, model, "single")
 
+    # TODO: Remove this
     # Call method to save model object to Mongo DB
-    saveToMongoDB(model_obj)
+    # saveToMongoDB(model_obj)
     """ ============================================== """
     """ ============================================== """
 

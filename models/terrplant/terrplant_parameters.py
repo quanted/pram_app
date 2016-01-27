@@ -26,27 +26,22 @@ class TerrplantInp(forms.Form):
         widget=forms.Textarea(attrs={'cols': 30, 'rows': 1}),
         label='Chemical Name',
         initial='Terrplant Example')
-    # validators=[validators.validate_slug]) chokes on spaces
     pc_code = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
-        initial='90501',
-        validators=[validators.validate_slug])
+        initial='90501')
     use = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 2}),
         label='Use',
-        initial='Corn',
-        validators=[validators.validate_slug])
+        initial='Corn')
     application_method = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 2}),
         label='Application Method',
-        initial='Ground',
-        validators=[validators.validate_slug])
+        initial='Ground')
     application_form = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 2}),
         label='Application Form',
-        initial='Spray',
-        validators=[validators.validate_slug])
+        initial='Spray')
     solubility = forms.FloatField(
         label='Solubility (ppm)',
         initial=240,

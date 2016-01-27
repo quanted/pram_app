@@ -12,10 +12,10 @@ def terrplantInputPage(request, model='', header='', formData=None):
     html = render_to_string('04uberinput_start.html', {
             'model':model, 
             'model_attributes': header+' Inputs'})
-    html = html + render_to_string('terrplant_ubertool_config_input.html', {})  
+    # html = html + render_to_string('terrplant_ubertool_config_input.html', {})  # Used for deprecated ubertool batching
     html = html + str(terrplant_parameters.TerrplantInp(formData))
     html = html + render_to_string('04uberinput_end.html', {'sub_title': 'Submit'})
-    html = html + render_to_string('terrplant_ubertool_config.html', {})
+    # html = html + render_to_string('terrplant_ubertool_config.html', {})  # Used for deprecated ubertool batching
     # Check if tooltips dictionary exists
     try:
         import terrplant_tooltips

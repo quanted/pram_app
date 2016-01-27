@@ -31,13 +31,11 @@ class KabamInp_chem(forms.Form):
     chemical_name = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 30, 'rows': 1}),
         label='Chemical Name',
-        initial='Alachlor',
-        validators=[validators.validate_slug])
+        initial='Alachlor')
     pc_code = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
-        initial='00',
-        validators=[validators.validate_slug])
+        initial='00')
     lkow = forms.FloatField(
         label=mark_safe('Log K<sub>OW</sub>'),
         initial=5,

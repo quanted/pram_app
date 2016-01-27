@@ -18,13 +18,11 @@ class IecInp(forms.Form):
     chemical_name = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 30, 'rows': 1}),
         label='Chemical Name',
-        initial='Alachlor',
-        validators=[validators.validate_slug])
+        initial='Alachlor')
     pc_code = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
-        initial='00',
-        validators=[validators.validate_slug])
+        initial='00')
     LC50 = forms.FloatField(
         label=mark_safe('Enter LC<sub>50</sub> or LD<sub>50</sub>'),
         initial='1',

@@ -21,8 +21,7 @@ class InsectInp(forms.Form):
     chemical_name = forms.CharField(
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}), 
             initial='Quinoxyfen',
-            required=True,
-            validators=[validators.validate_slug])
+            required=True)
     solubility = forms.FloatField(
             required=True,
             label='Solubility',

@@ -26,7 +26,7 @@ def linksLeft():
                 # ('PRZM', 'przm'),
                 # ('PRZM 5', 'przm5'),
                 # ('EXAMS', 'exams'),
-                ('PFAM', 'pfam'),
+                # ('PFAM', 'pfam'),
                 # ('PRZM-EXAMS', 'przm_exams'),
                 ('SAM', 'sam'),
                 # ('Web-ICE', 'webice'),

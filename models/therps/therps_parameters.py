@@ -23,8 +23,7 @@ class therpsInp_chem(forms.Form):
     pc_code = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
-        initial='00',
-        validators=[validators.validate_slug])
+        initial='00')
     Use = forms.CharField(
         max_length=255,
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 2}),

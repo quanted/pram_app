@@ -3,20 +3,24 @@ Created on Tue Apr 23 2014
 
 @author: J. Flaishans
 """
-import ore_xls_writer
-from django.template.loader import render_to_string
-from django.http import HttpResponse
-import requests
-from REST import auth_s3
 import json
-import os, logging
+import logging
+import os
+
+import requests
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+
+import ore_xls_writer
+from REST import auth_s3
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
+
 def rest_call(query):
-    """ Call to backend server to query DB """
+    """ Call to backend server to query DB for list of Crops """
     url = url_part1 + '/ore/load/' + query
     all_dic = {
         'query': query
@@ -27,6 +31,7 @@ def rest_call(query):
 
     # logging.info(json.loads(response.content)['result'])
     return json.loads(response.content)['result']
+
 
 def category_query(request):
     """ Fill Exposure Scenario tab inputs based on chosen Crop/Target Category """
@@ -60,15 +65,15 @@ def category_query(request):
 
     # Return ResponseObject with JSON from DB query (response.content['results'] = worker activities)
     return HttpResponse(
-        response.content,
-        content_type="application/json"
+            response.content,
+            content_type="application/json"
     )
 
-def output_query(request):
 
+def output_query(request):
     url = url_part1 + '/ore/output'
 
-    data = request.body  #  Where Django stores POSTed JSON
+    data = request.body  # Where Django stores POSTed JSON
 
     response = requests.post(url, data=data, headers=http_headers, timeout=60)
     output = json.loads(response.content)
@@ -79,13 +84,14 @@ def output_query(request):
     })
 
     return HttpResponse(
-        json.dumps( {
-            'input': output['result']['input'],
-            'output': output['result']['output'],
-            'html': html
-        } ),
-        content_type="application/json"
+            json.dumps({
+                'input': output['result']['input'],
+                'output': output['result']['output'],
+                'html': html
+            }),
+            content_type="application/json"
     )
+
 
 def output_export(request):
     """
@@ -121,23 +127,22 @@ def output_export(request):
         # response['Content-Disposition'] = 'attachment; filename="ore.xlsx"'
         # return response
         return HttpResponse(
-            json.dumps( {
-                'link': temp_path_name,
-            } ),
-            content_type="application/json"
+                json.dumps({
+                    'link': temp_path_name,
+                }),
+                content_type="application/json"
         )
 
     else:
         return HttpResponse(
-            json.dumps( {
-                'error': 'Error processing request.',
-            } ),
-            content_type="application/json"
+                json.dumps({
+                    'error': 'Error processing request.',
+                }),
+                content_type="application/json"
         )
 
 
 def output_download(request):
-
     link = request.POST.get('link')
 
     if link is not None or link != '':
@@ -145,16 +150,16 @@ def output_download(request):
         xlsx_path = os.path.join(os.environ['PROJECT_PATH'], 'models', 'ore', 'static', 'ore', str(link), 'ore.xlsx')
         file_xlsx = open(xlsx_path, "rb")  # open Excel file (read-binary mode)
         response = HttpResponse(
-            file_xlsx.read(),
-            content_type='application/vnd.ms-excel'
+                file_xlsx.read(),
+                content_type='application/vnd.ms-excel'
         )
         response['Content-Disposition'] = 'attachment; filename="ore.xlsx"'
         return response
 
     else:
         return HttpResponse(
-            json.dumps( {
-                'error': 'Error processing request.',
-            } ),
-            content_type="application/json"
+                json.dumps({
+                    'error': 'Error processing request.',
+                }),
+                content_type="application/json"
         )

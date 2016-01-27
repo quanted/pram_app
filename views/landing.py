@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 import linksLeft
 import os
+import secret
+from django.conf import settings
 
 
 def ecoLandingRedirect(request):
@@ -30,8 +32,11 @@ def ecoLandingPage(request):
     return response
 
 def ubertoolLandingPage(request):
-    # html = render_to_string('00landing_page_qed.html', { 'title': 'Ubertool' })
-    html = render_to_string('00landing_page_qed_slides.html', { 'title': 'Ubertool' })
+
+    if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
+        html = render_to_string('00landing_page_qed_slides_public.html', { 'title': 'Ubertool' })
+    else:
+        html = render_to_string('00landing_page_qed_slides.html', { 'title': 'Ubertool' })
 
     response = HttpResponse()
     response.write(html)

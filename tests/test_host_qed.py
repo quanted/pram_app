@@ -3,24 +3,31 @@ import unittest
 import numpy.testing as npt
 from bs4 import BeautifulSoup
 import mechanize
+import unicodedata
 
 
 #this testing routine accepts a list of servers where a group of models and pages (i.e.,tabs)
 #are presented as web pages.  it is assumed that the complete set of models and related pages
-#are present on each server. this routine performs a series of unit tests that ensure
+#are present on each server. this   routine performs a series of unit tests that ensure
 #that the web pages are up and operational.
 
 test = {}
 
 servers = ["http://qed.epa.gov/ubertool/", "http://qedinternal.epa.gov/ubertool/",
            "http://134.67.114.3/ubertool/", "http://134.67.114.1/ubertool/"]
-#models = ["sip/", "stir/", "rice/", "terrplant/", "trex2/", "therps/", "iec/",
-#          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
-#          "rice/", "kabam/", "pfam/", "sam/"]
-models = ["sip/", "stir/"]
-#pages = ["", "description", "input", "algorithms", "references", "qaqc",
-#         "batchinput", "history"]
-pages = ["", "description", "input"]
+models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
+          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
+          "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
+#models = ["sip/", "stir/"]
+#The following list represents the model page titles to be checked (order of models
+#needs to be the same as "models" list above
+models_IO = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
+             "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
+             "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
+#models_IO = ["SIP", "STIR"]
+pages = ["", "description", "input", "algorithms", "references", "qaqc",
+         "batchinput", "history"]
+#pages = ["", "description", "input"]
 
 redirect_servers = ["http://qed.epa.gov/ubertool/", "http://134.67.114.3/ubertool/"]
 redirect_pages = ["input"]
@@ -28,6 +35,9 @@ redirect_pages = ["input"]
 model_pages = [s + m + p for s in servers for m in models for p in pages]
 redirect_model_pages = [s + m + p for s in redirect_servers for m in models
                         for p in redirect_pages]
+#upper_models = [str.upper(m)[:-1] for m in models]
+
+redirect_models = models_IO * len(redirect_servers)
 #print(model_pages)
 
 class TestQEDHost(unittest.TestCase):
@@ -59,57 +69,76 @@ class TestQEDHost(unittest.TestCase):
         return
 
     def test_qed_authenticate_input(self):
-        try:
-            for m in redirect_model_pages :
-                #step 1: login and authenticate
+        try: #need to login and then verify we land on input page
+            current_page = [""] * len(redirect_model_pages)
+            expected_page = [""] * len(redirect_model_pages)
+            for idx, m in enumerate(redirect_model_pages) :
                 br = mechanize.Browser()
-                response = br.open(m)
-                expected_page = redirect_servers[0] + models[0] + pages[2]
-                # try and extract list of forms from page
-                for form in br.forms():
-                   print '%r %r %s' % (form.name, form.attrs.get('id'), form.action)
+                br.open(m)
+                #step 1: login and authenticate
                 br.select_form(name="auth")
                 br["username"] = "betatester"
                 br["password"] = "ubertool"
-                response2 = br.submit()
-                response2.get_data()
+                br.submit()
                 # Verify we have successfully logged in and are now on input page
-                current_page = br.geturl()
-                npt.assert_equal(expected_page, current_page,'Login Failed', True)
+                current_page[idx] = br.geturl()
+                expected_page[idx] = m
+            npt.assert_array_equal(expected_page, current_page, 'Login Failed', True)
         finally:
             pass
         return
 
-    def test_qed_authenticate_output(self):
-        try:
-            for m in redirect_model_pages :
-                #step 1: login and authenticate
+    def test_qed_input_form(self):
+        try: #need to repeat login and then verify title of input page
+            current_title = [""] * len(redirect_model_pages)
+            expected_title = [""] * len(redirect_model_pages)
+            for idx, m in enumerate(redirect_model_pages):
                 br = mechanize.Browser()
-                response = br.open(m)
-                expected_page = redirect_servers[0] + models[0] + pages[2]
-                # try and extract list of forms from page
-                for form in br.forms():
-                   print '%r %r %s' % (form.name, form.attrs.get('id'), form.action)
+                br.open(m)
+                #step 1: login and authenticate
                 br.select_form(name="auth")
                 br["username"] = "betatester"
                 br["password"] = "ubertool"
                 response2 = br.submit()
                 response2.get_data()
-                # Verify we have successfully logged in and are now on input page
-                current_page = br.geturl()
-                npt.assert_equal(expected_page, current_page,'Login Failed', True)
-                # Step 2: Select input form (it will have default data in it  -  we just want to run with that for now)
+                #locate model page title and verify it is as expected
+                soup = BeautifulSoup(response2, "html.parser")
+                tag = [a.find(text=True) for a in soup.findAll('h2', {'class': 'model_header'})]
+                current_title[idx] = str(tag[0])
+                expected_title[idx] = redirect_models[idx] + " Inputs"
+                #create array comparison ((assume h2/model header -tag- of interest is first in list)
+            npt.assert_array_equal(current_title, expected_title,'Wrong Input Page Title', True)
+        finally:
+            pass
+        return
+
+    def test_qed_output_form(self):
+        try:#need to repeat login, submit default inputs, and verify we land on output page
+            current_title = [""] * len(redirect_model_pages)
+            expected_title = [""] * len(redirect_model_pages)
+            for idx, m in enumerate(redirect_model_pages) :
+                br = mechanize.Browser()
+                response = br.open(m)
+                #step 1: login and authenticate
+                br.select_form(name="auth")
+                br["username"] = "betatester"
+                br["password"] = "ubertool"
+                response2 = br.submit()
+                response2.get_data()
+                # Step 2: Select and submit input form (it will have default data in it  -  we just want to run with that for now)
                 br.form = list(br.forms())[0] # syntax for selecting form when form is unnamed
                 response3 = br.submit()  # use mechanize to post input data
+                response3.get_data()
                 #Verify we have successfully posted input data and that we have arrived at the output page
-                current_page = br.geturl()
-                expected_page = redirect_servers[0] + models[0] + "output"
-                npt.assert_equal(expected_page, current_page,'Submittal of Input Failed', True)
-
+                soup = BeautifulSoup(response3, "html.parser")
+                tag = [a.find(text=True) for a in soup.findAll('h2', {'class': 'model_header'})]
+                current_title[idx] = str(tag[0])
+                expected_title[idx] = redirect_models[idx] + " Output"
+            #create array comparison (assume h2/model h eader -tag- of interest is first in list)
+            npt.assert_array_equal(current_title, expected_title,'Submittal of Input Failed', True)
         finally:
             pass
         return
-
 
     def test_qed_404(self):
         try:

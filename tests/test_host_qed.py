@@ -15,16 +15,16 @@ test = {}
 
 servers = ["http://qed.epa.gov/ubertool/", "http://qedinternal.epa.gov/ubertool/",
            "http://134.67.114.3/ubertool/", "http://134.67.114.1/ubertool/"]
-models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
-          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
-          "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
-#models = ["sip/", "stir/"]
+#models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
+#          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
+#          "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
+models = ["sip/", "stir/", "pfam/", "earthworm/"]
 #The following list represents the model page titles to be checked (order of models
 #needs to be the same as "models" list above
-models_IO = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
-             "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
-             "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
-#models_IO = ["SIP", "STIR"]
+#models_IO = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
+#             "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
+#             "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
+models_IO = ["SIP", "STIR", "PFAM", "Earthworm"]
 pages = ["", "description", "input", "algorithms", "references", "qaqc",
          "batchinput", "history"]
 #pages = ["", "description", "input"]
@@ -104,8 +104,8 @@ class TestQEDHost(unittest.TestCase):
                 #locate model page title and verify it is as expected
                 soup = BeautifulSoup(response2, "html.parser")
                 tag = [a.find(text=True) for a in soup.findAll('h2', {'class': 'model_header'})]
-                current_title[idx] = str(tag[0])
-                expected_title[idx] = redirect_models[idx] + " Inputs"
+                current_title[idx] = m.replace("input", "") + ": " + str(tag[0])
+                expected_title[idx] = m.replace("input", "") + ": " + redirect_models[idx] + " Inputs"
                 #create array comparison ((assume h2/model header -tag- of interest is first in list)
             npt.assert_array_equal(current_title, expected_title,'Wrong Input Page Title', True)
         finally:
@@ -126,14 +126,19 @@ class TestQEDHost(unittest.TestCase):
                 response2 = br.submit()
                 response2.get_data()
                 # Step 2: Select and submit input form (it will have default data in it  -  we just want to run with that for now)
-                br.form = list(br.forms())[0] # syntax for selecting form when form is unnamed
-                response3 = br.submit()  # use mechanize to post input data
-                response3.get_data()
-                #Verify we have successfully posted input data and that we have arrived at the output page
-                soup = BeautifulSoup(response3, "html.parser")
-                tag = [a.find(text=True) for a in soup.findAll('h2', {'class': 'model_header'})]
-                current_title[idx] = str(tag[0])
-                expected_title[idx] = redirect_models[idx] + " Output"
+                try:
+                    br.form = list(br.forms())[0] # syntax for selecting form when form is unnamed
+                except:
+                    current_title[idx] = m.replace("input", "") + ": " + "No " + redirect_models[idx] + " Output"
+                    expected_title[idx] = m.replace("input", "") + ": " + redirect_models[idx] + " Output"
+                else:
+                    response3 = br.submit()  # use mechanize to post input data
+                    response3.get_data()
+                    #Verify we have successfully posted input data and that we have arrived at the output page
+                    soup = BeautifulSoup(response3, "html.parser")
+                    tag = [a.find(text=True) for a in soup.findAll('h2', {'class': 'model_header'})]
+                    current_title[idx] = m.replace("input", "") + ": " + str(tag[0])
+                    expected_title[idx] = m.replace("input", "") + ": " + redirect_models[idx] + " Output"
             #create array comparison (assume h2/model h eader -tag- of interest is first in list)
             npt.assert_array_equal(current_title, expected_title,'Submittal of Input Failed', True)
         finally:

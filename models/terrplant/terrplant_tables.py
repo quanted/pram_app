@@ -104,16 +104,16 @@ def gett2data(terrplant_obj):
 def gett3data(terrplant_obj):
     data = { 
         "Description": ['Runoff to Dry Areas', 'Runoff to Semi-Aquatic Areas', 'Spray Drift','Total to Dry Areas', 'Total to Semi-Aquatic Areas',],
-        "EEC": ['%g' % terrplant_obj.out_rundry,'%g' % terrplant_obj.out_runsemi,'%g' % terrplant_obj.out_spray,
-                '%g' % terrplant_obj.out_totaldry,'%g' % terrplant_obj.out_totalsemi, ],
+        "EEC": ['%g' % terrplant_obj.out_run_dry,'%g' % terrplant_obj.out_run_semi,'%g' % terrplant_obj.out_spray,
+                '%g' % terrplant_obj.out_total_dry,'%g' % terrplant_obj.out_total_semi, ],
     }
     return data
 
 def gett3dataqaqc(terrplant_obj):
     data = { 
         "Description": ['Runoff to Dry Areas', 'Runoff to Semi-Aquatic Areas', 'Spray Drift','Total to Dry Areas', 'Total to Semi-Aquatic Areas',],
-        "EEC": ['%g' % terrplant_obj.exp_rundry,'%g' % terrplant_obj.exp_runsemi,'%g' % terrplant_obj.exp_spray,
-                '%g' % terrplant_obj.exp_totaldry,'%g' % terrplant_obj.exp_totalsemi, ],
+        "EEC": ['%g' % terrplant_obj.exp_run_dry,'%g' % terrplant_obj.exp_run_semi,'%g' % terrplant_obj.exp_spray,
+                '%g' % terrplant_obj.exp_total_dry,'%g' % terrplant_obj.exp_total_semi, ],
     }
     return data
 
@@ -178,7 +178,7 @@ def gettsumdata(application_rate, incorporation_depth, runoff_fraction, drift_fr
     }
     return data
 
-def gettsumdata_out(rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
+def gettsumdata_out(run_dry_out, run_semi_out, spray_out, total_dry_out, total_semi_out,
                     nms_rq_dry_out, nms_rq_semi_out, nms_rq_spray_out, 
                     lms_rq_dry_out, lms_rq_semi_out, lms_rq_spray_out, 
                     nds_rq_dry_out, nds_rq_semi_out, nds_rq_spray_out, 
@@ -200,25 +200,25 @@ def gettsumdata_out(rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_
                     'Risk Quotient for listed dicot seedlings exposed to Pesticide X via spray drift',],
 
         "Mean": [
-                 '%.2e' % numpy.mean(rundry_out), '%.2e' % numpy.mean(runsemi_out), '%.2e' % numpy.mean(spray_out), '%.2e' % numpy.mean(totaldry_out), '%.2e' % numpy.mean(totaldry_out),
+                 '%.2e' % numpy.mean(run_dry_out), '%.2e' % numpy.mean(run_semi_out), '%.2e' % numpy.mean(spray_out), '%.2e' % numpy.mean(total_dry_out), '%.2e' % numpy.mean(total_dry_out),
                  '%.2e' % numpy.mean(nms_rq_dry_out), '%.2e' % numpy.mean(nms_rq_semi_out), '%.2e' % numpy.mean(nms_rq_spray_out),
                  '%.2e' % numpy.mean(lms_rq_dry_out), '%.2e' % numpy.mean(lms_rq_semi_out), '%.2e' % numpy.mean(lms_rq_spray_out),
                  '%.2e' % numpy.mean(nds_rq_dry_out), '%.2e' % numpy.mean(nds_rq_semi_out), '%.2e' % numpy.mean(nds_rq_spray_out),
                  '%.2e' % numpy.mean(lds_rq_dry_out), '%.2e' % numpy.mean(lds_rq_semi_out), '%.2e' % numpy.mean(lds_rq_spray_out),],
 
-        "Std": ['%.2e' % numpy.std(rundry_out), '%.2e' % numpy.std(runsemi_out), '%.2e' % numpy.std(spray_out), '%.2e' % numpy.std(totaldry_out), '%.2e' % numpy.std(totaldry_out),
+        "Std": ['%.2e' % numpy.std(run_dry_out), '%.2e' % numpy.std(run_semi_out), '%.2e' % numpy.std(spray_out), '%.2e' % numpy.std(total_dry_out), '%.2e' % numpy.std(total_dry_out),
                 '%.2e' % numpy.std(nms_rq_dry_out), '%.2e' % numpy.std(nms_rq_semi_out), '%.2e' % numpy.std(nms_rq_spray_out),
                 '%.2e' % numpy.std(lms_rq_dry_out), '%.2e' % numpy.std(lms_rq_semi_out), '%.2e' % numpy.std(lms_rq_spray_out),
                 '%.2e' % numpy.std(nds_rq_dry_out), '%.2e' % numpy.std(nds_rq_semi_out), '%.2e' % numpy.std(nds_rq_spray_out),
                 '%.2e' % numpy.std(lds_rq_dry_out), '%.2e' % numpy.std(lds_rq_semi_out), '%.2e' % numpy.std(lds_rq_spray_out),],
 
-        "Min": ['%.2e' % numpy.min(rundry_out), '%.2e' % numpy.min(runsemi_out), '%.2e' % numpy.min(spray_out), '%.2e' % numpy.min(totaldry_out), '%.2e' % numpy.min(totaldry_out),
+        "Min": ['%.2e' % numpy.min(run_dry_out), '%.2e' % numpy.min(run_semi_out), '%.2e' % numpy.min(spray_out), '%.2e' % numpy.min(total_dry_out), '%.2e' % numpy.min(total_dry_out),
                 '%.2e' % numpy.min(nms_rq_dry_out), '%.2e' % numpy.min(nms_rq_semi_out), '%.2e' % numpy.min(nms_rq_spray_out),
                 '%.2e' % numpy.min(lms_rq_dry_out), '%.2e' % numpy.min(lms_rq_semi_out), '%.2e' % numpy.min(lms_rq_spray_out),
                 '%.2e' % numpy.min(nds_rq_dry_out), '%.2e' % numpy.min(nds_rq_semi_out), '%.2e' % numpy.min(nds_rq_spray_out),
                 '%.2e' % numpy.min(lds_rq_dry_out), '%.2e' % numpy.min(lds_rq_semi_out), '%.2e' % numpy.min(lds_rq_spray_out),],
 
-         "Max": ['%.2e' % numpy.max(rundry_out), '%.2e' % numpy.max(runsemi_out), '%.2e' % numpy.max(spray_out), '%.2e' % numpy.min(totaldry_out), '%.2e' % numpy.min(totaldry_out),
+         "Max": ['%.2e' % numpy.max(run_dry_out), '%.2e' % numpy.max(run_semi_out), '%.2e' % numpy.max(spray_out), '%.2e' % numpy.min(total_dry_out), '%.2e' % numpy.min(total_dry_out),
                 '%.2e' % numpy.max(nms_rq_dry_out), '%.2e' % numpy.max(nms_rq_semi_out), '%.2e' % numpy.min(nms_rq_spray_out),
                 '%.2e' % numpy.max(lms_rq_dry_out), '%.2e' % numpy.max(lms_rq_semi_out), '%.2e' % numpy.min(lms_rq_spray_out),
                 '%.2e' % numpy.max(nds_rq_dry_out), '%.2e' % numpy.max(nds_rq_semi_out), '%.2e' % numpy.min(nds_rq_spray_out),
@@ -256,13 +256,13 @@ def table_all_qaqc(terrplant_obj):
     return html_all
 
 def table_all_sum(sumheadings, tmpl, application_rate, incorporation_depth, runoff_fraction, drift_fraction, ec25_nonlisted_seedling_emergence_monocot, ec25_nonlisted_seedling_emergence_dicot, noaec_listed_seedling_emergence_monocot, noaec_listed_seedling_emergence_dicot, 
-                    rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
+                    run_dry_out, run_semi_out, spray_out, total_dry_out, total_semi_out,
                     nms_rq_dry_out, nms_rq_semi_out, nms_rq_spray_out, 
                     lms_rq_dry_out, lms_rq_semi_out, lms_rq_spray_out, 
                     nds_rq_dry_out, nds_rq_semi_out, nds_rq_spray_out, 
                     lds_rq_dry_out, lds_rq_semi_out, lds_rq_spray_out):
     html_all_sum = table_sum_input(sumheadings, tmpl, application_rate, incorporation_depth, runoff_fraction, drift_fraction, ec25_nonlisted_seedling_emergence_monocot, ec25_nonlisted_seedling_emergence_dicot, noaec_listed_seedling_emergence_monocot, noaec_listed_seedling_emergence_dicot)
-    html_all_sum += table_sum_output(sumheadings, tmpl, rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
+    html_all_sum += table_sum_output(sumheadings, tmpl, run_dry_out, run_semi_out, spray_out, total_dry_out, total_semi_out,
                     nms_rq_dry_out, nms_rq_semi_out, nms_rq_spray_out, 
                     lms_rq_dry_out, lms_rq_semi_out, lms_rq_spray_out, 
                     nds_rq_dry_out, nds_rq_semi_out, nds_rq_spray_out, 
@@ -286,7 +286,7 @@ def table_sum_input(sumheadings, tmpl, application_rate, incorporation_depth, ru
         """
         return html
 
-def table_sum_output(sumheadings, tmpl, rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
+def table_sum_output(sumheadings, tmpl, run_dry_out, run_semi_out, spray_out, total_dry_out, total_semi_out,
                     nms_rq_dry_out, nms_rq_semi_out, nms_rq_spray_out, 
                     lms_rq_dry_out, lms_rq_semi_out, lms_rq_spray_out, 
                     nds_rq_dry_out, nds_rq_semi_out, nds_rq_spray_out, 
@@ -299,7 +299,7 @@ def table_sum_output(sumheadings, tmpl, rundry_out, runsemi_out, spray_out, tota
                 <div class="out_ container_output">
         """
         #table sum_input
-        tsumoutputdata = gettsumdata_out(rundry_out, runsemi_out, spray_out, totaldry_out, totalsemi_out, 
+        tsumoutputdata = gettsumdata_out(run_dry_out, run_semi_out, spray_out, total_dry_out, total_semi_out,
                     nms_rq_dry_out, nms_rq_semi_out, nms_rq_spray_out, 
                     lms_rq_dry_out, lms_rq_semi_out, lms_rq_spray_out, 
                     nds_rq_dry_out, nds_rq_semi_out, nds_rq_spray_out, 

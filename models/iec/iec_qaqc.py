@@ -71,7 +71,7 @@ def iecQaqc(model, csv_path):
 #     test_out=stream.read()
 #     return test_out
 
-# iec_obj = iec_model.iec(True,True,'qaqc',dose_response[0],LC50[0],threshold[0])
+# iec_obj = iec_model.iec(True,True,'qaqc',dose_response[0],lc50[0],threshold[0])
 # iec_obj.set_unit_testing_variables()
 
 # iec_obj.z_score_f_out_expected = z_score_f_out[0]

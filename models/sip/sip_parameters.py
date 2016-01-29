@@ -13,7 +13,7 @@ SELECT_VERSION = (('1.0', '1.0'),)
 
 
 class SipInp(forms.Form):
-    version_sip = forms.ChoiceField(
+    version = forms.ChoiceField(
         choices=SELECT_VERSION,
         label='Version',
         initial='1.0')

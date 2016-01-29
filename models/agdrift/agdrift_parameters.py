@@ -23,7 +23,7 @@ SELECT_VERSION = (('1.0','1.0'),)
 class AgdriftInp(forms.Form):
 #    waterbody_type = forms.ChoiceField(
             # label='Water body type', choices=Waterbody_type_CHOICES,initial='Make a selection')
-    version_agdrift = forms.ChoiceField(
+    version = forms.ChoiceField(
             choices=SELECT_VERSION, 
             label='Version',
             initial='1.2.2')
@@ -35,20 +35,24 @@ class AgdriftInp(forms.Form):
             widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), 
             label='PC Code',
             initial='00')
+    application_rate = forms.FloatField(
+            label=mark_safe('Active rate (lb/ac)'),
+            initial='0.5',
+            validators=[validation.validate_greaterthan0])
     application_method = forms.ChoiceField(
             label='Application Method',
             choices=Application_method_CHOICES,
             initial='Make a selection',
             validators=[validation.validate_choicefield])    
-    ecosystem_type = forms.ChoiceField(
-            label='Ecosystem type',
-            choices=Ecosystem_type_CHOICES,
-            initial='EPA Pond',
-            validators=[validation.validate_choicefield])
     drop_size = forms.ChoiceField(
             label='Drop Size Distribution',
             choices=Drop_size_distribution_CHOICES,
             initial='Medium',
+            validators=[validation.validate_choicefield])
+    ecosystem_type = forms.ChoiceField(
+            label='Ecosystem type',
+            choices=Ecosystem_type_CHOICES,
+            initial='EPA Pond',
             validators=[validation.validate_choicefield])
     boom_height = forms.ChoiceField(
             label='Boom height',
@@ -62,10 +66,7 @@ class AgdriftInp(forms.Form):
             validators=[validation.validate_choicefield])
 #    extending_settings = forms.ChoiceField(
             # label='Optional settings', choices=Extended_settings_CHOICES, initial='Make a selection')
-    application_rate = forms.FloatField(
-            label=mark_safe('Active rate (lb/ac)'),
-            initial='0.5',
-            validators=[validation.validate_greaterthan0])
+
     aquatic_type = forms.ChoiceField(
             label='Aquatic Assessment Type',
             choices=Aquatic_type_CHOICES,

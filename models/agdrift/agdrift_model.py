@@ -30,6 +30,7 @@ class agdrift(object):
 
     def set_default_variables(self):
         #Currently used variables
+        self.version_agdrift = ''
         self.run_type = "single"
         self.drop_size = ''
         self.ecosystem_type = '' 

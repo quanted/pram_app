@@ -5,12 +5,11 @@
 
 from django.template.loader import render_to_string
 
-
 def agdriftInputPage(request, model='', header='', formData=None):
     import agdrift_parameters
 
-    html = render_to_string('04uberinput_jquery.html', { 'model': model })
-    html = html + render_to_string('04uberinput_start.html', {
+    #html = render_to_string('04uberinput_jquery.html', { 'model': model })
+    html = render_to_string('04uberinput_start.html', {
             'model':model, 
             'model_attributes': header+' Inputs'})
     html = html + str(agdrift_parameters.AgdriftInp(formData))

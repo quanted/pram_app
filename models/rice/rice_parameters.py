@@ -48,7 +48,7 @@ class RiceInp(forms.Form):
         label=mark_safe('Porosity of Sediment, K<sub>d</sub>'),
         initial=0.509,
         validators=[validation.validate_greaterthan0])
-    Kd = forms.FloatField(
+    kd = forms.FloatField(
         label=mark_safe('Water-Sediment Partitioning Coefficient, K<sub>oc</sub> (L/kg)'),
         initial=727,
         validators=[validation.validate_greaterthan0])

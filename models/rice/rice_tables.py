@@ -72,7 +72,7 @@ def gett1data(rice_obj):
             mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
         "Value": ['%s' % rice_obj.chemical_name, '%.4f' % rice_obj.mai, '%.2f' % rice_obj.area, 
             '%.2f' % rice_obj.dsed, '%.2f' % rice_obj.pb, '%.2f' % rice_obj.dw, 
-            '%.4f' % rice_obj.osed, '%.2f' % rice_obj.Kd],
+            '%.4f' % rice_obj.osed, '%.2f' % rice_obj.kd],
         "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
     }
     return data
@@ -80,8 +80,8 @@ def gett1data(rice_obj):
 def gett1dataqaqc(rice_obj):
     data = { 
         "Parameter": ['Chemical Name','Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
-        "Calculated-Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.area,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.Kd],
-        "Expected-Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.area,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.Kd],
+        "Calculated-Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.area,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
+        "Expected-Value": [rice_obj.chemical_name,rice_obj.mai,rice_obj.area,rice_obj.dsed,rice_obj.pb,rice_obj.dw,rice_obj.osed,rice_obj.kd],
         "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
     }
     return data

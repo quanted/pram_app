@@ -105,10 +105,12 @@ def create_dataframe(response):
 
     logging.info("=========== model_handler.create_dataframe")
     # Load 'inputs' key from JSON response to Pandas DataFrame
+    logging.info(response.json()['inputs'])
     pd_obj_in = pd.io.json.read_json(json.dumps(response.json()['inputs']))
     # Load 'outputs' key from JSON response to Pandas DataFrame
+    logging.info(response.json()['outputs'])
     pd_obj_out = pd.io.json.read_json(json.dumps(response.json()['outputs']))
-
+    logging.info("=========== dataframes created")
     return pd_obj_in, pd_obj_out
 
 

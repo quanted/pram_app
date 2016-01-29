@@ -37,7 +37,7 @@ def outputPageView(request, model='none', header=''):
 
     # If model is updated to be generic, use generic Model object
     # if not, use old method with '*_output' module
-    if model in ('terrplant', 'sip', 'stir', 'iec', 'earthworm', 'rice'):
+    if model in ('terrplant', 'sip', 'stir', 'iec', 'earthworm', 'rice', 'agdrift'):
         logging.info('=========== New Model Handler - Single Model Run ===========')
         from models import model_handler
         model_obj = model_handler.modelInputPOSTReceiver(request, model)

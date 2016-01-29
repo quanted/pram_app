@@ -11,9 +11,7 @@ SELECT_VERSION = (('1.0', '1.0'),)
 
 
 class RiceInp(forms.Form):
-    # config_name = forms.CharField(
-    # label="Use Configuration Name", initial="use-config-%s"%datetime.datetime.now())
-    version_rice = forms.ChoiceField(
+    version = forms.ChoiceField(
         choices=SELECT_VERSION,
         label='Version',
         initial='1.0')

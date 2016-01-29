@@ -11,7 +11,7 @@ SELECT_VERSION = (('1.0', '1.0'),)
 
 
 class IecInp(forms.Form):
-    version_iec = forms.ChoiceField(
+    version = forms.ChoiceField(
         choices=SELECT_VERSION,
         label='Version',
         initial='1.0')

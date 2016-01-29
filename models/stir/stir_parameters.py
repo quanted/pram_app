@@ -14,7 +14,7 @@ SELECT_VERSION = (('1.0', '1.0'),)
 
 
 class StirInp(forms.Form):
-    version_stir = forms.ChoiceField(
+    version = forms.ChoiceField(
         choices=SELECT_VERSION,
         label='Version',
         initial='1.0')

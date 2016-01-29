@@ -88,6 +88,8 @@ def call_model_server(model, args):
 
     url = url_part1 + '/' + model + '/' + jid
     # POST JSON to model server
+    # TODO: Temporarily print JSON submitted to backend server to get schema for SwaggerUI
+    print data
     response = requests.post(url, data=data, headers=http_headers, timeout=60)
 
     # logging.info(json.dumps(response.json()))

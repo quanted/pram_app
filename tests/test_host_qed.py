@@ -2,7 +2,7 @@ import requests
 import unittest
 import numpy.testing as npt
 from bs4 import BeautifulSoup
-import mechanize
+import mechanize # for populating and submitting input data forms
 import unicodedata
 
 
@@ -25,19 +25,22 @@ models = ["sip/", "stir/", "pfam/", "earthworm/"]
 #             "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
 #             "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
 models_IO = ["SIP", "STIR", "PFAM", "Earthworm"]
-pages = ["", "description", "input", "algorithms", "references", "qaqc",
-         "batchinput", "history"]
-#pages = ["", "description", "input"]
+#pages = ["", "description", "input", "algorithms", "references", "qaqc",
+#         "batchinput", "history"]
+pages = ["", "description", "input"]
 
 redirect_servers = ["http://qed.epa.gov/ubertool/", "http://134.67.114.3/ubertool/"]
 redirect_pages = ["input"]
+qaqc_pages = ["qaqc"]
 
 model_pages = [s + m + p for s in servers for m in models for p in pages]
 redirect_model_pages = [s + m + p for s in redirect_servers for m in models
                         for p in redirect_pages]
+qaqc_pages = [s + m + p for s in servers for m in models for p in qaqc_pages]
 #upper_models = [str.upper(m)[:-1] for m in models]
 
 redirect_models = models_IO * len(redirect_servers)
+qaqc_models = models_IO * len(servers)
 #print(model_pages)
 
 class TestQEDHost(unittest.TestCase):
@@ -51,6 +54,34 @@ class TestQEDHost(unittest.TestCase):
         finally:
             pass
         return
+
+    def test_qed_qaqc_form(self):
+        try:#need to repeat login, submit default inputs, and verify we land on output page
+            current_title = [""] * len(qaqc_pages)
+            expected_title = [""] * len(qaqc_pages)
+            for idx, m in enumerate(qaqc_pages) :
+                br = mechanize.Browser()
+                response = br.open(m)
+                # click on 'Run QAQC' button
+                try:
+                    br.click(id = "runQAQC")
+                except:
+                    current_title[idx] = m.replace("qaqc", "") + ": " + "No " + qaqc_models[idx] + " qaqc"
+                    expected_title[idx] = m.replace("qaqc", "") + ": " + qaqc_models[idx] + " qaqc"
+                else:
+                    response3 = br.submit()  # use mechanize to click on 'Run QAQC' button
+                    response3.get_data()
+                    #Verify we have successfully run qaqc and that we have qaqc results
+                    soup = BeautifulSoup(response3, "html.parser")
+                    tag = [a.find(text=True) for a in soup.findAll('h2', {'class': 'model_header'})]
+                    current_title[idx] = m.replace("input", "") + ": " + str(tag[0])
+                    expected_title[idx] = m.replace("input", "") + ": " + redirect_models[idx] + " Output"
+            #create array comparison (assume h2/model h eader -tag- of interest is first in list)
+            npt.assert_array_equal(current_title, expected_title,'QAQC Failed', True)
+        finally:
+            pass
+        return
+
 
     def test_qed_redirect(self):
         try:

@@ -81,8 +81,8 @@ def gett2data(agdrift_obj):
     logger.info(vars(agdrift_obj))
     data = { 
         "Parameter": ['Spray drift fraction of applied', 'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)', 'Initial Average Concentration (ng/L)', 'Initial Average Deposition (mg/cm2)', 'Distance to Point or Waterbody (ft)',],
-        # "Value": ['%.3f' % agdrift_obj.init_avg_dep_foa,'%.3f' % agdrift_obj.avg_depo_gha,'%.3f' % agdrift_obj.avg_depo_lbac, '%.3f' % agdrift_obj.deposition_ngL, '%.3f' % agdrift_obj.deposition_mgcm,],
-        "Value": ['%.5f' % agdrift_obj.init_avg_dep_foa,'%.5f' % agdrift_obj.avg_depo_gha,'%.5f' % agdrift_obj.avg_depo_lbac, '%.5f' % agdrift_obj.deposition_ngL, '%.5f' % agdrift_obj.deposition_mgcm, '%.d' % int(agdrift_obj.distance),],
+        # "Value": ['%.3f' % agdrift_obj.out_init_avg_dep_foa,'%.3f' % agdrift_obj.out_avg_depo_gha,'%.3f' % agdrift_obj.out_avg_depo_lbac, '%.3f' % agdrift_obj.out_deposition_ngl, '%.3f' % agdrift_obj.out_deposition_mgcm,],
+        "Value": ['%.5f' % agdrift_obj.out_init_avg_dep_foa,'%.5f' % agdrift_obj.out_avg_depo_gha,'%.5f' % agdrift_obj.out_avg_depo_lbac, '%.5f' % agdrift_obj.out_deposition_ngl, '%.5f' % agdrift_obj.out_deposition_mgcm, '%.d' % int(agdrift_obj.distance),],
     }
     return data
 
@@ -97,22 +97,21 @@ def gettsumdata(application_rate,distance):
     }
     return data
 
-#def gettsumdata_out(init_avg_dep_foa,avg_depo_lbac,avg_depo_gha,deposition_ngL,deposition_mgcm,nasae,y,x,express_y):
-def gettsumdata_out(init_avg_dep_foa_out,avg_depo_lbac_out,avg_depo_gha_out,deposition_ngL_out,deposition_mgcm_out,nasae_out,y_out,x_out,express_y_out):
+def gettsumdata_out(out_init_avg_dep_foa,out_avg_depo_lbac,out_avg_depo_gha,out_deposition_ngl,out_deposition_mgcm,out_nasae,out_y,out_x,out_express_y):
     data = { 
         "Parameter": ['Average deposition','Deposition (lb/ac)', 'Deposition (g/ha)','Deposition (ng/L)','Deposition (mg/cm)','NASAE','Y','X','Express_Y'],                 
-        "Mean": ['%.2e' % numpy.mean(init_avg_dep_foa_out),'%.2e' % numpy.mean(avg_depo_lbac_out),'%.2e' % numpy.mean(avg_depo_gha_out),
-        '%.2e' % numpy.mean(deposition_ngL_out),'%.2e' % numpy.mean(deposition_mgcm_out),'%.2e' % numpy.mean(nasae_out),'%.2e' % numpy.mean(y_out),
-        '%.2e' % numpy.mean(x_out),'%.2e' % numpy.mean(express_y_out),],
-        "Std": ['%.2e' % numpy.std(init_avg_dep_foa_out),'%.2e' % numpy.std(avg_depo_lbac_out),'%.2e' % numpy.std(avg_depo_gha_out),
-        '%.2e' % numpy.std(deposition_ngL_out),'%.2e' % numpy.std(deposition_mgcm_out),'%.2e' % numpy.std(nasae_out),'%.2e' % numpy.std(y_out),
-        '%.2e' % numpy.std(x_out),'%.2e' % numpy.std(express_y_out),],
-        "Min": ['%.2e' % numpy.min(init_avg_dep_foa_out),'%.2e' % numpy.min(avg_depo_lbac_out),'%.2e' % numpy.min(avg_depo_gha_out),
-        '%.2e' % numpy.min(deposition_ngL_out),'%.2e' % numpy.min(deposition_mgcm_out),'%.2e' % numpy.min(nasae_out),'%.2e' % numpy.min(y_out),
-        '%.2e' % numpy.min(x_out),'%.2e' % numpy.min(express_y_out),],
-        "Max": ['%.2e' % numpy.max(init_avg_dep_foa_out),'%.2e' % numpy.max(avg_depo_lbac_out),'%.2e' % numpy.max(avg_depo_gha_out),
-        '%.2e' % numpy.max(deposition_ngL_out),'%.2e' % numpy.max(deposition_mgcm_out),'%.2e' % numpy.max(nasae_out),'%.2e' % numpy.max(y_out),
-        '%.2e' % numpy.max(x_out),'%.2e' % numpy.max(express_y_out),],   
+        "Mean": ['%.2e' % numpy.mean(out_init_avg_dep_foa),'%.2e' % numpy.mean(out_avg_depo_lbac),'%.2e' % numpy.mean(out_avg_depo_gha),
+        '%.2e' % numpy.mean(out_deposition_ngl),'%.2e' % numpy.mean(out_deposition_mgcm),'%.2e' % numpy.mean(out_nasae),'%.2e' % numpy.mean(out_y),
+        '%.2e' % numpy.mean(out_x),'%.2e' % numpy.mean(out_express_y),],
+        "Std": ['%.2e' % numpy.std(out_init_avg_dep_foa),'%.2e' % numpy.std(out_avg_depo_lbac),'%.2e' % numpy.std(out_avg_depo_gha),
+        '%.2e' % numpy.std(out_deposition_ngl),'%.2e' % numpy.std(out_deposition_mgcm),'%.2e' % numpy.std(out_nasae),'%.2e' % numpy.std(out_y),
+        '%.2e' % numpy.std(out_x),'%.2e' % numpy.std(out_express_y),],
+        "Min": ['%.2e' % numpy.min(out_init_avg_dep_foa),'%.2e' % numpy.min(out_avg_depo_lbac),'%.2e' % numpy.min(out_avg_depo_gha),
+        '%.2e' % numpy.min(out_deposition_ngl),'%.2e' % numpy.min(out_deposition_mgcm),'%.2e' % numpy.min(out_nasae),'%.2e' % numpy.min(out_y),
+        '%.2e' % numpy.min(out_x),'%.2e' % numpy.min(out_express_y),],
+        "Max": ['%.2e' % numpy.max(out_init_avg_dep_foa),'%.2e' % numpy.max(out_avg_depo_lbac),'%.2e' % numpy.max(out_avg_depo_gha),
+        '%.2e' % numpy.max(out_deposition_ngl),'%.2e' % numpy.max(out_deposition_mgcm),'%.2e' % numpy.max(out_nasae),'%.2e' % numpy.max(out_y),
+        '%.2e' % numpy.max(out_x),'%.2e' % numpy.max(out_express_y),],   
         "Unit": ['lb/ac', 'm','','','','',''],
     }
     return data        
@@ -128,7 +127,7 @@ def table_all(agdrift_obj):
     html_all = table_1(agdrift_obj)     
     html_all = html_all + table_2(agdrift_obj)
     html_all = html_all + table_3(agdrift_obj)
-    html_all = html_all + render_to_string('agdrift-output-jqplot.html', {'chart_num':agdrift_obj.loop_indx})
+    html_all = html_all + render_to_string('agdrift-output-jqplot.html', {'chart_num':1}) #agdrift_obj.loop_indx
     return html_all
 
 def table_all_qaqc(agdrift_obj):
@@ -197,7 +196,7 @@ def table_3(agdrift_obj):
         <h3 class="out_2 collapsible" id="section2"><span></span>Results</h3>
             <H4 class="out_2 collapsible" id="section3"><span></span>Plot of spray drift</H4>
                 <div class="out_"></div>
-        """%(agdrift_obj.loop_indx, agdrift_obj.x, agdrift_obj.loop_indx, agdrift_obj.express_y)
+        """%(1, agdrift_obj.out_x, 1, agdrift_obj.out_express_y) #agdrift_obj.loop_indx
 
         # t2data = gett2data(agdrift_obj)
         # t2rows = gethtmlrowsfromcols(t2data,pvrheadings)
@@ -224,7 +223,7 @@ def table_sum_input(i,application_rate,distance):
         """
         return html
 
-def table_sum_output(init_avg_dep_foa_out,avg_depo_lbac_out,avg_depo_gha_out,deposition_ngL_out,deposition_mgcm_out,nasae_out,y_out,x_out,express_y_out):
+def table_sum_output(out_init_avg_dep_foa,out_avg_depo_lbac,out_avg_depo_gha,out_deposition_ngl,out_deposition_mgcm,out_nasae,out_y,out_x,out_express_y):
 
         #pre-table sum_input
         html = """
@@ -232,7 +231,7 @@ def table_sum_output(init_avg_dep_foa_out,avg_depo_lbac_out,avg_depo_gha_out,dep
                 <div class="out_ container_output">
         """
         #table sum_input
-        tsumoutputdata = gettsumdata_out(init_avg_dep_foa_out,avg_depo_lbac_out,avg_depo_gha_out,deposition_ngL_out,deposition_mgcm_out,nasae_out,y_out,x_out,express_y_out)
+        tsumoutputdata = gettsumdata_out(out_init_avg_dep_foa,out_avg_depo_lbac,out_avg_depo_gha,out_deposition_ngl,out_deposition_mgcm,out_nasae,out_y,out_x,out_express_y)
         tsumoutputrows = gethtmlrowsfromcols(tsumoutputdata, sumheadings)
         html = html + tmpl.render(Context(dict(data=tsumoutputrows, headings=sumheadings)))
         html = html + """

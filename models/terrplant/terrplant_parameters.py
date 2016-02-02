@@ -18,7 +18,7 @@ SELECT_VERSION = (('1.2.2', '1.2.2'),)
 
 
 class TerrplantInp(forms.Form):
-    version_terrplant = forms.ChoiceField(
+    version = forms.ChoiceField(
         choices=SELECT_VERSION,
         label='Version',
         initial='1.2.2')

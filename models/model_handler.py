@@ -13,6 +13,7 @@
 
 from REST import auth_s3
 import os, logging
+import re
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()
@@ -87,14 +88,20 @@ def call_model_server(model, args):
     logging.info("===========job id = " + jid)
 
     url = url_part1 + '/' + model + '/' + jid
+    logging.info("===========url = " + url)
     # POST JSON to model server
+    # TODO: Temporarily print JSON submitted to backend server to get schema for SwaggerUI
+    print data
     response = requests.post(url, data=data, headers=http_headers, timeout=60)
 
-    # logging.info(json.dumps(response.json()))
+    logging.info(json.dumps(response.json()))
     # logging.info(type(json.loads(json.dumps(response.json()))))
 
     return response
 
+def replace_nans(encoded):
+    regex = re.compile(r'\bNaN\b')
+    return regex.sub('null', encoded)
 
 def create_dataframe(response):
     import pandas as pd
@@ -102,10 +109,17 @@ def create_dataframe(response):
 
     logging.info("=========== model_handler.create_dataframe")
     # Load 'inputs' key from JSON response to Pandas DataFrame
-    pd_obj_in = pd.io.json.read_json(json.dumps(response.json()['inputs']))
+    logging.info("=========== inputs")
+    #deserialize the serialized string objects coming back from the back end
+    dict_obj_in = response.json()['inputs']
+    json_obj_in = replace_nans(json.dumps(dict_obj_in))
+    pd_obj_in = pd.read_json(json_obj_in)
     # Load 'outputs' key from JSON response to Pandas DataFrame
-    pd_obj_out = pd.io.json.read_json(json.dumps(response.json()['outputs']))
-
+    logging.info("=========== outputs")
+    dict_obj_out = response.json()['outputs']
+    json_obj_out = replace_nans(json.dumps(dict_obj_out))
+    pd_obj_out = pd.read_json(json_obj_out)
+    logging.info("=========== dataframes created")
     return pd_obj_in, pd_obj_out
 
 

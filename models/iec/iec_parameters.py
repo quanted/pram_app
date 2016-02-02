@@ -11,7 +11,7 @@ SELECT_VERSION = (('1.0', '1.0'),)
 
 
 class IecInp(forms.Form):
-    version_iec = forms.ChoiceField(
+    version = forms.ChoiceField(
         choices=SELECT_VERSION,
         label='Version',
         initial='1.0')
@@ -23,7 +23,7 @@ class IecInp(forms.Form):
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
         initial='00')
-    LC50 = forms.FloatField(
+    lc50 = forms.FloatField(
         label=mark_safe('Enter LC<sub>50</sub> or LD<sub>50</sub>'),
         initial='1',
         validators=[validation.validate_greaterthan0])

@@ -12,6 +12,9 @@ import os, sys
 import secret
 
 
+# Get machine IP address
+MACHINE_ID = "developer"
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -72,7 +75,7 @@ TEMPLATE_LOADERS = (
 INSTALLED_APPS = (
     # 'django.contrib.admin',
     # 'django.contrib.auth',
-    # 'django.contrib.contenttypes',
+    #'django.contrib.contenttypes',
     # 'django.contrib.sessions',
     # 'django.contrib.messages',
     'django.contrib.staticfiles',

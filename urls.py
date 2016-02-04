@@ -34,6 +34,7 @@ urlpatterns = patterns('views',
     (r'^ubertool/(?P<model>.*?)/pdf/?$', 'generateReport.pdfReceiver'),
     (r'^ubertool/(?P<model>.*?)/html/?$', 'generateReport.htmlReceiver'),
     (r'^ubertool/docs/?$', 'misc.docsRedirect'),
+    (r'^ubertool/api/?$', 'misc.apiRedirect'),
     # (r'^eco/.*?/przm5_intermediate\.html', 'przm5_intermediate.przm5IntermediatePage'),
     (r'^ubertool/(?P<model>.*?)/?$', 'description.descriptionPage'),
     (r'^eco_index\.html$', 'landing.ecoLandingPage'),                        #Legacy links

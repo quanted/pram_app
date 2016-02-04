@@ -7,6 +7,7 @@ from django.conf.urls import patterns, include, url
 # All view functions here must be in '/views/views.py'
 urlpatterns = patterns('views',
     url(r'^docs/', include('docs.urls')),
+    url(r'^api/', include('api.urls')),
     (r'^ubertool/webice/', include('models.webice.urls')),
     # (r'^eco/test/?$', include('models.test.urls')),
     (r'^ubertool/login/auth/?$', 'misc.login_auth'),

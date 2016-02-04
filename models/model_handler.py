@@ -93,6 +93,7 @@ def call_model_server(model, args):
     print data
     response = requests.post(url, data=data, headers=http_headers, timeout=60)
 
+    # TODO: Remove this logger
     logging.info(json.dumps(response.json()))
     # logging.info(type(json.loads(json.dumps(response.json()))))
 

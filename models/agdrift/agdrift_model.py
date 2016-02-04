@@ -18,7 +18,11 @@ url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 
 class agdrift(object):
-    def __init__(self, set_variables=True, run_methods=True, run_type='single', drop_size = '', ecosystem_type = '', application_method = '', boom_height = '', orchard_type = '', application_rate=1, distance=1,  aquatic_type='', calculation_input='', init_avg_dep_foa = 1, avg_depo_lbac = 1, avg_depo_gha  = 1, deposition_ngL = 1, deposition_mgcm = 1, nasae = 1, y = 1, x = 1, express_y = 1, vars_dict=None):
+    def __init__(self, set_variables=True, run_methods=True, run_type='single', drop_size = '', ecosystem_type = '',
+                 application_method = '', boom_height = '', orchard_type = '', application_rate=1, distance=1,
+                 aquatic_type='', calculation_input='', out_init_avg_dep_foa = 1, out_avg_depo_lbac = 1,
+                 out_avg_depo_gha  = 1, out_deposition_ngl = 1, out_deposition_mgcm = 1, out_nasae = 1, out_y = 1,
+                 out_x = 1, out_express_y = 1, vars_dict=None):
         self.set_default_variables()
         self.jid = rest_funcs.gen_jid()
         
@@ -26,10 +30,13 @@ class agdrift(object):
             if vars_dict != None:
                 self.__dict__.update(vars_dict)
             else:
-                self.set_variables(run_type, drop_size, ecosystem_type, application_method, boom_height, orchard_type, application_rate, distance, aquatic_type, calculation_input, init_avg_dep_foa, avg_depo_gha, avg_depo_lbac, deposition_ngL, deposition_mgcm, nasae, y, x, express_y)
+                self.set_variables(run_type, drop_size, ecosystem_type, application_method, boom_height, orchard_type,
+                                   application_rate, distance, aquatic_type, calculation_input, out_init_avg_dep_foa,
+                                   out_avg_depo_gha, out_avg_depo_lbac, out_deposition_ngl, out_deposition_mgcm, out_nasae, out_y, out_x, out_express_y)
 
     def set_default_variables(self):
         #Currently used variables
+        self.version_agdrift = ''
         self.run_type = "single"
         self.drop_size = ''
         self.ecosystem_type = '' 
@@ -40,18 +47,20 @@ class agdrift(object):
         self.distance = 1
         self.aquatic_type = ''
         self.calculation_input = ''
-        self.init_avg_dep_foa = -1
-        self.avg_depo_lbac = -1
-        self.avg_depo_gha  = -1
-        self.deposition_ngL = -1
-        self.deposition_mgcm = -1
-        self.nasae = -1
-        self.y = -1
-        self.x = -1
-        self.express_y = -1
+        self.out_init_avg_dep_foa = -1
+        self.out_avg_depo_lbac = -1
+        self.out_avg_depo_gha  = -1
+        self.out_deposition_ngl = -1
+        self.out_deposition_mgcm = -1
+        self.out_nasae = -1
+        self.out_y = -1
+        self.out_x = -1
+        self.out_express_y = -1
         self.loop_indx = '1'
 
-    def set_variables(self, run_type, drop_size, ecosystem_type, application_method, boom_height, orchard_type, application_rate, distance, aquatic_type, calculation_input, init_avg_dep_foa, avg_depo_gha, avg_depo_lbac, deposition_ngL, deposition_mgcm, nasae, y, x, express_y):
+    def set_variables(self, run_type, drop_size, ecosystem_type, application_method, boom_height, orchard_type,
+                      application_rate, distance, aquatic_type, calculation_input, out_init_avg_dep_foa, out_avg_depo_gha,
+                      out_avg_depo_lbac, out_deposition_ngl, out_deposition_mgcm, out_nasae, out_y, out_x, out_express_y):
         self.run_type = run_type
         self.drop_size = drop_size
         self.ecosystem_type = ecosystem_type 
@@ -62,22 +71,22 @@ class agdrift(object):
         self.distance = distance
         self.aquatic_type = aquatic_type
         self.calculation_input = calculation_input
-        self.init_avg_dep_foa = init_avg_dep_foa
-        self.avg_depo_gha = avg_depo_gha
-        self.avg_depo_lbac = avg_depo_lbac
-        self.deposition_ngL = deposition_ngL
-        self.deposition_mgcm = deposition_mgcm
-        self.nasae = nasae
-        self.y = y
-        self.x = x
-        self.express_y = express_y  
+        self.out_init_avg_dep_foa = out_init_avg_dep_foa
+        self.out_avg_depo_gha = out_avg_depo_gha
+        self.out_avg_depo_lbac = out_avg_depo_lbac
+        self.out_deposition_ngl = out_deposition_ngl
+        self.out_deposition_mgcm = out_deposition_mgcm
+        self.out_nasae = out_nasae
+        self.out_y = out_y
+        self.out_x = out_x
+        self.out_express_y = out_express_y
 
         all_dic = {"drop_size":drop_size, "ecosystem_type":ecosystem_type, "application_method":application_method, 
                    "boom_height":boom_height, "orchard_type":orchard_type, "application_rate":application_rate, 
                    "distance":distance, "aquatic_type":aquatic_type, "calculation_input":calculation_input, 
-                   "init_avg_dep_foa":init_avg_dep_foa, "avg_depo_gha":avg_depo_gha, "avg_depo_lbac":avg_depo_lbac, 
-                   "deposition_ngL":deposition_ngL, "deposition_mgcm":deposition_mgcm, "nasae":nasae, "y":y, "x":x, 
-                   "express_y":express_y}
+                   "out_init_avg_dep_foa":out_init_avg_dep_foa, "out_avg_depo_gha":out_avg_depo_gha, "out_avg_depo_lbac":out_avg_depo_lbac,
+                   "out_deposition_ngl":out_deposition_ngl, "out_deposition_mgcm":out_deposition_mgcm, "out_nasae":out_nasae, "out_y":out_y, "out_x":out_x,
+                   "out_express_y":out_express_y}
         data = json.dumps(all_dic)
 
         self.jid = rest_funcs.gen_jid()

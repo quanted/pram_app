@@ -13,8 +13,9 @@ import unicodedata
 
 test = {}
 
+#servers = ["http://127.0.0.1:8000/"]
 servers = ["http://qed.epa.gov/ubertool/", "http://qedinternal.epa.gov/ubertool/",
-           "http://134.67.114.3/ubertool/", "http://134.67.114.1/ubertool/"]
+          "http://134.67.114.3/ubertool/", "http://134.67.114.1/ubertool/"]
 #models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
 #          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
 #          "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
@@ -36,7 +37,7 @@ qaqc_pages = ["qaqc"]
 model_pages = [s + m + p for s in servers for m in models for p in pages]
 redirect_model_pages = [s + m + p for s in redirect_servers for m in models
                         for p in redirect_pages]
-qaqc_pages = [s + m + p for s in servers for m in models for p in qaqc_pages]
+qaqc_model_pages = [s + m + p for s in servers for m in models for p in qaqc_pages]
 #upper_models = [str.upper(m)[:-1] for m in models]
 
 redirect_models = models_IO * len(redirect_servers)
@@ -59,12 +60,12 @@ class TestQEDHost(unittest.TestCase):
         try:#need to repeat login, submit default inputs, and verify we land on output page
             current_title = [""] * len(qaqc_pages)
             expected_title = [""] * len(qaqc_pages)
-            for idx, m in enumerate(qaqc_pages) :
+            for idx, m in enumerate(qaqc_model_pages) :
                 br = mechanize.Browser()
                 response = br.open(m)
                 # click on 'Run QAQC' button
                 try:
-                    br.click(id = "runQAQC")
+                    br.click("<p >runQAQC</p>")
                 except:
                     current_title[idx] = m.replace("qaqc", "") + ": " + "No " + qaqc_models[idx] + " qaqc"
                     expected_title[idx] = m.replace("qaqc", "") + ": " + qaqc_models[idx] + " qaqc"
@@ -81,7 +82,6 @@ class TestQEDHost(unittest.TestCase):
         finally:
             pass
         return
-
 
     def test_qed_redirect(self):
         try:

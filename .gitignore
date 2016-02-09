@@ -25,3 +25,5 @@ build/*
 .idea/*
 db.sqlite3
 secret.py
+ghostdriver.log
+tests/ghostdriver.log

@@ -7,6 +7,7 @@ from django.conf.urls import patterns, include, url
 # All view functions here must be in '/views/views.py'
 urlpatterns = patterns('views',
     url(r'^docs/', include('docs.urls')),
+    url(r'^api/', include('api.urls')),
     (r'^ubertool/webice/', include('models.webice.urls')),
     # (r'^eco/test/?$', include('models.test.urls')),
     (r'^ubertool/login/auth/?$', 'misc.login_auth'),
@@ -33,6 +34,7 @@ urlpatterns = patterns('views',
     (r'^ubertool/(?P<model>.*?)/pdf/?$', 'generateReport.pdfReceiver'),
     (r'^ubertool/(?P<model>.*?)/html/?$', 'generateReport.htmlReceiver'),
     (r'^ubertool/docs/?$', 'misc.docsRedirect'),
+    (r'^ubertool/api/?$', 'misc.apiRedirect'),
     # (r'^eco/.*?/przm5_intermediate\.html', 'przm5_intermediate.przm5IntermediatePage'),
     (r'^ubertool/(?P<model>.*?)/?$', 'description.descriptionPage'),
     (r'^eco_index\.html$', 'landing.ecoLandingPage'),                        #Legacy links

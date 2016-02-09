@@ -81,6 +81,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     #'mod_wsgi.server',  # Only needed for mod_wsgi express (Python driver for Apache) e.g. on the production server
     'docs',
+    'api',
     'models.ore',
     'models.hwbi',
     # 'rest_framework_swagger'

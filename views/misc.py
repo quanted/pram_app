@@ -85,3 +85,6 @@ def fileNotFound(request):
 
 def docsRedirect(request):
     return redirect('/docs/', permanent=True)
+
+def apiRedirect(request):
+    return redirect('/api/', permanent=True)

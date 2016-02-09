@@ -36,6 +36,7 @@ def linksLeft():
         ),
         ('Documentation', OrderedDict([
                 ('Source Code', 'docs'),
+                ('API Documentation', 'api')
             ])
         ),
         # ('&uuml;bertool', OrderedDict([

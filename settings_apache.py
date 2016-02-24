@@ -84,7 +84,8 @@ INSTALLED_APPS = (
     'mod_wsgi.server',
     'docs',
     'api',
-    'models.ore'
+    'models.ore',
+    'models.hwbi'
 )
 
 MIDDLEWARE_CLASSES = (

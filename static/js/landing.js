@@ -31,7 +31,7 @@ $( document ).ready(function() {
 			$(e).find("a").animate({ marginTop: "0px" }, 250);
 		});
 	});
-	
+
 	$("#eco").mousedown(function() {
 		$(this).css( "box-shadow","inset 0 0 30px #CCC");
 	});

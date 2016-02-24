@@ -6,7 +6,9 @@ import requests
 
 
 def api_docs_view(request):
-    html = render_to_string('api_docs.html', {})
+    html = render_to_string('api_docs.html', {
+            'site_skin': os.environ['SITE_SKIN']
+    })
     response = HttpResponse()
     response.write(html)
 

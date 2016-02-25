@@ -1221,6 +1221,9 @@
 .swagger-section #header {
   background-color: #356697;
   padding: 14px;
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .swagger-section #header a#logo {
   font-size: 1.5em;
@@ -1276,7 +1279,6 @@
   color: #999999;
 }
 .swagger-section #message-bar {
-  min-height: 30px;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 80px;
 }

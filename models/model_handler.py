@@ -87,7 +87,7 @@ def call_model_server(model, args):
     jid = rest_funcs.gen_jid()
     logging.info("===========job id = " + jid)
 
-    url = url_part1 + '/' + model + '/' + jid
+    url = url_part1 + '/rest/' + model + '/' + jid
     logging.info("===========url = " + url)
     # POST JSON to model server
     # TODO: Temporarily print JSON submitted to backend server to get schema for SwaggerUI

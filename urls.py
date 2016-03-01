@@ -8,7 +8,7 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('views',
     url(r'^docs/', include('docs.urls')),
     url(r'^api/', include('api.urls')),
-    url(r'^hwbi', include('models.hwbi.urls')),
+    # url(r'^hwbi', include('models.hwbi.urls')),
     (r'^ubertool/webice/', include('models.webice.urls')),
     # (r'^eco/test/?$', include('models.test.urls')),
     (r'^ubertool/login/auth/?$', 'misc.login_auth'),

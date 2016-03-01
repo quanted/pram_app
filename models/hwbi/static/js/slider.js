@@ -8,15 +8,37 @@ d3.json("/static/json/baseline.json", function (data) {
 });
 
 
- 
-
 //draw sliders function
 function drawSliders(data, index) {
     //append an svg to cirSlide div
 
     //set scale for slider. domain is input min max. range is slider translated min max (same)
 var x = d3.scale.linear()
-    .domain([1, 99])
+    .domain((function () {
+            if (data.ServiceName == "Capital Investment") { return [56, 62]; }
+            if (data.ServiceName == "Consumption") { return [47, 54]; }
+            if (data.ServiceName == "Employment") { return [33, 73]; }
+            if (data.ServiceName == "Finance") { return [31, 62]; }
+            if (data.ServiceName == "Innovation") { return [26, 65]; }
+            if (data.ServiceName == "Production") { return [45, 52]; }
+            if (data.ServiceName == "Re-Distribution") { return [24, 69]; }
+            if (data.ServiceName == "Air Quality") { return [10, 90]; }
+            if (data.ServiceName == "Food, Fiber And Fuel Provisioning") { return [33, 48]; }
+            if (data.ServiceName == "Greenspace") { return [36, 62]; }
+            if (data.ServiceName == "Water Quality") { return [16, 88]; }
+            if (data.ServiceName == "Water Quantity") { return [22, 73]; }
+            if (data.ServiceName == "Activism") { return [26, 74]; }
+            if (data.ServiceName == "Communication") { return [33, 69]; }
+            if (data.ServiceName == "Community And Faith-Based Initiatives") { return [12, 90]; }
+            if (data.ServiceName == "Education") { return [33, 56]; }
+            if (data.ServiceName == "Emergency Preparedness") { return [12, 90]; }
+            if (data.ServiceName == "Family Services") { return [43, 73]; }
+            if (data.ServiceName == "Healthcare") { return [30, 62]; }
+            if (data.ServiceName == "Justice") { return [31, 72]; }
+            if (data.ServiceName == "Labor") { return [37, 53]; }
+            if (data.ServiceName == "Public Works") { return [34, 66]; }
+        })()
+    )
     .range([1, 99])
     //make scale *always* abide by range
     .clamp(true);
@@ -65,12 +87,12 @@ var x = d3.scale.linear()
         //give new g element class "slider"
         .attr("class", "slider")
         //call the brush variable attributes
-        .call(brush);
+        .call(brush)
+        .attr("transform", "translate(" + 10 + "," + 0 + ")");
 
     //set the vertical range of slider background for selection/drag
     slider.select(".background")
-        .attr("height", 100)
-        .attr("transform", "translate(" + 10 + "," + 0 + ")");
+        .attr("height", 100);
 
     //append handle to slider element
     var handle = slider.append("g")
@@ -80,7 +102,7 @@ var x = d3.scale.linear()
     handle.append("circle")
     //give the circle element class "handle"
     .attr("class", "handle")
-    .attr("transform", "translate(10," + 25 + ")")
+    .attr("transform", "translate(0," + 25 + ")")
     .attr("r", 10)
     .attr("fill", (function () {
         if (data.ServiceType == "Economic") { return "#b86361"; }
@@ -93,11 +115,12 @@ var x = d3.scale.linear()
         .attr("class", "cirTex"+index)
         //assign text using data score and convert to whole number
         .text(data.Score * 100)
-        .attr("transform", "translate(" + 2 + " ," + 29 + ")");
+        .attr("transform", "translate(" + (-8) + " ," + 29 + ")");
 
     //for slider variable, call brush variable's "brushed" event property (mousemove)
     slider
         .call(brush.event)
+        .attr("transform", "translate(" + 10 + "," + 0 + ")")
 
     //create brushed function
     function brushed() {
@@ -190,6 +213,7 @@ function updateSliders(data, index) {
     //for slider variable, call brush variable's "brushed" event property (mousemove)
     d3.select("g.slider")
         .call(brush.event)
+        .attr("transform", "translate(" + 10 + "," + 0 + ")")
 
     //create brushed function
     function brushed() {

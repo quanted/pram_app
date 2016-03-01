@@ -17,12 +17,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 <style>
 /* format sliders */
@@ -105,6 +105,11 @@ h1 {
 h2 {
     font-size: 16px;
     }
+
+.jumbotron{
+    background-color:#2E2D88;
+    color:white;
+}
 </style>
 <script src = "/static/js/d3.v3.min.js"></script>
 <script src="/static/js/d3.tip.v0.6.3.js"></script>
@@ -112,17 +117,19 @@ h2 {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 
-{# Everything goes inside of this <div> tag #}
+{# For bootsrap, everything goes inside of these <div> tag #}
 <div class="container">
+<div class="row">
 
-
-
+<div class="jumbotron">
     <h1>Services to Human Well-Being Dashboard</h1>
+</div>
 
+<div class="panel panel-default">
+  <div class="panel-body">
 
-
-<!--select state & county-->
-    <div id="statecounty" style = "float:left; width: 20%; margin-left: 10px; margin-top: 5px;">
+    <!--select state & county-->
+    <div id="statecounty" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
       <form name="stateform" id="stateform">
           <select name="optone" id="stateSel" size="1">
               <option value="" selected="selected">select state</option>
@@ -135,79 +142,98 @@ h2 {
           <br>
       </form>
     </div>
-<script src="/static/js/statecounty.js"></script>
+
+    <script src="/static/js/statecounty.js"></script>
 
 
-<!--d3 work flow chart diagram services-to-HWBI-->
-<div id="flowchart" style = "float:left; width: 75%;"></div>
-<script src="/static/js/flowchart.js"></script>
-
-<!--Text description of services-->
-              <div>
-                  <p>
-                      Twenty-two
-                      <span style="color: #b86361;font-weight:bold;">economic</span>,
-                      <span style="color: #61b88e;font-weight:bold;">ecosystem</span>, and
-                      <span style="color: #618bb8;font-weight:bold;">social</span>
-                      service scores were calculated for each county
-                      in the conterminous United States. Choose your county then adjust the services sliders to examine how
-                      changing services affects domain values and the overall HWBI.
-                  </p>
-                  <footer id="foot01"></footer>
-              </div>
+    <!--d3 work flow chart diagram services-to-HWBI-->
+    <div id="flowchart" class="col-lg-9 col-md-9 col-sm-9 col-xs-12"></div>
+    <script src="/static/js/flowchart.js"></script>
 
 
-  <!--Sliders to adjust circle services-->
-  <div id="cirSlide" style = "margin-left: 25px;"></div>
-  <script src="/static/js/slider.js"></script>
+  <!--Text description of services-->
+    <div>
+      <p>
+          Twenty-two
+          <span style="color: #b86361;font-weight:bold;">economic</span>,
+          <span style="color: #61b88e;font-weight:bold;">ecosystem</span>, and
+          <span style="color: #618bb8;font-weight:bold;">social</span>
+          service scores were calculated for each county
+          in the conterminous United States. Choose your county then adjust the services sliders to examine how
+          changing services affects domain values and the overall HWBI.
+      </p>
+    </div>
+
+    <!--Sliders to adjust circle services-->
+    <div id="cirSlide" style = "margin-left: 25px;"></div>
+    <script src="/static/js/slider.js"></script>
 
 
-<div style="line-height:60%;"><br></div>
-<!--button to submit updated services to pie chart-->
-<button id="updateServices" onclick="useServiceValues()" style="float:left;">Update Services Values</button>
+    <!--button to submit updated services to pie chart-->
+    <button id="updateServices" onclick="useServiceValues()" type="submit" class="btn btn-primary btn-xs" role="button">Update Service Values</button>
 
-<div style="line-height:200%;"><br></div>
+    <!--OLD button<button id="updateServices" onclick="useServiceValues()" style="float:left;">Update Service Values</button>-->
 
-
- <!--<h2><i><small>What's important to you?</small></i></h2>->->
-
-<!--Text description of RIVs-->
-              <div>
-
-                  <p>
-                      The relative importance of domains may vary for each person. Use the boxes to rank
-                      the importance of domains based on <i>your</i> preferences. A value of 5
-                      is considered most important and a value of 1 has lowest importance.
-                  </p>
-              </div>
-
-<!--jquery ajax call to import html code for riv boxes-->
-<div id="riv" style = "float:left; width: 40%;"></div>
-<script>
-    $(function(){
-      $("#riv").load("/static/riv.html");
-    });
-</script>
+  </div>
+</div>
 
 
-<!--domain pie-->
- <div id="pie" style = "float:left; width: 60%;"></div>
- <script src="/static/js/pie.js" ></script>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <!--<h2><i><small>What's important to you?</small></i></h2>->->
+
+    <!--Text description of RIVs-->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <p>
+          The relative importance of domains may vary for each person. Use the boxes to rank
+          the importance of domains based on <i>your</i> preferences. A value of 5
+          is considered most important and a value of 1 has lowest importance.
+        </p>
+      </div>
+
+    <!--jquery ajax call to import html code for riv boxes-->
+    <div id="riv" class="col-lg-3 col-md-3 col-sm-4 col-xs-5"></div>
+    <script>
+        $(function(){
+          $("#riv").load("/static/riv.html");
+        });
+    </script>
 
 
-<!--<h2><i><small>Services, Domains & the HWBI</small></i></h2>-->
 
-<!--Text description of HWBI pie-->
-              <div>
-                  <p>
-                      The services scores are used to calculate the eight domains of well-being,
-                      represented as eight sections on the pie chart. The relative importance values
-                      are represented by the width of pieces on the pie chart and used to calculate
-                      the overall HWBI score.
 
-                      The total Human Well-Being Index (HWBI) score is shown in the center of the pie chart.
-                  </p>
-              </div>
-            </div>
+    <!--domain pie: county-->
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" id="pie" style="text-align:center">County-Calculated Services</div>
+
+    <!--empty div class for space formatting-->
+    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+
+    <!--domain pie 2: updated-->
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" id="pie2" style="text-align:center">Modified Services and Weights</div>
+	</div>
+  <script src="/static/js/pie.js" ></script>
+	</div>
+
+    <!--Text description of HWBI pie-->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <p>
+          The services scores are used to calculate the eight domains of well-being,
+          represented as eight sections on the pie chart. The relative importance values
+          are represented by the width of pieces on the pie chart and used to calculate
+          the overall HWBI score.
+
+          The total Human Well-Being Index (HWBI) score is shown in the center of the pie chart.
+        </p>
+    </div>
+
+
+  </div>
+</div>
+  </div>
+</div>
+
+</div>
+</div>
+
 </body>
 </html>

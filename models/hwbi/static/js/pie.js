@@ -1,6 +1,6 @@
 // Define size and radius of pie chart
-var width = 350,
-    height = 350,
+var width = 300,
+    height = 300,
     radius = (Math.min(width, height) / 2)-4,
     innerRadius = 0.3 * radius;
 
@@ -10,15 +10,15 @@ d3.json('/static/json/baseline.json', function (error, data) {
     drawPieChart("", data.Domains);
 });
 
-//create svg element in the page "#pie" div and append g to the SVG		
-var svg = d3.select("#pie")
+//create svg element in the page "#pie" div and append g to the SVG
+var svg = d3.selectAll("#pie, #pie2")
     .append("svg")
     .attr("width", width)
     .attr("height", height)
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-    //append another g element with class "slice" to svg   
+    //append another g element with class "slice" to svg
     svg.append("g")
       .attr("class", "slice");
 
@@ -32,7 +32,7 @@ function useRIVWeights() {
         //create empty array to store domain weights
         domainWeights = [];
         //get value of each RIV p input and store in array
-        $('#riv p input').each(function (i, elem) {
+        $('#riv div input').each(function (i, elem) {
             domainWeights.push(parseInt($(elem).val()))
         });
 

@@ -6,7 +6,7 @@ import requests
 
 
 def api_docs_view(request):
-    html = render_to_string('api_docs.html', {})
+    html = render_to_string('index.html', {})
     response = HttpResponse()
     response.write(html)
 
@@ -14,6 +14,7 @@ def api_docs_view(request):
 
 
 def api_docs_json(request):
+    # TODO: Change to: /ubertool/api/spec
     url = os.environ['UBERTOOL_REST_SERVER'] + '/api/spec'
     api_json = requests.get(url)
 

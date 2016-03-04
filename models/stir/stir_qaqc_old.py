@@ -130,7 +130,7 @@ class TestCase_sat_air_conc(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testsat_air_conc_in(self):
         out_fun_sat_air_conc.append(self.stir_obj.sat_air_conc)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("sat_air_conc",self.stir_obj.sat_air_conc,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_sat_air_conc",self.stir_obj.sat_air_conc,fun)
         self.assertEqual(round(fun,3),round(self.sat_air_conc,3),testFailureMessage)
 
 class TestCase_inh_rate_avian(unittest.TestCase):
@@ -138,7 +138,7 @@ class TestCase_inh_rate_avian(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testinh_rate_avian_in(self):
         out_fun_inh_rate_avian.append(self.stir_obj.inh_rate_avian)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("inh_rate_avian",self.stir_obj.inh_rate_avian,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_inh_rate_avian",self.stir_obj.inh_rate_avian,fun)
         self.assertEqual(round(fun,3),round(self.inh_rate_avian,3),testFailureMessage)
 
 class TestCase_vid_avian(unittest.TestCase):
@@ -146,7 +146,7 @@ class TestCase_vid_avian(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testvid_avian_in(self):
         out_fun_vid_avian.append(self.stir_obj.vid_avian)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("vid_avian",self.stir_obj.vid_avian,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_vid_avian",self.stir_obj.vid_avian,fun)
         self.assertEqual(round(fun,3),round(self.vid_avian,3),testFailureMessage)
 
 class TestCase_inh_rate_mammal(unittest.TestCase):
@@ -154,7 +154,7 @@ class TestCase_inh_rate_mammal(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testinh_rate_mammal_in(self):
         out_fun_inh_rate_mammal.append(self.stir_obj.inh_rate_mammal)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("inh_rate_mammal",self.stir_obj.inh_rate_mammal,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_inh_rate_mammal",self.stir_obj.inh_rate_mammal,fun)
         self.assertEqual(round(fun,3),round(self.inh_rate_mammal,3),testFailureMessage)
 
 class TestCase_vid_mammal(unittest.TestCase):
@@ -162,7 +162,7 @@ class TestCase_vid_mammal(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testvid_mammal_in(self):
         out_fun_vid_mammal.append(self.stir_obj.vid_mammal)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("vid_mammal",self.stir_obj.vid_mammal,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_vid_mammal",self.stir_obj.vid_mammal,fun)
         self.assertEqual(round(fun,3),round(self.vid_mammal,3),testFailureMessage)
 
 class TestCase_ar2(unittest.TestCase):
@@ -170,7 +170,7 @@ class TestCase_ar2(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testar2_in(self):
         out_fun_ar2.append(self.stir_obj.ar2)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("ar2",self.stir_obj.ar2,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_ar2",self.stir_obj.ar2,fun)
         self.assertEqual(round(fun,3),round(self.ar2,3),testFailureMessage)
 
 class TestCase_air_conc(unittest.TestCase):
@@ -178,7 +178,7 @@ class TestCase_air_conc(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testair_conc_in(self):
         out_fun_air_conc.append(self.stir_obj.air_conc)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("air_conc",self.stir_obj.air_conc,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_air_conc",self.stir_obj.air_conc,fun)
         self.assertEqual(round(fun,3),round(self.air_conc,3),testFailureMessage)
 
 class TestCase_sid_avian(unittest.TestCase):
@@ -186,7 +186,7 @@ class TestCase_sid_avian(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testsid_avian_in(self):
         out_fun_sid_avian.append(self.stir_obj.sid_avian)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("sid_avian",self.stir_obj.sid_avian,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_sid_avian",self.stir_obj.sid_avian,fun)
         self.assertEqual(round(fun,3),round(self.sid_avian,3),testFailureMessage)
 
 class TestCase_sid_mammal(unittest.TestCase):
@@ -194,7 +194,7 @@ class TestCase_sid_mammal(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testsid_mammal_in(self):
         out_fun_sid_mammal.append(self.stir_obj.sid_mammal)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("sid_mammal",self.stir_obj.sid_mammal,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_sid_mammal",self.stir_obj.sid_mammal,fun)
         self.assertEqual(round(fun,3),round(self.sid_mammal,3),testFailureMessage)
 
 class TestCase_cf(unittest.TestCase):
@@ -202,7 +202,7 @@ class TestCase_cf(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testcf_in(self):
         out_fun_cf.append(self.stir_obj.cf)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("cf",self.stir_obj.cf,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_cf",self.stir_obj.cf,fun)
         self.assertEqual(round(fun,3),round(self.cf,3),testFailureMessage)
 
 class TestCase_mammal_inhalation_ld50(unittest.TestCase):
@@ -210,7 +210,7 @@ class TestCase_mammal_inhalation_ld50(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testmammal_inhalation_ld50_in(self):
         out_fun_mammal_inhalation_ld50.append(self.stir_obj.mammal_inhalation_ld50)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("mammal_inhalation_ld50",self.stir_obj.mammal_inhalation_ld50,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_mammal_inhalation_ld50",self.stir_obj.mammal_inhalation_ld50,fun)
         self.assertEqual(round(fun,3),round(self.mammal_inhalation_ld50,3),testFailureMessage)
 
 class TestCase_adjusted_mammal_inhalation_ld50(unittest.TestCase):
@@ -218,7 +218,7 @@ class TestCase_adjusted_mammal_inhalation_ld50(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testadjusted_mammal_inhalation_ld50_in(self):
         out_fun_adjusted_mammal_inhalation_ld50.append(self.stir_obj.adjusted_mammal_inhalation_ld50)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("adjusted_mammal_inhalation_ld50",self.stir_obj.adjusted_mammal_inhalation_ld50,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_adjusted_mammal_inhalation_ld50",self.stir_obj.adjusted_mammal_inhalation_ld50,fun)
         self.assertEqual(round(fun,3),round(self.adjusted_mammal_inhalation_ld50,3),testFailureMessage)
 
 class TestCase_estimated_avian_inhalation_ld50(unittest.TestCase):
@@ -226,7 +226,7 @@ class TestCase_estimated_avian_inhalation_ld50(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testestimated_avian_inhalation_ld50_in(self):
         out_fun_estimated_avian_inhalation_ld50.append(self.stir_obj.estimated_avian_inhalation_ld50)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("estimated_avian_inhalation_ld50",self.stir_obj.estimated_avian_inhalation_ld50,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_estimated_avian_inhalation_ld50",self.stir_obj.estimated_avian_inhalation_ld50,fun)
         self.assertEqual(round(fun,3),round(self.estimated_avian_inhalation_ld50,3),testFailureMessage)
 
 class TestCase_adjusted_avian_inhalation_ld50(unittest.TestCase):
@@ -234,7 +234,7 @@ class TestCase_adjusted_avian_inhalation_ld50(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testadjusted_avian_inhalation_ld50_in(self):
         out_fun_adjusted_avian_inhalation_ld50.append(self.stir_obj.adjusted_avian_inhalation_ld50)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("adjusted_avian_inhalation_ld50",self.stir_obj.adjusted_avian_inhalation_ld50,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_adjusted_avian_inhalation_ld50",self.stir_obj.adjusted_avian_inhalation_ld50,fun)
         self.assertEqual(round(fun,3),round(self.adjusted_avian_inhalation_ld50,3),testFailureMessage)
 
 class TestCase_ratio_vid_avian(unittest.TestCase):
@@ -242,7 +242,7 @@ class TestCase_ratio_vid_avian(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testratio_vid_avian_in(self):
         out_fun_ratio_vid_avian.append(self.stir_obj.ratio_vid_avian)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("ratio_vid_avian",self.stir_obj.ratio_vid_avian,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_ratio_vid_avian",self.stir_obj.ratio_vid_avian,fun)
         self.assertEqual(round(fun,3),round(self.ratio_vid_avian,3),testFailureMessage)
 
 class TestCase_ratio_sid_avian(unittest.TestCase):
@@ -250,7 +250,7 @@ class TestCase_ratio_sid_avian(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testratio_sid_avian_in(self):
         out_fun_ratio_sid_avian.append(self.stir_obj.ratio_sid_avian)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("ratio_sid_avian",self.stir_obj.ratio_sid_avian,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_ratio_sid_avian",self.stir_obj.ratio_sid_avian,fun)
         self.assertEqual(round(fun,3),round(self.ratio_sid_avian,3),testFailureMessage)
 
 class TestCase_ratio_vid_mammal(unittest.TestCase):
@@ -258,7 +258,7 @@ class TestCase_ratio_vid_mammal(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testratio_vid_mammal_in(self):
         out_fun_ratio_vid_mammal.append(self.stir_obj.ratio_vid_mammal)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("ratio_vid_mammal",self.stir_obj.ratio_vid_mammal,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_ratio_vid_mammal",self.stir_obj.ratio_vid_mammal,fun)
         self.assertEqual(round(fun,3),round(self.ratio_vid_mammal,3),testFailureMessage)
 
 class TestCase_ratio_sid_mammal(unittest.TestCase):
@@ -266,7 +266,7 @@ class TestCase_ratio_sid_mammal(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testratio_sid_mammal_in(self):
         out_fun_ratio_sid_mammal.append(self.stir_obj.ratio_sid_mammal)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("ratio_sid_mammal",self.stir_obj.ratio_sid_mammal,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_ratio_sid_mammal",self.stir_obj.ratio_sid_mammal,fun)
         self.assertEqual(round(fun,3),round(self.ratio_sid_mammal,3),testFailureMessage)
 
 class TestCase_loc_vid_avian(unittest.TestCase):
@@ -274,7 +274,7 @@ class TestCase_loc_vid_avian(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testloc_vid_avian_in(self):
         out_fun_loc_vid_avian.append(self.stir_obj.loc_vid_avian)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("loc_vid_avian",self.stir_obj.loc_vid_avian,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_loc_vid_avian",self.stir_obj.loc_vid_avian,fun)
         self.assertEqual(round(fun,3),round(self.loc_vid_avian,3),testFailureMessage)
 
 class TestCase_loc_sid_avian(unittest.TestCase):
@@ -282,7 +282,7 @@ class TestCase_loc_sid_avian(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testloc_sid_avian_in(self):
         out_fun_loc_sid_avian.append(self.stir_obj.loc_sid_avian)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("loc_sid_avian",self.stir_obj.loc_sid_avian,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_loc_sid_avian",self.stir_obj.loc_sid_avian,fun)
         self.assertEqual(round(fun,3),round(self.loc_sid_avian,3),testFailureMessage)
 
 class TestCase_loc_vid_mammal(unittest.TestCase):
@@ -290,7 +290,7 @@ class TestCase_loc_vid_mammal(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testloc_vid_mammal_in(self):
         out_fun_loc_vid_mammal.append(self.stir_obj.loc_vid_mammal)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("loc_vid_mammal",self.stir_obj.loc_vid_mammal,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_loc_vid_mammal",self.stir_obj.loc_vid_mammal,fun)
         self.assertEqual(round(fun,3),round(self.loc_vid_mammal,3),testFailureMessage)
 
 class TestCase_loc_sid_mammal(unittest.TestCase):
@@ -298,7 +298,7 @@ class TestCase_loc_sid_mammal(unittest.TestCase):
         self.stir_obj = stir_object_in
     def testloc_sid_mammal_in(self):
         out_fun_loc_sid_mammal.append(self.stir_obj.loc_sid_mammal)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("loc_sid_mammal",self.stir_obj.loc_sid_mammal,fun)
+        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("out_loc_sid_mammal",self.stir_obj.loc_sid_mammal,fun)
         self.assertEqual(round(fun,3),round(self.loc_sid_mammal,3),testFailureMessage)
 
 def suite(TestCaseName, **kwargs):

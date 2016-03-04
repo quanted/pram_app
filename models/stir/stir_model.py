@@ -83,28 +83,28 @@ class StirModel(object):
         #     string_rep = string_rep + "body_weight_tested_mammal = %.2e \n" % self.body_weight_tested_mammal
         #     string_rep = string_rep + "mammal_oral_ld50 = %.2e \n" % self.mammal_oral_ld50
         #     #outputs
-        #     string_rep = string_rep + "sat_air_conc = %.2e \n" % self.sat_air_conc
-        #     string_rep = string_rep + "inh_rate_avian = %.2e \n" % self.inh_rate_avian
-        #     string_rep = string_rep + "vid_avian = %.2e \n" % self.vid_avian
-        #     string_rep = string_rep + "inh_rate_mammal = %.2e \n" % self.inh_rate_mammal
-        #     string_rep = string_rep + "vid_mammal = %.2e \n" % self.vid_mammal
-        #     string_rep = string_rep + "ar2 = %.2e \n" % self.ar2
-        #     string_rep = string_rep + "air_conc = %.2e \n" % self.air_conc
-        #     string_rep = string_rep + "sid_avian = %.2e \n" % self.sid_avian
-        #     string_rep = string_rep + "sid_mammal = %.2e \n" % self.sid_mammal
-        #     string_rep = string_rep + "cf = %.2e \n" % self.cf
-        #     string_rep = string_rep + "mammal_inhalation_ld50 = %.2e \n" % self.self.mammal_inhalation_ld50
-        #     string_rep = string_rep + "adjusted_mammal_inhalation_ld50 = %.2e \n" % self.adjusted_mammal_inhalation_ld50
-        #     string_rep = string_rep + "estimated_avian_inhalation_ld50 = %.2e \n" % self.estimated_avian_inhalation_ld50
-        #     string_rep = string_rep + "adjusted_avian_inhalation_ld50 = %.2e \n" % self.adjusted_avian_inhalation_ld50
-        #     string_rep = string_rep + "ratio_vid_avian = %.2e \n" % self.ratio_vid_avian
-        #     string_rep = string_rep + "ratio_sid_avian = %.2e \n" % self.ratio_sid_avian
-        #     string_rep = string_rep + "ratio_vid_mammal = %.2e \n" % self.ratio_vid_mammal
-        #     string_rep = string_rep + "ratio_sid_mammal = %.2e \n" % self.ratio_sid_mammal
-        #     string_rep = string_rep + "loc_vid_avian =" + self.loc_vid_avian + "\n"
-        #     string_rep = string_rep + "loc_sid_avian =" + self.loc_sid_avian + "\n"
-        #     string_rep = string_rep + "loc_vid_mammal =" + self.loc_vid_mammal + "\n"
-        #     string_rep = string_rep + "loc_sid_mammal =" + self.loc_sid_mammal + "\n"
+        #     string_rep = string_rep + "out_sat_air_conc = %.2e \n" % self.out_sat_air_conc
+        #     string_rep = string_rep + "out_inh_rate_avian = %.2e \n" % self.out_inh_rate_avian
+        #     string_rep = string_rep + "out_vid_avian = %.2e \n" % self.out_vid_avian
+        #     string_rep = string_rep + "out_inh_rate_mammal = %.2e \n" % self.out_inh_rate_mammal
+        #     string_rep = string_rep + "out_vid_mammal = %.2e \n" % self.out_vid_mammal
+        #     string_rep = string_rep + "out_ar2 = %.2e \n" % self.out_ar2
+        #     string_rep = string_rep + "out_air_conc = %.2e \n" % self.out_air_conc
+        #     string_rep = string_rep + "out_sid_avian = %.2e \n" % self.out_sid_avian
+        #     string_rep = string_rep + "out_sid_mammal = %.2e \n" % self.out_sid_mammal
+        #     string_rep = string_rep + "out_cf = %.2e \n" % self.out_cf
+        #     string_rep = string_rep + "out_mammal_inhalation_ld50 = %.2e \n" % self.self.out_mammal_inhalation_ld50
+        #     string_rep = string_rep + "out_adjusted_mammal_inhalation_ld50 = %.2e \n" % self.out_adjusted_mammal_inhalation_ld50
+        #     string_rep = string_rep + "out_estimated_avian_inhalation_ld50 = %.2e \n" % self.out_estimated_avian_inhalation_ld50
+        #     string_rep = string_rep + "out_adjusted_avian_inhalation_ld50 = %.2e \n" % self.out_adjusted_avian_inhalation_ld50
+        #     string_rep = string_rep + "out_ratio_vid_avian = %.2e \n" % self.out_ratio_vid_avian
+        #     string_rep = string_rep + "out_ratio_sid_avian = %.2e \n" % self.out_ratio_sid_avian
+        #     string_rep = string_rep + "out_ratio_vid_mammal = %.2e \n" % self.out_ratio_vid_mammal
+        #     string_rep = string_rep + "out_ratio_sid_mammal = %.2e \n" % self.out_ratio_sid_mammal
+        #     string_rep = string_rep + "out_loc_vid_avian =" + self.out_loc_vid_avian + "\n"
+        #     string_rep = string_rep + "out_loc_sid_avian =" + self.out_loc_sid_avian + "\n"
+        #     string_rep = string_rep + "out_loc_vid_mammal =" + self.out_loc_vid_mammal + "\n"
+        #     string_rep = string_rep + "out_loc_sid_mammal =" + self.out_loc_sid_mammal + "\n"
         # return string_rep
 
     def set_variables(self, run_type, chemical_name, application_rate, column_height, spray_drift_fraction,

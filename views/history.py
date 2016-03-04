@@ -35,9 +35,9 @@ def historyPage(request, model='none', header='none'):
 
     # """
     # rest_func method call to return user's model runs for the current model
-    # rest_funcs.user_hist('user_id', 'model_name')
+    # rest_funcs.UserHistory('user_id', 'model_name')
     # """
-    # hist_obj = rest_funcs.user_hist('admin', model)
+    # hist_obj = rest_funcs.UserHistory('admin', model)
     # html = html + table_all(hist_obj)
 
     html = html + render_to_string('04ubertext_end.html', {})
@@ -224,7 +224,7 @@ def historyOutputTableRedraw(model, model_obj):
 def historyQueryAjax(request, model):
     """
     rest_func method call to return user's model runs for the current model
-    rest_funcs.user_hist('user_id', 'model_name')
+    rest_funcs.UserHistory('user_id', 'model_name')
     Must return a valid HTML reponse
     """
     
@@ -232,9 +232,9 @@ def historyQueryAjax(request, model):
 
     """
     rest_func method call to return user's model runs for the current model
-    rest_funcs.user_hist('user_id', 'model_name')
+    rest_funcs.UserHistory('user_id', 'model_name')
     """
-    hist_obj = rest_funcs.user_hist('admin', model)
+    hist_obj = rest_funcs.UserHistory('admin', model)
     html = html + table_all(hist_obj)
 
     response = HttpResponse()

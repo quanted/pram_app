@@ -24,11 +24,19 @@ $(document).ready(function(){
 
     //on county selection, send ajax get call sending state and county name to server
     $('#countySel').change(function () {
+        // BlockUI start
+        $.blockUI({
+          css:{ "top":""+wintop+"", "left":""+winleft+"", "padding": "30px 20px", "width": "400px", "height": "60px", "border": "0 none", "border-radius": "4px", "-webkit-border-radius": "4px", "-moz-border-radius": "4px", "box-shadow": "3px 3px 15px #333", "-webkit-box-shadow": "3px 3px 15px #333", "-moz-box-shadow": "3px 3px 15px #333" },
+          message: '<h2 class="popup_header">Loading...</h2><br/><img src="/static/images/loader.gif" style="margin-top: -16px">',
+          fadeIn:  500
+        });
+
         //old visual studio call-> http://localhost:64399/api/Baseline?State=Georgia&County=Appling
         //NEW call-> http://134.67.114.8/hwbi/api/Baseline?State=Georgia&County=Appling
         var state = $('#stateSel').val();
         var county = $('#countySel').val();
         $.getJSON('/ubertool/hwbi/api/Baseline?State=' + state + '&County=' + county, function(data) {
+            $.unblockUI();
             updateRIVWeights(data.Domains);
             updateDomainScores(data.Domains);
             updateDomainScores2(data.Domains);

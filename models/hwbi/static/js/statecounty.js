@@ -24,12 +24,14 @@ $(document).ready(function(){
 
     //on county selection, send ajax get call sending state and county name to server
     $('#countySel').change(function () {
-        // http://localhost:64399/api/Baseline?State=Georgia&County=Appling
+        //old visual studio call-> http://localhost:64399/api/Baseline?State=Georgia&County=Appling
+        //NEW call-> http://134.67.114.8/hwbi/api/Baseline?State=Georgia&County=Appling
         var state = $('#stateSel').val();
         var county = $('#countySel').val();
-        $.getJSON('api/Baseline?State=' + state + '&County=' + county, function(data) {
+        $.getJSON('/ubertool/hwbi/api/Baseline?State=' + state + '&County=' + county, function(data) {
             updateRIVWeights(data.Domains);
             updateDomainScores(data.Domains);
+            updateDomainScores2(data.Domains);
             updateServiceScores(data.Services);
         });
     });

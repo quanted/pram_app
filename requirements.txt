@@ -1,12 +1,17 @@
 beautifulsoup4
+codecov
+coverage
+coveralls
 django
 django-rest-swagger
 html5lib
 nose
+nose-cov
 numpy
 pandas
 pillow
 pypdf2
+python-coveralls
 pytz
 requests
 reportlab

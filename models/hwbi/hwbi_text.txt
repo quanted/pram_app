@@ -13,7 +13,7 @@ correlations and calculate coefficient values for each service. The HWBI model u
 “domains of well-being”: Connection to Nature, Cultural Fulfillment, Education, Health, Leisure Time, Living Standards,
 Safety & Security, and Social Cohesion.
 </p>
-<img src = "/static/images/HWBI_Chloropleth_.png" alt="HWBI Map" height="450" width="650">
-<figcaption>Cloropleth map representation of HWBI scores at the county level for years 2000-2010.
+<img src = "/static/images/HWBI_Choropleth_.png" alt="HWBI Map" height="450" width="650">
+<figcaption>Choropleth map representation of HWBI scores at the county level for years 2000-2010.
 From Smith et al. 2014. A U.S. Human Well-being Index (HWBI) for Multiple Scales: Linking Services Provisioning to Human
 Well-being Endpoints (2000-2010)EPA/600/R-14/223|September 2014|www.epa.gov/ord.</figcaption>

@@ -1,8 +1,9 @@
 from django.conf.urls import url
-from . import views
+import views
 
 
 urlpatterns = [
-    url(r'^$', views.hwbi_view, name='hwbi_view'),
-    # url(r'^spec/?$', views.api_docs_json)
+    url(r'^api/Baseline$', views.get_default_HWBI_values),
+    url(r'^api/HWBI', views.get_user_HWBI_values),
+    # url(r'^$', views.hwbi_view, name='hwbi_view'),  # Shows HWBI page without ubertool branding
 ]

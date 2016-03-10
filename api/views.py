@@ -6,7 +6,7 @@ import requests
 
 
 def api_docs_view(request):
-    html = render_to_string('index.html', {})
+    html = render_to_string('api/index.html', {})
     response = HttpResponse()
     response.write(html)
 

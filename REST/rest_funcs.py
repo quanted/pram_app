@@ -54,7 +54,6 @@ def rest_proxy(request, model, jid=None):
 
     if method == 'GET':
         response = rest_proxy_get(model)
-        print response
     elif method == 'POST':
         try:
             data = json.loads(request.body)

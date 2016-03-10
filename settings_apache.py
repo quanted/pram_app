@@ -28,7 +28,7 @@ os.environ.update({
     #'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',                      # Tao's EC2 REST server 
     #'UBERTOOL_REST_SERVER': 'http://54.210.118.56'                         # EB Pilot REST server
     'UBERTOOL_REST_SERVER': 'http://172.20.100.15:7777',                           # CGI Internal
-    'REST_SERVER_8': 'http://172.20.100.18:8000',
+    'REST_SERVER_8': 'http://172.20.100.18',
     'PROJECT_PATH': PROJECT_ROOT,
     'SITE_SKIN': 'EPA'                          # Leave empty ('') for default skin, 'EPA' for EPA skin
 })

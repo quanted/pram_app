@@ -3,34 +3,3 @@
 Multiple linear regression and relationship-function statistical techniques were used to identify correlations and calculate
 coefficient values for each service-domain relationship.
 </p>
-
-<p>Connection to Nature:</p>
-<img src = "/static/images/latex/iec/iec_image1.png">
-
-<p>Cultural Fulfillment:</p>
-<img src = "/static/images/latex/iec/iec_image1.png">
-
-<p>Education:</p>
-<img src = "/static/images/latex/iec/iec_image1.png">
-
-<p>Health:</p>
-<img src = "/static/images/latex/iec/iec_image1.png">
-
-<p>Leisure Time:</p>
-<img src = "/static/images/latex/iec/iec_image1.png">
-
-<p>Living Standards:</p>
-<img src = "/static/images/latex/iec/iec_image1.png">
-
-<p>Safety and Security:</p>
-<img src = "/static/images/latex/iec/iec_image1.png">
-
-<p>Social Cohesion:</p>
-<img src = "/static/images/latex/iec/iec_image1.png">
-
-<h3>Human Well-Being Index (HWBI)</h3>
-<p>The human well-being index (hwbi) is a value
-</p>
-
-<p>HWBI:</p>
-<img src = "/static/images/latex/iec/iec_image1.png">

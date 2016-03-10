@@ -8,14 +8,13 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 import requests
 
+
 hwbi_server = os.environ['REST_SERVER_8']
 
 # ################ How model name appears on web page ################
 header = 'HWBI'
-
-
 # ####################################################################
-#
+
 
 def hwbi_view(request):
     html = render_to_string('hwbi/index.html', {})
@@ -32,10 +31,10 @@ def get_default_HWBI_values(request):
         county = request.GET['County']
         try:
             response = requests.get(
-                "http://134.67.114.8/hwbi/api/Baseline?State=%s&County=%s" % (state, county)
+                hwbi_server + "/hwbi/api/Baseline?State=%s&County=%s" % (state, county)
             )
         except Exception, e:
-            print str(e)
+            response = {'error': str(e)}
 
         return HttpResponse(response.content, content_type="application/json")
 
@@ -54,7 +53,7 @@ def get_user_HWBI_values(request):
         productionscore = request.GET['ProductionScore']
         redistributionscore = request.GET['ReDistributionScore']
         airqualityscore = request.GET['AirQualityScore']
-        foodfoberandfuleprovisioningscore = request.GET['FoodFoberAndFuleProvisioningScore']
+        foodfiberandfuelprovisioningscore = request.GET['FoodFiberAndFuelProvisioningScore']
         greenspacescore = request.GET['GreenspaceScore']
         waterqualityscore = request.GET['WaterQualityScore']
         waterquantityscore = request.GET['WaterQuantityScore']
@@ -77,9 +76,9 @@ def get_user_HWBI_values(request):
         safetyandsecuritydomainweight = request.GET['SafetyAndSecurityDomainWeight']
         socialcohesiondomainweight = request.GET['SocialCohesionDomainWeight']
         response = requests.get(
-            "http://134.67.114.8/hwbi/api/HWBI?CapitalInvestmentScore=%s&ConsumptionScore=%s&EmploymentScore=%s&FinanceScore=%s&InnovationScore=%s&ProductionScore=%s&ReDistributionScore=%s&AirQualityScore=%s&FoodFoberAndFuleProvisioningScore=%s&GreenspaceScore=%s&WaterQualityScore=%s&WaterQuantityScore=%s&ActivismScore=%s&CommunicationScore=%s&CommunityAndFaithBasedInitiativesScore=%s&EducationScore=%s&EmergencyPreparednessScore=%s&FamilyServicesScore=%s&HealthcareScore=%s&JusticeScore=%s&LaborScore=%s&PublicWorksScore=%s&ConnectionToNatureDomainWeight=%s&CulturalFulfillmentDomainWeight=%s&EducationDomainWeight=%s&HealthDomainWeight=%s&LeisureTimeDomainWeight=%s&LivingStandardsDomainWeight=%s&SafetyAndSecurityDomainWeight=%s&SocialCohesionDomainWeight=%s"
+            hwbi_server + "/hwbi/api/HWBI?CapitalInvestmentScore=%s&ConsumptionScore=%s&EmploymentScore=%s&FinanceScore=%s&InnovationScore=%s&ProductionScore=%s&ReDistributionScore=%s&AirQualityScore=%s&FoodFiberAndFuelProvisioningScore=%s&GreenspaceScore=%s&WaterQualityScore=%s&WaterQuantityScore=%s&ActivismScore=%s&CommunicationScore=%s&CommunityAndFaithBasedInitiativesScore=%s&EducationScore=%s&EmergencyPreparednessScore=%s&FamilyServicesScore=%s&HealthcareScore=%s&JusticeScore=%s&LaborScore=%s&PublicWorksScore=%s&ConnectionToNatureDomainWeight=%s&CulturalFulfillmentDomainWeight=%s&EducationDomainWeight=%s&HealthDomainWeight=%s&LeisureTimeDomainWeight=%s&LivingStandardsDomainWeight=%s&SafetyAndSecurityDomainWeight=%s&SocialCohesionDomainWeight=%s"
             % (capitalinvestmentscore, consumptionscore, employmentscore, financescore, innovationscore, productionscore,
-              redistributionscore, airqualityscore, foodfoberandfuleprovisioningscore, greenspacescore,
+              redistributionscore, airqualityscore, foodfiberandfuelprovisioningscore, greenspacescore,
               waterqualityscore, waterquantityscore, activismscore, communicationscore,
               communityandfaithbasedinitiativesscore, educationscore, emergencypreparednessscore, familyservicesscore,
               healthcarescore, justicescore, laborscore, publicworksscore, connectiontonaturedomainweight,

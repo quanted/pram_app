@@ -5,6 +5,7 @@ coveralls
 django
 django-rest-swagger
 html5lib
+mechanize
 nose
 nose-cov
 numpy
@@ -17,6 +18,7 @@ requests
 reportlab
 selenium
 Sphinx
+tabulate
 xhtml2pdf
 xlsxwriter
 

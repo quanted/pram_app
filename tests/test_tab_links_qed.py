@@ -26,21 +26,22 @@ class TestTabLinks(unittest.TestCase):
                     soup_content = BeautifulSoup(response.content, "html.parser")
                     divTagsArticle = soup_content.find_all('div', {'class': 'articles'})
                     # assuming a single div/class by this name
-                    articleLinks = divTagsArticle[0].find_all('a')
-                    if len(articleLinks) > 0:
-                        linkUrl = [""] * len(articleLinks)
-                        status = [""] * len(articleLinks)
-                        report = [""] * len(articleLinks)
-                        linkUrl = linkcheck_helper.build_http_links(page, articleLinks)
-                        #linkUrl = self.build_http_links(main_server, articleLinks);
-                        status = linkcheck_helper.status_chk(linkUrl)
-                        try:
-                            npt.assert_array_equal(status, 200, '200 error', True)
-                        except:
-                            print "Error in one or more main article links"
-                            report = linkcheck_helper.build_table(linkUrl, status)
-                            headers = ["Article Link URL", "Status Code"]
-                            print tabulate(report, headers, tablefmt='grid')
+                    if len(divTagsArticle) > 0:
+                        articleLinks = divTagsArticle[0].find_all('a')
+                        if len(articleLinks) > 0:
+                            linkUrl = [""] * len(articleLinks)
+                            status = [""] * len(articleLinks)
+                            report = [""] * len(articleLinks)
+                            linkUrl = linkcheck_helper.build_http_links(page, articleLinks)
+                            #linkUrl = self.build_http_links(main_server, articleLinks);
+                            status = linkcheck_helper.status_chk(linkUrl)
+                            try:
+                                npt.assert_array_equal(status, 200, '200 error', True)
+                            except:
+                                print "Error in one or more main article links"
+                                report = linkcheck_helper.build_table(linkUrl, status)
+                                headers = ["Article Link URL", "Status Code"]
+                                print tabulate(report, headers, tablefmt='grid')
             finally:
                 pass
             return

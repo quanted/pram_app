@@ -191,7 +191,7 @@ class TestQAQC(unittest.TestCase, WaitForPageLoad):
                 table_rows[idx] = [expected_title[idx], [current_title[idx]]]
             try:
                 npt.assert_array_equal(expected_title, current_title, 'Submittal of Input Failed', True)
-             except:
+            except:
                 print "One or more models FAILED to produce output"
                 headers = ["expected", "actual/message"]
                 print tabulate(table_rows, headers, tablefmt='grid')

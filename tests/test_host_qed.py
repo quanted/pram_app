@@ -4,37 +4,39 @@ import numpy.testing as npt
 from bs4 import BeautifulSoup
 import mechanize # for populating and submitting input data forms
 import unicodedata
+from tabulate import tabulate
+import linkcheck_helper
 
 
 #this testing routine accepts a list of servers where a group of models and pages (i.e.,tabs)
 #are presented as web pages.  it is assumed that the complete set of models and related pages
-#are present on each server. this   routine performs a series of unit tests that ensure
+#are present on each server. this routine performs a series of unit tests that ensure
 #that the web pages are up and operational.
 
 test = {}
 
-#servers = ["http://127.0.0.1:8000/"]  #local server
 servers = ["http://qed.epa.gov/ubertool/", "http://qedinternal.epa.gov/ubertool/",
           "http://134.67.114.3/ubertool/", "http://134.67.114.1/ubertool/"]
-#models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
-#          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
-#          "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
-models = ["sip/", "stir/", "pfam/", "earthworm/"]
+models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
+          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
+          "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
+#models = ["sip/", "stir/", "pfam/", "earthworm/"]
 #The following list represents the model page titles to be checked (order of models
-#needs to be the same as "models" list above
-#models_IO = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
-#             "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
-#             "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
-models_IO = ["SIP", "STIR", "PFAM", "Earthworm"]
-#pages = ["", "description", "input", "algorithms", "references", "qaqc",
-#         "batchinput", "history"]
-pages = ["", "description", "input"]
+#needs to be the same as "models" list above)
+models_IO = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
+             "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
+             "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
+#models_IO = ["SIP", "STIR", "PFAM", "Earthworm"]
+pages = ["", "description", "input", "algorithms", "references", "qaqc",
+         "batchinput", "history"]
+#pages = ["", "description", "input"]
 
 #redirect servers are those where user login for the input page is required
 redirect_servers = ["http://qed.epa.gov/ubertool/", "http://134.67.114.3/ubertool/"]
 redirect_pages = ["input"]
 qaqc_pages = ["qaqc"]
 
+#following are lists of url's to be processed with tests below
 model_pages = [s + m + p for s in servers for m in models for p in pages]
 redirect_model_pages = [s + m + p for s in redirect_servers for m in models
                         for p in redirect_pages]
@@ -53,7 +55,11 @@ class TestQEDHost(unittest.TestCase):
             try:
                 npt.assert_array_equal(response, 200, '200 error', True)
             except:
-                print 'error' # need report out here of url's and response
+                report = [""] * len(model_pages)
+                print "Error accessing one or more model pages"
+                report = linkcheck_helper.build_table(model_pages, response)
+                headers = ["Model Page URL", "Status Code"]
+                print tabulate(report, headers, tablefmt='grid')
         finally:
             pass
         return
@@ -145,8 +151,8 @@ class TestQEDHost(unittest.TestCase):
                     tag = [a.find(text=True) for a in soup.findAll('h2', {'class': 'model_header'})]
                     current_title[idx] = m.replace("input", "") + ": " + str(tag[0])
                     expected_title[idx] = m.replace("input", "") + ": " + redirect_models[idx] + " Output"
-            #create array comparison (assume h2/model h eader -tag- of interest is first in list)
-            npt.assert_array_equal(current_title, expected_title,'Submittal of Input Failed', True)
+            #create array comparison (assume h2/model header -tag- of interest is first in list)
+            npt.assert_array_equal(current_title, expected_title,'Submittal of Input Failed for one or more models', True)
         finally:
             pass
         return

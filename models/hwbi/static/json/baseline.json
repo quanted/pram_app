@@ -58,8 +58,8 @@
     },
     {
       "ServiceID": "S09",
-      "ServiceName": "Food, Fiber And Fuel Provisioning",
-      "Description": "Food, Fiber And Fuel Provisioning",
+      "ServiceName": "Food, Fiber, Fuel",
+      "Description": "Food, Fiber, Fuel",
       "ServiceType": "Ecosystem",
       "Score": 0.3867637493
     },
@@ -100,8 +100,8 @@
     },
     {
       "ServiceID": "S15",
-      "ServiceName": "Community And Faith-Based Initiatives",
-      "Description": "Community And Faith-Based Initiatives",
+      "ServiceName": "Community and Faith",
+      "Description": "Community and Faith-Based",
       "ServiceType": "Social",
       "Score": 0.2170335728
     },

@@ -8,15 +8,37 @@ d3.json("/static/json/baseline.json", function (data) {
 });
 
 
- 
-
 //draw sliders function
 function drawSliders(data, index) {
     //append an svg to cirSlide div
 
     //set scale for slider. domain is input min max. range is slider translated min max (same)
 var x = d3.scale.linear()
-    .domain([1, 99])
+    .domain((function () {
+            if (data.ServiceName == "Capital Investment") { return [56.31683197, 61.75389692]; }
+            if (data.ServiceName == "Consumption") { return [47.42882423, 54.04916975]; }
+            if (data.ServiceName == "Employment") { return [33.13814798, 72.57176231]; }
+            if (data.ServiceName == "Finance") { return [31.42250002, 61.56578545]; }
+            if (data.ServiceName == "Innovation") { return [25.89488723, 65.3289721]; }
+            if (data.ServiceName == "Production") { return [45.11697104, 51.67193166]; }
+            if (data.ServiceName == "Re-Distribution") { return [23.51316313, 68.92691912]; }
+            if (data.ServiceName == "Air Quality") { return [10, 90]; }
+            if (data.ServiceName == "Food, Fiber And Fuel Provisioning") { return [32.62908483, 48.49178319]; }
+            if (data.ServiceName == "Greenspace") { return [36.11207908, 62.03906984]; }
+            if (data.ServiceName == "Water Quality") { return [15.95637509, 88.22033237]; }
+            if (data.ServiceName == "Water Quantity") { return [21.70976841, 72.83447998]; }
+            if (data.ServiceName == "Activism") { return [25.85945275, 73.66346154]; }
+            if (data.ServiceName == "Communication") { return [33.10020486, 68.98955269]; }
+            if (data.ServiceName == "Community And Faith-Based Initiatives") { return [12.21375305,	90]; }
+            if (data.ServiceName == "Education") { return [33.24429069,	56.47803694]; }
+            if (data.ServiceName == "Emergency Preparedness") { return [19.78920564, 76.07510118]; }
+            if (data.ServiceName == "Family Services") { return [42.66833596, 73.35259094]; }
+            if (data.ServiceName == "Healthcare") { return [29.63020433, 62.25876617]; }
+            if (data.ServiceName == "Justice") { return [31.22560175, 71.78167536]; }
+            if (data.ServiceName == "Labor") { return [36.52332879, 53.29715035]; }
+            if (data.ServiceName == "Public Works") { return [33.53645478, 66.4893089]; }
+        })()
+    )
     .range([1, 99])
     //make scale *always* abide by range
     .clamp(true);
@@ -65,12 +87,12 @@ var x = d3.scale.linear()
         //give new g element class "slider"
         .attr("class", "slider")
         //call the brush variable attributes
-        .call(brush);
+        .call(brush)
+        .attr("transform", "translate(" + 10 + "," + 0 + ")");
 
     //set the vertical range of slider background for selection/drag
     slider.select(".background")
-        .attr("height", 100)
-        .attr("transform", "translate(" + 10 + "," + 0 + ")");
+        .attr("height", 100);
 
     //append handle to slider element
     var handle = slider.append("g")
@@ -80,7 +102,7 @@ var x = d3.scale.linear()
     handle.append("circle")
     //give the circle element class "handle"
     .attr("class", "handle")
-    .attr("transform", "translate(10," + 25 + ")")
+    .attr("transform", "translate(0," + 25 + ")")
     .attr("r", 10)
     .attr("fill", (function () {
         if (data.ServiceType == "Economic") { return "#b86361"; }
@@ -93,11 +115,12 @@ var x = d3.scale.linear()
         .attr("class", "cirTex"+index)
         //assign text using data score and convert to whole number
         .text(data.Score * 100)
-        .attr("transform", "translate(" + 2 + " ," + 29 + ")");
+        .attr("transform", "translate(" + (-8) + " ," + 29 + ")");
 
     //for slider variable, call brush variable's "brushed" event property (mousemove)
     slider
         .call(brush.event)
+        .attr("transform", "translate(" + 10 + "," + 0 + ")")
 
     //create brushed function
     function brushed() {
@@ -125,8 +148,8 @@ var x = d3.scale.linear()
 
 
 function useServiceValues() {
-    //$.getJSON('api/HWBI?CapitalInvestmentScore=58.9&ConsumptionScore=51.6&EmploymentScore=52.3&FinanceScore=44.0&InnovationScore=43.24&ProductionScore=50.44&ReDistributionScore=47.2&AirQualityScore=0.9&FoodFoberAndFuleProvisioningScore=44.44&GreenspaceScore=42.6&WaterQualityScore=67.4&WaterQuantityScore=37.9&ActivismScore=48.9&CommunicationScore=43.4&CommunityAndFaithBasedInitiativesScore=15.81&EducationScore=45.0&EmergencyPreparednessScore=52.6&FamilyServicesScore=50.0&HealthcareScore=48.7&JusticeScore=42.76&LaborScore=40.82&PublicWorksScore=41.84&ConnectionToNatureDomainWeight=1.0&CulturalFulfillmentDomainWeight=1.0&EducationDomainWeight=1.0&HealthDomainWeight=1.0&LeisureTimeDomainWeight=1.0&LivingStandardsDomainWeight=1.0&SafetyAndSecurityDomainWeight=1.0&SocialCohesionDomainWeight=1.0', function (data) {
-    $.getJSON('api/HWBI?CapitalInvestmentScore=' + dragVal.Services[0].Score + '&ConsumptionScore=' + dragVal.Services[1].Score + '&EmploymentScore=' + dragVal.Services[2].Score + '&FinanceScore=' + dragVal.Services[3].Score + '&InnovationScore=' + dragVal.Services[4].Score + '&ProductionScore=' + dragVal.Services[5].Score + '&ReDistributionScore=' + dragVal.Services[6].Score + '&AirQualityScore=' + dragVal.Services[7].Score + '&FoodFoberAndFuleProvisioningScore=' + dragVal.Services[8].Score + '&GreenspaceScore=' + dragVal.Services[9].Score + '&WaterQualityScore=' + dragVal.Services[10].Score + '&WaterQuantityScore=' + dragVal.Services[11].Score + '&ActivismScore=' + dragVal.Services[12].Score + '&CommunicationScore=' + dragVal.Services[13].Score + '&CommunityAndFaithBasedInitiativesScore=' + dragVal.Services[14].Score + '&EducationScore=' + dragVal.Services[15].Score + '&EmergencyPreparednessScore=' + dragVal.Services[16].Score + '&FamilyServicesScore=' + dragVal.Services[17].Score + '&HealthcareScore=' + dragVal.Services[18].Score + '&JusticeScore=' + dragVal.Services[19].Score + '&LaborScore=' + dragVal.Services[20].Score + '&PublicWorksScore=' + dragVal.Services[21].Score + '&ConnectionToNatureDomainWeight=' + dragVal.Domains[0].Weight + '&CulturalFulfillmentDomainWeight=' + dragVal.Domains[1].Weight + '&EducationDomainWeight=' + dragVal.Domains[2].Weight + '&HealthDomainWeight=' + dragVal.Domains[3].Weight + '&LeisureTimeDomainWeight=' + dragVal.Domains[4].Weight + '&LivingStandardsDomainWeight=' + dragVal.Domains[5].Weight + '&SafetyAndSecurityDomainWeight=' + dragVal.Domains[6].Weight + '&SocialCohesionDomainWeight=' + dragVal.Domains[7].Weight, function (data) {
+    //$.getJSON('api/HWBI?CapitalInvestmentScore=58.9&ConsumptionScore=51.6&EmploymentScore=52.3&FinanceScore=44.0&InnovationScore=43.24&ProductionScore=50.44&ReDistributionScore=47.2&AirQualityScore=0.9&FoodFiberAndFuelProvisioningScore=44.44&GreenspaceScore=42.6&WaterQualityScore=67.4&WaterQuantityScore=37.9&ActivismScore=48.9&CommunicationScore=43.4&CommunityAndFaithBasedInitiativesScore=15.81&EducationScore=45.0&EmergencyPreparednessScore=52.6&FamilyServicesScore=50.0&HealthcareScore=48.7&JusticeScore=42.76&LaborScore=40.82&PublicWorksScore=41.84&ConnectionToNatureDomainWeight=1.0&CulturalFulfillmentDomainWeight=1.0&EducationDomainWeight=1.0&HealthDomainWeight=1.0&LeisureTimeDomainWeight=1.0&LivingStandardsDomainWeight=1.0&SafetyAndSecurityDomainWeight=1.0&SocialCohesionDomainWeight=1.0', function (data) {
+    $.getJSON('api/HWBI?CapitalInvestmentScore=' + dragVal.Services[0].Score + '&ConsumptionScore=' + dragVal.Services[1].Score + '&EmploymentScore=' + dragVal.Services[2].Score + '&FinanceScore=' + dragVal.Services[3].Score + '&InnovationScore=' + dragVal.Services[4].Score + '&ProductionScore=' + dragVal.Services[5].Score + '&ReDistributionScore=' + dragVal.Services[6].Score + '&AirQualityScore=' + dragVal.Services[7].Score + '&FoodFiberAndFuelProvisioningScore=' + dragVal.Services[8].Score + '&GreenspaceScore=' + dragVal.Services[9].Score + '&WaterQualityScore=' + dragVal.Services[10].Score + '&WaterQuantityScore=' + dragVal.Services[11].Score + '&ActivismScore=' + dragVal.Services[12].Score + '&CommunicationScore=' + dragVal.Services[13].Score + '&CommunityAndFaithBasedInitiativesScore=' + dragVal.Services[14].Score + '&EducationScore=' + dragVal.Services[15].Score + '&EmergencyPreparednessScore=' + dragVal.Services[16].Score + '&FamilyServicesScore=' + dragVal.Services[17].Score + '&HealthcareScore=' + dragVal.Services[18].Score + '&JusticeScore=' + dragVal.Services[19].Score + '&LaborScore=' + dragVal.Services[20].Score + '&PublicWorksScore=' + dragVal.Services[21].Score + '&ConnectionToNatureDomainWeight=' + dragVal.Domains[0].Weight + '&CulturalFulfillmentDomainWeight=' + dragVal.Domains[1].Weight + '&EducationDomainWeight=' + dragVal.Domains[2].Weight + '&HealthDomainWeight=' + dragVal.Domains[3].Weight + '&LeisureTimeDomainWeight=' + dragVal.Domains[4].Weight + '&LivingStandardsDomainWeight=' + dragVal.Domains[5].Weight + '&SafetyAndSecurityDomainWeight=' + dragVal.Domains[6].Weight + '&SocialCohesionDomainWeight=' + dragVal.Domains[7].Weight, function (data) {
         updateDomainScores(data.Domains);
         updateRIVWeights(dragVal.Domains);
     });
@@ -151,8 +174,41 @@ function updateServiceScores(servicesScores) {
 };
 
 
+
+
 //update sliders chart function
 function updateSliders(data, index) {
+
+    //set scale for slider. domain is input min max. range is slider translated min max (same)
+var x = d3.scale.linear()
+    .domain((function () {
+            if (data.ServiceName == "Capital Investment") { return [56.31683197, 61.75389692]; }
+            if (data.ServiceName == "Consumption") { return [47.42882423, 54.04916975]; }
+            if (data.ServiceName == "Employment") { return [33.13814798, 72.57176231]; }
+            if (data.ServiceName == "Finance") { return [31.42250002, 61.56578545]; }
+            if (data.ServiceName == "Innovation") { return [25.89488723, 65.3289721]; }
+            if (data.ServiceName == "Production") { return [45.11697104, 51.67193166]; }
+            if (data.ServiceName == "Re-Distribution") { return [23.51316313, 68.92691912]; }
+            if (data.ServiceName == "Air Quality") { return [10, 90]; }
+            if (data.ServiceName == "Food, Fiber And Fuel Provisioning") { return [32.62908483, 48.49178319]; }
+            if (data.ServiceName == "Greenspace") { return [36.11207908, 62.03906984]; }
+            if (data.ServiceName == "Water Quality") { return [15.95637509, 88.22033237]; }
+            if (data.ServiceName == "Water Quantity") { return [21.70976841, 72.83447998]; }
+            if (data.ServiceName == "Activism") { return [25.85945275, 73.66346154]; }
+            if (data.ServiceName == "Communication") { return [33.10020486, 68.98955269]; }
+            if (data.ServiceName == "Community And Faith-Based Initiatives") { return [12.21375305,	90]; }
+            if (data.ServiceName == "Education") { return [33.24429069,	56.47803694]; }
+            if (data.ServiceName == "Emergency Preparedness") { return [19.78920564, 76.07510118]; }
+            if (data.ServiceName == "Family Services") { return [42.66833596, 73.35259094]; }
+            if (data.ServiceName == "Healthcare") { return [29.63020433, 62.25876617]; }
+            if (data.ServiceName == "Justice") { return [31.22560175, 71.78167536]; }
+            if (data.ServiceName == "Labor") { return [36.52332879, 53.29715035]; }
+            if (data.ServiceName == "Public Works") { return [33.53645478, 66.4893089]; }
+        })()
+    )
+    .range([1, 99])
+    //make scale *always* abide by range
+    .clamp(true);
 
     //define brush attributes
     var brush = d3.svg.brush()
@@ -162,7 +218,6 @@ function updateSliders(data, index) {
         .extent([data.Score * 100, data.Score * 100])
         //set listener where on mousemove = function brushed
         .on("brush", brushed);
-
 
 
     //select handle to slider element
@@ -190,6 +245,7 @@ function updateSliders(data, index) {
     //for slider variable, call brush variable's "brushed" event property (mousemove)
     d3.select("g.slider")
         .call(brush.event)
+        .attr("transform", "translate(" + 10 + "," + 0 + ")")
 
     //create brushed function
     function brushed() {

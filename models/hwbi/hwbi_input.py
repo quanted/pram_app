@@ -32,4 +32,4 @@ from django.template.loader import render_to_string
 
 
 def hwbiInputPage(request, model, dummy):
-    return render_to_string('index.html', {})
+    return render_to_string('hwbi/index.html', {})

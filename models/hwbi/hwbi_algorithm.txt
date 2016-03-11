@@ -1,3 +1,5 @@
-
-<p>HWBI algorthims...:</p>
-<img src = "/static/images/latex/iec/iec_image1.png">
+<h3>Domains of Well-Being</h3>
+<p>Twenty-two economic, ecosystem, and social services values are used to estimate scores for eight "domains of well-being".
+Multiple linear regression and relationship-function statistical techniques were used to identify correlations and calculate
+coefficient values for each service-domain relationship.
+</p>

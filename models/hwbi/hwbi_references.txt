@@ -1,54 +1,40 @@
-<p>
+<!--
+  <p>
 Specific EPA guidance and the Microsoft Excel version of the HWBI model are not currently available on the Internet:
 </p>
 <ul class="bullet">
-  <li>NA</li>
+  <li></li>
 </ul>
+-->
 
 <p>
-Current github source code:
+<h3>Source Code:</h3>
 </p>
 <ul class="bullet">
-  <li><a href="https://github.com/puruckertom/ubertool_src/tree/master/iec">ubertool_src on GitHub</a></li>
+  <li><a href="https://github.com/puruckertom/ubertool_src/tree/master/iec">HWBI API documentation on GitHub</a></li>
 </ul>
 
+<br>
 <p>
-Example reports documenting the use of HWBI in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:
+<h3>Reports:</h3>
 </p>
 <ul class="bullet">
-  <li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.178.3144&amp;rep=rep1&amp;type=pdf">Metolachlor- Delta Smelt and California Tiger Salamander</a></li>
-  <li><a href="http://epa.gov/espp/litstatus/effects/redleg-frog/aldicarb/esa_final.pdf">Aldicarb- California Red-legged frog</a></li>
-  <li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.168.6045&amp;rep=rep1&amp;type=pdf">Atrazine- Freshwater Mussel</a></li>
-  <li><a href="http://www.epa.gov/oppsrrd1/REDs/mefluidide_red.pdf">Reregistration Eligibility Decision for Mefluidide</a></li>
-  <li><a href="http://www.epa.gov/espp/litstatus/effects/redleg-frog/dimethoate/appendix-j.pdf">Dimethoate Appendix</a></li>
-  <li><a href="http://www.epa.gov/espp/litstatus/effects/redleg-frog/carbaryl/appendix-k.pdf">Carbaryl Appendix</a></li>
-</ul>
-<p>
-General EPA guidance on how HWBI fits into the overall ecological risk assessment process for pesticides can be found at the following links:
-</p>
-<ul class="bullet">
-  <li><a href="http://www.epa.gov/oppfead1/endanger/consultation/ecorisk-overview.pdf">
-EPA Ecological Risk Assessment Process Overview</a></li>
-  <li><a href="http://www.epa.gov/oppefed1/ecorisk_ders/">
-EPA Ecological Risk Assessment Technical Overview</a></li>
-  <li><a href="http://www.epa.gov/OSA/spc/pdfs/rchandbk.pdf">
-Science Policy Handbook on Risk Characterization</a></li>
-  <li><a href="http://www.epa.gov/oppefed1/ecorisk_ders/toera_analysis_exp.htm">
-EPA Ecological Risk Assessment Exposure Characterization</a></li>
-  <li><a href="http://www.epa.gov/pesticides/science/efed/policy_guidance/team_authors/endangered_species_reregistration_workgroup/esa_conceptual_model_pf.htm">
-EPA Development of Conceptual Models</a></li>
-</ul>
-<p>
-Presentations/posters/abstracts/reports on the subject of EPA's ecological risk assessment models, including HWBI.
-</p>
-<ul class="bullet">
-  <li><a href="http://www.agrodiv.org/documents/denver11/Endangered%20Species%20Act%20and%20Regulation/AGRO219_Odenkirchen_Edward.pdf">Advancements in Endangered Species Act Effects Determination
-	for Pesticide Registration Actions, Ed Odenkirchen (USEPA)</a></li>
-  <li><a href="http://www.agrodiv.org/documents/denver11/Evaluating%20Agrochemical%20Aquatic%20Exposure/35_Parker_Ronald.pdf">
-	Overview of Issues in Aquatic Exposure Modeling in the USEPA Office of Pesticide Programs, Environmental Fate and Effects Division, Don Brady and Ron Parker (USEPA)</a></li>
-  <li><a href="http://www.complianceservices.com/File.ashx?cid=199">Next Steps in Endangered Species Risk Assessments, Cliff Habig (Compliance Services International)</a></li>
-  <li><a href="http://training.fws.gov/EC/Resources/pesticides/2011Presentations/Tab%2013%20%20Pesticide%20Risk%20Assessment.pdf">EPA Pesticide Ecological Risk Assessment Methods, Fish and Wildlife Service Training</a></li>
-  <li><a href="http://www.calcitrusquality.org/wp-content/uploads/2011/07/Prometryncasestudy.pdf">Minor Crop Farm Alliance Endangered Species Assessment Workshop- Prometryn Case Study</a></li>
-  <li><a href="http://pep.wsu.edu/wrpm/WRPM_11_files/Agenda%20and%20PPT%20pdfs/13Brady5-18-11PM.pdf">Ecological Risk Assessment and Improving Evaluation Tools, Don Brady (USEPA)</a></li>
-  <li><a href="http://www.nap.edu/catalog.php?record_id=18344">Assessing Risks to Endangered and Threatened Species From Pesticides (National Academy of Sciences)</a></li>
-</ul>
+  <li><a href="https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=242106">Smith, L.M., H.M. Smith, J.L. Case,
+   L.C. Harwell, J.K. Summers, C. Wade. 2012. Indicators and Methods for Constructing a U.S. Human Well-being Index (HWBI)
+    for Ecosystem Services Research. United States Environmental Protection Agency. Office of Research and Development,
+     Gulf Ecology Division, Gulf Breeze, FL 32561. Report # EPA/600/R-12/023.</a></li>
+
+  <li><a href="https://cfpub.epa.gov/si/si_public_record_Report.cfm?dirEntryId=289300">Smith, L.M., Harwell, L.C., Summers,
+   J.K., Smith, H.M., Wade, C.M., Straub, K.R. and Case, J.L. 2014. A U.S. Human Well-Being Index (HWBI) for Multiple
+    Scales: Linking Services Provisioning to Human Well-Being Endpoints (2000-2010). EPA/600/R-14/223, Washington, D.C.:
+     U.S. Environmental Protection Agency, September 2014.</a></li>
+
+  <li><a href="http://link.springer.com/article/10.1007%2Fs10745-013-9597-5#page-1">Smith, L. M., Case, J. L., Harwell,
+   L. C., Smith, H. M., and Summers, J. K. (2013). Development of Relative Importance Values as Contribution Weights for
+    Evaluating Human Wellbeing: An Ecosystem Services Example. Human Ecology. 41(4): 631-641.</a></li>
+
+
+  <li><a href="https://cfpub.epa.gov/si/si_public_record_Report.cfm?dirEntryID=278817">Summers, J.K., L.M., Smith, L.C.
+  Harwell, J.L. Case, C.M. Wade, K.R. Straub and H.M. Smith. 2014. An Index of Human Well-Being for the U.S.: A TRIO
+  Approach. Sustainability. 6, 3915-3935; doi: 10.3390/su6063915</a></li>
+  </ul>

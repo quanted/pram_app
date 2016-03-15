@@ -1,0 +1,151 @@
+ <p>
+    <label style="display: inline-block; width: 200px; text-align: right">
+           Connection to Nature= <span></span>
+    </label>
+    <input type="number" id="ConnectionToNatureDomainWeight" min="1" max="5" step="1" value="3">
+  </p>
+
+  <p>
+    <label style="display: inline-block; width: 200px; text-align: right">
+           Cultural Fulfillment= <span></span>
+    </label>
+    <input type="number" id="CulturalFulfillmentDomainWeight" min="1" max="5" step="1" value="3">
+  </p>
+
+  <p>
+    <label style="display: inline-block; width: 200px; text-align: right">
+           Education= <span></span>
+    </label>
+    <input type="number" id="EducationDomainWeight" min="1" max="5" step="1" value="3">
+  </p>
+
+  <p>
+    <label style="display: inline-block; width: 200px; text-align: right">
+           Health= <span></span>
+    </label>
+    <input type="number" id="HealthDomainWeight" min="1" max="5" step="1" value="3">
+  </p>
+
+  <p>
+    <label style="display: inline-block; width: 200px; text-align: right">
+           Leisure Time= <span></span>
+    </label>
+    <input type="number" id="LeisureTimeDomainWeight" min="1" max="5" step="1" value="3">
+  </p>
+
+  <p>
+    <label style="display: inline-block; width: 200px; text-align: right">
+           Living Standards= <span></span>
+    </label>
+    <input type="number" id="LivingStandardsDomainWeight" min="1" max="5" step="1" value="3">
+  </p>
+
+  <p>
+    <label style="display: inline-block; width: 200px; text-align: right">
+           Safety & Security= <span></span>
+    </label>
+    <input type="number" id="SafetyAndSecurityDomainWeight" min="1" max="5" step="1" value="3">
+  </p>
+
+  <p>
+    <label style="display: inline-block; width: 200px; text-align: right">
+           Social Cohesion= <span></span>
+    </label>
+    <input type="number" id="SocialCohesionDomainWeight" min="1" max="5" step="1" value="3">
+  </p>
+
+
+<br>
+<!--button to submit RIV box weights to pie chart-->
+<button onclick="useRIVWeights()" type="submit" class="btn btn-primary btn-xs" role="button">Modify RIV Weights</button>
+
+
+
+
+
+
+<!--BOOTSTRAP INPUT BOXES<div class="bs-example">
+  <form class="form-horizontal">
+
+    <div class="form-group">
+        <label for="ConnectionToNatureDomainWeight" class="control-label col-xs-2">Password</label>
+        <div class="col-xs-10">
+        <input type="number" id="ConnectionToNatureDomainWeight" min="1" max="5" step="1" value="3"
+         class="form-control col-lg-1 col-md-1 col-sm-1 col-xs-1"
+         aria-describedby="basic-addon1">
+       </div>
+    </div>
+
+    <div class="form-group">
+        <label for="ConnectionToNatureDomainWeight" class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Connection to Nature</label>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <input type="number" id="ConnectionToNatureDomainWeight" min="1" max="5" step="1" value="3"
+        class="form-control"
+        aria-describedby="basic-addon1">
+        </div>
+    </div>
+
+  </form>
+</div>
+
+
+
+<div class="row">
+
+<div class="input-group">
+  <span style="width: 55px;" class="input-group-addon" id="basic-addon1">Connection to Nature</span>
+  <input type="number" id="ConnectionToNatureDomainWeight" min="1" max="5" step="1" value="3"
+         class="form-control col-lg-3 col-md-3 col-sm-6 col-xs-6"
+         aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group">
+  <span style="width: 55px;" class="input-group-addon" id="basic-addon1">Cultural Fulfillment</span>
+  <input type="number" id="CulturalFulfillmentDomainWeight" min="1" max="5" step="1" value="3"
+         class="form-control col-lg-3 col-md-3 col-sm-6 col-xs-6"
+         aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group">
+  <span style="width: 55px;" class="input-group-addon" id="basic-addon1">Education</span>
+  <input type="number" id="EducationDomainWeight" min="1" max="5" step="1" value="3"
+         class="form-control col-lg-3 col-md-3 col-sm-6 col-xs-6"
+         aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group">
+  <span style="width: 55px;" class="input-group-addon" id="basic-addon1">Health</span>
+  <input type="number" id="LeisureTimeDomainWeight" min="1" max="5" step="1" value="3"
+         class="form-control col-lg-3 col-md-3 col-sm-6 col-xs-6"
+         aria-describedby="basic-addon1" >
+</div>
+
+<div class="input-group">
+  <span style="width: 55px;" class="input-group-addon" id="basic-addon1">Leisure Time</span>
+  <input type="number" id="LivingStandardsDomainWeight" min="1" max="5" step="1" value="3"
+         class="form-control col-lg-3 col-md-3 col-sm-6 col-xs-6"
+         aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group">
+  <span style="width: 55px;" class="input-group-addon" id="basic-addon1">Living Standards</span>
+  <input type="number" id="SafetyAndSecurityDomainWeight" min="1" max="5" step="1" value="3"
+         class="form-control col-lg-3 col-md-3 col-sm-6 col-xs-6"
+         aria-describedby="basic-addon1" >
+</div>
+
+<div class="input-group">
+  <span style="width: 55px;" class="input-group-addon" id="basic-addon1">Safety and Security</span>
+  <input type="number" id="SocialCohesionDomainWeight" min="1" max="5" step="1" value="3"
+         class="form-control col-lg-3 col-md-3 col-sm-6 col-xs-6"
+         aria-describedby="basic-addon1" >
+</div>
+
+<div class="input-group">
+  <span style="width: 55px;" class="input-group-addon" id="basic-addon1">Social Cohesion</span>
+  <input type="number" id="SocialCohesionDomainWeight" min="1" max="5" step="1" value="3"
+         class="form-control col-lg-3 col-md-3 col-sm-6 col-xs-6"
+         aria-describedby="basic-addon1" >
+</div>
+</div>
+-->

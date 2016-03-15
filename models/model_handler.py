@@ -11,9 +11,12 @@
    "*_model" module in the model's module directory.
 """
 
-from REST import auth_s3
-import os, logging
+from REST import auth_s3, rest_funcs
+import os
+import json
 import re
+import logging
+
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()
@@ -73,40 +76,25 @@ def call_model_server(model, args):
         JSON string).
     """
 
-    from REST import rest_funcs
-    import json
-    import requests
-
-    logging.info("=========== model_handler.call_model_server")
     # If 'args' is a Python dictionary, dump it to a JSON string
     if type(args) == dict:
         data = json.dumps(args)
     else:
         data = args
 
-    jid = rest_funcs.gen_jid()
-    logging.info("===========job id = " + jid)
-
-    url = url_part1 + '/' + model + '/' + jid
-    logging.info("===========url = " + url)
-    # POST JSON to model server
-    # TODO: Temporarily print JSON submitted to backend server to get schema for SwaggerUI
-    print data
-    response = requests.post(url, data=data, headers=http_headers, timeout=60)
-
-    # TODO: Remove this logger
-    logging.info(json.dumps(response.json()))
-    # logging.info(type(json.loads(json.dumps(response.json()))))
+    # POST JSON to model server through rest proxy
+    response = rest_funcs.rest_proxy_post(model, data, rest_funcs.gen_jid())
 
     return response
+
 
 def replace_nans(encoded):
     regex = re.compile(r'\bNaN\b')
     return regex.sub('null', encoded)
 
+
 def create_dataframe(response):
     import pandas as pd
-    import json
 
     logging.info("=========== model_handler.create_dataframe")
     # Load 'inputs' key from JSON response to Pandas DataFrame
@@ -217,26 +205,6 @@ class ModelQAQC(object):
             setattr(self, self.pd_obj_exp[col].name, self.pd_obj_exp[col].iloc[0])
 
 
-# class ModelList(object):
-#     def __init__(self, model_obj_list):
-#         """
-
-#         """
-
-#         self.model_obj_list = []
-
-#         self.add_to_list(model_obj_list)
-
-#     def add_to_list(self, model_obj_list):
-#         """
-
-#         """
-
-#         # self.model_obj_list = self.model_obj_list.append(model_obj)
-
-#         return self.model_obj_list
-
-
 def generate_model_object_list(response):
     """
         Loops over the input and output DataFrames creating 
@@ -251,7 +219,6 @@ def generate_model_object_list(response):
     jid = response.json()['_id']
 
     import pandas as pd
-    import json
     # Load 'inputs' key from JSON response to Pandas DataFrame
     pd_obj_in = pd.io.json.read_json(json.dumps(response.json()['inputs']))
     # Load 'outputs' key from JSON response to Pandas DataFrame

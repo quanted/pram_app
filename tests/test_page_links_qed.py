@@ -5,6 +5,9 @@ import unittest
 from tabulate import tabulate
 import linkcheck_helper
 
+#this routine scans the main ubertool page for url links and verifies that they respond
+#these links are repeated (as a template of sorts) on all model pages; but tested here only
+
 servers = ["http://qed.epa.gov", "http://qedinternal.epa.gov"]
 
 class TestPageLinks(unittest.TestCase):

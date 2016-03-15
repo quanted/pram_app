@@ -17,16 +17,20 @@ test = {}
 
 servers = ["http://qed.epa.gov/ubertool/", "http://qedinternal.epa.gov/ubertool/",
           "http://134.67.114.3/ubertool/", "http://134.67.114.1/ubertool/"]
+
 models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
           "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
           "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
 #models = ["sip/", "stir/", "pfam/", "earthworm/"]
+
 #The following list represents the model page titles to be checked (order of models
 #needs to be the same as "models" list above)
+
 models_IO = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
              "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
              "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
 #models_IO = ["SIP", "STIR", "PFAM", "Earthworm"]
+
 pages = ["", "description", "input", "algorithms", "references", "qaqc",
          "batchinput", "history"]
 #pages = ["", "description", "input"]
@@ -34,16 +38,13 @@ pages = ["", "description", "input", "algorithms", "references", "qaqc",
 #redirect servers are those where user login for the input page is required
 redirect_servers = ["http://qed.epa.gov/ubertool/", "http://134.67.114.3/ubertool/"]
 redirect_pages = ["input"]
-qaqc_pages = ["qaqc"]
 
 #following are lists of url's to be processed with tests below
 model_pages = [s + m + p for s in servers for m in models for p in pages]
 redirect_model_pages = [s + m + p for s in redirect_servers for m in models
                         for p in redirect_pages]
-qaqc_model_pages = [s + m + p for s in servers for m in models for p in qaqc_pages]
-
 redirect_models = models_IO * len(redirect_servers)
-qaqc_models = models_IO * len(servers)
+
 
 class TestQEDHost(unittest.TestCase):
     def setup(self):

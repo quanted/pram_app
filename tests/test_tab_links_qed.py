@@ -5,6 +5,9 @@ import unittest
 from tabulate import tabulate
 import linkcheck_helper
 
+#this routine tests url links on individual model page tabs; including the description
+#and references tabs  -- other links on the model page (e.g., left column, right column)
+#are not unique to models and are tested in test_page_links_qed.py
 
 main_server = ["http://qed.epa.gov/ubertool/", "http://qedinternal.epa.gov/ubertool/"]
 models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",

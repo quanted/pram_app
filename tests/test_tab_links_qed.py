@@ -27,22 +27,21 @@ class TestTabLinks(unittest.TestCase):
                 for page in model_tab_pages:
                     response = requests.get(page)
                     soup_content = BeautifulSoup(response.content, "html.parser")
-                    divTagsArticle = soup_content.find_all('div', {'class': 'articles'})
+                    div_tag_article = soup_content.find_all('div', {'class': 'articles'})
                     # assuming a single div/class by this name
-                    if len(divTagsArticle) > 0:
-                        articleLinks = divTagsArticle[0].find_all('a')
-                        if len(articleLinks) > 0:
-                            linkUrl = [""] * len(articleLinks)
-                            status = [""] * len(articleLinks)
-                            report = [""] * len(articleLinks)
-                            linkUrl = linkcheck_helper.build_http_links(page, articleLinks)
-                            #linkUrl = self.build_http_links(main_server, articleLinks);
-                            status = linkcheck_helper.status_chk(linkUrl)
+                    if div_tag_article:
+                        article_links = div_tag_article[0].find_all('a')
+                        if article_links:
+                            link_url = [""] * len(article_links)
+                            status = [""] * len(article_links)
+                            report = [""] * len(article_links)
+                            link_url = linkcheck_helper.build_http_links(page, article_links)
+                            status = linkcheck_helper.status_chk(link_url)
                             try:
                                 npt.assert_array_equal(status, 200, '200 error', True)
                             except:
                                 print "Error in one or more main article links"
-                                report = linkcheck_helper.build_table(linkUrl, status)
+                                report = linkcheck_helper.build_table(link_url, status)
                                 headers = ["Article Link URL", "Status Code"]
                                 print tabulate(report, headers, tablefmt='grid')
             finally:

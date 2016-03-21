@@ -35,7 +35,7 @@ models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
 
 # The following list represents the model output page titles to be checked (order of models
 # needs to be the same as "models" list above
-models_IO = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
+models_io = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
              "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
              "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
 #models_IO = ["SIP", "STIR", "PFAM", "Earthworm"] # this short list is used for debugging
@@ -45,11 +45,11 @@ redirect_servers = ["http://qed.epa.gov/ubertool/", "http://134.67.114.3/ubertoo
 redirect_pages = ["input"]  # user is redirected to login page for inputs
 redirect_model_pages = [s + m + p for s in redirect_servers for m in models
                         for p in redirect_pages]
-redirect_models = models_IO * len(redirect_servers)
+redirect_models = models_io * len(redirect_servers)
 
 qaqc_pages = ["qaqc"]
 qaqc_model_pages = [s + m + p for s in servers for m in models for p in qaqc_pages]
-qaqc_models = models_IO * len(servers) * len(qaqc_pages)
+qaqc_models = models_io * len(servers) * len(qaqc_pages)
 
 class WaitForPageLoad(object):  # ensures that a new page has fully loaded upon a click/submit
     def __init__(self, browser):
@@ -116,7 +116,6 @@ class TestQAQC(unittest.TestCase, WaitForPageLoad):
                 print tabulate(table_rows, headers, tablefmt='grid')
         finally:
             browser.quit()
-            pass
         return
 
     def test_qed_input_form(self):
@@ -148,12 +147,11 @@ class TestQAQC(unittest.TestCase, WaitForPageLoad):
             try:
                 npt.assert_array_equal(expected_title, current_title, 'Input Form Submittal Failed', True)
             except:
-                print "One or more models FAILED to produce QAQC results"
+                print "One or more models FAILED to produce Input Form"
                 headers = ["expected", "actual/message"]
                 print tabulate(table_rows, headers, tablefmt='grid')
         finally:
             browser.quit()
-            pass
         return
 
     def test_qed_output_form(self):
@@ -199,48 +197,46 @@ class TestQAQC(unittest.TestCase, WaitForPageLoad):
                 print tabulate(table_rows, headers, tablefmt='grid')
         finally:
             browser.quit()
-            pass
         return
 
     def test_qed_qaqc_form(self):
         try:
-            current_pageID = [""] * len(qaqc_model_pages)  # pageID = url + <h2 class='model header' string>
-            expected_pageID = [""] * len(qaqc_model_pages)
+            current_page_id = [""] * len(qaqc_model_pages)  # pageID = url + <h2 class='model header' string>
+            expected_page_id = [""] * len(qaqc_model_pages)
             table_rows = [""] * len(qaqc_model_pages)
             browser = webdriver.PhantomJS(executable_path=phantomjs_path, service_log_path=os.path.devnull)
             # added the argument service_log_path=os.path.devnull to the function webdriver.PhantomJS()
             # to prevent PhantomJS from creating a ghostdriver.log in the directory of the python file
             # being executed.
             for idx, m in enumerate(qaqc_model_pages):
-                expected_pageID[idx] = m + "/run : " + qaqc_models[idx] + " QAQC"
+                expected_page_id[idx] = m + "/run : " + qaqc_models[idx] + " QAQC"
                 browser.get(m)
                 try:
                     with WaitForPageLoad(browser):
-                        qaqcRunButton = browser.find_element_by_id('runQAQC')
-                        qaqcRunButton.click()
+                        qaqc_run_button = browser.find_element_by_id('runQAQC')
+                        qaqc_run_button.click()
                     if browser.current_url.__str__() != m + "/run":
-                        current_pageID[idx] = str(
+                        current_page_id[idx] = str(
                             browser.current_url) + " : Run QAQC failed"  # we did not arrive at expected url
                     elif browser.page_source.__contains__('File Not Found'):
-                        current_pageID[idx] = str(browser.current_url) + " : File Not Found Page Error"
+                        current_page_id[idx] = str(browser.current_url) + " : File Not Found Page Error"
                     elif browser.page_source.__contains__("User Inputs"):
                         # check to see of string User Inputs appears on page
-                        current_pageID[idx] = m + "/run : " + qaqc_models[idx] + " QAQC"
+                        current_page_id[idx] = m + "/run : " + qaqc_models[idx] + " QAQC"
                     else:
-                        current_pageID[idx] = str(browser.current_url) + " Unknown QAQC run error"
+                        current_page_id[idx] = str(browser.current_url) + " Unknown QAQC run error"
                 except:
-                    current_pageID[idx] = m + " Unknown exception thrown"
+                    current_page_id[idx] = m + " Unknown exception thrown"
                 # build array for reporting table
-                table_rows[idx] = [expected_pageID[idx], [current_pageID[idx]]]
+                table_rows[idx] = [expected_page_id[idx], [current_page_id[idx]]]
             try:
-                npt.assert_array_equal(expected_pageID, current_pageID, 'QAQC Failed', True)
+                npt.assert_array_equal(expected_page_id, current_page_id, 'QAQC Failed', True)
             except:
                 print "One or more models FAILED to produce QAQC results"
                 headers = ["expected", "actual/message"]
                 print tabulate(table_rows, headers, tablefmt='grid')
         finally:
             browser.quit()
-            pass
         return
 
     def teardown(self):

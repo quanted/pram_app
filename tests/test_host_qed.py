@@ -71,11 +71,11 @@ class TestQEDHost(unittest.TestCase):
             boo302 = [False] * len(response)
             boocheck = [True] * len(response)
             urllist_302s = [""] * len(response)
-            for i in range(len(response)):
-                for resp in response[i].history:
+            for idx, r in enumerate(response):
+                for resp in r.history:
                     if resp.status_code == 302:
-                        boo302[i] = True
-                        urllist_302s[i] = resp.url
+                        boo302[idx] = True
+                        urllist_302s[idx] = resp.url
             npt.assert_array_equal(boo302, boocheck, '302 error', True)
         finally:
             pass

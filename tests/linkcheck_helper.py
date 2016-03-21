@@ -8,7 +8,9 @@ def build_http_links(root_url, href_list):
     url_list = [""] * len(href_list)
     for idx, link in enumerate(href_list):
         url_list[idx] = link.get('href')
-        if url_list[idx][0:5] == 'http:':
+        if not url_list[idx]:  #check to ensure a link is actually populated
+            url_list[idx] = "No link available"
+        elif url_list[idx][0:4] == 'http':
             url_list[idx] = url_list[idx]
         elif (url_list[idx][0] == '/'):
             url_list[idx] = root_url + url_list[idx]

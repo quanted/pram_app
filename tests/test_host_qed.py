@@ -7,12 +7,6 @@ import unicodedata
 from tabulate import tabulate
 import linkcheck_helper
 
-
-#this testing routine accepts a list of servers where a group of models and pages (i.e.,tabs)
-#are presented as web pages.  it is assumed that the complete set of models and related pages
-#are present on each server. this routine performs a series of unit tests that ensure
-#that the web pages are up and operational.
-
 test = {}
 
 servers = ["http://qed.epa.gov/ubertool/", "http://qedinternal.epa.gov/ubertool/",
@@ -47,25 +41,58 @@ redirect_models = models_IO * len(redirect_servers)
 
 
 class TestQEDHost(unittest.TestCase):
+    """
+    this testing routine accepts a list of servers where a group of models and pages (i.e.,tabs)
+    are presented as web pages.  it is assumed that the complete set of models and related pages
+    are present on each server. this routine performs a series of unit tests that ensure
+    that the web pages are up and operational.
+    """
+
     def setup(self):
         pass
 
-    def test_qed_200(self):
+    def teardown(self):
+        pass
+
+    @staticmethod
+    def test_qed_200():
         try:
+            test_name = "Model page access "
+            assert_error = False
             response = [requests.get(m).status_code for m in model_pages]
             try:
                 npt.assert_array_equal(response, 200, '200 error', True)
-            except:
-                report = [""] * len(model_pages)
-                print "Error accessing one or more model pages"
-                report = linkcheck_helper.build_table(model_pages, response)
-                headers = ["Model Page URL", "Status Code"]
-                print tabulate(report, headers, tablefmt='grid')
+            except AssertionError:
+                assert_error = True
+            except Exception as e:
+                # handle any other exception
+                print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+        except Exception as e:
+            # handle any other exception
+            print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+        finally:
+            linkcheck_helper.write_report(test_name, assert_error, model_pages, response)
+        return
+
+
+    @staticmethod
+    def test_qed_404():
+        try:
+            test_name = "Model page 404 "
+            assert_error = False
+            response = [requests.get(m) for m in model_pages]
+            urllist_404s = [""] * len(response)
+            boo_check = [False] * len(response)
+            soup_content = [BeautifulSoup(r.content, "html.parser") for r in response]
+            soup_N404s = [len(s.findAll('img',src='/static/images/404error.png')) for s in soup_content]
+            boo404 = [s>0 for s in soup_N404s]
+            npt.assert_array_equal(boo404, boo_check, '404 error', True)
         finally:
             pass
         return
 
-    def test_qed_redirect(self):  #redirects occur on 'input' pages due to login requirement
+    @staticmethod
+    def test_qed_redirect():  #redirects occur on 'input' pages due to login requirement
         try:
             response = [requests.get(m) for m in redirect_model_pages]
             boo302 = [False] * len(response)
@@ -81,7 +108,8 @@ class TestQEDHost(unittest.TestCase):
             pass
         return
 
-    def test_qed_authenticate_input(self):
+    @staticmethod
+    def test_qed_authenticate_input():
         try: #need to login and then verify we land on input page
             current_page = [""] * len(redirect_model_pages)
             expected_page = [""] * len(redirect_model_pages)
@@ -101,7 +129,8 @@ class TestQEDHost(unittest.TestCase):
             pass
         return
 
-    def test_qed_input_form(self):
+    @staticmethod
+    def test_qed_input_form():
         try: #need to repeat login and then verify title of input page
             current_title = [""] * len(redirect_model_pages)
             expected_title = [""] * len(redirect_model_pages)
@@ -125,7 +154,9 @@ class TestQEDHost(unittest.TestCase):
             pass
         return
 
-    def test_qed_output_form(self):
+    @staticmethod
+    def test_qed_output_form():
+        test_name = "Model output generation "
         try:#need to repeat login, submit default inputs, and verify we land on output page
             current_title = [""] * len(redirect_model_pages)
             expected_title = [""] * len(redirect_model_pages)
@@ -157,22 +188,6 @@ class TestQEDHost(unittest.TestCase):
         finally:
             pass
         return
-
-    def test_qed_404(self):
-        try:
-            response = [requests.get(m) for m in model_pages]
-            urllist_404s = [""] * len(response)
-            boo_check = [False] * len(response)
-            soup_content = [BeautifulSoup(r.content, "html.parser") for r in response]
-            soup_N404s = [len(s.findAll('img',src='/static/images/404error.png')) for s in soup_content]
-            boo404 = [s>0 for s in soup_N404s]
-            npt.assert_array_equal(boo404, boo_check, '404 error', True)
-        finally:
-            pass
-        return
-
-    def teardown(self):
-        pass
 
 # unittest will
 # 1) call the setup method,

@@ -8,6 +8,7 @@ from selenium import webdriver
 import os
 import time
 from tabulate import tabulate
+import linkcheck_helper
 
 phantomjs_path = "C://Python27//Lib//site-packages//selenium//webdriver//phantomjs//phantomjs-2.1.1-windows//bin//phantomjs.exe"
 
@@ -28,17 +29,17 @@ test = {}
 servers = ["http://qed.epa.gov/ubertool/", "http://qedinternal.epa.gov/ubertool/",
            "http://134.67.114.3/ubertool/", "http://134.67.114.1/ubertool/"]
 
-models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
-          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
-          "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
-#models = ["sip/", "stir/", "pfam/", "earthworm/"] # this short list is used for debugging
+#models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
+#          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
+#          "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
+models = ["sip/", "stir/", "pfam/", "earthworm/"] # this short list is used for debugging
 
 # The following list represents the model output page titles to be checked (order of models
 # needs to be the same as "models" list above
-models_io = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
-             "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
-             "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
-#models_IO = ["SIP", "STIR", "PFAM", "Earthworm"] # this short list is used for debugging
+#models_io = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
+#             "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
+#             "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
+models_io = ["SIP", "STIR", "PFAM", "Earthworm"] # this short list is used for debugging
 
 # these two servers require login/authentication for inputs
 redirect_servers = ["http://qed.epa.gov/ubertool/", "http://134.67.114.3/ubertool/"]
@@ -51,11 +52,13 @@ qaqc_pages = ["qaqc"]
 qaqc_model_pages = [s + m + p for s in servers for m in models for p in qaqc_pages]
 qaqc_models = models_io * len(servers) * len(qaqc_pages)
 
-class WaitForPageLoad(object):  # ensures that a new page has fully loaded upon a click/submit
+class WaitForPageLoad(object):
+    """
+    This class provides functionality to ensure that a web page has
+    fully loaded upon a click/submit
+    """
+
     def __init__(self, browser):
-        """
-        :rtype: object
-        """
         self.browser = browser
 
     def __enter__(self):
@@ -73,22 +76,36 @@ class WaitForPageLoad(object):  # ensures that a new page has fully loaded upon 
             else:
                 time.sleep(0.1)
         raise Exception(
-            'Timeout waiting for {}'.format(condition_function.__name__)
-        )
+            'Timeout waiting for {}'.format(condition_function.__name__))
 
     def __exit__(self, *_):
         self.wait_for(self.page_has_loaded)
 
 
 class TestQAQC(unittest.TestCase, WaitForPageLoad):
+    """
+    This set of methods represent unit tests for the Ubertool frontend (i.e., what the
+    user sees as the web interface).  The tests include:
+    1. Login verficcation for model input pages
+    2. Verification that Login results in the input data form page loads
+    3. Verification that defaults input data form is successfully submitted and
+       that the output data is generated and displayed
+    4. Automated QAQC run submittal and presentation of results
+    Note: the first three tests here are also included in the "test_host_qed.py"
+          code; the difference being that the selenium package is used here and
+          the mechanize package is used in test_host_qed.py code
+    """
+
     def setup(self):
         pass
 
-    def test_qed_authenticate_input(self):
+    @staticmethod
+    def test_qed_authenticate_input():
         try:  # verify successful login and that we land on input page url
+            test_name = "Login Authentication "
             current_page = [""] * len(redirect_model_pages)
             expected_page = [""] * len(redirect_model_pages)
-            table_rows = [""] * len(redirect_model_pages)
+            assert_error = False
             for idx, m in enumerate(redirect_model_pages):
                 browser = webdriver.PhantomJS(executable_path=phantomjs_path, service_log_path=os.path.devnull)
                 browser.get(m)
@@ -106,25 +123,30 @@ class TestQAQC(unittest.TestCase, WaitForPageLoad):
                 # Verify we have successfully logged in and are now at input page url
                 current_page[idx] = str(browser.current_url)
                 expected_page[idx] = m
-                # build array for reporting table
-                table_rows[idx] = [expected_page[idx], current_page[idx]]
             try:
                 npt.assert_array_equal(expected_page, current_page, 'Login Test Failed', True)
-            except:
-                print "Login failed for one or more models"
-                headers = ["expected", "actual/message"]
-                print tabulate(table_rows, headers, tablefmt='grid')
+            except AssertionError:
+                assert_error = True
+            except Exception as e:
+                # handle any other exception
+                print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+        except Exception as e:
+            # handle any other exception
+            print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
         finally:
+            linkcheck_helper.write_report(test_name, assert_error, expected_page, current_page)
             browser.quit()
         return
 
-    def test_qed_input_form(self):
+    @staticmethod
+    def test_qed_input_form():
         # verify input page contains expected content (we chk page title, e.g., 'SIP Inputs')
         # need to repeat login
         try:
+            test_name = "Input Form URL "
             current_title = [""] * len(redirect_model_pages)
             expected_title = [""] * len(redirect_model_pages)
-            table_rows = [""] * len(redirect_model_pages)
+            assert_error = False
             for idx, m in enumerate(redirect_model_pages):
                 expected_title[idx] = m + " : " + redirect_models[idx] + " Inputs"
                 browser = webdriver.PhantomJS(executable_path=phantomjs_path, service_log_path=os.path.devnull)
@@ -143,23 +165,29 @@ class TestQAQC(unittest.TestCase, WaitForPageLoad):
                 else:
                     current_title[idx] = m + " : " + redirect_models[idx] + " Input Submit Error"
                 # build array for reporting table
-                table_rows[idx] = [expected_title[idx], [current_title[idx]]]
             try:
                 npt.assert_array_equal(expected_title, current_title, 'Input Form Submittal Failed', True)
-            except:
-                print "One or more models FAILED to produce Input Form"
-                headers = ["expected", "actual/message"]
-                print tabulate(table_rows, headers, tablefmt='grid')
+            except AssertionError:
+                assert_error = True
+            except Exception as e:
+                # handle any other exception
+                print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+        except Exception as e:
+            # handle any other exception
+            print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
         finally:
+            linkcheck_helper.write_report(test_name, assert_error, expected_title, current_title)
             browser.quit()
         return
 
-    def test_qed_output_form(self):
+    @staticmethod
+    def test_qed_output_form():
         try:  # verify proper output page content, i.e., page title
               # need to repeat login, submit default inputs
+            test_name = "Input Form Submittal and Output Generation "
             current_title = [""] * len(redirect_model_pages)
             expected_title = [""] * len(redirect_model_pages)
-            table_rows = [""] * len(redirect_model_pages)
+            assert_error = False
             for idx, m in enumerate(redirect_model_pages):
                 expected_title[idx] = m.replace("input", "") + " : " + redirect_models[idx] + " Output"
                 browser = webdriver.PhantomJS(executable_path=phantomjs_path, service_log_path=os.path.devnull)
@@ -187,23 +215,28 @@ class TestQAQC(unittest.TestCase, WaitForPageLoad):
                     current_title[idx] = browser.current_url.replace("output", "") + " : File Not Found Page Error"
                 else:
                     current_title[idx] = browser.current_url.replace("output", "") + " : Unknown Output Page Error"
-                # build array for reporting table
-                table_rows[idx] = [expected_title[idx], [current_title[idx]]]
             try:
                 npt.assert_array_equal(expected_title, current_title, 'Submittal of Input Failed', True)
-            except:
-                print "One or more models FAILED to produce output"
-                headers = ["expected", "actual/message"]
-                print tabulate(table_rows, headers, tablefmt='grid')
+            except AssertionError:
+                assert_error = True
+            except Exception as e:
+                # handle any other exception
+                print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+        except Exception as e:
+            # handle any other exception
+            print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
         finally:
+            linkcheck_helper.write_report(test_name, assert_error, expected_title, current_title)
             browser.quit()
         return
 
-    def test_qed_qaqc_form(self):
+    @staticmethod
+    def test_qed_qaqc_form():
         try:
+            test_name = "QAQC Execution and Results Generation "
             current_page_id = [""] * len(qaqc_model_pages)  # pageID = url + <h2 class='model header' string>
             expected_page_id = [""] * len(qaqc_model_pages)
-            table_rows = [""] * len(qaqc_model_pages)
+            assert_error = False
             browser = webdriver.PhantomJS(executable_path=phantomjs_path, service_log_path=os.path.devnull)
             # added the argument service_log_path=os.path.devnull to the function webdriver.PhantomJS()
             # to prevent PhantomJS from creating a ghostdriver.log in the directory of the python file
@@ -228,14 +261,18 @@ class TestQAQC(unittest.TestCase, WaitForPageLoad):
                 except:
                     current_page_id[idx] = m + " Unknown exception thrown"
                 # build array for reporting table
-                table_rows[idx] = [expected_page_id[idx], [current_page_id[idx]]]
             try:
                 npt.assert_array_equal(expected_page_id, current_page_id, 'QAQC Failed', True)
-            except:
-                print "One or more models FAILED to produce QAQC results"
-                headers = ["expected", "actual/message"]
-                print tabulate(table_rows, headers, tablefmt='grid')
+            except AssertionError:
+                assert_error = True
+            except Exception as e:
+                # handle any other exception
+                print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+        except Exception as e:
+            # handle any other exception
+            print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
         finally:
+            linkcheck_helper.write_report(test_name, assert_error, expected_page_id, current_page_id)
             browser.quit()
         return
 

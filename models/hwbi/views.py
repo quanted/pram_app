@@ -6,6 +6,7 @@
 import os
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from django.shortcuts import redirect
 import requests
 
 
@@ -14,6 +15,10 @@ hwbi_server = os.environ['REST_SERVER_8']
 # ################ How model name appears on web page ################
 header = 'HWBI'
 # ####################################################################
+
+
+def hwbi_redirect(request):
+    return redirect('/ubertool/hwbi')
 
 
 def hwbi_view(request):

@@ -16,8 +16,8 @@ http_headers = auth_s3.setHTTPHeaders()
 rest_url = os.environ['UBERTOOL_REST_SERVER']
 
 
-class NumPyArangeEncoder(json.JSONEncoder):
-    """A class helps dictionary to be converted to JSON when it contains numpy element"""
+class NumPyArrangeEncoder(json.JSONEncoder):
+    """Helper class to convert dictionary to JSON when it contains a NumPy object"""
     def default(self, obj):
         if isinstance(obj, np.ndarray):
             return obj.tolist()  # or map(int, obj)
@@ -90,7 +90,7 @@ def save_dic(output_html, model_object_dict, model_name, run_type):
 
     all_dic = {"model_name": model_name, "_id": model_object_dict['jid'], "run_type": run_type,
                "output_html": output_html, "model_object_dict": model_object_dict}
-    data = json.dumps(all_dic, cls=NumPyArangeEncoder)
+    data = json.dumps(all_dic, cls=NumPyArrangeEncoder)
     url = rest_url + '/save_history_html'
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)
@@ -142,7 +142,7 @@ def batch_save_dic(output_html, model_object_dict, model_name, run_type, jid_bat
 
     all_dic = {"model_name": model_name, "_id": jid_batch, "run_type": run_type, "output_html": html_save,
                "model_object_dict": model_object_dict}
-    data = json.dumps(all_dic, cls=NumPyArangeEncoder)
+    data = json.dumps(all_dic, cls=NumPyArrangeEncoder)
     url = rest_url + '/save_history'
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   

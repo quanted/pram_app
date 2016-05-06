@@ -1,17 +1,24 @@
 beautifulsoup4
+codecov
+coverage
+coveralls
 django
 django-rest-swagger
 html5lib
+mechanize
 nose
+nose-cov
 numpy
 pandas
 pillow
 pypdf2
+python-coveralls
 pytz
 requests
 reportlab
 selenium
 Sphinx
+tabulate
 xhtml2pdf
 xlsxwriter
 

@@ -2,84 +2,38 @@
 .. module:: hwbi_qaqc
    :synopsis: A useful module indeed.
 """
-
-import hwbi_model
-import logging
+import importlib
 import os
-import unittest
-from StringIO import StringIO
-import csv
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 
-data = csv.reader(open(os.path.join(os.environ['PROJECT_PATH'], 'models','hwbi','hwbi_unittest_inputs.csv')))
-LC50=[]
-threshold=[]
-dose_response=[]
 
-#####Pre-defined outputs########
-z_score_f_out=[]
-F8_f_out=[]
-chance_f_out=[]
+PROJECT_ROOT = os.environ['PROJECT_PATH']
 
-data.next()
-for row in data:
-    LC50.append(float(row[0]))
-    threshold.append(float(row[1]))  
-    dose_response.append(float(row[2]))
-    z_score_f_out.append(float(row[3])) 
-    F8_f_out.append(float(row[4]))
-    chance_f_out.append(float(row[5]))
-    
-out_fun_z_score_f=[]
-out_fun_F8_f=[]
-out_fun_chance_f=[]
 
-def set_globals(**kwargs):
-    for argname in kwargs:
-        globals()['%s_in' % argname] = kwargs[argname]
-           
-class TestCase_z_score_f_out(unittest.TestCase):
-    def setUp(self):
-        self.hwbi_obj = hwbi_object_in
-    def testz_score_f_out_in(self):
-        out_fun_z_score_f.append(self.hwbi_obj.z_score_f_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("Z_score_f",self.hwbi_obj.z_score_f_out,fun)
-        self.assertEqual(round(fun,3),round(self.z_score_f_out,3),testFailureMessage)
+def qaqcRunView(request, model="hwbi"):
+    """
+        View to render the QAQC output page HTML
+    """
+    uber_views_module = importlib.import_module('views', '..')
+    viewmodule = importlib.import_module('.views', 'models.'+model)
+    header = viewmodule.header
 
-class TestCase_F8_f_out(unittest.TestCase):
-    def setUp(self):
-        self.hwbi_obj = hwbi_object_in
-    def testF8_f_out_in(self):
-        out_fun_F8_f.append(self.hwbi_obj.F8_f_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("F8_f",self.hwbi_obj.F8_f_out,fun)
-        self.assertEqual(round(fun,3),round(self.F8_f_out,3),testFailureMessage)
-            
-class TestCase_chance_f_out(unittest.TestCase):
-    def setUp(self):
-        self.hwbi_obj = hwbi_object_in
-    def testchance_f_out_in(self):
-        out_fun_chance_f.append(self.iec_obj.chance_f_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("Chance_f",self.iec_obj.chance_f_out,fun)
-        self.assertEqual(round(fun,3),round(self.chance_f_out,3),testFailureMessage)
-                        
-def suite(TestCaseName, **kwargs):
-    suite = unittest.TestSuite()
-    set_globals(**kwargs)
-    suite.addTest(unittest.makeSuite(TestCaseName))
-    stream = StringIO()
-    runner = unittest.TextTestRunner(stream=stream, verbosity=2)
-    result = runner.run(suite)
-    stream.seek(0)
-    test_out=stream.read()
-    return test_out
+    html = render_to_string('01uberheader.html', {
+            'site_skin': os.environ['SITE_SKIN'],
+            'title': header+' QA/QC'})
+    html = html + render_to_string('hwbi/02uberintroblock_wmodellinks.html', {
+            'site_skin': os.environ['SITE_SKIN'],
+            'model': model,
+            'page': 'qaqc'})
+    html = html + uber_views_module.linksLeft()
+    html = html + render_to_string('04uberoutput_start.html', {
+            'model':model,
+            'model_attributes': header+' QAQC'})
+    html = html + render_to_string('export.html', {})
+    html = html + render_to_string('04uberoutput_end.html', {'sub_title': ''})
+    html = html + render_to_string('06uberfooter.html', {'links': ''})
 
-iec_obj = iec_model.iec(True,True,'qaqc',dose_response[0],LC50[0],threshold[0])
-iec_obj.set_unit_testing_variables()
-
-iec_obj.z_score_f_out_expected = z_score_f_out[0]
-iec_obj.F8_f_out_expected = F8_f_out[0]
-iec_obj.chance_f_out_expected = chance_f_out[0]
-
-test_suite_z_score_f_out = suite(TestCase_z_score_f_out, iec_obj=iec_obj)
-test_suite_F8_f_out = suite(TestCase_F8_f_out, iec_obj=iec_obj)
-test_suite_chance_f_out = suite(TestCase_chance_f_out, iec_obj=iec_obj)
-
+    response = HttpResponse()
+    response.write(html)
+    return response

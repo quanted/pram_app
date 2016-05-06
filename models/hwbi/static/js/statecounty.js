@@ -33,14 +33,16 @@ $(document).ready(function(){
 
         //old visual studio call-> http://localhost:64399/api/Baseline?State=Georgia&County=Appling
         //NEW call-> http://134.67.114.8/hwbi/api/Baseline?State=Georgia&County=Appling
+        //super new call->
         var state = $('#stateSel').val();
         var county = $('#countySel').val();
-        $.getJSON('/ubertool/hwbi/api/Baseline?State=' + state + '&County=' + county, function(data) {
+        //old call $.getJSON('/ubertool/hwbi/api/Baseline?State=' + state + '&County=' + county, function(data) {
+        $.getJSON('/hwbi/rest/hwbi/locations/' + state + '/' + county, function(data) {
             $.unblockUI();
-            updateRIVWeights(data.Domains);
-            updateDomainScores(data.Domains);
-            updateDomainScores2(data.Domains);
-            updateServiceScores(data.Services);
+            updateRIVWeights(data.results.domains);
+            updateDomainScores(data.results.domains);
+            updateDomainScores2(data.results.domains);
+            updateServiceScores(data.restuls.services);
         });
     });
     

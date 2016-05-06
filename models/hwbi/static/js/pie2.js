@@ -7,7 +7,7 @@ var width = 300,
 
 //import data from a json file and run drawPieChart function onPageLoad
 d3.json('/static/json/baseline.json', function (error, data) {
-    drawPie2Chart("", data.Domains);
+    drawPie2Chart("", data.results.domains);
 });
 
 //create svg element in the page "#pie" div and append g to the SVG

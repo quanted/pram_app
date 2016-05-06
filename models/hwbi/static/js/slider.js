@@ -4,7 +4,7 @@ var dragVal = {};
 //import data from a json file and run drawSliders function onPageLoad
 d3.json("/static/json/baseline.json", function (data) {
     dragVal = data;
-    data.Services.forEach(drawSliders);  // Call drawSliders() after parsing JSON, passing in "each" element
+    data.results.services.forEach(drawSliders);  // Call drawSliders() after parsing JSON, passing in "each" element
 });
 
 
@@ -142,7 +142,7 @@ var x = d3.scale.linear()
         //round text value down
         handle.select("text").text(Math.floor(value));
         
-        dragVal.Services[index].Score = value;       
+        dragVal.results.services[index].Score = value;
     }
 }
 

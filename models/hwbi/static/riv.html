@@ -1,3 +1,14 @@
+<style>
+input[type=number] {
+    width: 25px;
+}
+
+/* size button font */
+#updateWeights {
+    font-size: 12px;
+}
+</style>
+
  <p>
     <label style="display: inline-block; width: 200px; text-align: right">
            Connection to Nature= <span></span>
@@ -57,7 +68,7 @@
 
 <br>
 <!--button to submit RIV box weights to pie chart-->
-<button onclick="useRIVWeights()" type="submit" class="btn btn-primary btn-xs" role="button">Modify RIV Weights</button>
+<button id="updateWeights" onclick="useRIVWeights()" type="submit" class="btn btn-primary btn-xs" role="button">Modify RIV Weights</button>
 
 
 

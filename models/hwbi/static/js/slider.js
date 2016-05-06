@@ -23,13 +23,13 @@ var x = d3.scale.linear()
             if (data.ServiceName == "Production") { return [45.11697104, 51.67193166]; }
             if (data.ServiceName == "Re-Distribution") { return [23.51316313, 68.92691912]; }
             if (data.ServiceName == "Air Quality") { return [10, 90]; }
-            if (data.ServiceName == "Food, Fiber And Fuel Provisioning") { return [32.62908483, 48.49178319]; }
+            if (data.ServiceName == "Food, Fiber, Fuel") { return [32.62908483, 48.49178319]; }
             if (data.ServiceName == "Greenspace") { return [36.11207908, 62.03906984]; }
             if (data.ServiceName == "Water Quality") { return [15.95637509, 88.22033237]; }
             if (data.ServiceName == "Water Quantity") { return [21.70976841, 72.83447998]; }
             if (data.ServiceName == "Activism") { return [25.85945275, 73.66346154]; }
             if (data.ServiceName == "Communication") { return [33.10020486, 68.98955269]; }
-            if (data.ServiceName == "Community And Faith-Based Initiatives") { return [12.21375305,	90]; }
+            if (data.ServiceName == "Community and Faith") { return [12.21375305,	90]; }
             if (data.ServiceName == "Education") { return [33.24429069,	56.47803694]; }
             if (data.ServiceName == "Emergency Preparedness") { return [19.78920564, 76.07510118]; }
             if (data.ServiceName == "Family Services") { return [42.66833596, 73.35259094]; }
@@ -190,13 +190,13 @@ var x = d3.scale.linear()
             if (data.ServiceName == "Production") { return [45.11697104, 51.67193166]; }
             if (data.ServiceName == "Re-Distribution") { return [23.51316313, 68.92691912]; }
             if (data.ServiceName == "Air Quality") { return [10, 90]; }
-            if (data.ServiceName == "Food, Fiber And Fuel Provisioning") { return [32.62908483, 48.49178319]; }
+            if (data.ServiceName == "Food, Fiber, Fuel") { return [32.62908483, 48.49178319]; }
             if (data.ServiceName == "Greenspace") { return [36.11207908, 62.03906984]; }
             if (data.ServiceName == "Water Quality") { return [15.95637509, 88.22033237]; }
             if (data.ServiceName == "Water Quantity") { return [21.70976841, 72.83447998]; }
             if (data.ServiceName == "Activism") { return [25.85945275, 73.66346154]; }
             if (data.ServiceName == "Communication") { return [33.10020486, 68.98955269]; }
-            if (data.ServiceName == "Community And Faith-Based Initiatives") { return [12.21375305,	90]; }
+            if (data.ServiceName == "Community and Faith") { return [12.21375305,	90]; }
             if (data.ServiceName == "Education") { return [33.24429069,	56.47803694]; }
             if (data.ServiceName == "Emergency Preparedness") { return [19.78920564, 76.07510118]; }
             if (data.ServiceName == "Family Services") { return [42.66833596, 73.35259094]; }

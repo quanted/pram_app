@@ -14,6 +14,7 @@ import warnings
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()
 rest_url = os.environ['UBERTOOL_REST_SERVER']
+rest_url_hwbi = os.environ['REST_SERVER_8']
 
 
 class NumPyArrangeEncoder(json.JSONEncoder):
@@ -75,6 +76,17 @@ def rest_proxy_post(model, data, jid):
 
 def rest_proxy_get(model):
     return requests.get(rest_url + '/rest/ubertool/' + model)
+
+
+def rest_proxy_hwbi(request, resource):
+    response = requests.get(rest_url_hwbi + '/hwbi/rest/hwbi/locations/' + resource)
+    return HttpResponse(json.dumps(response.json()), content_type="application/json")
+
+
+def rest_proxy_hwbi_calc(request):
+    data = json.loads(request.body)
+    response = requests.post(rest_url_hwbi + '/hwbi/rest/hwbi/calc', json=data)
+    return HttpResponse(json.dumps(response.json()), content_type="application/json")
 
 
 def save_dic(output_html, model_object_dict, model_name, run_type):

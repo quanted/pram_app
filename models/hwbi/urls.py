@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^algorithms$', views.algorithmPage),
     url(r'^references$', views.referencesPage),
     url(r'^qaqc$', hwbi_qaqc.qaqcRunView),
+    # TODO: Delete next two endpoints...
     url(r'^api/Baseline$', views.get_default_HWBI_values),
     url(r'^api/HWBI', views.get_user_HWBI_values),
     # url(r'^$', views.hwbi_view, name='hwbi_view'),  # Shows HWBI page without ubertool branding

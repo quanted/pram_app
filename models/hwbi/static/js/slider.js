@@ -29,7 +29,7 @@ var x = d3.scale.linear()
             if (data.ServiceName == "Water Quantity") { return [21.70976841, 72.83447998]; }
             if (data.ServiceName == "Activism") { return [25.85945275, 73.66346154]; }
             if (data.ServiceName == "Communication") { return [33.10020486, 68.98955269]; }
-            if (data.ServiceName == "Community and Faith") { return [12.21375305,	90]; }
+            if (data.ServiceName == "Community And Faith") { return [12.21375305,	90]; }
             if (data.ServiceName == "Education") { return [33.24429069,	56.47803694]; }
             if (data.ServiceName == "Emergency Preparedness") { return [19.78920564, 76.07510118]; }
             if (data.ServiceName == "Family Services") { return [42.66833596, 73.35259094]; }
@@ -146,15 +146,69 @@ var x = d3.scale.linear()
     }
 }
 
+//old GET request to calc endpoint
+//function useServiceValues() {
+//    //$.getJSON('api/HWBI?CapitalInvestmentScore=58.9&ConsumptionScore=51.6&EmploymentScore=52.3&FinanceScore=44.0&InnovationScore=43.24&ProductionScore=50.44&ReDistributionScore=47.2&AirQualityScore=19.2&FoodFiberAndFuelProvisioningScore=44.44&GreenspaceScore=42.6&WaterQualityScore=67.4&WaterQuantityScore=37.9&ActivismScore=48.9&CommunicationScore=43.4&CommunityAndFaithBasedInitiativesScore=15.81&EducationScore=45.0&EmergencyPreparednessScore=52.6&FamilyServicesScore=50.0&HealthcareScore=48.7&JusticeScore=42.76&LaborScore=40.82&PublicWorksScore=41.84&ConnectionToNatureDomainWeight=1.0&CulturalFulfillmentDomainWeight=1.0&EducationDomainWeight=1.0&HealthDomainWeight=1.0&LeisureTimeDomainWeight=1.0&LivingStandardsDomainWeight=1.0&SafetyAndSecurityDomainWeight=1.0&SocialCohesionDomainWeight=1.0', function (data) {
+//    //http://134.67.114.8/hwbi/rest/hwbi/calc?CapitalInvestmentScore=58.9&ConsumptionScore=51.6&EmploymentScore=52.3&FinanceScore=44.0&InnovationScore=43.24&ProductionScore=50.44&ReDistributionScore=47.2&AirQualityScore=12.2&FoodFiberAndFuelProvisioningScore=44.44&GreenspaceScore=42.6&WaterQualityScore=67.4&WaterQuantityScore=37.9&ActivismScore=48.9&CommunicationScore=43.4&CommunityAndFaithBasedInitiativesScore=15.81&EducationScore=45.0&EmergencyPreparednessScore=52.6&FamilyServicesScore=50.0&HealthcareScore=48.7&JusticeScore=42.76&LaborScore=40.82&PublicWorksScore=41.84&ConnectionToNatureDomainWeight=1.0&CulturalFulfillmentDomainWeight=1.0&EducationDomainWeight=1.0&HealthDomainWeight=1.0&LeisureTimeDomainWeight=1.0&LivingStandardsDomainWeight=1.0&SafetyAndSecurityDomainWeight=1.0&SocialCohesionDomainWeight=1.0
+//    $.getJSON('/hwbi/rest/hwbi/calc?CapitalInvestmentScore=' + dragVal.results.services[0].Score + '&ConsumptionScore=' + dragVal.results.services[1].Score + '&EmploymentScore=' + dragVal.results.services[2].Score + '&FinanceScore=' + dragVal.results.services[3].Score + '&InnovationScore=' + dragVal.results.services[4].Score + '&ProductionScore=' + dragVal.results.services[5].Score + '&ReDistributionScore=' + dragVal.results.services[6].Score + '&AirQualityScore=' + dragVal.results.services[7].Score + '&FoodFiberAndFuelProvisioningScore=' + dragVal.results.services[8].Score + '&GreenspaceScore=' + dragVal.results.services[9].Score + '&WaterQualityScore=' + dragVal.results.services[10].Score + '&WaterQuantityScore=' + dragVal.results.services[11].Score + '&ActivismScore=' + dragVal.results.services[12].Score + '&CommunicationScore=' + dragVal.results.services[13].Score + '&CommunityAndFaithBasedInitiativesScore=' + dragVal.results.services[14].Score + '&EducationScore=' + dragVal.results.services[15].Score + '&EmergencyPreparednessScore=' + dragVal.results.services[16].Score + '&FamilyServicesScore=' + dragVal.results.services[17].Score + '&HealthcareScore=' + dragVal.results.services[18].Score + '&JusticeScore=' + dragVal.results.services[19].Score + '&LaborScore=' + dragVal.results.services[20].Score + '&PublicWorksScore=' + dragVal.results.services[21].Score + '&ConnectionToNatureDomainWeight=' + dragVal.results.domains[0].Weight + '&CulturalFulfillmentDomainWeight=' + dragVal.results.domains[1].Weight + '&EducationDomainWeight=' + dragVal.results.domains[2].Weight + '&HealthDomainWeight=' + dragVal.results.domains[3].Weight + '&LeisureTimeDomainWeight=' + dragVal.results.domains[4].Weight + '&LivingStandardsDomainWeight=' + dragVal.results.domains[5].Weight + '&SafetyAndSecurityDomainWeight=' + dragVal.results.domains[6].Weight + '&SocialCohesionDomainWeight=' + dragVal.results.domains[7].Weight, function (data) {
+//        updateDomainScores(data.Domains);
+//        updateRIVWeights(dragVal.Domains);
+//    });
+//}
 
+
+//POST request to calc endpoint
 function useServiceValues() {
-    //$.getJSON('api/HWBI?CapitalInvestmentScore=58.9&ConsumptionScore=51.6&EmploymentScore=52.3&FinanceScore=44.0&InnovationScore=43.24&ProductionScore=50.44&ReDistributionScore=47.2&AirQualityScore=19.2&FoodFiberAndFuelProvisioningScore=44.44&GreenspaceScore=42.6&WaterQualityScore=67.4&WaterQuantityScore=37.9&ActivismScore=48.9&CommunicationScore=43.4&CommunityAndFaithBasedInitiativesScore=15.81&EducationScore=45.0&EmergencyPreparednessScore=52.6&FamilyServicesScore=50.0&HealthcareScore=48.7&JusticeScore=42.76&LaborScore=40.82&PublicWorksScore=41.84&ConnectionToNatureDomainWeight=1.0&CulturalFulfillmentDomainWeight=1.0&EducationDomainWeight=1.0&HealthDomainWeight=1.0&LeisureTimeDomainWeight=1.0&LivingStandardsDomainWeight=1.0&SafetyAndSecurityDomainWeight=1.0&SocialCohesionDomainWeight=1.0', function (data) {
-    //http://134.67.114.8/hwbi/rest/hwbi/calc?CapitalInvestmentScore=58.9&ConsumptionScore=51.6&EmploymentScore=52.3&FinanceScore=44.0&InnovationScore=43.24&ProductionScore=50.44&ReDistributionScore=47.2&AirQualityScore=12.2&FoodFiberAndFuelProvisioningScore=44.44&GreenspaceScore=42.6&WaterQualityScore=67.4&WaterQuantityScore=37.9&ActivismScore=48.9&CommunicationScore=43.4&CommunityAndFaithBasedInitiativesScore=15.81&EducationScore=45.0&EmergencyPreparednessScore=52.6&FamilyServicesScore=50.0&HealthcareScore=48.7&JusticeScore=42.76&LaborScore=40.82&PublicWorksScore=41.84&ConnectionToNatureDomainWeight=1.0&CulturalFulfillmentDomainWeight=1.0&EducationDomainWeight=1.0&HealthDomainWeight=1.0&LeisureTimeDomainWeight=1.0&LivingStandardsDomainWeight=1.0&SafetyAndSecurityDomainWeight=1.0&SocialCohesionDomainWeight=1.0
-    $.getJSON('/hwbi/rest/hwbi/calc?CapitalInvestmentScore=' + dragVal.results.services[0].Score + '&ConsumptionScore=' + dragVal.results.services[1].Score + '&EmploymentScore=' + dragVal.results.services[2].Score + '&FinanceScore=' + dragVal.results.services[3].Score + '&InnovationScore=' + dragVal.results.services[4].Score + '&ProductionScore=' + dragVal.results.services[5].Score + '&ReDistributionScore=' + dragVal.results.services[6].Score + '&AirQualityScore=' + dragVal.results.services[7].Score + '&FoodFiberAndFuelProvisioningScore=' + dragVal.results.services[8].Score + '&GreenspaceScore=' + dragVal.results.services[9].Score + '&WaterQualityScore=' + dragVal.results.services[10].Score + '&WaterQuantityScore=' + dragVal.results.services[11].Score + '&ActivismScore=' + dragVal.results.services[12].Score + '&CommunicationScore=' + dragVal.results.services[13].Score + '&CommunityAndFaithBasedInitiativesScore=' + dragVal.results.services[14].Score + '&EducationScore=' + dragVal.results.services[15].Score + '&EmergencyPreparednessScore=' + dragVal.results.services[16].Score + '&Familyresults.servicesScore=' + dragVal.results.services[17].Score + '&HealthcareScore=' + dragVal.results.services[18].Score + '&JusticeScore=' + dragVal.results.services[19].Score + '&LaborScore=' + dragVal.results.services[20].Score + '&PublicWorksScore=' + dragVal.results.services[21].Score + '&ConnectionToNatureDomainWeight=' + dragVal.results.domains[0].Weight + '&CulturalFulfillmentDomainWeight=' + dragVal.results.domains[1].Weight + '&EducationDomainWeight=' + dragVal.results.domains[2].Weight + '&HealthDomainWeight=' + dragVal.results.domains[3].Weight + '&LeisureTimeDomainWeight=' + dragVal.results.domains[4].Weight + '&LivingStandardsDomainWeight=' + dragVal.results.domains[5].Weight + '&SafetyAndSecurityDomainWeight=' + dragVal.results.domains[6].Weight + '&SocialCohesionDomainWeight=' + dragVal.results.domains[7].Weight, function (data) {
-        updateDomainScores(data.Domains);
-        updateRIVWeights(dragVal.Domains);
-    });
+    var postData = {
+        "scores" : {
+            "CapitalInvestment": dragVal.results.services[0].Score,
+            "Consumption": dragVal.results.services[1].Score,
+            "Employment": dragVal.results.services[2].Score,
+            "Finance": dragVal.results.services[3].Score,
+            "Innovation": dragVal.results.services[4].Score,
+            "Production": dragVal.results.services[5].Score,
+            "ReDistribution": dragVal.results.services[6].Score,
+            "AirQuality": dragVal.results.services[7].Score,
+            "FoodFiberAndFuel": dragVal.results.services[8].Score,
+            "Greenspace": dragVal.results.services[9].Score,
+            "WaterQuality": dragVal.results.services[10].Score,
+            "WaterQuantity": dragVal.results.services[11].Score,
+            "Activism": dragVal.results.services[12].Score,
+            "Communication": dragVal.results.services[13].Score,
+            "CommunityAndFaith": dragVal.results.services[14].Score,
+            "Education": dragVal.results.services[15].Score,
+            "EmergencyPreparedness": dragVal.results.services[16].Score,
+            "FamilyServices": dragVal.results.services[17].Score,
+            "Healthcare": dragVal.results.services[18].Score,
+            "Justice": dragVal.results.services[19].Score,
+            "Labor": dragVal.results.services[20].Score,
+            "PublicWorks": dragVal.results.services[21].Score
+        },
+        "domainWeights" : {
+            "ConnectionToNature": dragVal.results.domains[0].Weight,
+            "CulturalFulfillment": dragVal.results.domains[1].Weight,
+            "Education": dragVal.results.domains[2].Weight,
+            "Health": dragVal.results.domains[3].Weight,
+            "LeisureTime": dragVal.results.domains[4].Weight,
+            "LivingStandards": dragVal.results.domains[5].Weight,
+            "SafetyAndSecurity": dragVal.results.domains[6].Weight,
+            "SocialCohesion": dragVal.results.domains[7].Weight
+        }
+    };
+
+    $.post(
+        '/rest/hwbi/calc',                      // url
+        JSON.stringify(postData),                               // data (as JS object)
+        function(data) {                        // succuess (callback) funtion
+            updateDomainScores(data.results.domains);
+            updateRIVWeights(dragVal.results.domains);
+    },
+    "json");                                    // data type returned from server
 }
+
+
+
+
 
 //function to update RIV domain weight values
 function updateRIVWeights(domains) {
@@ -172,9 +226,7 @@ function updateRIVWeights(domains) {
 //function to update services on county selection
 function updateServiceScores(servicesScores) {
     servicesScores.forEach(updateSliders);
-};
-
-
+}
 
 
 //update sliders chart function
@@ -197,7 +249,7 @@ var x = d3.scale.linear()
             if (data.ServiceName == "Water Quantity") { return [21.70976841, 72.83447998]; }
             if (data.ServiceName == "Activism") { return [25.85945275, 73.66346154]; }
             if (data.ServiceName == "Communication") { return [33.10020486, 68.98955269]; }
-            if (data.ServiceName == "Community and Faith") { return [12.21375305,	90]; }
+            if (data.ServiceName == "Community And Faith") { return [12.21375305,	90]; }
             if (data.ServiceName == "Education") { return [33.24429069,	56.47803694]; }
             if (data.ServiceName == "Emergency Preparedness") { return [19.78920564, 76.07510118]; }
             if (data.ServiceName == "Family Services") { return [42.66833596, 73.35259094]; }

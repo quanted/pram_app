@@ -6,7 +6,6 @@ import hwbi_input
 
 urlpatterns = [
     url(r'^$', views.hwbi_redirect),
-    url(r'^/$', views.descriptionPage),
     url(r'^description$', views.descriptionPage),
     url(r'^input$', hwbi_input.inputPage),
     url(r'^algorithms$', views.algorithmPage),

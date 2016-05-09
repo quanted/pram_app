@@ -19,7 +19,10 @@ header = 'HWBI'
 
 
 def hwbi_redirect(request):
-    return redirect('/ubertool/hwbi')
+    if request.path == u'/hwbi/':
+        return redirect('/ubertool/hwbi/')
+    else:
+        return descriptionPage(request)
 
 
 def hwbi_view(request):

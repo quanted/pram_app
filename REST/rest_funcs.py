@@ -84,9 +84,16 @@ def rest_proxy_hwbi(request, resource):
 
 
 def rest_proxy_hwbi_calc(request):
-    data = json.loads(request.body)
-    response = requests.post(rest_url_hwbi + '/hwbi/rest/hwbi/calc', json=data)
-    return HttpResponse(json.dumps(response.json()), content_type="application/json")
+
+    method = request.method
+
+    if method == 'GET':
+        response = requests.get(rest_url_hwbi + '/hwbi/rest/hwbi/calc')
+        return HttpResponse(response)
+    elif method == 'POST':
+        data = json.loads(request.body)
+        response = requests.post(rest_url_hwbi + '/hwbi/rest/hwbi/calc', json=data)
+        return HttpResponse(json.dumps(response.json()), content_type="application/json")
 
 
 def save_dic(output_html, model_object_dict, model_name, run_type):

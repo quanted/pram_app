@@ -44,7 +44,7 @@ function drawPie2Chart(error, data) {
         .attr('class', 'd3-tip')
         .offset([50, 0])
         .html(function (d) {
-            return d.data.Description + ": <span style='color:orangered'>" + Math.round(d.data.Score * 100) + "</span>"
+            return d.data.Description + ": <span style='color:orangered'>" + Math.round(d.data.Score) + "</span>"
         })
         ;
 
@@ -55,7 +55,7 @@ function drawPie2Chart(error, data) {
     var arc = d3.svg.arc()
         .innerRadius(innerRadius)
         .outerRadius(function (d) {
-          return (radius - innerRadius) * (d.data.Score) + innerRadius;
+          return (radius - innerRadius) * (d.data.Score/100) + innerRadius;
         });
 
     //use d3 to calculate size of outline arcs
@@ -98,7 +98,7 @@ function drawPie2Chart(error, data) {
     // calculate the weighted mean HWBI score
     var score2 =
         data.reduce(function (a, b) {
-            return a + ((b.Score*100) * b.Weight);
+            return a + ((b.Score) * b.Weight);
         }, 0) /
         data.reduce(function (a, b) {
             return a + b.Weight;
@@ -138,7 +138,7 @@ function updatePie2Chart(error, data) {
         .offset([50, 0])
         .style("pointer-events", "none")
         .html(function (d) {
-            return d.data.Description + ": <span style='color:orangered'>" + (d.data.Score * 100) + "</span>";
+            return d.data.Description + ": <span style='color:orangered'>" + (d.data.Score) + "</span>";
         });
 
     //call the hover tip utility
@@ -148,7 +148,7 @@ function updatePie2Chart(error, data) {
     var arc = d3.svg.arc()
         .innerRadius(innerRadius)
         .outerRadius(function (d) {
-            return (radius - innerRadius) * (d.data.Score) + innerRadius;
+            return (radius - innerRadius) * (d.data.Score/100) + innerRadius;
         });
 
     //use d3 to calculate size of outline arcs
@@ -191,14 +191,13 @@ function updatePie2Chart(error, data) {
     // calculate the weighted mean HWBI score
     var Score2 =
         data.reduce(function (a, b) {
-            return a + ((b.Score * 100) * b.Weight);
+            return a + ((b.Score) * b.Weight);
         }, 0) /
         data.reduce(function (a, b) {
             return a + b.Weight;
         }, 0)
     ;
 
-        console.log(Score2);
 
     //display HWBI score
     d3.select("text.scoreTex2")

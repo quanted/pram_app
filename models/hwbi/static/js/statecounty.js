@@ -20,7 +20,6 @@ $(document).ready(function(){
             }
         }
     });
-    
 
     //on county selection, send ajax get call sending state and county name to server
     $('#countySel').change(function () {
@@ -45,7 +44,6 @@ $(document).ready(function(){
             updateServiceScores(data.results.services);
         });
     });
-    
 
     //function to update RIV domain weight values
     function updateRIVWeights(domains) {

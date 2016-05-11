@@ -44,7 +44,6 @@ function useRIVWeights() {
             i++;
         });
 
-        console.log(rivData);
 
         //call function to draw pie chart taking updated rivData
         updatePieRivs("", rivData);
@@ -75,7 +74,7 @@ function drawPieChart(error, data) {
         .attr('class', 'd3-tip')
         .offset([50, 0])
         .html(function (d) {
-            return d.data.Description + ": <span style='color:orangered'>" + Math.round(d.data.Score * 100) + "</span>"
+            return d.data.Description + ": <span style='color:orangered'>" + Math.round(d.data.Score) + "</span>"
         })
         ;
 
@@ -86,7 +85,7 @@ function drawPieChart(error, data) {
     var arc = d3.svg.arc()
         .innerRadius(innerRadius)
         .outerRadius(function (d) {
-          return (radius - innerRadius) * (d.data.Score) + innerRadius;
+          return (radius - innerRadius) * (d.data.Score/100) + innerRadius;
         });
 
     //use d3 to calculate size of outline arcs    
@@ -129,7 +128,7 @@ function drawPieChart(error, data) {
     // calculate the weighted mean HWBI score
     var score =
         data.reduce(function (a, b) {
-            return a + ((b.Score*100) * b.Weight);
+            return a + ((b.Score) * b.Weight);
         }, 0) /
         data.reduce(function (a, b) {
             return a + b.Weight;
@@ -171,7 +170,7 @@ function updatePieChart(error, data) {
     var arc = d3.svg.arc()
         .innerRadius(innerRadius)
         .outerRadius(function (d) {
-            return (radius - innerRadius) * (d.data.Score) + innerRadius;
+            return (radius - innerRadius) * (d.data.Score/100) + innerRadius;
         });
 
     //use d3 to calculate size of outline arcs    
@@ -212,7 +211,7 @@ function updatePieChart(error, data) {
     // calculate the weighted mean HWBI score
     var Score =
         data.reduce(function (a, b) {
-            return a + ((b.Score * 100) * b.Weight);
+            return a + ((b.Score) * b.Weight);
         }, 0) /
         data.reduce(function (a, b) {
             return a + b.Weight;
@@ -245,7 +244,7 @@ function updatePieRivs(error, data) {
     var arc = d3.svg.arc()
         .innerRadius(innerRadius)
         .outerRadius(function (d) {
-            return (radius - innerRadius) * (d.data.Score) + innerRadius;
+            return (radius - innerRadius) * (d.data.Score/100) + innerRadius;
         });
 
     //use d3 to calculate size of outline arcs    
@@ -287,7 +286,7 @@ function updatePieRivs(error, data) {
     // calculate the weighted mean HWBI score
     var Score1 =
         data.reduce(function (a, b) {
-            return a + ((b.Score * 100) * b.Weight);
+            return a + ((b.Score) * b.Weight);
         }, 0) /
         data.reduce(function (a, b) {
             return a + b.Weight;

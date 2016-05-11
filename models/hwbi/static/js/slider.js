@@ -3,7 +3,7 @@ var dragVal = {};
 
 //import data from a json file and run drawSliders function onPageLoad
 d3.json("/static/json/baseline.json", function (data) {
-    dragVal = data;
+    dragVal = data.results;
     data.results.services.forEach(drawSliders);  // Call drawSliders() after parsing JSON, passing in "each" element
 });
 
@@ -13,8 +13,8 @@ function drawSliders(data, index) {
     //append an svg to cirSlide div
 
     //set scale for slider. domain is input min max. range is slider translated min max (same)
-var x = d3.scale.linear()
-    .domain((function () {
+    var x = d3.scale.linear()
+        .domain((function () {
             if (data.ServiceName == "Capital Investment") { return [56.31683197, 61.75389692]; }
             if (data.ServiceName == "Consumption") { return [47.42882423, 54.04916975]; }
             if (data.ServiceName == "Employment") { return [33.13814798, 72.57176231]; }
@@ -45,7 +45,7 @@ var x = d3.scale.linear()
 
     var svgslide = d3.select("#cirSlide").append("svg")
         .attr("width", 180)
-        .attr("height", 40)
+        .attr("height", 40);
 
 
     //append an empty group element to the svg for x axis slider bar
@@ -78,7 +78,7 @@ var x = d3.scale.linear()
         //set scale of brush to match d3 calculated scale
         .x(x)
         //set the input value using imported data Score value
-        .extent([data.Score * 100, data.Score * 100])
+        .extent([data.Score, data.Score])
         //set listener where on mousemove = function brushed
         .on("brush", brushed);
 
@@ -108,19 +108,19 @@ var x = d3.scale.linear()
         if (data.ServiceType == "Economic") { return "#b86361"; }
         if (data.ServiceType == "Ecosystem") { return "#61b88e"; }
         if (data.ServiceType == "Social") { return "#618bb8"; }
-    }))
+    }));
 
     //append text to the handle
     handle.append('text')
         .attr("class", "cirTex"+index)
         //assign text using data score and convert to whole number
-        .text(data.Score * 100)
+        .text(data.Score)
         .attr("transform", "translate(" + (-8) + " ," + 29 + ")");
 
     //for slider variable, call brush variable's "brushed" event property (mousemove)
     slider
         .call(brush.event)
-        .attr("transform", "translate(" + 10 + "," + 0 + ")")
+        .attr("transform", "translate(" + 10 + "," + 0 + ")");
 
     //create brushed function
     function brushed() {
@@ -142,7 +142,7 @@ var x = d3.scale.linear()
         //round text value down
         handle.select("text").text(Math.floor(value));
         
-        dragVal.results.services[index].Score = value;
+        dragVal.services[index].Score = value;
     }
 }
 
@@ -150,7 +150,8 @@ var x = d3.scale.linear()
 //function useServiceValues() {
 //    //$.getJSON('api/HWBI?CapitalInvestmentScore=58.9&ConsumptionScore=51.6&EmploymentScore=52.3&FinanceScore=44.0&InnovationScore=43.24&ProductionScore=50.44&ReDistributionScore=47.2&AirQualityScore=19.2&FoodFiberAndFuelProvisioningScore=44.44&GreenspaceScore=42.6&WaterQualityScore=67.4&WaterQuantityScore=37.9&ActivismScore=48.9&CommunicationScore=43.4&CommunityAndFaithBasedInitiativesScore=15.81&EducationScore=45.0&EmergencyPreparednessScore=52.6&FamilyServicesScore=50.0&HealthcareScore=48.7&JusticeScore=42.76&LaborScore=40.82&PublicWorksScore=41.84&ConnectionToNatureDomainWeight=1.0&CulturalFulfillmentDomainWeight=1.0&EducationDomainWeight=1.0&HealthDomainWeight=1.0&LeisureTimeDomainWeight=1.0&LivingStandardsDomainWeight=1.0&SafetyAndSecurityDomainWeight=1.0&SocialCohesionDomainWeight=1.0', function (data) {
 //    //http://134.67.114.8/hwbi/rest/hwbi/calc?CapitalInvestmentScore=58.9&ConsumptionScore=51.6&EmploymentScore=52.3&FinanceScore=44.0&InnovationScore=43.24&ProductionScore=50.44&ReDistributionScore=47.2&AirQualityScore=12.2&FoodFiberAndFuelProvisioningScore=44.44&GreenspaceScore=42.6&WaterQualityScore=67.4&WaterQuantityScore=37.9&ActivismScore=48.9&CommunicationScore=43.4&CommunityAndFaithBasedInitiativesScore=15.81&EducationScore=45.0&EmergencyPreparednessScore=52.6&FamilyServicesScore=50.0&HealthcareScore=48.7&JusticeScore=42.76&LaborScore=40.82&PublicWorksScore=41.84&ConnectionToNatureDomainWeight=1.0&CulturalFulfillmentDomainWeight=1.0&EducationDomainWeight=1.0&HealthDomainWeight=1.0&LeisureTimeDomainWeight=1.0&LivingStandardsDomainWeight=1.0&SafetyAndSecurityDomainWeight=1.0&SocialCohesionDomainWeight=1.0
-//    $.getJSON('/hwbi/rest/hwbi/calc?CapitalInvestmentScore=' + dragVal.results.services[0].Score + '&ConsumptionScore=' + dragVal.results.services[1].Score + '&EmploymentScore=' + dragVal.results.services[2].Score + '&FinanceScore=' + dragVal.results.services[3].Score + '&InnovationScore=' + dragVal.results.services[4].Score + '&ProductionScore=' + dragVal.results.services[5].Score + '&ReDistributionScore=' + dragVal.results.services[6].Score + '&AirQualityScore=' + dragVal.results.services[7].Score + '&FoodFiberAndFuelProvisioningScore=' + dragVal.results.services[8].Score + '&GreenspaceScore=' + dragVal.results.services[9].Score + '&WaterQualityScore=' + dragVal.results.services[10].Score + '&WaterQuantityScore=' + dragVal.results.services[11].Score + '&ActivismScore=' + dragVal.results.services[12].Score + '&CommunicationScore=' + dragVal.results.services[13].Score + '&CommunityAndFaithBasedInitiativesScore=' + dragVal.results.services[14].Score + '&EducationScore=' + dragVal.results.services[15].Score + '&EmergencyPreparednessScore=' + dragVal.results.services[16].Score + '&FamilyServicesScore=' + dragVal.results.services[17].Score + '&HealthcareScore=' + dragVal.results.services[18].Score + '&JusticeScore=' + dragVal.results.services[19].Score + '&LaborScore=' + dragVal.results.services[20].Score + '&PublicWorksScore=' + dragVal.results.services[21].Score + '&ConnectionToNatureDomainWeight=' + dragVal.results.domains[0].Weight + '&CulturalFulfillmentDomainWeight=' + dragVal.results.domains[1].Weight + '&EducationDomainWeight=' + dragVal.results.domains[2].Weight + '&HealthDomainWeight=' + dragVal.results.domains[3].Weight + '&LeisureTimeDomainWeight=' + dragVal.results.domains[4].Weight + '&LivingStandardsDomainWeight=' + dragVal.results.domains[5].Weight + '&SafetyAndSecurityDomainWeight=' + dragVal.results.domains[6].Weight + '&SocialCohesionDomainWeight=' + dragVal.results.domains[7].Weight, function (data) {
+//    $.getJSON('/hwbi/rest/hwbi/calc?CapitalInvestmentScore=' + dragVal.results.services[0].Score + '&ConsumptionScore=' + dragVal.results.services[1].Score + '&EmploymentScore=' + dragVal.results.services[2].Score + '&FinanceScore=' + dragVal.results.services[3].Score + '&InnovationScore=' + dragVal.results.services[4].Score + '&ProductionScore=' + dragVal.results.services[5].Score + '&ReDistributionScore=' + dragVal.results.services[6].Score + '&AirQualityScore=' + dragVal.results.services[7].Score + '&FoodFiberAndFuelProvisioningScore=' + dragVal.results.services[8].Score + '&GreenspaceScore=' + dragVal.results.services[9].Score + '&WaterQualityScore=' + dragVal.results.services[10].Score + '&WaterQuantityScore=' + dragVal.results.services[11].Score + '&ActivismScore=' + dragVal.results.services[12].Score + '&CommunicationScore=' + dragVal.results.services[13].Score + '&CommunityAndFaithBasedInitiativesScore=' + dragVal.results.services[14].Score + '&EducationScore=' + dragVal.results.services[15].Score + '&EmergencyPreparednessScore=' + dragVal.results.services[16].Score + '&FamilyServicesScore=' + dragVal.results.services[17].Score + '&HealthcareScore=' + dragVal.results.services[18].Score + '&JusticeScore=' + dragVal.results.services[19].Score + '&LaborScore=' + dragVal.results.services[20].Score + '&PublicWorksScore=' + dragVal.results.services[21].Score + '&ConnectionToNatureDomainWeight=' + dragVal.results.domains[0].Weight + '&CulturalFulfillmentDomainWeight=' + dragVal.results.domains[1].Weight + '&EducationDomainWeight=' + dragVal.results.domains[2].Weight + '&HealthDomainWeight=' + dragVal.results.domains[3].Weight + '&LeisureTimeDomainWeight=' + dragVal.results.domains[4].Weight + '&LivingStandardsDomainWeight=' + dragVal.results.domains[5].Weight + '&SafetyAndSecurityDomainWeight=' + dragVal.results.domains[6].Weight + '&SocialCohesionDomainWeight=' + dragVal.results.domains[7].Weight,
+//    function (data) {
 //        updateDomainScores(data.Domains);
 //        updateRIVWeights(dragVal.Domains);
 //    });
@@ -159,49 +160,51 @@ var x = d3.scale.linear()
 
 //POST request to calc endpoint
 function useServiceValues() {
+
+
     var postData = {
         "scores" : {
-            "CapitalInvestment": dragVal.results.services[0].Score,
-            "Consumption": dragVal.results.services[1].Score,
-            "Employment": dragVal.results.services[2].Score,
-            "Finance": dragVal.results.services[3].Score,
-            "Innovation": dragVal.results.services[4].Score,
-            "Production": dragVal.results.services[5].Score,
-            "ReDistribution": dragVal.results.services[6].Score,
-            "AirQuality": dragVal.results.services[7].Score,
-            "FoodFiberAndFuel": dragVal.results.services[8].Score,
-            "Greenspace": dragVal.results.services[9].Score,
-            "WaterQuality": dragVal.results.services[10].Score,
-            "WaterQuantity": dragVal.results.services[11].Score,
-            "Activism": dragVal.results.services[12].Score,
-            "Communication": dragVal.results.services[13].Score,
-            "CommunityAndFaith": dragVal.results.services[14].Score,
-            "Education": dragVal.results.services[15].Score,
-            "EmergencyPreparedness": dragVal.results.services[16].Score,
-            "FamilyServices": dragVal.results.services[17].Score,
-            "Healthcare": dragVal.results.services[18].Score,
-            "Justice": dragVal.results.services[19].Score,
-            "Labor": dragVal.results.services[20].Score,
-            "PublicWorks": dragVal.results.services[21].Score
+            "CapitalInvestment": dragVal.services[0].Score,
+            "Consumption": dragVal.services[1].Score,
+            "Employment": dragVal.services[2].Score,
+            "Finance": dragVal.services[3].Score,
+            "Innovation": dragVal.services[4].Score,
+            "Production": dragVal.services[5].Score,
+            "ReDistribution": dragVal.services[6].Score,
+            "AirQuality": dragVal.services[7].Score,
+            "FoodFiberAndFuel": dragVal.services[8].Score,
+            "Greenspace": dragVal.services[9].Score,
+            "WaterQuality": dragVal.services[10].Score,
+            "WaterQuantity": dragVal.services[11].Score,
+            "Activism": dragVal.services[12].Score,
+            "Communication": dragVal.services[13].Score,
+            "CommunityAndFaith": dragVal.services[14].Score,
+            "Education": dragVal.services[15].Score,
+            "EmergencyPreparedness": dragVal.services[16].Score,
+            "FamilyServices": dragVal.services[17].Score,
+            "Healthcare": dragVal.services[18].Score,
+            "Justice": dragVal.services[19].Score,
+            "Labor": dragVal.services[20].Score,
+            "PublicWorks": dragVal.services[21].Score
         },
         "domainWeights" : {
-            "ConnectionToNature": dragVal.results.domains[0].Weight,
-            "CulturalFulfillment": dragVal.results.domains[1].Weight,
-            "Education": dragVal.results.domains[2].Weight,
-            "Health": dragVal.results.domains[3].Weight,
-            "LeisureTime": dragVal.results.domains[4].Weight,
-            "LivingStandards": dragVal.results.domains[5].Weight,
-            "SafetyAndSecurity": dragVal.results.domains[6].Weight,
-            "SocialCohesion": dragVal.results.domains[7].Weight
+            "ConnectionToNature": dragVal.domains[0].Weight,
+            "CulturalFulfillment": dragVal.domains[1].Weight,
+            "Education": dragVal.domains[2].Weight,
+            "Health": dragVal.domains[3].Weight,
+            "LeisureTime": dragVal.domains[4].Weight,
+            "LivingStandards": dragVal.domains[5].Weight,
+            "SafetyAndSecurity": dragVal.domains[6].Weight,
+            "SocialCohesion": dragVal.domains[7].Weight
         }
     };
 
     $.post(
         '/rest/hwbi/calc',                      // url
         JSON.stringify(postData),                               // data (as JS object)
-        function(data) {                        // succuess (callback) funtion
+        function(data) {                        // success (callback) function
             updateDomainScores(data.results.domains);
-            updateRIVWeights(dragVal.results.domains);
+            updateRIVWeights(dragVal.domains);
     },
     "json");                                    // data type returned from server
 }
@@ -225,6 +228,7 @@ function updateRIVWeights(domains) {
 
 //function to update services on county selection
 function updateServiceScores(servicesScores) {
+    dragVal.services = servicesScores;
     servicesScores.forEach(updateSliders);
 }
 
@@ -233,8 +237,8 @@ function updateServiceScores(servicesScores) {
 function updateSliders(data, index) {
 
     //set scale for slider. domain is input min max. range is slider translated min max (same)
-var x = d3.scale.linear()
-    .domain((function () {
+    var x = d3.scale.linear()
+        .domain((function () {
             if (data.ServiceName == "Capital Investment") { return [56.31683197, 61.75389692]; }
             if (data.ServiceName == "Consumption") { return [47.42882423, 54.04916975]; }
             if (data.ServiceName == "Employment") { return [33.13814798, 72.57176231]; }
@@ -268,7 +272,7 @@ var x = d3.scale.linear()
         //set scale of brush to match d3 calculated scale
         .x(x)
         //set the input value using imported data Score value
-        .extent([data.Score * 100, data.Score * 100])
+        .extent([data.Score, data.Score])
         //set listener where on mousemove = function brushed
         .on("brush", brushed);
 
@@ -287,18 +291,18 @@ var x = d3.scale.linear()
             if (data.ServiceType == "Economic") { return "#b86361"; }
             if (data.ServiceType == "Ecosystem") { return "#61b88e"; }
             if (data.ServiceType == "Social") { return "#618bb8"; }
-        }))
+        }));
 
     //select text to the handle
     d3.select("text.cirTex" + [index])
         //assign text using data score and convert to whole number
-        .text(data.Score * 100)
+        .text(data.Score)
         .attr("transform", "translate(" + (-8) + " ," + 29 + ")");
 
     //for slider variable, call brush variable's "brushed" event property (mousemove)
     d3.select("g.slider")
         .call(brush.event)
-        .attr("transform", "translate(" + 10 + "," + 0 + ")")
+        .attr("transform", "translate(" + 10 + "," + 0 + ")");
 
     //create brushed function
     function brushed() {
@@ -318,7 +322,7 @@ var x = d3.scale.linear()
     //move the starting handle to the value on x axis
     handle.attr("transform", "translate(" + x(value) + ",0)")
         .transition()
-        .duration(3000)
+        .duration(3000);
         //round text value down
     handle.select("text.cirTex"+[index]).text(Math.floor(value))
     }

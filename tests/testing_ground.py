@@ -8,47 +8,57 @@ from selenium import webdriver
 import os
 import time
 from tabulate import tabulate
+import linkcheck_helper
 
 phantomjs_path = "C://Python27//Lib//site-packages//selenium//webdriver//phantomjs//phantomjs-2.1.1-windows//bin//phantomjs.exe"
 
-# this testing routine accepts a list of servers where a group of models and pages (i.e.,tabs)
-# are presented as web pages.  it is assumed that the complete set of models and related pages
-# are present on each server. this   routine performs a series of unit tests that ensure
-# that the web pages are up and operational.
+# this testing routine tests input and QAQC functionality of models;
+# the input tests include login authentication, submittal of default inputs,
+# and invocation of the QAQC
+# Note: the login/input/output tests included here net the same results as those
+# included in 'test_host_qed.py'; the difference is that "selenium/webdriver" is used here to
+# navigate html whereas "mechanize" was used in test_host_qed.py; mechanize is for forms
+# only and cannot handle button pushing (which is needed for the QAQC test)
+# this routine accepts a list of url's where a group of models and pages (i.e.,tabs)
+# are presented as web pages.  two url's represent the backend servers where the models
+# reside; these servers are accessible directly or indirectly (via the two front end url's)
 
 test = {}
 
-# servers = ["http://127.0.0.1:8000/"]
-main_server = "http://qed.epa.gov/ubertool/"
+# local server = ["http://127.0.0.1:8000/"]
 servers = ["http://qed.epa.gov/ubertool/", "http://qedinternal.epa.gov/ubertool/",
            "http://134.67.114.3/ubertool/", "http://134.67.114.1/ubertool/"]
-# models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
+
+#models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
 #          "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
 #          "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
-models = ["sip/", "stir/", "pfam/", "earthworm/"]
-# The following list represents the model page titles to be checked (order of models
+models = ["sip/", "stir/", "pfam/", "earthworm/"] # this short list is used for debugging
+
+# The following list represents the model output page titles to be checked (order of models
 # needs to be the same as "models" list above
-# models_IO = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
+#models_io = ["SIP", "STIR", "RICE", "TerrPlant", "IEC",
 #             "AgDrift", "AgDrift & T-REX", "AgDrift & T-HERPS", "Earthworm",
 #             "KABAM", "PFAM", "SAM", "T-Herps", "T-REX 1.5.2"]
-models_IO = ["SIP", "STIR", "PFAM", "Earthworm"]
+models_io = ["SIP", "STIR", "PFAM", "Earthworm"] # this short list is used for debugging
 
+# these two servers require login/authentication for inputs
 redirect_servers = ["http://qed.epa.gov/ubertool/", "http://134.67.114.3/ubertool/"]
-redirect_pages = ["input"]
+redirect_pages = ["input"]  # user is redirected to login page for inputs
 redirect_model_pages = [s + m + p for s in redirect_servers for m in models
                         for p in redirect_pages]
-redirect_models = models_IO * len(redirect_servers)
+redirect_models = models_io * len(redirect_servers)
 
 qaqc_pages = ["qaqc"]
 qaqc_model_pages = [s + m + p for s in servers for m in models for p in qaqc_pages]
-qaqc_models = models_IO * len(servers) * len(qaqc_pages)
+qaqc_models = models_io * len(servers) * len(qaqc_pages)
 
+class WaitForPageLoad(object):
+    """
+    This class provides functionality to ensure that a web page has
+    fully loaded upon a click/submit
+    """
 
-class WaitForPageLoad(object):  # ensures that a new page has fully loaded upon a click
     def __init__(self, browser):
-        """
-        :rtype: object
-        """
         self.browser = browser
 
     def __enter__(self):
@@ -66,22 +76,36 @@ class WaitForPageLoad(object):  # ensures that a new page has fully loaded upon 
             else:
                 time.sleep(0.1)
         raise Exception(
-            'Timeout waiting for {}'.format(condition_function.__name__)
-        )
+            'Timeout waiting for {}'.format(condition_function.__name__))
 
     def __exit__(self, *_):
         self.wait_for(self.page_has_loaded)
 
 
 class TestQAQC(unittest.TestCase, WaitForPageLoad):
+    """
+    This set of methods represent unit tests for the Ubertool frontend (i.e., what the
+    user sees as the web interface).  The tests include:
+    1. Login verficcation for model input pages
+    2. Verification that Login results in the input data form page loads
+    3. Verification that defaults input data form is successfully submitted and
+       that the output data is generated and displayed
+    4. Automated QAQC run submittal and presentation of results
+    Note: the first three tests here are also included in the "test_host_qed.py"
+          code; the difference being that the selenium package is used here and
+          the mechanize package is used in test_host_qed.py code
+    """
+
     def setup(self):
         pass
 
-    def test_qed_authenticate_input(self):
+    @staticmethod
+    def test_qed_authenticate_input():
         try:  # verify successful login and that we land on input page url
+            test_name = "Login Authentication "
             current_page = [""] * len(redirect_model_pages)
             expected_page = [""] * len(redirect_model_pages)
-            table_rows = [""] * len(redirect_model_pages)
+            assert_error = False
             for idx, m in enumerate(redirect_model_pages):
                 browser = webdriver.PhantomJS(executable_path=phantomjs_path, service_log_path=os.path.devnull)
                 browser.get(m)
@@ -91,31 +115,40 @@ class TestQAQC(unittest.TestCase, WaitForPageLoad):
                 password = browser.find_element_by_name("password")
                 password.send_keys("ubertool")
                 with WaitForPageLoad(browser):
-                    LoginButton = browser.find_element_by_class_name("input_button")
-                    LoginButton.click()
-                # Verify we have successfully logged in and are now on input page
+                    login = browser.find_element_by_xpath("//form[@name='auth']")
+                    login.submit()  # use .click() for individual buttons and .submit() for form submittal
+                        #next two lines is alternative technique
+                        #LoginButton = browser.find_element_by_class_name("input_button")
+                        #LoginButton.click()
+                # Verify we have successfully logged in and are now at input page url
                 current_page[idx] = str(browser.current_url)
                 expected_page[idx] = m
-                table_rows[idx] = [expected_page[idx], current_page[idx]]
             try:
                 npt.assert_array_equal(expected_page, current_page, 'Login Test Failed', True)
-            except:
-                print "Login failed for one or more models"
-                headers = ["expected", "actual/message"]
-                print tabulate(table_rows, headers, tablefmt='grid')
+            except AssertionError:
+                assert_error = True
+            except Exception as e:
+                # handle any other exception
+                print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+        except Exception as e:
+            # handle any other exception
+            print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
         finally:
+            linkcheck_helper.write_report(test_name, assert_error, expected_page, current_page)
             browser.quit()
-            pass
         return
 
-    def test_qed_input_form(self):
-        # verify input page contains expected content (e.g., input tables)
+    @staticmethod
+    def test_qed_input_form():
+        # verify input page contains expected content (we chk page title, e.g., 'SIP Inputs')
+        # need to repeat login
         try:
-            current_page = [""] * len(redirect_model_pages)
-            expected_page = [""] * len(redirect_model_pages)
-            table_rows = [""] * len(redirect_model_pages)
+            test_name = "Input Form URL "
+            current_title = [""] * len(redirect_model_pages)
+            expected_title = [""] * len(redirect_model_pages)
+            assert_error = False
             for idx, m in enumerate(redirect_model_pages):
-                expected_page[idx] = m + " : " + redirect_models[idx] + " Inputs"
+                expected_title[idx] = m + " : " + redirect_models[idx] + " Inputs"
                 browser = webdriver.PhantomJS(executable_path=phantomjs_path, service_log_path=os.path.devnull)
                 browser.get(m)
                 # login and authenticate
@@ -124,121 +157,123 @@ class TestQAQC(unittest.TestCase, WaitForPageLoad):
                 password = browser.find_element_by_name("password")
                 password.send_keys("ubertool")
                 with WaitForPageLoad(browser):
-                    LoginButton = browser.find_element_by_class_name("input_button")
-                    LoginButton.click()
-                # verify that login was successful by checking that inputs page is rendered
+                    login = browser.find_element_by_xpath("//form[@name='auth']")
+                    login.submit()  # use .click() for individual buttons and .submit() for form submittal
+                # verify that login was successful by checking that inputs page title is rendered
                 if browser.page_source.__contains__(redirect_models[idx] + " Inputs"):
-                    current_page[idx] = m + " : " + redirect_models[idx] + " Inputs"
+                    current_title[idx] = m + " : " + redirect_models[idx] + " Inputs"
                 else:
-                    current_page[idx] = m + " : " + redirect_models[idx] + " Input Submit Error"
-                table_rows[idx] = [expected_page[idx], [current_page[idx]]]
+                    current_title[idx] = m + " : " + redirect_models[idx] + " Input Submit Error"
+                # build array for reporting table
             try:
-                npt.assert_array_equal(expected_page, current_page, 'Input Form Submittal Failed', True)
-            except:
-                print "One or more models FAILED to produce QAQC results"
-                headers = ["expected", "actual/message"]
-                print tabulate(table_rows, headers, tablefmt='grid')
+                npt.assert_array_equal(expected_title, current_title, 'Input Form Submittal Failed', True)
+            except AssertionError:
+                assert_error = True
+            except Exception as e:
+                # handle any other exception
+                print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+        except Exception as e:
+            # handle any other exception
+            print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
         finally:
+            linkcheck_helper.write_report(test_name, assert_error, expected_title, current_title)
             browser.quit()
-            pass
         return
 
-    def test_qed_output_form(self):
-        try:  # verify that submission of input tables results in proper output page content
+    @staticmethod
+    def test_qed_output_form():
+        try:  # verify proper output page content, i.e., page title
+              # need to repeat login, submit default inputs
+            test_name = "Input Form Submittal and Output Generation "
             current_title = [""] * len(redirect_model_pages)
             expected_title = [""] * len(redirect_model_pages)
-            table_rows = [""] * len(redirect_model_pages)
+            assert_error = False
             for idx, m in enumerate(redirect_model_pages):
                 expected_title[idx] = m.replace("input", "") + " : " + redirect_models[idx] + " Output"
                 browser = webdriver.PhantomJS(executable_path=phantomjs_path, service_log_path=os.path.devnull)
                 browser.get(m)
-                # step 1: login and authenticate
+                # login and authenticate
                 username = browser.find_element_by_name("username")
                 username.send_keys("betatester")
                 password = browser.find_element_by_name("password")
                 password.send_keys("ubertool")
                 with WaitForPageLoad(browser):
-                    LoginButton = browser.find_element_by_class_name("input_button")
-                    LoginButton.click()  # use .click() for individual buttons and .submit() for form submittal
-                # Step 2: Select and submit input form (it will have default data in it  -  we just want to run with that for now)
+                    login = browser.find_element_by_xpath("//form[@name='auth']")
+                    login.submit()  # use .click() for individual buttons and .submit() for form submittal
+                # Locate and submit input form (using the default data for now)
                 with WaitForPageLoad(browser):
+                    locate_submit = browser.find_element_by_xpath("//div[@class='input_right']")
                     try:
-                        # submit default dataset
-                        found_input = browser.find_element_by_class_name("input_button").is_displayed()
+                        form_submit = browser.find_element_by_xpath("//button[@class='input_button']")
                     except:
-                        found_input = False
-                    try:
-                        found_submit = browser.find_element_by_class_name("submit input_button").is_displayed()
-                    except:
-                        found_submit = False
-                    if found_input == True:
-                        InputSubmitButton = browser.find_element_by_class_name("input_button")
-                    elif found_submit:
-                        InputSubmitButton = browser.find_element_by_class_name("submit input_button")
-                    else:
-                        pass
-                        # use .click() for individual buttons and .submit() for form submittal
-                    InputSubmitButton.submit()
-                    if browser.page_source.__contains__("User Inputs"):
-                        current_title[idx] = browser.current_url.replace("output", "") + " : " + redirect_models[
-                            idx] + " Output"
-                    elif browser.page_source.__contains__('File Not Found'):
-                        current_title[idx] = browser.current_url.replace("output", "") + " : File Not Found Page Error"
-                    else:
-                        current_title[idx] = browser.current_url.replace("output", "") + " : Unknown Output Page Error"
-                    pass
-                # create array comparison for assertion test
-                table_rows[idx] = [expected_title[idx], [current_title[idx]]]
+                        form_submit = browser.find_element_by_xpath("//button[@class='submit input_button']")
+                    form_submit.submit()  # use .click() for individual buttons and .submit() for form submittal
+                if browser.page_source.__contains__("User Inputs"):
+                    current_title[idx] = browser.current_url.replace("output", "") + " : " + redirect_models[
+                        idx] + " Output"
+                elif browser.page_source.__contains__('File Not Found'):
+                    current_title[idx] = browser.current_url.replace("output", "") + " : File Not Found Page Error"
+                else:
+                    current_title[idx] = browser.current_url.replace("output", "") + " : Unknown Output Page Error"
             try:
                 npt.assert_array_equal(expected_title, current_title, 'Submittal of Input Failed', True)
-            except:
-                print "One or more models FAILED to produce output"
-                headers = ["expected", "actual/message"]
-                print tabulate(table_rows, headers, tablefmt='grid')
+            except AssertionError:
+                assert_error = True
+            except Exception as e:
+                # handle any other exception
+                print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+        except Exception as e:
+            # handle any other exception
+            print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
         finally:
+            linkcheck_helper.write_report(test_name, assert_error, expected_title, current_title)
             browser.quit()
-            pass
         return
 
-    def test_qed_qaqc_form(self):
-        try:  # need to repeat login, submit default inputs, and verify we land on output page
-            current_pageID = [""] * len(qaqc_model_pages)  # pageID = url + <h2 class='model header' string>
-            expected_pageID = [""] * len(qaqc_model_pages)
-            table_rows = [""] * len(qaqc_model_pages)
+    @staticmethod
+    def test_qed_qaqc_form():
+        try:
+            test_name = "QAQC Execution and Results Generation "
+            current_page_id = [""] * len(qaqc_model_pages)  # pageID = url + <h2 class='model header' string>
+            expected_page_id = [""] * len(qaqc_model_pages)
+            assert_error = False
             browser = webdriver.PhantomJS(executable_path=phantomjs_path, service_log_path=os.path.devnull)
             # added the argument service_log_path=os.path.devnull to the function webdriver.PhantomJS()
             # to prevent PhantomJS from creating a ghostdriver.log in the directory of the python file
             # being executed.
             for idx, m in enumerate(qaqc_model_pages):
-                expected_pageID[idx] = m + "/run : " + qaqc_models[idx] + " QAQC"
+                expected_page_id[idx] = m + "/run : " + qaqc_models[idx] + " QAQC"
                 browser.get(m)
                 try:
                     with WaitForPageLoad(browser):
-                        qaqcRunButton = browser.find_element_by_id('runQAQC')
-                        qaqcRunButton.click()
+                        qaqc_run_button = browser.find_element_by_id('runQAQC')
+                        qaqc_run_button.click()
                     if browser.current_url.__str__() != m + "/run":
-                        current_pageID[idx] = str(
+                        current_page_id[idx] = str(
                             browser.current_url) + " : Run QAQC failed"  # we did not arrive at expected url
                     elif browser.page_source.__contains__('File Not Found'):
-                        current_pageID[idx] = str(browser.current_url) + " : File Not Found Page Error"
+                        current_page_id[idx] = str(browser.current_url) + " : File Not Found Page Error"
                     elif browser.page_source.__contains__("User Inputs"):
                         # check to see of string User Inputs appears on page
-                        current_pageID[idx] = m + "/run : " + qaqc_models[idx] + " QAQC"
+                        current_page_id[idx] = m + "/run : " + qaqc_models[idx] + " QAQC"
                     else:
-                        current_pageID[idx] = str(browser.current_url) + " Unknown QAQC r un error"
+                        current_page_id[idx] = str(browser.current_url) + " Unknown QAQC run error"
                 except:
-                    current_pageID[idx] = m + " Unknown exception thrown"
-            # create array comparison (assume h2/model h eader -tag- of interest is first in list)
-                table_rows[idx] = [expected_pageID[idx], [current_pageID[idx]]]
+                    current_page_id[idx] = m + " Unknown exception thrown"
+                # build array for reporting table
             try:
-                npt.assert_array_equal(expected_pageID, current_pageID, 'QAQC Failed', True)
-            except:
-                print "One or more models FAILED to produce QAQC results"
-                headers = ["expected", "actual/message"]
-                print tabulate(table_rows, headers, tablefmt='grid')
+                npt.assert_array_equal(expected_page_id, current_page_id, 'QAQC Failed', True)
+            except AssertionError:
+                assert_error = True
+            except Exception as e:
+                # handle any other exception
+                print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+        except Exception as e:
+            # handle any other exception
+            print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
         finally:
+            linkcheck_helper.write_report(test_name, assert_error, expected_page_id, current_page_id)
             browser.quit()
-            pass
         return
 
     def teardown(self):

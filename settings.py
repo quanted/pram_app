@@ -118,7 +118,7 @@ LOGIN_URL = '/ubertool/login'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Setups databse-less test runner (Only needed for running test)
-TEST_RUNNER = 'testing.DatabaselessTestRunner'
+#TEST_RUNNER = 'testing.DatabaselessTestRunner'
 
 # CACHE Setup - required to run Django "sessions" without a database
 

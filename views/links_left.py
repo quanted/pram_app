@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 
 # 03ubertext_links_left:
-def linksLeft():
+def ordered_list():
     link_dict = OrderedDict([
         ('Terrestrial Models', OrderedDict([
                 ('TerrPlant', 'terrplant'),
@@ -14,8 +14,8 @@ def linksLeft():
                 ('T-Herps', 'therps'),
                 ('IEC', 'iec'),
                 ('AgDrift', 'agdrift'),
-                ('Agdrift-T-Rex', 'agdrift_trex'),
-                ('Agdrift-T-Herps', 'agdrift_therps'),
+                # ('Agdrift-T-Rex', 'agdrift_trex'),
+                # ('Agdrift-T-Herps', 'agdrift_therps'),
                 ('Earthworm', 'earthworm'),
             ])
         ),
@@ -36,9 +36,10 @@ def linksLeft():
         ),
         ('Documentation', OrderedDict([
                 ('Source Code', 'docs'),
-                ('API Documentation', 'api')
+                ('API Documentation', 'api'),
+                ('Links', 'links')
             ])
-        ),
+        )
         # ('&uuml;bertool', OrderedDict([
         #         ('Chemical Selection', 'select_chemical'),
         #         ('Use/Label/Site Data', 'site_data'),
@@ -53,5 +54,4 @@ def linksLeft():
         # ),
     ])
 
-    html = render_to_string('03ubertext_links_left.html', {'link_dict': link_dict})
-    return html
+    return render_to_string('03ubertext_links_left_drupal.html', {'link_dict': link_dict})

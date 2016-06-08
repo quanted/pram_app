@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.shortcuts import redirect
-import linksLeft
+import links_left
 import os
 
 #######################################################################################
@@ -15,7 +15,7 @@ def login(request):
             'site_skin' : os.environ['SITE_SKIN'],
             'title': 'Login Page'})
     html = html + render_to_string('02uberintroblock_nomodellinks.html', {'site_skin' : os.environ['SITE_SKIN']})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04ubertext_start.html', {
             'model_attributes': 'User Login',
             'text_paragraph': ""})
@@ -64,7 +64,7 @@ def fileNotFound(request):
             'site_skin' : os.environ['SITE_SKIN'],
             'title': 'Error'})
     html = html + render_to_string('02uberintroblock_nomodellinks.html', {'site_skin' : os.environ['SITE_SKIN']})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04ubertext_start.html', {
             'model_attributes': 'File Not Found',
             'text_paragraph': ""})

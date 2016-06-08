@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 from django.http import HttpResponse, HttpResponseRedirect
 import importlib
-import linksLeft
+import links_left
 import os
 import secret
 from django.conf import settings
@@ -26,7 +26,7 @@ def inputPage(request, model='none', header='none'):
     #     logging.info("===================== N O N E ==========================")
     #     html = render_to_string('01uberheader.html', {'title': header+' Inputs'})
     #     html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'input'})
-    #     html = html + linksLeft.linksLeft()
+    #     html = html + ordered_list.ordered_list()
 
     #     inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
     #     html = html + inputPageFunc(request, model, header, formData)
@@ -53,7 +53,7 @@ def inputPage(request, model='none', header='none'):
     #     else:
     #         html = render_to_string('01uberheader.html', {'title': header+' Inputs'})
     #         html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'input'})
-    #         html = html + linksLeft.linksLeft()
+    #         html = html + ordered_list.ordered_list()
 
     #         inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
     #         html = html + inputPageFunc(request, model, header, formData=request.POST)
@@ -72,7 +72,7 @@ def inputPage(request, model='none', header='none'):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':model,
             'page':'input'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
 
     inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
     html = html + inputPageFunc(request, model, header)

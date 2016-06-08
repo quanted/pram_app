@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 import importlib
-import linksLeft
+import links_left
 import os
 
 def referencesPage(request, model='none', header='none'):
@@ -17,7 +17,7 @@ def referencesPage(request, model='none', header='none'):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':model,
             'page':'references'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberreferences_start.html', {
             'model_attributes': header+' References', 
             'text_paragraph':x})

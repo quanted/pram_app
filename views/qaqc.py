@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 import importlib
-import linksLeft
+import links_left
 import os
 
 
@@ -83,7 +83,7 @@ def qaqcRunView(request, model='none', runID=''):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':model,
             'page':'qaqc'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberoutput_start.html', {
             'model':model,
             'model_attributes': header+' QAQC'})
@@ -143,7 +143,7 @@ def qaqcPage(request, model='none'):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':model,
             'page':'qaqc'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberqaqc_start.html', {
             'model':model,
             'model_attributes': header+' QAQC'})

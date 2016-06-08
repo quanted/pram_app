@@ -2,7 +2,7 @@ from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 import importlib
-import linksLeft
+import links_left
 import os
 import logging
 
@@ -17,7 +17,7 @@ def outputPageHTML(header, model, tables_html):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':model,
             'page':'output'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberoutput_start.html', {
             'model_attributes': header+' Output'})
     html = html + tables_html
@@ -119,7 +119,7 @@ def outputPageView(request, model='none', header=''):
                 'site_skin' : os.environ['SITE_SKIN'],
                 'model':model,
                 'page':'output'})
-        html = html + linksLeft.linksLeft()
+        html = html + links_left.ordered_list()
         html = html + render_to_string('04uberoutput_start.html', {
                 'model_attributes': header+' Output'})
         html = html + tables_html
@@ -231,7 +231,7 @@ def outputPage(request, model='none', header=''):
                     'site_skin' : os.environ['SITE_SKIN'],
                     'model':model,
                     'page':'input'})
-            html = html + linksLeft.linksLeft()
+            html = html + links_left.ordered_list()
 
             inputPageFunc = getattr(input_module, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
             html = html + inputPageFunc(request, model, header, formData=request.POST)  # formData contains the already POSTed form data

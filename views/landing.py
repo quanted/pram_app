@@ -16,19 +16,17 @@ def eco_landing_page(request):
     xx = text_file2.read()
 
     html = render_to_string('01uberheader_main_drupal.html', {
-        'site_skin': os.environ['SITE_SKIN'],
+        'SITE_SKIN': os.environ['SITE_SKIN'],
         'TITLE': u"\u00FCbertool"
     })
-    html += render_to_string('02uberintroblock_nomodellinks_drupal.html', {
-        'site_skin': os.environ['SITE_SKIN']}
-     )
+    html += render_to_string('02uberintroblock_nomodellinks_drupal.html', {})
     html += render_to_string('04ubertext_start_index_drupal.html', {
         'TITLE': u"\u00FCbertool",
-        'text_paragraph': xx
+        'TEXT_PARAGRAPH': xx
     })
-    html += render_to_string('04ubertext_end.html', {})
+    html += render_to_string('04ubertext_end_drupal.html', {})
     html += links_left.ordered_list()
-    html += render_to_string('06uberfooter.html', {'links': ''})
+    html += render_to_string('06uberfooter.html', {})
 
     response = HttpResponse()
     response.write(html)

@@ -30,7 +30,8 @@ os.environ.update({
     # 'UBERTOOL_REST_SERVER': 'http://'                           # New EB Pilot REST server
     'REST_SERVER_8': 'http://134.67.114.8',  # 'http://localhost:64399'
     'PROJECT_PATH': PROJECT_ROOT,
-    'SITE_SKIN': ''                          # Leave empty ('') for default skin, 'EPA' for EPA skin
+    'SITE_SKIN': 'EPA',                          # Leave empty ('') for default skin, 'EPA' for EPA skin
+    'CONTACT_URL': 'mailto:ubertool-dev@googlegroups.com?subject=ubertool%20Contact%20Us'
 })
 
 # Quick-start development settings - unsuitable for production

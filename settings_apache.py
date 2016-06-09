@@ -31,7 +31,8 @@ os.environ.update({
     'UBERTOOL_REST_SERVER': 'http://172.20.100.15:7777',                           # CGI Internal
     'REST_SERVER_8': 'http://172.20.100.18',
     'PROJECT_PATH': PROJECT_ROOT,
-    'SITE_SKIN': 'EPA'                          # Leave empty ('') for default skin, 'EPA' for EPA skin
+    'SITE_SKIN': 'EPA',                          # Leave empty ('') for default skin, 'EPA' for EPA skin
+    'CONTACT_URL': 'mailto:ubertool-dev@googlegroups.com?subject=ubertool%20Contact%20Us'
 })
 
 # Quick-start development settings - unsuitable for production

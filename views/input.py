@@ -8,13 +8,13 @@ from django.conf import settings
 from django.shortcuts import redirect
 
 
-def inputPage(request, model='none', header='none'):
+def input_page(request, model='none', header='none'):
 
     # If on public server, test user authentication
-    if settings.AUTH:
-        if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
-            if not request.user.is_authenticated():
-                return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+    # if settings.AUTH:
+    #     if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
+    #         if not request.user.is_authenticated():
+    #             return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
     viewmodule = importlib.import_module('.views', 'models.'+model)
     inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
@@ -28,8 +28,8 @@ def inputPage(request, model='none', header='none'):
     #     html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'input'})
     #     html = html + ordered_list.ordered_list()
 
-    #     inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
-    #     html = html + inputPageFunc(request, model, header, formData)
+    #     input_page_func = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
+    #     html = html + input_page_func(request, model, header, formData)
 
     #     html = html + render_to_string('06uberfooter.html', {'links': ''})
         
@@ -55,8 +55,8 @@ def inputPage(request, model='none', header='none'):
     #         html = html + render_to_string('02uberintroblock_wmodellinks.html', {'model':model,'page':'input'})
     #         html = html + ordered_list.ordered_list()
 
-    #         inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
-    #         html = html + inputPageFunc(request, model, header, formData=request.POST)
+    #         input_page_func = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
+    #         html = html + input_page_func(request, model, header, formData=request.POST)
 
     #         html = html + render_to_string('06uberfooter.html', {'links': ''})
             
@@ -65,19 +65,19 @@ def inputPage(request, model='none', header='none'):
     #         return response
     
     # else:
-    html = render_to_string('01uberheader.html', {
-            'site_skin' : os.environ['SITE_SKIN'],
-            'title': header+' Inputs'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
-            'site_skin' : os.environ['SITE_SKIN'],
-            'model':model,
-            'page':'input'})
-    html = html + links_left.ordered_list()
+    html = render_to_string('01uberheader_main_drupal.html', {
+        'SITE_SKIN': os.environ['SITE_SKIN'],
+        'TITLE': header})
+    html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
+        'CONTACT_URL': os.environ['CONTACT_URL'],
+        'MODEL': model,
+        'PAGE': 'input'})
 
-    inputPageFunc = getattr(inputmodule, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
-    html = html + inputPageFunc(request, model, header)
+    input_page_func = getattr(inputmodule, model+'_input_page')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
+    html += input_page_func(request, model, header)
 
-    html = html + render_to_string('06uberfooter.html', {'links': ''})
+    html += links_left.ordered_list(model, 'input')
+    html += render_to_string('06uberfooter.html', {})
     
     response = HttpResponse()
     response.write(html)

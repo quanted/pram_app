@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 
 # 03ubertext_links_left:
-def ordered_list():
+def ordered_list(model=None, page=None):
     link_dict = OrderedDict([
         ('Terrestrial Models', OrderedDict([
                 ('TerrPlant', 'terrplant'),
@@ -54,4 +54,8 @@ def ordered_list():
         # ),
     ])
 
-    return render_to_string('03ubertext_links_left_drupal.html', {'link_dict': link_dict})
+    return render_to_string('03ubertext_links_left_drupal.html', {
+        'LINK_DICT': link_dict,
+        'MODEL': model,
+        'PAGE': page
+    })

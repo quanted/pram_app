@@ -53,5 +53,5 @@ def linksLeft():
         # ),
     ])
 
-    html = render_to_string('03ubertext_links_left.html', {'link_dict': link_dict})
+    html = render_to_string('03ubertext_links_left_drupal.html', {'link_dict': link_dict})
     return html

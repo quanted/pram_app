@@ -24,10 +24,10 @@ urlpatterns = patterns('views',
                        (r'^geoserver/sam_done/(?P<jid>\d{20})$', 'geoserver.sam_done_query'),
                        (r'^ubertool/?$', 'landing.eco_landing_page'),
                        (r'^ubertool/(?P<model>.*?)/description/?$', 'description.description_page'),
-                       (r'^ubertool/(?P<model>.*?)/input/?$', 'input.inputPage'),
+                       (r'^ubertool/(?P<model>.*?)/input/?$', 'input.input_page'),
                        (r'^ubertool/(?P<model>.*?)/output/?$', 'output.outputPage'),
-                       (r'^ubertool/(?P<model>.*?)/algorithms/?$', 'algorithms.algorithmPage'),
-                       (r'^ubertool/(?P<model>.*?)/references/?$', 'references.referencesPage'),
+                       (r'^ubertool/(?P<model>.*?)/algorithms/?$', 'algorithms.algorithm_page'),
+                       (r'^ubertool/(?P<model>.*?)/references/?$', 'references.references_page'),
                        (r'^ubertool/(?P<model>.*?)/batchinput/?$', 'batch.batchInputPage'),
                        (r'^ubertool/(?P<model>.*?)/batchoutput/?$', 'batch.batchOutputPage'),
                        (r'^ubertool/(?P<model>.*?)/qaqc/(?P<runID>.*?)/?$', 'qaqc.qaqcRunView'),
@@ -44,10 +44,10 @@ urlpatterns = patterns('views',
                        (r'^ubertool/(?P<model>.*?)/?$', 'description.description_page'),
                        (r'^eco_index\.html$', 'landing.eco_landing_page'),  # Legacy links
                        (r'^(?P<model>.*?)_description\.html$', 'description.description_page'),  # Legacy links
-                       (r'^(?P<model>.*?)_input\.html$', 'input.inputPage'),  # Legacy links
+                       (r'^(?P<model>.*?)_input\.html$', 'input.input_page'),  # Legacy links
                        (r'^(?P<model>.*?)_output\.html$', 'output.outputPage'),  # Legacy links
-                       (r'^(?P<model>.*?)_algorithms\.html$', 'algorithms.algorithmPage'),  # Legacy links
-                       (r'^(?P<model>.*?)_references\.html$', 'references.referencesPage'),  # Legacy links
+                       (r'^(?P<model>.*?)_algorithms\.html$', 'algorithms.algorithm_page'),  # Legacy links
+                       (r'^(?P<model>.*?)_references\.html$', 'references.references_page'),  # Legacy links
                        (r'^(?P<model>.*?)_batchinput\.html$', 'batch.batchInputPage'),  # Legacy links
                        (r'^(?P<model>.*?)_batchoutput\.html$', 'batch.batchOutputPage'),  # Legacy links
                        (r'^(?P<model>.*?)_qaqc\.html$', 'qaqc.qaqcPage'),  # Legacy links

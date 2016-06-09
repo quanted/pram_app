@@ -12,18 +12,18 @@ def description_page(request, model='none', header='none'):
     text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'models/' + model + '/' + model + '_text.txt'), 'r')
     xx = text_file2.read()
     html = render_to_string('01uberheader_main_drupal.html', {
-        'site_skin': os.environ['SITE_SKIN'],
+        'SITE_SKIN': os.environ['SITE_SKIN'],
         'TITLE': header + ' Description'})
     html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
-        'site_skin': os.environ['SITE_SKIN'],
-        'model': model,
-        'page': 'description'})
+        'CONTACT_URL': os.environ['CONTACT_URL'],
+        'MODEL': model,
+        'PAGE': 'description'})
     html += render_to_string('04ubertext_start_index_drupal.html', {
         'TITLE': header + ' Overview',
-        'text_paragraph': xx})
-    html += render_to_string('04ubertext_end.html', {})
-    html += links_left.ordered_list()
-    html += render_to_string('06uberfooter.html', {'links': ''})
+        'TEXT_PARAGRAPH': xx})
+    html += render_to_string('04ubertext_end_drupal.html', {})
+    html += links_left.ordered_list(model)
+    html += render_to_string('06uberfooter.html', {})
 
     response = HttpResponse()
     response.write(html)

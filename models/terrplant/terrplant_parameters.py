@@ -23,7 +23,7 @@ class TerrplantInp(forms.Form):
         label='Version',
         initial='1.2.2')
     chemical_name = forms.CharField(
-        widget=forms.Textarea(attrs={'cols': 30, 'rows': 1}),
+        widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='Chemical Name',
         initial='Terrplant Example')
     pc_code = forms.CharField(

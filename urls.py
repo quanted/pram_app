@@ -38,8 +38,9 @@ urlpatterns = patterns('views',
                        # (r'^ubertool/.*?/history_revisit\.html$', 'history.historyPageRevist'),
                        (r'^ubertool/(?P<model>.*?)/pdf/?$', 'generateReport.pdfReceiver'),
                        (r'^ubertool/(?P<model>.*?)/html/?$', 'generateReport.htmlReceiver'),
-                       (r'^ubertool/docs/?$', 'misc.docsRedirect'),
-                       (r'^ubertool/api/?$', 'misc.apiRedirect'),
+                       (r'^ubertool/docs/?$', 'misc.docs_redirect'),
+                       (r'^ubertool/api/?$', 'misc.api_redirect'),
+                       (r'^ubertool/links/?$', 'misc.links'),
                        # (r'^eco/.*?/przm5_intermediate\.html', 'przm5_intermediate.przm5IntermediatePage'),
                        (r'^ubertool/(?P<model>.*?)/?$', 'description.description_page'),
                        (r'^eco_index\.html$', 'landing.eco_landing_page'),  # Legacy links
@@ -57,8 +58,8 @@ urlpatterns = patterns('views',
                        )
 
 # 404 Error view (file not found)
-handler404 = 'views.misc.fileNotFound'
+handler404 = 'views.misc.file_not_found'
 # 500 Error view (server error)
-handler500 = 'views.misc.fileNotFound'
+handler500 = 'views.misc.file_not_found'
 # 403 Error view (forbidden)
-handler403 = 'views.misc.fileNotFound'
+handler403 = 'views.misc.file_not_found'

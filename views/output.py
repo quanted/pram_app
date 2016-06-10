@@ -7,32 +7,33 @@ import os
 import logging
 
 
-def outputPageHTML(header, model, tables_html):
+def output_page_html(header, model, tables_html):
     """Generates HTML to fill '.articles_output' div on output page"""
 
-    html = render_to_string('01uberheader.html', {
-            'site_skin' : os.environ['SITE_SKIN'],
-            'title': header+' Output'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
-            'site_skin' : os.environ['SITE_SKIN'],
-            'model':model,
-            'page':'output'})
-    html = html + links_left.ordered_list()
-    html = html + render_to_string('04uberoutput_start.html', {
-            'model_attributes': header+' Output'})
-    html = html + tables_html
-    if model is not "sam":
-        print " model: " + model
-        html = html + render_to_string('export.html', {})
-    html = html + render_to_string('04uberoutput_end.html', {'model':model})
-    html = html + render_to_string('06uberfooter.html', {'links': ''})
+    html = render_to_string('01uberheader_main_drupal.html', {
+        'SITE_SKIN': os.environ['SITE_SKIN'],
+        'TITLE': header})
+    html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
+        'CONTACT_URL': os.environ['CONTACT_URL'],
+        'MODEL': model,
+        'PAGE': 'description'})
+    html += render_to_string('04uberoutput_start_drupal.html', {
+        'TITLE': header + ' Output'})
+    html += tables_html
+    # if model is not "sam":
+    #     print " model: " + model
+    #     html += render_to_string('export.html', {})
+    html += render_to_string('04ubertext_end_drupal.html', {})
+    html += links_left.ordered_list(model, 'run_model')
+    html += render_to_string('06uberfooter.html', {})
 
     return html
 
-def outputPageView(request, model='none', header=''):
+
+def output_page_view(request, model='none', header=''):
     """
     Django view render method for model output pages.  This method is called 
-    by outputPage() method.
+    by output_page() method.
     """
 
     # If model is updated to be generic, use generic Model object
@@ -73,29 +74,29 @@ def outputPageView(request, model='none', header=''):
                 """
 
                 """ Generate Timestamp HTML from "*_tables" module """
-                modelOutputHTML = tablesmodule.timestamp()
+                model_output_html = tablesmodule.timestamp()
                 """ Generate Model input & output tables HTML from "*_tables" module """
 
                 try:
                     tables_output = tablesmodule.table_all(request, jid)
                 except:
                     tables_output = tablesmodule.table_all(request, "20150402133114784000")
-                modelOutputHTML = disclaimer_html + modelOutputHTML + tables_output
+                model_output_html = disclaimer_html + model_output_html + tables_output
 
                 """ Render output page view HTML """
-                html = outputPageHTML(header, model, modelOutputHTML)
+                html = output_page_html(header, model, model_output_html)
 
             else:
                 """ Pre-Canned Run """
                 """ Generate Timestamp HTML from "*_tables" module """
-                modelOutputHTML = tablesmodule.timestamp()
+                model_output_html = tablesmodule.timestamp()
                 """ Generate Model input & output tables HTML from "*_tables" module """
                 tables_output = tablesmodule.table_all(request)
 
-                modelOutputHTML = modelOutputHTML + tables_output
+                model_output_html = model_output_html + tables_output
 
                 """ Render output page view HTML """
-                html = outputPageHTML(header, model, modelOutputHTML)
+                html = output_page_html(header, model, model_output_html)
 
             response = HttpResponse()
             response.write(html)
@@ -111,62 +112,59 @@ def outputPageView(request, model='none', header=''):
         import models.ore.ore_output
         tables_html = models.ore.ore_output.oreOutputPage(request)
 
-
         html = render_to_string('01uberheader.html', {
-                'site_skin' : os.environ['SITE_SKIN'],
-                'title': header+' Output'})
-        html = html + render_to_string('02uberintroblock_wmodellinks.html', {
-                'site_skin' : os.environ['SITE_SKIN'],
-                'model':model,
-                'page':'output'})
-        html = html + links_left.ordered_list()
-        html = html + render_to_string('04uberoutput_start.html', {
-                'model_attributes': header+' Output'})
-        html = html + tables_html
-        html = html + render_to_string('export.html', {})
-        html = html + render_to_string('04uberoutput_end.html', {'model':model})
-        html = html + render_to_string('06uberfooter.html', {'links': ''})
-
+            'site_skin': os.environ['SITE_SKIN'],
+            'title': header + ' Output'})
+        html += render_to_string('02uberintroblock_wmodellinks.html', {
+            'site_skin': os.environ['SITE_SKIN'],
+            'model': model,
+            'page': 'output'})
+        html += links_left.ordered_list()
+        html += render_to_string('04uberoutput_start.html', {
+            'model_attributes': header + ' Output'})
+        html += tables_html
+        html += render_to_string('export.html', {})
+        html += render_to_string('04uberoutput_end.html', {'model': model})
+        html += render_to_string('06uberfooter.html', {'links': ''})
 
         response = HttpResponse()
         response.write(html)
         return response
-    
+
     else:
         # All models that use the 'model_output.py' to format the inputs before sending to back end server
         # Dynamically import the model output module
-        outputmodule = importlib.import_module('.'+model+'_output', 'models.'+model)
+        outputmodule = importlib.import_module('.' + model + '_output', 'models.' + model)
         # Call '*_output' function; function name = 'model'OutputPage  (e.g. 'sipOutputPage')
-        outputPageFunc = getattr(outputmodule, model+'OutputPage')
+        outputPageFunc = getattr(outputmodule, model + 'OutputPage')
         model_obj = outputPageFunc(request)
 
     logging.info(model_obj)
 
     if type(model_obj) is tuple:
-        modelOutputHTML = model_obj[0]
+        model_output_html = model_obj[0]
         model_obj = model_obj[1]
     else:
         # Dynamically import the model table module
-        tablesmodule = importlib.import_module('.'+model+'_tables', 'models.'+model)
+        tablesmodule = importlib.import_module('.' + model + '_tables', 'models.' + model)
 
         # logging.info(model_obj.__dict__)
         """ Generate Timestamp HTML from "*_tables" module """
-        modelOutputHTML = tablesmodule.timestamp(model_obj)
+        model_output_html = tablesmodule.timestamp(model_obj)
         """ Generate Model input & output tables HTML from "*_tables" module """
         tables_output = tablesmodule.table_all(model_obj)
-        
+
         """ Append Timestamp & model input & output table's HTML """
         if type(tables_output) is tuple:
-            modelOutputHTML = modelOutputHTML + tables_output[0]
+            model_output_html = model_output_html + tables_output[0]
         elif type(tables_output) is str or type(tables_output) is unicode:
-            modelOutputHTML = modelOutputHTML + tables_output
+            model_output_html = model_output_html + tables_output
         else:
-            modelOutputHTML = "table_all() Returned Wrong Type"
+            model_output_html = "table_all() Returned Wrong Type"
 
     """ Render output page view HTML """
-    html = outputPageHTML(header, model, modelOutputHTML)
+    html = output_page_html(header, model, model_output_html)
 
-    
     # TODO: this is only used for non-Pandas models, and is DEPRECATED and should be removed and not called
     def saveToMongoDB(model_obj):
         """
@@ -193,8 +191,9 @@ def outputPageView(request, model='none', header=''):
     response.write(html)
     return response
 
+
 @require_POST
-def outputPage(request, model='none', header=''):
+def output_page(request, model='none', header=''):
     """
     Django HTTP POST handler for output page.  Receives form data and
     validates it.  If valid it calls method to render the output page
@@ -202,50 +201,52 @@ def outputPage(request, model='none', header=''):
     This method maps to: '/ubertool/<model>/output'
     """
 
-    viewmodule = importlib.import_module('.views', 'models.'+model)
+    viewmodule = importlib.import_module('.views', 'models.' + model)
 
     header = viewmodule.header
 
-    parametersmodule = importlib.import_module('.'+model+'_parameters', 'models.'+model)
+    parametersmodule = importlib.import_module('.' + model + '_parameters', 'models.' + model)
 
     try:
         # Class name must be ModelInp, e.g. SipInp or TerrplantInp
-        inputForm = getattr(parametersmodule, model.title() + 'Inp')
-        form = inputForm(request.POST) # bind user inputs to form object
+        input_form = getattr(parametersmodule, model.title() + 'Inp')
+        form = input_form(request.POST)  # bind user inputs to form object
 
         # Form validation testing
         if form.is_valid():
             # If form is valid return the output page view
-            return outputPageView(request, model, header)
+            return output_page_view(request, model, header)
 
         else:
-            # If not valid...
+            # If Form is not valid, redraw Input page (this is the same as 'input.py', expect for 'form_data')
             logging.info(form.errors)
-            input_module = importlib.import_module('.'+model+'_input', 'models.'+model)
+            input_module = importlib.import_module('.' + model + '_input', 'models.' + model)
 
             # Render input page view with POSTed values and show errors
-            html = render_to_string('01uberheader.html', {
-                    'site_skin' : os.environ['SITE_SKIN'],
-                    'title': header+' Inputs'})
-            html = html + render_to_string('02uberintroblock_wmodellinks.html', {
-                    'site_skin' : os.environ['SITE_SKIN'],
-                    'model':model,
-                    'page':'input'})
-            html = html + links_left.ordered_list()
+            html = render_to_string('01uberheader_main_drupal.html', {
+                'SITE_SKIN': os.environ['SITE_SKIN'],
+                'TITLE': header})
+            html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
+                'CONTACT_URL': os.environ['CONTACT_URL'],
+                'MODEL': model,
+                'PAGE': 'input'})
 
-            inputPageFunc = getattr(input_module, model+'InputPage')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
-            html = html + inputPageFunc(request, model, header, formData=request.POST)  # formData contains the already POSTed form data
+            input_page_func = getattr(input_module,
+                                      model + '_input_page')  # function name example: 'sip_input_page'
+            html += input_page_func(request, model, header,
+                                          form_data=request.POST)  # form_data contains the already POSTed form data
 
-            html = html + render_to_string('06uberfooter.html', {'links': ''})
-            
+            html += links_left.ordered_list(model, 'run_model')
+            html += render_to_string('06uberfooter.html', {})
+
             response = HttpResponse()
             response.write(html)
             return response
 
-        # end form validation testing
+            # end form validation testing
 
     except Exception, e:
         logging.exception(e)
         logging.info("E X C E P T")
 
-        return outputPageView(request, model, header)
+        return output_page_view(request, model, header)

@@ -81,7 +81,7 @@ def historyPageRevist(request, model='none', header='none'):
         # Write output string from Mongo to file in memory
         # packet = StringIO.StringIO(output_str) #write to memory
 
-        # html = output.outputPageHTML(header, model, output_tables)
+        # html = output.output_page_html(header, model, output_tables)
 
         response = HttpResponse(output_str.getvalue(), content_type='application/txt')
         response['Content-Disposition'] = 'attachment; filename=' + model_dict['filename'] + '.csv'
@@ -107,7 +107,7 @@ def historyPageRevist(request, model='none', header='none'):
             <b>*** Error retrieving model run ***</b>
             """
             
-        html = output.outputPageHTML(header, model, output_tables)
+        html = output.output_page_html(header, model, output_tables)
 
         response = HttpResponse()
         response.write(html)

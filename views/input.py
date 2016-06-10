@@ -73,10 +73,10 @@ def input_page(request, model='none', header='none'):
         'MODEL': model,
         'PAGE': 'input'})
 
-    input_page_func = getattr(inputmodule, model+'_input_page')  # function name = 'model'InputPage  (e.g. 'sipInputPage')
+    input_page_func = getattr(inputmodule, model + '_input_page')  # function name example: 'sip_input_page'
     html += input_page_func(request, model, header)
 
-    html += links_left.ordered_list(model, 'input')
+    html += links_left.ordered_list(model, 'run_model')
     html += render_to_string('06uberfooter.html', {})
     
     response = HttpResponse()

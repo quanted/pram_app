@@ -25,7 +25,7 @@ urlpatterns = patterns('views',
                        (r'^ubertool/?$', 'landing.eco_landing_page'),
                        (r'^ubertool/(?P<model>.*?)/description/?$', 'description.description_page'),
                        (r'^ubertool/(?P<model>.*?)/input/?$', 'input.input_page'),
-                       (r'^ubertool/(?P<model>.*?)/output/?$', 'output.outputPage'),
+                       (r'^ubertool/(?P<model>.*?)/output/?$', 'output.output_page'),
                        (r'^ubertool/(?P<model>.*?)/algorithms/?$', 'algorithms.algorithm_page'),
                        (r'^ubertool/(?P<model>.*?)/references/?$', 'references.references_page'),
                        (r'^ubertool/(?P<model>.*?)/batchinput/?$', 'batch.batchInputPage'),
@@ -45,7 +45,7 @@ urlpatterns = patterns('views',
                        (r'^eco_index\.html$', 'landing.eco_landing_page'),  # Legacy links
                        (r'^(?P<model>.*?)_description\.html$', 'description.description_page'),  # Legacy links
                        (r'^(?P<model>.*?)_input\.html$', 'input.input_page'),  # Legacy links
-                       (r'^(?P<model>.*?)_output\.html$', 'output.outputPage'),  # Legacy links
+                       (r'^(?P<model>.*?)_output\.html$', 'output.output_page'),  # Legacy links
                        (r'^(?P<model>.*?)_algorithms\.html$', 'algorithms.algorithm_page'),  # Legacy links
                        (r'^(?P<model>.*?)_references\.html$', 'references.references_page'),  # Legacy links
                        (r'^(?P<model>.*?)_batchinput\.html$', 'batch.batchInputPage'),  # Legacy links

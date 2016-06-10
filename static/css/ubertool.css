@@ -50,6 +50,33 @@
   cursor: text;
 }
 
+/* Model Inputs */
+.model_output h4 {
+  text-align: left;
+  margin: 4px 0 4px 14px;
+}
+.model_output table {
+  margin-left: 30px;
+  text-align: left;
+}
+.model_output img {
+  margin: 0 0 0 1.5em;
+}
+.collapse-open span {
+  background:url(/static/images/collapsible/minus.gif) center left no-repeat;
+  display: block;
+  float: left;
+  padding: 9px 8px;
+  cursor: default;
+}
+.collapse-close span {
+  background:url(/static/images/collapsible/plus.gif) center left no-repeat;
+  display: block;
+  float: left;
+  padding: 9px 8px;
+  cursor: default;
+}
+
 /* Tables */
 
 /*table,td*/

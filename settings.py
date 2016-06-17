@@ -31,7 +31,7 @@ os.environ.update({
     'REST_SERVER_8': 'http://134.67.114.8',  # 'http://localhost:64399'
     'PROJECT_PATH': PROJECT_ROOT,
     'SITE_SKIN': 'EPA',                          # Leave empty ('') for default skin, 'EPA' for EPA skin
-    'CONTACT_URL': 'mailto:ubertool-dev@googlegroups.com?subject=ubertool%20Contact%20Us'
+    'CONTACT_URL': 'https://www.epa.gov/research/forms/contact-us-about-epa-research'
 })
 
 # Quick-start development settings - unsuitable for production

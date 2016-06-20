@@ -1,3 +1,4 @@
+<h2><a href="/ubertool/hwbi/input" class="home-link" style="float: right;">Run HWBI</a></h2>
 <p>
 The HWBI was developed by researchers at the US EPA (Smith et al., 2013, Summers et al., 2014). The HWBI was generated
 using over one hundred nationally-available data layers to assess economic, social, and ecosystem services across the

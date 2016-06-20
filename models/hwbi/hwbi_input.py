@@ -12,33 +12,39 @@ import views
 import linksLeft
 
 
-def inputPage(request, model='hwbi', header='none'):
+def hwbi_input_page(request, model='hwbi', header='none'):
 
-    # If on public server, test user authentication
-    if settings.AUTH:
-        if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
-            if not request.user.is_authenticated():
-                return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+    # # If on public server, test user authentication
+    # if settings.AUTH:
+    #     if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
+    #         if not request.user.is_authenticated():
+    #             return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+    #
+    # header = views.header
 
-    header = views.header
+    # html = render_to_string('01uberheader.html', {
+    #     'site_skin': os.environ['SITE_SKIN'],
+    #     'title': header + ' Inputs'})
+    # html = html + render_to_string('hwbi/02uberintroblock_wmodellinks_hwbi.html', {
+    #     'site_skin': os.environ['SITE_SKIN'],
+    #     'model': model,
+    #     'page': 'input'})
+    # html = html + linksLeft.linksLeft()
+    #
+    # html = html + hwbiInputPage(request, model, header)
+    #
+    # html = html + render_to_string('06uberfooter.html', {'links': ''})
 
-    html = render_to_string('01uberheader.html', {
-        'site_skin': os.environ['SITE_SKIN'],
-        'title': header + ' Inputs'})
-    html = html + render_to_string('hwbi/02uberintroblock_wmodellinks_hwbi.html', {
-        'site_skin': os.environ['SITE_SKIN'],
-        'model': model,
-        'page': 'input'})
-    html = html + linksLeft.linksLeft()
+    # response = HttpResponse()
+    # response.write(html)
+    # return response
 
-    html = html + hwbiInputPage(request, model, header)
+    html = render_to_string('04ubertext_start_index_drupal.html', {'TITLE': header})
+    html += hwbi_input_page_html(request, model, header)
+    html += render_to_string('04ubertext_end_drupal.html', {})
 
-    html = html + render_to_string('06uberfooter.html', {'links': ''})
-
-    response = HttpResponse()
-    response.write(html)
-    return response
+    return html
 
 
-def hwbiInputPage(request, model, dummy):
-    return render_to_string('hwbi/index.html', {})
+def hwbi_input_page_html(request, model, dummy):
+    return render_to_string('hwbi/hwbi_input_page.html', {})

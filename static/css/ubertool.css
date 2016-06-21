@@ -161,7 +161,8 @@ table.ui-datepicker-calendar {
   -webkit-box-shadow: 3px 3px 15px #CCC;
   -moz-box-shadow: 3px 3px 15px #CCC;
 }
-.ui-datepicker-calendar a:link, a:visited {
+.ui-datepicker-calendar a:link,
+.ui-datepicker-calendar a:visited {
   color: #333333;
 }
 .ui-state-hover, .ui-state-active {

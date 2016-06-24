@@ -291,6 +291,17 @@ def create_batchoutput_html(jid, model_name):
     return result_obj_all
 
 
+def self_documentation(request):
+
+    path = request.path.split('/')[1:]
+
+    response = requests.get(rest_url + request.path)
+
+    html = "<h3>You are at: %s</h3>" % path
+
+    return HttpResponse(html, content_type="text/html")
+
+
 class UserHistory(object):
     def __init__(self, user_id, model_name):
         """

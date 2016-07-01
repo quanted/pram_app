@@ -44,7 +44,7 @@ function drawSliders(data, index) {
     .clamp(true);
 
     var svgslide = d3.select("#cirSlide").append("svg")
-        .attr("width", 180)
+        .attr("width", 155)
         .attr("height", 40);
 
 

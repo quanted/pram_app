@@ -17,13 +17,6 @@ header = 'HWBI'
 # ####################################################################
 
 
-def hwbi_redirect(request):
-    if request.path == u'/hwbi/':
-        return redirect('/ubertool/hwbi/')
-    else:
-        return redirect('/ubertool/hwbi/description')
-
-
 def hwbi_view(request):
     html = render_to_string('hwbi/index.html', {})
     response = HttpResponse()

@@ -5,11 +5,11 @@
     <ul class="menu">
       {% for key, value in LINK_DICT.items %}
         <h3 class="headerbar">{{ key|safe }}</h3>
-        {% for valueKey, valueValue in value.items %}<li class="menu-item{% if forloop.last %} menu-item-last{% endif %}"><a href="/{{ valueValue }}" id="{{ valueValue }}" class="menu-link{% if MODEL == valueValue %} active-trail active{% endif %}" title="{{ valueKey|safe }}">{{ valueKey|safe }}</a>
+        {% for valueKey, valueValue in value.items %}<li class="menu-item{% if forloop.last %} menu-item-last{% endif %}"><a href="/ubertool/{{ valueValue }}" id="{{ valueValue }}" class="menu-link{% if MODEL == valueValue %} active-trail active{% endif %}" title="{{ valueKey|safe }}">{{ valueKey|safe }}</a>
           {% if MODEL == valueValue %}<ul class="menu">
-            <li class="menu-item"><a href="/{{ MODEL }}/input" title="Run {{ valueKey|safe }}" class="menu-link{% if PAGE == "run_model" %} active-trail active{% endif %}">-Run {{ valueKey|safe }}</a></li>
-            <li class="menu-item"><a href="/{{ MODEL }}/algorithms" title="{{ valueKey|safe }} Algorithms" class="menu-link{% if PAGE == "algorithms" %} active-trail active{% endif %}">-{{ valueKey|safe }} Algorithms</a></li>
-            <li class="menu-item"><a href="/{{ MODEL }}/references" title="{{ valueKey|safe }} References" class="menu-link{% if PAGE == "references" %} active-trail active{% endif %}">-{{ valueKey|safe }} References</a></li>
+            <li class="menu-item"><a href="/ubertool/{{ MODEL }}/input" title="Run {{ valueKey|safe }}" class="menu-link{% if PAGE == "run_model" %} active-trail active{% endif %}">-Run {{ valueKey|safe }}</a></li>
+            <li class="menu-item"><a href="/ubertool/{{ MODEL }}/algorithms" title="{{ valueKey|safe }} Algorithms" class="menu-link{% if PAGE == "algorithms" %} active-trail active{% endif %}">-{{ valueKey|safe }} Algorithms</a></li>
+            <li class="menu-item"><a href="/ubertool/{{ MODEL }}/references" title="{{ valueKey|safe }} References" class="menu-link{% if PAGE == "references" %} active-trail active{% endif %}">-{{ valueKey|safe }} References</a></li>
           </ul>{% endif %}
         </li>{% endfor %}
       {% endfor %}</ul>

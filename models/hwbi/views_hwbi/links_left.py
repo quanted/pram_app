@@ -5,7 +5,7 @@ from collections import OrderedDict
 # 03ubertext_links_left:
 def ordered_list(model=None, page=None):
     link_dict = OrderedDict([
-        ('Terrestrial Models', OrderedDict([
+        ('Model', OrderedDict([
                 ('HWBI', 'hwbi'),
             ])
         ),

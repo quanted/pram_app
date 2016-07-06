@@ -4,7 +4,7 @@ from views_hwbi import description, algorithms, input, references
 
 
 urlpatterns = [
-    url(r'^$', views.hwbi_redirect),
+    url(r'^$', description.description_page, {'model': "hwbi"}),
     url(r'^description$', description.description_page, {'model': "hwbi"}),
     url(r'^input$', input.input_page, {'model': "hwbi"}),
     url(r'^algorithms$', algorithms.algorithm_page, {'model': "hwbi"}),

@@ -1,25 +1,4 @@
 <style>
-    ul.tabs{
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        font-size: 14px;
-    }
-
-    ul.tabs li{
-        background: #e4e5e4;
-        color: #222;
-        display: inline-block;
-        padding: 2px 8px;
-        cursor: pointer;
-    }
-
-    ul.tabs li.current{
-        background: #bbb;
-        color: #000;
-        border: solid 1px #356697;
-    }
-
     .tab-content{
         display: none;
         background: #ffffff;
@@ -73,17 +52,17 @@
         font-size: 12px;
     }
 
-/*    #pie {
-        background-color: #F9FBF6;
-    }
-
-    #pie2 {
-        background-color: #F9FBF6;
-    }*/
-
     p {
         font-size: 14px;
         }
+
+    .radio-toolbar label {
+        color: #74646e;
+        display:inline-block;
+        padding:4px 11px;
+        font-family:Arial;
+        font-size:13px;
+    }
 
 {#    h2 {#}
 {#        font-size: 14px;#}
@@ -155,31 +134,23 @@
         });
       </script>
 
-
-<label><input id="radios-id-2" type="radio" name="toggler" value="" />Modified Values</label>
+<div class="radio-toolbar">
+<label><input id="radios-id" type="radio" name="toggler" value="" checked />Modified Values</label>
 <label><input id="radios-id-2" type="radio" name="toggler" value="2" />Baseline County Values</label>
 
-        <div id="pie" class="tab-content current col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
-        <div id="pie2" class="tab-content"></div>
+        <div id="pie" class="tab-content current" style = "float:right; width: 50%;"></div>
+        <div id="pie2" class="tab-content" style = "float:right; width: 50%;"></div>
+</div>
 
 <script>
 $(function() {
     $("[name=toggler]").click(function(){
             $('.tab-content').hide();
-            $("#pie"+$(this).val()).show('');
+            $("#pie"+$(this).val()).show();
     });
  });
 </script>
 
-{#      <div class="container" style="float:left; width: 40%">#}
-{#        <ul class="tabs">#}
-{#            <li class="tab-link current" data-tab="pie">Modified Values</li>#}
-{#            <li class="tab-link" data-tab="pie2">Baseline County Values</li>#}
-{#        </ul>#}
-{##}
-{#        <div id="pie" class="tab-content current col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>#}
-{#        <div id="pie2" class="tab-content"></div>#}
-{#      </div>#}
 
       <script src="/static/js/pie.js" ></script>
       <script src="/static/js/pie2.js" ></script>
@@ -211,7 +182,6 @@ $(function() {
           The total Human Well-Being Index (HWBI) score is shown in the center of the pie chart.
         </p>
       </div>
-
 
 </body>
 </html>

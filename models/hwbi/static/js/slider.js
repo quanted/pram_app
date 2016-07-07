@@ -189,7 +189,7 @@ function useServiceValues() {
     };
 
     $.post(
-        '/hwbi/rest/hwbi/calc/run',                      // url
+        '/rest/hwbi/calc/run',                      // url
         JSON.stringify(postData),                               // data (as JS object)
         function(data) {                        // success (callback) function
             updateDomainScores(data.outputs.domains);

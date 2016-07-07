@@ -92,7 +92,7 @@ def rest_proxy_hwbi_calc(request):
         return HttpResponse(response)
     elif method == 'POST':
         data = json.loads(request.body)
-        response = requests.post(rest_url_hwbi + '/hwbi/rest/hwbi/calc', json=data)
+        response = requests.post(rest_url_hwbi + '/hwbi/rest/hwbi/calc/run', json=data)
         return HttpResponse(json.dumps(response.json()), content_type="application/json")
 
 

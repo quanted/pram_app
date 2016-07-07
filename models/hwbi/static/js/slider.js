@@ -165,7 +165,7 @@ function useServiceValues() {
             "greenspace": dragVal.services[9].Score,
             "waterQuality": dragVal.services[10].Score,
             "waterQuantity": dragVal.services[11].Score,
-            "activisim": dragVal.services[12].Score,
+            "activism": dragVal.services[12].Score,
             "communication": dragVal.services[13].Score,
             "communityAndFaith": dragVal.services[14].Score,
             "education": dragVal.services[15].Score,

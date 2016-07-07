@@ -36,7 +36,7 @@ $(document).ready(function(){
         var state = $('#stateSel').val();
         var county = $('#countySel').val();
         //old call $.getJSON('/ubertool/hwbi/api/Baseline?State=' + state + '&County=' + county, function(data) {
-        $.getJSON('/rest/hwbi/locations/' + state + '/' + county, function(data) {
+        $.getJSON('/hwbi/rest/hwbi/locations/' + state + '/' + county, function(data) {
             $.unblockUI();
             updateRIVWeights(data.results.domains);
             updateDomainScores(data.results.domains);

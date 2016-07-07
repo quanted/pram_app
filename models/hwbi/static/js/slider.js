@@ -27,7 +27,7 @@ function drawSliders(data, index) {
             if (data.name == "greenspace") { return [36.11207908, 62.03906984]; }
             if (data.name == "waterQuality") { return [15.95637509, 88.22033237]; }
             if (data.name == "waterQuantity") { return [21.70976841, 72.83447998]; }
-            if (data.name == "activism") { return [25.85945275, 73.66346154]; }
+            if (data.name == "activisim") { return [25.85945275, 73.66346154]; }
             if (data.name == "communication") { return [33.10020486, 68.98955269]; }
             if (data.name == "communityAndFaith") { return [12.21375305,	90]; }
             if (data.name == "education") { return [33.24429069,	56.47803694]; }
@@ -165,7 +165,7 @@ function useServiceValues() {
             "greenspace": dragVal.services[9].Score,
             "waterQuality": dragVal.services[10].Score,
             "waterQuantity": dragVal.services[11].Score,
-            "activism": dragVal.services[12].Score,
+            "activisim": dragVal.services[12].Score,
             "communication": dragVal.services[13].Score,
             "communityAndFaith": dragVal.services[14].Score,
             "education": dragVal.services[15].Score,
@@ -240,7 +240,7 @@ function updateSliders(data, index) {
             if (data.name == "greenspace") { return [36.11207908, 62.03906984]; }
             if (data.name == "waterQuality") { return [15.95637509, 88.22033237]; }
             if (data.name == "waterQuantity") { return [21.70976841, 72.83447998]; }
-            if (data.name == "activism") { return [25.85945275, 73.66346154]; }
+            if (data.name == "activisim") { return [25.85945275, 73.66346154]; }
             if (data.name == "communication") { return [33.10020486, 68.98955269]; }
             if (data.name == "communityAndFaith") { return [12.21375305,	90]; }
             if (data.name == "education") { return [33.24429069,	56.47803694]; }

@@ -38,10 +38,10 @@ $(document).ready(function(){
         //old call $.getJSON('/ubertool/hwbi/api/Baseline?State=' + state + '&County=' + county, function(data) {
         $.getJSON('/hwbi/rest/hwbi/locations/' + state + '/' + county, function(data) {
             $.unblockUI();
-            updateRIVWeights(data.results.domains);
-            updateDomainScores(data.results.domains);
-            updateDomainScores2(data.results.domains);
-            updateServiceScores(data.results.services);
+            updateRIVWeights(data.outputs.domains);
+            updateDomainScores(data.outputs.domains);
+            updateDomainScores2(data.outputs.domains);
+            updateServiceScores(data.outputs.services);
         });
     });
 

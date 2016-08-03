@@ -29,8 +29,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,151 +39,152 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.przm5.przm5_input</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">.. module:: przm5_input</span>
 <span class="sd">   :synopsis: A useful module indeed.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
-<span class="c"># import logging</span>
-<span class="c"># logger = logging.getLogger(&#39;PRZM5 Model&#39;)</span>
-<span class="c"># import os, sys</span>
-<span class="c"># sys.path.append(os.path.abspath(__file__ + &quot;/../../&quot;))</span>
+<span class="c1"># import logging</span>
+<span class="c1"># logger = logging.getLogger(&#39;PRZM5 Model&#39;)</span>
+<span class="c1"># import os, sys</span>
+<span class="c1"># sys.path.append(os.path.abspath(__file__ + &quot;/../../&quot;))</span>
 
-<div class="viewcode-block" id="przm5InputPage"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_input.przm5InputPage">[docs]</a><span class="k">def</span> <span class="nf">przm5InputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">formData</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="przm5InputPage"><a class="viewcode-back" href="../../../models.przm5.html#models.przm5.przm5_input.przm5InputPage">[docs]</a><span class="k">def</span> <span class="nf">przm5InputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">formData</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">przm5_parameters</span>
     <span class="kn">from</span> <span class="nn">models.vvwm</span> <span class="kn">import</span> <span class="n">vvwm_parameters</span>
 
-    <span class="n">html</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_jquery.html&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="s">&#39;model&#39;</span><span class="p">:</span> <span class="s">&quot;przm5&quot;</span> <span class="p">})</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_jquery.html&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="s">&#39;model&#39;</span><span class="p">:</span> <span class="s">&quot;swcprzm5vvwm&quot;</span> <span class="p">})</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_start_tabbed.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-            <span class="s">&#39;model&#39;</span><span class="p">:</span><span class="n">model</span><span class="p">,</span> 
-            <span class="s">&#39;model_attributes&#39;</span><span class="p">:</span> <span class="n">header</span><span class="o">+</span><span class="s">&#39; Inputs&#39;</span><span class="p">})</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;04uberinput_jquery.html&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="s2">&quot;przm5&quot;</span> <span class="p">})</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;04uberinput_jquery.html&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="s2">&quot;swcprzm5vvwm&quot;</span> <span class="p">})</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;04uberinput_start_tabbed.html&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s1">&#39;model&#39;</span><span class="p">:</span><span class="n">model</span><span class="p">,</span> 
+            <span class="s1">&#39;model_attributes&#39;</span><span class="p">:</span> <span class="n">header</span><span class="o">+</span><span class="s1">&#39; Inputs&#39;</span><span class="p">})</span>
 
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_tabbed_nav.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-            <span class="s">&#39;nav_dict&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s">&#39;class_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Chemical&#39;</span><span class="p">,</span> <span class="s">&#39;Applications&#39;</span><span class="p">,</span> <span class="s">&#39;CropLand&#39;</span><span class="p">,</span> <span class="s">&quot;Runoff&quot;</span><span class="p">,</span> <span class="s">&quot;WaterBody&quot;</span><span class="p">],</span>
-                <span class="s">&#39;tab_label&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;Chemical&#39;</span><span class="p">,</span> <span class="s">&#39;Applications&#39;</span><span class="p">,</span> <span class="s">&#39;Crop/Land&#39;</span><span class="p">,</span> <span class="s">&quot;Runoff&quot;</span><span class="p">,</span> <span class="s">&quot;Water Body&quot;</span><span class="p">]</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;04uberinput_tabbed_nav.html&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s1">&#39;nav_dict&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;class_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Chemical&#39;</span><span class="p">,</span> <span class="s1">&#39;Applications&#39;</span><span class="p">,</span> <span class="s1">&#39;CropLand&#39;</span><span class="p">,</span> <span class="s2">&quot;Runoff&quot;</span><span class="p">,</span> <span class="s2">&quot;WaterBody&quot;</span><span class="p">],</span>
+                <span class="s1">&#39;tab_label&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Chemical&#39;</span><span class="p">,</span> <span class="s1">&#39;Applications&#39;</span><span class="p">,</span> <span class="s1">&#39;Crop/Land&#39;</span><span class="p">,</span> <span class="s2">&quot;Runoff&quot;</span><span class="p">,</span> <span class="s2">&quot;Water Body&quot;</span><span class="p">]</span>
                 <span class="p">}</span>
             <span class="p">})</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;br&gt;&lt;table class=&quot;input_table tab tab_Chemical&quot;&gt;&quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;br&gt;&lt;table class=&quot;input_table tab tab_Chemical&quot;&gt;&quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical0&quot;&gt;&quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical0&quot;&gt;&quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem0</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical1&quot; style=&quot;display:none&quot;&gt;</span>
-<span class="s">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Degradate 1&lt;/th&gt;&lt;/tr&gt;</span>
-<span class="s">                        &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical1&quot; style=&quot;display:none&quot;&gt;</span>
+<span class="s2">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Degradate 1&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="s2">                        &quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem1</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical_MCF1&quot; style=&quot;display:none&quot;&gt;</span>
-<span class="s">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Molar Conversion Factors (Degradate 1)&lt;/th&gt;&lt;/tr&gt;</span>
-<span class="s">                        &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical_MCF1&quot; style=&quot;display:none&quot;&gt;</span>
+<span class="s2">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Molar Conversion Factors (Degradate 1)&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="s2">                        &quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_mcf1</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical2&quot; style=&quot;display:none&quot;&gt;</span>
-<span class="s">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Degradate 2&lt;/th&gt;&lt;/tr&gt;</span>
-<span class="s">                        &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical2&quot; style=&quot;display:none&quot;&gt;</span>
+<span class="s2">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Degradate 2&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="s2">                        &quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_chem2</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical_MCF2&quot; style=&quot;display:none&quot;&gt;</span>
-<span class="s">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Molar Conversion Factors (Degradate 2)&lt;/th&gt;&lt;/tr&gt;</span>
-<span class="s">                        &quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Chemical_MCF2&quot; style=&quot;display:none&quot;&gt;</span>
+<span class="s2">                        &lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Molar Conversion Factors (Degradate 2)&lt;/th&gt;&lt;/tr&gt;</span>
+<span class="s2">                        &quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_mcf2</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
 
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Applications&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Applications&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_appl</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;</span>
-<span class="s">                    &lt;tr&gt;</span>
-<span class="s">                        &lt;th width=&quot;55px&quot;&gt;Day&lt;/th&gt;</span>
-<span class="s">                        &lt;th width=&quot;56px&quot;&gt;Month&lt;/th&gt;</span>
-<span class="s">                        &lt;th width=&quot;68px&quot;&gt;Year&lt;/th&gt;</span>
-<span class="s">                        &lt;th width=&quot;74px&quot;&gt;Amount (kg/hA)&lt;/th&gt;</span>
-<span class="s">                        &lt;th width=&quot;104px&quot;&gt;Application Method&lt;/th&gt;</span>
-<span class="s">                        &lt;th width=&quot;74px&quot;&gt;Depth (cm)&lt;/th&gt;</span>
-<span class="s">                        &lt;th width=&quot;68px&quot;&gt;Eff.&lt;/th&gt;</span>
-<span class="s">                        &lt;th width=&quot;75px&quot;&gt;Drift/T&lt;/th&gt;</span>
-<span class="s">                    &lt;/tr&gt;</span>
-<span class="s">                    </span>
-<span class="s">                    &quot;&quot;&quot;</span>
-    <span class="c"># Next line will be replaced with &quot;vvwm_weatherfile.html&quot; template when selecting of Weatherfile (*.dvf) is enabled</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_CropLand&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    &lt;tr&gt;</span>
+<span class="s2">                        &lt;th width=&quot;55px&quot;&gt;Day&lt;/th&gt;</span>
+<span class="s2">                        &lt;th width=&quot;56px&quot;&gt;Month&lt;/th&gt;</span>
+<span class="s2">                        &lt;th width=&quot;68px&quot;&gt;Year&lt;/th&gt;</span>
+<span class="s2">                        &lt;th width=&quot;74px&quot;&gt;Amount (kg/hA)&lt;/th&gt;</span>
+<span class="s2">                        &lt;th width=&quot;104px&quot;&gt;Application Method&lt;/th&gt;</span>
+<span class="s2">                        &lt;th width=&quot;74px&quot;&gt;Depth (cm)&lt;/th&gt;</span>
+<span class="s2">                        &lt;th width=&quot;68px&quot;&gt;Eff.&lt;/th&gt;</span>
+<span class="s2">                        &lt;th width=&quot;75px&quot;&gt;Drift/T&lt;/th&gt;</span>
+<span class="s2">                    &lt;/tr&gt;</span>
+<span class="s2">                    </span>
+<span class="s2">                    &quot;&quot;&quot;</span>
+    <span class="c1"># Next line will be replaced with &quot;vvwm_weatherfile.html&quot; template when selecting of Weatherfile (*.dvf) is enabled</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_CropLand&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vvwm_parameters</span><span class="o">.</span><span class="n">vvwmInp_cropland</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_cropland</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_CropLand tab_noh&quot; style=&quot;display:none&quot;&gt;</span>
-<span class="s">                                &lt;tr&gt;&lt;th colspan=&quot;2&quot; scope=&quot;col&quot;&gt;&lt;label for=&quot;id_noh&quot;&gt;No. of Horizons:&lt;/label&gt;&lt;/th&gt;</span>
-<span class="s">                                    &lt;td colspan=&quot;1&quot; scope=&quot;col&quot;&gt;&lt;select name=&quot;noh&quot; id=&quot;id_noh&quot;&gt;</span>
-<span class="s">                                        &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;&lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;&lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;&lt;option value=&quot;5&quot; selected&gt;5&lt;/option&gt;&lt;option value=&quot;6&quot;&gt;6&lt;/option&gt;&lt;option value=&quot;7&quot;&gt;7&lt;/option&gt;</span>
-<span class="s">                                    &lt;/td&gt;</span>
-<span class="s">                                    &lt;th colspan=&quot;3&quot;&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;tempflag_check&quot; id=&quot;id_tempflag_check&quot;, value=1&gt; Simulate Temperature&lt;/label&gt;&lt;/th&gt;</span>
-<span class="s">                                &lt;/tr&gt;</span>
-<span class="s">                                &lt;tr class=&quot;tempflag&quot;&gt;</span>
-<span class="s">                                    &lt;th colspan=&quot;4&quot;&gt;&lt;label for=&quot;id_bcTemp&quot;&gt;Lower BC Temperature:&lt;/label&gt;&lt;/th&gt;</span>
-<span class="s">                                    &lt;td colspan=&quot;3&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;bcTemp&quot; value=&quot;23&quot; id=&quot;id_bcTemp&quot; /&gt;&lt;/td&gt;</span>
-<span class="s">                                &lt;/tr&gt;</span>
-<span class="s">                                &lt;tr class=&quot;tempflag&quot;&gt;</span>
-<span class="s">                                    &lt;th colspan=&quot;4&quot;&gt;&lt;label for=&quot;id_albedo&quot;&gt;Albedo:&lt;/label&gt;&lt;/th&gt;</span>
-<span class="s">                                    &lt;td colspan=&quot;3&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;albedo&quot; value=&quot;0.4&quot; id=&quot;id_albedo&quot; /&gt;&lt;/td&gt;</span>
-<span class="s">                                &lt;/tr&gt;</span>
-<span class="s">                                &lt;tr id=&quot;not_header&quot;&gt;</span>
-<span class="s">                                    &lt;th width=&quot;18%&quot; id=&quot;thick_head&quot;&gt;Thick&lt;/th&gt;</span>
-<span class="s">                                    &lt;th width=&quot;18%&quot; id=&quot;rho_head&quot;&gt;&amp;#961;&lt;/th&gt;</span>
-<span class="s">                                    &lt;th width=&quot;18%&quot; id=&quot;max_head&quot;&gt;Max. Cap.&lt;/th&gt;</span>
-<span class="s">                                    &lt;th width=&quot;18%&quot; id=&quot;min_head&quot;&gt;Min. Cap.&lt;/th&gt;</span>
-<span class="s">                                    &lt;th width=&quot;18%&quot; id=&quot;oc_head&quot;&gt;O.C.&lt;/th&gt;</span>
-<span class="s">                                    &lt;th width=&quot;18%&quot; id=&quot;n_head&quot;&gt;N&lt;/th&gt;</span>
-<span class="s">                                    &lt;th width=&quot;18%&quot; id=&quot;s_head&quot; class=&quot;tempflag&quot;&gt;Sand&lt;/th&gt;</span>
-<span class="s">                                    &lt;th width=&quot;18%&quot; id=&quot;c_head&quot; class=&quot;tempflag&quot;&gt;Clay&lt;/th&gt;</span>
-<span class="s">                                &lt;/tr&gt;&quot;&quot;&quot;</span> 
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_CropLand tab_noh&quot; style=&quot;display:none&quot;&gt;</span>
+<span class="s2">                                &lt;tr&gt;&lt;th colspan=&quot;2&quot; scope=&quot;col&quot;&gt;&lt;label for=&quot;id_noh&quot;&gt;No. of Horizons:&lt;/label&gt;&lt;/th&gt;</span>
+<span class="s2">                                    &lt;td colspan=&quot;1&quot; scope=&quot;col&quot;&gt;&lt;select name=&quot;noh&quot; id=&quot;id_noh&quot;&gt;</span>
+<span class="s2">                                        &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;&lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;&lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;&lt;option value=&quot;5&quot; selected&gt;5&lt;/option&gt;&lt;option value=&quot;6&quot;&gt;6&lt;/option&gt;&lt;option value=&quot;7&quot;&gt;7&lt;/option&gt;</span>
+<span class="s2">                                    &lt;/td&gt;</span>
+<span class="s2">                                    &lt;th colspan=&quot;3&quot;&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;tempflag_check&quot; id=&quot;id_tempflag_check&quot;, value=1&gt; Simulate Temperature&lt;/label&gt;&lt;/th&gt;</span>
+<span class="s2">                                &lt;/tr&gt;</span>
+<span class="s2">                                &lt;tr class=&quot;tempflag&quot;&gt;</span>
+<span class="s2">                                    &lt;th colspan=&quot;4&quot;&gt;&lt;label for=&quot;id_bcTemp&quot;&gt;Lower BC Temperature:&lt;/label&gt;&lt;/th&gt;</span>
+<span class="s2">                                    &lt;td colspan=&quot;3&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;bcTemp&quot; value=&quot;23&quot; id=&quot;id_bcTemp&quot; /&gt;&lt;/td&gt;</span>
+<span class="s2">                                &lt;/tr&gt;</span>
+<span class="s2">                                &lt;tr class=&quot;tempflag&quot;&gt;</span>
+<span class="s2">                                    &lt;th colspan=&quot;4&quot;&gt;&lt;label for=&quot;id_albedo&quot;&gt;Albedo:&lt;/label&gt;&lt;/th&gt;</span>
+<span class="s2">                                    &lt;td colspan=&quot;3&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;albedo&quot; value=&quot;0.4&quot; id=&quot;id_albedo&quot; /&gt;&lt;/td&gt;</span>
+<span class="s2">                                &lt;/tr&gt;</span>
+<span class="s2">                                &lt;tr id=&quot;not_header&quot;&gt;</span>
+<span class="s2">                                    &lt;th width=&quot;18%&quot; id=&quot;thick_head&quot;&gt;Thick&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th width=&quot;18%&quot; id=&quot;rho_head&quot;&gt;&amp;#961;&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th width=&quot;18%&quot; id=&quot;max_head&quot;&gt;Max. Cap.&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th width=&quot;18%&quot; id=&quot;min_head&quot;&gt;Min. Cap.&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th width=&quot;18%&quot; id=&quot;oc_head&quot;&gt;O.C.&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th width=&quot;18%&quot; id=&quot;n_head&quot;&gt;N&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th width=&quot;18%&quot; id=&quot;s_head&quot; class=&quot;tempflag&quot;&gt;Sand&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th width=&quot;18%&quot; id=&quot;c_head&quot; class=&quot;tempflag&quot;&gt;Clay&lt;/th&gt;</span>
+<span class="s2">                                &lt;/tr&gt;&quot;&quot;&quot;</span> 
 
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Runoff&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Runoff&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_runoff</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Runoff tab_nott&quot; style=&quot;display:none&quot;&gt;</span>
-<span class="s">                                &lt;tr&gt;&lt;th colspan=&quot;3&quot; scope=&quot;col&quot;&gt;&lt;label for=&quot;id_nott&quot;&gt;No. of Time-Varing Factors:&lt;/label&gt;&lt;/th&gt;</span>
-<span class="s">                                    &lt;td colspan=&quot;1&quot; scope=&quot;col&quot;&gt;&lt;select name=&quot;nott&quot; id=&quot;id_nott&quot;&gt;</span>
-<span class="s">                                        &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;&lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;&lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;&lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;&lt;option value=&quot;6&quot;&gt;6&lt;/option&gt;&lt;option value=&quot;7&quot;&gt;7&lt;/option&gt;&lt;option value=&quot;8&quot;&gt;8&lt;/option&gt;&lt;option value=&quot;9&quot;&gt;9&lt;/option&gt;&lt;option value=&quot;10&quot;&gt;10&lt;/option&gt;&lt;option value=&quot;11&quot;&gt;11&lt;/option&gt;&lt;option value=&quot;12&quot;&gt;12&lt;/option&gt;&lt;option value=&quot;13&quot;&gt;13&lt;/option&gt;&lt;option value=&quot;14&quot;&gt;14&lt;/option&gt;&lt;option value=&quot;15&quot;&gt;15&lt;/option&gt;&lt;option value=&quot;16&quot;&gt;16&lt;/option&gt;&lt;option value=&quot;17&quot;&gt;17&lt;/option&gt;&lt;option value=&quot;18&quot;&gt;18&lt;/option&gt;&lt;option value=&quot;19&quot;&gt;19&lt;/option&gt;&lt;option value=&quot;20&quot;&gt;20&lt;/option&gt;&lt;option value=&quot;21&quot;&gt;21&lt;/option&gt;&lt;option value=&quot;22&quot;&gt;22&lt;/option&gt;&lt;option value=&quot;23&quot;&gt;23&lt;/option&gt;&lt;option value=&quot;24&quot;&gt;24&lt;/option&gt;&lt;option value=&quot;25&quot;&gt;25&lt;/option&gt;&lt;option value=&quot;26&quot; selected&gt;26&lt;/option&gt;&lt;option value=&quot;27&quot;&gt;27&lt;/option&gt;&lt;option value=&quot;28&quot;&gt;28&lt;/option&gt;&lt;option value=&quot;29&quot;&gt;29&lt;/option&gt;&lt;option value=&quot;30&quot;&gt;30&lt;/option&gt;&lt;/select&gt;</span>
-<span class="s">                                    &lt;/td&gt;</span>
-<span class="s">                                    &lt;th colspan=&quot;2&quot;&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;sp_year&quot; id=&quot;id_sp_year&quot;, value=1&gt; Specify year&lt;/label&gt;&lt;/th&gt;</span>
-<span class="s">                                &lt;/tr&gt;</span>
-<span class="s">                                &lt;tr id=&quot;not_header&quot;&gt;</span>
-<span class="s">                                    &lt;th style=&quot;width:6px;&quot; &gt;No.&lt;/th&gt;</span>
-<span class="s">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;day_head&quot;&gt;Day&lt;/th&gt;</span>
-<span class="s">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;mon_head&quot;&gt;Month&lt;/th&gt;</span>
-<span class="s">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;CN_head&quot;&gt;CN&lt;/th&gt;</span>
-<span class="s">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;C_head&quot;&gt;C&lt;/th&gt;</span>
-<span class="s">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;N_head&quot;&gt;N&lt;/th&gt;</span>
-<span class="s">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;year_head&quot; class=&quot;year_not&quot;&gt;Year&lt;/th&gt;</span>
-<span class="s">                                &lt;/tr&gt;&quot;&quot;&quot;</span> 
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_Runoff tab_nott&quot; style=&quot;display:none&quot;&gt;</span>
+<span class="s2">                                &lt;tr&gt;&lt;th colspan=&quot;3&quot; scope=&quot;col&quot;&gt;&lt;label for=&quot;id_nott&quot;&gt;No. of Time-Varing Factors:&lt;/label&gt;&lt;/th&gt;</span>
+<span class="s2">                                    &lt;td colspan=&quot;1&quot; scope=&quot;col&quot;&gt;&lt;select name=&quot;nott&quot; id=&quot;id_nott&quot;&gt;</span>
+<span class="s2">                                        &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;&lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;&lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;&lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;&lt;option value=&quot;6&quot;&gt;6&lt;/option&gt;&lt;option value=&quot;7&quot;&gt;7&lt;/option&gt;&lt;option value=&quot;8&quot;&gt;8&lt;/option&gt;&lt;option value=&quot;9&quot;&gt;9&lt;/option&gt;&lt;option value=&quot;10&quot;&gt;10&lt;/option&gt;&lt;option value=&quot;11&quot;&gt;11&lt;/option&gt;&lt;option value=&quot;12&quot;&gt;12&lt;/option&gt;&lt;option value=&quot;13&quot;&gt;13&lt;/option&gt;&lt;option value=&quot;14&quot;&gt;14&lt;/option&gt;&lt;option value=&quot;15&quot;&gt;15&lt;/option&gt;&lt;option value=&quot;16&quot;&gt;16&lt;/option&gt;&lt;option value=&quot;17&quot;&gt;17&lt;/option&gt;&lt;option value=&quot;18&quot;&gt;18&lt;/option&gt;&lt;option value=&quot;19&quot;&gt;19&lt;/option&gt;&lt;option value=&quot;20&quot;&gt;20&lt;/option&gt;&lt;option value=&quot;21&quot;&gt;21&lt;/option&gt;&lt;option value=&quot;22&quot;&gt;22&lt;/option&gt;&lt;option value=&quot;23&quot;&gt;23&lt;/option&gt;&lt;option value=&quot;24&quot;&gt;24&lt;/option&gt;&lt;option value=&quot;25&quot;&gt;25&lt;/option&gt;&lt;option value=&quot;26&quot; selected&gt;26&lt;/option&gt;&lt;option value=&quot;27&quot;&gt;27&lt;/option&gt;&lt;option value=&quot;28&quot;&gt;28&lt;/option&gt;&lt;option value=&quot;29&quot;&gt;29&lt;/option&gt;&lt;option value=&quot;30&quot;&gt;30&lt;/option&gt;&lt;/select&gt;</span>
+<span class="s2">                                    &lt;/td&gt;</span>
+<span class="s2">                                    &lt;th colspan=&quot;2&quot;&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;sp_year&quot; id=&quot;id_sp_year&quot;, value=1&gt; Specify year&lt;/label&gt;&lt;/th&gt;</span>
+<span class="s2">                                &lt;/tr&gt;</span>
+<span class="s2">                                &lt;tr id=&quot;not_header&quot;&gt;</span>
+<span class="s2">                                    &lt;th style=&quot;width:6px;&quot; &gt;No.&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;day_head&quot;&gt;Day&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;mon_head&quot;&gt;Month&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;CN_head&quot;&gt;CN&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;C_head&quot;&gt;C&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;N_head&quot;&gt;N&lt;/th&gt;</span>
+<span class="s2">                                    &lt;th style=&quot;width:6px;&quot; id=&quot;year_head&quot; class=&quot;year_not&quot;&gt;Year&lt;/th&gt;</span>
+<span class="s2">                                &lt;/tr&gt;&quot;&quot;&quot;</span> 
 
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_WaterBody&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;&lt;/table&gt;&lt;table class=&quot;input_table tab tab_WaterBody&quot; style=&quot;display:none&quot;&gt;&quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">przm5_parameters</span><span class="o">.</span><span class="n">przm5Inp_waterbody</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
 
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_tabbed_end.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;sub_title&#39;</span><span class="p">:</span> <span class="s">&#39;Submit&#39;</span><span class="p">})</span>
-    <span class="c"># Check if tooltips dictionary exists</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;04uberinput_tabbed_end.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;sub_title&#39;</span><span class="p">:</span> <span class="s1">&#39;Submit&#39;</span><span class="p">})</span>
+    <span class="c1"># Check if tooltips dictionary exists</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">przm5_tooltips</span>
-        <span class="nb">hasattr</span><span class="p">(</span><span class="n">przm5_tooltips</span><span class="p">,</span> <span class="s">&#39;tooltips&#39;</span><span class="p">)</span>
+        <span class="nb">hasattr</span><span class="p">(</span><span class="n">przm5_tooltips</span><span class="p">,</span> <span class="s1">&#39;tooltips&#39;</span><span class="p">)</span>
         <span class="n">tooltips</span> <span class="o">=</span> <span class="n">przm5_tooltips</span><span class="o">.</span><span class="n">tooltips</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="n">tooltips</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;05ubertext_tooltips_right.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;tooltips&#39;</span><span class="p">:</span><span class="n">tooltips</span><span class="p">})</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;05ubertext_tooltips_right.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;tooltips&#39;</span><span class="p">:</span><span class="n">tooltips</span><span class="p">})</span>
 
-    <span class="k">return</span> <span class="n">html</span>
-</pre></div></div>
+    <span class="k">return</span> <span class="n">html</span></div>
+
+</pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -191,16 +192,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -209,13 +207,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

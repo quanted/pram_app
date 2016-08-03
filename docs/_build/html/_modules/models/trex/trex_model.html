@@ -29,8 +29,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,21 +39,21 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.trex.trex_model</h1><div class="highlight"><pre>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="c">#food intake for birds</span>
+<span class="c1">#food intake for birds</span>
 
 <div class="viewcode-block" id="fi_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.fi_bird">[docs]</a><span class="k">def</span> <span class="nf">fi_bird</span><span class="p">(</span><span class="n">aw_bird</span><span class="p">,</span> <span class="n">mf_w_bird</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
@@ -61,54 +61,54 @@
         <span class="n">mf_w_bird</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mf_w_bird</span><span class="p">)</span>           
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of the assessed bird, and/or the mass fraction of &#39;</span>\
-        <span class="s">&#39;water in the food must be supplied on the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of the assessed bird, and/or the mass fraction of &#39;</span>\
+        <span class="s1">&#39;water in the food must be supplied on the command line.&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of the assessed bird must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">aw_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of the assessed bird must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">aw_bird</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The mass fraction of water in the food for bird must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">mf_w_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The mass fraction of water in the food for bird must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">mf_w_bird</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">aw_bird</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of the assessed bird=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">aw_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of the assessed bird=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">aw_bird</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">mf_w_bird</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The fraction of water in the food for bird=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">mf_w_bird</span><span class="p">)</span>        
+        <span class="p">(</span><span class="s1">&#39;The fraction of water in the food for bird=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">mf_w_bird</span><span class="p">)</span>        
     <span class="k">if</span> <span class="n">mf_w_bird</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The fraction of water in the food for bird=</span><span class="si">%g</span><span class="s"> must be less than 1.&#39;</span> <span class="o">%</span> <span class="n">mf_w_bird</span><span class="p">)</span>   
-    <span class="k">return</span> <span class="p">(</span><span class="mf">0.648</span> <span class="o">*</span> <span class="p">(</span><span class="n">aw_bird</span><span class="o">**</span><span class="mf">0.651</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mf_w_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The fraction of water in the food for bird=</span><span class="si">%g</span><span class="s1"> must be less than 1.&#39;</span> <span class="o">%</span> <span class="n">mf_w_bird</span><span class="p">)</span>   
+    <span class="k">return</span> <span class="p">(</span><span class="mf">0.648</span> <span class="o">*</span> <span class="p">(</span><span class="n">aw_bird</span><span class="o">**</span><span class="mf">0.651</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mf_w_bird</span><span class="p">)</span></div>
 
-<span class="c"># food intake for mammals</span>
-</div>
+<span class="c1"># food intake for mammals</span>
+
 <div class="viewcode-block" id="fi_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.fi_mamm">[docs]</a><span class="k">def</span> <span class="nf">fi_mamm</span><span class="p">(</span><span class="n">aw_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">aw_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">aw_mamm</span><span class="p">)</span>
         <span class="n">mf_w_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mf_w_mamm</span><span class="p">)</span>           
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of mammal, and/or the mass fraction of water in the &#39;</span>\
-         <span class="s">&#39;food must be supplied on the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of mammal, and/or the mass fraction of water in the &#39;</span>\
+         <span class="s1">&#39;food must be supplied on the command line.&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of mammal must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">aw_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of mammal must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">aw_mamm</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The mass fraction of water in the food for mammals must be a real number, not &quot;%&quot;&#39;</span> <span class="o">%</span> <span class="n">mf_w_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The mass fraction of water in the food for mammals must be a real number, not &quot;%&quot;&#39;</span> <span class="o">%</span> <span class="n">mf_w_mamm</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">aw_mamm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of mammal=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">aw_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of mammal=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">aw_mamm</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">mf_w_mamm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The fraction of water in the food for mammals=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">mf_w_mamm</span><span class="p">)</span>        
+        <span class="p">(</span><span class="s1">&#39;The fraction of water in the food for mammals=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">mf_w_mamm</span><span class="p">)</span>        
     <span class="k">if</span> <span class="n">mf_w_mamm</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The fraction of water in the food for mammals=</span><span class="si">%g</span><span class="s"> must be less than 1.&#39;</span> <span class="o">%</span> <span class="n">mf_w_mamm</span><span class="p">)</span>  
-    <span class="k">return</span> <span class="p">(</span><span class="mf">0.621</span> <span class="o">*</span> <span class="p">(</span><span class="n">aw_mamm</span><span class="o">**</span><span class="mf">0.564</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mf_w_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The fraction of water in the food for mammals=</span><span class="si">%g</span><span class="s1"> must be less than 1.&#39;</span> <span class="o">%</span> <span class="n">mf_w_mamm</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="p">(</span><span class="mf">0.621</span> <span class="o">*</span> <span class="p">(</span><span class="n">aw_mamm</span><span class="o">**</span><span class="mf">0.564</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mf_w_mamm</span><span class="p">)</span></div>
 
-<span class="c">#Acute adjusted toxicity value for birds</span>
-</div>
+<span class="c1">#Acute adjusted toxicity value for birds</span>
+
 <div class="viewcode-block" id="at_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.at_bird">[docs]</a><span class="k">def</span> <span class="nf">at_bird</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">,</span><span class="n">aw_bird</span><span class="p">,</span><span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ld50_bird</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">)</span>
@@ -117,40 +117,40 @@
         <span class="n">x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The lethal dose, body weight of assessed bird, body weight of tested&#39;</span>\
-        <span class="s">&#39; bird, and/or Mineau scaling factor for birds must be supplied on&#39;</span>\
-        <span class="s">&#39; the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The lethal dose, body weight of assessed bird, body weight of tested&#39;</span>\
+        <span class="s1">&#39; bird, and/or Mineau scaling factor for birds must be supplied on&#39;</span>\
+        <span class="s1">&#39; the command line.&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The lethal dose must be a real number, not &quot;%mg/kg&quot;&#39;</span> <span class="o">%</span><span class="n">ld50_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The lethal dose must be a real number, not &quot;%mg/kg&quot;&#39;</span> <span class="o">%</span><span class="n">ld50_bird</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of assessed bird must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span><span class="n">aw_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of assessed bird must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span><span class="n">aw_bird</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of tested bird must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span><span class="n">tw_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of tested bird must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span><span class="n">tw_bird</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The Mineau scaling factor for birds must be a real number&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The Mineau scaling factor for birds must be a real number&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ZeroDivisionError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of tested bird must be non-zero.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of tested bird must be non-zero.&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ld50_bird</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;ld50=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">ld50_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;ld50=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">ld50_bird</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">aw_bird</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;aw_bird=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">aw_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;aw_bird=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">aw_bird</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">tw_bird</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;tw_bird=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">tw_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;tw_bird=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">tw_bird</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;x=</span><span class="si">%g</span><span class="s"> is non-physical value.&#39;</span> <span class="o">%</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">ld50_bird</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">aw_bird</span><span class="o">/</span><span class="n">tw_bird</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="p">(</span><span class="s1">&#39;x=</span><span class="si">%g</span><span class="s1"> is non-physical value.&#39;</span> <span class="o">%</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ld50_bird</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">aw_bird</span><span class="o">/</span><span class="n">tw_bird</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span></div>
 
-<span class="c"># Acute adjusted toxicity value for mammals</span>
-</div>
+<span class="c1"># Acute adjusted toxicity value for mammals</span>
+
 <div class="viewcode-block" id="at_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.at_mamm">[docs]</a><span class="k">def</span> <span class="nf">at_mamm</span><span class="p">(</span><span class="n">ld50_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ld50_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ld50_mamm</span><span class="p">)</span>
@@ -158,34 +158,34 @@
         <span class="n">tw_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tw_mamm</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The lethal dose, body weight of assessed mammal, and body weight of tested&#39;</span>\
-        <span class="s">&#39; mammal must be supplied on&#39;</span>\
-        <span class="s">&#39; the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The lethal dose, body weight of assessed mammal, and body weight of tested&#39;</span>\
+        <span class="s1">&#39; mammal must be supplied on&#39;</span>\
+        <span class="s1">&#39; the command line.&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The lethal dose must be a real number, not &quot;%mg/kg&quot;&#39;</span> <span class="o">%</span><span class="n">ld50_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The lethal dose must be a real number, not &quot;%mg/kg&quot;&#39;</span> <span class="o">%</span><span class="n">ld50_mamm</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of assessed mammals must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span><span class="n">aw_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of assessed mammals must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span><span class="n">aw_mamm</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of tested mammals must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span><span class="n">tw_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of tested mammals must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span><span class="n">tw_mamm</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ZeroDivisionError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of tested mammals must be non-zero.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of tested mammals must be non-zero.&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ld50_mamm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;ld50_mamm=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">ld50_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;ld50_mamm=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">ld50_mamm</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">aw_mamm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;aw_mamm=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">aw_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;aw_mamm=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">aw_mamm</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">tw_mamm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;tw_mamm=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">tw_mamm</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">ld50_mamm</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">tw_mamm</span><span class="o">/</span><span class="n">aw_mamm</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">0.25</span><span class="p">))</span>
+        <span class="p">(</span><span class="s1">&#39;tw_mamm=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">tw_mamm</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ld50_mamm</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">tw_mamm</span><span class="o">/</span><span class="n">aw_mamm</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">0.25</span><span class="p">))</span></div>
 
-<span class="c"># Adjusted chronic toxicity (NOAEL) value for mammals</span>
-</div>
+<span class="c1"># Adjusted chronic toxicity (NOAEL) value for mammals</span>
+
 <div class="viewcode-block" id="ANOAEL_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.ANOAEL_mamm">[docs]</a><span class="k">def</span> <span class="nf">ANOAEL_mamm</span><span class="p">(</span><span class="n">NOAEL_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">NOAEL_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">NOAEL_mamm</span><span class="p">)</span>
@@ -193,77 +193,77 @@
         <span class="n">tw_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tw_mamm</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The NOAEL, body weight of assessed mammal, and body weight of tested&#39;</span>\
-        <span class="s">&#39; mammal must be supplied on&#39;</span>\
-        <span class="s">&#39; the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The NOAEL, body weight of assessed mammal, and body weight of tested&#39;</span>\
+        <span class="s1">&#39; mammal must be supplied on&#39;</span>\
+        <span class="s1">&#39; the command line.&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The NOAEL must be a real number, not &quot;%mg/kg&quot;&#39;</span> <span class="o">%</span><span class="n">NOAEL_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The NOAEL must be a real number, not &quot;%mg/kg&quot;&#39;</span> <span class="o">%</span><span class="n">NOAEL_mamm</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of assessed mammals must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span><span class="n">aw_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of assessed mammals must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span><span class="n">aw_mamm</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of tested mammals must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span><span class="n">tw_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of tested mammals must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span><span class="n">tw_mamm</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ZeroDivisionError</span>\
-        <span class="p">(</span><span class="s">&#39;The body weight of tested mammals must be non-zero.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The body weight of tested mammals must be non-zero.&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">NOAEL_mamm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;NOAEL_mamm=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">NOAEL_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;NOAEL_mamm=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">NOAEL_mamm</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">aw_mamm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;aw_mamm=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">aw_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;aw_mamm=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">aw_mamm</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">tw_mamm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;tw_mamm=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">tw_mamm</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">NOAEL_mamm</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">tw_mamm</span><span class="o">/</span><span class="n">aw_mamm</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">0.25</span><span class="p">))</span>
+        <span class="p">(</span><span class="s1">&#39;tw_mamm=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">tw_mamm</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">NOAEL_mamm</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">tw_mamm</span><span class="o">/</span><span class="n">aw_mamm</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">0.25</span><span class="p">))</span></div>
 
-<span class="c">#Dietary based EECs</span>
+<span class="c1">#Dietary based EECs</span>
 
-<span class="c">#Initial concentration</span>
- </div>
+<span class="c1">#Initial concentration</span>
+ 
 <div class="viewcode-block" id="C_0"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.C_0">[docs]</a><span class="k">def</span> <span class="nf">C_0</span><span class="p">(</span><span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">a_r</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">a_r</span><span class="p">)</span>
         <span class="n">a_i</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">a_i</span><span class="p">)</span>           
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The application rate, and/or the percentage of active ingredient &#39;</span>\
-         <span class="s">&#39;must be supplied on the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The application rate, and/or the percentage of active ingredient &#39;</span>\
+         <span class="s1">&#39;must be supplied on the command line.&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The application rate must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">a_r</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The application rate must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">a_r</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The percentage of active ingredient must be a real number, not &quot;%&quot;&#39;</span> <span class="o">%</span> <span class="n">a_i</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The percentage of active ingredient must be a real number, not &quot;%&quot;&#39;</span> <span class="o">%</span> <span class="n">a_i</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">a_r</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The application rate=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">a_r</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The application rate=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">a_r</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">a_i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The percentage of active ingredient=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">a_i</span><span class="p">)</span>        
-    <span class="k">return</span> <span class="p">(</span><span class="n">a_r</span><span class="o">*</span><span class="n">a_i</span><span class="o">*</span><span class="n">para</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The percentage of active ingredient=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">a_i</span><span class="p">)</span>        
+    <span class="k">return</span> <span class="p">(</span><span class="n">a_r</span><span class="o">*</span><span class="n">a_i</span><span class="o">*</span><span class="n">para</span><span class="p">)</span></div>
 
-<span class="c">#Concentration over time</span>
-</div>
+<span class="c1">#Concentration over time</span>
+
 <div class="viewcode-block" id="C_t"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.C_t">[docs]</a><span class="k">def</span> <span class="nf">C_t</span><span class="p">(</span><span class="n">C_ini</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>    
     <span class="k">try</span><span class="p">:</span>
         <span class="n">h_l</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">h_l</span><span class="p">)</span>      
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The initial concentration, and/or the foliar dissipation half life, &#39;</span>\
-         <span class="s">&#39;must be supplied on the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The initial concentration, and/or the foliar dissipation half life, &#39;</span>\
+         <span class="s1">&#39;must be supplied on the command line.&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The foliar dissipation half life must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">h_l</span><span class="p">)</span>      
+        <span class="p">(</span><span class="s1">&#39;The foliar dissipation half life must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">h_l</span><span class="p">)</span>      
     <span class="k">if</span> <span class="n">h_l</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The foliar dissipation half life=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">h_l</span><span class="p">)</span>        
-    <span class="k">return</span> <span class="p">(</span><span class="n">C_ini</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">h_l</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">))</span>
+        <span class="p">(</span><span class="s1">&#39;The foliar dissipation half life=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">h_l</span><span class="p">)</span>        
+    <span class="k">return</span> <span class="p">(</span><span class="n">C_ini</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">h_l</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">))</span></div>
     
-<span class="c">#Dietary based EECs</span>
-</div>
+<span class="c1">#Dietary based EECs</span>
+
 <div class="viewcode-block" id="EEC_diet"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.EEC_diet">[docs]</a><span class="k">def</span> <span class="nf">EEC_diet</span><span class="p">(</span><span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="n">C_0</span><span class="o">=</span><span class="n">C_0</span><span class="p">(</span><span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
@@ -271,28 +271,28 @@
         <span class="n">i_a</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">i_a</span><span class="p">)</span>        
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The number of applications, and/or the interval between applications &#39;</span>\
-         <span class="s">&#39;must be supplied on the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The number of applications, and/or the interval between applications &#39;</span>\
+         <span class="s1">&#39;must be supplied on the command line.&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The number of applications must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">n_a</span><span class="p">)</span>        
+        <span class="p">(</span><span class="s1">&#39;The number of applications must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">n_a</span><span class="p">)</span>        
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The interval between applications must be a real number, not &quot;</span><span class="si">%g</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">i_a</span><span class="p">)</span>                
+        <span class="p">(</span><span class="s1">&#39;The interval between applications must be a real number, not &quot;</span><span class="si">%g</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">i_a</span><span class="p">)</span>                
     <span class="k">if</span> <span class="n">n_a</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The number of applications=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">n_a</span><span class="p">)</span>    
+        <span class="p">(</span><span class="s1">&#39;The number of applications=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">n_a</span><span class="p">)</span>    
     <span class="k">if</span> <span class="n">i_a</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The interval between applications=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">i_a</span><span class="p">)</span>      
+        <span class="p">(</span><span class="s1">&#39;The interval between applications=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">i_a</span><span class="p">)</span>      
     <span class="k">if</span> <span class="n">a_i</span><span class="o">*</span><span class="n">n_a</span> <span class="o">&gt;</span> <span class="mi">365</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The schduled application=</span><span class="si">%g</span><span class="s"> is over the modeling period (1 year).&#39;</span> <span class="o">%</span> <span class="n">i_a</span><span class="o">*</span><span class="n">n_a</span><span class="p">)</span>     
+        <span class="p">(</span><span class="s1">&#39;The schduled application=</span><span class="si">%g</span><span class="s1"> is over the modeling period (1 year).&#39;</span> <span class="o">%</span> <span class="n">i_a</span><span class="o">*</span><span class="n">n_a</span><span class="p">)</span>     
 
-    <span class="c">#C_temp=[1.0]*365 #empty array to hold the concentrations over days   </span>
-    <span class="n">C_temp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">365</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="c">#empty array to hold the concentrations over days       </span>
-    <span class="n">a_p_temp</span><span class="o">=</span><span class="mi">0</span>  <span class="c">#application period temp  </span>
-    <span class="n">n_a_temp</span><span class="o">=</span><span class="mi">0</span>  <span class="c">#number of existed applications</span>
+    <span class="c1">#C_temp=[1.0]*365 #empty array to hold the concentrations over days   </span>
+    <span class="n">C_temp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">365</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="c1">#empty array to hold the concentrations over days       </span>
+    <span class="n">a_p_temp</span><span class="o">=</span><span class="mi">0</span>  <span class="c1">#application period temp  </span>
+    <span class="n">n_a_temp</span><span class="o">=</span><span class="mi">0</span>  <span class="c1">#number of existed applications</span>
     
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">365</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> 
@@ -308,10 +308,10 @@
             <span class="n">C_temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">C_t</span><span class="p">(</span><span class="n">C_temp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">h_l</span><span class="p">)</span>        
         <span class="k">else</span> <span class="p">:</span>
             <span class="n">C_temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">C_t</span><span class="p">(</span><span class="n">C_temp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">h_l</span><span class="p">)</span> 
-    <span class="k">return</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">C_temp</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">C_temp</span><span class="p">))</span></div>
 
-<span class="c"># Dose based EECs for birds</span>
-</div>
+<span class="c1"># Dose based EECs for birds</span>
+
 <div class="viewcode-block" id="EEC_dose_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.EEC_dose_bird">[docs]</a><span class="k">def</span> <span class="nf">EEC_dose_bird</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">fi_bird</span><span class="p">,</span> <span class="n">mf_w_bird</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="n">n_a</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n_a</span><span class="p">)</span>
     <span class="n">i_a</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">i_a</span><span class="p">)</span>      
@@ -324,10 +324,10 @@
         
     <span class="n">fi_bird</span> <span class="o">=</span> <span class="n">fi_bird</span><span class="p">(</span><span class="n">aw_bird</span><span class="p">,</span> <span class="n">mf_w_bird</span><span class="p">)</span>
     <span class="n">EEC_diet</span><span class="o">=</span><span class="n">EEC_diet</span><span class="p">(</span><span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">*</span><span class="n">fi_bird</span><span class="o">/</span><span class="n">aw_bird</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">*</span><span class="n">fi_bird</span><span class="o">/</span><span class="n">aw_bird</span><span class="p">)</span></div>
 
-<span class="c"># Dose based EECs for granivores birds</span>
-</div>
+<span class="c1"># Dose based EECs for granivores birds</span>
+
 <div class="viewcode-block" id="EEC_dose_bird_g"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.EEC_dose_bird_g">[docs]</a><span class="k">def</span> <span class="nf">EEC_dose_bird_g</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">fi_bird</span><span class="p">,</span> <span class="n">mf_w_bird</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">para</span><span class="o">==</span><span class="mi">15</span><span class="p">:</span>
         <span class="n">n_a</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n_a</span><span class="p">)</span>
@@ -342,18 +342,18 @@
         <span class="n">EEC_diet</span><span class="o">=</span><span class="n">EEC_diet</span><span class="p">(</span><span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">*</span><span class="n">fi_bird</span><span class="o">/</span><span class="n">aw_bird</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># Dose based EECs for mammals</span>
-</div>
+<span class="c1"># Dose based EECs for mammals</span>
+
 <div class="viewcode-block" id="EEC_dose_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.EEC_dose_mamm">[docs]</a><span class="k">def</span> <span class="nf">EEC_dose_mamm</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">fi_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="n">aw_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">aw_mamm</span><span class="p">)</span>
     <span class="n">EEC_diet</span><span class="o">=</span><span class="n">EEC_diet</span><span class="p">(</span><span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>
     <span class="n">fi_mamm</span> <span class="o">=</span> <span class="n">fi_mamm</span><span class="p">(</span><span class="n">aw_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">*</span><span class="n">fi_mamm</span><span class="o">/</span><span class="n">aw_mamm</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">*</span><span class="n">fi_mamm</span><span class="o">/</span><span class="n">aw_mamm</span><span class="p">)</span></div>
 
-<span class="c"># Dose based EECs for granivores mammals</span>
-</div>
+<span class="c1"># Dose based EECs for granivores mammals</span>
+
 <div class="viewcode-block" id="EEC_dose_mamm_g"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.EEC_dose_mamm_g">[docs]</a><span class="k">def</span> <span class="nf">EEC_dose_mamm_g</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">fi_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">para</span><span class="o">==</span><span class="mi">15</span><span class="p">:</span>    
         <span class="n">aw_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">aw_mamm</span><span class="p">)</span>
@@ -361,244 +361,244 @@
         <span class="n">fi_mamm</span> <span class="o">=</span> <span class="n">fi_mamm</span><span class="p">(</span><span class="n">aw_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">*</span><span class="n">fi_mamm</span><span class="o">/</span><span class="n">aw_mamm</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># Acute dose-based risk quotients for birds</span>
-</div>
+<span class="c1"># Acute dose-based risk quotients for birds</span>
+
 <div class="viewcode-block" id="ARQ_dose_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.ARQ_dose_bird">[docs]</a><span class="k">def</span> <span class="nf">ARQ_dose_bird</span><span class="p">(</span><span class="n">EEC_dose_bird</span><span class="p">,</span> <span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">fi_bird</span><span class="p">,</span> <span class="n">at_bird</span><span class="p">,</span> <span class="n">ld50_bird</span><span class="p">,</span> <span class="n">tw_bird</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mf_w_bird</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="n">EEC_dose_bird</span> <span class="o">=</span> <span class="n">EEC_dose_bird</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">fi_bird</span><span class="p">,</span> <span class="n">mf_w_bird</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>
     <span class="n">at_bird</span> <span class="o">=</span> <span class="n">at_bird</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">,</span><span class="n">aw_bird</span><span class="p">,</span><span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_dose_bird</span><span class="o">/</span><span class="n">at_bird</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_dose_bird</span><span class="o">/</span><span class="n">at_bird</span><span class="p">)</span></div>
 
-<span class="c"># Acute dose-based risk quotients for granivores birds</span>
-</div>
+<span class="c1"># Acute dose-based risk quotients for granivores birds</span>
+
 <div class="viewcode-block" id="ARQ_dose_bird_g"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.ARQ_dose_bird_g">[docs]</a><span class="k">def</span> <span class="nf">ARQ_dose_bird_g</span><span class="p">(</span><span class="n">EEC_dose_bird</span><span class="p">,</span> <span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">fi_bird</span><span class="p">,</span> <span class="n">at_bird</span><span class="p">,</span> <span class="n">ld50_bird</span><span class="p">,</span> <span class="n">tw_bird</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mf_w_bird</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">para</span><span class="o">==</span><span class="mi">15</span><span class="p">:</span>
         <span class="n">EEC_dose_bird</span> <span class="o">=</span> <span class="n">EEC_dose_bird</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">fi_bird</span><span class="p">,</span> <span class="n">mf_w_bird</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>
         <span class="n">at_bird</span> <span class="o">=</span> <span class="n">at_bird</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">,</span><span class="n">aw_bird</span><span class="p">,</span><span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">EEC_dose_bird</span><span class="o">/</span><span class="n">at_bird</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
     
-<span class="c"># Acute dose-based risk quotients for mammals</span>
-</div>
+<span class="c1"># Acute dose-based risk quotients for mammals</span>
+
 <div class="viewcode-block" id="ARQ_dose_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.ARQ_dose_mamm">[docs]</a><span class="k">def</span> <span class="nf">ARQ_dose_mamm</span><span class="p">(</span><span class="n">EEC_dose_mamm</span><span class="p">,</span> <span class="n">at_mamm</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">ld50_mamm</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="n">EEC_dose_mamm</span> <span class="o">=</span> <span class="n">EEC_dose_mamm</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">fi_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>
     <span class="n">at_mamm</span> <span class="o">=</span> <span class="n">at_mamm</span><span class="p">(</span><span class="n">ld50_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_dose_mamm</span><span class="o">/</span><span class="n">at_mamm</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_dose_mamm</span><span class="o">/</span><span class="n">at_mamm</span><span class="p">)</span></div>
 
-<span class="c"># Acute dose-based risk quotients for granivores mammals</span>
-</div>
+<span class="c1"># Acute dose-based risk quotients for granivores mammals</span>
+
 <div class="viewcode-block" id="ARQ_dose_mamm_g"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.ARQ_dose_mamm_g">[docs]</a><span class="k">def</span> <span class="nf">ARQ_dose_mamm_g</span><span class="p">(</span><span class="n">EEC_dose_mamm</span><span class="p">,</span> <span class="n">at_mamm</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">ld50_mamm</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">para</span><span class="o">==</span><span class="mi">15</span><span class="p">:</span>    
         <span class="n">EEC_dose_mamm</span> <span class="o">=</span> <span class="n">EEC_dose_mamm</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">fi_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>
         <span class="n">at_mamm</span> <span class="o">=</span> <span class="n">at_mamm</span><span class="p">(</span><span class="n">ld50_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">EEC_dose_mamm</span><span class="o">/</span><span class="n">at_mamm</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># Acute dietary-based risk quotients for birds</span>
-</div>
+<span class="c1"># Acute dietary-based risk quotients for birds</span>
+
 <div class="viewcode-block" id="ARQ_diet_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.ARQ_diet_bird">[docs]</a><span class="k">def</span> <span class="nf">ARQ_diet_bird</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">lc50_bird</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="n">EEC_diet</span><span class="o">=</span><span class="n">EEC_diet</span><span class="p">(</span><span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>    
     <span class="k">try</span><span class="p">:</span>
         <span class="n">lc50_bird</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lc50_bird</span><span class="p">)</span>      
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The Avian LC50 must be supplied on the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The Avian LC50 must be supplied on the command line.&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">lc50_bird</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The Avian LC50=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">lc50_bird</span><span class="p">)</span>        
-    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">/</span><span class="n">lc50_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The Avian LC50=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">lc50_bird</span><span class="p">)</span>        
+    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">/</span><span class="n">lc50_bird</span><span class="p">)</span></div>
 
 
-<span class="c"># Acute dietary-based risk quotients for mammals</span>
-</div>
+<span class="c1"># Acute dietary-based risk quotients for mammals</span>
+
 <div class="viewcode-block" id="ARQ_diet_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.ARQ_diet_mamm">[docs]</a><span class="k">def</span> <span class="nf">ARQ_diet_mamm</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">lc50_mamm</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="n">EEC_diet</span><span class="o">=</span><span class="n">EEC_diet</span><span class="p">(</span><span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>    
-    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">/</span><span class="n">lc50_mamm</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">/</span><span class="n">lc50_mamm</span><span class="p">)</span></div>
 
-<span class="c"># Chronic dietary-based risk quotients for birds</span>
-</div>
+<span class="c1"># Chronic dietary-based risk quotients for birds</span>
+
 <div class="viewcode-block" id="CRQ_diet_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.CRQ_diet_bird">[docs]</a><span class="k">def</span> <span class="nf">CRQ_diet_bird</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">NOAEC_bird</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="n">EEC_diet</span><span class="o">=</span><span class="n">EEC_diet</span><span class="p">(</span><span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>    
     <span class="k">try</span><span class="p">:</span>
         <span class="n">NOAEC_bird</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">NOAEC_bird</span><span class="p">)</span>      
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The avian NOAEC must be supplied on the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The avian NOAEC must be supplied on the command line.&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">NOAEC_bird</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The avian NOAEC=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">NOAEC_bird</span><span class="p">)</span>        
-    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">/</span><span class="n">NOAEC_bird</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The avian NOAEC=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">NOAEC_bird</span><span class="p">)</span>        
+    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">/</span><span class="n">NOAEC_bird</span><span class="p">)</span></div>
 
-<span class="c"># Chronic dietary-based risk quotients for mammals</span>
-</div>
+<span class="c1"># Chronic dietary-based risk quotients for mammals</span>
+
 <div class="viewcode-block" id="CRQ_diet_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.CRQ_diet_mamm">[docs]</a><span class="k">def</span> <span class="nf">CRQ_diet_mamm</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">NOAEC_mamm</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="n">EEC_diet</span><span class="o">=</span><span class="n">EEC_diet</span><span class="p">(</span><span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">NOAEC_mamm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">NOAEC_mamm</span><span class="p">)</span>      
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IndexError</span>\
-        <span class="p">(</span><span class="s">&#39;The mammlian NOAEC must be supplied on the command line.&#39;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The mammlian NOAEC must be supplied on the command line.&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">NOAEC_mamm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span>\
-        <span class="p">(</span><span class="s">&#39;The mammlian NOAEC=</span><span class="si">%g</span><span class="s"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">NOAEC_mamm</span><span class="p">)</span>        
-    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">/</span><span class="n">NOAEC_mamm</span><span class="p">)</span>
+        <span class="p">(</span><span class="s1">&#39;The mammlian NOAEC=</span><span class="si">%g</span><span class="s1"> is a non-physical value.&#39;</span> <span class="o">%</span> <span class="n">NOAEC_mamm</span><span class="p">)</span>        
+    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_diet</span><span class="o">/</span><span class="n">NOAEC_mamm</span><span class="p">)</span></div>
 
-<span class="c"># Chronic dose-based risk quotients for mammals</span>
-</div>
+<span class="c1"># Chronic dose-based risk quotients for mammals</span>
+
 <div class="viewcode-block" id="CRQ_dose_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.CRQ_dose_mamm">[docs]</a><span class="k">def</span> <span class="nf">CRQ_dose_mamm</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">EEC_dose_mamm</span><span class="p">,</span> <span class="n">ANOAEL_mamm</span><span class="p">,</span> <span class="n">NOAEL_mamm</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="n">ANOAEL_mamm</span><span class="o">=</span><span class="n">ANOAEL_mamm</span><span class="p">(</span><span class="n">NOAEL_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">)</span>
     <span class="n">EEC_dose_mamm</span> <span class="o">=</span> <span class="n">EEC_dose_mamm</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">fi_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>     
-    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_dose_mamm</span><span class="o">/</span><span class="n">ANOAEL_mamm</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">EEC_dose_mamm</span><span class="o">/</span><span class="n">ANOAEL_mamm</span><span class="p">)</span></div>
 
-<span class="c"># Chronic dose-based risk quotients for granviores mammals</span>
-</div>
+<span class="c1"># Chronic dose-based risk quotients for granviores mammals</span>
+
 <div class="viewcode-block" id="CRQ_dose_mamm_g"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.CRQ_dose_mamm_g">[docs]</a><span class="k">def</span> <span class="nf">CRQ_dose_mamm_g</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">EEC_dose_mamm</span><span class="p">,</span> <span class="n">ANOAEL_mamm</span><span class="p">,</span> <span class="n">NOAEL_mamm</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">para</span><span class="o">==</span><span class="mi">15</span><span class="p">:</span>    
         <span class="n">ANOAEL_mamm</span><span class="o">=</span><span class="n">ANOAEL_mamm</span><span class="p">(</span><span class="n">NOAEL_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">)</span>
         <span class="n">EEC_dose_mamm</span> <span class="o">=</span> <span class="n">EEC_dose_mamm</span><span class="p">(</span><span class="n">EEC_diet</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">fi_mamm</span><span class="p">,</span> <span class="n">mf_w_mamm</span><span class="p">,</span> <span class="n">C_0</span><span class="p">,</span> <span class="n">n_a</span><span class="p">,</span> <span class="n">i_a</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">para</span><span class="p">,</span> <span class="n">h_l</span><span class="p">)</span>     
         <span class="k">return</span> <span class="p">(</span><span class="n">EEC_dose_mamm</span><span class="o">/</span><span class="n">ANOAEL_mamm</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># LD50ft-2 for row/band/in-furrow granular birds</span>
-</div>
+<span class="c1"># LD50ft-2 for row/band/in-furrow granular birds</span>
+
 <div class="viewcode-block" id="LD50_rg_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.LD50_rg_bird">[docs]</a><span class="k">def</span> <span class="nf">LD50_rg_bird</span><span class="p">(</span><span class="n">Application_type</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">p_i</span><span class="p">,</span> <span class="n">r_s</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">at_bird</span><span class="p">,</span> <span class="n">ld50_bird</span><span class="p">,</span> <span class="n">tw_bird</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> 
-    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s">&#39;Row/Band/In-furrow-Granular&#39;</span><span class="p">:</span>     
+    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s1">&#39;Row/Band/In-furrow-Granular&#39;</span><span class="p">:</span>     
         <span class="n">at_bird</span><span class="o">=</span><span class="n">at_bird</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">,</span><span class="n">aw_bird</span><span class="p">,</span><span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
         <span class="n">n_r</span><span class="o">=</span><span class="p">(</span><span class="mi">43560</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">r_s</span><span class="p">)</span>
         <span class="n">expo_rg_bird</span><span class="o">=</span><span class="p">(</span><span class="n">a_r</span><span class="o">*</span><span class="n">a_i</span><span class="o">*</span><span class="mi">453590</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n_r</span><span class="o">*</span><span class="p">(</span><span class="mi">43560</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">b_w</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_i</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">expo_rg_bird</span><span class="o">/</span><span class="p">(</span><span class="n">at_bird</span><span class="o">*</span><span class="p">(</span><span class="n">aw_bird</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># LD50ft-2 for row/band/in-furrow liquid birds</span>
-</div>
+<span class="c1"># LD50ft-2 for row/band/in-furrow liquid birds</span>
+
 <div class="viewcode-block" id="LD50_rl_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.LD50_rl_bird">[docs]</a><span class="k">def</span> <span class="nf">LD50_rl_bird</span><span class="p">(</span><span class="n">Application_type</span><span class="p">,</span> <span class="n">a_r_l</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">p_i</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">at_bird</span><span class="p">,</span> <span class="n">ld50_bird</span><span class="p">,</span> <span class="n">tw_bird</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s">&#39;Row/Band/In-furrow-Liquid&#39;</span><span class="p">:</span>    
+    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s1">&#39;Row/Band/In-furrow-Liquid&#39;</span><span class="p">:</span>    
         <span class="n">at_bird</span><span class="o">=</span><span class="n">at_bird</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">,</span><span class="n">aw_bird</span><span class="p">,</span><span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>    
         <span class="n">expo_rl_bird</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_l</span><span class="o">*</span><span class="mi">28349</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="n">b_w</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_i</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">expo_rl_bird</span><span class="o">/</span><span class="p">(</span><span class="n">at_bird</span><span class="o">*</span><span class="p">(</span><span class="n">aw_bird</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># LD50ft-2 for row/band/in-furrow granular mammals</span>
-</div>
+<span class="c1"># LD50ft-2 for row/band/in-furrow granular mammals</span>
+
 <div class="viewcode-block" id="LD50_rg_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.LD50_rg_mamm">[docs]</a><span class="k">def</span> <span class="nf">LD50_rg_mamm</span><span class="p">(</span><span class="n">Application_type</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">p_i</span><span class="p">,</span> <span class="n">r_s</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">at_mamm</span><span class="p">,</span> <span class="n">ld50_mamm</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s">&#39;Row/Band/In-furrow-Granular&#39;</span><span class="p">:</span>    
+    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s1">&#39;Row/Band/In-furrow-Granular&#39;</span><span class="p">:</span>    
         <span class="n">at_mamm</span><span class="o">=</span><span class="n">at_mamm</span><span class="p">(</span><span class="n">ld50_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">)</span>
         <span class="n">n_r</span><span class="o">=</span><span class="p">(</span><span class="mi">43560</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">r_s</span><span class="p">)</span>
         <span class="n">expo_rg_mamm</span><span class="o">=</span><span class="p">(</span><span class="n">a_r</span><span class="o">*</span><span class="n">a_i</span><span class="o">*</span><span class="mi">453590</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n_r</span><span class="o">*</span><span class="p">(</span><span class="mi">43560</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">b_w</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_i</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">expo_rg_mamm</span><span class="o">/</span><span class="p">(</span><span class="n">at_mamm</span><span class="o">*</span><span class="p">(</span><span class="n">aw_mamm</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># LD50ft-2 for row/band/in-furrow liquid mammals</span>
-</div>
+<span class="c1"># LD50ft-2 for row/band/in-furrow liquid mammals</span>
+
 <div class="viewcode-block" id="LD50_rl_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.LD50_rl_mamm">[docs]</a><span class="k">def</span> <span class="nf">LD50_rl_mamm</span><span class="p">(</span><span class="n">Application_type</span><span class="p">,</span> <span class="n">a_r_l</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">p_i</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">at_mamm</span><span class="p">,</span> <span class="n">ld50_mamm</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s">&#39;Row/Band/In-furrow-Liquid&#39;</span><span class="p">:</span>    
+    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s1">&#39;Row/Band/In-furrow-Liquid&#39;</span><span class="p">:</span>    
         <span class="n">at_mamm</span><span class="o">=</span><span class="n">at_mamm</span><span class="p">(</span><span class="n">ld50_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">)</span>    
         <span class="n">expo_rl_bird</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_l</span><span class="o">*</span><span class="mi">28349</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="n">b_w</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_i</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">expo_rl_bird</span><span class="o">/</span><span class="p">(</span><span class="n">at_mamm</span><span class="o">*</span><span class="p">(</span><span class="n">aw_mamm</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># LD50ft-2 for broadcast granular birds</span>
-</div>
+<span class="c1"># LD50ft-2 for broadcast granular birds</span>
+
 <div class="viewcode-block" id="LD50_bg_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.LD50_bg_bird">[docs]</a><span class="k">def</span> <span class="nf">LD50_bg_bird</span><span class="p">(</span><span class="n">Application_type</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">p_i</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">at_bird</span><span class="p">,</span> <span class="n">ld50_bird</span><span class="p">,</span> <span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s">&#39;Broadcast-Granular&#39;</span><span class="p">:</span>    
+    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s1">&#39;Broadcast-Granular&#39;</span><span class="p">:</span>    
         <span class="n">at_bird</span><span class="o">=</span><span class="n">at_bird</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">,</span><span class="n">aw_bird</span><span class="p">,</span><span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
         <span class="n">expo_bg_bird</span><span class="o">=</span><span class="p">((</span><span class="n">a_r</span><span class="o">*</span><span class="n">a_i</span><span class="o">*</span><span class="mi">453590</span><span class="p">)</span><span class="o">/</span><span class="mi">43560</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_i</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">expo_bg_bird</span><span class="o">/</span><span class="p">(</span><span class="n">at_bird</span><span class="o">*</span><span class="p">(</span><span class="n">aw_bird</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># LD50ft-2 for broadcast liquid birds</span>
-</div>
+<span class="c1"># LD50ft-2 for broadcast liquid birds</span>
+
 <div class="viewcode-block" id="LD50_bl_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.LD50_bl_bird">[docs]</a><span class="k">def</span> <span class="nf">LD50_bl_bird</span><span class="p">(</span><span class="n">Application_type</span><span class="p">,</span> <span class="n">a_r_l</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">p_i</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">at_bird</span><span class="p">,</span> <span class="n">ld50_bird</span><span class="p">,</span> <span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s">&#39;Broadcast-Liquid&#39;</span><span class="p">:</span>   
+    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s1">&#39;Broadcast-Liquid&#39;</span><span class="p">:</span>   
         <span class="n">at_bird</span><span class="o">=</span><span class="n">at_bird</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">,</span><span class="n">aw_bird</span><span class="p">,</span><span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
         <span class="n">expo_bl_bird</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_l</span><span class="o">*</span><span class="mi">28349</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">43560</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_i</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">expo_bl_bird</span><span class="o">/</span><span class="p">(</span><span class="n">at_bird</span><span class="o">*</span><span class="p">(</span><span class="n">aw_bird</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)))</span>    
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># LD50ft-2 for broadcast granular mammals</span>
-</div>
+<span class="c1"># LD50ft-2 for broadcast granular mammals</span>
+
 <div class="viewcode-block" id="LD50_bg_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.LD50_bg_mamm">[docs]</a><span class="k">def</span> <span class="nf">LD50_bg_mamm</span><span class="p">(</span><span class="n">Application_type</span><span class="p">,</span> <span class="n">a_r</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">p_i</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">at_mamm</span><span class="p">,</span> <span class="n">ld50_mamm</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s">&#39;Broadcast-Granular&#39;</span><span class="p">:</span>    
+    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s1">&#39;Broadcast-Granular&#39;</span><span class="p">:</span>    
         <span class="n">at_mamm</span><span class="o">=</span><span class="n">at_mamm</span><span class="p">(</span><span class="n">ld50_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">)</span> 
         <span class="n">expo_bg_mamm</span><span class="o">=</span><span class="p">((</span><span class="n">a_r</span><span class="o">*</span><span class="n">a_i</span><span class="o">*</span><span class="mi">453590</span><span class="p">)</span><span class="o">/</span><span class="mi">43560</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_i</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">expo_bg_mamm</span><span class="o">/</span><span class="p">(</span><span class="n">at_mamm</span><span class="o">*</span><span class="p">(</span><span class="n">aw_mamm</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># LD50ft-2 for broadcast liquid mammals</span>
-</div>
+<span class="c1"># LD50ft-2 for broadcast liquid mammals</span>
+
 <div class="viewcode-block" id="LD50_bl_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.LD50_bl_mamm">[docs]</a><span class="k">def</span> <span class="nf">LD50_bl_mamm</span><span class="p">(</span><span class="n">Application_type</span><span class="p">,</span> <span class="n">a_r_l</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">p_i</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">at_mamm</span><span class="p">,</span> <span class="n">ld50_mamm</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s">&#39;Broadcast-Liquid&#39;</span><span class="p">:</span>    
+    <span class="k">if</span> <span class="n">Application_type</span><span class="o">==</span><span class="s1">&#39;Broadcast-Liquid&#39;</span><span class="p">:</span>    
         <span class="n">at_mamm</span><span class="o">=</span><span class="n">at_mamm</span><span class="p">(</span><span class="n">ld50_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">)</span>
         <span class="n">expo_bl_mamm</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_l</span><span class="o">*</span><span class="mi">28349</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">43560</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_i</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">expo_bl_mamm</span><span class="o">/</span><span class="p">(</span><span class="n">at_mamm</span><span class="o">*</span><span class="p">(</span><span class="n">aw_mamm</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)))</span>     
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
         
-<span class="c"># Seed treatment acute RQ for birds method 1</span>
-</div>
+<span class="c1"># Seed treatment acute RQ for birds method 1</span>
+
 <div class="viewcode-block" id="sa_bird_1"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.sa_bird_1">[docs]</a><span class="k">def</span> <span class="nf">sa_bird_1</span><span class="p">(</span><span class="n">a_r_p</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">at_bird</span><span class="p">,</span><span class="n">fi_bird</span><span class="p">,</span> <span class="n">ld50_bird</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">tw_bird</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="n">at_bird</span><span class="o">=</span><span class="n">at_bird</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">,</span><span class="n">aw_bird</span><span class="p">,</span><span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>    
     <span class="n">fi_bird</span><span class="o">=</span><span class="n">fi_bird</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>    
-    <span class="n">m_s_a_r</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="o">*</span><span class="mi">10000</span>    <span class="c">#maximum seed application rate=application rate*10000</span>
+    <span class="n">m_s_a_r</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="o">*</span><span class="mi">10000</span>    <span class="c1">#maximum seed application rate=application rate*10000</span>
     <span class="n">nagy_bird</span><span class="o">=</span><span class="n">fi_bird</span><span class="o">*</span><span class="mf">0.001</span><span class="o">*</span><span class="n">m_s_a_r</span><span class="o">/</span><span class="mf">0.02</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">nagy_bird</span><span class="o">/</span><span class="n">at_bird</span><span class="p">)</span>      
+    <span class="k">return</span> <span class="p">(</span><span class="n">nagy_bird</span><span class="o">/</span><span class="n">at_bird</span><span class="p">)</span>      </div>
     
-<span class="c"># Seed treatment acute RQ for birds method 2</span>
-</div>
+<span class="c1"># Seed treatment acute RQ for birds method 2</span>
+
 <div class="viewcode-block" id="sa_bird_2"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.sa_bird_2">[docs]</a><span class="k">def</span> <span class="nf">sa_bird_2</span><span class="p">(</span><span class="n">a_r_p</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">m_s_r_p</span><span class="p">,</span> <span class="n">at_bird</span><span class="p">,</span> <span class="n">ld50_bird</span><span class="p">,</span> <span class="n">aw_bird</span><span class="p">,</span> <span class="n">tw_bird</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="n">at_bird</span><span class="o">=</span><span class="n">at_bird</span><span class="p">(</span><span class="n">ld50_bird</span><span class="p">,</span><span class="n">aw_bird</span><span class="p">,</span><span class="n">tw_bird</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>    
-    <span class="n">m_a_r</span><span class="o">=</span><span class="p">((((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="p">)</span><span class="o">*</span><span class="n">m_s_r_p</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>    <span class="c">#maximum application rate</span>
+    <span class="n">m_a_r</span><span class="o">=</span><span class="p">((((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="p">)</span><span class="o">*</span><span class="n">m_s_r_p</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>    <span class="c1">#maximum application rate</span>
     <span class="n">av_ai</span><span class="o">=</span><span class="n">m_a_r</span><span class="o">*</span><span class="mi">1000000</span><span class="o">/</span><span class="p">(</span><span class="mi">43560</span><span class="o">*</span><span class="mf">2.2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">av_ai</span><span class="o">/</span><span class="p">(</span><span class="n">at_bird</span><span class="o">*</span><span class="mf">0.02</span><span class="p">))</span>     
+    <span class="k">return</span> <span class="p">(</span><span class="n">av_ai</span><span class="o">/</span><span class="p">(</span><span class="n">at_bird</span><span class="o">*</span><span class="mf">0.02</span><span class="p">))</span>     </div>
     
-<span class="c"># Seed treatment chronic RQ for birds</span>
-</div>
+<span class="c1"># Seed treatment chronic RQ for birds</span>
+
 <div class="viewcode-block" id="sc_bird"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.sc_bird">[docs]</a><span class="k">def</span> <span class="nf">sc_bird</span><span class="p">(</span><span class="n">a_r_p</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">NOAEC_bird</span><span class="p">):</span>    
-    <span class="n">m_s_a_r</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="o">*</span><span class="mi">10000</span>    <span class="c">#maximum seed application rate=application rate*10000</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">m_s_a_r</span><span class="o">/</span><span class="n">NOAEC_bird</span><span class="p">)</span>       
+    <span class="n">m_s_a_r</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="o">*</span><span class="mi">10000</span>    <span class="c1">#maximum seed application rate=application rate*10000</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">m_s_a_r</span><span class="o">/</span><span class="n">NOAEC_bird</span><span class="p">)</span>       </div>
     
-<span class="c"># Seed treatment acute RQ for mammals method 1</span>
-</div>
+<span class="c1"># Seed treatment acute RQ for mammals method 1</span>
+
 <div class="viewcode-block" id="sa_mamm_1"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.sa_mamm_1">[docs]</a><span class="k">def</span> <span class="nf">sa_mamm_1</span><span class="p">(</span><span class="n">a_r_p</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">at_mamm</span><span class="p">,</span> <span class="n">fi_mamm</span><span class="p">,</span> <span class="n">ld50_mamm</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">):</span>
     <span class="n">at_mamm</span><span class="o">=</span><span class="n">at_mamm</span><span class="p">(</span><span class="n">ld50_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">)</span>     
     <span class="n">fi_mamm</span><span class="o">=</span><span class="n">fi_mamm</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>    
-    <span class="n">m_s_a_r</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="o">*</span><span class="mi">10000</span>    <span class="c">#maximum seed application rate=application rate*10000</span>
+    <span class="n">m_s_a_r</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="o">*</span><span class="mi">10000</span>    <span class="c1">#maximum seed application rate=application rate*10000</span>
     <span class="n">nagy_mamm</span><span class="o">=</span><span class="n">fi_mamm</span><span class="o">*</span><span class="mf">0.001</span><span class="o">*</span><span class="n">m_s_a_r</span><span class="o">/</span><span class="mf">0.015</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">nagy_mamm</span><span class="o">/</span><span class="n">at_mamm</span><span class="p">)</span>       
+    <span class="k">return</span> <span class="p">(</span><span class="n">nagy_mamm</span><span class="o">/</span><span class="n">at_mamm</span><span class="p">)</span>       </div>
     
-<span class="c"># Seed treatment acute RQ for mammals method 2</span>
-</div>
+<span class="c1"># Seed treatment acute RQ for mammals method 2</span>
+
 <div class="viewcode-block" id="sa_mamm_2"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.sa_mamm_2">[docs]</a><span class="k">def</span> <span class="nf">sa_mamm_2</span><span class="p">(</span><span class="n">a_r_p</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">m_s_r_p</span><span class="p">,</span> <span class="n">at_mamm</span><span class="p">,</span> <span class="n">ld50_mamm</span><span class="p">,</span> <span class="n">aw_mamm</span><span class="p">,</span> <span class="n">tw_mamm</span><span class="p">):</span>
     <span class="n">at_mamm</span><span class="o">=</span><span class="n">at_mamm</span><span class="p">(</span><span class="n">ld50_mamm</span><span class="p">,</span><span class="n">aw_mamm</span><span class="p">,</span><span class="n">tw_mamm</span><span class="p">)</span>
-    <span class="n">m_a_r</span><span class="o">=</span><span class="p">((((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="p">)</span><span class="o">*</span><span class="n">m_s_r_p</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>    <span class="c">#maximum application rate</span>
+    <span class="n">m_a_r</span><span class="o">=</span><span class="p">((((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="p">)</span><span class="o">*</span><span class="n">m_s_r_p</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>    <span class="c1">#maximum application rate</span>
     <span class="n">av_ai</span><span class="o">=</span><span class="n">m_a_r</span><span class="o">*</span><span class="mi">1000000</span><span class="o">/</span><span class="p">(</span><span class="mi">43560</span><span class="o">*</span><span class="mf">2.2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">av_ai</span><span class="o">/</span><span class="p">(</span><span class="n">at_mamm</span><span class="o">*</span><span class="mf">0.015</span><span class="p">))</span>     
+    <span class="k">return</span> <span class="p">(</span><span class="n">av_ai</span><span class="o">/</span><span class="p">(</span><span class="n">at_mamm</span><span class="o">*</span><span class="mf">0.015</span><span class="p">))</span>     </div>
       
-<span class="c"># Seed treatment chronic RQ for mammals</span>
-</div>
+<span class="c1"># Seed treatment chronic RQ for mammals</span>
+
 <div class="viewcode-block" id="sc_mamm"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_model.sc_mamm">[docs]</a><span class="k">def</span> <span class="nf">sc_mamm</span><span class="p">(</span><span class="n">a_r_p</span><span class="p">,</span> <span class="n">a_i</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">NOAEC_mamm</span><span class="p">):</span>
-    <span class="n">m_s_a_r</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="o">*</span><span class="mi">10000</span>    <span class="c">#maximum seed application rate=application rate*10000</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">m_s_a_r</span><span class="o">/</span><span class="n">NOAEC_mamm</span><span class="p">)</span>          
-    </div>
+    <span class="n">m_s_a_r</span><span class="o">=</span><span class="p">((</span><span class="n">a_r_p</span><span class="o">*</span><span class="n">a_i</span><span class="p">)</span><span class="o">/</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="n">den</span><span class="o">*</span><span class="mi">10000</span>    <span class="c1">#maximum seed application rate=application rate*10000</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">m_s_a_r</span><span class="o">/</span><span class="n">NOAEC_mamm</span><span class="p">)</span>          </div>
+    
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -606,16 +606,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -624,13 +621,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

@@ -29,8 +29,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,18 +39,18 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.rice.rice_parameters</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">.. module:: rice_parameters</span>
 <span class="sd">   :synopsis: A useful module indeed.</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -59,55 +59,57 @@
 <span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">validators</span>
 <span class="kn">from</span> <span class="nn">models.forms</span> <span class="kn">import</span> <span class="n">validation</span>
 
+<span class="n">SELECT_VERSION</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;1.0&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0&#39;</span><span class="p">),)</span>
 
-<span class="n">SELECT_VERSION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1.0&#39;</span><span class="p">,</span><span class="s">&#39;1.0&#39;</span><span class="p">),)</span>
 
 <div class="viewcode-block" id="RiceInp"><a class="viewcode-back" href="../../../models.rice.html#models.rice.rice_parameters.RiceInp">[docs]</a><span class="k">class</span> <span class="nc">RiceInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
-    <span class="c"># config_name = forms.CharField(</span>
-    		<span class="c"># label=&quot;Use Configuration Name&quot;, initial=&quot;use-config-%s&quot;%datetime.datetime.now())     </span>
-	<span class="n">version_rice</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
-			<span class="n">choices</span><span class="o">=</span><span class="n">SELECT_VERSION</span><span class="p">,</span>
-			<span class="n">label</span><span class="o">=</span><span class="s">&#39;Version&#39;</span><span class="p">,</span>
-			<span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.0&#39;</span><span class="p">)</span>
-	<span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-			<span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span>
-			<span class="n">initial</span><span class="o">=</span><span class="s">&#39;Fipronil&#39;</span><span class="p">)</span>
-	<span class="n">mai</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="s">&#39;Mass of Applied Ingredient to Paddy (kg)&#39;</span><span class="p">,</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mf">0.056</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">area</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Area of the Rice Paddy (m&lt;sup&gt;2&lt;/sup&gt;)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">dsed</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="s">&#39;Sediment Depth (m)&#39;</span><span class="p">,</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">pb</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Bulk Density of Sediment, &amp;#961;&lt;sub&gt;b&lt;/sub&gt; (kg/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">dw</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="s">&#39;Water Column Depth (m)&#39;</span><span class="p">,</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">osed</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Porosity of Sediment, K&lt;sub&gt;d&lt;/sub&gt;&#39;</span><span class="p">),</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mf">0.509</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
-	<span class="n">Kd</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-			<span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;Water-Sediment Partitioning Coefficient, K&lt;sub&gt;oc&lt;/sub&gt; (L/kg)&#39;</span><span class="p">),</span>
-			<span class="n">initial</span><span class="o">=</span><span class="mi">727</span><span class="p">,</span>
-			<span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span></div>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_VERSION</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Version&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Fipronil&#39;</span><span class="p">)</span>
+    <span class="n">pc_code</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PC Code&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">)</span>
+    <span class="n">mai</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mass of Applied Ingredient to Paddy (kg)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.056</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;Area of the Rice Paddy (m&lt;sup&gt;2&lt;/sup&gt;)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">dsed</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sediment Depth (m)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">pb</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;Bulk Density of Sediment, &amp;#961;&lt;sub&gt;b&lt;/sub&gt; (kg/m&lt;sup&gt;3&lt;/sup&gt;)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">dw</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Water Column Depth (m)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">osed</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;Porosity of Sediment, K&lt;sub&gt;d&lt;/sub&gt;&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.509</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
+    <span class="n">kd</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;Water-Sediment Partitioning Coefficient, K&lt;sub&gt;oc&lt;/sub&gt; (L/kg)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">727</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -115,16 +117,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -133,13 +132,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

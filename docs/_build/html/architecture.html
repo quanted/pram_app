@@ -30,8 +30,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -46,14 +46,14 @@
         <li class="right" >
           <a href="models.forms.html" title="Form Validation"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="architecture">
 <h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h1>
@@ -68,9 +68,9 @@
 <div class="section" id="back-end-server">
 <h2>Back-end server<a class="headerlink" href="#back-end-server" title="Permalink to this headline">¶</a></h2>
 <p>The primary component on the back-end server is Amazon Elastic Compute Cloud (EC2) since it: hosts the platform for data transfer between the front and back-end through Representational state transfer (REST) application programming interface (API); creates the environment for models to be executed; generates reports and documents; hosts a NoSQL database (MongoDB) to manage user history; and runs a Python-based task queue management system (Celery). Other elements on AWS include Simple Storage Service (S3) and Simple Queue Service (SQS), where the former is designed to store model output files for the long term and the latter manages requests generated from batch model runs.</p>
-<div class="align-center figure">
+<div class="align-center figure" id="id7">
 <a class="reference internal image-reference" href="_images/back_end_1.png"><img alt="alternate text" src="_images/back_end_1.png" style="width: 400pt; height: 300pt;" /></a>
-<p class="caption">Structure of the Back-end Server</p>
+<p class="caption"><span class="caption-text">Structure of the Back-end Server</span></p>
 </div>
 <p>The REST API for übertool is built on Bottle, a lightweight Web Server Gateway Interface (WSGI)-based Python framework <a class="footnote-reference" href="#id4" id="id1">[1]</a>. Bottle contains a single file and has no dependencies other than the Python Standard Library. While some full-stack web frameworks (e.g., Django and web2py) support a number of activities through build-in modules (e.g., interpreting requests, producing responses, storing data persistently, etc.), Bottle could achieve these features through plug-ins which enables developers to customize web applications easily. Conceptually, the REST API performs as a “hub” on the back-end server which receives requests and inputs from the front-end, distributes requests by invoking different functions, and transfers outputs to the front-end for display. All data transmitted over the REST API follow the JavaScript Object Notation (JSON) format commonly used in modern web applications <a class="footnote-reference" href="#id5" id="id2">[2]</a>. Three types of APIs are created: 1) executing legacy FORTRAN models; 2) generating reports based on model outputs (PDF and HTML format); and 3) exchanging information between a non-relational database, MongoDB. A noSQL database was preferred over a relational database because it is convenient to modify the existing data structure (e.g., introducing new fields, changing structure, etc.); has fast query speed, and is easy to scale horizontally through automatic sharing and building replications <a class="footnote-reference" href="#id6" id="id3">[3]</a>.</p>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
@@ -107,7 +107,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -128,12 +128,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="deployment.html"
                         title="next chapter">Deployment</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/architecture.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/architecture.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -141,16 +143,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -165,12 +164,12 @@
         <li class="right" >
           <a href="models.forms.html" title="Form Validation"
              >previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

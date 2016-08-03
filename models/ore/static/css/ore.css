@@ -1,0 +1,45 @@
+.articles_output table {
+	margin-left: auto;
+}
+.input_table {
+	width: 92%;
+}
+.articles_output ul {
+	list-style: none;
+}
+.formulation_rate {
+	float: right;
+	display: inline-block;
+	text-align: right;
+	max-width: 60px;
+}
+#ore_output_x {
+    background-image: url(/static/images/export/exit_button.png);
+    height: 32px;
+    width: 32px;
+    position: relative;
+    top: -26px;
+}
+.ore_output_table table {
+    border-collapse: collapse;
+    background: #eeeeee;
+}
+.ore_output_table, .ore_output_table tr {
+    border: 1px solid #000000;
+    background-color: #F4F7ED;
+}
+.ore_output_table th, .ore_output_table td, .ore_output_table tr {
+    background-color: #eeeeee;
+}
+#export_button, #export_link {
+  float: right;
+  padding: 4px;
+  margin: 6px
+}
+
+.expScenario{
+  width: 330px
+}
+.sourceCols {
+  width: 5.5em;
+}

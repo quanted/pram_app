@@ -226,7 +226,7 @@ function showSigDig(value, noDig)
 		if (parseInt(textVal[0]) != 0)
 			noDig = 2;
 	if (textVal[1])
-		textVal[1]=	textVal[1].substr(0,noDig)
+		textVal[1]=	textVal[1].substr(0,noDig);
 	else
 		textVal[1]="00";
 	return textVal[0]+"."+textVal[1];
@@ -269,9 +269,9 @@ function runCalculation()
 			var resultText = document.createTextNode(showSigDig(predTox)+" "+units+" ("+showSigDig(log10(predTox))+")");
 		document.getElementById('predictedTox').appendChild(resultText);
 		var CI = eval(document.getElementById('ConfInt').value);
-		var diff = CI * Math.sqrt( MSE * (1/(df+2) + Math.pow(log10(input) - xAvg, 2)/Sxx))
-		var lower = Math.pow(10,(log10(predTox) - diff))
-		var upper = Math.pow(10,(log10(predTox) + diff))
+		var diff = CI * Math.sqrt( MSE * (1/(df+2) + Math.pow(log10(input) - xAvg, 2)/Sxx));
+		var lower = Math.pow(10,(log10(predTox) - diff));
+		var upper = Math.pow(10,(log10(predTox) + diff));
 		if (lower < 1)
 			var lowerText = document.createTextNode(showSigDig(lower,(lower+'').split(".")[1].search(/[1-9]/)+3)+" "+units);
 		else

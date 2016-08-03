@@ -8,7 +8,7 @@ function($){
 				? $(this).html($.shuffle(items,$(this)))
 			: this;
 		});
-	}
+	};
 //                $.fn.validate_1 = function() {
 //                    var res = false;
 //                    this.each(function(){
@@ -32,7 +32,7 @@ function($){
 		j = parseInt(Math.random() * i),
 		x = arr[--i], arr[i] = arr[j], arr[j] = x
 	);
-		if(arr[0].innerHTML=="1") obj.html($.shuffle(arr,obj))
+		if(arr[0].innerHTML=="1") obj.html($.shuffle(arr,obj));
 		else return arr;
 	}
 })(jQuery);

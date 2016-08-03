@@ -5,7 +5,7 @@ Created on Tue Jan 03 13:30:41 2012
 
 from django.template.loader import render_to_string
 from django.http import HttpResponse
-import linksLeft
+import links_left
 import os
 
 def ICETabletPage(requests):
@@ -26,7 +26,7 @@ def webiceSSDOutputPage(requests):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':'webice',
             'page':'output'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberoutput_start.html', {
             'model':'webice', 
             'model_attributes':'Web-ICE v3.2.1 Output'})
@@ -48,7 +48,7 @@ def webiceTNEOutputPage(requests):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':'webice',
             'page':'output'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberoutput_start.html', {
             'model':'webice', 
             'model_attributes':'Web-ICE v3.2.1 Output'})
@@ -69,7 +69,7 @@ def webiceOutputPage(request):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':'webice',
             'page':'output'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberoutput_start.html', {
             'model':'webice', 
             'model_attributes':'Web-ICE v3.2.1 Output'})

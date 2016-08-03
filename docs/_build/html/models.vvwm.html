@@ -31,8 +31,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -47,182 +47,222 @@
         <li class="right" >
           <a href="models.trex2.html" title="T-Rex v1.5.2"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="vvwm">
 <h1>VVWM<a class="headerlink" href="#vvwm" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<<<<<<< HEAD
 <div class="section" id="module-models.vvwm.vvwm_parameters">
 <span id="models-vvwm-vvwm-parameters-module"></span><h2>models.vvwm.vvwm_parameters module<a class="headerlink" href="#module-models.vvwm.vvwm_parameters" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-vvwm_parameters"></span><dl class="class">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_chem">
-<em class="property">class </em><tt class="descclassname">models.vvwm.vvwm_parameters.</tt><tt class="descname">vvwmInp_chem</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_chem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<em class="property">class </em><code class="descclassname">models.vvwm.vvwm_parameters.</code><code class="descname">vvwmInp_chem</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_chem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_chem.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'wc_hl_0': &lt;django.forms.fields.FloatField object at 0x09322A70&gt;, 'w_temp_0': &lt;django.forms.fields.FloatField object at 0x09345F70&gt;, 'bm_hl_0': &lt;django.forms.fields.FloatField object at 0x09345FB0&gt;, 'ben_temp_0': &lt;django.forms.fields.FloatField object at 0x09345FF0&gt;, 'ap_hl_0': &lt;django.forms.fields.FloatField object at 0x0934A050&gt;, 'p_ref_0': &lt;django.forms.fields.FloatField object at 0x0934A090&gt;, 'h_hl_0': &lt;django.forms.fields.FloatField object at 0x0934A0D0&gt;, 'mwt_0': &lt;django.forms.fields.FloatField object at 0x0934A110&gt;, 'vp_0': &lt;django.forms.fields.FloatField object at 0x0934A150&gt;, 'sol_0': &lt;django.forms.fields.FloatField object at 0x0934A190&gt;, 'QT': &lt;django.forms.fields.FloatField object at 0x0934A1D0&gt;}</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('wc_hl_0', &lt;django.forms.fields.FloatField object at 0x107e4a278&gt;), ('w_temp_0', &lt;django.forms.fields.FloatField object at 0x108082898&gt;), ('bm_hl_0', &lt;django.forms.fields.FloatField object at 0x108082748&gt;), ('ben_temp_0', &lt;django.forms.fields.FloatField object at 0x108082780&gt;), ('ap_hl_0', &lt;django.forms.fields.FloatField object at 0x1080660f0&gt;), ('p_ref_0', &lt;django.forms.fields.FloatField object at 0x108066208&gt;), ('h_hl_0', &lt;django.forms.fields.FloatField object at 0x108066358&gt;), ('mwt_0', &lt;django.forms.fields.FloatField object at 0x108066400&gt;), ('vp_0', &lt;django.forms.fields.FloatField object at 0x1080665c0&gt;), ('sol_0', &lt;django.forms.fields.FloatField object at 0x108066748&gt;), ('QT', &lt;django.forms.fields.FloatField object at 0x1080668d0&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.vvwm.vvwm_parameters.vvwmInp_chem.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('wc_hl_0', &lt;django.forms.fields.FloatField object at 0x107e4a278&gt;), ('w_temp_0', &lt;django.forms.fields.FloatField object at 0x108082898&gt;), ('bm_hl_0', &lt;django.forms.fields.FloatField object at 0x108082748&gt;), ('ben_temp_0', &lt;django.forms.fields.FloatField object at 0x108082780&gt;), ('ap_hl_0', &lt;django.forms.fields.FloatField object at 0x1080660f0&gt;), ('p_ref_0', &lt;django.forms.fields.FloatField object at 0x108066208&gt;), ('h_hl_0', &lt;django.forms.fields.FloatField object at 0x108066358&gt;), ('mwt_0', &lt;django.forms.fields.FloatField object at 0x108066400&gt;), ('vp_0', &lt;django.forms.fields.FloatField object at 0x1080665c0&gt;), ('sol_0', &lt;django.forms.fields.FloatField object at 0x108066748&gt;), ('QT', &lt;django.forms.fields.FloatField object at 0x1080668d0&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_chem.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem.media" title="Permalink to this definition">¶</a></dt>
+<code class="descname">media</code><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_chem1">
-<em class="property">class </em><tt class="descclassname">models.vvwm.vvwm_parameters.</tt><tt class="descname">vvwmInp_chem1</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_chem1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem1" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<em class="property">class </em><code class="descclassname">models.vvwm.vvwm_parameters.</code><code class="descname">vvwmInp_chem1</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_chem1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_chem1.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'wc_hl_1': &lt;django.forms.fields.FloatField object at 0x0934A230&gt;, 'w_temp_1': &lt;django.forms.fields.FloatField object at 0x0934A270&gt;, 'bm_hl_1': &lt;django.forms.fields.FloatField object at 0x0934A2B0&gt;, 'ben_temp_1': &lt;django.forms.fields.FloatField object at 0x0934A2F0&gt;, 'ap_hl_1': &lt;django.forms.fields.FloatField object at 0x0934A330&gt;, 'p_ref_1': &lt;django.forms.fields.FloatField object at 0x0934A370&gt;, 'h_hl_1': &lt;django.forms.fields.FloatField object at 0x0934A3B0&gt;, 'mwt_1': &lt;django.forms.fields.FloatField object at 0x0934A3F0&gt;, 'vp_1': &lt;django.forms.fields.FloatField object at 0x0934A430&gt;, 'sol_1': &lt;django.forms.fields.FloatField object at 0x0934A470&gt;}</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem1.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('wc_hl_1', &lt;django.forms.fields.FloatField object at 0x108066978&gt;), ('w_temp_1', &lt;django.forms.fields.FloatField object at 0x108066b00&gt;), ('bm_hl_1', &lt;django.forms.fields.FloatField object at 0x108066f28&gt;), ('ben_temp_1', &lt;django.forms.fields.FloatField object at 0x1084590b8&gt;), ('ap_hl_1', &lt;django.forms.fields.FloatField object at 0x108459128&gt;), ('p_ref_1', &lt;django.forms.fields.FloatField object at 0x108459198&gt;), ('h_hl_1', &lt;django.forms.fields.FloatField object at 0x108459208&gt;), ('mwt_1', &lt;django.forms.fields.FloatField object at 0x108459278&gt;), ('vp_1', &lt;django.forms.fields.FloatField object at 0x1084592e8&gt;), ('sol_1', &lt;django.forms.fields.FloatField object at 0x108459358&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem1.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.vvwm.vvwm_parameters.vvwmInp_chem1.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('wc_hl_1', &lt;django.forms.fields.FloatField object at 0x108066978&gt;), ('w_temp_1', &lt;django.forms.fields.FloatField object at 0x108066b00&gt;), ('bm_hl_1', &lt;django.forms.fields.FloatField object at 0x108066f28&gt;), ('ben_temp_1', &lt;django.forms.fields.FloatField object at 0x1084590b8&gt;), ('ap_hl_1', &lt;django.forms.fields.FloatField object at 0x108459128&gt;), ('p_ref_1', &lt;django.forms.fields.FloatField object at 0x108459198&gt;), ('h_hl_1', &lt;django.forms.fields.FloatField object at 0x108459208&gt;), ('mwt_1', &lt;django.forms.fields.FloatField object at 0x108459278&gt;), ('vp_1', &lt;django.forms.fields.FloatField object at 0x1084592e8&gt;), ('sol_1', &lt;django.forms.fields.FloatField object at 0x108459358&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem1.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_chem1.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem1.media" title="Permalink to this definition">¶</a></dt>
+<code class="descname">media</code><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem1.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_chem2">
-<em class="property">class </em><tt class="descclassname">models.vvwm.vvwm_parameters.</tt><tt class="descname">vvwmInp_chem2</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_chem2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<em class="property">class </em><code class="descclassname">models.vvwm.vvwm_parameters.</code><code class="descname">vvwmInp_chem2</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_chem2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_chem2.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'wc_hl_2': &lt;django.forms.fields.FloatField object at 0x0934A4D0&gt;, 'w_temp_2': &lt;django.forms.fields.FloatField object at 0x0934A510&gt;, 'bm_hl_2': &lt;django.forms.fields.FloatField object at 0x0934A550&gt;, 'ben_temp_2': &lt;django.forms.fields.FloatField object at 0x0934A590&gt;, 'ap_hl_2': &lt;django.forms.fields.FloatField object at 0x0934A5D0&gt;, 'p_ref_2': &lt;django.forms.fields.FloatField object at 0x0934A610&gt;, 'h_hl_2': &lt;django.forms.fields.FloatField object at 0x0934A650&gt;, 'mwt_2': &lt;django.forms.fields.FloatField object at 0x0934A690&gt;, 'vp_2': &lt;django.forms.fields.FloatField object at 0x0934A6D0&gt;, 'sol_2': &lt;django.forms.fields.FloatField object at 0x0934A710&gt;}</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem2.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('wc_hl_2', &lt;django.forms.fields.FloatField object at 0x1084593c8&gt;), ('w_temp_2', &lt;django.forms.fields.FloatField object at 0x108459438&gt;), ('bm_hl_2', &lt;django.forms.fields.FloatField object at 0x1084594a8&gt;), ('ben_temp_2', &lt;django.forms.fields.FloatField object at 0x108459518&gt;), ('ap_hl_2', &lt;django.forms.fields.FloatField object at 0x108459588&gt;), ('p_ref_2', &lt;django.forms.fields.FloatField object at 0x1084595f8&gt;), ('h_hl_2', &lt;django.forms.fields.FloatField object at 0x108459668&gt;), ('mwt_2', &lt;django.forms.fields.FloatField object at 0x1084596d8&gt;), ('vp_2', &lt;django.forms.fields.FloatField object at 0x108459748&gt;), ('sol_2', &lt;django.forms.fields.FloatField object at 0x1084597b8&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem2.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.vvwm.vvwm_parameters.vvwmInp_chem2.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('wc_hl_2', &lt;django.forms.fields.FloatField object at 0x1084593c8&gt;), ('w_temp_2', &lt;django.forms.fields.FloatField object at 0x108459438&gt;), ('bm_hl_2', &lt;django.forms.fields.FloatField object at 0x1084594a8&gt;), ('ben_temp_2', &lt;django.forms.fields.FloatField object at 0x108459518&gt;), ('ap_hl_2', &lt;django.forms.fields.FloatField object at 0x108459588&gt;), ('p_ref_2', &lt;django.forms.fields.FloatField object at 0x1084595f8&gt;), ('h_hl_2', &lt;django.forms.fields.FloatField object at 0x108459668&gt;), ('mwt_2', &lt;django.forms.fields.FloatField object at 0x1084596d8&gt;), ('vp_2', &lt;django.forms.fields.FloatField object at 0x108459748&gt;), ('sol_2', &lt;django.forms.fields.FloatField object at 0x1084597b8&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem2.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_chem2.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem2.media" title="Permalink to this definition">¶</a></dt>
+<code class="descname">media</code><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_chem2.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_cropland">
-<em class="property">class </em><tt class="descclassname">models.vvwm.vvwm_parameters.</tt><tt class="descname">vvwmInp_cropland</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_cropland"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_cropland" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<em class="property">class </em><code class="descclassname">models.vvwm.vvwm_parameters.</code><code class="descname">vvwmInp_cropland</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_cropland"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_cropland" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_cropland.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'scenID': &lt;django.forms.fields.FloatField object at 0x0934A9B0&gt;}</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_cropland.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('scenID', &lt;django.forms.fields.FloatField object at 0x108473668&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_cropland.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.vvwm.vvwm_parameters.vvwmInp_cropland.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('scenID', &lt;django.forms.fields.FloatField object at 0x108473668&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_cropland.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_cropland.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_cropland.media" title="Permalink to this definition">¶</a></dt>
+<code class="descname">media</code><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_cropland.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_mcf1">
-<em class="property">class </em><tt class="descclassname">models.vvwm.vvwm_parameters.</tt><tt class="descname">vvwmInp_mcf1</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_mcf1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf1" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<em class="property">class </em><code class="descclassname">models.vvwm.vvwm_parameters.</code><code class="descname">vvwmInp_mcf1</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_mcf1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_mcf1.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'convertWC1': &lt;django.forms.fields.FloatField object at 0x0934A770&gt;, 'convertBen1': &lt;django.forms.fields.FloatField object at 0x0934A7B0&gt;, 'convertAP1': &lt;django.forms.fields.FloatField object at 0x0934A7F0&gt;, 'convertH1': &lt;django.forms.fields.FloatField object at 0x0934A830&gt;}</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf1.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('convertWC1', &lt;django.forms.fields.FloatField object at 0x108459828&gt;), ('convertBen1', &lt;django.forms.fields.FloatField object at 0x108459898&gt;), ('convertAP1', &lt;django.forms.fields.FloatField object at 0x108459908&gt;), ('convertH1', &lt;django.forms.fields.FloatField object at 0x108459978&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf1.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.vvwm.vvwm_parameters.vvwmInp_mcf1.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('convertWC1', &lt;django.forms.fields.FloatField object at 0x108459828&gt;), ('convertBen1', &lt;django.forms.fields.FloatField object at 0x108459898&gt;), ('convertAP1', &lt;django.forms.fields.FloatField object at 0x108459908&gt;), ('convertH1', &lt;django.forms.fields.FloatField object at 0x108459978&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf1.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_mcf1.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf1.media" title="Permalink to this definition">¶</a></dt>
+<code class="descname">media</code><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf1.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_mcf2">
-<em class="property">class </em><tt class="descclassname">models.vvwm.vvwm_parameters.</tt><tt class="descname">vvwmInp_mcf2</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_mcf2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<em class="property">class </em><code class="descclassname">models.vvwm.vvwm_parameters.</code><code class="descname">vvwmInp_mcf2</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_mcf2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_mcf2.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'convertWC2': &lt;django.forms.fields.FloatField object at 0x0934A890&gt;, 'convertBen2': &lt;django.forms.fields.FloatField object at 0x0934A8D0&gt;, 'convertAP2': &lt;django.forms.fields.FloatField object at 0x0934A910&gt;, 'convertH2': &lt;django.forms.fields.FloatField object at 0x0934A950&gt;}</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf2.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('convertWC2', &lt;django.forms.fields.FloatField object at 0x1084599e8&gt;), ('convertBen2', &lt;django.forms.fields.FloatField object at 0x108459a58&gt;), ('convertAP2', &lt;django.forms.fields.FloatField object at 0x108459ac8&gt;), ('convertH2', &lt;django.forms.fields.FloatField object at 0x108459b38&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf2.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.vvwm.vvwm_parameters.vvwmInp_mcf2.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('convertWC2', &lt;django.forms.fields.FloatField object at 0x1084599e8&gt;), ('convertBen2', &lt;django.forms.fields.FloatField object at 0x108459a58&gt;), ('convertAP2', &lt;django.forms.fields.FloatField object at 0x108459ac8&gt;), ('convertH2', &lt;django.forms.fields.FloatField object at 0x108459b38&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf2.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_mcf2.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf2.media" title="Permalink to this definition">¶</a></dt>
+<code class="descname">media</code><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_mcf2.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody">
-<em class="property">class </em><tt class="descclassname">models.vvwm.vvwm_parameters.</tt><tt class="descname">vvwmInp_waterbody</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_waterbody"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<em class="property">class </em><code class="descclassname">models.vvwm.vvwm_parameters.</code><code class="descname">vvwmInp_waterbody</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_waterbody"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody.Burial">
-<tt class="descname">Burial</tt><em class="property"> = ((1, 'Burial'), (0, 'No Burial'))</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody.Burial" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Burial</code><em class="property"> = ((1, 'Burial'), (0, 'No Burial'))</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody.Burial" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody.SimType">
-<tt class="descname">SimType</tt><em class="property"> = ((0, 'EPA Reservoir &amp; Pond'), (4, 'EPA Reservoir Only'), (5, 'EPA Pond Only'), (6, 'Reservoir w/ user averaging'), (1, 'Varying Volume'), (2, 'Constant Volume (w/o Flowthrough)'), (3, 'Constant Volume (w/ Flowthrough)'))</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody.SimType" title="Permalink to this definition">¶</a></dt>
+<code class="descname">SimType</code><em class="property"> = ((0, 'EPA Reservoir &amp; Pond'), (4, 'EPA Reservoir Only'), (5, 'EPA Pond Only'), (6, 'Reservoir w/ user averaging'), (1, 'Varying Volume'), (2, 'Constant Volume (w/o Flowthrough)'), (3, 'Constant Volume (w/ Flowthrough)'))</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody.SimType" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'SimTypeFlag': &lt;django.forms.fields.ChoiceField object at 0x0934AA10&gt;, 'fieldArea_Pond': &lt;django.forms.fields.FloatField object at 0x0934AA50&gt;, 'wbArea_Pond': &lt;django.forms.fields.FloatField object at 0x0934AA90&gt;, 'depth_0_Pond': &lt;django.forms.fields.FloatField object at 0x0934AAD0&gt;, 'depth_max_Pond': &lt;django.forms.fields.FloatField object at 0x0934AB10&gt;, 'hyd_len_Pond': &lt;django.forms.fields.FloatField object at 0x0934AB50&gt;, 'fieldArea_Reservoir': &lt;django.forms.fields.FloatField object at 0x0934AB90&gt;, 'wbArea_Reservoir': &lt;django.forms.fields.FloatField object at 0x0934ABD0&gt;, 'depth_0_Reservoir': &lt;django.forms.fields.FloatField object at 0x0934AC10&gt;, 'depth_max_Reservoir': &lt;django.forms.fields.FloatField object at 0x0934AC50&gt;, 'hyd_len_Reservoir': &lt;django.forms.fields.FloatField object at 0x0934AC90&gt;, 'fieldArea_Custom': &lt;django.forms.fields.FloatField object at 0x0934ACD0&gt;, 'wbArea_Custom': &lt;django.forms.fields.FloatField object at 0x0934AD10&gt;, 'depth_0_Custom': &lt;django.forms.fields.FloatField object at 0x0934AD50&gt;, 'depth_max_Custom': &lt;django.forms.fields.FloatField object at 0x0934AD90&gt;, 'hyd_len_Custom': &lt;django.forms.fields.FloatField object at 0x0934ADD0&gt;, 'resAvgBox_Custom': &lt;django.forms.fields.FloatField object at 0x0934AE10&gt;, 'BurialFlag': &lt;django.forms.fields.ChoiceField object at 0x0934AE50&gt;}</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('SimTypeFlag', &lt;django.forms.fields.ChoiceField object at 0x1084735f8&gt;), ('fieldArea_Pond', &lt;django.forms.fields.FloatField object at 0x108473588&gt;), ('wbArea_Pond', &lt;django.forms.fields.FloatField object at 0x108473518&gt;), ('depth_0_Pond', &lt;django.forms.fields.FloatField object at 0x1084734a8&gt;), ('depth_max_Pond', &lt;django.forms.fields.FloatField object at 0x108473438&gt;), ('hyd_len_Pond', &lt;django.forms.fields.FloatField object at 0x1084733c8&gt;), ('fieldArea_Reservoir', &lt;django.forms.fields.FloatField object at 0x108473780&gt;), ('wbArea_Reservoir', &lt;django.forms.fields.FloatField object at 0x108082470&gt;), ('depth_0_Reservoir', &lt;django.forms.fields.FloatField object at 0x108082400&gt;), ('depth_max_Reservoir', &lt;django.forms.fields.FloatField object at 0x108082390&gt;), ('hyd_len_Reservoir', &lt;django.forms.fields.FloatField object at 0x108082320&gt;), ('fieldArea_Custom', &lt;django.forms.fields.FloatField object at 0x108038da0&gt;), ('wbArea_Custom', &lt;django.forms.fields.FloatField object at 0x108038978&gt;), ('depth_0_Custom', &lt;django.forms.fields.FloatField object at 0x1080380b8&gt;), ('depth_max_Custom', &lt;django.forms.fields.FloatField object at 0x1080389e8&gt;), ('hyd_len_Custom', &lt;django.forms.fields.FloatField object at 0x108038a90&gt;), ('resAvgBox_Custom', &lt;django.forms.fields.FloatField object at 0x108038a58&gt;), ('BurialFlag', &lt;django.forms.fields.ChoiceField object at 0x1080384e0&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('SimTypeFlag', &lt;django.forms.fields.ChoiceField object at 0x1084735f8&gt;), ('fieldArea_Pond', &lt;django.forms.fields.FloatField object at 0x108473588&gt;), ('wbArea_Pond', &lt;django.forms.fields.FloatField object at 0x108473518&gt;), ('depth_0_Pond', &lt;django.forms.fields.FloatField object at 0x1084734a8&gt;), ('depth_max_Pond', &lt;django.forms.fields.FloatField object at 0x108473438&gt;), ('hyd_len_Pond', &lt;django.forms.fields.FloatField object at 0x1084733c8&gt;), ('fieldArea_Reservoir', &lt;django.forms.fields.FloatField object at 0x108473780&gt;), ('wbArea_Reservoir', &lt;django.forms.fields.FloatField object at 0x108082470&gt;), ('depth_0_Reservoir', &lt;django.forms.fields.FloatField object at 0x108082400&gt;), ('depth_max_Reservoir', &lt;django.forms.fields.FloatField object at 0x108082390&gt;), ('hyd_len_Reservoir', &lt;django.forms.fields.FloatField object at 0x108082320&gt;), ('fieldArea_Custom', &lt;django.forms.fields.FloatField object at 0x108038da0&gt;), ('wbArea_Custom', &lt;django.forms.fields.FloatField object at 0x108038978&gt;), ('depth_0_Custom', &lt;django.forms.fields.FloatField object at 0x1080380b8&gt;), ('depth_max_Custom', &lt;django.forms.fields.FloatField object at 0x1080389e8&gt;), ('hyd_len_Custom', &lt;django.forms.fields.FloatField object at 0x108038a90&gt;), ('resAvgBox_Custom', &lt;django.forms.fields.FloatField object at 0x108038a58&gt;), ('BurialFlag', &lt;django.forms.fields.ChoiceField object at 0x1080384e0&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody.media" title="Permalink to this definition">¶</a></dt>
+<code class="descname">media</code><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms">
-<em class="property">class </em><tt class="descclassname">models.vvwm.vvwm_parameters.</tt><tt class="descname">vvwmInp_waterbody_Bparms</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_waterbody_Bparms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<em class="property">class </em><code class="descclassname">models.vvwm.vvwm_parameters.</code><code class="descname">vvwmInp_waterbody_Bparms</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_waterbody_Bparms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'benthic_depth': &lt;django.forms.fields.FloatField object at 0x093A4090&gt;, 'porosity': &lt;django.forms.fields.FloatField object at 0x093A4110&gt;, 'bulk_density': &lt;django.forms.fields.FloatField object at 0x093A4150&gt;, 'FROC2': &lt;django.forms.fields.FloatField object at 0x093A4190&gt;, 'DOC2': &lt;django.forms.fields.FloatField object at 0x093A41D0&gt;, 'BNMAS': &lt;django.forms.fields.FloatField object at 0x093A4210&gt;, 'PRBEN': &lt;django.forms.fields.FloatField object at 0x093A4250&gt;, 'D_over_dx': &lt;django.forms.fields.FloatField object at 0x093A4290&gt;}</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('benthic_depth', &lt;django.forms.fields.FloatField object at 0x108038630&gt;), ('porosity', &lt;django.forms.fields.FloatField object at 0x108470358&gt;), ('bulk_density', &lt;django.forms.fields.FloatField object at 0x108470c88&gt;), ('FROC2', &lt;django.forms.fields.FloatField object at 0x108470470&gt;), ('DOC2', &lt;django.forms.fields.FloatField object at 0x107e1f550&gt;), ('BNMAS', &lt;django.forms.fields.FloatField object at 0x10837b978&gt;), ('PRBEN', &lt;django.forms.fields.FloatField object at 0x107fd4fd0&gt;), ('D_over_dx', &lt;django.forms.fields.FloatField object at 0x107ec02e8&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('benthic_depth', &lt;django.forms.fields.FloatField object at 0x108038630&gt;), ('porosity', &lt;django.forms.fields.FloatField object at 0x108470358&gt;), ('bulk_density', &lt;django.forms.fields.FloatField object at 0x108470c88&gt;), ('FROC2', &lt;django.forms.fields.FloatField object at 0x108470470&gt;), ('DOC2', &lt;django.forms.fields.FloatField object at 0x107e1f550&gt;), ('BNMAS', &lt;django.forms.fields.FloatField object at 0x10837b978&gt;), ('PRBEN', &lt;django.forms.fields.FloatField object at 0x107fd4fd0&gt;), ('D_over_dx', &lt;django.forms.fields.FloatField object at 0x107ec02e8&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms.media" title="Permalink to this definition">¶</a></dt>
+<code class="descname">media</code><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_Bparms.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms">
-<em class="property">class </em><tt class="descclassname">models.vvwm.vvwm_parameters.</tt><tt class="descname">vvwmInp_waterbody_WCparms</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_waterbody_WCparms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<em class="property">class </em><code class="descclassname">models.vvwm.vvwm_parameters.</code><code class="descname">vvwmInp_waterbody_WCparms</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/vvwm/vvwm_parameters.html#vvwmInp_waterbody_WCparms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms.base_fields">
-<tt class="descname">base_fields</tt><em class="property"> = {'DFAC': &lt;django.forms.fields.FloatField object at 0x0934AEB0&gt;, 'SUSED': &lt;django.forms.fields.FloatField object at 0x0934AF10&gt;, 'CHL': &lt;django.forms.fields.FloatField object at 0x0934AF50&gt;, 'FROC1': &lt;django.forms.fields.FloatField object at 0x0934AF90&gt;, 'DOC1': &lt;django.forms.fields.FloatField object at 0x0934AFD0&gt;, 'PLMAS': &lt;django.forms.fields.FloatField object at 0x093A4030&gt;}</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('DFAC', &lt;django.forms.fields.FloatField object at 0x108038908&gt;), ('SUSED', &lt;django.forms.fields.FloatField object at 0x108038898&gt;), ('CHL', &lt;django.forms.fields.FloatField object at 0x108038828&gt;), ('FROC1', &lt;django.forms.fields.FloatField object at 0x1080387b8&gt;), ('DOC1', &lt;django.forms.fields.FloatField object at 0x108038748&gt;), ('PLMAS', &lt;django.forms.fields.FloatField object at 0x1080386d8&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('DFAC', &lt;django.forms.fields.FloatField object at 0x108038908&gt;), ('SUSED', &lt;django.forms.fields.FloatField object at 0x108038898&gt;), ('CHL', &lt;django.forms.fields.FloatField object at 0x108038828&gt;), ('FROC1', &lt;django.forms.fields.FloatField object at 0x1080387b8&gt;), ('DOC1', &lt;django.forms.fields.FloatField object at 0x108038748&gt;), ('PLMAS', &lt;django.forms.fields.FloatField object at 0x1080386d8&gt;)])</em><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms.media">
-<tt class="descname">media</tt><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms.media" title="Permalink to this definition">¶</a></dt>
+<code class="descname">media</code><a class="headerlink" href="#models.vvwm.vvwm_parameters.vvwmInp_waterbody_WCparms.media" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-=======
-<div class="section" id="models-vvwm-vvwm-parameters-module">
-<h2>models.vvwm.vvwm_parameters module<a class="headerlink" href="#models-vvwm-vvwm-parameters-module" title="Permalink to this headline">¶</a></h2>
->>>>>>> tom
 </div>
 <div class="section" id="module-models.vvwm">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-models.vvwm" title="Permalink to this headline">¶</a></h2>
@@ -233,13 +273,13 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">VVWM</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#models-vvwm-vvwm-parameters-module">models.vvwm.vvwm_parameters module</a></li>
+<li><a class="reference internal" href="#module-models.vvwm.vvwm_parameters">models.vvwm.vvwm_parameters module</a></li>
 <li><a class="reference internal" href="#module-models.vvwm">Module contents</a></li>
 </ul>
 </li>
@@ -251,12 +291,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="models.forms.html"
                         title="next chapter">Form Validation</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/models.vvwm.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/models.vvwm.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -264,16 +306,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -288,13 +327,13 @@
         <li class="right" >
           <a href="models.trex2.html" title="T-Rex v1.5.2"
              >previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" >Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" >Models</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

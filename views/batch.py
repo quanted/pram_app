@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 import importlib
-import linksLeft
+import links_left
 import os
 import logging
 
@@ -18,6 +18,7 @@ def batchRun(request, model):
     dataFrame = batchOutputPageFunc(request)
     dataFrame = dataFrame.transpose()
 
+    logging.info("===== batch.batchRun")
     logging.info(dataFrame)
 
     # Convert DataFrame to JSON string
@@ -41,9 +42,10 @@ def batchOutputPage(request, model='none', header='none'):
 
     viewmodule = importlib.import_module('.views', 'models.'+model)
     
+    logging.info("===== batch.batchOutputPage")
     from REST import rest_funcs
     header = viewmodule.header
-    linksleft = linksLeft.linksLeft()
+    linksleft = links_left.ordered_list()
 
     html = render_to_string('04uberbatch_start.html', {
             'model': model,
@@ -51,7 +53,9 @@ def batchOutputPage(request, model='none', header='none'):
 
     
     # Temporary logic to handle Pandas verions, else use old way
-    if model in {'terrplant', 'sip', 'stir'}:
+    if model in {'terrplant', 'sip', 'stir', 'trex2', 'therps', 'iec', 
+            'agdrift', 'earthworm', 'rice', 'kabam'}:
+        logging.info('=========== New Model Handler - Batch Run ===========')
         # New way
         modelBatch_obj = batchRun(request, model)
 
@@ -108,7 +112,7 @@ def batchInputPage(request, model='none', header='none'):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':model,
             'page':'batchinput'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberbatchinput.html', {
             'model': model,
             'model_attributes': header+' Batch Run'})

@@ -22,11 +22,20 @@ spray_quality_CHOICES = (('a','Fine (EFED Default)'),
                         ('b','Medium-Coarse'))  
 airblast_type_CHOICES = (('a','Orchards and Dormant Vineyards'),
                          ('b','Foliated Vineyards')) 
+SELECT_VERSION = (('1.0','1.0'),)
 
 
 class GeneecInp(forms.Form):
+    version_geneec = forms.ChoiceField(
+            choices=SELECT_VERSION, 
+            label='Version',
+            initial='1.0')
     chemical_name = forms.CharField(
-            widget=forms.Textarea (attrs={'cols': 20, 'rows': 2}))
+            widget=forms.Textarea (attrs={'cols': 30, 'rows': 1}))
+    pc_code = forms.CharField(
+            widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}), 
+            label='PC Code',
+            initial='00')
     application_target = forms.ChoiceField(
             choices=applicationtarget_CHOICES,
             initial='Short grass')        

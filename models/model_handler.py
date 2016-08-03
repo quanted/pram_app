@@ -11,18 +11,23 @@
    "*_model" module in the model's module directory.
 """
 
-from REST import auth_s3
-import os, logging
+from REST import auth_s3, rest_funcs
+import os
+import json
+import re
+import logging
+
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
+
 class Model(object):
     def __init__(self, run_type, jid, pd_obj_in, pd_obj_out):
         """
-            Generic Python 'Model' object created from two Pandas 
-            DataFrame objects, one for inputs and one for outputs.
+        Generic Python 'Model' object created from two Pandas
+        DataFrame objects, one for inputs and one for outputs.
         """
 
         self.pd_obj_in = pd_obj_in
@@ -32,8 +37,8 @@ class Model(object):
 
         # Set object attributes to model inputs and outputs
         """
-            Set each column of the DataFrames as object attribute with
-            a value equal to the first row's value
+        Set each column of the DataFrames as object attribute with
+        a value equal to the first row's value
         """
         for col in self.pd_obj_in:
             setattr(self, self.pd_obj_in[col].name, self.pd_obj_in[col].iloc[0])
@@ -71,23 +76,14 @@ def call_model_server(model, args):
         JSON string).
     """
 
-    from REST import rest_funcs
-    import json, requests
-
     # If 'args' is a Python dictionary, dump it to a JSON string
     if type(args) == dict:
         data = json.dumps(args)
     else:
         data = args
-    
-    jid = rest_funcs.gen_jid()
-    
-    url = url_part1 + '/' + model + '/' + jid
-    # POST JSON to model server
-    response = requests.post(url, data=data, headers=http_headers, timeout=60)
 
-    # logging.info(json.dumps(response.json()))
-    # logging.info(type(json.loads(json.dumps(response.json()))))
+    # POST JSON to model server through rest proxy
+    response = rest_funcs.rest_proxy_post(model, data, rest_funcs.gen_jid())
 
 
 
@@ -104,33 +100,51 @@ def call_model_server(model, args):
     return response
 
 
-def create_dataframe(response):
-        import pandas as pd
-        import json
-        # Load 'inputs' key from JSON response to Pandas DataFrame
-        pd_obj_in = pd.io.json.read_json(json.dumps(response.json()['inputs']))
-        # Load 'outputs' key from JSON response to Pandas DataFrame
-        pd_obj_out = pd.io.json.read_json(json.dumps(response.json()['outputs']))
+def replace_nans(encoded):
+    regex = re.compile(r'\bNaN\b')
+    return regex.sub('null', encoded)
 
-        return pd_obj_in, pd_obj_out
+
+def create_dataframe(response):
+    import pandas as pd
+
+    logging.info("=========== model_handler.create_dataframe")
+    # Load 'inputs' key from JSON response to Pandas DataFrame
+    logging.info("=========== inputs")
+    #deserialize the serialized string objects coming back from the back end
+    dict_obj_in = response.json()['inputs']
+    json_obj_in = replace_nans(json.dumps(dict_obj_in))
+    pd_obj_in = pd.read_json(json_obj_in)
+    # Load 'outputs' key from JSON response to Pandas DataFrame
+    logging.info("=========== outputs")
+    dict_obj_out = response.json()['outputs']
+    json_obj_out = replace_nans(json.dumps(dict_obj_out))
+    pd_obj_out = pd.read_json(json_obj_out)
+    logging.info("=========== dataframes created")
+    return pd_obj_in, pd_obj_out
 
 
 def modelInputPOSTReceiver(request, model):
     """
-        Converts the POSTed data from the model's input page form 
+        Converts the POSTed data from the model's input page form
         to a Python dictionary and passes it to the Model object where
         it is to be converted to JSON and passed to the backend server.
     """
 
-    args = { "inputs" : {} }
+    logging.info("=========== model_handler.modelInputPOSTReceiver")
+    args = {"inputs": {}}
     for key in request.POST:
-        args["inputs"][key] = {"0" : request.POST.get(key)}
+        args["inputs"][key] = {"0": request.POST.get(key)}
     args["run_type"] = "single"
+    logging.info(args)
 
     response = call_model_server(model, args)
 
+    logging.info("=========== returned from back end")
     jid = response.json()['_id']
+    logging.info("job id = " + str(jid))
     run_type = response.json()['run_type']
+    logging.info("run_type = " + run_type)
     dataframes = create_dataframe(response)
 
     model_obj = Model(run_type, jid, dataframes[0], dataframes[1])
@@ -147,7 +161,7 @@ def modelInputPOSTReceiverFortran(request, model):
         ==> FORTAN version <==
     """
 
-    args = { "inputs" : {} }
+    args = {"inputs": {}}
     for key in request.POST:
         args["inputs"][key] = request.POST.get(key)
     args["run_type"] = "single"
@@ -177,6 +191,7 @@ class ModelQAQC(object):
             DataFrame objects, one for inputs and one for outputs.
         """
 
+        logging.info("=========== model_handler.ModelQAQC")
         self.pd_obj_in = pd_obj_in
         self.pd_obj_out = pd_obj_out
         self.pd_obj_exp = pd_obj_exp
@@ -202,26 +217,6 @@ class ModelQAQC(object):
             setattr(self, self.pd_obj_exp[col].name, self.pd_obj_exp[col].iloc[0])
 
 
-# class ModelList(object):
-#     def __init__(self, model_obj_list):
-#         """
-
-#         """
-
-#         self.model_obj_list = []
-
-#         self.add_to_list(model_obj_list)
-
-#     def add_to_list(self, model_obj_list):
-#         """
-
-#         """
-        
-#         # self.model_obj_list = self.model_obj_list.append(model_obj)
-
-#         return self.model_obj_list
-
-
 def generate_model_object_list(response):
     """
         Loops over the input and output DataFrames creating 
@@ -229,13 +224,13 @@ def generate_model_object_list(response):
         the object to a Python list.  Returns the list of objects.
     """
 
+    logging.info("=========== model_handler.generate_model_object_list")
     ModelList = []
 
     run_type = response.json()['run_type']
     jid = response.json()['_id']
 
     import pandas as pd
-    import json
     # Load 'inputs' key from JSON response to Pandas DataFrame
     pd_obj_in = pd.io.json.read_json(json.dumps(response.json()['inputs']))
     # Load 'outputs' key from JSON response to Pandas DataFrame
@@ -250,7 +245,7 @@ def generate_model_object_list(response):
     logging.info(pd_obj_out)
 
     i = 0
-    while (i < no_of_runs): 
+    while (i < no_of_runs):
         logging.info(i)
         run_list = range(no_of_runs)
         del run_list[i]

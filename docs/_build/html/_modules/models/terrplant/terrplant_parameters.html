@@ -29,8 +29,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,18 +39,18 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.terrplant.terrplant_parameters</h1><div class="highlight"><pre>
-<span class="c"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">.. module:: terrplant_parameters</span>
 <span class="sd">   :synopsis: A useful module indeed.</span>
@@ -60,104 +60,99 @@
 <span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">validators</span>
 <span class="kn">from</span> <span class="nn">models.forms</span> <span class="kn">import</span> <span class="n">validation</span>
 
+<span class="n">SELECT_INCORPORATION</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">))</span>
 
-<span class="n">SELECT_INCORPORATION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1&#39;</span><span class="p">,</span><span class="s">&#39;1&#39;</span><span class="p">),(</span><span class="s">&#39;2&#39;</span><span class="p">,</span><span class="s">&#39;2&#39;</span><span class="p">),(</span><span class="s">&#39;3&#39;</span><span class="p">,</span><span class="s">&#39;3&#39;</span><span class="p">),(</span><span class="s">&#39;4&#39;</span><span class="p">,</span><span class="s">&#39;4&#39;</span><span class="p">),(</span><span class="s">&#39;5&#39;</span><span class="p">,</span><span class="s">&#39;5&#39;</span><span class="p">),(</span><span class="s">&#39;6&#39;</span><span class="p">,</span><span class="s">&#39;6&#39;</span><span class="p">))</span>
+<span class="n">SELECT_DRIFT</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;0.01&#39;</span><span class="p">,</span> <span class="s1">&#39;0.01&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;0.05&#39;</span><span class="p">,</span> <span class="s1">&#39;0.05&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">))</span>
 
-<span class="n">SELECT_DRIFT</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;0.01&#39;</span><span class="p">,</span><span class="s">&#39;0.01&#39;</span><span class="p">),(</span><span class="s">&#39;0.05&#39;</span><span class="p">,</span><span class="s">&#39;0.05&#39;</span><span class="p">),(</span><span class="s">&#39;0&#39;</span><span class="p">,</span><span class="s">&#39;0&#39;</span><span class="p">))</span>
+<span class="n">SELECT_RUN</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;0.01&#39;</span><span class="p">,</span> <span class="s1">&#39;0.01&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;0.02&#39;</span><span class="p">,</span> <span class="s1">&#39;0.02&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;0.05&#39;</span><span class="p">,</span> <span class="s1">&#39;0.05&#39;</span><span class="p">))</span>
 
-<span class="n">SELECT_RUN</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;0.01&#39;</span><span class="p">,</span><span class="s">&#39;0.01&#39;</span><span class="p">),(</span><span class="s">&#39;0.02&#39;</span><span class="p">,</span><span class="s">&#39;0.02&#39;</span><span class="p">),(</span><span class="s">&#39;0.05&#39;</span><span class="p">,</span><span class="s">&#39;0.05&#39;</span><span class="p">))</span>
+<span class="n">SELECT_VERSION</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;1.2.2&#39;</span><span class="p">,</span> <span class="s1">&#39;1.2.2&#39;</span><span class="p">),)</span>
 
-<span class="n">SELECT_VERSION</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;1.2.2&#39;</span><span class="p">,</span><span class="s">&#39;1.2.2&#39;</span><span class="p">),)</span>
 
 <div class="viewcode-block" id="TerrplantInp"><a class="viewcode-back" href="../../../models.terrplant.html#models.terrplant.terrplant_parameters.TerrplantInp">[docs]</a><span class="k">class</span> <span class="nc">TerrplantInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
-    <span class="n">version_terrplant</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
-            <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_VERSION</span><span class="p">,</span> 
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Version&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;1.2.2&#39;</span><span class="p">)</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_VERSION</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Version&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;1.2.2&#39;</span><span class="p">)</span>
     <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Alachlor&#39;</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Chemical Name&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Terrplant Example&#39;</span><span class="p">)</span>
     <span class="n">pc_code</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> 
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;PC Code&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;90501&#39;</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PC Code&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;90501&#39;</span><span class="p">)</span>
     <span class="n">use</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> 
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Use&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Corn&#39;</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Use&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Corn&#39;</span><span class="p">)</span>
     <span class="n">application_method</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> 
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Application Method&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Ground&#39;</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Application Method&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Ground&#39;</span><span class="p">)</span>
     <span class="n">application_form</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span> 
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Application Form&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Spray&#39;</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validators</span><span class="o">.</span><span class="n">validate_slug</span><span class="p">])</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Application Form&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Spray&#39;</span><span class="p">)</span>
     <span class="n">solubility</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Solubility&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mi">240</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
-    <span class="n">incorporation</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
-            <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_INCORPORATION</span><span class="p">,</span> 
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Incorporation Depth (in)&#39;</span><span class="p">)</span>    
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Solubility (ppm)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">240</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">incorporation_depth</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_INCORPORATION</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Incorporation Depth (in)&#39;</span><span class="p">)</span>
     <span class="n">application_rate</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Application rate (lbs ai/A)&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>    
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Application rate (lbs ai/A)&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
     <span class="n">drift_fraction</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
-            <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_DRIFT</span><span class="p">,</span> 
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Drift Fraction&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_DRIFT</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Drift Fraction&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
     <span class="n">runoff_fraction</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
-            <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_RUN</span><span class="p">,</span> 
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Runoff Fraction&#39;</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-    <span class="n">EC25_for_nonlisted_seedling_emergence_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Seedling Emergence Monocot&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.0067</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
-    <span class="n">EC25_for_nonlisted_seedling_emergence_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Seedling Emergence Dicot&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.034</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
-    <span class="n">NOAEC_for_listed_seedling_emergence_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;NOAEC for Non-listed Seedling Emergence Monocot&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.0023</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
-    <span class="n">NOAEC_for_listed_seedling_emergence_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;NOAEC for Non-listed Seedling Emergence Dicot&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.019</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
-    <span class="n">EC25_for_nonlisted_vegetative_vigor_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Vegetative Vigor Monocot&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.068</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
-    <span class="n">EC25_for_nonlisted_vegetative_vigor_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Vegetative Vigor Dicot&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
-    <span class="n">NOAEC_for_listed_vegetative_vigor_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;NOAEC for Non-listed Vegetative Vigor Monocot&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.037</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
-    <span class="n">NOAEC_for_listed_vegetative_vigor_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;NOAEC for Non-listed Vegetative Vigor Dicot&#39;</span><span class="p">),</span>
-            <span class="n">initial</span><span class="o">=</span><span class="mf">0.67</span><span class="p">,</span>
-            <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span></div>
+        <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_RUN</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Runoff Fraction&#39;</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">ec25_nonlisted_seedling_emergence_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Seedling Emergence Monocot (lbs ai/A)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.0067</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">ec25_nonlisted_seedling_emergence_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Seedling Emergence Dicot (lbs ai/A)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.034</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">noaec_listed_seedling_emergence_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;noaec for Non-listed Seedling Emergence Monocot (lbs ai/A)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.0023</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">noaec_listed_seedling_emergence_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;noaec for Non-listed Seedling Emergence Dicot (lbs ai/A)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.019</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">ec25_nonlisted_vegetative_vigor_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Vegetative Vigor Monocot (lbs ai/A)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.068</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">ec25_nonlisted_vegetative_vigor_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;EC&lt;sub&gt;25&lt;/sub&gt; for Non-listed Vegetative Vigor Dicot (lbs ai/A)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">noaec_listed_vegetative_vigor_monocot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;noaec for Non-listed Vegetative Vigor Monocot (lbs ai/A)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.037</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span>
+    <span class="n">noaec_listed_vegetative_vigor_dicot</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;noaec for Non-listed Vegetative Vigor Dicot (lbs ai/A)&#39;</span><span class="p">),</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mf">0.67</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_positive</span><span class="p">])</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -165,16 +160,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -183,13 +175,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

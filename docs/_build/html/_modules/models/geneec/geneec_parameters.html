@@ -29,8 +29,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,18 +39,18 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.geneec.geneec_parameters</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">.. module:: geneec_parameters</span>
 <span class="sd">   :synopsis: A useful module indeed.</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -60,94 +60,103 @@
 <span class="kn">from</span> <span class="nn">models.forms</span> <span class="kn">import</span> <span class="n">validation</span>
 
 
-<span class="n">applicationtarget_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;Short grass&#39;</span><span class="p">),(</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;Tall grass&#39;</span><span class="p">),(</span><span class="s">&#39;c&#39;</span><span class="p">,</span><span class="s">&#39;Broad-leafed plants/small insects&#39;</span><span class="p">),</span>
-                            <span class="p">(</span><span class="s">&#39;d&#39;</span><span class="p">,</span><span class="s">&#39;Fruits/pods/seeds/large insects&#39;</span><span class="p">))</span> 
-<span class="n">wet_in_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;Yes&#39;</span><span class="p">,</span><span class="s">&#39;Yes&#39;</span><span class="p">),(</span><span class="s">&#39;No&#39;</span><span class="p">,</span><span class="s">&#39;No&#39;</span><span class="p">))</span>
-<span class="n">applicationmethod_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;0&#39;</span><span class="p">,</span><span class="s">&#39;Pick an application method&#39;</span><span class="p">),(</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;Aerial Spray&#39;</span><span class="p">),(</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;Ground Spray&#39;</span><span class="p">),</span>
-                         <span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">,</span><span class="s">&#39;Airblast Spray (Orchard &amp; Vineyard)&#39;</span><span class="p">),(</span><span class="s">&#39;d&#39;</span><span class="p">,</span><span class="s">&#39;Granular (Non-Spray)&#39;</span><span class="p">))</span>
-<span class="n">wet_in_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;Yes&#39;</span><span class="p">,</span><span class="s">&#39;Yes&#39;</span><span class="p">),(</span><span class="s">&#39;No&#39;</span><span class="p">,</span><span class="s">&#39;No&#39;</span><span class="p">))</span>
-<span class="n">aerial_size_dist_CHOICES</span><span class="o">=</span><span class="p">((</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;Very Fine to Fine&#39;</span><span class="p">),(</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;Fine to Medium (EFED Default)&#39;</span><span class="p">),</span>
-                          <span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">,</span><span class="s">&#39;Medium to Coarse&#39;</span><span class="p">),(</span><span class="s">&#39;d&#39;</span><span class="p">,</span><span class="s">&#39;Coarse to Very Coarse&#39;</span><span class="p">))</span> 
-<span class="n">ground_spray_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;Low Boom Ground Spray (20&quot; or less)&#39;</span><span class="p">),</span>
-                       <span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;High Boom Ground Spray (20-50&quot;; EFED Default)&#39;</span><span class="p">))</span> 
-<span class="n">spray_quality_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;Fine (EFED Default)&#39;</span><span class="p">),</span>
-                        <span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;Medium-Coarse&#39;</span><span class="p">))</span>  
-<span class="n">airblast_type_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;Orchards and Dormant Vineyards&#39;</span><span class="p">),</span>
-                         <span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="s">&#39;Foliated Vineyards&#39;</span><span class="p">))</span> 
+<span class="n">applicationtarget_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;Short grass&#39;</span><span class="p">),(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;Tall grass&#39;</span><span class="p">),(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;Broad-leafed plants/small insects&#39;</span><span class="p">),</span>
+                            <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;Fruits/pods/seeds/large insects&#39;</span><span class="p">))</span> 
+<span class="n">wet_in_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;Yes&#39;</span><span class="p">,</span><span class="s1">&#39;Yes&#39;</span><span class="p">),(</span><span class="s1">&#39;No&#39;</span><span class="p">,</span><span class="s1">&#39;No&#39;</span><span class="p">))</span>
+<span class="n">applicationmethod_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;Pick an application method&#39;</span><span class="p">),(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;Aerial Spray&#39;</span><span class="p">),(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;Ground Spray&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;Airblast Spray (Orchard &amp; Vineyard)&#39;</span><span class="p">),(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;Granular (Non-Spray)&#39;</span><span class="p">))</span>
+<span class="n">wet_in_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;Yes&#39;</span><span class="p">,</span><span class="s1">&#39;Yes&#39;</span><span class="p">),(</span><span class="s1">&#39;No&#39;</span><span class="p">,</span><span class="s1">&#39;No&#39;</span><span class="p">))</span>
+<span class="n">aerial_size_dist_CHOICES</span><span class="o">=</span><span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;Very Fine to Fine&#39;</span><span class="p">),(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;Fine to Medium (EFED Default)&#39;</span><span class="p">),</span>
+                          <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;Medium to Coarse&#39;</span><span class="p">),(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;Coarse to Very Coarse&#39;</span><span class="p">))</span> 
+<span class="n">ground_spray_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;Low Boom Ground Spray (20&quot; or less)&#39;</span><span class="p">),</span>
+                       <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;High Boom Ground Spray (20-50&quot;; EFED Default)&#39;</span><span class="p">))</span> 
+<span class="n">spray_quality_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;Fine (EFED Default)&#39;</span><span class="p">),</span>
+                        <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;Medium-Coarse&#39;</span><span class="p">))</span>  
+<span class="n">airblast_type_CHOICES</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;Orchards and Dormant Vineyards&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;Foliated Vineyards&#39;</span><span class="p">))</span> 
+<span class="n">SELECT_VERSION</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;1.0&#39;</span><span class="p">,</span><span class="s1">&#39;1.0&#39;</span><span class="p">),)</span>
 
 
 <div class="viewcode-block" id="GeneecInp"><a class="viewcode-back" href="../../../models.geneec.html#models.geneec.geneec_parameters.GeneecInp">[docs]</a><span class="k">class</span> <span class="nc">GeneecInp</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">version_geneec</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
+            <span class="n">choices</span><span class="o">=</span><span class="n">SELECT_VERSION</span><span class="p">,</span> 
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Version&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
     <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}))</span>
+            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
+    <span class="n">pc_code</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span> <span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;cols&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span> 
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PC Code&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">)</span>
     <span class="n">application_target</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
             <span class="n">choices</span><span class="o">=</span><span class="n">applicationtarget_CHOICES</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Short grass&#39;</span><span class="p">)</span>        
+            <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Short grass&#39;</span><span class="p">)</span>        
     <span class="n">application_rate</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Application rate (lbs a.i./A)&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Application rate (lbs a.i./A)&#39;</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
     <span class="n">number_of_applications</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Number of applications&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Number of applications&#39;</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
     <span class="n">interval_between_applications</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Interval between applications (days)&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interval between applications (days)&#39;</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">,</span> <span class="n">validation</span><span class="o">.</span><span class="n">validate_integer</span><span class="p">])</span>
     <span class="n">Koc</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s">&#39;K&lt;sub&gt;OC&lt;/sub&gt; (mL/g OC)&#39;</span><span class="p">),</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;K&lt;sub&gt;OC&lt;/sub&gt; (mL/g OC)&#39;</span><span class="p">),</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
     <span class="n">aerobic_soil_metabolism</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Aerobic soil metabolism half-life (days)&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Aerobic soil metabolism half-life (days)&#39;</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">,</span> <span class="n">validation</span><span class="o">.</span><span class="n">validate_integer</span><span class="p">])</span>    
     <span class="n">wet_in</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
             <span class="n">choices</span><span class="o">=</span><span class="n">wet_in_CHOICES</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Yes&#39;</span><span class="p">)</span>        
+            <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Yes&#39;</span><span class="p">)</span>        
     
     <span class="n">application_method</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
             <span class="n">choices</span><span class="o">=</span><span class="n">applicationmethod_CHOICES</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Pick an application method&#39;</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Pick an application method&#39;</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_choicefield</span><span class="p">])</span>
-    <span class="c">#A1</span>
+    <span class="c1">#A1</span>
     <span class="n">aerial_size_dist</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
             <span class="n">choices</span><span class="o">=</span><span class="n">aerial_size_dist_CHOICES</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Very Fine to Fine&#39;</span><span class="p">)</span>
-    <span class="c">#B1</span>
+            <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Very Fine to Fine&#39;</span><span class="p">)</span>
+    <span class="c1">#B1</span>
     <span class="n">ground_spray_type</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
             <span class="n">choices</span><span class="o">=</span><span class="n">ground_spray_CHOICES</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Low Boom Ground Spray (20&quot; or less)&#39;</span><span class="p">)</span>                                          
-    <span class="c">#C1</span>
+            <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Low Boom Ground Spray (20&quot; or less)&#39;</span><span class="p">)</span>                                          
+    <span class="c1">#C1</span>
     <span class="n">airblast_type</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
             <span class="n">choices</span><span class="o">=</span><span class="n">airblast_type_CHOICES</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Orchards and Dormant Vineyards&#39;</span><span class="p">)</span>    
-    <span class="c">#B2    </span>
+            <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Orchards and Dormant Vineyards&#39;</span><span class="p">)</span>    
+    <span class="c1">#B2    </span>
     <span class="n">spray_quality</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span>
             <span class="n">choices</span><span class="o">=</span><span class="n">spray_quality_CHOICES</span><span class="p">,</span>
-            <span class="n">initial</span><span class="o">=</span><span class="s">&#39;Fine (EFED Default)&#39;</span><span class="p">)</span>
+            <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;Fine (EFED Default)&#39;</span><span class="p">)</span>
     <span class="n">no_spray_drift</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Width of the no-spray zone (feet)&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Width of the no-spray zone (feet)&#39;</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">,</span> <span class="n">validation</span><span class="o">.</span><span class="n">validate_integer</span><span class="p">])</span>    
     <span class="n">incorporation_depth</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Incorporation Depth (inch)&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Incorporation Depth (inch)&#39;</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">,</span> <span class="n">validation</span><span class="o">.</span><span class="n">validate_integer</span><span class="p">])</span>    
     <span class="n">solubility</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Solubility (mg/L)&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Solubility (mg/L)&#39;</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">])</span>
     <span class="n">aerobic_aquatic_metabolism</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Aerobic aquatic metabolism half-life (days)&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Aerobic aquatic metabolism half-life (days)&#39;</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">,</span> <span class="n">validation</span><span class="o">.</span><span class="n">validate_integer</span><span class="p">])</span>
     <span class="n">hydrolysis</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Hydrolysis: pH=7/neutral half-life (days)&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hydrolysis: pH=7/neutral half-life (days)&#39;</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">,</span> <span class="n">validation</span><span class="o">.</span><span class="n">validate_integer</span><span class="p">])</span>
     <span class="n">photolysis_aquatic_half_life</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Photolysis, aquatic half-life (days)&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Photolysis, aquatic half-life (days)&#39;</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
             <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validation</span><span class="o">.</span><span class="n">validate_greaterthan0</span><span class="p">,</span> <span class="n">validation</span><span class="o">.</span><span class="n">validate_integer</span><span class="p">])</span></div>
 </pre></div>
@@ -155,9 +164,9 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -165,16 +174,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -183,13 +189,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

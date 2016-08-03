@@ -29,8 +29,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,18 +39,18 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.trex.trex_input</h1><div class="highlight"><pre>
-<span class="c"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Created on Tue Jan 03 13:30:41 2012</span>
 <span class="sd">@author: T. Hong</span>
@@ -58,23 +58,23 @@
 <span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="kn">import</span> <span class="n">render_to_string</span>
 
 
-<div class="viewcode-block" id="trexInputPage"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_input.trexInputPage">[docs]</a><span class="k">def</span> <span class="nf">trexInputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">formData</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="trexInputPage"><a class="viewcode-back" href="../../../models.trex.html#models.trex.trex_input.trexInputPage">[docs]</a><span class="k">def</span> <span class="nf">trexInputPage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">formData</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">trex_parameters</span>
 
-    <span class="c"># html = render_to_string(&#39;04uberinput_jquery.html&#39;, { &#39;model&#39;: model })    </span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_start.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-            <span class="s">&#39;model&#39;</span><span class="p">:</span><span class="n">model</span><span class="p">,</span> 
-            <span class="s">&#39;model_attributes&#39;</span><span class="p">:</span> <span class="n">header</span><span class="o">+</span><span class="s">&#39; Inputs&#39;</span><span class="p">})</span>
+    <span class="c1"># html = render_to_string(&#39;04uberinput_jquery.html&#39;, { &#39;model&#39;: model })    </span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;04uberinput_start.html&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s1">&#39;model&#39;</span><span class="p">:</span><span class="n">model</span><span class="p">,</span> 
+            <span class="s1">&#39;model_attributes&#39;</span><span class="p">:</span> <span class="n">header</span><span class="o">+</span><span class="s1">&#39; Inputs&#39;</span><span class="p">})</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trex_parameters</span><span class="o">.</span><span class="n">TrexInp</span><span class="p">(</span><span class="n">formData</span><span class="p">))</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;04uberinput_end.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;sub_title&#39;</span><span class="p">:</span> <span class="s">&#39;Submit&#39;</span><span class="p">})</span>
-    <span class="c"># Check if tooltips dictionary exists</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;04uberinput_end.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;sub_title&#39;</span><span class="p">:</span> <span class="s1">&#39;Submit&#39;</span><span class="p">})</span>
+    <span class="c1"># Check if tooltips dictionary exists</span>
     <span class="k">try</span><span class="p">:</span>
        <span class="kn">import</span> <span class="nn">trex_tooltips</span>
-       <span class="nb">hasattr</span><span class="p">(</span><span class="n">trex_tooltips</span><span class="p">,</span> <span class="s">&#39;tooltips&#39;</span><span class="p">)</span>
+       <span class="nb">hasattr</span><span class="p">(</span><span class="n">trex_tooltips</span><span class="p">,</span> <span class="s1">&#39;tooltips&#39;</span><span class="p">)</span>
        <span class="n">tooltips</span> <span class="o">=</span> <span class="n">trex_tooltips</span><span class="o">.</span><span class="n">tooltips</span>
     <span class="k">except</span><span class="p">:</span>
        <span class="n">tooltips</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;05ubertext_tooltips_right.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;tooltips&#39;</span><span class="p">:</span><span class="n">tooltips</span><span class="p">})</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span> <span class="o">+</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;05ubertext_tooltips_right.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;tooltips&#39;</span><span class="p">:</span><span class="n">tooltips</span><span class="p">})</span>
 
     <span class="k">return</span> <span class="n">html</span></div>
 </pre></div>
@@ -82,9 +82,9 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -92,16 +92,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -110,13 +107,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

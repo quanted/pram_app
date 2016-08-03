@@ -10,7 +10,7 @@ from django.views.decorators.http import require_POST
 def trex2OutputPage(request):
     import trex2_model
 
-    chem_name = request.POST.get('chemical_name')
+    chem_name = request.POST.get('chem_name')
     use = request.POST.get('Use')
     formu_name = request.POST.get('Formulated_product_name')
     a_i = request.POST.get('percent_ai')
@@ -43,7 +43,7 @@ def trex2OutputPage(request):
        rate_out.append(float(rate_temp))
        day_temp = float(request.POST.get('day'+str(j)))
        day_out.append(day_temp)  
-
+    
     h_l = request.POST.get('Foliar_dissipation_half_life')
     ld50_bird = request.POST.get('avian_ld50')
     lc50_bird = request.POST.get('avian_lc50')

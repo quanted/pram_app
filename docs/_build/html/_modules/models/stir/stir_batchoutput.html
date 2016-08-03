@@ -29,8 +29,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,224 +39,57 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.stir.stir_batchoutput</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">.. module:: stir_batchoutput</span>
 <span class="sd">   :synopsis: A useful module indeed.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
-<span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
-<span class="kn">import</span> <span class="nn">stir_model</span><span class="o">,</span><span class="nn">stir_tables</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
-<span class="kn">import</span> <span class="nn">Queue</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;stirBatchPage&#39;</span><span class="p">)</span>
 
+<div class="viewcode-block" id="read_batch_csv"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_batchoutput.read_batch_csv">[docs]</a><span class="k">def</span> <span class="nf">read_batch_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 
-<span class="c">#inputs</span>
-<span class="n">chemical_name</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">application_rate</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">column_height</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">spray_drift_fraction</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">direct_spray_duration</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">molecular_weight</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">vapor_pressure</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">avian_oral_ld50</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">body_weight_assessed_bird</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">body_weight_tested_bird</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">mineau_scaling_factor</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">mammal_inhalation_lc50</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">duration_mammal_inhalation_study</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">body_weight_assessed_mammal</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">body_weight_tested_mammal</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">mammal_oral_ld50</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;===== stir_batchoutput.read_batch_csv&quot;</span><span class="p">)</span>
+    <span class="n">pd_obj</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">skip_footer</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;===== reading stir batch csv&quot;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">pd_obj</span><span class="p">)</span>
+    <span class="n">pd_obj</span> <span class="o">=</span> <span class="n">pd_obj</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">pd_obj</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">pd_obj</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">pd_obj</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd_obj</span><span class="o">.</span><span class="n">columns</span> <span class="o">-</span> <span class="mi">5</span>
 
-<span class="c">#outputs</span>
-<span class="n">sat_air_conc_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">inh_rate_avian_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">vid_avian_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">inh_rate_mammal_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">vid_mammal_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ar2_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">air_conc_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">sid_avian_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">sid_mammal_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">cf_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">mammal_inhalation_ld50_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">adjusted_mammal_inhalation_ld50_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">estimated_avian_inhalation_ld50_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">adjusted_avian_inhalation_ld50_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ratio_vid_avian_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ratio_sid_avian_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ratio_vid_mammal_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ratio_sid_mammal_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">loc_vid_avian_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">loc_sid_avian_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">loc_vid_mammal_out</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">loc_sid_mammal_out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="n">pd_obj</span></div>
 
-
-<span class="n">jid_all</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">jid_batch</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">stir_all</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">all_threads</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">out_html_all</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">job_q</span> <span class="o">=</span> <span class="n">Queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
-<span class="n">thread_count</span> <span class="o">=</span> <span class="mi">10</span>
-
-
-<div class="viewcode-block" id="html_table"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_batchoutput.html_table">[docs]</a><span class="k">def</span> <span class="nf">html_table</span><span class="p">(</span><span class="n">row_inp_all</span><span class="p">):</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">row_inp_temp_all</span> <span class="o">=</span> <span class="n">row_inp_all</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">row_inp_temp_all</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">row</span> <span class="o">=</span> <span class="n">row_inp_temp_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="nb">iter</span> <span class="o">=</span> <span class="n">row_inp_temp_all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;iteration: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">iter</span><span class="p">))</span>
-            <span class="n">chemical_name_temp</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">chemical_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chemical_name_temp</span><span class="p">)</span>
-            <span class="n">application_rate_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="n">application_rate</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">application_rate_temp</span><span class="p">)</span>
-            <span class="n">column_height_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-            <span class="n">column_height</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column_height_temp</span><span class="p">)</span>
-            <span class="n">spray_drift_fraction_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-            <span class="n">spray_drift_fraction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spray_drift_fraction_temp</span><span class="p">)</span>
-            <span class="n">direct_spray_duration_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-            <span class="n">direct_spray_duration</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">direct_spray_duration_temp</span><span class="p">)</span>
-            <span class="n">molecular_weight_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-            <span class="n">molecular_weight</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">molecular_weight_temp</span><span class="p">)</span>
-            <span class="n">vapor_pressure_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
-            <span class="n">vapor_pressure</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vapor_pressure_temp</span><span class="p">)</span>
-            <span class="n">avian_oral_ld50_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
-            <span class="n">avian_oral_ld50</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">avian_oral_ld50_temp</span><span class="p">)</span>
-            <span class="n">body_weight_assessed_bird_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
-            <span class="n">body_weight_assessed_bird</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body_weight_assessed_bird_temp</span><span class="p">)</span>
-            <span class="n">body_weight_tested_bird_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
-            <span class="n">body_weight_tested_bird</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body_weight_tested_bird_temp</span><span class="p">)</span>
-            <span class="n">mineau_scaling_factor_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
-            <span class="n">mineau_scaling_factor</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mineau_scaling_factor_temp</span><span class="p">)</span>
-            <span class="n">mammal_inhalation_lc50_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
-            <span class="n">mammal_inhalation_lc50</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mammal_inhalation_lc50_temp</span><span class="p">)</span>
-            <span class="n">duration_mammal_inhalation_study_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">12</span><span class="p">])</span>
-            <span class="n">duration_mammal_inhalation_study</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">duration_mammal_inhalation_study_temp</span><span class="p">)</span>
-            <span class="n">body_weight_assessed_mammal_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">13</span><span class="p">])</span>
-            <span class="n">body_weight_assessed_mammal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body_weight_assessed_mammal_temp</span><span class="p">)</span>
-            <span class="n">body_weight_tested_mammal_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
-            <span class="n">body_weight_tested_mammal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body_weight_tested_mammal_temp</span><span class="p">)</span>
-            <span class="n">mammal_oral_ld50_temp</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">15</span><span class="p">])</span>
-            <span class="n">mammal_oral_ld50</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mammal_oral_ld50_temp</span><span class="p">)</span>
-
-            <span class="n">Input_header</span><span class="o">=</span><span class="s">&quot;&quot;&quot;&lt;div class=&quot;out_&quot;&gt;</span>
-<span class="s">                                &lt;br&gt;&lt;H3&gt;Batch Calculation of Iteration </span><span class="si">%s</span><span class="s">&lt;/H3&gt;</span>
-<span class="s">                            &lt;/div&gt;&quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="nb">iter</span><span class="p">)</span>
-
-            <span class="n">stir_obj_temp</span> <span class="o">=</span> <span class="n">stir_model</span><span class="o">.</span><span class="n">StirModel</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="n">chemical_name_temp</span><span class="p">,</span><span class="n">application_rate_temp</span><span class="p">,</span><span class="n">column_height_temp</span><span class="p">,</span><span class="n">spray_drift_fraction_temp</span><span class="p">,</span><span class="n">direct_spray_duration_temp</span><span class="p">,</span> 
-                    <span class="n">molecular_weight_temp</span><span class="p">,</span><span class="n">vapor_pressure_temp</span><span class="p">,</span><span class="n">avian_oral_ld50_temp</span><span class="p">,</span> <span class="n">body_weight_assessed_bird_temp</span><span class="p">,</span> <span class="n">body_weight_tested_bird_temp</span><span class="p">,</span> <span class="n">mineau_scaling_factor_temp</span><span class="p">,</span> 
-                    <span class="n">mammal_inhalation_lc50_temp</span><span class="p">,</span><span class="n">duration_mammal_inhalation_study_temp</span><span class="p">,</span><span class="n">body_weight_assessed_mammal_temp</span><span class="p">,</span> <span class="n">body_weight_tested_mammal_temp</span><span class="p">,</span> 
-                    <span class="n">mammal_oral_ld50_temp</span><span class="p">)</span>
-            
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;===============&quot;</span><span class="p">)</span>
-
-            <span class="n">sat_air_conc_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">sat_air_conc</span><span class="p">)</span>
-            <span class="n">inh_rate_avian_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">inh_rate_avian</span><span class="p">)</span>
-            <span class="n">vid_avian_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">vid_avian</span><span class="p">)</span>
-            <span class="n">inh_rate_mammal_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">inh_rate_mammal</span><span class="p">)</span>
-            <span class="n">vid_mammal_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">vid_mammal</span><span class="p">)</span>
-            <span class="n">ar2_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">ar2</span><span class="p">)</span>
-            <span class="n">air_conc_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">air_conc</span><span class="p">)</span>
-            <span class="n">sid_avian_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">sid_avian</span><span class="p">)</span>
-            <span class="n">sid_mammal_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">sid_mammal</span><span class="p">)</span>
-            <span class="n">cf_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">cf</span><span class="p">)</span>
-            <span class="n">mammal_inhalation_ld50_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">mammal_inhalation_ld50</span><span class="p">)</span>
-            <span class="n">adjusted_mammal_inhalation_ld50_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">adjusted_mammal_inhalation_ld50</span><span class="p">)</span>
-            <span class="n">estimated_avian_inhalation_ld50_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">estimated_avian_inhalation_ld50</span><span class="p">)</span>
-            <span class="n">adjusted_avian_inhalation_ld50_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">adjusted_avian_inhalation_ld50</span><span class="p">)</span>
-            <span class="n">ratio_vid_avian_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">ratio_vid_avian</span><span class="p">)</span>
-            <span class="n">ratio_sid_avian_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">ratio_sid_avian</span><span class="p">)</span>
-            <span class="n">ratio_vid_mammal_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">ratio_vid_mammal</span><span class="p">)</span>
-            <span class="n">ratio_sid_mammal_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">ratio_sid_mammal</span><span class="p">)</span>
-            <span class="n">loc_vid_avian_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">loc_vid_avian</span><span class="p">)</span>
-            <span class="n">loc_sid_avian_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">loc_sid_avian</span><span class="p">)</span>
-            <span class="n">loc_vid_mammal_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">loc_vid_mammal</span><span class="p">)</span>
-            <span class="n">loc_sid_mammal_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">loc_sid_mammal</span><span class="p">)</span>
-
-            <span class="n">jid_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">jid</span><span class="p">)</span>
-            <span class="n">stir_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="p">)</span>    
-            <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">jid_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stir_obj_temp</span><span class="o">.</span><span class="n">jid</span><span class="p">)</span>
-
-            <span class="n">batch_header</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
-<span class="s">                &lt;div class=&quot;out_&quot;&gt;</span>
-<span class="s">                    &lt;br&gt;&lt;H3&gt;Batch Calculation of Iteration </span><span class="si">%s</span><span class="s">:&lt;/H3&gt;</span>
-<span class="s">                &lt;/div&gt;</span>
-<span class="s">                &quot;&quot;&quot;</span><span class="o">%</span><span class="p">(</span><span class="nb">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-                
-            <span class="c"># html_temp = stir_tables.table_all(stir_obj_temp)</span>
-            <span class="c"># out_html_temp = batch_header + html_temp + &quot;&lt;br&gt;&quot;</span>
-            <span class="n">out_html_temp</span> <span class="o">=</span> <span class="n">batch_header</span> <span class="o">+</span> <span class="n">stir_tables</span><span class="o">.</span><span class="n">table_all</span><span class="p">(</span><span class="n">sip_obj</span><span class="p">)</span>
-            <span class="n">out_html_all</span><span class="p">[</span><span class="nb">iter</span><span class="p">]</span><span class="o">=</span><span class="n">out_html_temp</span>
-    </div>
-<div class="viewcode-block" id="loop_html"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_batchoutput.loop_html">[docs]</a><span class="k">def</span> <span class="nf">loop_html</span><span class="p">(</span><span class="n">thefile</span><span class="p">):</span>
-    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">thefile</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
-    <span class="n">header</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-    <span class="c"># exclud_list = [&#39;&#39;, &quot; &quot;, &quot;  &quot;, &quot;   &quot;, &quot;    &quot;, &quot;     &quot;, &quot;      &quot;, &quot;       &quot;, &quot;        &quot;, &quot;         &quot;, &quot;          &quot;]</span>
-    <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
-
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-        <span class="n">job_q</span><span class="o">.</span><span class="n">put</span><span class="p">([</span><span class="n">row</span><span class="p">,</span> <span class="n">i</span><span class="p">])</span>
-        <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-
-    <span class="n">all_threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">html_table</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">job_q</span><span class="p">,</span> <span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">thread_count</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
-        <span class="n">x</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
-        <span class="n">job_q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">all_threads</span><span class="p">:</span>
-        <span class="n">x</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-
-    <span class="n">html_timestamp</span> <span class="o">=</span> <span class="n">stir_tables</span><span class="o">.</span><span class="n">timestamp</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">jid_batch</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">out_html_all_sort</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">out_html_all</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-
-    <span class="n">sum_1</span><span class="o">=</span><span class="n">stir_tables</span><span class="o">.</span><span class="n">table_sum_1</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">application_rate</span><span class="p">,</span><span class="n">column_height</span><span class="p">,</span><span class="n">spray_drift_fraction</span><span class="p">,</span><span class="n">direct_spray_duration</span><span class="p">,</span><span class="n">molecular_weight</span><span class="p">,</span><span class="n">vapor_pressure</span><span class="p">)</span>
-    <span class="n">sum_2</span><span class="o">=</span><span class="n">stir_tables</span><span class="o">.</span><span class="n">table_sum_2</span><span class="p">(</span><span class="n">avian_oral_ld50</span><span class="p">,</span><span class="n">body_weight_assessed_bird</span><span class="p">,</span><span class="n">body_weight_tested_bird</span><span class="p">,</span><span class="n">mineau_scaling_factor</span><span class="p">,</span><span class="n">mammal_inhalation_lc50</span><span class="p">,</span><span class="n">duration_mammal_inhalation_study</span><span class="p">,</span><span class="n">body_weight_assessed_mammal</span><span class="p">,</span><span class="n">body_weight_tested_mammal</span><span class="p">,</span><span class="n">mammal_oral_ld50</span><span class="p">)</span>
-    <span class="n">sum_3</span><span class="o">=</span><span class="n">stir_tables</span><span class="o">.</span><span class="n">table_sum_3</span><span class="p">(</span><span class="n">sat_air_conc_out</span><span class="p">,</span><span class="n">inh_rate_avian_out</span><span class="p">,</span><span class="n">vid_avian_out</span><span class="p">,</span><span class="n">estimated_avian_inhalation_ld50_out</span><span class="p">,</span><span class="n">adjusted_avian_inhalation_ld50_out</span><span class="p">,</span><span class="n">ratio_vid_avian_out</span><span class="p">,</span><span class="n">sid_avian_out</span><span class="p">,</span><span class="n">ratio_sid_avian_out</span><span class="p">)</span>
-    <span class="n">sum_4</span><span class="o">=</span><span class="n">stir_tables</span><span class="o">.</span><span class="n">table_sum_4</span><span class="p">(</span><span class="n">sat_air_conc_out</span><span class="p">,</span><span class="n">inh_rate_mammal_out</span><span class="p">,</span><span class="n">vid_mammal_out</span><span class="p">,</span><span class="n">mammal_inhalation_ld50_out</span><span class="p">,</span><span class="n">adjusted_mammal_inhalation_ld50_out</span><span class="p">,</span><span class="n">ratio_vid_mammal_out</span><span class="p">,</span><span class="n">sid_mammal_out</span><span class="p">,</span><span class="n">ratio_sid_mammal_out</span><span class="p">)</span>
-    <span class="n">sum_5</span><span class="o">=</span><span class="n">stir_tables</span><span class="o">.</span><span class="n">table_sum_5</span><span class="p">(</span><span class="n">ratio_vid_avian_out</span><span class="p">,</span> <span class="n">ratio_sid_avian_out</span><span class="p">,</span> <span class="n">ratio_vid_mammal_out</span><span class="p">,</span> <span class="n">ratio_sid_mammal_out</span><span class="p">)</span>   
-    <span class="n">sum_html</span> <span class="o">=</span> <span class="n">sum_1</span> <span class="o">+</span> <span class="n">sum_2</span> <span class="o">+</span> <span class="n">sum_3</span> <span class="o">+</span> <span class="n">sum_4</span> <span class="o">+</span> <span class="n">sum_5</span>
-
-    <span class="k">return</span> <span class="n">html_timestamp</span> <span class="o">+</span> <span class="n">sum_html</span> <span class="o">+</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_html_all_sort</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-
-</div>
 <span class="nd">@require_POST</span>
 <div class="viewcode-block" id="stirBatchOutputPage"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_batchoutput.stirBatchOutputPage">[docs]</a><span class="k">def</span> <span class="nf">stirBatchOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">thefile</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">[</span><span class="s">&#39;upfile&#39;</span><span class="p">]</span>
-    <span class="n">iter_html</span><span class="o">=</span><span class="n">loop_html</span><span class="p">(</span><span class="n">thefile</span><span class="p">)</span>
- 
-    <span class="k">return</span> <span class="n">iter_html</span><span class="p">,</span> <span class="n">stir_all</span><span class="p">,</span> <span class="n">jid_batch</span></div>
+    
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;==== stir_batchoutput.stirBatchOutputPage&quot;</span><span class="p">)</span>
+    <span class="n">csv</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="p">[</span><span class="s1">&#39;upfile&#39;</span><span class="p">]</span>
+    <span class="n">pd_obj</span> <span class="o">=</span> <span class="n">read_batch_csv</span><span class="p">(</span><span class="n">csv</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">pd_obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pd_obj</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -264,16 +97,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -282,13 +112,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

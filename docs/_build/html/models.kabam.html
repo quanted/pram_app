@@ -31,8 +31,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -47,15 +47,15 @@
         <li class="right" >
           <a href="models.iec.html" title="IEC"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="kabam">
 <h1>Kabam<a class="headerlink" href="#kabam" title="Permalink to this headline">¶</a></h1>
@@ -65,20 +65,311 @@
 <div class="section" id="models-kabam-kabam-batchoutput-module">
 <h2>models.kabam.kabam_batchoutput module<a class="headerlink" href="#models-kabam-kabam-batchoutput-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-kabam-kabam-input-module">
-<h2>models.kabam.kabam_input module<a class="headerlink" href="#models-kabam-kabam-input-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.kabam.kabam_input">
+<span id="models-kabam-kabam-input-module"></span><h2>models.kabam.kabam_input module<a class="headerlink" href="#module-models.kabam.kabam_input" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kabam_input"></span><dl class="function">
+<dt id="models.kabam.kabam_input.kabamInputPage">
+<code class="descclassname">models.kabam.kabam_input.</code><code class="descname">kabamInputPage</code><span class="sig-paren">(</span><em>request</em>, <em>model=''</em>, <em>header=''</em>, <em>formData=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_input.html#kabamInputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_input.kabamInputPage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="models-kabam-kabam-model-module">
 <h2>models.kabam.kabam_model module<a class="headerlink" href="#models-kabam-kabam-model-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-kabam-kabam-output-module">
-<h2>models.kabam.kabam_output module<a class="headerlink" href="#models-kabam-kabam-output-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.kabam.kabam_output">
+<span id="models-kabam-kabam-output-module"></span><h2>models.kabam.kabam_output module<a class="headerlink" href="#module-models.kabam.kabam_output" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kabam_output"></span><dl class="function">
+<dt id="models.kabam.kabam_output.kabamOutputPage">
+<code class="descclassname">models.kabam.kabam_output.</code><code class="descname">kabamOutputPage</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_output.html#kabamOutputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_output.kabamOutputPage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="models-kabam-kabam-parameters-module">
-<h2>models.kabam.kabam_parameters module<a class="headerlink" href="#models-kabam-kabam-parameters-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.kabam.kabam_parameters">
+<span id="models-kabam-kabam-parameters-module"></span><h2>models.kabam.kabam_parameters module<a class="headerlink" href="#module-models.kabam.kabam_parameters" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-kabam_parameters"></span><dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_chem" title="models.kabam.kabam_parameters.KabamInp_chem"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_chem</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_bird" title="models.kabam.kabam_parameters.KabamInp_bird"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_bird</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_mammal" title="models.kabam.kabam_parameters.KabamInp_mammal"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_mammal</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_lfish" title="models.kabam.kabam_parameters.KabamInp_lfish"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_lfish</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_mfish" title="models.kabam.kabam_parameters.KabamInp_mfish"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_mfish</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_sfish" title="models.kabam.kabam_parameters.KabamInp_sfish"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_sfish</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_ff" title="models.kabam.kabam_parameters.KabamInp_ff"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_ff</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_invert" title="models.kabam.kabam_parameters.KabamInp_invert"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_invert</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_zoo" title="models.kabam.kabam_parameters.KabamInp_zoo"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_zoo</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_sed" title="models.kabam.kabam_parameters.KabamInp_sed"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_sed</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_phyto" title="models.kabam.kabam_parameters.KabamInp_phyto"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_phyto</span></code></a>, <a class="reference internal" href="#models.kabam.kabam_parameters.KabamInp_constants" title="models.kabam.kabam_parameters.KabamInp_constants"><code class="xref py py-class docutils literal"><span class="pre">models.kabam.kabam_parameters.KabamInp_constants</span></code></a></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('rate_c', &lt;django.forms.fields.ChoiceField object at 0x1073a2358&gt;), ('phyto_k1', &lt;django.forms.fields.FloatField object at 0x1073a2400&gt;), ('phyto_k2', &lt;django.forms.fields.FloatField object at 0x1073a2470&gt;), ('phyto_kd', &lt;django.forms.fields.FloatField object at 0x1073a24e0&gt;), ('phyto_ke', &lt;django.forms.fields.FloatField object at 0x1073a2550&gt;), ('phyto_km', &lt;django.forms.fields.FloatField object at 0x1073a25c0&gt;), ('zoo_k1', &lt;django.forms.fields.FloatField object at 0x1073a2630&gt;), ('zoo_k2', &lt;django.forms.fields.FloatField object at 0x1073a26a0&gt;), ('zoo_kd', &lt;django.forms.fields.FloatField object at 0x1073a2710&gt;), ('zoo_ke', &lt;django.forms.fields.FloatField object at 0x1073a2780&gt;), ('zoo_km', &lt;django.forms.fields.FloatField object at 0x1073a27f0&gt;), ('beninv_k1', &lt;django.forms.fields.FloatField object at 0x1073a2860&gt;), ('beninv_k2', &lt;django.forms.fields.FloatField object at 0x1073a2908&gt;), ('beninv_kd', &lt;django.forms.fields.FloatField object at 0x1073a29b0&gt;), ('beninv_ke', &lt;django.forms.fields.FloatField object at 0x1073a2a58&gt;), ('beninv_km', &lt;django.forms.fields.FloatField object at 0x1073a2b00&gt;), ('ff_k1', &lt;django.forms.fields.FloatField object at 0x1073a2b70&gt;), ('ff_k2', &lt;django.forms.fields.FloatField object at 0x1073a2be0&gt;), ('ff_kd', &lt;django.forms.fields.FloatField object at 0x1073a2c50&gt;), ('ff_ke', &lt;django.forms.fields.FloatField object at 0x1073a2cc0&gt;), ('ff_km', &lt;django.forms.fields.FloatField object at 0x1073a2d30&gt;), ('sfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a2da0&gt;), ('sfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a2e10&gt;), ('sfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a2e80&gt;), ('sfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a2ef0&gt;), ('sfish_km', &lt;django.forms.fields.FloatField object at 0x1073a2f60&gt;), ('mfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a2fd0&gt;), ('mfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a3080&gt;), ('mfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a30f0&gt;), ('mfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a3160&gt;), ('mfish_km', &lt;django.forms.fields.FloatField object at 0x1073a31d0&gt;), ('lfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a3240&gt;), ('lfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a32b0&gt;), ('lfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a3320&gt;), ('lfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a3390&gt;), ('lfish_km', &lt;django.forms.fields.FloatField object at 0x1073a3400&gt;), ('phyto_lipid', &lt;django.forms.fields.FloatField object at 0x1073a2128&gt;), ('phyto_NLOM', &lt;django.forms.fields.FloatField object at 0x1073a2198&gt;), ('phyto_water', &lt;django.forms.fields.FloatField object at 0x1073a2208&gt;), ('phyto_respire', &lt;django.forms.fields.ChoiceField object at 0x1073a2278&gt;), ('s_lipid', &lt;django.forms.fields.FloatField object at 0x10739feb8&gt;), ('s_NLOM', &lt;django.forms.fields.FloatField object at 0x10739ff28&gt;), ('s_water', &lt;django.forms.fields.FloatField object at 0x10739ff98&gt;), ('s_respire', &lt;django.forms.fields.ChoiceField object at 0x1073a2048&gt;), ('zoo_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739fb38&gt;), ('zoo_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739fba8&gt;), ('zoo_ww', &lt;django.forms.fields.FloatField object at 0x10739fc18&gt;), ('zoo_lipid', &lt;django.forms.fields.FloatField object at 0x10739fc88&gt;), ('zoo_NLOM', &lt;django.forms.fields.FloatField object at 0x10739fcf8&gt;), ('zoo_water', &lt;django.forms.fields.FloatField object at 0x10739fd68&gt;), ('zoo_respire', &lt;django.forms.fields.ChoiceField object at 0x10739fdd8&gt;), ('beninv_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739f748&gt;), ('beninv_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739f7b8&gt;), ('beninv_p_zoo', &lt;django.forms.fields.FloatField object at 0x10739f828&gt;), ('beninv_ww', &lt;django.forms.fields.FloatField object at 0x10739f898&gt;), ('beninv_lipid', &lt;django.forms.fields.FloatField object at 0x10739f908&gt;), ('beninv_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f978&gt;), ('beninv_water', &lt;django.forms.fields.FloatField object at 0x10739f9e8&gt;), ('beninv_respire', &lt;django.forms.fields.ChoiceField object at 0x10739fa58&gt;), ('ff_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739f2e8&gt;), ('ff_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739f358&gt;), ('ff_p_zoo', &lt;django.forms.fields.FloatField object at 0x10739f3c8&gt;), ('ff_p_beninv', &lt;django.forms.fields.FloatField object at 0x10739f438&gt;), ('ff_ww', &lt;django.forms.fields.FloatField object at 0x10739f4a8&gt;), ('ff_lipid', &lt;django.forms.fields.FloatField object at 0x10739f518&gt;), ('ff_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f588&gt;), ('ff_water', &lt;django.forms.fields.FloatField object at 0x10739f5f8&gt;), ('ff_respire', &lt;django.forms.fields.ChoiceField object at 0x10739f668&gt;), ('sfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x1074eedd8&gt;), ('sfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x1074eee48&gt;), ('sfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x1074eeeb8&gt;), ('sfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1074eef28&gt;), ('sfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1074eef98&gt;), ('sfish_ww', &lt;django.forms.fields.FloatField object at 0x10739f048&gt;), ('sfish_lipid', &lt;django.forms.fields.FloatField object at 0x10739f0b8&gt;), ('sfish_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f128&gt;), ('sfish_water', &lt;django.forms.fields.FloatField object at 0x10739f198&gt;), ('sfish_respire', &lt;django.forms.fields.ChoiceField object at 0x10739f208&gt;), ('mfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739d390&gt;), ('mfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739d400&gt;), ('mfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x107319780&gt;), ('mfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1071f0f60&gt;), ('mfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1071f0e48&gt;), ('mfish_p_sfish', &lt;django.forms.fields.FloatField object at 0x1071f08d0&gt;), ('mfish_ww', &lt;django.forms.fields.FloatField object at 0x10739bc18&gt;), ('mfish_lipid', &lt;django.forms.fields.FloatField object at 0x10739bc88&gt;), ('mfish_NLOM', &lt;django.forms.fields.FloatField object at 0x10739bef0&gt;), ('mfish_water', &lt;django.forms.fields.FloatField object at 0x10739bfd0&gt;), ('mfish_respire', &lt;django.forms.fields.ChoiceField object at 0x10739bf60&gt;), ('lfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x1074ee780&gt;), ('lfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x1074ee7f0&gt;), ('lfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x1074ee860&gt;), ('lfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1074ee8d0&gt;), ('lfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1074ee940&gt;), ('lfish_p_sfish', &lt;django.forms.fields.FloatField object at 0x1074ee9b0&gt;), ('lfish_p_mfish', &lt;django.forms.fields.FloatField object at 0x1074eea20&gt;), ('lfish_ww', &lt;django.forms.fields.FloatField object at 0x1074eea90&gt;), ('lfish_lipid', &lt;django.forms.fields.FloatField object at 0x1074eeb00&gt;), ('lfish_NLOM', &lt;django.forms.fields.FloatField object at 0x1074eeb70&gt;), ('lfish_water', &lt;django.forms.fields.FloatField object at 0x1074eebe0&gt;), ('lfish_respire', &lt;django.forms.fields.ChoiceField object at 0x1074eec50&gt;), ('m_species', &lt;django.forms.fields.ChoiceField object at 0x1074ee470&gt;), ('bw_rat', &lt;django.forms.fields.FloatField object at 0x1074ee518&gt;), ('bwm_other', &lt;django.forms.fields.FloatField object at 0x1074ee588&gt;), ('mld50', &lt;django.forms.fields.FloatField object at 0x1074ee5f8&gt;), ('mlc50', &lt;django.forms.fields.FloatField object at 0x1074ee668&gt;), ('m_chronic', &lt;django.forms.fields.FloatField object at 0x1074ee6d8&gt;), ('Species_of_the_tested_bird', &lt;django.forms.fields.ChoiceField object at 0x1074ee160&gt;), ('bw_quail', &lt;django.forms.fields.FloatField object at 0x1074ee208&gt;), ('bw_duck', &lt;django.forms.fields.FloatField object at 0x1074ee240&gt;), ('bwb_other', &lt;django.forms.fields.FloatField object at 0x1074ee2b0&gt;), ('ald50', &lt;django.forms.fields.FloatField object at 0x1074ee320&gt;), ('alc50', &lt;django.forms.fields.FloatField object at 0x1074ee390&gt;), ('aNOAEC', &lt;django.forms.fields.FloatField object at 0x1074ee400&gt;), ('version_kabam', &lt;django.forms.fields.ChoiceField object at 0x10739d978&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x10739db38&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x10739db70&gt;), ('lkow', &lt;django.forms.fields.FloatField object at 0x10739dbe0&gt;), ('Koc', &lt;django.forms.fields.FloatField object at 0x10739dc50&gt;), ('beec', &lt;django.forms.fields.FloatField object at 0x10739dd30&gt;), ('weec', &lt;django.forms.fields.FloatField object at 0x10739ddd8&gt;), ('sf', &lt;django.forms.fields.FloatField object at 0x10739de80&gt;), ('cpoc', &lt;django.forms.fields.FloatField object at 0x10739df28&gt;), ('cdoc', &lt;django.forms.fields.FloatField object at 0x10739df60&gt;), ('cox', &lt;django.forms.fields.FloatField object at 0x10739d710&gt;), ('wt', &lt;django.forms.fields.FloatField object at 0x10739d860&gt;), ('css', &lt;django.forms.fields.FloatField object at 0x1074ee080&gt;), ('oc', &lt;django.forms.fields.FloatField object at 0x1074ee0b8&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('rate_c', &lt;django.forms.fields.ChoiceField object at 0x1073a2358&gt;), ('phyto_k1', &lt;django.forms.fields.FloatField object at 0x1073a2400&gt;), ('phyto_k2', &lt;django.forms.fields.FloatField object at 0x1073a2470&gt;), ('phyto_kd', &lt;django.forms.fields.FloatField object at 0x1073a24e0&gt;), ('phyto_ke', &lt;django.forms.fields.FloatField object at 0x1073a2550&gt;), ('phyto_km', &lt;django.forms.fields.FloatField object at 0x1073a25c0&gt;), ('zoo_k1', &lt;django.forms.fields.FloatField object at 0x1073a2630&gt;), ('zoo_k2', &lt;django.forms.fields.FloatField object at 0x1073a26a0&gt;), ('zoo_kd', &lt;django.forms.fields.FloatField object at 0x1073a2710&gt;), ('zoo_ke', &lt;django.forms.fields.FloatField object at 0x1073a2780&gt;), ('zoo_km', &lt;django.forms.fields.FloatField object at 0x1073a27f0&gt;), ('beninv_k1', &lt;django.forms.fields.FloatField object at 0x1073a2860&gt;), ('beninv_k2', &lt;django.forms.fields.FloatField object at 0x1073a2908&gt;), ('beninv_kd', &lt;django.forms.fields.FloatField object at 0x1073a29b0&gt;), ('beninv_ke', &lt;django.forms.fields.FloatField object at 0x1073a2a58&gt;), ('beninv_km', &lt;django.forms.fields.FloatField object at 0x1073a2b00&gt;), ('ff_k1', &lt;django.forms.fields.FloatField object at 0x1073a2b70&gt;), ('ff_k2', &lt;django.forms.fields.FloatField object at 0x1073a2be0&gt;), ('ff_kd', &lt;django.forms.fields.FloatField object at 0x1073a2c50&gt;), ('ff_ke', &lt;django.forms.fields.FloatField object at 0x1073a2cc0&gt;), ('ff_km', &lt;django.forms.fields.FloatField object at 0x1073a2d30&gt;), ('sfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a2da0&gt;), ('sfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a2e10&gt;), ('sfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a2e80&gt;), ('sfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a2ef0&gt;), ('sfish_km', &lt;django.forms.fields.FloatField object at 0x1073a2f60&gt;), ('mfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a2fd0&gt;), ('mfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a3080&gt;), ('mfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a30f0&gt;), ('mfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a3160&gt;), ('mfish_km', &lt;django.forms.fields.FloatField object at 0x1073a31d0&gt;), ('lfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a3240&gt;), ('lfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a32b0&gt;), ('lfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a3320&gt;), ('lfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a3390&gt;), ('lfish_km', &lt;django.forms.fields.FloatField object at 0x1073a3400&gt;), ('phyto_lipid', &lt;django.forms.fields.FloatField object at 0x1073a2128&gt;), ('phyto_NLOM', &lt;django.forms.fields.FloatField object at 0x1073a2198&gt;), ('phyto_water', &lt;django.forms.fields.FloatField object at 0x1073a2208&gt;), ('phyto_respire', &lt;django.forms.fields.ChoiceField object at 0x1073a2278&gt;), ('s_lipid', &lt;django.forms.fields.FloatField object at 0x10739feb8&gt;), ('s_NLOM', &lt;django.forms.fields.FloatField object at 0x10739ff28&gt;), ('s_water', &lt;django.forms.fields.FloatField object at 0x10739ff98&gt;), ('s_respire', &lt;django.forms.fields.ChoiceField object at 0x1073a2048&gt;), ('zoo_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739fb38&gt;), ('zoo_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739fba8&gt;), ('zoo_ww', &lt;django.forms.fields.FloatField object at 0x10739fc18&gt;), ('zoo_lipid', &lt;django.forms.fields.FloatField object at 0x10739fc88&gt;), ('zoo_NLOM', &lt;django.forms.fields.FloatField object at 0x10739fcf8&gt;), ('zoo_water', &lt;django.forms.fields.FloatField object at 0x10739fd68&gt;), ('zoo_respire', &lt;django.forms.fields.ChoiceField object at 0x10739fdd8&gt;), ('beninv_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739f748&gt;), ('beninv_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739f7b8&gt;), ('beninv_p_zoo', &lt;django.forms.fields.FloatField object at 0x10739f828&gt;), ('beninv_ww', &lt;django.forms.fields.FloatField object at 0x10739f898&gt;), ('beninv_lipid', &lt;django.forms.fields.FloatField object at 0x10739f908&gt;), ('beninv_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f978&gt;), ('beninv_water', &lt;django.forms.fields.FloatField object at 0x10739f9e8&gt;), ('beninv_respire', &lt;django.forms.fields.ChoiceField object at 0x10739fa58&gt;), ('ff_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739f2e8&gt;), ('ff_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739f358&gt;), ('ff_p_zoo', &lt;django.forms.fields.FloatField object at 0x10739f3c8&gt;), ('ff_p_beninv', &lt;django.forms.fields.FloatField object at 0x10739f438&gt;), ('ff_ww', &lt;django.forms.fields.FloatField object at 0x10739f4a8&gt;), ('ff_lipid', &lt;django.forms.fields.FloatField object at 0x10739f518&gt;), ('ff_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f588&gt;), ('ff_water', &lt;django.forms.fields.FloatField object at 0x10739f5f8&gt;), ('ff_respire', &lt;django.forms.fields.ChoiceField object at 0x10739f668&gt;), ('sfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x1074eedd8&gt;), ('sfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x1074eee48&gt;), ('sfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x1074eeeb8&gt;), ('sfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1074eef28&gt;), ('sfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1074eef98&gt;), ('sfish_ww', &lt;django.forms.fields.FloatField object at 0x10739f048&gt;), ('sfish_lipid', &lt;django.forms.fields.FloatField object at 0x10739f0b8&gt;), ('sfish_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f128&gt;), ('sfish_water', &lt;django.forms.fields.FloatField object at 0x10739f198&gt;), ('sfish_respire', &lt;django.forms.fields.ChoiceField object at 0x10739f208&gt;), ('mfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739d390&gt;), ('mfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739d400&gt;), ('mfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x107319780&gt;), ('mfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1071f0f60&gt;), ('mfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1071f0e48&gt;), ('mfish_p_sfish', &lt;django.forms.fields.FloatField object at 0x1071f08d0&gt;), ('mfish_ww', &lt;django.forms.fields.FloatField object at 0x10739bc18&gt;), ('mfish_lipid', &lt;django.forms.fields.FloatField object at 0x10739bc88&gt;), ('mfish_NLOM', &lt;django.forms.fields.FloatField object at 0x10739bef0&gt;), ('mfish_water', &lt;django.forms.fields.FloatField object at 0x10739bfd0&gt;), ('mfish_respire', &lt;django.forms.fields.ChoiceField object at 0x10739bf60&gt;), ('lfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x1074ee780&gt;), ('lfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x1074ee7f0&gt;), ('lfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x1074ee860&gt;), ('lfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1074ee8d0&gt;), ('lfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1074ee940&gt;), ('lfish_p_sfish', &lt;django.forms.fields.FloatField object at 0x1074ee9b0&gt;), ('lfish_p_mfish', &lt;django.forms.fields.FloatField object at 0x1074eea20&gt;), ('lfish_ww', &lt;django.forms.fields.FloatField object at 0x1074eea90&gt;), ('lfish_lipid', &lt;django.forms.fields.FloatField object at 0x1074eeb00&gt;), ('lfish_NLOM', &lt;django.forms.fields.FloatField object at 0x1074eeb70&gt;), ('lfish_water', &lt;django.forms.fields.FloatField object at 0x1074eebe0&gt;), ('lfish_respire', &lt;django.forms.fields.ChoiceField object at 0x1074eec50&gt;), ('m_species', &lt;django.forms.fields.ChoiceField object at 0x1074ee470&gt;), ('bw_rat', &lt;django.forms.fields.FloatField object at 0x1074ee518&gt;), ('bwm_other', &lt;django.forms.fields.FloatField object at 0x1074ee588&gt;), ('mld50', &lt;django.forms.fields.FloatField object at 0x1074ee5f8&gt;), ('mlc50', &lt;django.forms.fields.FloatField object at 0x1074ee668&gt;), ('m_chronic', &lt;django.forms.fields.FloatField object at 0x1074ee6d8&gt;), ('Species_of_the_tested_bird', &lt;django.forms.fields.ChoiceField object at 0x1074ee160&gt;), ('bw_quail', &lt;django.forms.fields.FloatField object at 0x1074ee208&gt;), ('bw_duck', &lt;django.forms.fields.FloatField object at 0x1074ee240&gt;), ('bwb_other', &lt;django.forms.fields.FloatField object at 0x1074ee2b0&gt;), ('ald50', &lt;django.forms.fields.FloatField object at 0x1074ee320&gt;), ('alc50', &lt;django.forms.fields.FloatField object at 0x1074ee390&gt;), ('aNOAEC', &lt;django.forms.fields.FloatField object at 0x1074ee400&gt;), ('version_kabam', &lt;django.forms.fields.ChoiceField object at 0x10739d978&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x10739db38&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x10739db70&gt;), ('lkow', &lt;django.forms.fields.FloatField object at 0x10739dbe0&gt;), ('Koc', &lt;django.forms.fields.FloatField object at 0x10739dc50&gt;), ('beec', &lt;django.forms.fields.FloatField object at 0x10739dd30&gt;), ('weec', &lt;django.forms.fields.FloatField object at 0x10739ddd8&gt;), ('sf', &lt;django.forms.fields.FloatField object at 0x10739de80&gt;), ('cpoc', &lt;django.forms.fields.FloatField object at 0x10739df28&gt;), ('cdoc', &lt;django.forms.fields.FloatField object at 0x10739df60&gt;), ('cox', &lt;django.forms.fields.FloatField object at 0x10739d710&gt;), ('wt', &lt;django.forms.fields.FloatField object at 0x10739d860&gt;), ('css', &lt;django.forms.fields.FloatField object at 0x1074ee080&gt;), ('oc', &lt;django.forms.fields.FloatField object at 0x1074ee0b8&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_bird">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_bird</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_bird"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_bird" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_bird.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('Species_of_the_tested_bird', &lt;django.forms.fields.ChoiceField object at 0x1074ee160&gt;), ('bw_quail', &lt;django.forms.fields.FloatField object at 0x1074ee208&gt;), ('bw_duck', &lt;django.forms.fields.FloatField object at 0x1074ee240&gt;), ('bwb_other', &lt;django.forms.fields.FloatField object at 0x1074ee2b0&gt;), ('ald50', &lt;django.forms.fields.FloatField object at 0x1074ee320&gt;), ('alc50', &lt;django.forms.fields.FloatField object at 0x1074ee390&gt;), ('aNOAEC', &lt;django.forms.fields.FloatField object at 0x1074ee400&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_bird.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_bird.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('Species_of_the_tested_bird', &lt;django.forms.fields.ChoiceField object at 0x1074ee160&gt;), ('bw_quail', &lt;django.forms.fields.FloatField object at 0x1074ee208&gt;), ('bw_duck', &lt;django.forms.fields.FloatField object at 0x1074ee240&gt;), ('bwb_other', &lt;django.forms.fields.FloatField object at 0x1074ee2b0&gt;), ('ald50', &lt;django.forms.fields.FloatField object at 0x1074ee320&gt;), ('alc50', &lt;django.forms.fields.FloatField object at 0x1074ee390&gt;), ('aNOAEC', &lt;django.forms.fields.FloatField object at 0x1074ee400&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_bird.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_bird.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_bird.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_chem">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_chem</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_chem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_chem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_chem.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('version_kabam', &lt;django.forms.fields.ChoiceField object at 0x10739d978&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x10739db38&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x10739db70&gt;), ('lkow', &lt;django.forms.fields.FloatField object at 0x10739dbe0&gt;), ('Koc', &lt;django.forms.fields.FloatField object at 0x10739dc50&gt;), ('beec', &lt;django.forms.fields.FloatField object at 0x10739dd30&gt;), ('weec', &lt;django.forms.fields.FloatField object at 0x10739ddd8&gt;), ('sf', &lt;django.forms.fields.FloatField object at 0x10739de80&gt;), ('cpoc', &lt;django.forms.fields.FloatField object at 0x10739df28&gt;), ('cdoc', &lt;django.forms.fields.FloatField object at 0x10739df60&gt;), ('cox', &lt;django.forms.fields.FloatField object at 0x10739d710&gt;), ('wt', &lt;django.forms.fields.FloatField object at 0x10739d860&gt;), ('css', &lt;django.forms.fields.FloatField object at 0x1074ee080&gt;), ('oc', &lt;django.forms.fields.FloatField object at 0x1074ee0b8&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_chem.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_chem.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('version_kabam', &lt;django.forms.fields.ChoiceField object at 0x10739d978&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x10739db38&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x10739db70&gt;), ('lkow', &lt;django.forms.fields.FloatField object at 0x10739dbe0&gt;), ('Koc', &lt;django.forms.fields.FloatField object at 0x10739dc50&gt;), ('beec', &lt;django.forms.fields.FloatField object at 0x10739dd30&gt;), ('weec', &lt;django.forms.fields.FloatField object at 0x10739ddd8&gt;), ('sf', &lt;django.forms.fields.FloatField object at 0x10739de80&gt;), ('cpoc', &lt;django.forms.fields.FloatField object at 0x10739df28&gt;), ('cdoc', &lt;django.forms.fields.FloatField object at 0x10739df60&gt;), ('cox', &lt;django.forms.fields.FloatField object at 0x10739d710&gt;), ('wt', &lt;django.forms.fields.FloatField object at 0x10739d860&gt;), ('css', &lt;django.forms.fields.FloatField object at 0x1074ee080&gt;), ('oc', &lt;django.forms.fields.FloatField object at 0x1074ee0b8&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_chem.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_chem.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_chem.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_constants">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_constants</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_constants"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_constants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_constants.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('rate_c', &lt;django.forms.fields.ChoiceField object at 0x1073a2358&gt;), ('phyto_k1', &lt;django.forms.fields.FloatField object at 0x1073a2400&gt;), ('phyto_k2', &lt;django.forms.fields.FloatField object at 0x1073a2470&gt;), ('phyto_kd', &lt;django.forms.fields.FloatField object at 0x1073a24e0&gt;), ('phyto_ke', &lt;django.forms.fields.FloatField object at 0x1073a2550&gt;), ('phyto_km', &lt;django.forms.fields.FloatField object at 0x1073a25c0&gt;), ('zoo_k1', &lt;django.forms.fields.FloatField object at 0x1073a2630&gt;), ('zoo_k2', &lt;django.forms.fields.FloatField object at 0x1073a26a0&gt;), ('zoo_kd', &lt;django.forms.fields.FloatField object at 0x1073a2710&gt;), ('zoo_ke', &lt;django.forms.fields.FloatField object at 0x1073a2780&gt;), ('zoo_km', &lt;django.forms.fields.FloatField object at 0x1073a27f0&gt;), ('beninv_k1', &lt;django.forms.fields.FloatField object at 0x1073a2860&gt;), ('beninv_k2', &lt;django.forms.fields.FloatField object at 0x1073a2908&gt;), ('beninv_kd', &lt;django.forms.fields.FloatField object at 0x1073a29b0&gt;), ('beninv_ke', &lt;django.forms.fields.FloatField object at 0x1073a2a58&gt;), ('beninv_km', &lt;django.forms.fields.FloatField object at 0x1073a2b00&gt;), ('ff_k1', &lt;django.forms.fields.FloatField object at 0x1073a2b70&gt;), ('ff_k2', &lt;django.forms.fields.FloatField object at 0x1073a2be0&gt;), ('ff_kd', &lt;django.forms.fields.FloatField object at 0x1073a2c50&gt;), ('ff_ke', &lt;django.forms.fields.FloatField object at 0x1073a2cc0&gt;), ('ff_km', &lt;django.forms.fields.FloatField object at 0x1073a2d30&gt;), ('sfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a2da0&gt;), ('sfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a2e10&gt;), ('sfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a2e80&gt;), ('sfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a2ef0&gt;), ('sfish_km', &lt;django.forms.fields.FloatField object at 0x1073a2f60&gt;), ('mfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a2fd0&gt;), ('mfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a3080&gt;), ('mfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a30f0&gt;), ('mfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a3160&gt;), ('mfish_km', &lt;django.forms.fields.FloatField object at 0x1073a31d0&gt;), ('lfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a3240&gt;), ('lfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a32b0&gt;), ('lfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a3320&gt;), ('lfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a3390&gt;), ('lfish_km', &lt;django.forms.fields.FloatField object at 0x1073a3400&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_constants.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_constants.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('rate_c', &lt;django.forms.fields.ChoiceField object at 0x1073a2358&gt;), ('phyto_k1', &lt;django.forms.fields.FloatField object at 0x1073a2400&gt;), ('phyto_k2', &lt;django.forms.fields.FloatField object at 0x1073a2470&gt;), ('phyto_kd', &lt;django.forms.fields.FloatField object at 0x1073a24e0&gt;), ('phyto_ke', &lt;django.forms.fields.FloatField object at 0x1073a2550&gt;), ('phyto_km', &lt;django.forms.fields.FloatField object at 0x1073a25c0&gt;), ('zoo_k1', &lt;django.forms.fields.FloatField object at 0x1073a2630&gt;), ('zoo_k2', &lt;django.forms.fields.FloatField object at 0x1073a26a0&gt;), ('zoo_kd', &lt;django.forms.fields.FloatField object at 0x1073a2710&gt;), ('zoo_ke', &lt;django.forms.fields.FloatField object at 0x1073a2780&gt;), ('zoo_km', &lt;django.forms.fields.FloatField object at 0x1073a27f0&gt;), ('beninv_k1', &lt;django.forms.fields.FloatField object at 0x1073a2860&gt;), ('beninv_k2', &lt;django.forms.fields.FloatField object at 0x1073a2908&gt;), ('beninv_kd', &lt;django.forms.fields.FloatField object at 0x1073a29b0&gt;), ('beninv_ke', &lt;django.forms.fields.FloatField object at 0x1073a2a58&gt;), ('beninv_km', &lt;django.forms.fields.FloatField object at 0x1073a2b00&gt;), ('ff_k1', &lt;django.forms.fields.FloatField object at 0x1073a2b70&gt;), ('ff_k2', &lt;django.forms.fields.FloatField object at 0x1073a2be0&gt;), ('ff_kd', &lt;django.forms.fields.FloatField object at 0x1073a2c50&gt;), ('ff_ke', &lt;django.forms.fields.FloatField object at 0x1073a2cc0&gt;), ('ff_km', &lt;django.forms.fields.FloatField object at 0x1073a2d30&gt;), ('sfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a2da0&gt;), ('sfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a2e10&gt;), ('sfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a2e80&gt;), ('sfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a2ef0&gt;), ('sfish_km', &lt;django.forms.fields.FloatField object at 0x1073a2f60&gt;), ('mfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a2fd0&gt;), ('mfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a3080&gt;), ('mfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a30f0&gt;), ('mfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a3160&gt;), ('mfish_km', &lt;django.forms.fields.FloatField object at 0x1073a31d0&gt;), ('lfish_k1', &lt;django.forms.fields.FloatField object at 0x1073a3240&gt;), ('lfish_k2', &lt;django.forms.fields.FloatField object at 0x1073a32b0&gt;), ('lfish_kd', &lt;django.forms.fields.FloatField object at 0x1073a3320&gt;), ('lfish_ke', &lt;django.forms.fields.FloatField object at 0x1073a3390&gt;), ('lfish_km', &lt;django.forms.fields.FloatField object at 0x1073a3400&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_constants.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_constants.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_constants.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_ff">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_ff</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_ff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_ff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_ff.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('ff_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739f2e8&gt;), ('ff_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739f358&gt;), ('ff_p_zoo', &lt;django.forms.fields.FloatField object at 0x10739f3c8&gt;), ('ff_p_beninv', &lt;django.forms.fields.FloatField object at 0x10739f438&gt;), ('ff_ww', &lt;django.forms.fields.FloatField object at 0x10739f4a8&gt;), ('ff_lipid', &lt;django.forms.fields.FloatField object at 0x10739f518&gt;), ('ff_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f588&gt;), ('ff_water', &lt;django.forms.fields.FloatField object at 0x10739f5f8&gt;), ('ff_respire', &lt;django.forms.fields.ChoiceField object at 0x10739f668&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_ff.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_ff.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('ff_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739f2e8&gt;), ('ff_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739f358&gt;), ('ff_p_zoo', &lt;django.forms.fields.FloatField object at 0x10739f3c8&gt;), ('ff_p_beninv', &lt;django.forms.fields.FloatField object at 0x10739f438&gt;), ('ff_ww', &lt;django.forms.fields.FloatField object at 0x10739f4a8&gt;), ('ff_lipid', &lt;django.forms.fields.FloatField object at 0x10739f518&gt;), ('ff_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f588&gt;), ('ff_water', &lt;django.forms.fields.FloatField object at 0x10739f5f8&gt;), ('ff_respire', &lt;django.forms.fields.ChoiceField object at 0x10739f668&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_ff.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_ff.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_ff.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_invert">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_invert</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_invert.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('beninv_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739f748&gt;), ('beninv_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739f7b8&gt;), ('beninv_p_zoo', &lt;django.forms.fields.FloatField object at 0x10739f828&gt;), ('beninv_ww', &lt;django.forms.fields.FloatField object at 0x10739f898&gt;), ('beninv_lipid', &lt;django.forms.fields.FloatField object at 0x10739f908&gt;), ('beninv_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f978&gt;), ('beninv_water', &lt;django.forms.fields.FloatField object at 0x10739f9e8&gt;), ('beninv_respire', &lt;django.forms.fields.ChoiceField object at 0x10739fa58&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_invert.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_invert.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('beninv_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739f748&gt;), ('beninv_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739f7b8&gt;), ('beninv_p_zoo', &lt;django.forms.fields.FloatField object at 0x10739f828&gt;), ('beninv_ww', &lt;django.forms.fields.FloatField object at 0x10739f898&gt;), ('beninv_lipid', &lt;django.forms.fields.FloatField object at 0x10739f908&gt;), ('beninv_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f978&gt;), ('beninv_water', &lt;django.forms.fields.FloatField object at 0x10739f9e8&gt;), ('beninv_respire', &lt;django.forms.fields.ChoiceField object at 0x10739fa58&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_invert.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_invert.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_invert.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_lfish">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_lfish</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_lfish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_lfish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_lfish.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('lfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x1074ee780&gt;), ('lfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x1074ee7f0&gt;), ('lfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x1074ee860&gt;), ('lfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1074ee8d0&gt;), ('lfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1074ee940&gt;), ('lfish_p_sfish', &lt;django.forms.fields.FloatField object at 0x1074ee9b0&gt;), ('lfish_p_mfish', &lt;django.forms.fields.FloatField object at 0x1074eea20&gt;), ('lfish_ww', &lt;django.forms.fields.FloatField object at 0x1074eea90&gt;), ('lfish_lipid', &lt;django.forms.fields.FloatField object at 0x1074eeb00&gt;), ('lfish_NLOM', &lt;django.forms.fields.FloatField object at 0x1074eeb70&gt;), ('lfish_water', &lt;django.forms.fields.FloatField object at 0x1074eebe0&gt;), ('lfish_respire', &lt;django.forms.fields.ChoiceField object at 0x1074eec50&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_lfish.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_lfish.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('lfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x1074ee780&gt;), ('lfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x1074ee7f0&gt;), ('lfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x1074ee860&gt;), ('lfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1074ee8d0&gt;), ('lfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1074ee940&gt;), ('lfish_p_sfish', &lt;django.forms.fields.FloatField object at 0x1074ee9b0&gt;), ('lfish_p_mfish', &lt;django.forms.fields.FloatField object at 0x1074eea20&gt;), ('lfish_ww', &lt;django.forms.fields.FloatField object at 0x1074eea90&gt;), ('lfish_lipid', &lt;django.forms.fields.FloatField object at 0x1074eeb00&gt;), ('lfish_NLOM', &lt;django.forms.fields.FloatField object at 0x1074eeb70&gt;), ('lfish_water', &lt;django.forms.fields.FloatField object at 0x1074eebe0&gt;), ('lfish_respire', &lt;django.forms.fields.ChoiceField object at 0x1074eec50&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_lfish.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_lfish.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_lfish.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_mammal">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_mammal</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_mammal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_mammal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_mammal.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('m_species', &lt;django.forms.fields.ChoiceField object at 0x1074ee470&gt;), ('bw_rat', &lt;django.forms.fields.FloatField object at 0x1074ee518&gt;), ('bwm_other', &lt;django.forms.fields.FloatField object at 0x1074ee588&gt;), ('mld50', &lt;django.forms.fields.FloatField object at 0x1074ee5f8&gt;), ('mlc50', &lt;django.forms.fields.FloatField object at 0x1074ee668&gt;), ('m_chronic', &lt;django.forms.fields.FloatField object at 0x1074ee6d8&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_mammal.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_mammal.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('m_species', &lt;django.forms.fields.ChoiceField object at 0x1074ee470&gt;), ('bw_rat', &lt;django.forms.fields.FloatField object at 0x1074ee518&gt;), ('bwm_other', &lt;django.forms.fields.FloatField object at 0x1074ee588&gt;), ('mld50', &lt;django.forms.fields.FloatField object at 0x1074ee5f8&gt;), ('mlc50', &lt;django.forms.fields.FloatField object at 0x1074ee668&gt;), ('m_chronic', &lt;django.forms.fields.FloatField object at 0x1074ee6d8&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_mammal.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_mammal.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_mammal.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_mfish">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_mfish</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_mfish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_mfish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_mfish.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('mfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739d390&gt;), ('mfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739d400&gt;), ('mfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x107319780&gt;), ('mfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1071f0f60&gt;), ('mfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1071f0e48&gt;), ('mfish_p_sfish', &lt;django.forms.fields.FloatField object at 0x1071f08d0&gt;), ('mfish_ww', &lt;django.forms.fields.FloatField object at 0x10739bc18&gt;), ('mfish_lipid', &lt;django.forms.fields.FloatField object at 0x10739bc88&gt;), ('mfish_NLOM', &lt;django.forms.fields.FloatField object at 0x10739bef0&gt;), ('mfish_water', &lt;django.forms.fields.FloatField object at 0x10739bfd0&gt;), ('mfish_respire', &lt;django.forms.fields.ChoiceField object at 0x10739bf60&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_mfish.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_mfish.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('mfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739d390&gt;), ('mfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739d400&gt;), ('mfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x107319780&gt;), ('mfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1071f0f60&gt;), ('mfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1071f0e48&gt;), ('mfish_p_sfish', &lt;django.forms.fields.FloatField object at 0x1071f08d0&gt;), ('mfish_ww', &lt;django.forms.fields.FloatField object at 0x10739bc18&gt;), ('mfish_lipid', &lt;django.forms.fields.FloatField object at 0x10739bc88&gt;), ('mfish_NLOM', &lt;django.forms.fields.FloatField object at 0x10739bef0&gt;), ('mfish_water', &lt;django.forms.fields.FloatField object at 0x10739bfd0&gt;), ('mfish_respire', &lt;django.forms.fields.ChoiceField object at 0x10739bf60&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_mfish.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_mfish.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_mfish.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_phyto">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_phyto</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_phyto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_phyto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_phyto.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('phyto_lipid', &lt;django.forms.fields.FloatField object at 0x1073a2128&gt;), ('phyto_NLOM', &lt;django.forms.fields.FloatField object at 0x1073a2198&gt;), ('phyto_water', &lt;django.forms.fields.FloatField object at 0x1073a2208&gt;), ('phyto_respire', &lt;django.forms.fields.ChoiceField object at 0x1073a2278&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_phyto.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_phyto.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('phyto_lipid', &lt;django.forms.fields.FloatField object at 0x1073a2128&gt;), ('phyto_NLOM', &lt;django.forms.fields.FloatField object at 0x1073a2198&gt;), ('phyto_water', &lt;django.forms.fields.FloatField object at 0x1073a2208&gt;), ('phyto_respire', &lt;django.forms.fields.ChoiceField object at 0x1073a2278&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_phyto.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_phyto.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_phyto.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_sed">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_sed</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_sed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_sed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_sed.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('s_lipid', &lt;django.forms.fields.FloatField object at 0x10739feb8&gt;), ('s_NLOM', &lt;django.forms.fields.FloatField object at 0x10739ff28&gt;), ('s_water', &lt;django.forms.fields.FloatField object at 0x10739ff98&gt;), ('s_respire', &lt;django.forms.fields.ChoiceField object at 0x1073a2048&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_sed.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_sed.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('s_lipid', &lt;django.forms.fields.FloatField object at 0x10739feb8&gt;), ('s_NLOM', &lt;django.forms.fields.FloatField object at 0x10739ff28&gt;), ('s_water', &lt;django.forms.fields.FloatField object at 0x10739ff98&gt;), ('s_respire', &lt;django.forms.fields.ChoiceField object at 0x1073a2048&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_sed.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_sed.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_sed.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_sfish">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_sfish</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_sfish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_sfish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_sfish.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('sfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x1074eedd8&gt;), ('sfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x1074eee48&gt;), ('sfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x1074eeeb8&gt;), ('sfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1074eef28&gt;), ('sfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1074eef98&gt;), ('sfish_ww', &lt;django.forms.fields.FloatField object at 0x10739f048&gt;), ('sfish_lipid', &lt;django.forms.fields.FloatField object at 0x10739f0b8&gt;), ('sfish_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f128&gt;), ('sfish_water', &lt;django.forms.fields.FloatField object at 0x10739f198&gt;), ('sfish_respire', &lt;django.forms.fields.ChoiceField object at 0x10739f208&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_sfish.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_sfish.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('sfish_p_sediment', &lt;django.forms.fields.FloatField object at 0x1074eedd8&gt;), ('sfish_p_phyto', &lt;django.forms.fields.FloatField object at 0x1074eee48&gt;), ('sfish_p_zoo', &lt;django.forms.fields.FloatField object at 0x1074eeeb8&gt;), ('sfish_p_beninv', &lt;django.forms.fields.FloatField object at 0x1074eef28&gt;), ('sfish_p_ff', &lt;django.forms.fields.FloatField object at 0x1074eef98&gt;), ('sfish_ww', &lt;django.forms.fields.FloatField object at 0x10739f048&gt;), ('sfish_lipid', &lt;django.forms.fields.FloatField object at 0x10739f0b8&gt;), ('sfish_NLOM', &lt;django.forms.fields.FloatField object at 0x10739f128&gt;), ('sfish_water', &lt;django.forms.fields.FloatField object at 0x10739f198&gt;), ('sfish_respire', &lt;django.forms.fields.ChoiceField object at 0x10739f208&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_sfish.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_sfish.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_sfish.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.kabam.kabam_parameters.KabamInp_zoo">
+<em class="property">class </em><code class="descclassname">models.kabam.kabam_parameters.</code><code class="descname">KabamInp_zoo</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_parameters.html#KabamInp_zoo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_zoo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_zoo.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('zoo_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739fb38&gt;), ('zoo_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739fba8&gt;), ('zoo_ww', &lt;django.forms.fields.FloatField object at 0x10739fc18&gt;), ('zoo_lipid', &lt;django.forms.fields.FloatField object at 0x10739fc88&gt;), ('zoo_NLOM', &lt;django.forms.fields.FloatField object at 0x10739fcf8&gt;), ('zoo_water', &lt;django.forms.fields.FloatField object at 0x10739fd68&gt;), ('zoo_respire', &lt;django.forms.fields.ChoiceField object at 0x10739fdd8&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_zoo.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_zoo.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('zoo_p_sediment', &lt;django.forms.fields.FloatField object at 0x10739fb38&gt;), ('zoo_p_phyto', &lt;django.forms.fields.FloatField object at 0x10739fba8&gt;), ('zoo_ww', &lt;django.forms.fields.FloatField object at 0x10739fc18&gt;), ('zoo_lipid', &lt;django.forms.fields.FloatField object at 0x10739fc88&gt;), ('zoo_NLOM', &lt;django.forms.fields.FloatField object at 0x10739fcf8&gt;), ('zoo_water', &lt;django.forms.fields.FloatField object at 0x10739fd68&gt;), ('zoo_respire', &lt;django.forms.fields.ChoiceField object at 0x10739fdd8&gt;)])</em><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_zoo.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.kabam.kabam_parameters.KabamInp_zoo.media">
+<code class="descname">media</code><a class="headerlink" href="#models.kabam.kabam_parameters.KabamInp_zoo.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="models-kabam-kabam-qaqc-module">
-<h2>models.kabam.kabam_qaqc module<a class="headerlink" href="#models-kabam-kabam-qaqc-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.kabam.kabam_qaqc">
+<span id="models-kabam-kabam-qaqc-module"></span><h2>models.kabam.kabam_qaqc module<a class="headerlink" href="#module-models.kabam.kabam_qaqc" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="models.kabam.kabam_qaqc.kabamQaqc">
+<code class="descclassname">models.kabam.kabam_qaqc.</code><code class="descname">kabamQaqc</code><span class="sig-paren">(</span><em>model</em>, <em>csv_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/kabam/kabam_qaqc.html#kabamQaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.kabam.kabam_qaqc.kabamQaqc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in QAQC CSV as Pandas DataFrame, removing 
+any uneeded columns, setting the index_col name 
+to None, and renumbering the data columns.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="models-kabam-kabam-tables-module">
 <h2>models.kabam.kabam_tables module<a class="headerlink" href="#models-kabam-kabam-tables-module" title="Permalink to this headline">¶</a></h2>
@@ -95,18 +386,18 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Kabam</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#models-kabam-kabam-batchoutput-module">models.kabam.kabam_batchoutput module</a></li>
-<li><a class="reference internal" href="#models-kabam-kabam-input-module">models.kabam.kabam_input module</a></li>
+<li><a class="reference internal" href="#module-models.kabam.kabam_input">models.kabam.kabam_input module</a></li>
 <li><a class="reference internal" href="#models-kabam-kabam-model-module">models.kabam.kabam_model module</a></li>
-<li><a class="reference internal" href="#models-kabam-kabam-output-module">models.kabam.kabam_output module</a></li>
-<li><a class="reference internal" href="#models-kabam-kabam-parameters-module">models.kabam.kabam_parameters module</a></li>
-<li><a class="reference internal" href="#models-kabam-kabam-qaqc-module">models.kabam.kabam_qaqc module</a></li>
+<li><a class="reference internal" href="#module-models.kabam.kabam_output">models.kabam.kabam_output module</a></li>
+<li><a class="reference internal" href="#module-models.kabam.kabam_parameters">models.kabam.kabam_parameters module</a></li>
+<li><a class="reference internal" href="#module-models.kabam.kabam_qaqc">models.kabam.kabam_qaqc module</a></li>
 <li><a class="reference internal" href="#models-kabam-kabam-tables-module">models.kabam.kabam_tables module</a></li>
 <li><a class="reference internal" href="#module-models.kabam.views">models.kabam.views module</a></li>
 <li><a class="reference internal" href="#module-models.kabam">Module contents</a></li>
@@ -120,12 +411,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="models.pfam.html"
                         title="next chapter">PFAM</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/models.kabam.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/models.kabam.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -133,16 +426,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -157,13 +447,13 @@
         <li class="right" >
           <a href="models.iec.html" title="IEC"
              >previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" >Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" >Models</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

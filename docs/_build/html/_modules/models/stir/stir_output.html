@@ -29,8 +29,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,18 +39,18 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.stir.stir_output</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">.. module:: stir_output</span>
 <span class="sd">   :synopsis: A useful module indeed.</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -62,24 +62,24 @@
 <div class="viewcode-block" id="stirOutputPage"><a class="viewcode-back" href="../../../models.stir.html#models.stir.stir_output.stirOutputPage">[docs]</a><span class="k">def</span> <span class="nf">stirOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">stir_model</span>
 
-    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;chemical_name&#39;</span><span class="p">)</span>
-    <span class="n">application_rate</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;application_rate&#39;</span><span class="p">)</span>
-    <span class="n">column_height</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;column_height&#39;</span><span class="p">)</span>
-    <span class="n">spray_drift_fraction</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;spray_drift_fraction&#39;</span><span class="p">)</span>
-    <span class="n">direct_spray_duration</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;direct_spray_duration&#39;</span><span class="p">)</span>
-    <span class="n">molecular_weight</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;molecular_weight&#39;</span><span class="p">)</span>
-    <span class="n">vapor_pressure</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;vapor_pressure&#39;</span><span class="p">)</span>
-    <span class="n">avian_oral_ld50</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;avian_oral_ld50&#39;</span><span class="p">)</span>
-    <span class="n">body_weight_assessed_bird</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_assessed_bird&#39;</span><span class="p">)</span>
-    <span class="n">body_weight_tested_bird</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_tested_bird&#39;</span><span class="p">)</span>
-    <span class="n">mineau_scaling_factor</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;mineau_scaling_factor&#39;</span><span class="p">)</span>
-    <span class="n">mammal_inhalation_lc50</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;mammal_inhalation_lc50&#39;</span><span class="p">)</span>
-    <span class="n">duration_mammal_inhalation_study</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;duration_mammal_inhalation_study&#39;</span><span class="p">)</span>
-    <span class="n">body_weight_assessed_mammal</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_assessed_mammal&#39;</span><span class="p">)</span>
-    <span class="n">body_weight_tested_mammal</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body_weight_tested_mammal&#39;</span><span class="p">)</span>
-    <span class="n">mammal_oral_ld50</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;mammal_oral_ld50&#39;</span><span class="p">)</span>
+    <span class="n">chemical_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;chemical_name&#39;</span><span class="p">)</span>
+    <span class="n">application_rate</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;application_rate&#39;</span><span class="p">)</span>
+    <span class="n">column_height</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;column_height&#39;</span><span class="p">)</span>
+    <span class="n">spray_drift_fraction</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spray_drift_fraction&#39;</span><span class="p">)</span>
+    <span class="n">direct_spray_duration</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;direct_spray_duration&#39;</span><span class="p">)</span>
+    <span class="n">molecular_weight</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;molecular_weight&#39;</span><span class="p">)</span>
+    <span class="n">vapor_pressure</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;vapor_pressure&#39;</span><span class="p">)</span>
+    <span class="n">avian_oral_ld50</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;avian_oral_ld50&#39;</span><span class="p">)</span>
+    <span class="n">body_weight_assessed_bird</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;body_weight_assessed_bird&#39;</span><span class="p">)</span>
+    <span class="n">body_weight_tested_bird</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;body_weight_tested_bird&#39;</span><span class="p">)</span>
+    <span class="n">mineau_scaling_factor</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mineau_scaling_factor&#39;</span><span class="p">)</span>
+    <span class="n">mammal_inhalation_lc50</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mammal_inhalation_lc50&#39;</span><span class="p">)</span>
+    <span class="n">duration_mammal_inhalation_study</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;duration_mammal_inhalation_study&#39;</span><span class="p">)</span>
+    <span class="n">body_weight_assessed_mammal</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;body_weight_assessed_mammal&#39;</span><span class="p">)</span>
+    <span class="n">body_weight_tested_mammal</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;body_weight_tested_mammal&#39;</span><span class="p">)</span>
+    <span class="n">mammal_oral_ld50</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mammal_oral_ld50&#39;</span><span class="p">)</span>
 
-    <span class="n">sm</span> <span class="o">=</span> <span class="n">stir_model</span><span class="o">.</span><span class="n">StirModel</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="s">&#39;single&#39;</span><span class="p">,</span><span class="n">chemical_name</span><span class="p">,</span><span class="n">application_rate</span><span class="p">,</span><span class="n">column_height</span><span class="p">,</span><span class="n">spray_drift_fraction</span><span class="p">,</span><span class="n">direct_spray_duration</span><span class="p">,</span> 
+    <span class="n">sm</span> <span class="o">=</span> <span class="n">stir_model</span><span class="o">.</span><span class="n">StirModel</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="s1">&#39;single&#39;</span><span class="p">,</span><span class="n">chemical_name</span><span class="p">,</span><span class="n">application_rate</span><span class="p">,</span><span class="n">column_height</span><span class="p">,</span><span class="n">spray_drift_fraction</span><span class="p">,</span><span class="n">direct_spray_duration</span><span class="p">,</span> 
             <span class="n">molecular_weight</span><span class="p">,</span><span class="n">vapor_pressure</span><span class="p">,</span><span class="n">avian_oral_ld50</span><span class="p">,</span> <span class="n">body_weight_assessed_bird</span><span class="p">,</span> <span class="n">body_weight_tested_bird</span><span class="p">,</span> <span class="n">mineau_scaling_factor</span><span class="p">,</span> 
             <span class="n">mammal_inhalation_lc50</span><span class="p">,</span><span class="n">duration_mammal_inhalation_study</span><span class="p">,</span><span class="n">body_weight_assessed_mammal</span><span class="p">,</span> <span class="n">body_weight_tested_mammal</span><span class="p">,</span> 
             <span class="n">mammal_oral_ld50</span><span class="p">)</span>
@@ -91,9 +91,9 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -101,16 +101,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -119,13 +116,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

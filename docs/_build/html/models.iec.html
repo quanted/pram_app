@@ -31,8 +31,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -47,15 +47,15 @@
         <li class="right" >
           <a href="models.geneec.html" title="Geneec"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="iec">
 <h1>IEC<a class="headerlink" href="#iec" title="Permalink to this headline">¶</a></h1>
@@ -65,20 +65,59 @@
 <div class="section" id="models-iec-iec-batchoutput-module">
 <h2>models.iec.iec_batchoutput module<a class="headerlink" href="#models-iec-iec-batchoutput-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-iec-iec-input-module">
-<h2>models.iec.iec_input module<a class="headerlink" href="#models-iec-iec-input-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.iec.iec_input">
+<span id="models-iec-iec-input-module"></span><h2>models.iec.iec_input module<a class="headerlink" href="#module-models.iec.iec_input" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-iec_input"></span><dl class="function">
+<dt id="models.iec.iec_input.iecInputPage">
+<code class="descclassname">models.iec.iec_input.</code><code class="descname">iecInputPage</code><span class="sig-paren">(</span><em>request</em>, <em>model=''</em>, <em>header=''</em>, <em>formData=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/iec/iec_input.html#iecInputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.iec.iec_input.iecInputPage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="models-iec-iec-model-module">
 <h2>models.iec.iec_model module<a class="headerlink" href="#models-iec-iec-model-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-iec-iec-output-module">
-<h2>models.iec.iec_output module<a class="headerlink" href="#models-iec-iec-output-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.iec.iec_output">
+<span id="models-iec-iec-output-module"></span><h2>models.iec.iec_output module<a class="headerlink" href="#module-models.iec.iec_output" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-iec_output"></span><dl class="function">
+<dt id="models.iec.iec_output.iecOutputPage">
+<code class="descclassname">models.iec.iec_output.</code><code class="descname">iecOutputPage</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/iec/iec_output.html#iecOutputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.iec.iec_output.iecOutputPage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="models-iec-iec-parameters-module">
-<h2>models.iec.iec_parameters module<a class="headerlink" href="#models-iec-iec-parameters-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.iec.iec_parameters">
+<span id="models-iec-iec-parameters-module"></span><h2>models.iec.iec_parameters module<a class="headerlink" href="#module-models.iec.iec_parameters" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-iec_parameters"></span><dl class="class">
+<dt id="models.iec.iec_parameters.IecInp">
+<em class="property">class </em><code class="descclassname">models.iec.iec_parameters.</code><code class="descname">IecInp</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/iec/iec_parameters.html#IecInp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.iec.iec_parameters.IecInp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.iec.iec_parameters.IecInp.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('version', &lt;django.forms.fields.ChoiceField object at 0x1072ca1d0&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x1072d2278&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x1072d2240&gt;), ('lc50', &lt;django.forms.fields.FloatField object at 0x1072d22e8&gt;), ('threshold', &lt;django.forms.fields.FloatField object at 0x1072d2908&gt;), ('dose_response', &lt;django.forms.fields.FloatField object at 0x1072d2978&gt;)])</em><a class="headerlink" href="#models.iec.iec_parameters.IecInp.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.iec.iec_parameters.IecInp.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('version', &lt;django.forms.fields.ChoiceField object at 0x1072ca1d0&gt;), ('chemical_name', &lt;django.forms.fields.CharField object at 0x1072d2278&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x1072d2240&gt;), ('lc50', &lt;django.forms.fields.FloatField object at 0x1072d22e8&gt;), ('threshold', &lt;django.forms.fields.FloatField object at 0x1072d2908&gt;), ('dose_response', &lt;django.forms.fields.FloatField object at 0x1072d2978&gt;)])</em><a class="headerlink" href="#models.iec.iec_parameters.IecInp.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.iec.iec_parameters.IecInp.media">
+<code class="descname">media</code><a class="headerlink" href="#models.iec.iec_parameters.IecInp.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="models-iec-iec-qaqc-module">
-<h2>models.iec.iec_qaqc module<a class="headerlink" href="#models-iec-iec-qaqc-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.iec.iec_qaqc">
+<span id="models-iec-iec-qaqc-module"></span><h2>models.iec.iec_qaqc module<a class="headerlink" href="#module-models.iec.iec_qaqc" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="models.iec.iec_qaqc.iecQaqc">
+<code class="descclassname">models.iec.iec_qaqc.</code><code class="descname">iecQaqc</code><span class="sig-paren">(</span><em>model</em>, <em>csv_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/iec/iec_qaqc.html#iecQaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.iec.iec_qaqc.iecQaqc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in QAQC CSV as Pandas DataFrame, removing 
+any uneeded columns, setting the index_col name 
+to None, and renumbering the data columns.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="models-iec-iec-tables-module">
 <h2>models.iec.iec_tables module<a class="headerlink" href="#models-iec-iec-tables-module" title="Permalink to this headline">¶</a></h2>
@@ -95,18 +134,18 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">IEC</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#models-iec-iec-batchoutput-module">models.iec.iec_batchoutput module</a></li>
-<li><a class="reference internal" href="#models-iec-iec-input-module">models.iec.iec_input module</a></li>
+<li><a class="reference internal" href="#module-models.iec.iec_input">models.iec.iec_input module</a></li>
 <li><a class="reference internal" href="#models-iec-iec-model-module">models.iec.iec_model module</a></li>
-<li><a class="reference internal" href="#models-iec-iec-output-module">models.iec.iec_output module</a></li>
-<li><a class="reference internal" href="#models-iec-iec-parameters-module">models.iec.iec_parameters module</a></li>
-<li><a class="reference internal" href="#models-iec-iec-qaqc-module">models.iec.iec_qaqc module</a></li>
+<li><a class="reference internal" href="#module-models.iec.iec_output">models.iec.iec_output module</a></li>
+<li><a class="reference internal" href="#module-models.iec.iec_parameters">models.iec.iec_parameters module</a></li>
+<li><a class="reference internal" href="#module-models.iec.iec_qaqc">models.iec.iec_qaqc module</a></li>
 <li><a class="reference internal" href="#models-iec-iec-tables-module">models.iec.iec_tables module</a></li>
 <li><a class="reference internal" href="#module-models.iec.views">models.iec.views module</a></li>
 <li><a class="reference internal" href="#module-models.iec">Module contents</a></li>
@@ -120,12 +159,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="models.kabam.html"
                         title="next chapter">Kabam</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/models.iec.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/models.iec.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -133,16 +174,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -157,13 +195,13 @@
         <li class="right" >
           <a href="models.geneec.html" title="Geneec"
              >previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" >Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" >Models</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

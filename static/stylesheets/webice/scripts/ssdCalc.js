@@ -1,13 +1,13 @@
 // if (!document.URL.split("?")[1])
 // 	location.href="index.html";
 var attributes = '';
-var Params = new Object();
+var Params = {};
 var regexp = /\+/g;
-var surrogateArray = new Array;
-var toxicityArray = new Array;
-var prefixArray = new Array;
-var xmlDocArray = new Array;
-var varNames = new Array;
+var surrogateArray = [];
+var toxicityArray = [];
+var prefixArray = [];
+var xmlDocArray = [];
+var varNames = [];
 var ICETable = '';
 
 attributes = document.URL.split("?")[1];
@@ -52,7 +52,7 @@ var type2 = Params['type2'];
 var surrogates = surrogateArray.join(", ");
 var toxicities = toxicityArray.join(", ");
 
-var allValues = new Array();
+var allValues = [];
 
 var slope;
 var intercept;
@@ -123,7 +123,7 @@ function showSigDig(value, noDig)
 		if (parseInt(textVal[0]) != 0)
 			noDig = 2;
 	if (textVal[1])
-		textVal[1]=	textVal[1].substr(0,noDig)
+		textVal[1]=	textVal[1].substr(0,noDig);
 	else
 		textVal[1]="00";
 	return textVal[0]+"."+textVal[1];
@@ -134,7 +134,9 @@ function popHeader ()
 	document.getElementById('PageName').appendChild(document.createTextNode(" - "+specType));
 	document.title = surrogates + ' | ' + document.title;
 	var linkname = "iceSSDSpecies.html?filename=ws";
-        if (specType == 'Aquatic') {linkname="iceSSDSpecies.html?filename=as"};
+	if (specType == 'Aquatic') {
+		linkname = "iceSSDSpecies.html?filename=as"
+	}
 	// newBClink = document.createElement('a');
 	// newBClink.setAttribute('href',linkname);
 	// newBClink.appendChild(document.createTextNode(specType+' Species'));
@@ -294,7 +296,7 @@ function runCalculation(input, slope, intercept)
 function findRow(idVal)
 {
 	var inputFields;
-	var checkBoxes = new Array();
+	var checkBoxes = [];
 	
 	inputFields = document.getElementsByTagName('input');
 	for (p=0; p < inputFields.length; p++) 
@@ -545,7 +547,7 @@ function radioClick()
 function pickNewSub(idVal)
 {
 	inputFields = document.getElementsByTagName('input');
-	choices = new Array();
+	choices = [];
 	for (p=0; p < inputFields.length; p++) 
 		if (inputFields[p].type == 'radio' && inputFields[p].id.indexOf(idVal) != -1) temp = choices.push(inputFields[p]);
 
@@ -568,7 +570,7 @@ function makeGrey(idVal)
 	if (idVal.indexOf("!") != -1)
 	{
 		inputFields = document.getElementsByTagName('input');
-		checkBoxes = new Array();
+		checkBoxes = [];
 		for (p=0; p < inputFields.length; p++) 
 			if (inputFields[p].type == 'checkbox' || inputFields[p].type == 'radio') temp = checkBoxes.push(inputFields[p]);
 		for (q=0; q < checkBoxes.length; q++)
@@ -592,7 +594,7 @@ function makeLive(idVal)
 	if (idVal.indexOf("!") != -1)
 	{
 		inputFields = document.getElementsByTagName('input');
-		checkBoxes = new Array();
+		checkBoxes = [];
 		for (p=0; p < inputFields.length; p++) 
 			if (inputFields[p].type == 'checkbox' || inputFields[p].type == 'radio') temp = checkBoxes.push(inputFields[p]);
 		for (q=0; q < checkBoxes.length; q++)
@@ -647,8 +649,8 @@ function getBeta(mean)
     var valCount = 0;
   for (j=0;j<toxicityArray.length;j++)
   {
-	 totDiff += Math.pow((log10(toxicityArray[j])-mean),2);;
-	 valCount += 1;
+	  totDiff += Math.pow((log10(toxicityArray[j]) - mean), 2);
+	  valCount += 1;
   }
  	for (j=0;j<document.getElementsByTagName('input').length;j++)
 		if (document.getElementsByTagName('input')[j].checked)
@@ -669,7 +671,7 @@ function getHCP()
 	var alpha = getAlpha();
 	var beta = getBeta(alpha);
 	var HCP = Math.log(1/p-1);
-	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha))
+	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha));
 	if (HDVal < 1)
 		HDVal = showSigDig(HDVal,(HDVal+'').split(".")[1].search(/[1-9]/)+3);
 	else
@@ -716,7 +718,7 @@ function getHCPLower()
 	var alpha = getAlphaLower();
 	var beta = getBetaLower(alpha);
 	var HCP = Math.log(1/p-1);
-	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha))
+	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha));
 	if (HDVal < 1)
 		HDVal = showSigDig(HDVal,(HDVal+'').split(".")[1].search(/[1-9]/)+3);
 	else
@@ -763,7 +765,7 @@ function getHCPUpper()
 	var alpha = getAlphaUpper();
 	var beta = getBetaUpper(alpha);
 	var HCP = Math.log(1/p-1);
-	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha))
+	HDVal = Math.pow(10,(HCP*(-1)*beta+alpha));
 	if (HDVal < 1)
 		HDVal = showSigDig(HDVal,(HDVal+'').split(".")[1].search(/[1-9]/)+3);
 	else
@@ -783,7 +785,7 @@ function createExcelSheet(allRows)
 		try 
 		{
 			var inputFields;
-			var checkBoxes = new Array();
+			var checkBoxes = [];
 			var offSet = 0;
 		
 			inputFields = document.getElementsByTagName('input');
@@ -830,7 +832,7 @@ function createExcelSheet(allRows)
 function populateTable (allRows)
 {
 	var inputFields;
-	var checkBoxes = new Array();
+	var checkBoxes = [];
 
 	inputFields = document.getElementsByTagName('input');
 	for (p=0; p < inputFields.length; p++) 
@@ -867,7 +869,7 @@ function filterData()
 {
 
 	var inputFields;
-	var textInputs = new Array();
+	var textInputs = [];
 	var pageAddress = document.URL;
 
 	if (pageAddress.indexOf("#")>1)

@@ -29,8 +29,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,18 +39,18 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for models.earthworm.earthworm_output</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">.. module:: earthworm_output</span>
 <span class="sd">   :synopsis: A useful module indeed.</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -61,26 +61,28 @@
 <span class="nd">@require_POST</span>
 <div class="viewcode-block" id="earthwormOutputPage"><a class="viewcode-back" href="../../../models.earthworm.html#models.earthworm.earthworm_output.earthwormOutputPage">[docs]</a><span class="k">def</span> <span class="nf">earthwormOutputPage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">earthworm_model</span>
-    <span class="n">k_ow</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;k_ow&#39;</span><span class="p">))</span>
-    <span class="n">l_f_e</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;l_f_e&#39;</span><span class="p">))</span>
-    <span class="n">c_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;c_s&#39;</span><span class="p">))</span>
-    <span class="n">k_d</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;k_d&#39;</span><span class="p">))</span>
-    <span class="n">p_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;p_s&#39;</span><span class="p">))</span>
-    <span class="n">c_w</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;c_w&#39;</span><span class="p">))</span>
-    <span class="n">m_w</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;m_w&#39;</span><span class="p">))</span>
-    <span class="n">p_e</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;p_e&#39;</span><span class="p">))</span>
+    <span class="n">k_ow</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;k_ow&#39;</span><span class="p">))</span>
+    <span class="n">l_f_e</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;l_f_e&#39;</span><span class="p">))</span>
+    <span class="n">c_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;c_s&#39;</span><span class="p">))</span>
+    <span class="n">k_d</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;k_d&#39;</span><span class="p">))</span>
+    <span class="n">p_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;p_s&#39;</span><span class="p">))</span>
+
+    <span class="c1"># updated version of earthworm model uses EFED equation which does not include c_w, m_w, and p_e as inputs</span>
+    <span class="c1"># c_w = float(request.POST.get(&#39;c_w&#39;))</span>
+    <span class="c1"># m_w = float(request.POST.get(&#39;m_w&#39;))</span>
+    <span class="c1"># p_e = float(request.POST.get(&#39;p_e&#39;))</span>
     
-    <span class="n">earthworm_obj</span> <span class="o">=</span> <span class="n">earthworm_model</span><span class="o">.</span><span class="n">earthworm</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="s">&#39;single&#39;</span><span class="p">,</span> <span class="n">k_ow</span><span class="p">,</span><span class="n">l_f_e</span><span class="p">,</span><span class="n">c_s</span><span class="p">,</span><span class="n">k_d</span><span class="p">,</span><span class="n">p_s</span><span class="p">,</span><span class="n">c_w</span><span class="p">,</span><span class="n">m_w</span><span class="p">,</span><span class="n">p_e</span><span class="p">)</span>
-    
+    <span class="c1"># earthworm_obj = earthworm_model.earthworm(True,True,&#39;single&#39;, k_ow,l_f_e,c_s,k_d,p_s,c_w,m_w,p_e)</span>
+    <span class="n">earthworm_obj</span> <span class="o">=</span> <span class="n">earthworm_model</span><span class="o">.</span><span class="n">earthworm</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="n">k_ow</span><span class="p">,</span><span class="n">l_f_e</span><span class="p">,</span><span class="n">c_s</span><span class="p">,</span><span class="n">k_d</span><span class="p">,</span><span class="n">p_s</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">earthworm_obj</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -88,16 +90,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -106,13 +105,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../../../index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

@@ -8,9 +8,9 @@ var chosenSurrogate = '';
 var chosenPredicted = '';
 var chosenFirst = '';
 //var fileName = file.split("=")[1]+".xml";
-var speciesArray = new Array();
-var SurrogateArray = new Array();
-var PredictedArray = new Array();
+var speciesArray = [];
+var SurrogateArray = [];
+var PredictedArray = [];
 var groupXmlDoc; 
 var dataXmlDoc; 
 var surrXmlDoc; 
@@ -107,7 +107,7 @@ function loadSpecies()
 		document.getElementById('species').options.length = 1;
 		document.getElementById("species").options[0] =new Option ('Please wait...','0'); 
 	
-		speciesDup = new Array();
+		speciesDup = [];
 		speciesArray.length = 0;
 		
 		if(dataXmlDoc.getElementsByTagName("species")[0].childNodes.length > 1)
@@ -178,7 +178,7 @@ function loadSurr()
 {
 	if (document.getElementById('Surrogate'))
 	{
-		SurrDup = new Array();
+		SurrDup = [];
 		SurrogateArray.length = 0;
 		
 		if(surrXmlDoc.getElementsByTagName("surrogate")[0].childNodes.length > 1)

@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/static/stylesheets/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/js/jquery.validate.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -12,7 +12,7 @@ $(document).ready(function() {
 	$('.submit_button').click(function (event) {
 		event.preventDefault();
 
-		var validator_out = validator.form()
+		var validator_out = validator.form();
 		// var form_data = new FormData();
 		// $.each($('input[name^="upfile"]')[0].files, function(i, file) {
 		//     form_data.append('file-'+i, file);
@@ -47,7 +47,7 @@ $(document).ready(function() {
 				},
 				error: function() {
 					$.unblockUI();
-					alert('There is a problem about your submission.')
+					alert('There is a problem about your submission.');
 					// window.location = '/ubertool/{{ model }}/batchinput';
 				}
 			});

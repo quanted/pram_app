@@ -31,8 +31,8 @@
   <LINK REL="SHORTCUT ICON" HREF="http://www.ubertool.org/static/images/favicon/ubertool/favicon.ico" />
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -47,15 +47,15 @@
         <li class="right" >
           <a href="models.trex.html" title="T-Rex v1.4.1"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" accesskey="U">Models</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="t-rex-v1-5-2">
 <h1>T-Rex v1.5.2<a class="headerlink" href="#t-rex-v1-5-2" title="Permalink to this headline">¶</a></h1>
@@ -68,27 +68,129 @@
 <div class="section" id="models-trex2-trex2-batchoutput-module">
 <h2>models.trex2.trex2_batchoutput module<a class="headerlink" href="#models-trex2-trex2-batchoutput-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-trex2-trex2-input-module">
-<h2>models.trex2.trex2_input module<a class="headerlink" href="#models-trex2-trex2-input-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.trex2.trex2_input">
+<span id="models-trex2-trex2-input-module"></span><h2>models.trex2.trex2_input module<a class="headerlink" href="#module-models.trex2.trex2_input" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-trex2_input"></span><dl class="function">
+<dt id="models.trex2.trex2_input.trex2InputPage">
+<code class="descclassname">models.trex2.trex2_input.</code><code class="descname">trex2InputPage</code><span class="sig-paren">(</span><em>request</em>, <em>model=''</em>, <em>header=''</em>, <em>formData=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/trex2/trex2_input.html#trex2InputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex2.trex2_input.trex2InputPage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="models-trex2-trex2-model-module">
 <h2>models.trex2.trex2_model module<a class="headerlink" href="#models-trex2-trex2-model-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-trex2-trex2-output-module">
-<h2>models.trex2.trex2_output module<a class="headerlink" href="#models-trex2-trex2-output-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.trex2.trex2_output">
+<span id="models-trex2-trex2-output-module"></span><h2>models.trex2.trex2_output module<a class="headerlink" href="#module-models.trex2.trex2_output" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-trex2_output"></span><dl class="function">
+<dt id="models.trex2.trex2_output.trex2OutputPage">
+<code class="descclassname">models.trex2.trex2_output.</code><code class="descname">trex2OutputPage</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/trex2/trex2_output.html#trex2OutputPage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex2.trex2_output.trex2OutputPage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="models-trex2-trex2-parameters-module">
-<h2>models.trex2.trex2_parameters module<a class="headerlink" href="#models-trex2-trex2-parameters-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.trex2.trex2_parameters">
+<span id="models-trex2-trex2-parameters-module"></span><h2>models.trex2.trex2_parameters module<a class="headerlink" href="#module-models.trex2.trex2_parameters" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-trex2_parameters"></span><dl class="class">
+<dt id="models.trex2.trex2_parameters.Trex2Inp">
+<em class="property">class </em><code class="descclassname">models.trex2.trex2_parameters.</code><code class="descname">Trex2Inp</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/trex2/trex2_parameters.html#Trex2Inp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex2.trex2_parameters.Trex2Inp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.trex2.trex2_parameters.trexInp_chem" title="models.trex2.trex2_parameters.trexInp_chem"><code class="xref py py-class docutils literal"><span class="pre">models.trex2.trex2_parameters.trexInp_chem</span></code></a>, <a class="reference internal" href="#models.trex2.trex2_parameters.trexInp_bird" title="models.trex2.trex2_parameters.trexInp_bird"><code class="xref py py-class docutils literal"><span class="pre">models.trex2.trex2_parameters.trexInp_bird</span></code></a>, <a class="reference internal" href="#models.trex2.trex2_parameters.trexInp_mammal" title="models.trex2.trex2_parameters.trexInp_mammal"><code class="xref py py-class docutils literal"><span class="pre">models.trex2.trex2_parameters.trexInp_mammal</span></code></a></p>
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.Trex2Inp.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('ld50_mamm', &lt;django.forms.fields.FloatField object at 0x106feefd0&gt;), ('lc50_mamm', &lt;django.forms.fields.FloatField object at 0x106ff00b8&gt;), ('NOAEC_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0128&gt;), ('NOAEL_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0160&gt;), ('aw_mamm_sm', &lt;django.forms.fields.FloatField object at 0x106ff0240&gt;), ('aw_mamm_md', &lt;django.forms.fields.FloatField object at 0x106ff02b0&gt;), ('aw_mamm_lg', &lt;django.forms.fields.FloatField object at 0x106ff0320&gt;), ('tw_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0390&gt;), ('ld50_bird', &lt;django.forms.fields.FloatField object at 0x106fee048&gt;), ('Species_of_the_tested_bird_avian_ld50', &lt;django.forms.fields.ChoiceField object at 0x106fee0b8&gt;), ('tw_bird_ld50', &lt;django.forms.fields.FloatField object at 0x106fee240&gt;), ('lc50_bird', &lt;django.forms.fields.FloatField object at 0x106fee588&gt;), ('Species_of_the_tested_bird_avian_lc50', &lt;django.forms.fields.ChoiceField object at 0x106fee6d8&gt;), ('tw_bird_lc50', &lt;django.forms.fields.FloatField object at 0x106fee780&gt;), ('NOAEC_bird', &lt;django.forms.fields.FloatField object at 0x106fee8d0&gt;), ('Species_of_the_tested_bird_avian_NOAEC', &lt;django.forms.fields.ChoiceField object at 0x106fee9b0&gt;), ('tw_bird_NOAEC', &lt;django.forms.fields.FloatField object at 0x106feea20&gt;), ('NOAEL_bird', &lt;django.forms.fields.FloatField object at 0x106feeb38&gt;), ('Species_of_the_tested_bird_avian_NOAEL', &lt;django.forms.fields.ChoiceField object at 0x106feec18&gt;), ('tw_bird_NOAEL', &lt;django.forms.fields.FloatField object at 0x106feecc0&gt;), ('aw_bird_sm', &lt;django.forms.fields.FloatField object at 0x106feed68&gt;), ('aw_bird_md', &lt;django.forms.fields.FloatField object at 0x106feedd8&gt;), ('aw_bird_lg', &lt;django.forms.fields.FloatField object at 0x106feee80&gt;), ('x', &lt;django.forms.fields.FloatField object at 0x106feef28&gt;), ('version_trex', &lt;django.forms.fields.ChoiceField object at 0x106f81940&gt;), ('chem_name', &lt;django.forms.fields.CharField object at 0x106f81e10&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x106f81f60&gt;), ('use', &lt;django.forms.fields.CharField object at 0x106fec160&gt;), ('formu_name', &lt;django.forms.fields.CharField object at 0x106fec320&gt;), ('percent_ai', &lt;django.forms.fields.FloatField object at 0x106fec470&gt;), ('Application_type', &lt;django.forms.fields.ChoiceField object at 0x106fec4e0&gt;), ('p_i', &lt;django.forms.fields.FloatField object at 0x106fec5c0&gt;), ('seed_treatment_formulation_name', &lt;django.forms.fields.CharField object at 0x106fec710&gt;), ('seed_crop', &lt;django.forms.fields.ChoiceField object at 0x106fec7b8&gt;), ('seed_crop_v', &lt;django.forms.fields.CharField object at 0x106feccf8&gt;), ('den', &lt;django.forms.fields.FloatField object at 0x106fecc50&gt;), ('m_s_r_p', &lt;django.forms.fields.FloatField object at 0x106fecda0&gt;), ('r_s', &lt;django.forms.fields.FloatField object at 0x106fece10&gt;), ('b_w', &lt;django.forms.fields.FloatField object at 0x106fece80&gt;), ('h_l', &lt;django.forms.fields.FloatField object at 0x106fecf28&gt;)])</em><a class="headerlink" href="#models.trex2.trex2_parameters.Trex2Inp.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.Trex2Inp.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('ld50_mamm', &lt;django.forms.fields.FloatField object at 0x106feefd0&gt;), ('lc50_mamm', &lt;django.forms.fields.FloatField object at 0x106ff00b8&gt;), ('NOAEC_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0128&gt;), ('NOAEL_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0160&gt;), ('aw_mamm_sm', &lt;django.forms.fields.FloatField object at 0x106ff0240&gt;), ('aw_mamm_md', &lt;django.forms.fields.FloatField object at 0x106ff02b0&gt;), ('aw_mamm_lg', &lt;django.forms.fields.FloatField object at 0x106ff0320&gt;), ('tw_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0390&gt;), ('ld50_bird', &lt;django.forms.fields.FloatField object at 0x106fee048&gt;), ('Species_of_the_tested_bird_avian_ld50', &lt;django.forms.fields.ChoiceField object at 0x106fee0b8&gt;), ('tw_bird_ld50', &lt;django.forms.fields.FloatField object at 0x106fee240&gt;), ('lc50_bird', &lt;django.forms.fields.FloatField object at 0x106fee588&gt;), ('Species_of_the_tested_bird_avian_lc50', &lt;django.forms.fields.ChoiceField object at 0x106fee6d8&gt;), ('tw_bird_lc50', &lt;django.forms.fields.FloatField object at 0x106fee780&gt;), ('NOAEC_bird', &lt;django.forms.fields.FloatField object at 0x106fee8d0&gt;), ('Species_of_the_tested_bird_avian_NOAEC', &lt;django.forms.fields.ChoiceField object at 0x106fee9b0&gt;), ('tw_bird_NOAEC', &lt;django.forms.fields.FloatField object at 0x106feea20&gt;), ('NOAEL_bird', &lt;django.forms.fields.FloatField object at 0x106feeb38&gt;), ('Species_of_the_tested_bird_avian_NOAEL', &lt;django.forms.fields.ChoiceField object at 0x106feec18&gt;), ('tw_bird_NOAEL', &lt;django.forms.fields.FloatField object at 0x106feecc0&gt;), ('aw_bird_sm', &lt;django.forms.fields.FloatField object at 0x106feed68&gt;), ('aw_bird_md', &lt;django.forms.fields.FloatField object at 0x106feedd8&gt;), ('aw_bird_lg', &lt;django.forms.fields.FloatField object at 0x106feee80&gt;), ('x', &lt;django.forms.fields.FloatField object at 0x106feef28&gt;), ('version_trex', &lt;django.forms.fields.ChoiceField object at 0x106f81940&gt;), ('chem_name', &lt;django.forms.fields.CharField object at 0x106f81e10&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x106f81f60&gt;), ('use', &lt;django.forms.fields.CharField object at 0x106fec160&gt;), ('formu_name', &lt;django.forms.fields.CharField object at 0x106fec320&gt;), ('percent_ai', &lt;django.forms.fields.FloatField object at 0x106fec470&gt;), ('Application_type', &lt;django.forms.fields.ChoiceField object at 0x106fec4e0&gt;), ('p_i', &lt;django.forms.fields.FloatField object at 0x106fec5c0&gt;), ('seed_treatment_formulation_name', &lt;django.forms.fields.CharField object at 0x106fec710&gt;), ('seed_crop', &lt;django.forms.fields.ChoiceField object at 0x106fec7b8&gt;), ('seed_crop_v', &lt;django.forms.fields.CharField object at 0x106feccf8&gt;), ('den', &lt;django.forms.fields.FloatField object at 0x106fecc50&gt;), ('m_s_r_p', &lt;django.forms.fields.FloatField object at 0x106fecda0&gt;), ('r_s', &lt;django.forms.fields.FloatField object at 0x106fece10&gt;), ('b_w', &lt;django.forms.fields.FloatField object at 0x106fece80&gt;), ('h_l', &lt;django.forms.fields.FloatField object at 0x106fecf28&gt;)])</em><a class="headerlink" href="#models.trex2.trex2_parameters.Trex2Inp.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.Trex2Inp.media">
+<code class="descname">media</code><a class="headerlink" href="#models.trex2.trex2_parameters.Trex2Inp.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.trex2.trex2_parameters.trexInp_bird">
+<em class="property">class </em><code class="descclassname">models.trex2.trex2_parameters.</code><code class="descname">trexInp_bird</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/trex2/trex2_parameters.html#trexInp_bird"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_bird" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.trexInp_bird.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('ld50_bird', &lt;django.forms.fields.FloatField object at 0x106fee048&gt;), ('Species_of_the_tested_bird_avian_ld50', &lt;django.forms.fields.ChoiceField object at 0x106fee0b8&gt;), ('tw_bird_ld50', &lt;django.forms.fields.FloatField object at 0x106fee240&gt;), ('lc50_bird', &lt;django.forms.fields.FloatField object at 0x106fee588&gt;), ('Species_of_the_tested_bird_avian_lc50', &lt;django.forms.fields.ChoiceField object at 0x106fee6d8&gt;), ('tw_bird_lc50', &lt;django.forms.fields.FloatField object at 0x106fee780&gt;), ('NOAEC_bird', &lt;django.forms.fields.FloatField object at 0x106fee8d0&gt;), ('Species_of_the_tested_bird_avian_NOAEC', &lt;django.forms.fields.ChoiceField object at 0x106fee9b0&gt;), ('tw_bird_NOAEC', &lt;django.forms.fields.FloatField object at 0x106feea20&gt;), ('NOAEL_bird', &lt;django.forms.fields.FloatField object at 0x106feeb38&gt;), ('Species_of_the_tested_bird_avian_NOAEL', &lt;django.forms.fields.ChoiceField object at 0x106feec18&gt;), ('tw_bird_NOAEL', &lt;django.forms.fields.FloatField object at 0x106feecc0&gt;), ('aw_bird_sm', &lt;django.forms.fields.FloatField object at 0x106feed68&gt;), ('aw_bird_md', &lt;django.forms.fields.FloatField object at 0x106feedd8&gt;), ('aw_bird_lg', &lt;django.forms.fields.FloatField object at 0x106feee80&gt;), ('x', &lt;django.forms.fields.FloatField object at 0x106feef28&gt;)])</em><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_bird.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.trexInp_bird.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('ld50_bird', &lt;django.forms.fields.FloatField object at 0x106fee048&gt;), ('Species_of_the_tested_bird_avian_ld50', &lt;django.forms.fields.ChoiceField object at 0x106fee0b8&gt;), ('tw_bird_ld50', &lt;django.forms.fields.FloatField object at 0x106fee240&gt;), ('lc50_bird', &lt;django.forms.fields.FloatField object at 0x106fee588&gt;), ('Species_of_the_tested_bird_avian_lc50', &lt;django.forms.fields.ChoiceField object at 0x106fee6d8&gt;), ('tw_bird_lc50', &lt;django.forms.fields.FloatField object at 0x106fee780&gt;), ('NOAEC_bird', &lt;django.forms.fields.FloatField object at 0x106fee8d0&gt;), ('Species_of_the_tested_bird_avian_NOAEC', &lt;django.forms.fields.ChoiceField object at 0x106fee9b0&gt;), ('tw_bird_NOAEC', &lt;django.forms.fields.FloatField object at 0x106feea20&gt;), ('NOAEL_bird', &lt;django.forms.fields.FloatField object at 0x106feeb38&gt;), ('Species_of_the_tested_bird_avian_NOAEL', &lt;django.forms.fields.ChoiceField object at 0x106feec18&gt;), ('tw_bird_NOAEL', &lt;django.forms.fields.FloatField object at 0x106feecc0&gt;), ('aw_bird_sm', &lt;django.forms.fields.FloatField object at 0x106feed68&gt;), ('aw_bird_md', &lt;django.forms.fields.FloatField object at 0x106feedd8&gt;), ('aw_bird_lg', &lt;django.forms.fields.FloatField object at 0x106feee80&gt;), ('x', &lt;django.forms.fields.FloatField object at 0x106feef28&gt;)])</em><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_bird.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.trexInp_bird.media">
+<code class="descname">media</code><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_bird.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.trex2.trex2_parameters.trexInp_chem">
+<em class="property">class </em><code class="descclassname">models.trex2.trex2_parameters.</code><code class="descname">trexInp_chem</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/trex2/trex2_parameters.html#trexInp_chem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_chem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.trexInp_chem.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('version_trex', &lt;django.forms.fields.ChoiceField object at 0x106f81940&gt;), ('chem_name', &lt;django.forms.fields.CharField object at 0x106f81e10&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x106f81f60&gt;), ('use', &lt;django.forms.fields.CharField object at 0x106fec160&gt;), ('formu_name', &lt;django.forms.fields.CharField object at 0x106fec320&gt;), ('percent_ai', &lt;django.forms.fields.FloatField object at 0x106fec470&gt;), ('Application_type', &lt;django.forms.fields.ChoiceField object at 0x106fec4e0&gt;), ('p_i', &lt;django.forms.fields.FloatField object at 0x106fec5c0&gt;), ('seed_treatment_formulation_name', &lt;django.forms.fields.CharField object at 0x106fec710&gt;), ('seed_crop', &lt;django.forms.fields.ChoiceField object at 0x106fec7b8&gt;), ('seed_crop_v', &lt;django.forms.fields.CharField object at 0x106feccf8&gt;), ('den', &lt;django.forms.fields.FloatField object at 0x106fecc50&gt;), ('m_s_r_p', &lt;django.forms.fields.FloatField object at 0x106fecda0&gt;), ('r_s', &lt;django.forms.fields.FloatField object at 0x106fece10&gt;), ('b_w', &lt;django.forms.fields.FloatField object at 0x106fece80&gt;), ('h_l', &lt;django.forms.fields.FloatField object at 0x106fecf28&gt;)])</em><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_chem.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.trexInp_chem.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('version_trex', &lt;django.forms.fields.ChoiceField object at 0x106f81940&gt;), ('chem_name', &lt;django.forms.fields.CharField object at 0x106f81e10&gt;), ('pc_code', &lt;django.forms.fields.CharField object at 0x106f81f60&gt;), ('use', &lt;django.forms.fields.CharField object at 0x106fec160&gt;), ('formu_name', &lt;django.forms.fields.CharField object at 0x106fec320&gt;), ('percent_ai', &lt;django.forms.fields.FloatField object at 0x106fec470&gt;), ('Application_type', &lt;django.forms.fields.ChoiceField object at 0x106fec4e0&gt;), ('p_i', &lt;django.forms.fields.FloatField object at 0x106fec5c0&gt;), ('seed_treatment_formulation_name', &lt;django.forms.fields.CharField object at 0x106fec710&gt;), ('seed_crop', &lt;django.forms.fields.ChoiceField object at 0x106fec7b8&gt;), ('seed_crop_v', &lt;django.forms.fields.CharField object at 0x106feccf8&gt;), ('den', &lt;django.forms.fields.FloatField object at 0x106fecc50&gt;), ('m_s_r_p', &lt;django.forms.fields.FloatField object at 0x106fecda0&gt;), ('r_s', &lt;django.forms.fields.FloatField object at 0x106fece10&gt;), ('b_w', &lt;django.forms.fields.FloatField object at 0x106fece80&gt;), ('h_l', &lt;django.forms.fields.FloatField object at 0x106fecf28&gt;)])</em><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_chem.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.trexInp_chem.media">
+<code class="descname">media</code><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_chem.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="models.trex2.trex2_parameters.trexInp_mammal">
+<em class="property">class </em><code class="descclassname">models.trex2.trex2_parameters.</code><code class="descname">trexInp_mammal</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/trex2/trex2_parameters.html#trexInp_mammal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_mammal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></code></p>
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.trexInp_mammal.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('ld50_mamm', &lt;django.forms.fields.FloatField object at 0x106feefd0&gt;), ('lc50_mamm', &lt;django.forms.fields.FloatField object at 0x106ff00b8&gt;), ('NOAEC_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0128&gt;), ('NOAEL_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0160&gt;), ('aw_mamm_sm', &lt;django.forms.fields.FloatField object at 0x106ff0240&gt;), ('aw_mamm_md', &lt;django.forms.fields.FloatField object at 0x106ff02b0&gt;), ('aw_mamm_lg', &lt;django.forms.fields.FloatField object at 0x106ff0320&gt;), ('tw_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0390&gt;)])</em><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_mammal.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.trexInp_mammal.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('ld50_mamm', &lt;django.forms.fields.FloatField object at 0x106feefd0&gt;), ('lc50_mamm', &lt;django.forms.fields.FloatField object at 0x106ff00b8&gt;), ('NOAEC_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0128&gt;), ('NOAEL_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0160&gt;), ('aw_mamm_sm', &lt;django.forms.fields.FloatField object at 0x106ff0240&gt;), ('aw_mamm_md', &lt;django.forms.fields.FloatField object at 0x106ff02b0&gt;), ('aw_mamm_lg', &lt;django.forms.fields.FloatField object at 0x106ff0320&gt;), ('tw_mamm', &lt;django.forms.fields.FloatField object at 0x106ff0390&gt;)])</em><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_mammal.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="models.trex2.trex2_parameters.trexInp_mammal.media">
+<code class="descname">media</code><a class="headerlink" href="#models.trex2.trex2_parameters.trexInp_mammal.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="models-trex2-trex2-qaqc-module">
-<h2>models.trex2.trex2_qaqc module<a class="headerlink" href="#models-trex2-trex2-qaqc-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-models.trex2.trex2_qaqc">
+<span id="models-trex2-trex2-qaqc-module"></span><h2>models.trex2.trex2_qaqc module<a class="headerlink" href="#module-models.trex2.trex2_qaqc" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="models.trex2.trex2_qaqc.trex2Qaqc">
+<code class="descclassname">models.trex2.trex2_qaqc.</code><code class="descname">trex2Qaqc</code><span class="sig-paren">(</span><em>model</em>, <em>csv_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/trex2/trex2_qaqc.html#trex2Qaqc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#models.trex2.trex2_qaqc.trex2Qaqc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in QAQC CSV as Pandas DataFrame, removing 
+any uneeded columns, setting the index_col name 
+to None, and renumbering the data columns.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="models-trex2-trex2-tables-module">
 <h2>models.trex2.trex2_tables module<a class="headerlink" href="#models-trex2-trex2-tables-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="models-trex2-trex2-tooltips-module">
-<h2>models.trex2.trex2_tooltips module<a class="headerlink" href="#models-trex2-trex2-tooltips-module" title="Permalink to this headline">¶</a></h2>
-</div>
+<div class="section" id="module-models.trex2.trex2_tooltips">
+<span id="models-trex2-trex2-tooltips-module"></span><h2>models.trex2.trex2_tooltips module<a class="headerlink" href="#module-models.trex2.trex2_tooltips" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-trex2_tooltips"></span></div>
 <div class="section" id="module-models.trex2.views">
 <span id="models-trex2-views-module"></span><h2>models.trex2.views module<a class="headerlink" href="#module-models.trex2.views" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-views"></span></div>
@@ -101,7 +203,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -109,13 +211,13 @@
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#models-trex2-trex2-batch-runner-module">models.trex2.trex2_batch_runner module</a></li>
 <li><a class="reference internal" href="#models-trex2-trex2-batchoutput-module">models.trex2.trex2_batchoutput module</a></li>
-<li><a class="reference internal" href="#models-trex2-trex2-input-module">models.trex2.trex2_input module</a></li>
+<li><a class="reference internal" href="#module-models.trex2.trex2_input">models.trex2.trex2_input module</a></li>
 <li><a class="reference internal" href="#models-trex2-trex2-model-module">models.trex2.trex2_model module</a></li>
-<li><a class="reference internal" href="#models-trex2-trex2-output-module">models.trex2.trex2_output module</a></li>
-<li><a class="reference internal" href="#models-trex2-trex2-parameters-module">models.trex2.trex2_parameters module</a></li>
-<li><a class="reference internal" href="#models-trex2-trex2-qaqc-module">models.trex2.trex2_qaqc module</a></li>
+<li><a class="reference internal" href="#module-models.trex2.trex2_output">models.trex2.trex2_output module</a></li>
+<li><a class="reference internal" href="#module-models.trex2.trex2_parameters">models.trex2.trex2_parameters module</a></li>
+<li><a class="reference internal" href="#module-models.trex2.trex2_qaqc">models.trex2.trex2_qaqc module</a></li>
 <li><a class="reference internal" href="#models-trex2-trex2-tables-module">models.trex2.trex2_tables module</a></li>
-<li><a class="reference internal" href="#models-trex2-trex2-tooltips-module">models.trex2.trex2_tooltips module</a></li>
+<li><a class="reference internal" href="#module-models.trex2.trex2_tooltips">models.trex2.trex2_tooltips module</a></li>
 <li><a class="reference internal" href="#module-models.trex2.views">models.trex2.views module</a></li>
 <li><a class="reference internal" href="#module-models.trex2">Module contents</a></li>
 </ul>
@@ -128,12 +230,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="models.vvwm.html"
                         title="next chapter">VVWM</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/models.trex2.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/models.trex2.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -141,16 +245,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -165,13 +266,13 @@
         <li class="right" >
           <a href="models.trex.html" title="T-Rex v1.4.1"
              >previous</a> |</li>
-        <li><a href="index.html">übertool alpha documentation</a> &raquo;</li>
-          <li><a href="models.html" >Models</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">übertool alpha documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="models.html" >Models</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, EPA übertool team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

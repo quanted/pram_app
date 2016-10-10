@@ -35,10 +35,10 @@ def eco_landing_page(request):
 
 
 def ubertool_landing_page(request):
-    if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
-        html = render_to_string('00landing_page_qed_slides_public.html', {'title': 'Ubertool'})
-    else:
-        html = render_to_string('00landing_page_qed_slides.html', {'title': 'Ubertool'})
+    # if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
+    #     html = render_to_string('00landing_page_qed_slides_public.html', {'title': 'Ubertool'})
+    # else:
+    html = render_to_string('00landing_page_qed_slides.html', {'title': 'Ubertool'})
 
     response = HttpResponse()
     response.write(html)

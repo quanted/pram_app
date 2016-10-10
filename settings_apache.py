@@ -39,7 +39,7 @@ os.environ.update({
     'CTS_EFS_SERVER': 'http://172.20.100.12',
     'CTS_JCHEM_SERVER': 'http://172.20.100.12',
     'CTS_SPARC_SERVER': 'http://204.46.160.69:8080',
-    'CTS_TEST_SERVER': 'http://172.20.100.16'
+    'CTS_TEST_SERVER': 'http://172.20.100.16:8080'
 })
 
 # Quick-start development settings - unsuitable for production

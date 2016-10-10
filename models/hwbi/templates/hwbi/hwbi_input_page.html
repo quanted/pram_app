@@ -1,28 +1,8 @@
 <style>
-    ul.tabs{
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    ul.tabs li{
-        background: #e4e5e4;
-        color: #222;
-        display: inline-block;
-        padding: 5px 10px;
-        cursor: pointer;
-    }
-
-    ul.tabs li.current{
-        background: #bbb;
-        color: #000;
-        border: solid 1px #356697;
-    }
-
     .tab-content{
         display: none;
         background: #ffffff;
-        padding: 15px;
+        padding: 1px;
     }
 
     .tab-content.current{
@@ -72,17 +52,17 @@
         font-size: 12px;
     }
 
-    #pie {
-        background-color: #F9FBF6;
-    }
-
-    #pie2 {
-        background-color: #F9FBF6;
-    }
-
     p {
-        font-size: 12px;
+        font-size: 14px;
         }
+
+    .radio-toolbar label {
+        color: #74646e;
+        display:inline-block;
+        padding:4px 11px;
+        font-family:Arial;
+        font-size:13px;
+    }
 
 {#    h2 {#}
 {#        font-size: 14px;#}
@@ -93,11 +73,6 @@
 <script type="text/javascript" src="/static/js/jquery.blockUI.js"></script>
 <script src="/static/js/scripts_input.js"></script>
 
-<div class="model_inputs">
-  <div class="row">
-  <h2>Services to Human Well-Being Dashboard</h2>
-    <div class="panel panel-default">
-      <div class="panel-body">
 
         <!--select state & county-->
         <div id="statecounty" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style = "float:left; width: 30%; margin-left: 10px; margin-top: 5px;">
@@ -141,17 +116,9 @@
         <!--button to submit updated services to pie chart-->
         <button id="updateServices" onclick="useServiceValues()" type="submit" class="btn btn-primary btn-xs" role="button">Modify Service Values</button>
 
-        <!--OLD button<button id="updateServices" onclick="useServiceValues()" style="float:left;">Update Service Values</button>-->
-      </div>
-    </div>
-  </div>
-
-
-  <div class="panel panel-default">
-    <div class="panel-body">
 
       <!--Text description of RIVs-->
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div>
         <p>
           The relative importance of domains may vary for each person. Use the boxes to rank
           the importance of domains based on <i>your</i> preferences. A value of 5
@@ -160,24 +127,30 @@
       </div>
 
       <!--jquery ajax call to import html code for riv boxes-->
-      <div id="riv" class="panel panel-default col-lg-6 col-md-6 col-sm-4 col-xs-5" style = "float:left; width: 40%;"></div>
+      <div id="riv" class="panel panel-default col-lg-6 col-md-6 col-sm-4 col-xs-5" style = "float:left; width: 50%;"></div>
       <script>
         $(function(){
           $("#riv").load("/static/riv.html");
         });
       </script>
 
+<div class="radio-toolbar">
+<label><input id="radios-id" type="radio" name="toggler" value="" checked />Modified Values</label>
+<label><input id="radios-id-2" type="radio" name="toggler" value="2" />Baseline County Values</label>
 
-      <div class="container" style="float:left; width: 60%; text-align:center">
-        <ul class="tabs">
-            <li class="tab-link current" data-tab="pie">Modified Values</li>
-            <li class="tab-link" data-tab="pie2">Baseline County Values</li>
-        </ul>
+        <div id="pie" class="tab-content current" style = "float:right; width: 50%;"></div>
+        <div id="pie2" class="tab-content" style = "float:right; width: 50%;"></div>
+</div>
 
-        <div id="pie" class="tab-content current col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
-        <div id="pie2" class="tab-content">
-        </div>
-      </div>
+<script>
+$(function() {
+    $("[name=toggler]").click(function(){
+            $('.tab-content').hide();
+            $("#pie"+$(this).val()).show();
+    });
+ });
+</script>
+
 
       <script src="/static/js/pie.js" ></script>
       <script src="/static/js/pie2.js" ></script>
@@ -198,36 +171,8 @@
       </script>
 
 
-<!-- BOOTSTRAP TABS FOR PIE UPDATE
-<div class="container">
- <div class="panel panel-default col-lg-5 col-md-5 col-sm-5 col-xs-5">
-
-    <ul class="nav nav-pills">
-        <li class="active"><a href="#pieA">PieA</a></li>
-        <li><a href="#pieB">PieB</a></li>
-    </ul>
-
-    <div class="tab-content">
-        <div id="pieA" class="tab-pane fade in active">
-            <p>County  Values</p>
-        </div>
-        <div id="pieB" class="tab-pane fade">
-            <p>Adjusted  Values</p>
-        </div>
-    </div>
-
- </div>
-</div>
-      -->
-
-    <!--domain pie 2: updated
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" id="pie2" style="text-align:center">Modified Services and Weights</div>
-	</div>
-	-->
-
-
     <!--Text description of HWBI pie-->
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="float:left; width: 100%; text-align:left">
         <p>
           The services scores are used to calculate the eight domains of well-being,
           represented as eight sections on the pie chart. The relative importance values
@@ -237,10 +182,6 @@
           The total Human Well-Being Index (HWBI) score is shown in the center of the pie chart.
         </p>
       </div>
-
-    </div>
-  </div>
-</div>
 
 </body>
 </html>

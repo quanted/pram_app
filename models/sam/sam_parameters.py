@@ -10,13 +10,12 @@ from models.forms import validation
 
 
 class SamInp_chem(forms.Form):
-
     SCENARIO_CHOICES = (
-        (1, 'Chemical A - Corn'),  #Atrazine
-        (2, 'Chemical B - Corn'),  #Chlorpyrifos
-        (3, 'Chemical C - Soybeans'),  #Chlorpyrifos
-        (4, 'Chemical D - Corn'),  #Fipronil
-        (5, 'Chemical E - Corn'),  #Metolachlor
+        (1, 'Chemical A - Corn'),  # Atrazine
+        (2, 'Chemical B - Corn'),  # Chlorpyrifos
+        (3, 'Chemical C - Soybeans'),  # Chlorpyrifos
+        (4, 'Chemical D - Corn'),  # Fipronil
+        (5, 'Chemical E - Corn'),  # Metolachlor
         (0, 'Custom')
     )
     COEFFICIENT_CHOICES = (
@@ -25,28 +24,29 @@ class SamInp_chem(forms.Form):
     )
 
     scenario_selection = forms.ChoiceField(
-            choices = SCENARIO_CHOICES,
-            label = 'Choose a Scenario')
+        choices=SCENARIO_CHOICES,
+        label='Choose a Scenario',
+        initial="Chemical A - Corn")
     chemical_name = forms.CharField(
-            required=False,
-            widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-            initial="Chemical A") # Atrazine
+        required=False,
+        widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
+        initial="Chemical A")  # Atrazine
     koc = forms.FloatField(
-            required=False,
-            label='Sorption Coefficient (mL/g)',
-            initial=100,
-            validators=[validation.validate_positive])
+        required=False,
+        label='Sorption Coefficient (mL/g)',
+        initial=100,
+        validators=[validation.validate_positive])
     coefficient = forms.ChoiceField(
-            required=False,
-            widget = forms.RadioSelect,
-            choices = COEFFICIENT_CHOICES,
-            initial = 1,
-            label = '')
+        required=False,
+        widget=forms.RadioSelect,
+        choices=COEFFICIENT_CHOICES,
+        initial=1,
+        label='')
     soil_metabolism_hl = forms.FloatField(
-            required=False,
-            label='Soil Metabolism Halflife (days)',
-            initial=123,
-            validators=[validation.validate_positive])
+        required=False,
+        label='Soil Metabolism Halflife (days)',
+        initial=123,
+        validators=[validation.validate_positive])
 
 
 class SamInp_app(forms.Form):
@@ -108,15 +108,15 @@ class SamInp_app(forms.Form):
     )
 
     crop_list_no = forms.CharField(
-            # This field is hidden by jQuery and holds the list of chosen crops
-            required=False,
-            widget=forms.Textarea({'cols': 20, 'rows': 1}))
+        # This field is hidden by jQuery and holds the list of chosen crops
+        required=False,
+        widget=forms.Textarea({'cols': 20, 'rows': 1}))
 
-    crop = forms.MultipleChoiceField (
-            required=False,
-            widget=forms.SelectMultiple(attrs={'size' : 4}),
-            choices=CROP_CHOICES,
-            label=mark_safe("Crop Groups<br>('Ctrl' to select multiple)"))
+    crop = forms.MultipleChoiceField(
+        required=False,
+        widget=forms.SelectMultiple(attrs={'size': 4}),
+        choices=CROP_CHOICES,
+        label=mark_safe("Crop Groups<br>('Ctrl' to select multiple)"))
     # crop = forms.ChoiceField(
     #         required=False,
     #         choices=CROP_CHOICES,
@@ -134,23 +134,23 @@ class SamInp_app(forms.Form):
             initial=0,
             widget=forms.TextInput(attrs={'readonly': 'true'}))
     apps_per_year = forms.FloatField(
-            required=False,
-            label='Number of Applications per Year',
-            initial=1,
-            validators=[validation.validate_greaterthan0])
+        required=False,
+        label='Number of Applications per Year',
+        initial=1,
+        validators=[validation.validate_greaterthan0])
     application_method = forms.ChoiceField(
-            required=False,
-            choices=APP_METH_CHOICES)
+        required=False,
+        choices=APP_METH_CHOICES)
     application_rate = forms.FloatField(
-            required=False,
-            label='Application Rate (kg/ha)',
-            initial=1.3,
-            validators=[validation.validate_positive])
+        required=False,
+        label='Application Rate (kg/ha)',
+        initial=1.3,
+        validators=[validation.validate_positive])
     sim_date_1stapp = forms.DateField(
-            required=False,
-            widget=forms.DateInput(attrs={'class': 'datePicker'}),
-            label='First Application Date',
-            initial="04/20/1984")
+        required=False,
+        widget=forms.DateInput(attrs={'class': 'datePicker'}),
+        label='First Application Date',
+        initial="04/20/1984")
 
 
 class SamInp_app_refine(forms.Form):
@@ -161,26 +161,26 @@ class SamInp_app_refine(forms.Form):
     )
 
     refine = forms.ChoiceField(
-            required=False,
-            choices=REFINEMENT_CHOICES,
-            label="Refinements",
-            initial='uniform_step')
+        required=False,
+        choices=REFINEMENT_CHOICES,
+        label="Refinements",
+        initial='uniform_step')
     refine_time_window1 = forms.FloatField(
-            required=False,
-            label='Time Window (days)',
-            validators=[validation.validate_positive])
+        required=False,
+        label='Time Window (days)',
+        validators=[validation.validate_positive])
     refine_percent_applied1 = forms.FloatField(
-            required=False,
-            label='Percent Applied',
-            validators=[validation.validate_positive])
-    refine_time_window2 = forms.FloatField(				# jQuery hides onLoad
-            required=False,
-            label='Time Window #2 (days)',
-            validators=[validation.validate_positive])
-    refine_percent_applied2 = forms.FloatField(			# jQuery hides onLoad
-            required=False,
-            label='Percent Applied #2',
-            validators=[validation.validate_positive])
+        required=False,
+        label='Percent Applied',
+        validators=[validation.validate_positive])
+    refine_time_window2 = forms.FloatField(  # jQuery hides onLoad
+        required=False,
+        label='Time Window #2 (days)',
+        validators=[validation.validate_positive])
+    refine_percent_applied2 = forms.FloatField(  # jQuery hides onLoad
+        required=False,
+        label='Percent Applied #2',
+        validators=[validation.validate_positive])
 
 
 class SamInp_sim(forms.Form):
@@ -214,30 +214,29 @@ class SamInp_sim(forms.Form):
     #         choices=SIM_STATE,
     #         label='State/Region')
     region = forms.CharField(
-            required=False,
-            label='State/Region',
-            initial='Ohio River Valley',
-            widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
+        required=False,
+        label='State/Region',
+        initial='Ohio River Valley',
+        widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
     )
     sim_type = forms.ChoiceField(
-            required=False,
-            widget=forms.RadioSelect,
-            choices=SIM_CHOICES)
+        required=False,
+        widget=forms.RadioSelect,
+        choices=SIM_CHOICES)
     sim_date_start = forms.DateField(
-            required=False,
-            widget=forms.DateInput(attrs={'class': 'datePicker'}),
-            label='Start Date',
-            initial="01/01/1984") #choices=SIM_DATE_START_CHOICES  This earliest possible start date
+        required=False,
+        widget=forms.DateInput(attrs={'class': 'datePicker'}),
+        label='Start Date',
+        initial="01/01/1984")  # choices=SIM_DATE_START_CHOICES  This earliest possible start date
     sim_date_end = forms.DateField(
-            required=False,
-            widget=forms.DateInput(attrs={'class': 'datePicker'}),
-            label='End Date',
-            initial="12/31/2013") #choices=SIM_DATE_END_CHOICES  6/2/2014 is latest possible end date
-     #choices=SIM_DATE_1STAPP_CHOICES
+        required=False,
+        widget=forms.DateInput(attrs={'class': 'datePicker'}),
+        label='End Date',
+        initial="12/31/2013")  # choices=SIM_DATE_END_CHOICES  6/2/2014 is latest possible end date
+    # choices=SIM_DATE_1STAPP_CHOICES
 
 
 class SamInp_output(forms.Form):
-
     # OUTPUT_TYPE_CHOICES = (
     # 	(1, '21-d Average Concentrations - 90th percentile'),
     # 	(2, '60-d Average Concentrations - 90th percentile'),
@@ -286,44 +285,44 @@ class SamInp_output(forms.Form):
     # 		initial = 2,
     # 		label='Output Preference')
     output_type = forms.ChoiceField(
-            required=False,
-            choices=OUTPUT_TYPE_CHOICES,
-            widget = forms.RadioSelect,
-            initial = 2,
-            label='Output Preference')
+        required=False,
+        choices=OUTPUT_TYPE_CHOICES,
+        widget=forms.RadioSelect,
+        initial=2,
+        label='Output Preference')
     output_avg_days = forms.IntegerField(
-            required=False,
-            label='Averaging Period (days)',
-            initial=4,
-            min_value=1,
-            max_value=365)
+        required=False,
+        label='Averaging Period (days)',
+        initial=4,
+        min_value=1,
+        max_value=365)
     output_time_avg_option = forms.ChoiceField(
-            required=False,
-            label='',
-            widget=forms.RadioSelect,
-            initial=2,
-            choices = TIME_AVG_CHOICES
+        required=False,
+        label='',
+        widget=forms.RadioSelect,
+        initial=2,
+        choices=TIME_AVG_CHOICES
     )
     output_time_avg_conc = forms.ChoiceField(
-            required=False,
-            widget=forms.Select(attrs={'size' : 2}),
-            choices=TIME_AVG_CONC_CHOICES,
-            initial=1,
-            label='')
+        required=False,
+        widget=forms.Select(attrs={'size': 2}),
+        choices=TIME_AVG_CONC_CHOICES,
+        initial=1,
+        label='')
     output_tox_value = forms.FloatField(
-            required=False,
-            label=mark_safe('Threshold (&micro;g/L)'),
-            initial=4)
+        required=False,
+        label=mark_safe('Threshold (&micro;g/L)'),
+        initial=4)
     output_tox_thres_exceed = forms.ChoiceField(
-            required=False,
-            widget=forms.Select(attrs={'size' : 4}),
-            choices=TOX_THRES_EXCEED_CHOICES,
-            label='')
+        required=False,
+        widget=forms.Select(attrs={'size': 4}),
+        choices=TOX_THRES_EXCEED_CHOICES,
+        label='')
     output_format = forms.MultipleChoiceField(
-            required=False,
-            widget=forms.CheckboxSelectMultiple,
-            choices=OUTPUT_FORMAT_CHOICES,
-            label='Output Format')
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+        choices=OUTPUT_FORMAT_CHOICES,
+        label='Output Format')
     # workers = forms.ChoiceField(
     #         required=False,
     #         choices=OUTPUT_WORKER_CHOICES,
@@ -335,14 +334,14 @@ class SamInp_output(forms.Form):
     #         label='Total Number of Processes',
     #         initial=1)
     workers = forms.FloatField(
-            required=False,
-            label='Number of Concurrent Processes (Workers)',
-            initial=16)
+        required=False,
+        label='Number of Concurrent Processes (Workers)',
+        initial=16)
     processes = forms.FloatField(
-            required=False,
-            label='Number of Processes Multiplier',
-            initial=1)
+        required=False,
+        label='Number of Processes Multiplier',
+        initial=1)
 
- 
+
 class SamInp(SamInp_chem, SamInp_app, SamInp_app_refine, SamInp_sim, SamInp_output):
     pass

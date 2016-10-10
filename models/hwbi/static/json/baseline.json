@@ -1,229 +1,242 @@
 {
   "metaInfo": {
+    "model": "hwbi",
+    "collection": "qed",
+    "modelVersion": 1.0,
+    "description": "The Human Well-Being Index (HWBI) model calculator (calc) uses 22 economic, ecosystem, and social services values to calculate eight 'domains of well-being': Connection to Nature, Cultural Fulfillment, Education, Health, Leisure Time, Living Standards, Safety & Security, and Social Cohesion. These domains of well-being are then weighed based on user-supplied 'relative importance values' and are used to determine the overall HWBI score.",
     "status": "Finished",
-    "timestamp": "2016-05-11T04:20:49",
-    "serviceUrl": null
+    "timestamp": "2016-07-07T13:37:07Z",
+    "url": {
+      "type": "application/json",
+      "href": "http://134.67.114.8:80/rest/hwbi/calc/run"
+    }
   },
-  "parameters": [
+  "inputs": [
     {
       "name": "state",
-      "description": "US State",
-      "value": "georgia"
+      "value": "georgia",
+      "description": "US State"
     },
     {
       "name": "county",
-      "description": "County",
-      "value": "clarke"
+      "value": "clarke",
+      "description": "County"
     }
   ],
-  "results": {
-    "hwbi": {
-      "Score": 52.550235957344043
-    },
+  "outputs": {
+    "hwbi": 52.550235957344043,
     "services": [
       {
-        "ServiceID": "S01",
-        "ServiceName": "Capital Investment",
-        "Description": "Capital Investment",
-        "ServiceType": "Economic",
+        "serviceID": "S01",
+        "name": "capitalInvestment",
+        "serviceType": "economic",
+        "description": "Capital Investment",
         "Score": 58.58767309
       },
       {
-        "ServiceID": "S02",
-        "ServiceName": "Consumption",
-        "Description": "Consumption",
-        "ServiceType": "Economic",
+        "serviceID": "S02",
+        "name": "consumption",
+        "serviceType": "economic",
+        "description": "Consumption",
         "Score": 51.30107144
       },
       {
-        "ServiceID": "S03",
-        "ServiceName": "Employment",
-        "Description": "Employment",
-        "ServiceType": "Economic",
+        "serviceID": "S03",
+        "name": "employment",
+        "serviceType": "economic",
+        "description": "Employment",
         "Score": 61.42698061
       },
       {
-        "ServiceID": "S04",
-        "ServiceName": "Finance",
-        "Description": "Finance",
-        "ServiceType": "Economic",
+        "serviceID": "S04",
+        "name": "finance",
+        "serviceType": "economic",
+        "description": "Finance",
         "Score": 48.04367489
       },
       {
-        "ServiceID": "S05",
-        "ServiceName": "Innovation",
-        "Description": "Innovation",
-        "ServiceType": "Economic",
+        "serviceID": "S05",
+        "name": "innovation",
+        "serviceType": "economic",
+        "description": "Innovation",
         "Score": 40.78933818
       },
       {
-        "ServiceID": "S06",
-        "ServiceName": "Production",
-        "Description": "Production",
-        "ServiceType": "Economic",
+        "serviceID": "S06",
+        "name": "production",
+        "serviceType": "economic",
+        "description": "Production",
         "Score": 51.37376206
       },
       {
-        "ServiceID": "S07",
-        "ServiceName": "Re-Distribution",
-        "Description": "Re-Distribution",
-        "ServiceType": "Economic",
+        "serviceID": "S07",
+        "name": "redistribution",
+        "serviceType": "economic",
+        "description": "Re-Distribution",
         "Score": 44.91955411
       },
       {
-        "ServiceID": "S08",
-        "ServiceName": "Air Quality",
-        "Description": "Air Quality",
-        "ServiceType": "Ecosystem",
+        "serviceID": "S08",
+        "name": "airQuality",
+        "serviceType": "ecosystem",
+        "description": "Air Quality",
         "Score": 39.74227925
       },
       {
-        "ServiceID": "S09",
-        "ServiceName": "Food, Fiber, Fuel",
-        "Description": "Food, Fiber And Fuel Provisioning",
-        "ServiceType": "Ecosystem",
+        "serviceID": "S09",
+        "name": "foodFiberAndFuel",
+        "serviceType": "ecosystem",
+        "description": "Food, Fiber And Fuel Provisioning",
         "Score": 38.67637493
       },
       {
-        "ServiceID": "S10",
-        "ServiceName": "Greenspace",
-        "Description": "Greenspace",
-        "ServiceType": "Ecosystem",
+        "serviceID": "S10",
+        "name": "greenspace",
+        "serviceType": "ecosystem",
+        "description": "Greenspace",
         "Score": 43.49136823
       },
       {
-        "ServiceID": "S11",
-        "ServiceName": "Water Quality",
-        "Description": "Water Quality",
-        "ServiceType": "Ecosystem",
+        "serviceID": "S11",
+        "name": "waterQuality",
+        "serviceType": "ecosystem",
+        "description": "Water Quality",
         "Score": 47.98169343
       },
       {
-        "ServiceID": "S12",
-        "ServiceName": "Water Quantity",
-        "Description": "Water Quantity",
-        "ServiceType": "Ecosystem",
+        "serviceID": "S12",
+        "name": "waterQuantity",
+        "serviceType": "ecosystem",
+        "description": "Water Quantity",
         "Score": 50.1499327
       },
       {
-        "ServiceID": "S13",
-        "ServiceName": "Activism",
-        "Description": "Activism",
-        "ServiceType": "Social",
+        "serviceID": "S13",
+        "name": "activisim",
+        "serviceType": "social",
+        "description": "Activism",
         "Score": 58.94920977
       },
       {
-        "ServiceID": "S14",
-        "ServiceName": "Communication",
-        "Description": "Communication",
-        "ServiceType": "Social",
+        "serviceID": "S14",
+        "name": "communication",
+        "serviceType": "social",
+        "description": "Communication",
         "Score": 45.05882805
       },
       {
-        "ServiceID": "S15",
-        "ServiceName": "Community And Faith",
-        "Description": "Community And Faith-Based Initiatives",
-        "ServiceType": "Social",
+        "serviceID": "S15",
+        "name": "communityAndFaith",
+        "serviceType": "social",
+        "description": "Community And Faith-Based Initiatives",
         "Score": 21.70335728
       },
       {
-        "ServiceID": "S16",
-        "ServiceName": "Education",
-        "Description": "Education",
-        "ServiceType": "Social",
+        "serviceID": "S16",
+        "name": "education",
+        "serviceType": "social",
+        "description": "Education",
         "Score": 43.91138195
       },
       {
-        "ServiceID": "S17",
-        "ServiceName": "Emergency Preparedness",
-        "Description": "Emergency Preparedness",
-        "ServiceType": "Social",
+        "serviceID": "S17",
+        "name": "emergencyPreparedness",
+        "serviceType": "social",
+        "description": "Emergency Preparedness",
         "Score": 31.60009102
       },
       {
-        "ServiceID": "S18",
-        "ServiceName": "Family Services",
-        "Description": "Family Services",
-        "ServiceType": "Social",
+        "serviceID": "S18",
+        "name": "familyServices",
+        "serviceType": "social",
+        "description": "Family Services",
         "Score": 48.56670661
       },
       {
-        "ServiceID": "S19",
-        "ServiceName": "Healthcare",
-        "Description": "Healthcare",
-        "ServiceType": "Social",
+        "serviceID": "S19",
+        "name": "healthcare",
+        "serviceType": "social",
+        "description": "Healthcare",
         "Score": 47.59926392
       },
       {
-        "ServiceID": "S20",
-        "ServiceName": "Justice",
-        "Description": "Justice",
-        "ServiceType": "Social",
+        "serviceID": "S20",
+        "name": "justice",
+        "serviceType": "social",
+        "description": "Justice",
         "Score": 39.76702077
       },
       {
-        "ServiceID": "S21",
-        "ServiceName": "Labor",
-        "Description": "Labor",
-        "ServiceType": "Social",
+        "serviceID": "S21",
+        "name": "labor",
+        "serviceType": "social",
+        "description": "Labor",
         "Score": 45.34910097
       },
       {
-        "ServiceID": "S22",
-        "ServiceName": "Public Works",
-        "Description": "Public Works",
-        "ServiceType": "Social",
+        "serviceID": "S22",
+        "name": "publicWorks",
+        "serviceType": "social",
+        "description": "Public Works",
         "Score": 46.79912673
       }
     ],
     "domains": [
       {
-        "DomainID": "Connection",
-        "Description": "Connection To Nature",
-        "Score": 51.460622768522882,
-        "Weight": 1.0
+        "domainID": "Connection",
+        "domainName": "Connection To Nature",
+        "description": "connectionToNature",
+        "score": 51.460622768522882,
+        "weight": 1.0
       },
       {
-        "DomainID": "Culture",
-        "Description": "Cultural Fulfillment",
-        "Score": 46.570720575767176,
-        "Weight": 1.0
+        "domainID": "Culture",
+        "domainName": "Cultural Fulfillment",
+        "description": "culturalFulfillment",
+        "score": 46.570720575767176,
+        "weight": 1.0
       },
       {
-        "DomainID": "Education",
-        "Description": "Education",
-        "Score": 49.7233935602848,
-        "Weight": 1.0
+        "domainID": "Education",
+        "domainName": "Education",
+        "description": "education",
+        "score": 49.7233935602848,
+        "weight": 1.0
       },
       {
-        "DomainID": "Health",
-        "Description": "Health",
-        "Score": 57.4952531982142,
-        "Weight": 1.0
+        "domainID": "Health",
+        "domainName": "Health",
+        "description": "health",
+        "score": 57.4952531982142,
+        "weight": 1.0
       },
       {
-        "DomainID": "Leisure",
-        "Description": "Leisure Time",
-        "Score": 57.648025747246692,
-        "Weight": 1.0
+        "domainID": "Leisure",
+        "domainName": "Leisure Time",
+        "description": "leisureTime",
+        "score": 57.648025747246692,
+        "weight": 1.0
       },
       {
-        "DomainID": "Living",
-        "Description": "Living Standards",
-        "Score": 54.904557679957847,
-        "Weight": 1.0
+        "domainID": "Living",
+        "domainName": "Living Standards",
+        "description": "livingStandards",
+        "score": 54.904557679957847,
+        "weight": 1.0
       },
       {
-        "DomainID": "Safety",
-        "Description": "Safety And Security",
-        "Score": 60.330813340104186,
-        "Weight": 1.0
+        "domainID": "Safety",
+        "domainName": "Safety And Security",
+        "description": "safetyAndSecurity",
+        "score": 60.330813340104186,
+        "weight": 1.0
       },
       {
-        "DomainID": "Social",
-        "Description": "Social Cohesion",
-        "Score": 42.268500788654457,
-        "Weight": 1.0
+        "domainID": "Social",
+        "domainName": "Social Cohesion",
+        "description": "socialCohesion",
+        "score": 42.268500788654457,
+        "weight": 1.0
       }
     ]
   }

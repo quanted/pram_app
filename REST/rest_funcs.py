@@ -92,7 +92,7 @@ def rest_proxy_hwbi_calc(request):
         return HttpResponse(response)
     elif method == 'POST':
         data = json.loads(request.body)
-        response = requests.post(rest_url_hwbi + '/hwbi/rest/hwbi/calc', json=data)
+        response = requests.post(rest_url_hwbi + '/hwbi/rest/hwbi/calc/run', json=data)
         return HttpResponse(json.dumps(response.json()), content_type="application/json")
 
 
@@ -289,6 +289,17 @@ def create_batchoutput_html(jid, model_name):
         return "error"
 
     return result_obj_all
+
+
+def self_documentation(request):
+
+    path = request.path.split('/')[1:]
+
+    response = requests.get(rest_url + request.path)
+
+    html = "<h3>You are at: %s</h3>" % path
+
+    return HttpResponse(html, content_type="text/html")
 
 
 class UserHistory(object):

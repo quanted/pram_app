@@ -7,7 +7,7 @@ var width = 300,
 
 //import data from a json file and run drawPieChart function onPageLoad
 d3.json('/static/json/baseline.json', function (error, data) {
-    drawPie2Chart("", data.results.domains);
+    drawPie2Chart("", data.outputs.domains);
 });
 
 //create svg element in the page "#pie" div and append g to the SVG
@@ -37,14 +37,14 @@ function drawPie2Chart(error, data) {
     //use d3 to create the pie chart layout
     var pie = d3.layout.pie()
         .sort(null)
-        .value(function (d) { return d.Weight; });
+        .value(function (d) { return d.weight; });
 
     //hover over pie slice for label using d3 tooltip
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([50, 0])
         .html(function (d) {
-            return d.data.Description + ": <span style='color:orangered'>" + Math.round(d.data.Score) + "</span>"
+            return d.data.domainName + ": <span style='color:orangered'>" + Math.round(d.data.score) + "</span>"
         })
         ;
 
@@ -55,7 +55,7 @@ function drawPie2Chart(error, data) {
     var arc = d3.svg.arc()
         .innerRadius(innerRadius)
         .outerRadius(function (d) {
-          return (radius - innerRadius) * (d.data.Score/100) + innerRadius;
+          return (radius - innerRadius) * (d.data.score/100) + innerRadius;
         });
 
     //use d3 to calculate size of outline arcs
@@ -70,14 +70,14 @@ function drawPie2Chart(error, data) {
         .enter().append("path")
         //assign colors to solidArc slice based on domain name
         .attr("fill", (function (d) {
-            if (d.data.Description == "Connection To Nature") { return "#569c83"; }
-            if (d.data.Description == "Cultural Fulfillment") { return "#325481"; }
-            if (d.data.Description == "Education") { return "#5E4EA1"; }
-            if (d.data.Description == "Health") { return "#9E0041"; }
-            if (d.data.Description == "Leisure Time") { return "#E1514B"; }
-            if (d.data.Description == "Living Standards") { return "#FB9F59"; }
-            if (d.data.Description == "Safety And Security") { return "#FAE38C"; }
-            if (d.data.Description == "Social Cohesion") { return "#EAF195"; }
+            if (d.data.domainName == "Connection To Nature") { return "#569c83"; }
+            if (d.data.domainName == "Cultural Fulfillment") { return "#325481"; }
+            if (d.data.domainName == "Education") { return "#5E4EA1"; }
+            if (d.data.domainName == "Health") { return "#9E0041"; }
+            if (d.data.domainName == "Leisure Time") { return "#E1514B"; }
+            if (d.data.domainName == "Living Standards") { return "#FB9F59"; }
+            if (d.data.domainName == "Safety And Security") { return "#FAE38C"; }
+            if (d.data.domainName == "Social Cohesion") { return "#EAF195"; }
         }))
 
         .attr("class", "solidArc")
@@ -98,10 +98,10 @@ function drawPie2Chart(error, data) {
     // calculate the weighted mean HWBI score
     var score2 =
         data.reduce(function (a, b) {
-            return a + ((b.Score) * b.Weight);
+            return a + ((b.score) * b.weight);
         }, 0) /
         data.reduce(function (a, b) {
-            return a + b.Weight;
+            return a + b.weight;
         }, 0);
 
     //display HWBI score
@@ -130,7 +130,7 @@ function updatePie2Chart(error, data) {
     //use d3 to create the pie chart layout
     var pie = d3.layout.pie()
         .sort(null)
-        .value(function (d) { return d.Weight; });
+        .value(function (d) { return d.weight; });
 
     //hover over pie slice for label using d3 tooltip
     var tip = d3.tip()
@@ -138,7 +138,7 @@ function updatePie2Chart(error, data) {
         .offset([50, 0])
         .style("pointer-events", "none")
         .html(function (d) {
-            return d.data.Description + ": <span style='color:orangered'>" + (d.data.Score) + "</span>";
+            return d.data.domainName + ": <span style='color:orangered'>" + (d.data.score) + "</span>";
         });
 
     //call the hover tip utility
@@ -148,7 +148,7 @@ function updatePie2Chart(error, data) {
     var arc = d3.svg.arc()
         .innerRadius(innerRadius)
         .outerRadius(function (d) {
-            return (radius - innerRadius) * (d.data.Score/100) + innerRadius;
+            return (radius - innerRadius) * (d.data.score/100) + innerRadius;
         });
 
     //use d3 to calculate size of outline arcs
@@ -164,14 +164,14 @@ function updatePie2Chart(error, data) {
          .duration(1500)
         //assign colors to solidArc slice based on domain name
         .attr("fill", (function (d) {
-            if (d.data.Description == "Connection To Nature") { return "#569c83"; }
-            if (d.data.Description == "Cultural Fulfillment") { return "#325481"; }
-            if (d.data.Description == "Education") { return "#5E4EA1"; }
-            if (d.data.Description == "Health") { return "#9E0041"; }
-            if (d.data.Description == "Leisure Time") { return "#E1514B"; }
-            if (d.data.Description == "Living Standards") { return "#FB9F59"; }
-            if (d.data.Description == "Safety And Security") { return "#FAE38C"; }
-            if (d.data.Description == "Social Cohesion") { return "#EAF195"; }
+            if (d.data.domainName == "Connection To Nature") { return "#569c83"; }
+            if (d.data.domainName == "Cultural Fulfillment") { return "#325481"; }
+            if (d.data.domainName == "Education") { return "#5E4EA1"; }
+            if (d.data.domainName == "Health") { return "#9E0041"; }
+            if (d.data.domainName == "Leisure Time") { return "#E1514B"; }
+            if (d.data.domainName == "Living Standards") { return "#FB9F59"; }
+            if (d.data.domainName == "Safety And Security") { return "#FAE38C"; }
+            if (d.data.domainName == "Social Cohesion") { return "#EAF195"; }
         }))
         .attr("class", "solidArc")
         .attr("stroke", "gray")
@@ -191,10 +191,10 @@ function updatePie2Chart(error, data) {
     // calculate the weighted mean HWBI score
     var Score2 =
         data.reduce(function (a, b) {
-            return a + ((b.Score) * b.Weight);
+            return a + ((b.score) * b.weight);
         }, 0) /
         data.reduce(function (a, b) {
-            return a + b.Weight;
+            return a + b.weight;
         }, 0)
     ;
 

@@ -44,6 +44,7 @@ def request_manager(request):
 	sessionid = request.POST.get('sessionid')
 	node = request.POST.get('node')
 	mass = request.POST.get('mass')  # for water solubility
+
 	run_type = request.POST.get('run_type')
 	prop = request.POST.get('prop')
 
@@ -59,7 +60,6 @@ def request_manager(request):
 
 	# filter smiles before sending to TEST:
 	# ++++++++++++++++++++++++ smiles filtering!!! ++++++++++++++++++++
-
 	try:
 		filtered_smiles = parseSmilesByCalculator(structure, calc) # call smilesfilter
 	except Exception as err:

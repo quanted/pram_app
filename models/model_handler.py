@@ -85,6 +85,18 @@ def call_model_server(model, args):
     # POST JSON to model server through rest proxy
     response = rest_funcs.rest_proxy_post(model, data, rest_funcs.gen_jid())
 
+
+
+
+
+
+
+
+
+
+
+
+
     return response
 
 

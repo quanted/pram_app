@@ -2,8 +2,9 @@ beautifulsoup4
 codecov
 coverage
 coveralls
-django
+django==1.8.15
 django-rest-swagger
+enum
 html5lib
 mechanize
 nose
@@ -17,6 +18,7 @@ pytz
 requests
 reportlab
 selenium
+smilesfilter
 Sphinx
 tabulate
 xhtml2pdf

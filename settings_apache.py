@@ -97,6 +97,7 @@ INSTALLED_APPS = (
     'models.terrplant',
     'models.sip',
     'models.stir',
+    'models.iec',
     'models.ore',
     'models.hwbi',
     'cts_api'

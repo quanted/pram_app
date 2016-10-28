@@ -132,6 +132,9 @@ def output_page_view(request, model='none', header=''):
         return response
 
     else:
+
+        # TODO: This section should be removed as it is not used anymore...(pre-objectifying method)
+
         # All models that use the 'model_output.py' to format the inputs before sending to back end server
         # Dynamically import the model output module
         outputmodule = importlib.import_module('.' + model + '_output', 'models.' + model)

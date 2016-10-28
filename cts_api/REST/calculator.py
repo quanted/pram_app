@@ -1,11 +1,8 @@
-__author__ = 'np'
-
-
+import smilesfilter
 import requests
 import json
 import logging
 import os
-import smilesfilter
 
 from enum import Enum
 

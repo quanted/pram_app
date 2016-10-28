@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'models.stir',
     'models.iec',
     'models.earthworm',
+    'models.rice',
     'models.ore',
     'models.hwbi',
     'cts_api'

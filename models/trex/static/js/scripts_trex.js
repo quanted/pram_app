@@ -5,6 +5,31 @@ $(document).ready(function() {
         {   "isSubTabs":false   }
     );
 
+    $('.submit').click(function(e) {
+        e.preventDefault();
+        var app_rates = [];
+        var day_outs = [];
+        var unNeededFields = ['id_seed_crop_v'];
+
+        $('[id^="id_rate-"]').each(function() {
+            var rate = this.value;
+            app_rates.push(rate);
+            unNeededFields.push(this.id);
+        });
+        $('#id_app_rates').val(app_rates);
+
+        $('[id^="id_day-"]').each(function() {
+            var day_out = this.value;
+            day_outs.push(day_out);
+            unNeededFields.push(this.id);
+        });
+        $('#id_day_out').val(day_outs);
+
+        rmFormFields(unNeededFields);
+
+        $('.inputs_form').submit();
+    });
+
     $('#id_avian_NOAEL').val($('#id_avian_NOAEC').val()/20);
     $('#id_avian_NOAEC').change(function() { 
         $('#id_avian_NOAEL').val($(this).val()/20);
@@ -33,8 +58,8 @@ $(document).ready(function() {
             $('#id_percent_incorporated').closest('tr').hide();
             $('.tab_Application').show();
             $('#rate_head').text('Rate (fl oz/cwt)');
-            $('#id_noa').val(1);
-            $("#id_noa").prop("disabled", true);
+            $('#id_num_apps').val(1);
+            $("#id_num_apps").prop("disabled", true);
             while (i-1 > 1) {
                 $(".tab_Application tr:last").remove();
                 i=i-1
@@ -51,7 +76,7 @@ $(document).ready(function() {
         else if ($(this).val() == 'Row/Band/In-furrow-Granular'){
             $('.tab_Application').show();
             $('#rate_head').text('Rate (lb ai/acre)');
-            $("#id_noa").prop("disabled", false);
+            $("#id_num_apps").prop("disabled", false);
             $('.seed').remove();
             $('#id_seed_treatment_formulation_name').closest('tr').hide(); 
             $('#id_maximum_seedling_rate_per_use').closest('tr').hide();
@@ -65,7 +90,7 @@ $(document).ready(function() {
          else if ($(this).val() == 'Row/Band/In-furrow-Liquid'){
             $('.tab_Application').show();
             $('#rate_head').text('Rate (lb ai/acre)');
-            $("#id_noa").prop("disabled", false);
+            $("#id_num_apps").prop("disabled", false);
             $('.seed').remove();
             $('#id_seed_treatment_formulation_name').closest('tr').hide(); 
             $('#id_maximum_seedling_rate_per_use').closest('tr').hide();
@@ -79,7 +104,7 @@ $(document).ready(function() {
         else{
             $('.tab_Application').show();
             $('#rate_head').text('Rate (lb ai/acre)');
-            $("#id_noa").prop("disabled", false);
+            $("#id_num_apps").prop("disabled", false);
             $('.seed').remove();
             $('#id_seed_treatment_formulation_name').closest('tr').hide(); 
             $('#id_maximum_seedling_rate_per_use').closest('tr').hide();
@@ -94,16 +119,16 @@ $(document).ready(function() {
 
     var i = 2;
 
-        var total = $('#id_noa').val();
+        var total = $('#id_num_apps').val();
         $('tr[id*="noa_header"]').show();
 
         while (i <= total) {
             if (i==1){
-                $('.tab_Application').append('<tr class="tab_noa1"><td><input name="jm' + i + '" type="text" size="5" value="' + i + '"/></td><td><input type="text" size="5" name="rate' + i + '" id="id_rate' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day' + i + '"  value="0" /></td></tr>');
+                $('.tab_Application').append('<tr class="tab_noa1"><td>' + i + '</td><td><input type="text" size="5" name="rate' + i + '" id="id_rate-' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day-' + i + '"  value="0" /></td></tr>');
             }
 
             else {
-                $('.tab_Application').append('<tr class="tab_noa1"><td><input name="jm' + i + '" type="text" size="5" value="' + i + '"/></td><td><input type="text" size="5" name="rate' + i + '" id="id_rate' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day' + i + '" value="' + 3*(i-1) + '"/></td></tr>');
+                $('.tab_Application').append('<tr class="tab_noa1"><td>' + i + '</td><td><input type="text" size="5" name="rate' + i + '" id="id_rate-' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day-' + i + '" value="' + 3*(i-1) + '"/></td></tr>');
             }
             i = i + 1;
         }
@@ -114,25 +139,25 @@ $(document).ready(function() {
         $('</table>').appendTo('.tab_Application');
 
 
-    $('#id_noa').change(function () {
-    	var total = $(this).val();
-    	$('tr[id*="noa_header"]').show();
+    $('#id_num_apps').change(function () {
+      var total = $(this).val();
+      $('tr[id*="noa_header"]').show();
 
-    	while (i <= total) {
-    		if (i==1){
-    			$('.tab_Application').append('<tr class="tab_noa1"><td><input name="jm' + i + '" type="text" size="5" value="' + i + '"/></td><td><input type="text" size="5" name="rate' + i + '" id="id_rate' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day' + i + '"  value="0" /></td></tr>');
-    		}
+      while (i <= total) {
+        if (i==1){
+          $('.tab_Application').append('<tr class="tab_noa1"><td><input name="jm' + i + '" type="text" size="5" value="' + i + '"/></td><td><input type="text" size="5" name="rate' + i + '" id="id_rate-' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day-' + i + '"  value="0" /></td></tr>');
+        }
 
-    		else {
-    			$('.tab_Application').append('<tr class="tab_noa1"><td><input name="jm' + i + '" type="text" size="5" value="' + i + '"/></td><td><input type="text" size="5" name="rate' + i + '" id="id_rate' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day' + i + '" value="' + 3*(i-1) + '"/></td></tr>');
-    		}
-    		i = i + 1;
-    	}
-    	while (i-1 > total) {
-    		$(".tab_Application tr:last").remove();
-    		i=i-1;
-    	}
-    	$('</table>').appendTo('.tab_Application');
+        else {
+          $('.tab_Application').append('<tr class="tab_noa1"><td><input name="jm' + i + '" type="text" size="5" value="' + i + '"/></td><td><input type="text" size="5" name="rate' + i + '" id="id_rate-' + i + '" value="4"/></td><td><input type="text" size="5" name="day' + i + '" id="id_day-' + i + '" value="' + 3*(i-1) + '"/></td></tr>');
+        }
+        i = i + 1;
+      }
+      while (i-1 > total) {
+        $(".tab_Application tr:last").remove();
+        i=i-1;
+      }
+      $('</table>').appendTo('.tab_Application');
     });
 
     $('#id_Species_of_the_tested_bird_avian_ld50').change(function() { 
@@ -182,5 +207,11 @@ $(document).ready(function() {
             $('#id_bw_avian_NOAEL').val(7);
        }
    });
+
+    function rmFormFields(fields) {
+        for (i=0; i < fields.length; i++) {
+            $('#' + fields[i]).remove();
+        }
+    }
 
 });

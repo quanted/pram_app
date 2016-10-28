@@ -1,6 +1,6 @@
 import csv
 
-data = csv.reader(open('D:/Dropbox/ubertool_src/trex2/trex2_seeding.csv'))
+data = csv.reader(open('D:/Dropbox/ubertool_src/trex/trex_seeding.csv'))
 crop = []
 rate = []
 

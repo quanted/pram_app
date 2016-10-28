@@ -10,7 +10,7 @@ def ordered_list(model=None, page=None):
                 ('SIP', 'sip'),
                 ('STIR', 'stir'),
                 # ('DUST', 'dust'),
-                ('T-REX', 'trex2'),
+                ('T-REX', 'trex'),
                 ('T-Herps', 'therps'),
                 ('IEC', 'iec'),
                 ('AgDrift', 'agdrift'),

@@ -1,10 +1,10 @@
 """
-.. module:: trex2_model
+.. module:: trex_model
    :synopsis: A useful module indeed.
 """
 
 import logging
-logger = logging.getLogger('trex2 model')
+logger = logging.getLogger('trex model')
 from REST import auth_s3, rest_funcs
 import json
 import os
@@ -16,7 +16,7 @@ url_part1 = os.environ['UBERTOOL_REST_SERVER']
 ###########################################################################
 
 #food intake for birds
-class trex2(object):
+class trex(object):
     def __init__(self, run_type, chem_name, use, formu_name, a_i, Application_type, seed_treatment_formulation_name, seed_crop, seed_crop_v, r_s, b_w, p_i, den, h_l, n_a, ar_lb, day_out,
               ld50_bird, lc50_bird, NOAEC_bird, NOAEL_bird, aw_bird_sm, aw_bird_md, aw_bird_lg, 
               Species_of_the_tested_bird_avian_ld50, Species_of_the_tested_bird_avian_lc50, Species_of_the_tested_bird_avian_NOAEC, Species_of_the_tested_bird_avian_NOAEL, 
@@ -87,7 +87,7 @@ class trex2(object):
         data = json.dumps(all_dic)
 
         self.jid = rest_funcs.gen_jid()
-        url=url_part1 + '/trex2/' + self.jid 
+        url=url_part1 + '/trex/' + self.jid
         response = requests.post(url, data=data, headers=http_headers, timeout=60)
         output_val = json.loads(response.content, cls=rest_funcs.NumPyDecoder)['result']
         output_val_uni=json.loads(output_val, cls=rest_funcs.NumPyDecoder)

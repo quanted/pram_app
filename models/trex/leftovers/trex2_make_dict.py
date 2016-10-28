@@ -7,7 +7,7 @@ import os
 import csv
 
 
-data = csv.reader(open('C:/github/ubertool_src/trex2/trex2_seed.csv'))
+data = csv.reader(open('C:/github/ubertool_src/trex/trex_seed.csv'))
 crop_type = []
 max_rate = []
 

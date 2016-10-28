@@ -1,5 +1,5 @@
 """
-.. module:: trex2_output
+.. module:: trex_output
    :synopsis: A useful module indeed.
 """
 
@@ -7,8 +7,8 @@ from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 
 @require_POST
-def trex2OutputPage(request):
-    import trex2_model
+def trexOutputPage(request):
+    import trex_model
 
     chem_name = request.POST.get('chem_name')
     use = request.POST.get('Use')
@@ -89,10 +89,10 @@ def trex2OutputPage(request):
     tw_mamm = float(tw_mamm) 
 
 
-    trex2_obj = trex2_model.trex2("single", chem_name, use, formu_name, a_i, Application_type, seed_treatment_formulation_name, seed_crop, seed_crop_v, r_s, b_w, p_i, den, h_l, n_a, rate_out, day_out,
+    trex_obj = trex_model.trex("single", chem_name, use, formu_name, a_i, Application_type, seed_treatment_formulation_name, seed_crop, seed_crop_v, r_s, b_w, p_i, den, h_l, n_a, rate_out, day_out,
                   ld50_bird, lc50_bird, NOAEC_bird, NOAEL_bird, aw_bird_sm, aw_bird_md, aw_bird_lg, 
                   Species_of_the_tested_bird_avian_ld50, Species_of_the_tested_bird_avian_lc50, Species_of_the_tested_bird_avian_NOAEC, Species_of_the_tested_bird_avian_NOAEL,
                   tw_bird_ld50, tw_bird_lc50, tw_bird_NOAEC, tw_bird_NOAEL, x, ld50_mamm, lc50_mamm, NOAEC_mamm, NOAEL_mamm, aw_mamm_sm, aw_mamm_md, aw_mamm_lg, tw_mamm,
                   m_s_r_p)
 
-    return trex2_obj
+    return trex_obj

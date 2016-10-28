@@ -1,5 +1,5 @@
 """
-.. module:: trex2_tooltips
+.. module:: trex_tooltips
    :synopsis: A useful module indeed.
 """
 

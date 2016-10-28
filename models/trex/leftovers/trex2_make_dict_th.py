@@ -7,7 +7,7 @@ import os
 import csv
 
 
-data = csv.reader(open('C:/Users/th/Desktop/trex2.csv'))
+data = csv.reader(open('C:/Users/th/Desktop/trex.csv'))
 crop_type = []
 max_rate = []
 

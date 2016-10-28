@@ -1,4 +1,4 @@
-trex2_property,description,units,type,valid_range,run1,run2
+trex_property,description,units,type,valid_range,run1,run2
 chemical_name,Chemical name,,,,Acephate,Acephate
 use,Use,,,,Corn,Corn
 Formulated_product_name,Formulated product name,,,,NA,NA

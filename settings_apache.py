@@ -94,6 +94,9 @@ INSTALLED_APPS = (
     'mod_wsgi.server',
     'docs',
     'api',
+    'models.terrplant',
+    'models.sip',
+    'models.stir',
     'models.ore',
     'models.hwbi',
     'cts_api'

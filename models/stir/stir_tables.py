@@ -251,9 +251,9 @@ def table_3(sm):
     html = html + """
             </div>
     """
-    return {'html':html, 'out_sat_air_conc':sm.sat_air_conc, 'out_inh_rate_avian':sm.inh_rate_avian, 'out_vid_avian':sm.vid_avian,
-            'out_estimated_avian_inhalation_ld50':sm.estimated_avian_inhalation_ld50, 'out_adjusted_avian_inhalation_ld50':sm.adjusted_avian_inhalation_ld50, 'out_ratio_vid_avian':sm.ratio_vid_avian,
-            'out_sid_avian':sm.sid_avian, 'out_ratio_sid_avian':sm.ratio_sid_avian}
+    return {'html':html, 'out_sat_air_conc':sm.out_sat_air_conc, 'out_inh_rate_avian':sm.out_inh_rate_avian, 'out_vid_avian':sm.out_vid_avian,
+            'out_estimated_avian_inhalation_ld50':sm.out_estimated_avian_inhalation_ld50, 'out_adjusted_avian_inhalation_ld50':sm.out_adjusted_avian_inhalation_ld50, 'out_ratio_vid_avian':sm.out_ratio_vid_avian,
+            'out_sid_avian':sm.out_sid_avian, 'out_ratio_sid_avian':sm.out_ratio_sid_avian}
 
 def gett3data(sm):
     data = { 
@@ -261,14 +261,14 @@ def gett3data(sm):
           'Estimated Avian Inhalation LD50','Adjusted Avian Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Bird','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50',],
         #"Value": [cs,ir_avian,out_vid_avian,ld50est,ld50adj,ratio_vd_avian,out_sid_avian,out_ratio_sid_avian,],
-        "Value": ['%.2e' % sm.sat_air_conc,'%.2e' % sm.inh_rate_avian,'%.2e' % sm.vid_avian,
-            '%.2e' % sm.estimated_avian_inhalation_ld50,'%.2e' % sm.adjusted_avian_inhalation_ld50,'%.2e' % sm.ratio_vid_avian,
-            '%.2e' % sm.sid_avian,'%.2e' % sm.ratio_sid_avian,],
+        "Value": ['%.2e' % sm.out_sat_air_conc,'%.2e' % sm.out_inh_rate_avian,'%.2e' % sm.out_vid_avian,
+            '%.2e' % sm.out_estimated_avian_inhalation_ld50,'%.2e' % sm.out_adjusted_avian_inhalation_ld50,'%.2e' % sm.out_ratio_vid_avian,
+            '%.2e' % sm.out_sid_avian,'%.2e' % sm.out_ratio_sid_avian,],
         "Units": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
 
-def table_sum_3(sat_air_conc,inh_rate_avian,vid_avian,estimated_avian_inhalation_ld50,adjusted_avian_inhalation_ld50,ratio_vid_avian,sid_avian,ratio_sid_avian):
+def table_sum_3(out_sat_air_conc,out_inh_rate_avian,out_vid_avian,out_estimated_avian_inhalation_ld50,out_adjusted_avian_inhalation_ld50,out_ratio_vid_avian,out_sid_avian,out_ratio_sid_avian):
     #pre-table sum_3
     html = """
     <H3 class="out_3 collapsible" id="section4"><span></span>Calculated Estimates</H3>
@@ -278,7 +278,7 @@ def table_sum_3(sat_air_conc,inh_rate_avian,vid_avian,estimated_avian_inhalation
     """
 
     #table sum_output_3
-    tsuminputdata_3 = gettsumdata_3(sat_air_conc,inh_rate_avian,vid_avian,estimated_avian_inhalation_ld50,adjusted_avian_inhalation_ld50,ratio_vid_avian,sid_avian,ratio_sid_avian)
+    tsuminputdata_3 = gettsumdata_3(out_sat_air_conc,out_inh_rate_avian,out_vid_avian,out_estimated_avian_inhalation_ld50,out_adjusted_avian_inhalation_ld50,out_ratio_vid_avian,out_sid_avian,out_ratio_sid_avian)
     tsuminputrows_3 = gethtmlrowsfromcols(tsuminputdata_3,sumheadings)       
     html = html + tmpl.render(Context(dict(data=tsuminputrows_3, headings=sumheadings)))
     html = html + """
@@ -286,16 +286,16 @@ def table_sum_3(sat_air_conc,inh_rate_avian,vid_avian,estimated_avian_inhalation
     """
     return html
 
-def gettsumdata_3(sat_air_conc,inh_rate_avian,vid_avian,estimated_avian_inhalation_ld50,adjusted_avian_inhalation_ld50,ratio_vid_avian,sid_avian,ratio_sid_avian):
+def gettsumdata_3(out_sat_air_conc,out_inh_rate_avian,out_vid_avian,out_estimated_avian_inhalation_ld50,out_adjusted_avian_inhalation_ld50,out_ratio_vid_avian,out_sid_avian,out_ratio_sid_avian):
 
     data = { 
         "Parameter": ['Saturated Air Concentration of Pesticide','Avian Inhalation Rate','Maximum 1-hour Avian Vapor Inhalation Dose',
           'Estimated Avian Inhalation LD50','Adjusted Avian Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Bird','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50',],
-        "Mean": ['%.2e' % numpy.mean(sat_air_conc), '%.2e' % numpy.mean(inh_rate_avian), '%.2e' % numpy.mean(vid_avian), '%.2e' % numpy.mean(estimated_avian_inhalation_ld50), '%.2e' % numpy.mean(adjusted_avian_inhalation_ld50), '%.2e' % numpy.mean(ratio_vid_avian),'%.2e' % numpy.mean(sid_avian), '%.2e' % numpy.mean(ratio_sid_avian),],
-        "Std":  ['%.2e' % numpy.std(sat_air_conc), '%.2e' % numpy.mean(inh_rate_avian), '%.2e' % numpy.mean(vid_avian), '%.2e' % numpy.mean(estimated_avian_inhalation_ld50), '%.2e' % numpy.std(adjusted_avian_inhalation_ld50), '%.2e' % numpy.std(ratio_vid_avian),'%.2e' % numpy.std(sid_avian), '%.2e' % numpy.std(ratio_sid_avian),],
-        "Min":  ['%.2e' % numpy.min(sat_air_conc), '%.2e' % numpy.mean(inh_rate_avian), '%.2e' % numpy.mean(vid_avian), '%.2e' % numpy.mean(estimated_avian_inhalation_ld50), '%.2e' % numpy.min(adjusted_avian_inhalation_ld50), '%.2e' % numpy.min(ratio_vid_avian),'%.2e' % numpy.min(sid_avian), '%.2e' % numpy.min(ratio_sid_avian),],
-        "Max":  ['%.2e' % numpy.max(sat_air_conc), '%.2e' % numpy.mean(inh_rate_avian), '%.2e' % numpy.mean(vid_avian), '%.2e' % numpy.mean(estimated_avian_inhalation_ld50), '%.2e' % numpy.max(adjusted_avian_inhalation_ld50), '%.2e' % numpy.max(ratio_vid_avian),'%.2e' % numpy.max(sid_avian), '%.2e' % numpy.max(ratio_sid_avian),],
+        "Mean": ['%.2e' % numpy.mean(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_avian), '%.2e' % numpy.mean(out_vid_avian), '%.2e' % numpy.mean(out_estimated_avian_inhalation_ld50), '%.2e' % numpy.mean(out_adjusted_avian_inhalation_ld50), '%.2e' % numpy.mean(out_ratio_vid_avian),'%.2e' % numpy.mean(out_sid_avian), '%.2e' % numpy.mean(out_ratio_sid_avian),],
+        "Std":  ['%.2e' % numpy.std(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_avian), '%.2e' % numpy.mean(out_vid_avian), '%.2e' % numpy.mean(out_estimated_avian_inhalation_ld50), '%.2e' % numpy.std(out_adjusted_avian_inhalation_ld50), '%.2e' % numpy.std(out_ratio_vid_avian),'%.2e' % numpy.std(out_sid_avian), '%.2e' % numpy.std(out_ratio_sid_avian),],
+        "Min":  ['%.2e' % numpy.min(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_avian), '%.2e' % numpy.mean(out_vid_avian), '%.2e' % numpy.mean(out_estimated_avian_inhalation_ld50), '%.2e' % numpy.min(out_adjusted_avian_inhalation_ld50), '%.2e' % numpy.min(out_ratio_vid_avian),'%.2e' % numpy.min(out_sid_avian), '%.2e' % numpy.min(out_ratio_sid_avian),],
+        "Max":  ['%.2e' % numpy.max(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_avian), '%.2e' % numpy.mean(out_vid_avian), '%.2e' % numpy.mean(out_estimated_avian_inhalation_ld50), '%.2e' % numpy.max(out_adjusted_avian_inhalation_ld50), '%.2e' % numpy.max(out_ratio_vid_avian),'%.2e' % numpy.max(out_sid_avian), '%.2e' % numpy.max(out_ratio_sid_avian),],
         "Unit": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -324,12 +324,12 @@ def gett3dataqaqc(sm):
           'Estimated Avian Inhalation LD50','Adjusted Avian Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Bird','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50',],
         #"Value": [cs,ir_avian,out_vid_avian,ld50est,ld50adj,ratio_vd_avian,out_sid_avian,out_ratio_sid_avian,],
-        "Value": ['%.2e' % sm.sat_air_conc,'%.2e' % sm.inh_rate_avian,'%.2e' % sm.vid_avian,
-            '%.2e' % sm.estimated_avian_inhalation_ld50,'%.2e' % sm.adjusted_avian_inhalation_ld50,'%.2e' % sm.ratio_vid_avian,
-            '%.2e' % sm.sid_avian,'%.2e' % sm.ratio_sid_avian,],
-        "Expected Value": ['%.2e' % sm.exp_sat_air_conc,'%.2e' % sm.exp_inh_rate_avian,'%.2e' % sm.exp_vid_avian,
-            '%.2e' % sm.exp_estimated_avian_inhalation_ld50,'%.2e' % sm.exp_adjusted_avian_inhalation_ld50,'%.2e' % sm.exp_ratio_vid_avian,
-            '%.2e' % sm.exp_sid_avian,'%.2e' % sm.exp_ratio_sid_avian,],
+        "Value": ['%.2e' % sm.out_sat_air_conc,'%.2e' % sm.out_inh_rate_avian,'%.2e' % sm.out_vid_avian,
+            '%.2e' % sm.out_estimated_avian_inhalation_ld50,'%.2e' % sm.out_adjusted_avian_inhalation_ld50,'%.2e' % sm.out_ratio_vid_avian,
+            '%.2e' % sm.out_sid_avian,'%.2e' % sm.out_ratio_sid_avian,],
+        "Expected Value": ['%.2e' % sm.exp_out_sat_air_conc,'%.2e' % sm.exp_out_inh_rate_avian,'%.2e' % sm.exp_out_vid_avian,
+            '%.2e' % sm.exp_out_estimated_avian_inhalation_ld50,'%.2e' % sm.exp_out_adjusted_avian_inhalation_ld50,'%.2e' % sm.exp_out_ratio_vid_avian,
+            '%.2e' % sm.exp_out_sid_avian,'%.2e' % sm.exp_out_ratio_sid_avian,],
         "Units": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -347,23 +347,23 @@ def table_4(sm):
     html = html + """
         </div>
         """
-    return {'html':html, 'out_sat_air_conc':sm.sat_air_conc, 'out_inh_rate_mammal':sm.inh_rate_mammal, 'out_vid_mammal':sm.vid_mammal,
-            'out_mammal_inhalation_ld50':sm.mammal_inhalation_ld50, 'out_adjusted_mammal_inhalation_ld50':sm.adjusted_mammal_inhalation_ld50, 'out_ratio_vid_mammal':sm.ratio_vid_mammal,
-            'out_sid_mammal':sm.sid_mammal, 'out_ratio_sid_mammal':sm.ratio_sid_mammal}
+    return {'html':html, 'out_sat_air_conc':sm.out_sat_air_conc, 'out_inh_rate_mammal':sm.out_inh_rate_mammal, 'out_vid_mammal':sm.out_vid_mammal,
+            'out_mammal_inhalation_ld50':sm.out_mammal_inhalation_ld50, 'out_out_adjusted_mammal_inhalation_ld50':sm.out_adjusted_mammal_inhalation_ld50, 'out_ratio_vid_mammal':sm.out_ratio_vid_mammal,
+            'out_sid_mammal':sm.out_sid_mammal, 'out_ratio_sid_mammal':sm.out_ratio_sid_mammal}
 
 def gett4data(sm):
     data = { 
         "Parameter": ['Saturated Air Concentration of Pesticide','Mammal Inhalation Rate','Maximum 1-hour Mammal Vapor Inhalation Dose',
           'Mammal Inhalation LD50','Adjusted Mammal Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Mammal','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50',],
-        "Value": ['%.2e' % sm.sat_air_conc,'%.2e' % sm.inh_rate_mammal,'%.2e' % sm.vid_mammal,
-            '%.2e' % sm.mammal_inhalation_ld50,'%.2e' % sm.adjusted_mammal_inhalation_ld50,'%.2e' % sm.ratio_vid_mammal,
-            '%.2e' % sm.sid_mammal,'%.2e' % sm.ratio_sid_mammal,],
+        "Value": ['%.2e' % sm.out_sat_air_conc,'%.2e' % sm.out_inh_rate_mammal,'%.2e' % sm.out_vid_mammal,
+            '%.2e' % sm.out_mammal_inhalation_ld50,'%.2e' % sm.out_adjusted_mammal_inhalation_ld50,'%.2e' % sm.out_ratio_vid_mammal,
+            '%.2e' % sm.out_sid_mammal,'%.2e' % sm.out_ratio_sid_mammal,],
         "Units": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
 
-def table_sum_4(sat_air_conc,inh_rate_mammal,vid_mammal,mammal_inhalation_ld50,adjusted_mammal_inhalation_ld50,ratio_vid_mammal,sid_mammal,ratio_sid_mammal):
+def table_sum_4(out_sat_air_conc,out_inh_rate_mammal,out_vid_mammal,out_mammal_inhalation_ld50,out_adjusted_mammal_inhalation_ld50,out_ratio_vid_mammal,out_sid_mammal,out_ratio_sid_mammal):
     #pre-table sum_4
     html = """
         <H4 class="out_4 collapsible" id="section6"><span></span>Table 4. Mammal Calculated Outputs</H4>
@@ -371,7 +371,7 @@ def table_sum_4(sat_air_conc,inh_rate_mammal,vid_mammal,mammal_inhalation_ld50,a
     """
 
     #table sum_output_4
-    tsuminputdata_4 = gettsumdata_4(sat_air_conc,inh_rate_mammal,vid_mammal,mammal_inhalation_ld50,adjusted_mammal_inhalation_ld50,ratio_vid_mammal,sid_mammal,ratio_sid_mammal)
+    tsuminputdata_4 = gettsumdata_4(out_sat_air_conc,out_inh_rate_mammal,out_vid_mammal,out_mammal_inhalation_ld50,out_adjusted_mammal_inhalation_ld50,out_ratio_vid_mammal,out_sid_mammal,out_ratio_sid_mammal)
     tsuminputrows_4 = gethtmlrowsfromcols(tsuminputdata_4,sumheadings)       
     html = html + tmpl.render(Context(dict(data=tsuminputrows_4, headings=sumheadings)))
     html = html + """
@@ -379,16 +379,16 @@ def table_sum_4(sat_air_conc,inh_rate_mammal,vid_mammal,mammal_inhalation_ld50,a
     """
     return html
 
-def gettsumdata_4(sat_air_conc,inh_rate_mammal,vid_mammal,mammal_inhalation_ld50,adjusted_mammal_inhalation_ld50,ratio_vid_mammal,sid_mammal,ratio_sid_mammal):
+def gettsumdata_4(out_sat_air_conc,out_inh_rate_mammal,out_vid_mammal,out_mammal_inhalation_ld50,out_adjusted_mammal_inhalation_ld50,out_ratio_vid_mammal,out_sid_mammal,out_ratio_sid_mammal):
 
     data = { 
         "Parameter": ['Saturated Air Concentration of Pesticide','Mammal Inhalation Rate','Maximum 1-hour Mammal Vapor Inhalation Dose',
           'Mammal Inhalation LD50','Adjusted Mammal Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Mammal','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50'],
-        "Mean": ['%.2e' % numpy.mean(sat_air_conc), '%.2e' % numpy.mean(inh_rate_mammal), '%.2e' % numpy.mean(vid_mammal), '%.2e' % numpy.mean(mammal_inhalation_ld50), '%.2e' % numpy.mean(adjusted_mammal_inhalation_ld50), '%.2e' % numpy.mean(ratio_vid_mammal),'%.2e' % numpy.mean(sid_mammal), '%.2e' % numpy.mean(ratio_sid_mammal),],
-        "Std":  ['%.2e' % numpy.std(sat_air_conc), '%.2e' % numpy.mean(inh_rate_mammal), '%.2e' % numpy.mean(vid_mammal), '%.2e' % numpy.mean(mammal_inhalation_ld50), '%.2e' % numpy.std(adjusted_mammal_inhalation_ld50), '%.2e' % numpy.std(ratio_vid_mammal),'%.2e' % numpy.std(sid_mammal), '%.2e' % numpy.std(ratio_sid_mammal),],
-        "Min":  ['%.2e' % numpy.min(sat_air_conc), '%.2e' % numpy.mean(inh_rate_mammal), '%.2e' % numpy.mean(vid_mammal), '%.2e' % numpy.mean(mammal_inhalation_ld50), '%.2e' % numpy.min(adjusted_mammal_inhalation_ld50), '%.2e' % numpy.min(ratio_vid_mammal),'%.2e' % numpy.min(sid_mammal), '%.2e' % numpy.min(ratio_sid_mammal),],
-        "Max":  ['%.2e' % numpy.max(sat_air_conc), '%.2e' % numpy.mean(inh_rate_mammal), '%.2e' % numpy.mean(vid_mammal), '%.2e' % numpy.mean(mammal_inhalation_ld50), '%.2e' % numpy.max(adjusted_mammal_inhalation_ld50), '%.2e' % numpy.max(ratio_vid_mammal),'%.2e' % numpy.max(sid_mammal), '%.2e' % numpy.max(ratio_sid_mammal),],
+        "Mean": ['%.2e' % numpy.mean(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_mammal), '%.2e' % numpy.mean(out_vid_mammal), '%.2e' % numpy.mean(out_mammal_inhalation_ld50), '%.2e' % numpy.mean(out_adjusted_mammal_inhalation_ld50), '%.2e' % numpy.mean(out_ratio_vid_mammal),'%.2e' % numpy.mean(out_sid_mammal), '%.2e' % numpy.mean(out_ratio_sid_mammal),],
+        "Std":  ['%.2e' % numpy.std(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_mammal), '%.2e' % numpy.mean(out_vid_mammal), '%.2e' % numpy.mean(out_mammal_inhalation_ld50), '%.2e' % numpy.std(out_adjusted_mammal_inhalation_ld50), '%.2e' % numpy.std(out_ratio_vid_mammal),'%.2e' % numpy.std(out_sid_mammal), '%.2e' % numpy.std(out_ratio_sid_mammal),],
+        "Min":  ['%.2e' % numpy.min(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_mammal), '%.2e' % numpy.mean(out_vid_mammal), '%.2e' % numpy.mean(out_mammal_inhalation_ld50), '%.2e' % numpy.min(out_adjusted_mammal_inhalation_ld50), '%.2e' % numpy.min(out_ratio_vid_mammal),'%.2e' % numpy.min(out_sid_mammal), '%.2e' % numpy.min(out_ratio_sid_mammal),],
+        "Max":  ['%.2e' % numpy.max(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_mammal), '%.2e' % numpy.mean(out_vid_mammal), '%.2e' % numpy.mean(out_mammal_inhalation_ld50), '%.2e' % numpy.max(out_adjusted_mammal_inhalation_ld50), '%.2e' % numpy.max(out_ratio_vid_mammal),'%.2e' % numpy.max(out_sid_mammal), '%.2e' % numpy.max(out_ratio_sid_mammal),],
         "Unit": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -413,11 +413,11 @@ def gett4dataqaqc(sm):
         "Parameter": ['Saturated Air Concentration of Pesticide','Mammal Inhalation Rate','Maximum 1-hour Mammal Vapor Inhalation Dose',
           'Mammal Inhalation LD50','Adjusted Mammal Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Mammal','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50',],
-        "Value": ['%.2e' % sm.sat_air_conc,'%.2e' % sm.inh_rate_mammal,'%.2e' % sm.vid_mammal,
-            '%.2e' % sm.mammal_inhalation_ld50,'%.2e' % sm.adjusted_mammal_inhalation_ld50,'%.2e' % sm.ratio_vid_mammal,
-            '%.2e' % sm.sid_mammal,'%.2e' % sm.ratio_sid_mammal,],
-        "Expected Value": ['%.2e' % sm.exp_sat_air_conc,'%.2e' % sm.exp_inh_rate_mammal,'%.2e' % sm.exp_vid_mammal,
-            '%.2e' % sm.exp_mammal_inhalation_ld50,'%.2e' % sm.exp_adjusted_mammal_inhalation_ld50,'%.2e' % sm.exp_ratio_vid_mammal,
+        "Value": ['%.2e' % sm.out_sat_air_conc,'%.2e' % sm.out_inh_rate_mammal,'%.2e' % sm.out_vid_mammal,
+            '%.2e' % sm.out_mammal_inhalation_ld50,'%.2e' % sm.out_adjusted_mammal_inhalation_ld50,'%.2e' % sm.out_ratio_vid_mammal,
+            '%.2e' % sm.out_sid_mammal,'%.2e' % sm.out_ratio_sid_mammal,],
+        "Expected Value": ['%.2e' % sm.exp_out_sat_air_conc,'%.2e' % sm.exp_out_inh_rate_mammal,'%.2e' % sm.exp_out_vid_mammal,
+            '%.2e' % sm.exp_out_mammal_inhalation_ld50,'%.2e' % sm.exp_out_adjusted_mammal_inhalation_ld50,'%.2e' % sm.exp_out_ratio_vid_mammal,
             '%.2e' % sm.exp_sid_mammal,'%.2e' % sm.exp_ratio_sid_mammal,],
         "Units": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
@@ -437,19 +437,19 @@ def table_5(sm):
         </div>
     </div>
     """
-    return {'html':html, 'out_ratio_vid_avian':sm.ratio_vid_avian, 'out_ratio_sid_avian':sm.ratio_sid_avian, 'out_ratio_vid_mammal':sm.ratio_vid_mammal,
-            'out_ratio_sid_mammal':sm.ratio_sid_mammal}
+    return {'html':html, 'out_ratio_vid_avian':sm.out_ratio_vid_avian, 'out_ratio_sid_avian':sm.out_ratio_sid_avian, 'out_ratio_vid_mammal':sm.out_ratio_vid_mammal,
+            'out_ratio_sid_mammal':sm.out_ratio_sid_mammal}
 
 def gett5data(sm):
     data = { 
         "Parameter": ['Avian: Ratio of Vapor Dose to Adjusted Inhalation LD50','Avian: Ratio of Droplet Dose to Adjusted Inhalation LD50',
           'Mammal: Ratio of Vapor Dose to Adjusted Inhalation LD50','Mammal: Ratio of Droplet Dose to Adjusted Inhalation LD50',],
-        "Value": ['%.2e' % sm.ratio_vid_avian,'%.2e' % sm.ratio_sid_avian,'%.2e' % sm.ratio_vid_mammal,'%.2e' % sm.ratio_sid_mammal,],
-        "Results": [sm.loc_vid_avian,sm.loc_sid_avian,sm.loc_vid_mammal,sm.loc_sid_mammal,],
+        "Value": ['%.2e' % sm.out_ratio_vid_avian,'%.2e' % sm.out_ratio_sid_avian,'%.2e' % sm.out_ratio_vid_mammal,'%.2e' % sm.out_ratio_sid_mammal,],
+        "Results": [sm.out_loc_vid_avian,sm.out_loc_sid_avian,sm.out_loc_vid_mammal,sm.out_loc_sid_mammal,],
     }
     return data
 
-def table_sum_5(ratio_vid_avian, ratio_sid_avian, ratio_vid_mammal, ratio_sid_mammal):
+def table_sum_5(out_ratio_vid_avian, out_ratio_sid_avian, out_ratio_vid_mammal, out_ratio_sid_mammal):
     #pre-table sum_5
     html = """
         <H4 class="out_5 collapsible" id="section5"><span></span>Table 5. Inference</H4>
@@ -457,7 +457,7 @@ def table_sum_5(ratio_vid_avian, ratio_sid_avian, ratio_vid_mammal, ratio_sid_ma
     """
 
     #table sum_output_5
-    tsuminputdata_5 = gettsumdata_5(ratio_vid_avian, ratio_sid_avian, ratio_vid_mammal, ratio_sid_mammal)
+    tsuminputdata_5 = gettsumdata_5(out_ratio_vid_avian, out_ratio_sid_avian, out_ratio_vid_mammal, out_ratio_sid_mammal)
     tsuminputrows_5 = gethtmlrowsfromcols(tsuminputdata_5,sumheadings_5)       
     html = html + tmpl.render(Context(dict(data=tsuminputrows_5, headings=sumheadings_5)))
     html = html + """
@@ -466,15 +466,15 @@ def table_sum_5(ratio_vid_avian, ratio_sid_avian, ratio_vid_mammal, ratio_sid_ma
     """
     return html
 
-def gettsumdata_5(ratio_vid_avian, ratio_sid_avian, ratio_vid_mammal, ratio_sid_mammal):
+def gettsumdata_5(out_ratio_vid_avian, out_ratio_sid_avian, out_ratio_vid_mammal, out_ratio_sid_mammal):
 
     data = { 
         "Parameter": ['Avian: Ratio of Vapor Dose to Adjusted Inhalation LD50','Avian: Ratio of Droplet Dose to Adjusted Inhalation LD50',
           'Mammal: Ratio of Vapor Dose to Adjusted Inhalation LD50','Mammal: Ratio of Droplet Dose to Adjusted Inhalation LD50'],
-        "Mean": ['%.2e' % numpy.mean(ratio_vid_avian), '%.2e' % numpy.mean(ratio_sid_avian), '%.2e' % numpy.mean(ratio_vid_mammal), '%.2e' % numpy.mean(ratio_sid_mammal),],
-        "Std":  ['%.2e' % numpy.std(ratio_vid_avian), '%.2e' % numpy.mean(ratio_sid_avian), '%.2e' % numpy.mean(ratio_vid_mammal), '%.2e' % numpy.mean(ratio_sid_mammal),],
-        "Min":  ['%.2e' % numpy.min(ratio_vid_avian), '%.2e' % numpy.mean(ratio_sid_avian), '%.2e' % numpy.mean(ratio_vid_mammal), '%.2e' % numpy.mean(ratio_sid_mammal),],
-        "Max":  ['%.2e' % numpy.max(ratio_vid_avian), '%.2e' % numpy.mean(ratio_sid_avian), '%.2e' % numpy.mean(ratio_vid_mammal), '%.2e' % numpy.mean(ratio_sid_mammal),],
+        "Mean": ['%.2e' % numpy.mean(out_ratio_vid_avian), '%.2e' % numpy.mean(out_ratio_sid_avian), '%.2e' % numpy.mean(out_ratio_vid_mammal), '%.2e' % numpy.mean(out_ratio_sid_mammal),],
+        "Std":  ['%.2e' % numpy.std(out_ratio_vid_avian), '%.2e' % numpy.mean(out_ratio_sid_avian), '%.2e' % numpy.mean(out_ratio_vid_mammal), '%.2e' % numpy.mean(out_ratio_sid_mammal),],
+        "Min":  ['%.2e' % numpy.min(out_ratio_vid_avian), '%.2e' % numpy.mean(out_ratio_sid_avian), '%.2e' % numpy.mean(out_ratio_vid_mammal), '%.2e' % numpy.mean(out_ratio_sid_mammal),],
+        "Max":  ['%.2e' % numpy.max(out_ratio_vid_avian), '%.2e' % numpy.mean(out_ratio_sid_avian), '%.2e' % numpy.mean(out_ratio_vid_mammal), '%.2e' % numpy.mean(out_ratio_sid_mammal),],
     }
     return data
 
@@ -498,10 +498,10 @@ def gett5dataqaqc(sm):
     data = { 
         "Parameter": ['Avian: Ratio of Vapor Dose to Adjusted Inhalation LD50','Avian: Ratio of Droplet Dose to Adjusted Inhalation LD50',
           'Mammal: Ratio of Vapor Dose to Adjusted Inhalation LD50','Mammal: Ratio of Droplet Dose to Adjusted Inhalation LD50',],
-        "Value": ['%.2e' % sm.ratio_vid_avian,'%.2e' % sm.ratio_sid_avian,'%.2e' % sm.ratio_vid_mammal,'%.2e' % sm.ratio_sid_mammal,],
-        "Expected Value": ['%.2e' % sm.exp_ratio_vid_avian,'%.2e' % sm.exp_ratio_sid_avian,'%.2e' % sm.exp_ratio_vid_mammal,'%.2e' % sm.exp_ratio_sid_mammal,],
-        "Results": [sm.loc_vid_avian,sm.loc_sid_avian,sm.loc_vid_mammal,sm.loc_sid_mammal,],
-        "Expected Results": [sm.exp_loc_vid_avian,sm.exp_loc_sid_avian,sm.exp_loc_vid_mammal,sm.exp_loc_sid_mammal,],
+        "Value": ['%.2e' % sm.out_ratio_vid_avian,'%.2e' % sm.out_ratio_sid_avian,'%.2e' % sm.out_ratio_vid_mammal,'%.2e' % sm.out_ratio_sid_mammal,],
+        "Expected Value": ['%.2e' % sm.exp_out_ratio_vid_avian,'%.2e' % sm.exp_out_ratio_sid_avian,'%.2e' % sm.exp_out_ratio_vid_mammal,'%.2e' % sm.exp_ratio_sid_mammal,],
+        "Results": [sm.out_loc_vid_avian,sm.out_loc_sid_avian,sm.out_loc_vid_mammal,sm.out_loc_sid_mammal,],
+        "Expected Results": [sm.exp_loc_out_vid_avian,sm.exp_loc_out_sid_avian,sm.exp_loc_out_vid_mammal,sm.exp_loc_sid_mammal,],
     }
     return data
 

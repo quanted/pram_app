@@ -85,18 +85,6 @@ def call_model_server(model, args):
     # POST JSON to model server through rest proxy
     response = rest_funcs.rest_proxy_post(model, data, rest_funcs.gen_jid())
 
-
-
-
-
-
-
-
-
-
-
-
-
     return response
 
 
@@ -197,17 +185,6 @@ class ModelQAQC(object):
         self.pd_obj_exp = pd_obj_exp
         self.jid = jid
         self.run_type = run_type
-
-
-        # Set object attributes to model inputs and outputs
-        """
-            Set each column of the DataFrames as object attribute with
-            a value equal to the first row's value
-        """
-        # for col in self.pd_obj_in:
-        #     setattr(self, self.pd_obj_in[col].name, self.pd_obj_in[col].iloc[0])
-        # for col in self.pd_obj_out:
-        #     setattr(self, self.pd_obj_out[col].name, self.pd_obj_out[col].iloc[0])
 
         for col in self.pd_obj_in:
             setattr(self, self.pd_obj_in[col].name, self.pd_obj_in[col].iloc[0])

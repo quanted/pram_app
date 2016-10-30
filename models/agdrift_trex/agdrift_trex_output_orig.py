@@ -12,7 +12,7 @@ import sys
 sys.path.append("../utils")
 import utils.json_utils
 sys.path.append("../agdrift")
-sys.path.append("../trex2")
+sys.path.append("../trex")
 from agdrift import agdrift_model,agdrift_tables
 from agdrift_trex import agdrift_trex_tables
 from trex2 import trex2_model,trex2_tables
@@ -22,7 +22,7 @@ from django.utils import simplejson
 import logging
 import rest_funcs
 
-logger = logging.getLogger('trex2 Model')
+logger = logging.getLogger('trex Model')
 
 def merge(ob1, ob2):
     """

@@ -1,31 +1,16 @@
 """
-.. module:: agdrift_trex_output
+.. module:: trex_output
    :synopsis: A useful module indeed.
 """
 
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 
-
 @require_POST
-def agdrift_trexOutputPage(request):
-    from models.agdrift import agdrift_model,agdrift_tables
-    from models.trex import trex2_model,trex2_tables
-    import agdrift_trex_tables
+def trexOutputPage(request):
+    import trex_model
 
-
-    # AgDrift Inputs
-    drop_size = request.POST.get('drop_size')
-    ecosystem_type = request.POST.get('ecosystem_type')
-    application_method = request.POST.get('application_method')
-    boom_height = request.POST.get('boom_height')
-    orchard_type = request.POST.get('orchard_type')
-    aquatic_type = request.POST.get('aquatic_type')
-    distance = request.POST.get('distance')
-    calculation_input = request.POST.get('calculation_input')
-
-    # T-REX Inputs
-    chem_name = request.POST.get('chemical_name')
+    chem_name = request.POST.get('chem_name')
     use = request.POST.get('Use')
     formu_name = request.POST.get('Formulated_product_name')
     a_i = request.POST.get('percent_ai')
@@ -51,13 +36,14 @@ def agdrift_trexOutputPage(request):
        n_a = float(request.POST.get('noa'))
     
     rate_out = []
-    day_out = [0]
+    day_out = []
     for i in range(int(n_a)):
        j=i+1
        rate_temp = request.POST.get('rate'+str(j))
        rate_out.append(float(rate_temp))
-       # day_temp = float(request.POST.get('day'+str(j)))
-       # day_out.append(day_temp)  
+       day_temp = float(request.POST.get('day'+str(j)))
+       day_out.append(day_temp)  
+    
     h_l = request.POST.get('Foliar_dissipation_half_life')
     ld50_bird = request.POST.get('avian_ld50')
     lc50_bird = request.POST.get('avian_lc50')
@@ -102,33 +88,11 @@ def agdrift_trexOutputPage(request):
     tw_mamm = request.POST.get('body_weight_of_the_tested_mammal')
     tw_mamm = float(tw_mamm) 
 
-    # Run AgDrift model
-    agdrift_obj = agdrift_model.agdrift(True, True, 'single', drop_size, ecosystem_type, application_method, boom_height, orchard_type, rate_out[0], distance, aquatic_type, calculation_input, None)
-    x_agdrif=agdrift_obj.x
-    # Run T-REX2 model (using an output from AgDrift as an input)
-    trex_obj = trex2_model.trex2('single', chem_name, use, formu_name, a_i, Application_type, seed_treatment_formulation_name, seed_crop, seed_crop_v, r_s, b_w, p_i, den, h_l, n_a, [agdrift_obj.init_avg_dep_foa*i for i in rate_out], day_out,
-                                 ld50_bird, lc50_bird, NOAEC_bird, NOAEL_bird, aw_bird_sm, aw_bird_md, aw_bird_lg, 
-                                 Species_of_the_tested_bird_avian_ld50, Species_of_the_tested_bird_avian_lc50, Species_of_the_tested_bird_avian_NOAEC, Species_of_the_tested_bird_avian_NOAEL,
-                                 tw_bird_ld50, tw_bird_lc50, tw_bird_NOAEC, tw_bird_NOAEL, x, ld50_mamm, lc50_mamm, NOAEC_mamm, NOAEL_mamm, aw_mamm_sm, aw_mamm_md, aw_mamm_lg, tw_mamm,
-                                 m_s_r_p)
 
-    # Render output tables for each of the linked models
-    html = agdrift_trex_tables.timestamp(agdrift_obj)
-    html = html + agdrift_tables.table_all(agdrift_obj)
-    html = html + trex2_tables.table_all(trex_obj)[0]
+    trex_obj = trex_model.trex("single", chem_name, use, formu_name, a_i, Application_type, seed_treatment_formulation_name, seed_crop, seed_crop_v, r_s, b_w, p_i, den, h_l, n_a, rate_out, day_out,
+                  ld50_bird, lc50_bird, NOAEC_bird, NOAEL_bird, aw_bird_sm, aw_bird_md, aw_bird_lg, 
+                  Species_of_the_tested_bird_avian_ld50, Species_of_the_tested_bird_avian_lc50, Species_of_the_tested_bird_avian_NOAEC, Species_of_the_tested_bird_avian_NOAEL,
+                  tw_bird_ld50, tw_bird_lc50, tw_bird_NOAEC, tw_bird_NOAEL, x, ld50_mamm, lc50_mamm, NOAEC_mamm, NOAEL_mamm, aw_mamm_sm, aw_mamm_md, aw_mamm_lg, tw_mamm,
+                  m_s_r_p)
 
-    # merge the two class instances into one instance
-    def merge(ob1, ob2):
-        """
-        an object's __dict__ contains all its 
-        attributes, methods, docstrings, etc.
-        """
-        ob1.__dict__.update(ob2.__dict__)
-        return ob1
-    
-    agdrift_trex_obj = merge(agdrift_obj, trex_obj)
-    agdrift_trex_obj.x_agdrif=x_agdrif
-    agdrift_trex_obj.x_trex=trex_obj.x
-
-    # Return the rendered output tables & merged model object to output.py
-    return html, agdrift_trex_obj
+    return trex_obj

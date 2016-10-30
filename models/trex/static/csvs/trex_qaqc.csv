@@ -1,0 +1,319 @@
+trex_property,description,units,type,valid_range,run1,run2
+chemical_name,Chemical name,,,,Acephate,Acephate
+use,Use,,,,Corn,Corn
+Formulated_product_name,Formulated product name,,,,NA,NA
+percent_ai,% a.i. (%),,,,100,100
+Application_type,Application type,,,,Broadcast-Liquid,Seed Treatment
+seed_treatment_formulation_name,Seed treatment formulation name,,,,NA,NA
+maximum_seedling_rate_per_use,Maximum seeding rate per use (lbs/A),,,,0,33.19
+seed_crop,Crop Use,,,,NA,"corn, all or unspecified"
+r_s,Row spacing (inch),,,,0,0
+bandwidth,Bandwidth (inch),,,,0,0
+percent_incorporated,% Incorporated (%),,,,0,0
+density_of_product,Density of product (lbs/gal),,,,8.33,8.33
+Foliar_dissipation_half_life,Foliar dissipation half-life (days),,,,8.2,8.2
+n_a,Number of Applications,,,,3,1
+rate_out,Rate,,,,"4,4,4",4
+day_out,Number of Day,,,,"0,3,6",0
+avian_ld50,Avian LD50 (mg/kg-bw),,,,109,109
+Species_of_the_tested_bird_avian_ld50,Test species (Avian LD50),,,,Bobwhite quail,Bobwhite quail
+bw_avian_ld50,Weight (g) avian ld50,,,,178,178
+avian_lc50,Avian LC50 (mg/kg-diet),,,,718,718
+Species_of_the_tested_bird_avian_lc50,Test species (Avian LC50),,,,Bobwhite quail,Bobwhite quail
+bw_avian_lc50,Weight (g) avian lc50,,,,178,178
+avian_NOAEC,Avian NOAEC (mg/kg-diet),,,,5,5
+Species_of_the_tested_bird_avian_NOAEC,Test species (Avian NOAEC),,,,Bobwhite quail,Bobwhite quail
+bw_avian_NOAEC,Weight (g) avian noaec,,,,178,178
+avian_NOAEL,Avian NOAEL (mg/kg-bw),,,,,
+Species_of_the_tested_bird_avian_NOAEL,Test species (Avian NOAEL),,,,Bobwhite quail,Bobwhite quail
+bw_avian_NOAEL,Weight (g) avian noael,,,,178,178
+body_weight_of_the_assessed_bird_small,Body weight of assessed bird small (g),,,,20,20
+body_weight_of_the_assessed_bird_medium,Body weight of assessed bird medium (g),,,,100,100
+body_weight_of_the_assessed_bird_large,Body weight of assessed bird large (g),,,,1000,1000
+mineau_scaling_factor,Mineau scaling factor,,,,1.15,1.15
+mammalian_ld50,Mammalian LD50 (mg/kg-bw),,,,321,321
+mammalian_lc50,Mammalian LC50 (mg/kg-diet),,,,,
+mammalian_NOAEC,Mammalian NOAEC (mg/kg-diet),,,,50,50
+mammalian_NOAEL,Mammalian NOAEL (mg/kg-bw),,,,2.5,2.5
+body_weight_of_the_assessed_mammal_small,Body weight of assessed mammal small (g),,,,15,15
+body_weight_of_the_assessed_mammal_medium,Body weight of assessed mammal medium (g),,,,35,35
+body_weight_of_the_assessed_mammal_large,Body weight of assessed mammal large (g),,,,1000,1000
+tested_mamm_body_weight,Body weight of tested mammal (g),,,,350,350
+EEC_diet_SG_BL_out,EEC_diet_SG_BL_out,,,,,
+EEC_diet_TG_BL_out,EEC_diet_TG_BL_out,,,,,
+EEC_diet_BP_BL_out,EEC_diet_BP_BL_out,,,,,
+EEC_diet_FR_BL_out,EEC_diet_FR_BL_out,,,,,
+EEC_diet_AR_BL_out,EEC_diet_AR_BL_out,,,,,
+EEC_dose_bird_SG_BL_sm_out,EEC_dose_bird_SG_BL_sm_out,,,,,
+EEC_dose_bird_SG_BL_md_out,EEC_dose_bird_SG_BL_md_out,,,,,
+EEC_dose_bird_SG_BL_lg_out,EEC_dose_bird_SG_BL_lg_out,,,,,
+EEC_dose_bird_TG_BL_sm_out,EEC_dose_bird_TG_BL_sm_out,,,,,
+EEC_dose_bird_TG_BL_md_out,EEC_dose_bird_TG_BL_md_out,,,,,
+EEC_dose_bird_TG_BL_lg_out,EEC_dose_bird_TG_BL_lg_out,,,,,
+EEC_dose_bird_BP_BL_sm_out,EEC_dose_bird_BP_BL_sm_out,,,,,
+EEC_dose_bird_BP_BL_md_out,EEC_dose_bird_BP_BL_md_out,,,,,
+EEC_dose_bird_BP_BL_lg_out,EEC_dose_bird_BP_BL_lg_out,,,,,
+EEC_dose_bird_FP_BL_sm_out,EEC_dose_bird_FP_BL_sm_out,,,,,
+EEC_dose_bird_FP_BL_md_out,EEC_dose_bird_FP_BL_md_out,,,,,
+EEC_dose_bird_FP_BL_lg_out,EEC_dose_bird_FP_BL_lg_out,,,,,
+EEC_dose_bird_AR_BL_sm_out,EEC_dose_bird_AR_BL_sm_out,,,,,
+EEC_dose_bird_AR_BL_md_out,EEC_dose_bird_AR_BL_md_out,,,,,
+EEC_dose_bird_AR_BL_lg_out,EEC_dose_bird_AR_BL_lg_out,,,,,
+EEC_dose_bird_SE_BL_sm_out,EEC_dose_bird_SE_BL_sm_out,,,,,
+EEC_dose_bird_SE_BL_md_out,EEC_dose_bird_SE_BL_md_out,,,,,
+EEC_dose_bird_SE_BL_lg_out,EEC_dose_bird_SE_BL_lg_out,,,,,
+ARQ_bird_SG_BL_sm_out,ARQ_bird_SG_BL_sm_out,,,,,
+ARQ_bird_SG_BL_md_out,ARQ_bird_SG_BL_md_out,,,,,
+ARQ_bird_SG_BL_lg_out,ARQ_bird_SG_BL_lg_out,,,,,
+ARQ_bird_TG_BL_sm_out,ARQ_bird_TG_BL_sm_out,,,,,
+ARQ_bird_TG_BL_md_out,ARQ_bird_TG_BL_md_out,,,,,
+ARQ_bird_TG_BL_lg_out,ARQ_bird_TG_BL_lg_out,,,,,
+ARQ_bird_BP_BL_sm_out,ARQ_bird_BP_BL_sm_out,,,,,
+ARQ_bird_BP_BL_md_out,ARQ_bird_BP_BL_md_out,,,,,
+ARQ_bird_BP_BL_lg_out,ARQ_bird_BP_BL_lg_out,,,,,
+ARQ_bird_FP_BL_sm_out,ARQ_bird_FP_BL_sm_out,,,,,
+ARQ_bird_FP_BL_md_out,ARQ_bird_FP_BL_md_out,,,,,
+ARQ_bird_FP_BL_lg_out,ARQ_bird_FP_BL_lg_out,,,,,
+ARQ_bird_AR_BL_sm_out,ARQ_bird_AR_BL_sm_out,,,,,
+ARQ_bird_AR_BL_md_out,ARQ_bird_AR_BL_md_out,,,,,
+ARQ_bird_AR_BL_lg_out,ARQ_bird_AR_BL_lg_out,,,,,
+ARQ_bird_SE_BL_sm_out,ARQ_bird_SE_BL_sm_out,,,,,
+ARQ_bird_SE_BL_md_out,ARQ_bird_SE_BL_md_out,,,,,
+ARQ_bird_SE_BL_lg_out,ARQ_bird_SE_BL_lg_out,,,,,
+ARQ_diet_bird_SG_A_BL_out,ARQ_diet_bird_SG_A_BL_out,,,,,
+ARQ_diet_bird_SG_C_BL_out,ARQ_diet_bird_SG_C_BL_out,,,,,
+ARQ_diet_bird_TG_A_BL_out,ARQ_diet_bird_TG_A_BL_out,,,,,
+ARQ_diet_bird_TG_C_BL_out,ARQ_diet_bird_TG_C_BL_out,,,,,
+ARQ_diet_bird_BP_A_BL_out,ARQ_diet_bird_BP_A_BL_out,,,,,
+ARQ_diet_bird_BP_C_BL_out,ARQ_diet_bird_BP_C_BL_out,,,,,
+ARQ_diet_bird_FP_A_BL_out,ARQ_diet_bird_FP_A_BL_out,,,,,
+ARQ_diet_bird_FP_C_BL_out,ARQ_diet_bird_FP_C_BL_out,,,,,
+ARQ_diet_bird_AR_A_BL_out,ARQ_diet_bird_AR_A_BL_out,,,,,
+ARQ_diet_bird_AR_C_BL_out,ARQ_diet_bird_AR_C_BL_out,,,,,
+EEC_dose_mamm_SG_sm_BL_out,EEC_dose_mamm_SG_sm_BL_out,,,,,
+EEC_dose_mamm_SG_md_BL_out,EEC_dose_mamm_SG_md_BL_out,,,,,
+EEC_dose_mamm_SG_lg_BL_out,EEC_dose_mamm_SG_lg_BL_out,,,,,
+EEC_dose_mamm_TG_sm_BL_out,EEC_dose_mamm_TG_sm_BL_out,,,,,
+EEC_dose_mamm_TG_md_BL_out,EEC_dose_mamm_TG_md_BL_out,,,,,
+EEC_dose_mamm_TG_lg_BL_out,EEC_dose_mamm_TG_lg_BL_out,,,,,
+EEC_dose_mamm_BP_sm_BL_out,EEC_dose_mamm_BP_sm_BL_out,,,,,
+EEC_dose_mamm_BP_md_BL_out,EEC_dose_mamm_BP_md_BL_out,,,,,
+EEC_dose_mamm_BP_lg_BL_out,EEC_dose_mamm_BP_lg_BL_out,,,,,
+EEC_dose_mamm_FP_sm_BL_out,EEC_dose_mamm_FP_sm_BL_out,,,,,
+EEC_dose_mamm_FP_md_BL_out,EEC_dose_mamm_FP_md_BL_out,,,,,
+EEC_dose_mamm_FP_lg_BL_out,EEC_dose_mamm_FP_lg_BL_out,,,,,
+EEC_dose_mamm_AR_sm_BL_out,EEC_dose_mamm_AR_sm_BL_out,,,,,
+EEC_dose_mamm_AR_md_BL_out,EEC_dose_mamm_AR_md_BL_out,,,,,
+EEC_dose_mamm_AR_lg_BL_out,EEC_dose_mamm_AR_lg_BL_out,,,,,
+EEC_dose_mamm_SE_sm_BL_out,EEC_dose_mamm_SE_sm_BL_out,,,,,
+EEC_dose_mamm_SE_md_BL_out,EEC_dose_mamm_SE_md_BL_out,,,,,
+EEC_dose_mamm_SE_lg_BL_out,EEC_dose_mamm_SE_lg_BL_out,,,,,
+ARQ_dose_mamm_SG_sm_BL_out,ARQ_dose_mamm_SG_sm_BL_out,,,,,
+CRQ_dose_mamm_SG_sm_BL_out,CRQ_dose_mamm_SG_sm_BL_out,,,,,
+ARQ_dose_mamm_SG_md_BL_out,ARQ_dose_mamm_SG_md_BL_out,,,,,
+CRQ_dose_mamm_SG_md_BL_out,CRQ_dose_mamm_SG_md_BL_out,,,,,
+ARQ_dose_mamm_SG_lg_BL_out,ARQ_dose_mamm_SG_lg_BL_out,,,,,
+CRQ_dose_mamm_SG_lg_BL_out,CRQ_dose_mamm_SG_lg_BL_out,,,,,
+ARQ_dose_mamm_TG_sm_BL_out,ARQ_dose_mamm_TG_sm_BL_out,,,,,
+CRQ_dose_mamm_TG_sm_BL_out,CRQ_dose_mamm_TG_sm_BL_out,,,,,
+ARQ_dose_mamm_TG_md_BL_out,ARQ_dose_mamm_TG_md_BL_out,,,,,
+CRQ_dose_mamm_TG_md_BL_out,CRQ_dose_mamm_TG_md_BL_out,,,,,
+ARQ_dose_mamm_TG_lg_BL_out,ARQ_dose_mamm_TG_lg_BL_out,,,,,
+CRQ_dose_mamm_TG_lg_BL_out,CRQ_dose_mamm_TG_lg_BL_out,,,,,
+ARQ_dose_mamm_BP_sm_BL_out,ARQ_dose_mamm_BP_sm_BL_out,,,,,
+CRQ_dose_mamm_BP_sm_BL_out,CRQ_dose_mamm_BP_sm_BL_out,,,,,
+ARQ_dose_mamm_BP_md_BL_out,ARQ_dose_mamm_BP_md_BL_out,,,,,
+CRQ_dose_mamm_BP_md_BL_out,CRQ_dose_mamm_BP_md_BL_out,,,,,
+ARQ_dose_mamm_BP_lg_BL_out,ARQ_dose_mamm_BP_lg_BL_out,,,,,
+CRQ_dose_mamm_BP_lg_BL_out,CRQ_dose_mamm_BP_lg_BL_out,,,,,
+ARQ_dose_mamm_FP_sm_BL_out,ARQ_dose_mamm_FP_sm_BL_out,,,,,
+CRQ_dose_mamm_FP_sm_BL_out,CRQ_dose_mamm_FP_sm_BL_out,,,,,
+ARQ_dose_mamm_FP_md_BL_out,ARQ_dose_mamm_FP_md_BL_out,,,,,
+CRQ_dose_mamm_FP_md_BL_out,CRQ_dose_mamm_FP_md_BL_out,,,,,
+ARQ_dose_mamm_FP_lg_BL_out,ARQ_dose_mamm_FP_lg_BL_out,,,,,
+CRQ_dose_mamm_FP_lg_BL_out,CRQ_dose_mamm_FP_lg_BL_out,,,,,
+ARQ_dose_mamm_AR_sm_BL_out,ARQ_dose_mamm_AR_sm_BL_out,,,,,
+CRQ_dose_mamm_AR_sm_BL_out,CRQ_dose_mamm_AR_sm_BL_out,,,,,
+ARQ_dose_mamm_AR_md_BL_out,ARQ_dose_mamm_AR_md_BL_out,,,,,
+CRQ_dose_mamm_AR_md_BL_out,CRQ_dose_mamm_AR_md_BL_out,,,,,
+ARQ_dose_mamm_AR_lg_BL_out,ARQ_dose_mamm_AR_lg_BL_out,,,,,
+CRQ_dose_mamm_AR_lg_BL_out,CRQ_dose_mamm_AR_lg_BL_out,,,,,
+ARQ_dose_mamm_SE_sm_BL_out,ARQ_dose_mamm_SE_sm_BL_out,,,,,
+CRQ_dose_mamm_SE_sm_BL_out,CRQ_dose_mamm_SE_sm_BL_out,,,,,
+ARQ_dose_mamm_SE_md_BL_out,ARQ_dose_mamm_SE_md_BL_out,,,,,
+CRQ_dose_mamm_SE_md_BL_out,CRQ_dose_mamm_SE_md_BL_out,,,,,
+ARQ_dose_mamm_SE_lg_BL_out,ARQ_dose_mamm_SE_lg_BL_out,,,,,
+CRQ_dose_mamm_SE_lg_BL_out,CRQ_dose_mamm_SE_lg_BL_out,,,,,
+ARQ_diet_mamm_SG_BL_out_exp,ARQ_diet_mamm_SG_BL_out_exp,,,,,
+CRQ_diet_mamm_SG_BL_out_exp,CRQ_diet_mamm_SG_BL_out_exp,,,,,
+ARQ_diet_mamm_TG_BL_out_exp,ARQ_diet_mamm_TG_BL_out_exp,,,,,
+CRQ_diet_mamm_TG_BL_out_exp,CRQ_diet_mamm_TG_BL_out_exp,,,,,
+ARQ_diet_mamm_BP_BL_out,ARQ_diet_mamm_BP_BL_out,,,,,
+CRQ_diet_mamm_BP_BL_out,CRQ_diet_mamm_BP_BL_out,,,,,
+ARQ_diet_mamm_FP_BL_out,ARQ_diet_mamm_FP_BL_out,,,,,
+CRQ_diet_mamm_FP_BL_out,CRQ_diet_mamm_FP_BL_out,,,,,
+ARQ_diet_mamm_AR_BL_out,ARQ_diet_mamm_AR_BL_out,,,,,
+CRQ_diet_mamm_AR_BL_out,CRQ_diet_mamm_AR_BL_out,,,,,
+LD50_bl_bird_sm_out,LD50_bl_bird_sm_out,,,,,
+LD50_bl_mamm_sm_out,LD50_bl_mamm_sm_out,,,,,
+LD50_bl_bird_md_out,LD50_bl_bird_md_out,,,,,
+LD50_bl_mamm_md_out,LD50_bl_mamm_md_out,,,,,
+LD50_bl_bird_lg_out,LD50_bl_bird_lg_out,,,,,
+LD50_bl_mamm_lg_out,LD50_bl_mamm_lg_out,,,,,
+sa_bird_1_s_out,sa_bird_1_s_out,,,,,
+sa_bird_2_s_out,sa_bird_2_s_out,,,,,
+sc_bird_s_out,sc_bird_s_out,,,,,
+sa_mamm_1_s_out,sa_mamm_1_s_out,,,,,
+sa_mamm_2_s_out,sa_mamm_2_s_out,,,,,
+sc_mamm_s_out,sc_mamm_s_out,,,,,
+sa_bird_1_m_out,sa_bird_1_m_out,,,,,
+sa_bird_2_m_out,sa_bird_2_m_out,,,,,
+sc_bird_m_out,sc_bird_m_out,,,,,
+sa_mamm_1_m_out,sa_mamm_1_m_out,,,,,
+sa_mamm_2_m_out,sa_mamm_2_m_out,,,,,
+sc_mamm_m_out,sc_mamm_m_out,,,,,
+sa_bird_1_l_out,sa_bird_1_l_out,,,,,
+sa_bird_2_l_out,sa_bird_2_l_out,,,,,
+sc_bird_l_out,sc_bird_l_out,,,,,
+sa_mamm_1_l_out,sa_mamm_1_l_out,,,,,
+sa_mamm_2_l_out,sa_mamm_2_l_out,,,,,
+sc_mamm_l_out,sc_mamm_l_out,,,,,
+EEC_diet_SG_BL_out_exp,EEC_diet_SG_BL_out_exp,,,,2283.07,NA
+EEC_diet_TG_BL_out_exp,EEC_diet_TG_BL_out_exp,,,,1046.41,NA
+EEC_diet_BP_BL_out_exp,EEC_diet_BP_BL_out_exp,,,,1284.23,NA
+EEC_diet_FR_BL_out_exp,EEC_diet_FR_BL_out_exp,,,,142.69,NA
+EEC_diet_AR_BL_out_exp,EEC_diet_AR_BL_out_exp,,,,894.2,NA
+EEC_dose_bird_SG_BL_sm_out_exp,EEC_dose_bird_SG_BL_sm_out_exp,,,,2600.19,NA
+EEC_dose_bird_SG_BL_md_out_exp,EEC_dose_bird_SG_BL_md_out_exp,,,,1482.74,NA
+EEC_dose_bird_SG_BL_lg_out_exp,EEC_dose_bird_SG_BL_lg_out_exp,,,,663.84,NA
+EEC_dose_bird_TG_BL_sm_out_exp,EEC_dose_bird_TG_BL_sm_out_exp,,,,1191.75,NA
+EEC_dose_bird_TG_BL_md_out_exp,EEC_dose_bird_TG_BL_md_out_exp,,,,679.59,NA
+EEC_dose_bird_TG_BL_lg_out_exp,EEC_dose_bird_TG_BL_lg_out_exp,,,,304.26,NA
+EEC_dose_bird_BP_BL_sm_out_exp,EEC_dose_bird_BP_BL_sm_out_exp,,,,1462.61,NA
+EEC_dose_bird_BP_BL_md_out_exp,EEC_dose_bird_BP_BL_md_out_exp,,,,834.04,NA
+EEC_dose_bird_BP_BL_lg_out_exp,EEC_dose_bird_BP_BL_lg_out_exp,,,,373.41,NA
+EEC_dose_bird_FP_BL_sm_out_exp,EEC_dose_bird_FP_BL_sm_out_exp,,,,162.51,NA
+EEC_dose_bird_FP_BL_md_out_exp,EEC_dose_bird_FP_BL_md_out_exp,,,,92.67,NA
+EEC_dose_bird_FP_BL_lg_out_exp,EEC_dose_bird_FP_BL_lg_out_exp,,,,41.49,NA
+EEC_dose_bird_AR_BL_sm_out_exp,EEC_dose_bird_AR_BL_sm_out_exp,,,,1018.41,NA
+EEC_dose_bird_AR_BL_md_out_exp,EEC_dose_bird_AR_BL_md_out_exp,,,,580.74,NA
+EEC_dose_bird_AR_BL_lg_out_exp,EEC_dose_bird_AR_BL_lg_out_exp,,,,260,NA
+EEC_dose_bird_SE_BL_sm_out_exp,EEC_dose_bird_SE_BL_sm_out_exp,,,,36.11,NA
+EEC_dose_bird_SE_BL_md_out_exp,EEC_dose_bird_SE_BL_md_out_exp,,,,20.59,NA
+EEC_dose_bird_SE_BL_lg_out_exp,EEC_dose_bird_SE_BL_lg_out_exp,,,,9.22,NA
+ARQ_bird_SG_BL_sm_out_exp,ARQ_bird_SG_BL_sm_out_exp,,,,33.1121,NA
+ARQ_bird_SG_BL_md_out_exp,ARQ_bird_SG_BL_md_out_exp,,,,14.8321,NA
+ARQ_bird_SG_BL_lg_out_exp,ARQ_bird_SG_BL_lg_out_exp,,,,4.7011,NA
+ARQ_bird_TG_BL_sm_out_exp,ARQ_bird_TG_BL_sm_out_exp,,,,15.1764,NA
+ARQ_bird_TG_BL_md_out_exp,ARQ_bird_TG_BL_md_out_exp,,,,6.798,NA
+ARQ_bird_TG_BL_lg_out_exp,ARQ_bird_TG_BL_lg_out_exp,,,,2.1547,NA
+ARQ_bird_BP_BL_sm_out_exp,ARQ_bird_BP_BL_sm_out_exp,,,,18.6256,NA
+ARQ_bird_BP_BL_md_out_exp,ARQ_bird_BP_BL_md_out_exp,,,,8.343,NA
+ARQ_bird_BP_BL_lg_out_exp,ARQ_bird_BP_BL_lg_out_exp,,,,2.6444,NA
+ARQ_bird_FP_BL_sm_out_exp,ARQ_bird_FP_BL_sm_out_exp,,,,2.0695,NA
+ARQ_bird_FP_BL_md_out_exp,ARQ_bird_FP_BL_md_out_exp,,,,0.927,NA
+ARQ_bird_FP_BL_lg_out_exp,ARQ_bird_FP_BL_lg_out_exp,,,,0.2938,NA
+ARQ_bird_AR_BL_sm_out_exp,ARQ_bird_AR_BL_sm_out_exp,,,,12.9689,NA
+ARQ_bird_AR_BL_md_out_exp,ARQ_bird_AR_BL_md_out_exp,,,,5.8092,NA
+ARQ_bird_AR_BL_lg_out_exp,ARQ_bird_AR_BL_lg_out_exp,,,,1.8413,NA
+ARQ_bird_SE_BL_sm_out_exp,ARQ_bird_SE_BL_sm_out_exp,,,,0.4599,NA
+ARQ_bird_SE_BL_md_out_exp,ARQ_bird_SE_BL_md_out_exp,,,,0.206,NA
+ARQ_bird_SE_BL_lg_out_exp,ARQ_bird_SE_BL_lg_out_exp,,,,0.0653,NA
+ARQ_diet_bird_SG_A_BL_out_exp,ARQ_diet_bird_SG_A_BL_out_exp,,,,3.1798,NA
+ARQ_diet_bird_SG_C_BL_out_exp,ARQ_diet_bird_SG_C_BL_out_exp,,,,456.6145,NA
+ARQ_diet_bird_TG_A_BL_out_exp,ARQ_diet_bird_TG_A_BL_out_exp,,,,1.4574,NA
+ARQ_diet_bird_TG_C_BL_out_exp,ARQ_diet_bird_TG_C_BL_out_exp,,,,209.2816,NA
+ARQ_diet_bird_BP_A_BL_out_exp,ARQ_diet_bird_BP_A_BL_out_exp,,,,1.7886,NA
+ARQ_diet_bird_BP_C_BL_out_exp,ARQ_diet_bird_BP_C_BL_out_exp,,,,256.8456,NA
+ARQ_diet_bird_FP_A_BL_out_exp,ARQ_diet_bird_FP_A_BL_out_exp,,,,0.1987,NA
+ARQ_diet_bird_FP_C_BL_out_exp,ARQ_diet_bird_FP_C_BL_out_exp,,,,28.5384,NA
+ARQ_diet_bird_AR_A_BL_out_exp,ARQ_diet_bird_AR_A_BL_out_exp,,,,1.2454,NA
+ARQ_diet_bird_AR_C_BL_out_exp,ARQ_diet_bird_AR_C_BL_out_exp,,,,178.8407,NA
+EEC_dose_mamm_SG_sm_BL_out_exp,EEC_dose_mamm_SG_sm_BL_out_exp,,,,2176.7347,NA
+EEC_dose_mamm_SG_md_BL_out_exp,EEC_dose_mamm_SG_md_BL_out_exp,,,,1504.4149,NA
+EEC_dose_mamm_SG_lg_BL_out_exp,EEC_dose_mamm_SG_lg_BL_out_exp,,,,348.8039,NA
+EEC_dose_mamm_TG_sm_BL_out_exp,EEC_dose_mamm_TG_sm_BL_out_exp,,,,997.6701,NA
+EEC_dose_mamm_TG_md_BL_out_exp,EEC_dose_mamm_TG_md_BL_out_exp,,,,689.5235,NA
+EEC_dose_mamm_TG_lg_BL_out_exp,EEC_dose_mamm_TG_lg_BL_out_exp,,,,159.8684,NA
+EEC_dose_mamm_BP_sm_BL_out_exp,EEC_dose_mamm_BP_sm_BL_out_exp,,,,1224.4133,NA
+EEC_dose_mamm_BP_md_BL_out_exp,EEC_dose_mamm_BP_md_BL_out_exp,,,,846.2334,NA
+EEC_dose_mamm_BP_lg_BL_out_exp,EEC_dose_mamm_BP_lg_BL_out_exp,,,,196.2022,NA
+EEC_dose_mamm_FP_sm_BL_out_exp,EEC_dose_mamm_FP_sm_BL_out_exp,,,,136.0459,NA
+EEC_dose_mamm_FP_md_BL_out_exp,EEC_dose_mamm_FP_md_BL_out_exp,,,,94.0259,NA
+EEC_dose_mamm_FP_lg_BL_out_exp,EEC_dose_mamm_FP_lg_BL_out_exp,,,,21.8002,NA
+EEC_dose_mamm_AR_sm_BL_out_exp,EEC_dose_mamm_AR_sm_BL_out_exp,,,,852.5544,NA
+EEC_dose_mamm_AR_md_BL_out_exp,EEC_dose_mamm_AR_md_BL_out_exp,,,,589.2292,NA
+EEC_dose_mamm_AR_lg_BL_out_exp,EEC_dose_mamm_AR_lg_BL_out_exp,,,,136.6148,NA
+EEC_dose_mamm_SE_sm_BL_out_exp,EEC_dose_mamm_SE_sm_BL_out_exp,,,,30.2324,NA
+EEC_dose_mamm_SE_md_BL_out_exp,EEC_dose_mamm_SE_md_BL_out_exp,,,,20.8947,NA
+EEC_dose_mamm_SE_lg_BL_out_exp,EEC_dose_mamm_SE_lg_BL_out_exp,,,,4.8445,NA
+ARQ_dose_mamm_SG_sm_BL_out_exp,ARQ_dose_mamm_SG_sm_BL_out_exp,,,,3.0854,NA
+CRQ_dose_mamm_SG_sm_BL_out_exp,CRQ_dose_mamm_SG_sm_BL_out_exp,,,,396.1606,NA
+ARQ_dose_mamm_SG_md_BL_out_exp,ARQ_dose_mamm_SG_md_BL_out_exp,,,,2.6355,NA
+CRQ_dose_mamm_SG_md_BL_out_exp,CRQ_dose_mamm_SG_md_BL_out_exp,,,,338.3979,NA
+ARQ_dose_mamm_SG_lg_BL_out_exp,ARQ_dose_mamm_SG_lg_BL_out_exp,,,,1.4127,NA
+CRQ_dose_mamm_SG_lg_BL_out_exp,CRQ_dose_mamm_SG_lg_BL_out_exp,,,,181.3946,NA
+ARQ_dose_mamm_TG_sm_BL_out_exp,ARQ_dose_mamm_TG_sm_BL_out_exp,,,,1.4141,NA
+CRQ_dose_mamm_TG_sm_BL_out_exp,CRQ_dose_mamm_TG_sm_BL_out_exp,,,,181.5736,NA
+ARQ_dose_mamm_TG_md_BL_out_exp,ARQ_dose_mamm_TG_md_BL_out_exp,,,,1.2079,NA
+CRQ_dose_mamm_TG_md_BL_out_exp,CRQ_dose_mamm_TG_md_BL_out_exp,,,,155.099,NA
+ARQ_dose_mamm_TG_lg_BL_out_exp,ARQ_dose_mamm_TG_lg_BL_out_exp,,,,0.6475,NA
+CRQ_dose_mamm_TG_lg_BL_out_exp,CRQ_dose_mamm_TG_lg_BL_out_exp,,,,83.1392,NA
+ARQ_dose_mamm_BP_sm_BL_out_exp,ARQ_dose_mamm_BP_sm_BL_out_exp,,,,1.7355,NA
+CRQ_dose_mamm_BP_sm_BL_out_exp,CRQ_dose_mamm_BP_sm_BL_out_exp,,,,222.8403,NA
+ARQ_dose_mamm_BP_md_BL_out_exp,ARQ_dose_mamm_BP_md_BL_out_exp,,,,1.4825,NA
+CRQ_dose_mamm_BP_md_BL_out_exp,CRQ_dose_mamm_BP_md_BL_out_exp,,,,190.3488,NA
+ARQ_dose_mamm_BP_lg_BL_out_exp,ARQ_dose_mamm_BP_lg_BL_out_exp,,,,0.7947,NA
+CRQ_dose_mamm_BP_lg_BL_out_exp,CRQ_dose_mamm_BP_lg_BL_out_exp,,,,102.0344,NA
+ARQ_dose_mamm_FP_sm_BL_out_exp,ARQ_dose_mamm_FP_sm_BL_out_exp,,,,0.1928,NA
+CRQ_dose_mamm_FP_sm_BL_out_exp,CRQ_dose_mamm_FP_sm_BL_out_exp,,,,24.76,NA
+ARQ_dose_mamm_FP_md_BL_out_exp,ARQ_dose_mamm_FP_md_BL_out_exp,,,,0.1647,NA
+CRQ_dose_mamm_FP_md_BL_out_exp,CRQ_dose_mamm_FP_md_BL_out_exp,,,,21.1499,NA
+ARQ_dose_mamm_FP_lg_BL_out_exp,ARQ_dose_mamm_FP_lg_BL_out_exp,,,,0.0883,NA
+CRQ_dose_mamm_FP_lg_BL_out_exp,CRQ_dose_mamm_FP_lg_BL_out_exp,,,,11.3372,NA
+ARQ_dose_mamm_AR_sm_BL_out_exp,ARQ_dose_mamm_AR_sm_BL_out_exp,,,,1.2084,NA
+CRQ_dose_mamm_AR_sm_BL_out_exp,CRQ_dose_mamm_AR_sm_BL_out_exp,,,,155.1629,NA
+ARQ_dose_mamm_AR_md_BL_out_exp,ARQ_dose_mamm_AR_md_BL_out_exp,,,,1.0322,NA
+CRQ_dose_mamm_AR_md_BL_out_exp,CRQ_dose_mamm_AR_md_BL_out_exp,,,,132.5392,NA
+ARQ_dose_mamm_AR_lg_BL_out_exp,ARQ_dose_mamm_AR_lg_BL_out_exp,,,,0.5533,NA
+CRQ_dose_mamm_AR_lg_BL_out_exp,CRQ_dose_mamm_AR_lg_BL_out_exp,,,,71.0462,NA
+ARQ_dose_mamm_SE_sm_BL_out_exp,ARQ_dose_mamm_SE_sm_BL_out_exp,,,,0.0429,NA
+CRQ_dose_mamm_SE_sm_BL_out_exp,CRQ_dose_mamm_SE_sm_BL_out_exp,,,,5.5022,NA
+ARQ_dose_mamm_SE_md_BL_out_exp,ARQ_dose_mamm_SE_md_BL_out_exp,,,,0.0366,NA
+CRQ_dose_mamm_SE_md_BL_out_exp,CRQ_dose_mamm_SE_md_BL_out_exp,,,,4.7,NA
+ARQ_dose_mamm_SE_lg_BL_out_exp,ARQ_dose_mamm_SE_lg_BL_out_exp,,,,0.0196,NA
+CRQ_dose_mamm_SE_lg_BL_out_exp,CRQ_dose_mamm_SE_lg_BL_out_exp,,,,2.5194,NA
+ARQ_diet_mamm_SG_BL_out_exp,ARQ_diet_mamm_SG_BL_out_exp,,,,N/A,NA
+CRQ_diet_mamm_SG_BL_out_exp,CRQ_diet_mamm_SG_BL_out_exp,,,,45.6614,NA
+ARQ_diet_mamm_TG_BL_out_exp,ARQ_diet_mamm_TG_BL_out_exp,,,,N/A,NA
+CRQ_diet_mamm_TG_BL_out_exp,CRQ_diet_mamm_TG_BL_out_exp,,,,20.9282,NA
+ARQ_diet_mamm_BP_BL_out_exp,ARQ_diet_mamm_BP_BL_out_exp,,,,N/A,NA
+CRQ_diet_mamm_BP_BL_out_exp,CRQ_diet_mamm_BP_BL_out_exp,,,,25.6846,NA
+ARQ_diet_mamm_FP_BL_out_exp,ARQ_diet_mamm_FP_BL_out_exp,,,,N/A,NA
+CRQ_diet_mamm_FP_BL_out_exp,CRQ_diet_mamm_FP_BL_out_exp,,,,2.8538,NA
+ARQ_diet_mamm_AR_BL_out_exp,ARQ_diet_mamm_AR_BL_out_exp,,,,N/A,NA
+CRQ_diet_mamm_AR_BL_out_exp,CRQ_diet_mamm_AR_BL_out_exp,,,,17.8841,NA
+LD50_bl_bird_sm_out_exp,LD50_bl_bird_sm_out_exp,,,,26.5209,NA
+LD50_bl_mamm_sm_out_exp,LD50_bl_mamm_sm_out_exp,,,,3.9359,NA
+LD50_bl_bird_md_out_exp,LD50_bl_bird_md_out_exp,,,,4.1665,NA
+LD50_bl_mamm_md_out_exp,LD50_bl_mamm_md_out_exp,,,,2.0848,NA
+LD50_bl_bird_lg_out_exp,LD50_bl_bird_lg_out_exp,,,,0.295,NA
+LD50_bl_mamm_lg_out_exp,LD50_bl_mamm_lg_out_exp,,,,0.1687,NA
+sa_bird_1_s_out_exp,sa_bird_1_s_out_exp,,,,NA,8.389769981
+sa_bird_2_s_out_exp,sa_bird_2_s_out_exp,,,,NA,0.574013256
+sc_bird_s_out_exp,sc_bird_s_out_exp,,,,NA,520.625
+sa_mamm_1_s_out_exp,sa_mamm_1_s_out_exp,,,,NA,0.781752171
+sa_mamm_2_s_out_exp,sa_mamm_2_s_out_exp,,,,NA,0.085188197
+sc_mamm_s_out_exp,sc_mamm_s_out_exp,,,,NA,100.3769788
+sa_bird_1_m_out_exp,sa_bird_1_m_out_exp,,,,NA,3.758062702
+sa_bird_2_m_out_exp,sa_bird_2_m_out_exp,,,,NA,0.090179208
+sc_bird_m_out_exp,sc_bird_m_out_exp,,,,NA,520.625
+sa_mamm_1_m_out_exp,sa_mamm_1_m_out_exp,,,,NA,0.667767709
+sa_mamm_2_m_out_exp,sa_mamm_2_m_out_exp,,,,NA,0.045122883
+sc_mamm_m_out_exp,sc_mamm_m_out_exp,,,,NA,85.74137381
+sa_bird_1_l_out_exp,sa_bird_1_l_out_exp,,,,NA,1.191143327
+sa_bird_2_l_out_exp,sa_bird_2_l_out_exp,,,,NA,0.006384199
+sc_bird_l_out_exp,sc_bird_l_out_exp,,,,NA,520.625
+sa_mamm_1_l_out_exp,sa_mamm_1_l_out_exp,,,,NA,0.357949756
+sa_mamm_2_l_out_exp,sa_mamm_2_l_out_exp,,,,NA,0.003651303
+sc_mamm_l_out_exp,sc_mamm_l_out_exp,,,,NA,45.96074863

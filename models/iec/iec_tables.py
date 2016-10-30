@@ -93,7 +93,7 @@ def gett2data(iec_obj):
     #logger.info(vars(iec_obj))
     data = { 
         "Parameter": ['Z Score', '"f8"', 'Chance of Individual Effect',],
-        "Value": ['%.2f' % iec_obj.z_score_f_out,'%.2e' % iec_obj.f8_f_out,'%.2f' % iec_obj.chance_f_out, ],
+        "Value": ['%.2f' % iec_obj.out_z_score_f,'%.2e' % iec_obj.out_f8_f,'%.2f' % iec_obj.out_chance_f, ],
     }
     return data
 
@@ -110,7 +110,7 @@ def gettsumdata_2_un(z_score_f_pool, f8_f_pool, chance_f_pool):
 def gett2dataqaqc(iec_obj):
     data = { 
         "Parameter": ['Z Score', '"f8"', 'Chance of Individual Effect',],
-        "Value": ['%.2f' % iec_obj.z_score_f_out,'%.2e' % iec_obj.f8_f_out,'%.2f' % iec_obj.chance_f_out, ],
+        "Value": ['%.2f' % iec_obj.out_z_score_f,'%.2e' % iec_obj.out_f8_f,'%.2f' % iec_obj.out_chance_f, ],
         "Expected Value": ['%.2f' % iec_obj.z_score_f_out_expected,'%.2e' % iec_obj.f8_f_out_expected,'%.2f' % iec_obj.chance_f_out_expected, ],
     }
     return data
@@ -128,13 +128,13 @@ def gettsumdata(dose_response,lc50,threshold):
     return data
 
 # def gettsumdata_out(dose_response,lc50,threshold):
-def gettsumdata_out(z_score_f_out, f8_f_out, chance_f_out):
+def gettsumdata_out(out_z_score_f, out_f8_f, out_chance_f):
     data = {
         "Parameter": ['Z Score F', 'f8', 'Chance F',],
-        "Mean": ['%.2e' % numpy.mean(z_score_f_out),'%.2e' % numpy.mean(f8_f_out),'%.2e' % numpy.mean(chance_f_out),],
-        "Std": ['%.2e' % numpy.std(z_score_f_out),'%.2e' % numpy.std(f8_f_out),'%.2e' % numpy.std(chance_f_out),],
-        "Min": ['%.2e' % numpy.min(z_score_f_out),'%.2e' % numpy.min(f8_f_out),'%.2e' % numpy.min(chance_f_out),],
-         "Max": ['%.2e' % numpy.max(z_score_f_out),'%.2e' % numpy.max(f8_f_out),'%.2e' % numpy.max(chance_f_out),],
+        "Mean": ['%.2e' % numpy.mean(out_z_score_f),'%.2e' % numpy.mean(out_f8_f),'%.2e' % numpy.mean(out_chance_f),],
+        "Std": ['%.2e' % numpy.std(out_z_score_f),'%.2e' % numpy.std(out_f8_f),'%.2e' % numpy.std(out_chance_f),],
+        "Min": ['%.2e' % numpy.min(out_z_score_f),'%.2e' % numpy.min(out_f8_f),'%.2e' % numpy.min(out_chance_f),],
+         "Max": ['%.2e' % numpy.max(out_z_score_f),'%.2e' % numpy.max(out_f8_f),'%.2e' % numpy.max(out_chance_f),],
         "Unit": ['','mg/kg-bw', '',],
     }
     return data
@@ -232,9 +232,9 @@ def table_2_qaqc(iec_obj):
         return html
 
 
-def table_all_sum(dose_response,lc50,threshold,z_score_f_out, f8_f_out, chance_f_out):
+def table_all_sum(dose_response,lc50,threshold,out_z_score_f, out_f8_f, out_chance_f):
     html_all_sum = table_sum_input(dose_response,lc50,threshold)
-    html_all_sum += table_sum_output(z_score_f_out, f8_f_out, chance_f_out)
+    html_all_sum += table_sum_output(out_z_score_f, out_f8_f, out_chance_f)
     return html_all_sum
 
 def table_sum_input(dose_response,lc50,threshold):
@@ -254,14 +254,14 @@ def table_sum_input(dose_response,lc50,threshold):
         """
         return html
 
-def table_sum_output(z_score_f_out, f8_f_out, chance_f_out):
+def table_sum_output(out_z_score_f, out_f8_f, out_chance_f):
         #pre-table sum_input
         html = """
             <H4 class="out_1 collapsible" id="section3"><span></span>IEC Outputs</H4>
                 <div class="out_ container_output">
         """
         #table sum_input
-        tsumoutputdata = gettsumdata_out(z_score_f_out, f8_f_out, chance_f_out)
+        tsumoutputdata = gettsumdata_out(out_z_score_f, out_f8_f, out_chance_f)
         tsumoutputrows = gethtmlrowsfromcols(tsumoutputdata, sumheadings)
         html = html + tmpl.render(Context(dict(data=tsumoutputrows, headings=sumheadings)))
         html = html + """

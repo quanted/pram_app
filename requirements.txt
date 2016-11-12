@@ -21,4 +21,5 @@ Sphinx
 tabulate
 xhtml2pdf
 xlsxwriter
-
+celery
+enum

@@ -7,6 +7,18 @@ import os
 import logging
 
 
+_UPDATED_MODELS = (
+    'terrplant',
+    'sip',
+    'stir',
+    'trex',
+    'iec',
+    'earthworm',
+    'rice',
+    'agdrift'
+)
+
+
 def output_page_html(header, model, tables_html):
     """Generates HTML to fill '.articles_output' div on output page"""
 
@@ -38,7 +50,7 @@ def output_page_view(request, model='none', header=''):
 
     # If model is updated to be generic, use generic Model object
     # if not, use old method with '*_output' module
-    if model in ('terrplant', 'sip', 'stir', 'iec', 'earthworm', 'rice', 'agdrift'):
+    if model in _UPDATED_MODELS:
         logging.info('=========== New Model Handler - Single Model Run ===========')
         from models import model_handler
         model_obj = model_handler.modelInputPOSTReceiver(request, model)
@@ -132,6 +144,9 @@ def output_page_view(request, model='none', header=''):
         return response
 
     else:
+
+        # TODO: This section should be removed as it is not used anymore...(pre-objectifying method)
+
         # All models that use the 'model_output.py' to format the inputs before sending to back end server
         # Dynamically import the model output module
         outputmodule = importlib.import_module('.' + model + '_output', 'models.' + model)

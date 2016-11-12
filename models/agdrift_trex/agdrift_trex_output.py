@@ -10,7 +10,7 @@ from django.views.decorators.http import require_POST
 @require_POST
 def agdrift_trexOutputPage(request):
     from models.agdrift import agdrift_model,agdrift_tables
-    from models.trex2 import trex2_model,trex2_tables
+    from models.trex import trex2_model,trex2_tables
     import agdrift_trex_tables
 
 

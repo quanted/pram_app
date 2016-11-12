@@ -31,7 +31,14 @@ os.environ.update({
     'REST_SERVER_8': 'http://134.67.114.8',  # 'http://localhost:64399'
     'PROJECT_PATH': PROJECT_ROOT,
     'SITE_SKIN': 'EPA',                          # Leave empty ('') for default skin, 'EPA' for EPA skin
-    'CONTACT_URL': 'https://www.epa.gov/research/forms/contact-us-about-epa-research'
+    'CONTACT_URL': 'https://www.epa.gov/research/forms/contact-us-about-epa-research',
+
+    'CTS_EPI_SERVER': 'http://localhost:55342',
+    'CTS_EFS_SERVER': 'http://ca-test-1.cloudapp.net',
+    'CTS_JCHEM_SERVER': 'http://ca-test-1.cloudapp.net',
+    'CTS_SPARC_SERVER': 'http://204.46.160.69:8080',
+    'CTS_TEST_SERVER': ''
+
 })
 
 # Quick-start development settings - unsuitable for production
@@ -84,8 +91,16 @@ INSTALLED_APPS = (
     #'mod_wsgi.server',  # Only needed for mod_wsgi express (Python driver for Apache) e.g. on the production server
     'docs',
     'api',
+    'models.terrplant',
+    'models.sip',
+    'models.stir',
+    'models.trex',
+    'models.iec',
+    'models.earthworm',
+    'models.rice',
     'models.ore',
     'models.hwbi',
+    'cts_api'
     # 'rest_framework_swagger'
 )
 

@@ -9,6 +9,7 @@ import logging
 import datetime
 import pytz
 import warnings
+from django.views.decorators.http import require_GET, require_POST
 
 
 # Set HTTP header

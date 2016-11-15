@@ -1,8 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
+from models.webice import output_webice
 
-urlpatterns = patterns('views.output_webice',
-    url(r'webice_output\.html', 'webiceOutputPage'),
-    url(r'webiceSSD_out\.html', 'webiceSSDOutputPage'),
-    url(r'webiceTNE_out\.html', 'webiceTNEOutputPage'),
-    url(r'ICETable\.html', 'ICETabletPage'),
-)
+urlpatterns = [
+    url(r'webice_output\.html', output_webice.webiceOutputPage),
+    url(r'webiceSSD_out\.html', output_webice.webiceSSDOutputPage),
+    url(r'webiceTNE_out\.html', output_webice.webiceTNEOutputPage),
+    url(r'ICETable\.html', output_webice.ICETabletPage),
+]

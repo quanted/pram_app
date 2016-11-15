@@ -9,15 +9,17 @@ import logging
 import datetime
 import pytz
 import warnings
+from django.views.decorators.http import require_GET, require_POST
 
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()
 rest_url = os.environ['UBERTOOL_REST_SERVER']
+rest_url_hwbi = os.environ['REST_SERVER_8']
 
 
-class NumPyArangeEncoder(json.JSONEncoder):
-    """A class helps dictionary to be converted to JSON when it contains numpy element"""
+class NumPyArrangeEncoder(json.JSONEncoder):
+    """Helper class to convert dictionary to JSON when it contains a NumPy object"""
     def default(self, obj):
         if isinstance(obj, np.ndarray):
             return obj.tolist()  # or map(int, obj)
@@ -77,6 +79,24 @@ def rest_proxy_get(model):
     return requests.get(rest_url + '/rest/ubertool/' + model)
 
 
+def rest_proxy_hwbi(request, resource):
+    response = requests.get(rest_url_hwbi + '/hwbi/rest/hwbi/locations/' + resource)
+    return HttpResponse(json.dumps(response.json()), content_type="application/json")
+
+
+def rest_proxy_hwbi_calc(request):
+
+    method = request.method
+
+    if method == 'GET':
+        response = requests.get(rest_url_hwbi + '/hwbi/rest/hwbi/calc')
+        return HttpResponse(response)
+    elif method == 'POST':
+        data = json.loads(request.body)
+        response = requests.post(rest_url_hwbi + '/hwbi/rest/hwbi/calc/run', json=data)
+        return HttpResponse(json.dumps(response.json()), content_type="application/json")
+
+
 def save_dic(output_html, model_object_dict, model_name, run_type):
     """
     DEPRECATED: Use save_model_object(model_object_dict, model_name, run_type) instead
@@ -90,7 +110,7 @@ def save_dic(output_html, model_object_dict, model_name, run_type):
 
     all_dic = {"model_name": model_name, "_id": model_object_dict['jid'], "run_type": run_type,
                "output_html": output_html, "model_object_dict": model_object_dict}
-    data = json.dumps(all_dic, cls=NumPyArangeEncoder)
+    data = json.dumps(all_dic, cls=NumPyArrangeEncoder)
     url = rest_url + '/save_history_html'
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)
@@ -142,7 +162,7 @@ def batch_save_dic(output_html, model_object_dict, model_name, run_type, jid_bat
 
     all_dic = {"model_name": model_name, "_id": jid_batch, "run_type": run_type, "output_html": html_save,
                "model_object_dict": model_object_dict}
-    data = json.dumps(all_dic, cls=NumPyArangeEncoder)
+    data = json.dumps(all_dic, cls=NumPyArrangeEncoder)
     url = rest_url + '/save_history'
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
@@ -270,6 +290,17 @@ def create_batchoutput_html(jid, model_name):
         return "error"
 
     return result_obj_all
+
+
+def self_documentation(request):
+
+    path = request.path.split('/')[1:]
+
+    response = requests.get(rest_url + request.path)
+
+    html = "<h3>You are at: %s</h3>" % path
+
+    return HttpResponse(html, content_type="text/html")
 
 
 class UserHistory(object):

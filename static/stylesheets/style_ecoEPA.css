@@ -425,7 +425,7 @@ a.logreg:link, a.logreg:visited, a.logreg:active {
   height: 30px;
   width: 100px;
   background-image: url(/static/images/tabs/epa/sprites/algorithm.gif);
-  background-position: -185px -30px;f
+  background-position: -185px -30px;
 }
 .fadeRef_algorithm {
   display:inline-block;

@@ -7,7 +7,7 @@ var width = 300,
 
 //import data from a json file and run drawPieChart function onPageLoad
 d3.json('/static/json/baseline.json', function (error, data) {
-    drawPieChart("", data.Domains);
+    drawPieChart("", data.outputs.domains);
 });
 
 //create svg element in the page "#pie" div and append g to the SVG
@@ -30,31 +30,31 @@ var rivData;
 //function to update pie data based on RIV weights
 function useRIVWeights() {
         //create empty array to store domain weights
-        domainWeights = [];
+        var domainWeights = [];
         //get value of each RIV p input and store in array
         $('#riv p input').each(function (i, elem) {
             domainWeights.push(parseInt($(elem).val()))
         });
 
     //to populate rivData array, grab Domain Weights values iteratively
-        var i = 0
-        rivData.forEach(function (domain) {
-            domain.Weight = domainWeights[i];
-            i++;
-        })
+        var i = 0;
 
-        console.log(rivData);
+        rivData.forEach(function (domain) {
+            domain.weight = domainWeights[i];
+            i++;
+        });
+
 
         //call function to draw pie chart taking updated rivData
         updatePieRivs("", rivData);
-    };
+    }
 
 
 
 //function to update pie data based on county scores
 function updateDomainScores(domainScores) {
         updatePieChart("", domainScores);
-    };
+    }
 
 
 
@@ -67,14 +67,14 @@ function drawPieChart(error, data) {
     //use d3 to create the pie chart layout 	
     var pie = d3.layout.pie()
         .sort(null)
-        .value(function (d) { return d.Weight; });
+        .value(function (d) { return d.weight; });
 
     //hover over pie slice for label using d3 tooltip
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([50, 0])
         .html(function (d) {
-            return d.data.Description + ": <span style='color:orangered'>" + Math.round(d.data.Score * 100) + "</span>"
+            return d.data.domainName + ": <span style='color:orangered'>" + Math.round(d.data.score) + "</span>"
         })
         ;
 
@@ -85,7 +85,7 @@ function drawPieChart(error, data) {
     var arc = d3.svg.arc()
         .innerRadius(innerRadius)
         .outerRadius(function (d) {
-          return (radius - innerRadius) * (d.data.Score) + innerRadius;
+          return (radius - innerRadius) * (d.data.score/100) + innerRadius;
         });
 
     //use d3 to calculate size of outline arcs    
@@ -100,14 +100,14 @@ function drawPieChart(error, data) {
         .enter().append("path")
         //assign colors to solidArc slice based on domain name
         .attr("fill", (function (d) {
-            if (d.data.Description == "Connection To Nature") { return "#569c83"; }
-            if (d.data.Description == "Cultural Fulfillment") { return "#325481"; }
-            if (d.data.Description == "Education") { return "#5E4EA1"; }
-            if (d.data.Description == "Health") { return "#9E0041"; }
-            if (d.data.Description == "Leisure Time") { return "#E1514B"; }
-            if (d.data.Description == "Living Standards") { return "#FB9F59"; }
-            if (d.data.Description == "Safety And Security") { return "#FAE38C"; }
-            if (d.data.Description == "Social Cohesion") { return "#EAF195"; }
+            if (d.data.domainName == "Connection To Nature") { return "#569c83"; }
+            if (d.data.domainName == "Cultural Fulfillment") { return "#325481"; }
+            if (d.data.domainName == "Education") { return "#5E4EA1"; }
+            if (d.data.domainName == "Health") { return "#9E0041"; }
+            if (d.data.domainName == "Leisure Time") { return "#E1514B"; }
+            if (d.data.domainName == "Living Standards") { return "#FB9F59"; }
+            if (d.data.domainName == "Safety And Security") { return "#FAE38C"; }
+            if (d.data.domainName == "Social Cohesion") { return "#EAF195"; }
         }))
 
         .attr("class", "solidArc")
@@ -117,7 +117,7 @@ function drawPieChart(error, data) {
         .on('mouseout', tip.hide);
         
     //create variable outerPath that appends an outlineArc to svg	  
-    var outerPath = svg1.selectAll(".outlineArc")
+    svg1.selectAll(".outlineArc")
         .data(pie(data))
         .enter().append("path")
         .attr("fill", "none")
@@ -128,14 +128,14 @@ function drawPieChart(error, data) {
     // calculate the weighted mean HWBI score
     var score =
         data.reduce(function (a, b) {
-            return a + ((b.Score*100) * b.Weight);
+            return a + ((b.score) * b.weight);
         }, 0) /
         data.reduce(function (a, b) {
-            return a + b.Weight;
+            return a + b.weight;
         }, 0);
 
     //display HWBI score
-    scoreText = svg1.append("svg:text")
+    svg1.append("svg:text")
         .attr("class", "scoreTex")
         .attr("dy", ".35em")
         .attr("text-anchor", "middle")
@@ -162,25 +162,15 @@ function updatePieChart(error, data) {
     //use d3 to create the pie chart layout 	
     var pie = d3.layout.pie()
         .sort(null)
-        .value(function (d) { return d.Weight; });
+        .value(function (d) { return d.weight; });
 
-    //hover over pie slice for label using d3 tooltip
-    var tip = d3.tip()
-        .attr('class', 'd3-tip')
-        .offset([50, 0])
-        .style("pointer-events", "none")
-        .html(function (d) {
-            return d.data.Description + ": <span style='color:orangered'>" + (d.data.Score * 100) + "</span>";
-        });
 
-    //call the hover tip utility     
-    svg1.call(tip);
 
     //use d3 to calculate size of arcs/angles
     var arc = d3.svg.arc()
         .innerRadius(innerRadius)
         .outerRadius(function (d) {
-            return (radius - innerRadius) * (d.data.Score) + innerRadius;
+            return (radius - innerRadius) * (d.data.score/100) + innerRadius;
         });
 
     //use d3 to calculate size of outline arcs    
@@ -190,29 +180,27 @@ function updatePieChart(error, data) {
 
     //create variable path that appends a solidArc to the svg
     //"path" is any irregular SVG shape (pie slice)
-    var path = svg1.selectAll(".solidArc")
+    svg1.selectAll(".solidArc")
         .data(pie(data))
          .transition()
          .duration(1500)
         //assign colors to solidArc slice based on domain name
         .attr("fill", (function (d) {
-            if (d.data.Description == "Connection To Nature") { return "#569c83"; }
-            if (d.data.Description == "Cultural Fulfillment") { return "#325481"; }
-            if (d.data.Description == "Education") { return "#5E4EA1"; }
-            if (d.data.Description == "Health") { return "#9E0041"; }
-            if (d.data.Description == "Leisure Time") { return "#E1514B"; }
-            if (d.data.Description == "Living Standards") { return "#FB9F59"; }
-            if (d.data.Description == "Safety And Security") { return "#FAE38C"; }
-            if (d.data.Description == "Social Cohesion") { return "#EAF195"; }
+            if (d.data.domainName == "Connection To Nature") { return "#569c83"; }
+            if (d.data.domainName == "Cultural Fulfillment") { return "#325481"; }
+            if (d.data.domainName == "Education") { return "#5E4EA1"; }
+            if (d.data.domainName == "Health") { return "#9E0041"; }
+            if (d.data.domainName == "Leisure Time") { return "#E1514B"; }
+            if (d.data.domainName == "Living Standards") { return "#FB9F59"; }
+            if (d.data.domainName == "Safety And Security") { return "#FAE38C"; }
+            if (d.data.domainName == "Social Cohesion") { return "#EAF195"; }
         }))
         .attr("class", "solidArc")
         .attr("stroke", "gray")
-        .attr("d", arc)
-        //.on('mouseover', tip.show)
-        //.on('mouseout', tip.hide);
+        .attr("d", arc);
 
     //create variable outerPath that appends an outlineArc to svg	  
-    var outerPath = svg1.selectAll(".outlineArc")
+    svg1.selectAll(".outlineArc")
         .data(pie(data))
         .transition()
         .attr("fill", "none")
@@ -223,10 +211,10 @@ function updatePieChart(error, data) {
     // calculate the weighted mean HWBI score
     var Score =
         data.reduce(function (a, b) {
-            return a + ((b.Score * 100) * b.Weight);
+            return a + ((b.score) * b.weight);
         }, 0) /
         data.reduce(function (a, b) {
-            return a + b.Weight;
+            return a + b.weight;
         }, 0)
     ;
 
@@ -248,25 +236,15 @@ function updatePieRivs(error, data) {
     //use d3 to create the pie chart layout 	
     var pie = d3.layout.pie()
         .sort(null)
-        .value(function (d) { return d.Weight; });
+        .value(function (d) { return d.weight; });
 
-    //hover over pie slice for label using d3 tooltip
-    var tip = d3.tip()
-        .attr('class', 'd3-tip')
-        .offset([50, 0])
-        .style("pointer-events", "none")
-        .html(function (d) {
-            return d.data.Description + ": <span style='color:orangered'>" + (d.data.Score * 100) + "</span>";
-        });
 
-    //call the hover tip utility     
-    svg1.call(tip);
 
     //use d3 to calculate size of arcs/angles
     var arc = d3.svg.arc()
         .innerRadius(innerRadius)
         .outerRadius(function (d) {
-            return (radius - innerRadius) * (d.data.Score) + innerRadius;
+            return (radius - innerRadius) * (d.data.score/100) + innerRadius;
         });
 
     //use d3 to calculate size of outline arcs    
@@ -276,29 +254,28 @@ function updatePieRivs(error, data) {
 
     //create variable path that appends a solidArc to the svg
     //"path" is any irregular SVG shape (pie slice)
-    var path = svg1.selectAll(".solidArc")
+    svg1.selectAll(".solidArc")
         .data(pie(data))
          .transition()
          .duration(1500)
         //assign colors to solidArc slice based on domain name
         .attr("fill", (function (d) {
-            if (d.data.Description == "Connection To Nature") { return "#569c83"; }
-            if (d.data.Description == "Cultural Fulfillment") { return "#325481"; }
-            if (d.data.Description == "Education") { return "#5E4EA1"; }
-            if (d.data.Description == "Health") { return "#9E0041"; }
-            if (d.data.Description == "Leisure Time") { return "#E1514B"; }
-            if (d.data.Description == "Living Standards") { return "#FB9F59"; }
-            if (d.data.Description == "Safety And Security") { return "#FAE38C"; }
-            if (d.data.Description == "Social Cohesion") { return "#EAF195"; }
+            if (d.data.domainName == "Connection To Nature") { return "#569c83"; }
+            if (d.data.domainName == "Cultural Fulfillment") { return "#325481"; }
+            if (d.data.domainName == "Education") { return "#5E4EA1"; }
+            if (d.data.domainName == "Health") { return "#9E0041"; }
+            if (d.data.domainName == "Leisure Time") { return "#E1514B"; }
+            if (d.data.domainName == "Living Standards") { return "#FB9F59"; }
+            if (d.data.domainName == "Safety And Security") { return "#FAE38C"; }
+            if (d.data.domainName == "Social Cohesion") { return "#EAF195"; }
         }))
         .attr("class", "solidArc")
         .attr("stroke", "gray")
-        .attr("d", arc)
-    //.on('mouseover', tip.show)
-    //.on('mouseout', tip.hide);
+        .attr("d", arc);
+
 
     //create variable outerPath that appends an outlineArc to svg	  
-    var outerPath = svg1.selectAll(".outlineArc")
+    svg1.selectAll(".outlineArc")
         .data(pie(data))
         .transition()
         .attr("fill", "none")
@@ -309,10 +286,10 @@ function updatePieRivs(error, data) {
     // calculate the weighted mean HWBI score
     var Score1 =
         data.reduce(function (a, b) {
-            return a + ((b.Score * 100) * b.Weight);
+            return a + ((b.score) * b.weight);
         }, 0) /
         data.reduce(function (a, b) {
-            return a + b.Weight;
+            return a + b.weight;
         }, 0)
     ;
         console.log(Score1);

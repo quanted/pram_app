@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 import importlib
-import linksLeft
+import links_left
 import os
 import logging
 
@@ -45,7 +45,7 @@ def batchOutputPage(request, model='none', header='none'):
     logging.info("===== batch.batchOutputPage")
     from REST import rest_funcs
     header = viewmodule.header
-    linksleft = linksLeft.linksLeft()
+    linksleft = links_left.ordered_list()
 
     html = render_to_string('04uberbatch_start.html', {
             'model': model,
@@ -53,7 +53,7 @@ def batchOutputPage(request, model='none', header='none'):
 
     
     # Temporary logic to handle Pandas verions, else use old way
-    if model in {'terrplant', 'sip', 'stir', 'trex2', 'therps', 'iec', 
+    if model in {'terrplant', 'sip', 'stir', 'trex', 'therps', 'iec',
             'agdrift', 'earthworm', 'rice', 'kabam'}:
         logging.info('=========== New Model Handler - Batch Run ===========')
         # New way
@@ -112,7 +112,7 @@ def batchInputPage(request, model='none', header='none'):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':model,
             'page':'batchinput'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberbatchinput.html', {
             'model': model,
             'model_attributes': header+' Batch Run'})

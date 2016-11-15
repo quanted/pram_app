@@ -74,8 +74,8 @@ def gett1data(sip_obj):
 def gett2data(sip_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % sip_obj.dose_mamm_out, '%g' % sip_obj.at_mamm_out, '%g' % sip_obj.acute_mamm_out, '%s' % sip_obj.acuconm_out,],
-        "Chronic": ['%g' % sip_obj.dose_mamm_out, '%g' % sip_obj.act_out, '%g' % sip_obj.chron_mamm_out, '%s' % sip_obj.chronconm_out,],
+        "Acute": ['%g' % sip_obj.out_dose_mamm, '%g' % sip_obj.out_at_mamm, '%g' % sip_obj.out_acute_mamm, '%s' % sip_obj.out_acuconm,],
+        "Chronic": ['%g' % sip_obj.out_dose_mamm, '%g' % sip_obj.out_act, '%g' % sip_obj.out_chron_mamm, '%s' % sip_obj.out_chronconm,],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
     return data
@@ -83,9 +83,9 @@ def gett2data(sip_obj):
 def gett2dataqaqc(sip_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % sip_obj.dose_mamm_out, '%g' % sip_obj.at_mamm_out, '%g' % sip_obj.acute_mamm_out, '%s' % sip_obj.acuconm_out,],
+        "Acute": ['%g' % sip_obj.out_dose_mamm, '%g' % sip_obj.out_at_mamm, '%g' % sip_obj.out_acute_mamm, '%s' % sip_obj.out_acuconm,],
         "Acute-Expected": ['%g' % sip_obj.dose_mamm_exp,'%g' % sip_obj.at_mamm_exp,'%g' % sip_obj.acute_mamm_exp,'%s' % sip_obj.acuconm_exp,],
-        "Chronic": ['%g' % sip_obj.dose_mamm_out, '%g' % sip_obj.act_out, '%g' % sip_obj.chron_mamm_out, '%s' % sip_obj.chronconm_out,],
+        "Chronic": ['%g' % sip_obj.out_dose_mamm, '%g' % sip_obj.out_act, '%g' % sip_obj.out_chron_mamm, '%s' % sip_obj.out_chronconm,],
         "Chronic-Expected": ['%g' % sip_obj.dose_mamm_exp,'%g' % sip_obj.act_exp,'%g' % sip_obj.chron_mamm_exp,'%s' % sip_obj.chronconm_exp,],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
@@ -94,8 +94,8 @@ def gett2dataqaqc(sip_obj):
 def gett3data(sip_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % sip_obj.dose_bird_out, '%g' % sip_obj.at_bird_out,'%g' % sip_obj.acute_bird_out, '%s' % sip_obj.acuconb_out,],
-        "Chronic": ['%g' % sip_obj.dose_bird_out, '%g' % sip_obj.det_out,'%g' % sip_obj.chron_bird_out, '%s' % sip_obj.chronconb_out,],
+        "Acute": ['%g' % sip_obj.out_dose_bird, '%g' % sip_obj.out_at_bird,'%g' % sip_obj.out_acute_bird, '%s' % sip_obj.out_acuconb,],
+        "Chronic": ['%g' % sip_obj.out_dose_bird, '%g' % sip_obj.out_det,'%g' % sip_obj.out_chron_bird, '%s' % sip_obj.out_chronconb,],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
     return data
@@ -103,9 +103,9 @@ def gett3data(sip_obj):
 def gett3dataqaqc(sip_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % sip_obj.dose_bird_out, '%g' % sip_obj.at_bird_out,'%g' % sip_obj.acute_bird_out, '%s' % sip_obj.acuconb_out,],
+        "Acute": ['%g' % sip_obj.out_dose_bird, '%g' % sip_obj.out_at_bird,'%g' % sip_obj.out_acute_bird, '%s' % sip_obj.out_acuconb,],
         "Acute-Expected": ['%g' % sip_obj.dose_bird_exp, '%g' % sip_obj.at_bird_exp, '%g' % sip_obj.acute_bird_exp, '%s' % sip_obj.acuconb_exp,],
-        "Chronic": ['%g' % sip_obj.dose_bird_out, '%g' % sip_obj.det_out,'%g' % sip_obj.chron_bird_out, '%s' % sip_obj.chronconb_out,],
+        "Chronic": ['%g' % sip_obj.out_dose_bird, '%g' % sip_obj.out_det,'%g' % sip_obj.out_chron_bird, '%s' % sip_obj.out_chronconb,],
         "Chronic-Expected": ['%g' % sip_obj.dose_bird_exp,'%g' % sip_obj.det_exp,'%g' % sip_obj.chron_bird_exp,'%s' % sip_obj.chronconb_exp,],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
@@ -136,9 +136,9 @@ def gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweigh
     }
     return data
 
-def gettsumdata_out(dose_bird_out, dose_mamm_out, at_bird_out, 
-                    at_mamm_out, det_out, act_out, acute_bird_out, acute_mamm_out, 
-                    chron_bird_out, chron_mamm_out):
+def gettsumdata_out(out_dose_bird, out_dose_mamm, out_at_bird, 
+                    out_at_mamm, out_det, out_act, out_acute_bird, out_acute_mamm, 
+                    out_chron_bird, out_chron_mamm):
     data = {
         "Parameter": ['Upper Bound Exposure - Avian', 'Upper Bound Exposure - Mammalian',
                     'Adjusted Toxicity Value (Acute) - Avian',
@@ -151,25 +151,25 @@ def gettsumdata_out(dose_bird_out, dose_mamm_out, at_bird_out,
                     'Ratio of Exposure to Toxicity (Chronic) - Mammalian',],
 
         "Mean": [
-                 '%g' % numpy.mean(dose_bird_out), '%g' % numpy.mean(dose_mamm_out), '%g' % numpy.mean(at_bird_out),
-                 '%g' % numpy.mean(at_mamm_out), '%g' % numpy.mean(act_out), '%g' % numpy.mean(det_out),
-                 '%g' % numpy.mean(acute_bird_out), '%g' % numpy.mean(acute_mamm_out),
-                 '%g' % numpy.mean(chron_bird_out), '%g' % numpy.mean(chron_mamm_out),],
+                 '%g' % numpy.mean(out_dose_bird), '%g' % numpy.mean(out_dose_mamm), '%g' % numpy.mean(out_at_bird),
+                 '%g' % numpy.mean(out_at_mamm), '%g' % numpy.mean(out_act), '%g' % numpy.mean(out_det),
+                 '%g' % numpy.mean(out_acute_bird), '%g' % numpy.mean(out_acute_mamm),
+                 '%g' % numpy.mean(out_chron_bird), '%g' % numpy.mean(out_chron_mamm),],
 
-        "Std": ['%g' % numpy.std(dose_bird_out), '%g' % numpy.std(dose_mamm_out), '%g' % numpy.std(at_bird_out),
-                '%g' % numpy.std(at_mamm_out), '%g' % numpy.std(act_out), '%g' % numpy.std(det_out),
-                '%g' % numpy.std(acute_bird_out), '%g' % numpy.std(acute_mamm_out),
-                '%g' % numpy.std(chron_bird_out), '%g' % numpy.std(chron_mamm_out),],
+        "Std": ['%g' % numpy.std(out_dose_bird), '%g' % numpy.std(out_dose_mamm), '%g' % numpy.std(out_at_bird),
+                '%g' % numpy.std(out_at_mamm), '%g' % numpy.std(out_act), '%g' % numpy.std(out_det),
+                '%g' % numpy.std(out_acute_bird), '%g' % numpy.std(out_acute_mamm),
+                '%g' % numpy.std(out_chron_bird), '%g' % numpy.std(out_chron_mamm),],
 
-        "Min": ['%g' % numpy.min(dose_bird_out), '%g' % numpy.min(dose_mamm_out), '%g' % numpy.min(at_bird_out),
-                '%g' % numpy.min(at_mamm_out), '%g' % numpy.min(act_out), '%g' % numpy.min(det_out),
-                '%g' % numpy.min(acute_bird_out), '%g' % numpy.min(acute_mamm_out),
-                '%g' % numpy.min(chron_bird_out), '%g' % numpy.min(chron_mamm_out),],
+        "Min": ['%g' % numpy.min(out_dose_bird), '%g' % numpy.min(out_dose_mamm), '%g' % numpy.min(out_at_bird),
+                '%g' % numpy.min(out_at_mamm), '%g' % numpy.min(out_act), '%g' % numpy.min(out_det),
+                '%g' % numpy.min(out_acute_bird), '%g' % numpy.min(out_acute_mamm),
+                '%g' % numpy.min(out_chron_bird), '%g' % numpy.min(out_chron_mamm),],
 
-         "Max": ['%g' % numpy.max(dose_bird_out), '%g' % numpy.min(dose_mamm_out), '%g' % numpy.min(at_bird_out),
-                '%g' % numpy.max(at_mamm_out), '%g' % numpy.max(act_out), '%g' % numpy.min(det_out),
-                '%g' % numpy.max(acute_bird_out), '%g' % numpy.min(acute_mamm_out),
-                '%g' % numpy.max(chron_bird_out), '%g' % numpy.max(chron_mamm_out),],
+         "Max": ['%g' % numpy.max(out_dose_bird), '%g' % numpy.min(out_dose_mamm), '%g' % numpy.min(out_at_bird),
+                '%g' % numpy.max(out_at_mamm), '%g' % numpy.max(out_act), '%g' % numpy.min(out_det),
+                '%g' % numpy.max(out_acute_bird), '%g' % numpy.min(out_acute_mamm),
+                '%g' % numpy.max(out_chron_bird), '%g' % numpy.max(out_chron_mamm),],
 
         "Unit": ['mg/kg-bw', 'mg/kg-bw','mg/kg-bw', 'mg/kg-bw', 'mg/kg-bw', 'mg/kg-bw', '','', '', '',],
     }
@@ -289,13 +289,13 @@ def table_3_qaqc(sip_obj):
 
 def table_all_sum(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
                     avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water,
-                    dose_bird_out, dose_mamm_out, at_bird_out, 
-                    at_mamm_out, det_out, act_out, acute_bird_out, acute_mamm_out, 
-                    chron_bird_out, chron_mamm_out):
+                    out_dose_bird, out_dose_mamm, out_at_bird, 
+                    out_at_mamm, out_det, out_act, out_acute_bird, out_acute_mamm, 
+                    out_chron_bird, out_chron_mamm):
     html_all_sum = table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
                     avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
-    html_all_sum += table_sum_output(sumheadings,tmpl,dose_bird_out,dose_mamm_out,at_bird_out, 
-                    at_mamm_out,det_out,act_out,acute_bird_out,acute_mamm_out,chron_bird_out,chron_mamm_out)
+    html_all_sum += table_sum_output(sumheadings,tmpl,out_dose_bird,out_dose_mamm,out_at_bird, 
+                    out_at_mamm,out_det,out_act,out_acute_bird,out_acute_mamm,out_chron_bird,out_chron_mamm)
     return html_all_sum
 
 def table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
@@ -314,17 +314,17 @@ def table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweig
         """
         return html
 
-def table_sum_output(sumheadings, tmpl, dose_bird_out, dose_mamm_out, at_bird_out, 
-                    at_mamm_out, det_out, act_out, acute_bird_out, acute_mamm_out, 
-                    chron_bird_out, chron_mamm_out):
+def table_sum_output(sumheadings, tmpl, out_dose_bird, out_dose_mamm, out_at_bird, 
+                    out_at_mamm, out_det, out_act, out_acute_bird, out_acute_mamm, 
+                    out_chron_bird, out_chron_mamm):
         html = """
         <br>
             <H4 class="out_1 collapsible" id="section3"><span></span>SIP Outputs</H4>
                 <div class="out_ container_output">
         """
-        tsumoutputdata = gettsumdata_out(dose_bird_out, dose_mamm_out, at_bird_out, 
-                    at_mamm_out, det_out, act_out, acute_bird_out, acute_mamm_out, 
-                    chron_bird_out, chron_mamm_out)
+        tsumoutputdata = gettsumdata_out(out_dose_bird, out_dose_mamm, out_at_bird, 
+                    out_at_mamm, out_det, out_act, out_acute_bird, out_acute_mamm, 
+                    out_chron_bird, out_chron_mamm)
         tsumoutputrows = gethtmlrowsfromcols(tsumoutputdata, sumheadings)
         html = html + tmpl.render(Context(dict(data=tsumoutputrows, headings=sumheadings)))
         html = html + """

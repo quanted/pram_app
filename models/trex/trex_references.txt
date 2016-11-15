@@ -11,8 +11,7 @@ Specific EPA guidance and the Microsoft Excel version of the model on the T-Rex 
 Current github source code:
 </p>
 <ul class="bullet">
-  <li><a href="https://github.com/puruckertom/ubertool_eco/tree/master/models/trex">ubertool_src on GitHub (front end)</a></li>
-  <li><a href="https://github.com/puruckertom/ubertool_ecorest/tree/master/REST_UBER/trex2_rest">ubertool_src on GitHub (back end model)</a></li>
+  <li><a href="https://github.com/puruckertom/ubertool_src/tree/master/trex">ubertool_src on GitHub</a></li>
 </ul>
 
 <p>
@@ -53,7 +52,7 @@ Presentations/posters/abstracts/reports on the subject of EPA's ecological risk 
   <li><a href="http://training.fws.gov/EC/Resources/pesticides/2011Presentations/Tab%2013%20%20Pesticide%20Risk%20Assessment.pdf">EPA Pesticide Ecological Risk Assessment Methods, Fish and Wildlife Service Training</a></li>
   <li><a href="http://www.calcitrusquality.org/wp-content/uploads/2011/07/Prometryncasestudy.pdf">Minor Crop Farm Alliance Endangered Species Assessment Workshop- Prometryn Case Study</a></li>
   <li><a href="http://pep.wsu.edu/wrpm/WRPM_11_files/Agenda%20and%20PPT%20pdfs/13Brady5-18-11PM.pdf">Ecological Risk Assessment and Improving Evaluation Tools</a></li>
-  <li><a href="http://www.nap.edu/catalog.php?record_id=18344">Assessing Risks to Endangered and Threatened Species From Pesticides (National Academy of Sciences)</a></li>
+<li><a href="http://www.nap.edu/catalog.php?record_id=18344">Assessing Risks to Endangered and Threatened Species From Pesticides (National Academy of Sciences)</a></li>
 </ul>
 <h3>References</h3>
 <ul class="bullet">
@@ -65,5 +64,5 @@ Presentations/posters/abstracts/reports on the subject of EPA's ecological risk 
   <li>Environmental Protection Agency (2010). Environmental Fate and Ecological Risk Assessment for Boscalid New use on Rapeseed, Including Canola (Seed Treatment). 23 December 2010. http://www.epa.gov/opp00001/chem_search/cleared_reviews/csr_PC-128008_23-Dec-10_a.pdf</li>
   <li>Environmental Protection Agency (2008). Risks of Permethrin Use to the Federally Threatened California Red-legged Frog (<i>Rana aurora draytonii</i>) and Bay Checkerspot Butterfly (<i>Euphydryas editha bayensis</i>), and the Federally Endangered California Clapper Rail (<i>Rallus longirostris obsoletus</i>), Salt Marsh Harvest Mouse (<i>Reithrodontomys raviventris</i>), and San Francisco Garter Snake (<i>Thamnophis sirtalis tetrataenia</i>)
 http://www.epa.gov/oppfead1/endanger/litstatus/effects/redleg-frog/permethrin/determination.pdf</li>
-  <li>Environmental Protection Agency (2008). Risks of Phorate use to Federally Threatened California Red-legged Frog (<i>Rana aurora draytonii</i>) to Federally Threatened Valley Elderberry Loghorn Beetle (<i>Desmocerus californicus dimphorus</i>) to Federally Threatened Bay Checkerspot Butterfly (<i>Euphydryas editha bayensis</i>) to Federally Endangered San Joaquin Kit Fox (<i>Vulpes macrotis mutica</i>). 10 October 2008. <a href="http://www.epa.gov/espp/litstatus/effects/redleg-frog/phorate/determination.pdf" target="_blank">http://www.epa.gov/espp/litstatus/effects/redleg-frog/phorate/determination.pdf</a></li>
+  <li>Environmental Protection Agency (2008). Risks of Phorate use to Federally Threatened California Red-legged Frog (<i>Rana aurora draytonii</i>) to Federally Threatened Valley Elderberry Loghorn Beetle (<i>Desmocerus californicus dimphorus</i>) to Federally Threatened Bay Checkerspot Butterfly (<i>Euphydryas editha bayensis</i>) to Federally Endangered San Joaquin Kit Fox (<i>Vulpes macrotis mutica</i>). 10 October 2008. http://www.epa.gov/espp/litstatus/effects/redleg-frog/phorate/determination.pdf</li>
 </ul>

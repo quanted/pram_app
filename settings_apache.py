@@ -31,7 +31,15 @@ os.environ.update({
     'UBERTOOL_REST_SERVER': 'http://172.20.100.15:7777',                           # CGI Internal
     'REST_SERVER_8': 'http://172.20.100.18',
     'PROJECT_PATH': PROJECT_ROOT,
-    'SITE_SKIN': 'EPA'                          # Leave empty ('') for default skin, 'EPA' for EPA skin
+    'SITE_SKIN': 'EPA',                          # Leave empty ('') for default skin, 'EPA' for EPA skin
+    'CONTACT_URL': 'https://www.epa.gov/research/forms/contact-us-about-epa-research',
+
+    # cts_api addition:
+    'CTS_EPI_SERVER': 'http://172.20.100.18',
+    'CTS_EFS_SERVER': 'http://172.20.100.12',
+    'CTS_JCHEM_SERVER': 'http://172.20.100.12',
+    'CTS_SPARC_SERVER': 'http://204.46.160.69:8080',
+    'CTS_TEST_SERVER': 'http://172.20.100.16:8080'
 })
 
 # Quick-start development settings - unsuitable for production
@@ -86,8 +94,16 @@ INSTALLED_APPS = (
     'mod_wsgi.server',
     'docs',
     'api',
+    'models.terrplant',
+    'models.sip',
+    'models.stir',
+    'models.trex',
+    'models.iec',
+    'models.earthworm',
+    'models.rice',
     'models.ore',
-    'models.hwbi'
+    'models.hwbi',
+    'cts_api'
 )
 
 MIDDLEWARE_CLASSES = (

@@ -79,7 +79,7 @@ def getdjtemplate():
 def earthwormoutput(earthworm_obj):
     data = { 
         "Parameter": ['Chemical concentration in earthworm tissue',],
-        "Value": ['%.5e' %earthworm_obj.earthworm_fugacity_out,],
+        "Value": ['%.5e' %earthworm_obj.out_earthworm_fugacity,],
         
         "Units": ['g/kg',],
     }

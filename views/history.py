@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 import importlib
-import linksLeft
+import links_left
 from REST import rest_funcs
 import os
 import StringIO, logging
@@ -23,7 +23,7 @@ def historyPage(request, model='none', header='none'):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':model,
             'page':'history'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberalgorithm_start.html', {
             'model_attributes': header+' User History'})
     
@@ -81,7 +81,7 @@ def historyPageRevist(request, model='none', header='none'):
         # Write output string from Mongo to file in memory
         # packet = StringIO.StringIO(output_str) #write to memory
 
-        # html = output.outputPageHTML(header, model, output_tables)
+        # html = output.output_page_html(header, model, output_tables)
 
         response = HttpResponse(output_str.getvalue(), content_type='application/txt')
         response['Content-Disposition'] = 'attachment; filename=' + model_dict['filename'] + '.csv'
@@ -107,7 +107,7 @@ def historyPageRevist(request, model='none', header='none'):
             <b>*** Error retrieving model run ***</b>
             """
             
-        html = output.outputPageHTML(header, model, output_tables)
+        html = output.output_page_html(header, model, output_tables)
 
         response = HttpResponse()
         response.write(html)

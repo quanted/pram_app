@@ -1,5 +1,36 @@
-<h3>Domains of Well-Being</h3>
-<p>Twenty-two economic, ecosystem, and social services values are used to estimate scores for eight "domains of well-being".
+<p>Twenty-two economic, ecosystem, and social services values (Table 1) are used to estimate scores for eight "domains of well-being" (Table 2).
 Multiple linear regression and relationship-function statistical techniques were used to identify correlations and calculate
 coefficient values for each service-domain relationship.
 </p>
+
+
+<img src = "/static/images/service_table.png" width="350">
+<figcaption>Table 1. Service ID values and Service Names</figcaption>
+
+<br>
+<img src = "/static/images/domain_table.png" width="350">
+<figcaption>Table 2. Domain ID values and Domain Names</figcaption>
+
+<br>
+<p>
+The HWBI model equations are shown below. For each domain value, the y-intercept, services, and service coefficents used in calculation are presented.
+</p>
+
+<img src = "/static/images/d01_equation.png" width="400">
+<br>
+<img src = "/static/images/d02_equation.png" width="400">
+<br>
+<img src = "/static/images/d03_equation.png" width="400">
+<br>
+<img src = "/static/images/d04_equation.png" width="400">
+<br>
+<img src = "/static/images/d05_equation.png" width="400">
+<br>
+<img src = "/static/images/d06_equation.png" width="400">
+<br>
+<img src = "/static/images/d07_equation.png" width="400">
+<br>
+<img src = "/static/images/d08_equation.png" width="400">
+<br>
+<img src = "/static/images/hwbi_equation.png" width="400">
+

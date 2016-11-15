@@ -14,7 +14,7 @@ servers = ["http://qed.epa.gov/ubertool/", "http://qedinternal.epa.gov/ubertool/
 
 models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
           "agdrift/", "agdrift_trex/", "agdrift_therps/", "earthworm/",
-          "kabam/", "pfam/", "sam/", "therps/", "trex2/"]
+          "kabam/", "pfam/", "sam/", "therps/", "trex/"]
 #models = ["sip/", "stir/", "pfam/", "earthworm/"]
 
 #The following list represents the model page titles to be checked (order of models

@@ -18,8 +18,7 @@ Revision number of QA Project Plan
 1.0
 
 Effective Data of QA Project Plan
-------------------------------------
-December 1, 2015
+May 11, 2016
 
 Names of all organizations involved in the modeling project
 -------------------------------------------------------------
@@ -339,7 +338,28 @@ exercises is very high.
 
 Background information on the problem
 ---------------------------------------------------------------------
-EPA (2004) provides an overview of OPP’s ecological risk assessment process.
+The Environmental Protection Agency’s (EPA) mission is to protect human health and the environment – air,
+ water, and land. The EPA, state, local and tribal agencies work together to ensure compliance with environmental
+ laws; including the Federal Insecticide, Fungicide, and Rodenticide Act (FIFRA), Endangered Species Act (ESA),
+ Toxic Substances Control Act (TSCA) and the Federal Food, Drug and Cosmetic Act (FFDCA).
+
+A crucial aspect of regulation is scientific computational modelling, which is used to determine chemical exposure
+ and potential risk to organisms and the environment. Modelling ecological risk utilizes numerous models developed
+ from an ever-increasing body of scientific research. Over time, the regulatory tools available for scientific models
+ have changed, leaving a legacy of models implemented in a variety of computer languages (e.g., Fortran 95/2003,
+ Microsoft .NET, etc.) and other software (e.g., Microsoft Excel). While these models are still relevant to the
+ regulatory process, they cannot be easily integrated or updated as the science evolves. These limitations are
+ addressed by integrating existing and developing risk assessment models in the Quantitative Exposure Domain (QED).
+ The QED is a cloud-based web application platform and science modeling support system that utilizes the CGI
+ Infrastructure-as-a-Service (IaaS) Cloud. QED offers a web-based dashboard suite of ecological risk assessment
+ model interfaces supported by the EPA. Benefits from integrating seemingly disparate model formats include code
+ reuse and maintainability, seamless sharing of model inputs and outputs, and simple batch running of multiple
+ risk assessment models. Additionally, the QED is publicly accessible as a cloud-based service hosting risk
+ assessment models, helping achieve transparency goals set forth by the Office of Management and Budget (Orszag 2009)
+ for United States departments and agencies, including the EPA. The initial integrated modeling framework contained
+ in QED is the übertool (prototype available at www.ubertool.org) -- an OCSPP/EFED publicly accessible set of
+ science models that assesses ecological risks from pesticides.
+
 
 Reasons the project is important, how it supports other existing research, programs, or regulations
 ---------------------------------------------------------------------
@@ -892,6 +912,8 @@ Types of required training and certification needed by the project team
 
 Plan for obtaining training and/or certification
 -----------------------------------------------------------------------
+Linux sys admin training.
+
 
 Documentation of training and/or certification
 -----------------------------------------------------------------------

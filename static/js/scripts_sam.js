@@ -62,7 +62,7 @@ $(document).ready(function() {
 	var samScenarioInputs_metolachlor_corn = ["5", "Chemical E", "181", "1", "2", "49", "", "0", "4", "1", "1", "1.05", "04/20/1984", "uniform_step", "7", "50", "43", "50", "Ohio Valley", "eco", "dwr", "dwf", "01/01/1984", "12/31/2013", "1", "2", "4", "1", "2", "", "4", "4", "1", "2", "3"];
 	var selectedScenarioValue = $('#id_scenario_selection').val();
 	if (selectedScenarioValue !== '0') {
-		$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
+		$(':input:not(#id_scenario_selection, :input.submit)').attr('disabled', true);
 		switch (selectedScenarioValue) {
 			case '1':
 				samFillScenarioCrops('1');
@@ -117,7 +117,7 @@ $(document).ready(function() {
 
 	// Scenario Selector
 	function samFillScenarioValues(scenario) {
-		$('form :input').not(':button').each(function(i) {
+		$('form.inputs_form :input').not(':button').each(function(i) {
 			$(this).val(scenario[i]);
 		});
 	}	
@@ -128,8 +128,8 @@ $(document).ready(function() {
 		switch (scenario) {
 
 			case '1':
-				$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
-				$('button.submit').attr('disabled', false);
+				$(':input:not(#id_scenario_selection, :input.submit)').attr('disabled', true);
+				$('input.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').show();
 				samFillScenarioValues(samScenarioInputs_atrazine_corn);
                 $('#id_crop').val("10 14 15 18");
@@ -139,8 +139,8 @@ $(document).ready(function() {
 				//}
 				break;
 			case '2':
-				$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
-				$('button.submit').attr('disabled', false);
+				$(':input:not(#id_scenario_selection, :input.submit)').attr('disabled', true);
+				$('input.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').hide();
 				samFillScenarioValues(samScenarioInputs_chlorpyrifos_corn);
                 $('#id_crop').val("10 14 15 18");
@@ -152,8 +152,8 @@ $(document).ready(function() {
 				//cropArrayNumberGenerator(crop_list_array); // Delete this line???
 				break;
 			case '3':
-				$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
-				$('button.submit').attr('disabled', false);
+				$(':input:not(#id_scenario_selection, :input.submit)').attr('disabled', true);
+				$('input.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').hide();
 				samFillScenarioValues(samScenarioInputs_chlorpyrifos_soybeans);
                 $('#id_crop').val("40 42 45 48 14");
@@ -163,8 +163,8 @@ $(document).ready(function() {
 				//}
 				break;
 			case '4':
-				$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
-				$('button.submit').attr('disabled', false);
+				$(':input:not(#id_scenario_selection, :input.submit)').attr('disabled', true);
+				$('input.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').show();
 				samFillScenarioValues(samScenarioInputs_fipronil_corn);
                 $('#id_crop').val("10 14 15 18");
@@ -174,8 +174,8 @@ $(document).ready(function() {
 				//}
 				break;
 			case '5':
-				$(':input:not(#id_scenario_selection, :button)').attr('disabled', true);
-				$('button.submit').attr('disabled', false);
+				$(':input:not(#id_scenario_selection, :input.submit)').attr('disabled', true);
+				$('input.submit').attr('disabled', false);
 				$('#id_refine_time_window2, #id_refine_percent_applied2').closest('tr').show();
 				samFillScenarioValues(samScenarioInputs_metolachlor_corn);
                 $('#id_crop').val("10 14 15 18");
@@ -186,7 +186,7 @@ $(document).ready(function() {
 				break;
 			default:
 				$(':input:not(#id_scenario_selection)').attr('disabled', false);
-                $('#id_output_time_avg_conc, #id_output_type_0, id_output_type_1,' +
+                $('#id_output_time_avg_conc, ' +
                 '#id_output_time_avg_option_0, #id_output_time_avg_option_1,' +
                 '#id_sim_type_0, #id_sim_type_1, #id_sim_type_2').attr('disabled', true);
                 $('#id_workers').attr('readonly', true).val('16');
@@ -196,9 +196,9 @@ $(document).ready(function() {
                 // Force Refinement method to be 'Uniform with Step'
                 $('#id_refine').val('uniform_step');
 								$('#id_chemical_name').val('Custom');
-				// $('button.submit').attr('disabled', true);
+				// $('input.submit').attr('disabled', true);
 				// Add 'crop_list_no_array' array to 'crop_list_no' input field before submit
-				// $('button.submit').click(function(e) {
+				// $('input.submit').click(function(e) {
 				$('form').submit(function(e) {
 					// console.log(isCropListNoArraySet());
 					// e.preventDefault();

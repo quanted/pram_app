@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 def agdrift_trexInputPage(request, model='', header='', formData=None):
     from models.agdrift import agdrift_parameters
-    from models.trex2 import trex2_parameters
+    from models.trex import trex2_parameters
 
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
     html = html + render_to_string('04uberinput_start_tabbed.html', {

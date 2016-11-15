@@ -1,9 +1,11 @@
 beautifulsoup4
+celery
 codecov
 coverage
 coveralls
-django
+django==1.8.15
 django-rest-swagger
+enum
 html5lib
 mechanize
 nose
@@ -21,4 +23,5 @@ Sphinx
 tabulate
 xhtml2pdf
 xlsxwriter
-
+celery
+enum

@@ -5,7 +5,7 @@ from REST import rest_funcs
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
-import linksLeft
+import links_left
 import os
 
 @require_POST
@@ -21,7 +21,7 @@ def przm5IntermediatePage(request):
             'site_skin' : os.environ['SITE_SKIN'],
             'model':'przm5',
             'page':'output'})
-    html = html + linksLeft.linksLeft()
+    html = html + links_left.ordered_list()
     html = html + render_to_string('04uberoutput_start.html', {})
     html = html + data_html
     html = html + render_to_string('export.html', {})

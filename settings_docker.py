@@ -49,7 +49,7 @@ os.environ.update({
 SECRET_KEY = secret.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = False
 
@@ -61,13 +61,9 @@ elif MACHINE_ID == "ord-uber-vm003":
     ALLOWED_HOSTS.append('134.67.114.3')
     ALLOWED_HOSTS.append('qed.epa.gov')
 else:
-    print("Django hostname: {}".format(MACHINE_ID))
-    try:
-        NGINX_HOSTNAME = os.environ.get("NGINX_HOSTNAME")
-        print("NGINX_HOSTNAME: {}".format(MACHINE_ID))
-        ALLOWED_HOSTS.append('*')
-    except KeyError:
-        print("No NGINX_HOSTNAME set!")
+    ALLOWED_HOSTS.append('192.168.99.100')
+    # ALLOWED_HOSTS.append('*')  # This is force Django to server behind NGINX when "DEBUG = False"
+
 
 # Disable this because Django wants to email errors and there is no email server set up
 # ADMINS = (

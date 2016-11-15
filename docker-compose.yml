@@ -9,8 +9,6 @@
     - "8080"
     volumes:
     - collected_static:/src/collected_static
-    environment:
-    - NGINX_HOSTNAME="ubertool_eco"  # Set NGINX hostname as ENV (used in ALLOWED_HOSTS Django setting)
 
   # NGINX web server
   nginx:

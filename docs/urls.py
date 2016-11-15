@@ -1,7 +1,7 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from docs.views import DocsRootView, serve_docs
 
-urlpatterns = patterns('',
-                       url(r'^$', DocsRootView.as_view(), name='docs_root'),
-                       url(r'^(?P<path>.*)$', serve_docs, name='docs_files'),
-)
+urlpatterns = [
+    url(r'^$', DocsRootView.as_view(), name='docs_root'),
+    url(r'^(?P<path>.*)$', serve_docs, name='docs_files')
+]

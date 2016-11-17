@@ -429,15 +429,7 @@ sumheadings_out = getheadersum_out()
 djtemplate = getdjtemplate()
 tmpl = Template(djtemplate)
 
-def table_all(kabam_obj):
-    html_all = table_1(kabam_obj)      
-    html_all = html_all + table_2(kabam_obj)
-    html_all = html_all + table_3(kabam_obj)
-    html_all = html_all + table_4(kabam_obj)
-    html_all = html_all + table_5(kabam_obj)
-    html_all = html_all + table_6(kabam_obj)
-    html_all = html_all + table_7(kabam_obj)
-    return html_all
+d
 
 def table_all_qaqc(kabam_obj):
     html_all = table_1_qaqc(kabam_obj)      

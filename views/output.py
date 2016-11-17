@@ -15,7 +15,8 @@ _UPDATED_MODELS = (
     'iec',
     'earthworm',
     'rice',
-    'agdrift'
+    'agdrift',
+    'kabam'
 )
 
 

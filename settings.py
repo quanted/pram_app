@@ -105,6 +105,7 @@ INSTALLED_APPS = (
     'models.rice',
     'models.ore',
     'models.hwbi',
+    'models.kabam',
     'cts_api'
     # 'rest_framework_swagger'
 )

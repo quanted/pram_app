@@ -3,15 +3,14 @@
    :synopsis: A useful module indeed.
 """
 
-from django.views.decorators.http import require_POST
-from StringIO import StringIO
-import kabam_model, kabam_tables
 import csv
-from threading import Thread
-import Queue
-from collections import OrderedDict
-import numpy as np
 import logging
+
+import numpy as np
+from django.views.decorators.http import require_POST
+
+import kabam_model
+import ubertool_eco.models.kabam.kabam_tables
 
 logger = logging.getLogger('kabamBatchPage')
 
@@ -491,7 +490,7 @@ def html_table(row_inp,iter):
     kabam_obj_all.append(kabam_obj)    
     if iter == 0:
         jid_batch.append(kabam_obj.jid)
-    html = batch_header + kabam_tables.table_all(kabam_obj)
+    html = batch_header + ubertool_eco.models.kabam.kabam_tables.table_all(kabam_obj)
     
     return html
 
@@ -504,10 +503,11 @@ def loop_html(thefile):
     for row in reader:
         iter_html = iter_html +html_table(row,i)
         i=i+1
-    sum_html = kabam_tables.table_all_sum(kabam_tables.sumheadings,kabam_tables.tmpl,l_kow,k_oc,c_wdp,water_column_EEC,mineau,x_poc,x_doc,c_ox,w_t,c_ss,oc,k_ow,
-                bw_quail,bw_duck,bwb_other,avian_ld50,avian_lc50,avian_noaec,bw_rat,bwm_other,mammalian_ld50,mammalian_lc50,mammalian_chronic_endpoint,
-                #Outputs
-                kabam_tables.sumheadings_out,acute_dose_based_m_array,acute_dose_based_a_array,chronic_dose_based_m_array,acute_rq_dose_m_array,acute_rq_dose_a_array,acute_rq_diet_a_array,chronic_rq_dose_m_array,chronic_rq_diet_m_array,chronic_rq_diet_a_array)
+    sum_html = ubertool_eco.models.kabam.kabam_tables.table_all_sum(ubertool_eco.models.kabam.kabam_tables.sumheadings,
+                                                                    ubertool_eco.models.kabam.kabam_tables.tmpl, l_kow, k_oc, c_wdp, water_column_EEC, mineau, x_poc, x_doc, c_ox, w_t, c_ss, oc, k_ow,
+                                                                    bw_quail, bw_duck, bwb_other, avian_ld50, avian_lc50, avian_noaec, bw_rat, bwm_other, mammalian_ld50, mammalian_lc50, mammalian_chronic_endpoint,
+                                                                    #Outputs
+                ubertool_eco.models.kabam.kabam_tables.sumheadings_out, acute_dose_based_m_array, acute_dose_based_a_array, chronic_dose_based_m_array, acute_rq_dose_m_array, acute_rq_dose_a_array, acute_rq_diet_a_array, chronic_rq_dose_m_array, chronic_rq_diet_m_array, chronic_rq_diet_a_array)
     return sum_html+iter_html
 
               

@@ -3,7 +3,7 @@ celery
 codecov
 coverage
 coveralls
-django==1.8.15
+django
 django-rest-swagger
 enum
 html5lib

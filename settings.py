@@ -25,23 +25,20 @@ print(os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'))
 os.environ.update({
     'UBERTOOL_BATCH_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com/',
     'UBERTOOL_MONGO_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
-    'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',   
-    'UBERTOOL_REST_SERVER': 'http://localhost:7777',                         # Local REST server
-    #'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',                      # Tao's EC2 REST server 
-    #'UBERTOOL_REST_SERVER': 'http://54.210.118.56'                         # EB Pilot REST server
-    # 'UBERTOOL_REST_SERVER': 'http://'                           # New EB Pilot REST server
+    'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
     'REST_SERVER_8': 'http://134.67.114.8',  # 'http://localhost:64399'
     'PROJECT_PATH': PROJECT_ROOT,
     'SITE_SKIN': 'EPA',                          # Leave empty ('') for default skin, 'EPA' for EPA skin
     'CONTACT_URL': 'https://www.epa.gov/research/forms/contact-us-about-epa-research',
-
     'CTS_EPI_SERVER': 'http://localhost:55342',
     'CTS_EFS_SERVER': 'http://ca-test-1.cloudapp.net',
     'CTS_JCHEM_SERVER': 'http://ca-test-1.cloudapp.net',
     'CTS_SPARC_SERVER': 'http://204.46.160.69:8080',
     'CTS_TEST_SERVER': ''
-
 })
+if not os.environ.get('UBERTOOL_REST_SERVER'):
+    os.environ.update({'UBERTOOL_REST_SERVER': 'http://localhost:7777'})  # Local REST server
+    print("REST backend = http://localhost:7777")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/

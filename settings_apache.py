@@ -24,23 +24,20 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 os.environ.update({
     'UBERTOOL_BATCH_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com/',
     'UBERTOOL_MONGO_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
-    'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',   
-    #'UBERTOOL_REST_SERVER': 'http://localhost:80',                         # Local REST server
-    #'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',                      # Tao's EC2 REST server 
-    #'UBERTOOL_REST_SERVER': 'http://54.210.118.56'                         # EB Pilot REST server
-    'UBERTOOL_REST_SERVER': 'http://172.20.100.15:7777',                           # CGI Internal
+    'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
     'REST_SERVER_8': 'http://172.20.100.18',
     'PROJECT_PATH': PROJECT_ROOT,
     'SITE_SKIN': 'EPA',                          # Leave empty ('') for default skin, 'EPA' for EPA skin
     'CONTACT_URL': 'https://www.epa.gov/research/forms/contact-us-about-epa-research',
-
-    # cts_api addition:
     'CTS_EPI_SERVER': 'http://172.20.100.18',
     'CTS_EFS_SERVER': 'http://172.20.100.12',
     'CTS_JCHEM_SERVER': 'http://172.20.100.12',
     'CTS_SPARC_SERVER': 'http://204.46.160.69:8080',
     'CTS_TEST_SERVER': 'http://172.20.100.16:8080'
 })
+if not os.environ.get('UBERTOOL_REST_SERVER'):
+    os.environ.update({'UBERTOOL_REST_SERVER': 'http://172.20.100.15:7777'})  # CGI Internal
+    print("REST backend = {}".format(os.environ.get('UBERTOOL_REST_SERVER')))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -68,19 +65,22 @@ elif MACHINE_ID == "ord-uber-vm003":
 
 APPEND_SLASH = True
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'),
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(PROJECT_ROOT, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
+            ],
+        },
+    },
+]
 
 # Application definition
 

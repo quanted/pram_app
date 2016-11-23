@@ -1,5 +1,5 @@
 """
-.. module:: sip_input
+.. module:: beerex_input
    :synopsis: A useful module indeed.
 """
 
@@ -14,14 +14,14 @@ def beerex_input_page(request, model='', header='', form_data=None):
         'MODEL': model,
         'TITLE': header})
     html += render_to_string('04uberinput_form.html', {
-        'FORM': sip_parameters.SipInp(form_data)})
+        'FORM': beerex_parameters.beerexInp(form_data)})
     html += render_to_string('04uberinput_end_drupal.html', {})
     html += render_to_string('04ubertext_end_drupal.html', {})
     # Check if tooltips dictionary exists
     # try:
-    #     import sip_tooltips
-    #     hasattr(sip_tooltips, 'tooltips')
-    #     tooltips = sip_tooltips.tooltips
+    #     import beerex_tooltips
+    #     hasattr(beerex_tooltips, 'tooltips')
+    #     tooltips = beerex_tooltips.tooltips
     # except:
     #     tooltips = {}
     # html += render_to_string('05ubertext_tooltips_right.html', {'tooltips': tooltips})

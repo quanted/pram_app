@@ -7,56 +7,55 @@ from django.utils.safestring import mark_safe
 from django.core import validators
 from models.forms import validation
 
-application_method_CHOICES = ('soil application', 'tree trunk', 'foliar spray', 'seed treatment')
-empirical_residue_CHOICES = ('yes', 'no')
-SELECT_VERSION = (('1.0', '1.0'),)
+application_method_CHOICES = (('soil application', 'soil application'), ('tree trunk', 'tree trunk'),
+                              ('foliar spray', 'foliar spray'), ('seed treatment', 'seed treatment'))
+empirical_residue_CHOICES = (('yes', 'yes'), ('no', 'no'))
+# SELECT_VERSION = (('1.0', '1.0'),)
 
 
-class beerexInp(forms.Form):
-    version = forms.ChoiceField(
-        choices=SELECT_VERSION,
-        label='Version',
-        initial='1.0')
+class beerexInp_chemical(forms.Form):
+    # version = forms.ChoiceField(
+    #     choices=SELECT_VERSION,
+    #     label='Version',
+    #     initial='1.0')
     chemical_name = forms.CharField(
-        widget=forms.Textarea(attrs={'cols': 20, 'rows': 2}),
+        widget=forms.Textarea(attrs={'cols': 30, 'rows': 1}),
         initial='Beerex Example',
         required=True)
     crop_type = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         label='Crop Type',
-        initial='corn')
-    application_rate = forms.FloatField(
-        required=True,
-        label=mark_safe('Pesticide application rate (lb a.i./A)'),
-        initial=3.0,
-        validators=[validation.validate_greaterthan0])
+        initial='corn',
+        required=False)
     application_method = forms.ChoiceField(
         required=True,
         label='Pesticide application method',
         choices=application_method_CHOICES,
         initial='soil application',
         validators=[validation.validate_choicefield])
-    empirical_residue = forms.ChoiceField(
+    log_kow = forms.FloatField(
+        required=False,
+        label='Log K<sub>OW</sub> for soil application method (@ 21&deg;C)',
+        initial=0.56820172,
+        validators=[validation.validate_greaterthan0])
+    koc = forms.FloatField(
+        required=False,
+        label='K<sub>OC</sub> for soil application method (L/kg)',
+        initial=318,
+        validators=[validation.validate_greaterthan0])
+    application_rate = forms.FloatField(
         required=True,
-        label='Empirical data for pesticide residue in pollen, nectar, or jelly',
-        choices=empirical_residue_CHOICES,
-        initial='no',
-        validators=[validation.validate_choicefield])
-    empirical_pollen = forms.FloatField(
-        required=False,
-        label='Empirical data of pesticide residue in pollen (ug a.i./mg)',
-        initial=0.034,
+        label=mark_safe('Pesticide application rate (lb a.i./A)'),
+        initial=3.0,
         validators=[validation.validate_greaterthan0])
-    empirical_nectar = forms.FloatField(
+    mass_tree_vegetation = forms.FloatField(
         required=False,
-        label='Empirical data of pesticide residue in nectar (ug a.i./mg)',
-        initial=0.27,
+        label='Mass of tree vegetation for tree trunk application method (kg-wet weight)',
+        initial=856.2,
         validators=[validation.validate_greaterthan0])
-    empirical_jelly = forms.FloatField(
-        required=False,
-        label='Empirical data of pesticide residue in jelly (ug a.i./mg)',
-        initial=0.0006,
-        validators=[validation.validate_greaterthan0])
+
+
+class beerexInp_toxicity(forms.Form):
     adult_contact_ld50 = forms.FloatField(
         required=True,
         label='Adult contact LD50 (ug a.i./bee)',
@@ -82,21 +81,30 @@ class beerexInp(forms.Form):
         label='Larval NOAEL (ug a.i./bee)',
         initial=0.0018,
         validators=[validation.validate_greaterthan0])
-    log_kow = forms.FloatField(
+    empirical_residue = forms.ChoiceField(
+        required=True,
+        label='Empirical data for pesticide residue in pollen, nectar, or jelly',
+        choices=empirical_residue_CHOICES,
+        initial='no',
+        validators=[validation.validate_choicefield])
+    empirical_pollen = forms.FloatField(
         required=False,
-        label='Log Kow for soil application method (@ 21 degrees C)',
-        initial= 0.56820172,
+        label='Empirical data of pesticide residue in pollen (ug a.i./mg)',
+        initial=0.034,
         validators=[validation.validate_greaterthan0])
-    koc = forms.FloatField(
+    empirical_nectar = forms.FloatField(
         required=False,
-        label='Koc for soil application method (L/kg)',
-        initial=318,
+        label='Empirical data of pesticide residue in nectar (ug a.i./mg)',
+        initial=0.27,
         validators=[validation.validate_greaterthan0])
-    mass_tree_vegetation = forms.FloatField(
+    empirical_jelly = forms.FloatField(
         required=False,
-        label='Mass of tree vegetation for tree trunk application method (kg-wet weight)',
-        initial=856.2,
+        label='Empirical data of pesticide residue in jelly (ug a.i./mg)',
+        initial=0.0006,
         validators=[validation.validate_greaterthan0])
+
+
+class beerexInp_exposure(forms.Form):
     lw1_jelly = forms.FloatField(
         required=True,
         label='Larval worker day 1 jelly consumption rate (mg/day)',
@@ -237,3 +245,7 @@ class beerexInp(forms.Form):
         label='Adult queen jelly consumption rate (mg/day)',
         initial=525,
         validators=[validation.validate_greaterthan0])
+
+
+class beerexInp(beerexInp_chemical, beerexInp_exposure, beerexInp_toxicity):
+    pass

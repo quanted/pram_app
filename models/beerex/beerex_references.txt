@@ -2,27 +2,27 @@
 Specific EPA guidance and the Microsoft Excel version of the model on the Screening Imbibition Program can be found here:
 </p>
 <ul class="bullet">
-  <li><a href="http://www.epa.gov/oppefed1/models/terrestrial/index.htm#sip" target="_blank">SIP Documentation</a></li>
-  <li><a href="http://www.epa.gov/oppefed1/models/terrestrial/sip/sip_user_guide.html" target="_blank">User's Guide</a></li>
-  <li><a href="http://www.epa.gov/oppefed1/models/terrestrial/sip/sip_v_1_0.xls" target="_blank">SIP Excel Implementation</a></li>
+  <li><a href="http://www.epa.gov/oppefed1/models/terrestrial/index.htm#beerex" target="_blank">beerex Documentation</a></li>
+  <li><a href="http://www.epa.gov/oppefed1/models/terrestrial/beerex/beerex_user_guide.html" target="_blank">User's Guide</a></li>
+  <li><a href="http://www.epa.gov/oppefed1/models/terrestrial/beerex/beerex_v_1_0.xls" target="_blank">beerex Excel Implementation</a></li>
 </ul>
 
 <p>
 Current github source code:
 </p>
 <ul class="bullet">
-  <li><a href="https://github.com/puruckertom/ubertool_eco/tree/master/models/sip target="_blank"">ubertool_src on github (front end)</a></li>
-  <li><a href="https://github.com/puruckertom/ubertool_ecorest/tree/master/REST_UBER/sip_rest" target="_blank">ubertool_src on github (back end model)</a></li>
+  <li><a href="https://github.com/puruckertom/ubertool_eco/tree/master/models/beerex target="_blank"">ubertool_src on github (front end)</a></li>
+  <li><a href="https://github.com/puruckertom/ubertool_ecorest/tree/master/REST_UBER/beerex_rest" target="_blank">ubertool_src on github (back end model)</a></li>
 </ul>
 
 <p>
-Example reports documenting the use of SIP in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:
+Example reports documenting the use of beerex in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:
 </p>
 <ul class="bullet">
   <li><a href="http://op.bna.com/env.nsf/id/jstn-8van2d/$File/Atrazine%20Report.pdf" target="_blank">Atrazine- FIFRA Scientific Advisory Panel</a></li>
 </ul>
 <p>
-General EPA guidance on how SIP fits into the overall ecological risk assessment process for pesticides can be found at the following links:
+General EPA guidance on how beerex fits into the overall ecological risk assessment process for pesticides can be found at the following links:
 </p>
 <ul class="bullet">
   <li><a href="http://www.epa.gov/oppfead1/endanger/consultation/ecorisk-overview.pdf" target="_blank">EPA Ecological Risk Assessment Process Overview</a></li>
@@ -34,7 +34,7 @@ EPA Ecological Risk Assessment Exposure Characterization</a></li>
 EPA Development of Conceptual Models</a></li>
 </ul>
 <p>
-Presentations/posters/abstracts/reports on the subject of EPA's ecological risk assessment models, including SIP.
+Presentations/posters/abstracts/reports on the subject of EPA's ecological risk assessment models, including beerex.
 </p>
 <ul class="bullet">
   <li><a href="http://www.agrodiv.org/documents/denver11/Endangered%20Species%20Act%20and%20Regulation/AGRO219_Odenkirchen_Edward.pdf" target="_blank">Advancements in Endangered Species Act Effects Determination

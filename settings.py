@@ -97,6 +97,7 @@ INSTALLED_APPS = (
     'models.sip',
     'models.stir',
     'models.trex',
+    'models.therps',
     'models.iec',
     'models.earthworm',
     'models.rice',

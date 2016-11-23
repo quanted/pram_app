@@ -12,6 +12,7 @@ _UPDATED_MODELS = (
     'sip',
     'stir',
     'trex',
+    'therps',
     'iec',
     'earthworm',
     'rice',

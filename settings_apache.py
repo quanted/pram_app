@@ -102,6 +102,7 @@ INSTALLED_APPS = (
     'models.iec',
     'models.earthworm',
     'models.rice',
+    'models.kabam',
     'models.ore',
     'models.hwbi',
     'cts_api'

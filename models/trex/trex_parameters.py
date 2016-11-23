@@ -233,5 +233,5 @@ class trexInp_mammal(forms.Form):
 
 
 # Combined Form Classes for Validation
-class Trex2Inp(trexInp_chem, trexInp_bird, trexInp_mammal):
+class TrexInp(trexInp_chem, trexInp_bird, trexInp_mammal):
     pass

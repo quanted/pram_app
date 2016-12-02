@@ -1,5 +1,5 @@
 <p>
-Specific EPA guidance and the Microsoft Excel version of the model on the Screening Imbibition Program can be found here:
+Specific EPA guidance and the Microsoft Excel version of the model on the Screening Inhibition Program can be found here:
 </p>
 <ul class="bullet">
   <li><a href="http://www.epa.gov/oppefed1/models/terrestrial/index.htm#beerex" target="_blank">beerex Documentation</a></li>
@@ -21,7 +21,7 @@ Example reports documenting the use of beerex in reregistration eligibility docu
 <ul class="bullet">
   <li><a href="http://op.bna.com/env.nsf/id/jstn-8van2d/$File/Atrazine%20Report.pdf" target="_blank">Atrazine- FIFRA Scientific Advisory Panel</a></li>
 </ul>
-<p>
+<p>It is a screening tool for Tier I risk assessment with
 General EPA guidance on how beerex fits into the overall ecological risk assessment process for pesticides can be found at the following links:
 </p>
 <ul class="bullet">

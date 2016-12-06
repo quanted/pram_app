@@ -7,26 +7,35 @@ import numpy
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
 import logging
-import time
 import datetime
 
 logger = logging.getLogger("beerexTables")
 
-def getheaderpvu():
-	headings = ["Parameter", "Value", "Units"]
-	return headings
 
-def getheaderpvr():
-	headings = ["Parameter", "Acute", "Chronic","Units"]
-	return headings
-
-def getheaderpvrqaqc():
-    headings = ["Parameter", "Acute", "Acute-Expected", "Chronic", "Chronic-Expected","Units"]
+def getheaderinp():
+    headings = ["Description", "Value"]
     return headings
 
-def getheadersum():
-    headings = ["Parameter", "Mean", "Std", "Min", "Max", "Unit"]
+
+def getheadertox():
+    headings = ["Description", "Value (ug a.i./bee)"]
     return headings
+
+
+def getheadereecs():
+    headings = ["Application Method", "EECs (ug a.i./mg)"]
+    return headings
+
+
+def getheaderrqs():
+    headings = ["Life Stage & Caste", "Age (days)", "Jelly (mg/day)", "Nectar (mg/day)", "Pollen (mg/day)", "Total Dose (ug a.i./bee)", "Acute RQ", "Chronic RQ"]
+    return headings
+
+
+# def getheadersum():
+#     headings = ["Exposure", "Adults", "Larvae"]
+#     return headings
+#
 
 def gethtmlrowsfromcols(data, headings):
     columns = [data[heading] for heading in headings]
@@ -42,8 +51,9 @@ def gethtmlrowsfromcols(data, headings):
     rows = [[col[i] for col in columns] for i in range(max_len)]
     return rows
 
+
 def getdjtemplate():
-    dj_template ="""
+    dj_template = """
     <table class="out_">
     {# headings #}
         <tr>
@@ -63,13 +73,14 @@ def getdjtemplate():
     """
     return dj_template
 
+
 def gett1data(beerex_obj):
     data = { 
-        "Parameter": ['Chemical Name',mark_safe('Solubility (in water @25&deg;C)'),mark_safe('Mammalian LD<sub>50</sub>'),mark_safe('Body weight of mammalian species (LD<sub>50</sub>)'),'Mammalian NOAEL', 'Body weight of mammalian species (NOAEL)',mark_safe('Avian LD<sub>50</sub>'),'Body Weight of Tested Bird','Mineau Scaling Factor','Mallard duck NOAEC','Northern bobwhite quail NOAEC','NOAEC for other bird species','Body weight of other avian species','NOAEC for 2nd other bird species','Body weight of 2nd other avian species'],
-        "Value": [beerex_obj.chemical_name,beerex_obj.solubility,beerex_obj.ld50_mammal_water,beerex_obj.bodyweight_tested_mammal,beerex_obj.noael_mammal_water,beerex_obj.noael_bodyweight_tested_mammal,beerex_obj.ld50_avian_water,beerex_obj.bodyweight_tested_bird,beerex_obj.mineau_scaling_factor,beerex_obj.noaec_duck,beerex_obj.noaec_quail,beerex_obj.noaec_bird_other_1,beerex_obj.bodyweight_bird_other_1,beerex_obj.noaec_bird_other_2,beerex_obj.bodyweight_bird_other_2],
-        "Units": ['','mg/L','mg/kg-bw','g','mg/kg-bw','g','mg/kg-bw','g','','mg/kg-diet','mg/kg-diet','mg/kg-diet','g','mg/kg-diet','g'],
+        "Description": ['Application rate (lb a.i./A)', 'Application method',mark_safe('Log K<sub>oW</sub>'), mark_safe('K<sub>oC</sub>)'), 'Mass of tree vegetation (kg-wet weight)'],
+        "Value": [beerex_obj.apprate, beerex_obj.solubility,beerex_obj.ld50_mammal_water,beerex_obj.bodyweight_tested_mammal,beerex_obj.noael_mammal_water,beerex_obj.noael_bodyweight_tested_mammal,beerex_obj.ld50_avian_water,beerex_obj.bodyweight_tested_bird,beerex_obj.mineau_scaling_factor,beerex_obj.noaec_duck,beerex_obj.noaec_quail,beerex_obj.noaec_bird_other_1,beerex_obj.bodyweight_bird_other_1,beerex_obj.noaec_bird_other_2,beerex_obj.bodyweight_bird_other_2],
     }
     return data
+
 
 def gett2data(beerex_obj):
     data = { 
@@ -176,24 +187,29 @@ def gettsumdata_out(out_dose_bird, out_dose_mamm, out_at_bird,
     return data
 
 
-pvuheadings = getheaderpvu()
-pvrheadings = getheaderpvr()
-pvrheadingsqaqc = getheaderpvrqaqc()
-sumheadings = getheadersum()
+inpheadings = getheaderinp()
+toxheadings = getheadertox()
+eecheadings = getheadereecs()
+rqsheadings = getheaderrqs()
+# sumheadings = getheadersum()
 djtemplate = getdjtemplate()
 tmpl = Template(djtemplate)
+
 
 def table_all(beerex_obj):
     html_all = table_1(beerex_obj)
     html_all = html_all + table_2(beerex_obj)
     html_all = html_all + table_3(beerex_obj)
+    html_all = html_all + table_4(beerex_obj)
+    # html_all = html_all + table_5(beerex_obj)
     return html_all
 
-def table_all_qaqc(beerex_obj):
-    html_all = table_1(beerex_obj)
-    html_all = html_all + table_2_qaqc(beerex_obj)
-    html_all = html_all + table_3_qaqc(beerex_obj)
-    return html_all
+# def table_all_qaqc(beerex_obj):
+#     html_all = table_1(beerex_obj)
+#     html_all = html_all + table_2_qaqc(beerex_obj)
+#     html_all = html_all + table_3_qaqc(beerex_obj)
+#     return html_all
+
 
 def timestamp(beerex_obj="", batch_jid=""):
     if beerex_obj:
@@ -210,81 +226,85 @@ def timestamp(beerex_obj="", batch_jid=""):
     </div>"""
     return html
 
+
 def table_1(beerex_obj):
         html = """
         <H3 class="out_1 collapsible" id="section1"><span></span>User Inputs</H3>
         <div class="out_">
-            <H4 class="out_1 collapsible" id="section2"><span></span>Application and Chemical Information</H4>
+            <H4 class="out_1 collapsible" id="section2"><span></span>Application Information</H4>
                 <div class="out_ container_output">
         """
         t1data = gett1data(beerex_obj)
-        t1rows = gethtmlrowsfromcols(t1data,pvuheadings)
-        html = html + tmpl.render(Context(dict(data=t1rows, headings=pvuheadings)))
+        t1rows = gethtmlrowsfromcols(t1data, inpheadings)
+        html = html + tmpl.render(Context(dict(data=t1rows, headings=inpheadings)))
         html = html + """
                 </div>
         </div>
         """
         return html
+
 
 def table_2(beerex_obj):
         html = """
         <br>
-        <H3 class="out_1 collapsible" id="section3"><span></span>beerex Output</H3>
+        <H3 class="out_1 collapsible" id="section3"><span></span>User Inputs</H3>
         <div class="out_1">
-            <H4 class="out_1 collapsible" id="section4"><span></span>Mammalian Results</H4>
+            <H4 class="out_1 collapsible" id="section4"><span></span>Toxicity data</H4>
                 <div class="out_ container_output">
         """
         t2data = gett2data(beerex_obj)
-        t2rows = gethtmlrowsfromcols(t2data,pvrheadings)
-        html = html + tmpl.render(Context(dict(data=t2rows, headings=pvrheadings)))
+        t2rows = gethtmlrowsfromcols(t2data, toxheadings)
+        html = html + tmpl.render(Context(dict(data=t2rows, headings=toxheadings)))
         html = html + """
                 </div>
         """
         return html  
 
-def table_2_qaqc(beerex_obj):
-        html = """
-        <br>
-        <H3 class="out_1 collapsible" id="section3"><span></span>beerex Output</H3>
-        <div class="out_1">
-            <H4 class="out_1 collapsible" id="section4"><span></span>Mammalian Results</H4>
-                <div class="out_ container_output">
-        """
-        t2data = gett2dataqaqc(beerex_obj)
-        t2rows = gethtmlrowsfromcols(t2data,pvrheadingsqaqc)
-        html = html + tmpl.render(Context(dict(data=t2rows, headings=pvrheadingsqaqc)))
-        html = html + """
-                </div>
-        """
-        return html  
 
 def table_3(beerex_obj):
         html = """
-            <H4 class="out_1 collapsible" id="section4"><span></span>Avian Results</H4>
+        <br>
+        <H3 class="out_1 collapsible" id="section3"><span></span>Bee-Rex Output</H3>
+        <div class="out_1">
+            <H4 class="out_1 collapsible" id="section4"><span></span>Estimated concentrations in pollen and nectar</H4>
                 <div class="out_ container_output">
         """
         t3data = gett3data(beerex_obj)
-        t3rows = gethtmlrowsfromcols(t3data,pvrheadings)
-        html = html + tmpl.render(Context(dict(data=t3rows, headings=pvrheadings)))
+        t3rows = gethtmlrowsfromcols(t3data,eecheadings)
+        html = html + tmpl.render(Context(dict(data=t3rows, headings=eecheadings)))
+        html = html + """
+                </div>
+        """
+        return html  
+
+
+def table_4(beerex_obj):
+        html = """
+            <H4 class="out_1 collapsible" id="section4"><span></span>Dietary risk quotients (RQs) for all bees</H4>
+                <div class="out_ container_output">
+        """
+        t4data = gett4data(beerex_obj)
+        t4rows = gethtmlrowsfromcols(t4data, rqsheadings)
+        html = html + tmpl.render(Context(dict(data=t4rows, headings=rqsheadings)))
         html = html + """
                 </div>
         </div>
         """
         return html
 
-def table_3_qaqc(beerex_obj):
-        html = """
-            <H4 class="out_1 collapsible" id="section4"><span></span>Avian Results</H4>
-                <div class="out_ container_output">
-        """
-        t3data = gett3dataqaqc(beerex_obj)
-        t3rows = gethtmlrowsfromcols(t3data,pvrheadingsqaqc)
-        html = html + tmpl.render(Context(dict(data=t3rows, headings=pvrheadingsqaqc)))
-        html = html + """
-                </div>
-        </div>
-        """
-        return html
+# def table_5(beerex_obj):
+#         html = """
+#             <H4 class="out_1 collapsible" id="section4"><span></span>Highest RQs</H4>
+#                 <div class="out_ container_output">
+#         """
+#         t5data = gett5data(beerex_obj)
+#         t5rows = gethtmlrowsfromcols(t5data, sumheadings)
+#         html = html + tmpl.render(Context(dict(data=t5rows, headings=sumheadings)))
+#         html = html + """
+#                 </div>
+#         </div>
+#         """
+#         return html
 
 
 def table_all_sum(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,

@@ -192,7 +192,7 @@ def output_page_view(request, model='none', header=''):
 
         # Handle Trex, which is not objectified yet; therefore, not saved in MongoDB
         # if model != 'trex':
-        if model not in {'terrplant', 'sip', 'stir', 'trex'}:
+        if model not in {'terrplant', 'sip', 'stir', 'trex', }:
             logging.info("rest_funcs.save_model_object() called")
             # save_dic() rest_func method saves HTML & model object
             rest_funcs.save_dic(html, model_obj.__dict__, model, "single")

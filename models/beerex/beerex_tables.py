@@ -32,9 +32,9 @@ def getheaderrqs():
     return headings
 
 
-def getheadermaxrq():
-    headings = ["Exposure", "Adults", "Larvae"]
-    return headings
+# def getheadermaxrq():
+#     headings = ["Exposure", "Adults", "Larvae"]
+#     return headings
 
 
 def gethtmlrowsfromcols(data, headings):
@@ -135,20 +135,20 @@ def gett4data(beerex_obj):
     return data
 
 
-def gett5data(beerex_obj):
-    data = {
-        "Exposure": ['Acute Contact', 'Acute Dietary', 'Chronic Dietary'],
-        "Adults": ['%g' % numpy.max(beerex_obj.out_adult_acute_rq), '%g' % numpy.max(out_dose_mamm), '%g' % numpy.max(out_at_bird)],
-        "Larvae": ['%g', '%g' % numpy.max(out_dose_mamm), '%g' % numpy.max(out_at_bird)]
-    }
-    return data
+# def gett5data(beerex_obj):
+#     data = {
+#         "Exposure": ['Acute Contact', 'Acute Dietary', 'Chronic Dietary'],
+#         "Adults": ['%g' % numpy.max(beerex_obj.out_adult_acute_rq), '%g' % numpy.max(out_dose_mamm), '%g' % numpy.max(out_at_bird)],
+#         "Larvae": ['%g', '%g' % numpy.max(out_dose_mamm), '%g' % numpy.max(out_at_bird)]
+#     }
+#     return data
 
 
 inpheadings = getheaderinp()
 toxheadings = getheadertox()
 eecheadings = getheadereecs()
 rqsheadings = getheaderrqs()
-maxrqheadings = getheadermaxrq()
+# maxrqheadings = getheadermaxrq()
 djtemplate = getdjtemplate()
 tmpl = Template(djtemplate)
 
@@ -158,7 +158,7 @@ def table_all(beerex_obj):
     html_all = html_all + table_2(beerex_obj)
     html_all = html_all + table_3(beerex_obj)
     html_all = html_all + table_4(beerex_obj)
-    html_all = html_all + table_5(beerex_obj)
+    # html_all = html_all + table_5(beerex_obj)
     return html_all
 
 
@@ -243,16 +243,16 @@ def table_4(beerex_obj):
         """
         return html
 
-def table_5(beerex_obj):
-        html = """
-            <H4 class="out_1 collapsible" id="section4"><span></span>Highest RQs</H4>
-                <div class="out_ container_output">
-        """
-        t5data = gett5data(beerex_obj)
-        t5rows = gethtmlrowsfromcols(t5data, maxrqheadings)
-        html = html + tmpl.render(Context(dict(data=t5rows, headings=maxrqheadings)))
-        html = html + """
-                </div>
-        </div>
-        """
-        return html
+# def table_5(beerex_obj):
+#         html = """
+#             <H4 class="out_1 collapsible" id="section4"><span></span>Highest RQs</H4>
+#                 <div class="out_ container_output">
+#         """
+#         t5data = gett5data(beerex_obj)
+#         t5rows = gethtmlrowsfromcols(t5data, maxrqheadings)
+#         html = html + tmpl.render(Context(dict(data=t5rows, headings=maxrqheadings)))
+#         html = html + """
+#                 </div>
+#         </div>
+#         """
+#         return html

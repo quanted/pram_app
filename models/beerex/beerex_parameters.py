@@ -13,7 +13,7 @@ empirical_residue_CHOICES = (('yes', 'yes'), ('no', 'no'))
 # SELECT_VERSION = (('1.0', '1.0'),)
 
 
-class beerexInp(forms.Form):
+class BeerexInp(forms.Form):
     # version = forms.ChoiceField(
     #     choices=SELECT_VERSION,
     #     label='Version',

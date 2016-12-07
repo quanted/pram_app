@@ -24,11 +24,7 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 os.environ.update({
     'UBERTOOL_BATCH_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com/',
     'UBERTOOL_MONGO_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
-    'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',   
-    #'UBERTOOL_REST_SERVER': 'http://localhost:80',                         # Local REST server
-    #'UBERTOOL_REST_SERVER': 'http://54.83.18.251:80',                      # Tao's EC2 REST server 
-    #'UBERTOOL_REST_SERVER': 'http://54.210.118.56'                         # EB Pilot REST server
-    'UBERTOOL_REST_SERVER': 'http://172.20.100.15:7777',                           # CGI Internal
+    'UBERTOOL_SECURE_SERVER': 'http://uberrest-topknotmeadows.rhcloud.com',
     'REST_SERVER_8': 'http://172.20.100.18',
     'PROJECT_PATH': PROJECT_ROOT,
     'SITE_SKIN': 'EPA',                          # Leave empty ('') for default skin, 'EPA' for EPA skin
@@ -41,6 +37,9 @@ os.environ.update({
     'CTS_SPARC_SERVER': 'http://204.46.160.69:8080',
     'CTS_TEST_SERVER': 'http://172.20.100.16:8080'
 })
+if not os.environ.get('UBERTOOL_REST_SERVER'):
+    os.environ.update({'UBERTOOL_REST_SERVER': 'http://nginx:7777'})  # Docker network
+    print("REST backend = http://nginx:7777")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/

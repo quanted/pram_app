@@ -13,14 +13,14 @@ empirical_residue_CHOICES = (('yes', 'yes'), ('no', 'no'))
 # SELECT_VERSION = (('1.0', '1.0'),)
 
 
-class beerexInp_chemical(forms.Form):
+class beerexInp(forms.Form):
     # version = forms.ChoiceField(
     #     choices=SELECT_VERSION,
     #     label='Version',
     #     initial='1.0')
     chemical_name = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 30, 'rows': 1}),
-        initial='Beerex Example',
+        initial='Bee-REX Example',
         required=True)
     crop_type = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
@@ -53,9 +53,6 @@ class beerexInp_chemical(forms.Form):
         label='Mass of tree vegetation for tree trunk application method (kg-wet weight)',
         initial=856.2,
         validators=[validation.validate_greaterthan0])
-
-
-class beerexInp_toxicity(forms.Form):
     adult_contact_ld50 = forms.FloatField(
         required=True,
         label='Adult contact LD50 (ug a.i./bee)',
@@ -102,9 +99,6 @@ class beerexInp_toxicity(forms.Form):
         label='Empirical data of pesticide residue in jelly (ug a.i./mg)',
         initial=0.0006,
         validators=[validation.validate_greaterthan0])
-
-
-class beerexInp_exposure(forms.Form):
     lw1_jelly = forms.FloatField(
         required=True,
         label='Larval worker day 1 jelly consumption rate (mg/day)',
@@ -245,7 +239,3 @@ class beerexInp_exposure(forms.Form):
         label='Adult queen jelly consumption rate (mg/day)',
         initial=525,
         validators=[validation.validate_greaterthan0])
-
-
-class beerexInp(beerexInp_chemical, beerexInp_exposure, beerexInp_toxicity):
-    pass

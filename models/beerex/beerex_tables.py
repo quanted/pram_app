@@ -32,10 +32,10 @@ def getheaderrqs():
     return headings
 
 
-# def getheadersum():
-#     headings = ["Exposure", "Adults", "Larvae"]
-#     return headings
-#
+def getheadermaxrq():
+    headings = ["Exposure", "Adults", "Larvae"]
+    return headings
+
 
 def gethtmlrowsfromcols(data, headings):
     columns = [data[heading] for heading in headings]
@@ -76,113 +76,70 @@ def getdjtemplate():
 
 def gett1data(beerex_obj):
     data = { 
-        "Description": ['Application rate (lb a.i./A)', 'Application method',mark_safe('Log K<sub>oW</sub>'), mark_safe('K<sub>oC</sub>)'), 'Mass of tree vegetation (kg-wet weight)'],
-        "Value": [beerex_obj.apprate, beerex_obj.solubility,beerex_obj.ld50_mammal_water,beerex_obj.bodyweight_tested_mammal,beerex_obj.noael_mammal_water,beerex_obj.noael_bodyweight_tested_mammal,beerex_obj.ld50_avian_water,beerex_obj.bodyweight_tested_bird,beerex_obj.mineau_scaling_factor,beerex_obj.noaec_duck,beerex_obj.noaec_quail,beerex_obj.noaec_bird_other_1,beerex_obj.bodyweight_bird_other_1,beerex_obj.noaec_bird_other_2,beerex_obj.bodyweight_bird_other_2],
+        "Description": ['Application rate (lb a.i./A)', 'Application method', mark_safe('Log Kow'), mark_safe('Koc)'), 'Mass of tree vegetation (kg-wet weight)'],
+        "Value": [beerex_obj.application_rate, beerex_obj.application_method, beerex_obj.log_kow, beerex_obj.koc, beerex_obj.mass_tree_vegetation,]
     }
     return data
 
 
 def gett2data(beerex_obj):
     data = { 
-        "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % beerex_obj.out_dose_mamm, '%g' % beerex_obj.out_at_mamm, '%g' % beerex_obj.out_acute_mamm, '%s' % beerex_obj.out_acuconm,],
-        "Chronic": ['%g' % beerex_obj.out_dose_mamm, '%g' % beerex_obj.out_act, '%g' % beerex_obj.out_chron_mamm, '%s' % beerex_obj.out_chronconm,],
-        "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
+        "Description": ['Adult Contact LD50', 'Adult Oral LD50', 'Adult Oral NOAEL', 'Larval LD50', 'Larval NOAEL'],
+        "Value (ug a.i./bee)": ['%g' % beerex_obj.adult_contact_ld50, '%g' % beerex_obj.adult_oral_ld50, '%g' % beerex_obj.adult_oral_noael, '%g' % beerex_obj.larval_ld50, '%s' % beerex_obj.larval_noael,]
     }
     return data
 
-def gett2dataqaqc(beerex_obj):
-    data = { 
-        "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % beerex_obj.out_dose_mamm, '%g' % beerex_obj.out_at_mamm, '%g' % beerex_obj.out_acute_mamm, '%s' % beerex_obj.out_acuconm,],
-        "Acute-Expected": ['%g' % beerex_obj.dose_mamm_exp,'%g' % beerex_obj.at_mamm_exp,'%g' % beerex_obj.acute_mamm_exp,'%s' % beerex_obj.acuconm_exp,],
-        "Chronic": ['%g' % beerex_obj.out_dose_mamm, '%g' % beerex_obj.out_act, '%g' % beerex_obj.out_chron_mamm, '%s' % beerex_obj.out_chronconm,],
-        "Chronic-Expected": ['%g' % beerex_obj.dose_mamm_exp,'%g' % beerex_obj.act_exp,'%g' % beerex_obj.chron_mamm_exp,'%s' % beerex_obj.chronconm_exp,],
-        "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
-    }
-    return data
 
 def gett3data(beerex_obj):
     data = { 
-        "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % beerex_obj.out_dose_bird, '%g' % beerex_obj.out_at_bird,'%g' % beerex_obj.out_acute_bird, '%s' % beerex_obj.out_acuconb,],
-        "Chronic": ['%g' % beerex_obj.out_dose_bird, '%g' % beerex_obj.out_det,'%g' % beerex_obj.out_chron_bird, '%s' % beerex_obj.out_chronconb,],
-        "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
+        "Application Method": ['Foliar Spray', 'Soil Application', 'Seed Treatment', 'Tree Trunk'],
+        "EECs (ug a.i./mg)": ['%g' % beerex_obj.out_eec_foliar, '%g' % beerex_obj.out_eec_soil,'%g' % beerex_obj.out_eec_seed, '%s' % beerex_obj.out_eec_tree,],
     }
     return data
 
-def gett3dataqaqc(beerex_obj):
+
+def gett4data(beerex_obj):
     data = { 
-        "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % beerex_obj.out_dose_bird, '%g' % beerex_obj.out_at_bird,'%g' % beerex_obj.out_acute_bird, '%s' % beerex_obj.out_acuconb,],
-        "Acute-Expected": ['%g' % beerex_obj.dose_bird_exp, '%g' % beerex_obj.at_bird_exp, '%g' % beerex_obj.acute_bird_exp, '%s' % beerex_obj.acuconb_exp,],
-        "Chronic": ['%g' % beerex_obj.out_dose_bird, '%g' % beerex_obj.out_det,'%g' % beerex_obj.out_chron_bird, '%s' % beerex_obj.out_chronconb,],
-        "Chronic-Expected": ['%g' % beerex_obj.dose_bird_exp,'%g' % beerex_obj.det_exp,'%g' % beerex_obj.chron_bird_exp,'%s' % beerex_obj.chronconb_exp,],
-        "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
+        "Life Stage & Caste": ['Larval Worker', 'Larval Worker', 'Larval Worker', 'Larval Worker', 'Larval Worker',
+                               'Larval Drone', 'Larval Queen', 'Larval Queen', 'Larval Queen', 'Larval Queen',
+                               'Adult Worker (cell cleaning and capping)', 'Adult Worker (brood and queen tending, nurse bees)',
+                               'Adult Worker (comb building, cleaning and food handling)', 'Adult Worker (foraging for pollen)',
+                               'Adult Worker (foraging for nectar)', 'Adult Worker (maintenance of hive in winter)', 'Adult Drone',
+                               'Adult Queen (laying 1500 eggs/day)'],
+        "Average Age (days)": ['1', '2', '3', '4', '5', '6+', '1', '2', '3', '4+', '0-10', '6-17', '11-18', '>18', '>18', '0-90', '>10', 'entire lifestage'],
+        "Jelly (mg/day)": ['%g' % beerex_obj.lw1_jelly, '%g' % beerex_obj.lw2_jelly, '%g' % beerex_obj.lw3_jelly, '%g', '%g', '%g', '%g' % beerex_obj.lq1_jelly,
+                           '%g' % beerex_obj.lq2_jelly, '%g' % beerex_obj.lq3_jelly, '%g' % beerex_obj.lq4_jelly, '%g', '%g', '%g', '%g', '%g', '%g', '%g', '%s' % beerex_obj.aq_jelly],
+        "Nectar (mg/day)": ['%g', '%g', '%g', '%g' % beerex_obj.lw4_nectar, '%g' % beerex_obj.lw5_nectar, '%g' % beerex_obj.ld6_nectar, '%g', '%g', '%g', '%g',
+                            '%g' % beerex_obj.aw_cell_nectar, '%g' % beerex_obj.aw_brood_nectar, '%g' % beerex_obj.aw_comb_nectar, '%g' % beerex_obj.aw_fpollen_nectar,
+                            '%g' % beerex_obj.aw_fnectar_nectar, '%g' % beerex_obj.aw_winter_nectar, '%g' % beerex_obj.ad_nectar, '%s'],
+        "Pollen (mg/day)": ['%g', '%g', '%g', '%g' % beerex_obj.lw4_pollen, '%g' % beerex_obj.lw5_pollen, '%g' % beerex_obj.ld6_pollen, '%g', '%g', '%g', '%g',
+                            '%g' % beerex_obj.aw_cell_pollen, '%g' % beerex_obj.aw_brood_pollen, '%g' % beerex_obj.aw_comb_pollen, '%g' % beerex_obj.aw_fpollen_pollen,
+                            '%g' % beerex_obj.aw_fnectar_pollen, '%g' % beerex_obj.aw_winter_pollen, '%g' % beerex_obj.ad_pollen, '%s'],
+        "Total Dose (ug a.i./bee)": ['%g' % beerex_obj.out_lw1_total_dose, '%g' % beerex_obj.out_lw2_total_dose, '%g' % beerex_obj.out_lw3_total_dose,
+                                     '%g' % beerex_obj.out_lw4_total_dose, '%g' % beerex_obj.out_lw5_total_dose, '%g' % beerex_obj.out_ld6_total_dose,
+                                     '%g' % beerex_obj.out_lq1_total_dose, '%g' % beerex_obj.out_lq2_total_dose, '%g' % beerex_obj.out_lq3_total_dose,
+                                     '%g' % beerex_obj.out_lq4_total_dose, '%g' % beerex_obj.out_aw_cell_total_dose, '%g' % beerex_obj.out_aw_brood_total_dose,
+                                     '%g' % beerex_obj.out_aw_comb_total_dose, '%g' % beerex_obj.out_aw_fpollen_total_dose, '%g' % beerex_obj.out_aw_fnectar_total_dose,
+                                     '%g' % beerex_obj.out_aw_winter_total_dose, '%g' % beerex_obj.out_ad_total_dose, '%s' % beerex_obj.out_aq_total_dose],
+        "Acute RQ": ['%g' % beerex_obj.out_lw1_acute_rq, '%g' % beerex_obj.out_lw2_acute_rq, '%g' % beerex_obj.out_lw3_acute_rq, '%g' % beerex_obj.out_lw4_acute_rq,
+                     '%g' % beerex_obj.out_lw5_acute_rq, '%g' % beerex_obj.out_ld6_acute_rq, '%g' % beerex_obj.out_lq1_acute_rq, '%g' % beerex_obj.out_lq2_acute_rq,
+                     '%g' % beerex_obj.out_lq3_acute_rq, '%g' % beerex_obj.out_lq4_acute_rq, '%g' % beerex_obj.out_aw_cell_acute_rq, '%g' % beerex_obj.out_aw_brood_acute_rq,
+                     '%g' % beerex_obj.out_aw_comb_acute_rq, '%g' % beerex_obj.out_aw_pollen_acute_rq, '%s' % beerex_obj.out_aw_nectar_acute_rq,
+                     '%g' % beerex_obj.out_aw_winter_acute_rq, '%g' % beerex_obj.out_ad_chronic_rq, '%g' % beerex_obj.out_aq_chronic_rq],
+        "Chronic RQ": ['%g' % beerex_obj.out_lw1_chronic_rq, '%g' % beerex_obj.out_lw2_chronic_rq, '%g' % beerex_obj.out_lw3_chronic_rq, '%g' % beerex_obj.out_lw4_chronic_rq,
+                       '%g' % beerex_obj.out_lw5_chronic_rq, '%g' % beerex_obj.out_ld6_chronic_rq, '%g' % beerex_obj.out_lq1_chronic_rq, '%g' % beerex_obj.out_lq2_chronic_rq,
+                       '%g' % beerex_obj.out_lq3_chronic_rq, '%g' % beerex_obj.out_lq4_chronic_rq, '%g' % beerex_obj.out_aw_cell_chronic_rq, '%g' % beerex_obj.out_aw_brood_chronic_rq,
+                       '%g' % beerex_obj.out_aw_comb_chronic_rq, '%g' % beerex_obj.out_aw_pollen_chronic_rq, '%g' % beerex_obj.out_aw_nectar_chronic_rq,
+                       '%g' % beerex_obj.out_aw_winter_chronic_rq, '%g' % beerex_obj.out_ad_chronic_rq, '%s' % beerex_obj.out_aq_chronic_rq]
     }
     return data
 
-def gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
-                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
-    data = { 
-        "Parameter": ['BW Quail', 'BW Duck', 'BW Bird Other', 'BW Rat', 'BW Mammal Other', 'Avian LD50', 'Mammalian LD50', 
-                    'Solubility','AW Bird' , 'Mineau', 'NOAEC','NOAEL'],
-        "Mean": ['%g' % numpy.mean(bodyweight_quail),'%g' % numpy.mean(bodyweight_duck),'%g' % numpy.mean(bodyweight_bird_other), '%g' % numpy.mean(bodyweight_rat), 
-                 '%g' % numpy.mean(bodyweight_tested_mammal_other), '%g' % numpy.mean(solubility), '%g' % numpy.mean(avian_ld50), '%g' % numpy.mean(mammalian_ld50),
-                 '%g' % numpy.mean(mineau_scaling_factor),
-                 '%g' % numpy.mean(noael_avian_water), '%g' % numpy.mean(noael_mammal_water),],
-        "Std": ['%g' % numpy.std(bodyweight_quail),'%g' % numpy.std(bodyweight_duck),'%g' % numpy.std(bodyweight_bird_other), '%g' % numpy.std(bodyweight_rat), 
-                '%g' % numpy.std(bodyweight_tested_mammal_other), '%g' % numpy.std(solubility), '%g' % numpy.std(avian_ld50), '%g' % numpy.std(mammalian_ld50),
-                 '%g' % numpy.std(mineau_scaling_factor),
-                 '%g' % numpy.std(noael_avian_water),'%g' % numpy.std(noael_mammal_water),],
-        "Min": ['%g' % numpy.min(bodyweight_quail),'%g' % numpy.min(bodyweight_duck),'%g' % numpy.min(bodyweight_bird_other), '%g' % numpy.min(bodyweight_rat), 
-                '%g' % numpy.min(bodyweight_tested_mammal_other), '%g' % numpy.min(solubility), '%g' % numpy.min(avian_ld50), '%g' % numpy.min(mammalian_ld50),
-                 '%g' % numpy.min(mineau_scaling_factor),
-                 '%g' % numpy.min(noael_avian_water),'%g' % numpy.min(noael_mammal_water),],
-         "Max": ['%g' % numpy.max(bodyweight_quail),'%g' % numpy.max(bodyweight_duck),'%g' % numpy.max(bodyweight_bird_other), '%g' % numpy.max(bodyweight_rat), 
-                '%g' % numpy.max(bodyweight_tested_mammal_other), '%g' % numpy.max(solubility), '%g' % numpy.max(avian_ld50), '%g' % numpy.max(mammalian_ld50),
-                 '%g' % numpy.max(mineau_scaling_factor),
-                 '%g' % numpy.max(noael_avian_water),'%g' % numpy.max(noael_mammal_water),],
-        "Unit": ['g', 'g', 'g', 'g', 'g','mg/kg-bw', 'mg/kg-bw', 'mg/L','g', '', 'g','mg/kg-diet', 'mg/kg-bw',],
-    }
-    return data
 
-def gettsumdata_out(out_dose_bird, out_dose_mamm, out_at_bird, 
-                    out_at_mamm, out_det, out_act, out_acute_bird, out_acute_mamm, 
-                    out_chron_bird, out_chron_mamm):
+def gett5data(beerex_obj):
     data = {
-        "Parameter": ['Upper Bound Exposure - Avian', 'Upper Bound Exposure - Mammalian',
-                    'Adjusted Toxicity Value (Acute) - Avian',
-                    'Adjusted Toxicity Value (Acute) - Mammalian',
-                    'Adjusted Toxicity Value (Chronic) - Avian',
-                    'Adjusted Toxicity Value (Chronic) - Mammalian',
-                    'Ratio of Exposure to Toxicity (Acute) - Avian',
-                    'Ratio of Exposure to Toxicity (Acute) - Mammalian',
-                    'Ratio of Exposure to Toxicity (Chronic) - Avian',
-                    'Ratio of Exposure to Toxicity (Chronic) - Mammalian',],
-
-        "Mean": [
-                 '%g' % numpy.mean(out_dose_bird), '%g' % numpy.mean(out_dose_mamm), '%g' % numpy.mean(out_at_bird),
-                 '%g' % numpy.mean(out_at_mamm), '%g' % numpy.mean(out_act), '%g' % numpy.mean(out_det),
-                 '%g' % numpy.mean(out_acute_bird), '%g' % numpy.mean(out_acute_mamm),
-                 '%g' % numpy.mean(out_chron_bird), '%g' % numpy.mean(out_chron_mamm),],
-
-        "Std": ['%g' % numpy.std(out_dose_bird), '%g' % numpy.std(out_dose_mamm), '%g' % numpy.std(out_at_bird),
-                '%g' % numpy.std(out_at_mamm), '%g' % numpy.std(out_act), '%g' % numpy.std(out_det),
-                '%g' % numpy.std(out_acute_bird), '%g' % numpy.std(out_acute_mamm),
-                '%g' % numpy.std(out_chron_bird), '%g' % numpy.std(out_chron_mamm),],
-
-        "Min": ['%g' % numpy.min(out_dose_bird), '%g' % numpy.min(out_dose_mamm), '%g' % numpy.min(out_at_bird),
-                '%g' % numpy.min(out_at_mamm), '%g' % numpy.min(out_act), '%g' % numpy.min(out_det),
-                '%g' % numpy.min(out_acute_bird), '%g' % numpy.min(out_acute_mamm),
-                '%g' % numpy.min(out_chron_bird), '%g' % numpy.min(out_chron_mamm),],
-
-         "Max": ['%g' % numpy.max(out_dose_bird), '%g' % numpy.min(out_dose_mamm), '%g' % numpy.min(out_at_bird),
-                '%g' % numpy.max(out_at_mamm), '%g' % numpy.max(out_act), '%g' % numpy.min(out_det),
-                '%g' % numpy.max(out_acute_bird), '%g' % numpy.min(out_acute_mamm),
-                '%g' % numpy.max(out_chron_bird), '%g' % numpy.max(out_chron_mamm),],
-
-        "Unit": ['mg/kg-bw', 'mg/kg-bw','mg/kg-bw', 'mg/kg-bw', 'mg/kg-bw', 'mg/kg-bw', '','', '', '',],
+        "Exposure": ['Acute Contact', 'Acute Dietary', 'Chronic Dietary'],
+        "Adults": ['%g' % numpy.max(beerex_obj.out_adult_acute_rq), '%g' % numpy.max(out_dose_mamm), '%g' % numpy.max(out_at_bird)],
+        "Larvae": ['%g', '%g' % numpy.max(out_dose_mamm), '%g' % numpy.max(out_at_bird)]
     }
     return data
 
@@ -191,7 +148,7 @@ inpheadings = getheaderinp()
 toxheadings = getheadertox()
 eecheadings = getheadereecs()
 rqsheadings = getheaderrqs()
-# sumheadings = getheadersum()
+maxrqheadings = getheadermaxrq()
 djtemplate = getdjtemplate()
 tmpl = Template(djtemplate)
 
@@ -201,14 +158,8 @@ def table_all(beerex_obj):
     html_all = html_all + table_2(beerex_obj)
     html_all = html_all + table_3(beerex_obj)
     html_all = html_all + table_4(beerex_obj)
-    # html_all = html_all + table_5(beerex_obj)
+    html_all = html_all + table_5(beerex_obj)
     return html_all
-
-# def table_all_qaqc(beerex_obj):
-#     html_all = table_1(beerex_obj)
-#     html_all = html_all + table_2_qaqc(beerex_obj)
-#     html_all = html_all + table_3_qaqc(beerex_obj)
-#     return html_all
 
 
 def timestamp(beerex_obj="", batch_jid=""):
@@ -292,64 +243,16 @@ def table_4(beerex_obj):
         """
         return html
 
-# def table_5(beerex_obj):
-#         html = """
-#             <H4 class="out_1 collapsible" id="section4"><span></span>Highest RQs</H4>
-#                 <div class="out_ container_output">
-#         """
-#         t5data = gett5data(beerex_obj)
-#         t5rows = gethtmlrowsfromcols(t5data, sumheadings)
-#         html = html + tmpl.render(Context(dict(data=t5rows, headings=sumheadings)))
-#         html = html + """
-#                 </div>
-#         </div>
-#         """
-#         return html
-
-
-def table_all_sum(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
-                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water,
-                    out_dose_bird, out_dose_mamm, out_at_bird, 
-                    out_at_mamm, out_det, out_act, out_acute_bird, out_acute_mamm, 
-                    out_chron_bird, out_chron_mamm):
-    html_all_sum = table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
-                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
-    html_all_sum += table_sum_output(sumheadings,tmpl,out_dose_bird,out_dose_mamm,out_at_bird, 
-                    out_at_mamm,out_det,out_act,out_acute_bird,out_acute_mamm,out_chron_bird,out_chron_mamm)
-    return html_all_sum
-
-def table_sum_input(sumheadings, tmpl, bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,
-                    avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water):
+def table_5(beerex_obj):
         html = """
-        <H3 class="out_1 collapsible" id="section1"><span></span>Summary Statistics</H3>
-        <div class="out_">
-            <H4 class="out_1 collapsible" id="section4"><span></span>Batch Inputs</H4>
+            <H4 class="out_1 collapsible" id="section4"><span></span>Highest RQs</H4>
                 <div class="out_ container_output">
         """
-        tsuminputdata = gettsumdata(bodyweight_quail,bodyweight_duck,bodyweight_bird_other,bodyweight_rat,bodyweight_tested_mammal_other,solubility,avian_ld50,mammalian_ld50,mineau_scaling_factor,noael_avian_water,noael_mammal_water)
-        tsuminputrows = gethtmlrowsfromcols(tsuminputdata, sumheadings)
-        html = html + tmpl.render(Context(dict(data=tsuminputrows, headings=sumheadings)))
-        html = html + """
-                </div>
-        """
-        return html
-
-def table_sum_output(sumheadings, tmpl, out_dose_bird, out_dose_mamm, out_at_bird, 
-                    out_at_mamm, out_det, out_act, out_acute_bird, out_acute_mamm, 
-                    out_chron_bird, out_chron_mamm):
-        html = """
-        <br>
-            <H4 class="out_1 collapsible" id="section3"><span></span>beerex Outputs</H4>
-                <div class="out_ container_output">
-        """
-        tsumoutputdata = gettsumdata_out(out_dose_bird, out_dose_mamm, out_at_bird, 
-                    out_at_mamm, out_det, out_act, out_acute_bird, out_acute_mamm, 
-                    out_chron_bird, out_chron_mamm)
-        tsumoutputrows = gethtmlrowsfromcols(tsumoutputdata, sumheadings)
-        html = html + tmpl.render(Context(dict(data=tsumoutputrows, headings=sumheadings)))
+        t5data = gett5data(beerex_obj)
+        t5rows = gethtmlrowsfromcols(t5data, maxrqheadings)
+        html = html + tmpl.render(Context(dict(data=t5rows, headings=maxrqheadings)))
         html = html + """
                 </div>
         </div>
         """
         return html
-

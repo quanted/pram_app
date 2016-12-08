@@ -35,12 +35,12 @@ class BeerexInp(forms.Form):
         validators=[validation.validate_choicefield])
     log_kow = forms.FloatField(
         required=False,
-        label='Log K<sub>OW</sub> for soil application method (@ 21&deg;C)',
+        label='Log Kow for soil application method',
         initial=0.56820172,
         validators=[validation.validate_greaterthan0])
     koc = forms.FloatField(
         required=False,
-        label='K<sub>OC</sub> for soil application method (L/kg)',
+        label='Koc for soil application method (L/kg)',
         initial=318,
         validators=[validation.validate_greaterthan0])
     application_rate = forms.FloatField(
@@ -151,7 +151,7 @@ class BeerexInp(forms.Form):
         validators=[validation.validate_greaterthan0])
     lq2_jelly = forms.FloatField(
         required=True,
-        label='Larval queed day 2 jelly consumption rate (mg/day)',
+        label='Larval queen day 2 jelly consumption rate (mg/day)',
         initial=9.4,
         validators=[validation.validate_greaterthan0])
     lq3_jelly = forms.FloatField(

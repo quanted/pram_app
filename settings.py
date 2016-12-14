@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     #'mod_wsgi.server',  # Only needed for mod_wsgi express (Python driver for Apache) e.g. on the production server
     # 'docs',
     'api',
+    'models.boilerplate',
     'models.terrplant',
     'models.sip',
     'models.stir',

@@ -1,0 +1,15 @@
+<p>MERIS and OLCI remotely-sensed imagery are processed using a second-derivative CyAN algorithm to estimate a cyanobacteria index value for each 300x300meter pixel.<p>
+
+<p>
+
+
+</p>
+
+<br>
+
+
+<img src = "/static/images/schematic_diagram.png" width="400">
+<figcaption>Figure 1. Schematic diagram of information/data flow in PiSCES.</figcaption>
+
+<br>
+<p>The Pisces algorithm equations is shown below.</p>

@@ -1,0 +1,11 @@
+<p>MERIS and OLCI remotely-sensed imagery are processed using a second-derivative CyAN algorithm to estimate a cyanobacteria index value for each 300x300meter pixel.</p>
+
+<br>
+<p>
+The CyAN algorithm equations is shown below.
+</p>
+
+<img src = "/static/images/d01_equation.png" width="400">
+<br>
+<img src = "/static/images/d02_equation.png" width="400">
+<br>

@@ -105,6 +105,8 @@ INSTALLED_APPS = (
     'models.kabam',
     'models.ore',
     'models.hwbi',
+    'models.cyan',
+    'models.pisces',
     'cts_api'
     # 'rest_framework_swagger'
 )

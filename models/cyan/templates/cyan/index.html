@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    ul.tabs{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    ul.tabs li{
+        background: #e4e5e4;
+        color: #222;
+        display: inline-block;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    ul.tabs li.current{
+        background: #bbb;
+        color: #000;
+        border: solid 1px #356697;
+    }
+
+    .tab-content{
+        display: none;
+        background: #ffffff;
+        padding: 15px;
+    }
+
+    .tab-content.current{
+        display: inherit;
+    }
+
+    .axis text {
+      display: none;
+    }
+
+    .axis .halo {
+      stroke: #aaa;
+      stroke-width: 5px;
+    }
+
+    .slider .handle text {
+      fill: black;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    #cirSlide {
+        font-size: 13px;
+        padding: 2px 10px 2px 2px;
+    }
+
+    /* format d3.js tooltip for pie chart mouse-over */
+    .d3-tip {
+      line-height: 1;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    /* set county & state input fields */
+    #statecounty {
+        color: #74646e;
+        width: 150px;
+        padding: 2px 10px 2px 2px;
+        font-size: 14px;
+    }
+
+    /* size button font */
+    #updateServices {
+        font-size: 12px;
+    }
+
+    #pie {
+        background-color: #F9FBF6;
+    }
+
+    #pie2 {
+        background-color: #F9FBF6;
+    }
+
+    p {
+        font-size: 12px;
+        }
+
+    h2 {
+        font-size: 14px;
+        }
+</style>
+</head>
+
+<body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src = "/static/js/d3.v3.min.js"></script>
+<script src="/static/js/d3.tip.v0.6.3.js"></script>
+<script type="text/javascript" src="/static/js/jquery.blockUI.js"></script>
+
+
+{# For bootsrap, everything goes inside of these <div> tag #}
+<div class="articles_output">
+  <div class="row">
+  <h2>Services to Human Well-Being Dashboard</h2>
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+        <!--select state & county-->
+        <div id="statecounty" class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style = "float:left; width: 30%; margin-left: 10px; margin-top: 5px;">
+          <form id="stateform">
+              <select name="optone" id="stateSel" size="1">
+                  <option value="" selected="selected">select state</option>
+              </select>
+              <br>
+              <br>
+              <select name="opttwo" id="countySel" size="1">
+                  <option value="" selected="selected">select county</option>
+              </select>
+              <br>
+          </form>
+        </div>
+
+        <script src="/static/js/statecounty.js"></script>
+
+        <!--d3 work flow chart diagram services-to-HWBI-->
+        <div id="flowchart" class="col-lg-9 col-md-9 col-sm-9 col-xs-12"  style = "float:left; width: 65%;"></div>
+        <script src="/static/js/flowchart.js"></script>
+
+
+      <!--Text description of services-->
+        <div>
+          <p>
+              Twenty-two
+              <span style="color: #b86361;font-weight:bold;">economic</span>,
+              <span style="color: #61b88e;font-weight:bold;">ecosystem</span>, and
+              <span style="color: #618bb8;font-weight:bold;">social</span>
+              service scores were calculated for each county
+              in the conterminous United States. Choose your county then adjust the services sliders to examine how
+              changing services affects domain values and the overall HWBI.
+          </p>
+        </div>
+
+        <!--Sliders to adjust circle services-->
+        <div id="cirSlide" style = "margin-left: 25px;"></div>
+        <script src="/static/js/slider.js"></script>
+
+        <!--button to submit updated services to pie chart-->
+        <button id="updateServices" onclick="useServiceValues()" type="submit" class="btn btn-primary btn-xs" role="button">Modify Service Values</button>
+
+        <!--OLD button<button id="updateServices" onclick="useServiceValues()" style="float:left;">Update Service Values</button>-->
+      </div>
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <!--Text description of RIVs-->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <p>
+          The relative importance of domains may vary for each person. Use the boxes to rank
+          the importance of domains based on <i>your</i> preferences. A value of 5
+          is considered most important and a value of 1 has lowest importance.
+        </p>
+      </div>
+
+      <!--jquery ajax call to import html code for riv boxes-->
+      <div id="riv" class="panel panel-default col-lg-6 col-md-6 col-sm-4 col-xs-5" style = "float:left; width: 40%;"></div>
+      <script>
+        $(function(){
+          $("#riv").load("/static/riv.html");
+        });
+      </script>
+
+
+      <div class="container" style="float:left; width: 60%; text-align:center">
+        <ul class="tabs">
+            <li class="tab-link current" data-tab="pie">Modified Values</li>
+            <li class="tab-link" data-tab="pie2">Baseline County Values</li>
+        </ul>
+
+        <div id="pie" class="tab-content current col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
+        <div id="pie2" class="tab-content">
+        </div>
+      </div>
+
+      <script src="/static/js/pie.js" ></script>
+      <script src="/static/js/pie2.js" ></script>
+
+      <script>
+      $(document).ready(function(){
+
+        $('ul.tabs li').click(function(){
+            var tab_id = $(this).attr('data-tab');
+
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
+
+            $(this).addClass('current');
+            $("#"+tab_id).addClass('current');
+        })
+      })
+      </script>
+
+
+<!-- BOOTSTRAP TABS FOR PIE UPDATE
+<div class="container">
+ <div class="panel panel-default col-lg-5 col-md-5 col-sm-5 col-xs-5">
+
+    <ul class="nav nav-pills">
+        <li class="active"><a href="#pieA">PieA</a></li>
+        <li><a href="#pieB">PieB</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="pieA" class="tab-pane fade in active">
+            <p>County  Values</p>
+        </div>
+        <div id="pieB" class="tab-pane fade">
+            <p>Adjusted  Values</p>
+        </div>
+    </div>
+
+ </div>
+</div>
+      -->
+
+    <!--domain pie 2: updated
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" id="pie2" style="text-align:center">Modified Services and Weights</div>
+	</div>
+	-->
+
+
+    <!--Text description of HWBI pie-->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <p>
+          The services scores are used to calculate the eight domains of well-being,
+          represented as eight sections on the pie chart. The relative importance values
+          are represented by the width of pieces on the pie chart and used to calculate
+          the overall HWBI score.
+
+          The total Human Well-Being Index (HWBI) score is shown in the center of the pie chart.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

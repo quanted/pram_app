@@ -1,5 +1,5 @@
 """
-.. module:: hwbi_input
+.. module:: cyan_input
    :synopsis: A useful module indeed.
 """
 import os
@@ -12,7 +12,7 @@ import views
 import linksLeft
 
 
-def hwbi_input_page(request, model='hwbi', header='none'):
+def cyan_input_page(request, model='cyan', header='none'):
 
     # # If on public server, test user authentication
     # if settings.AUTH:
@@ -25,13 +25,13 @@ def hwbi_input_page(request, model='hwbi', header='none'):
     # html = render_to_string('01uberheader.html', {
     #     'site_skin': os.environ['SITE_SKIN'],
     #     'title': header + ' Inputs'})
-    # html = html + render_to_string('hwbi/02uberintroblock_wmodellinks_hwbi.html', {
+    # html = html + render_to_string('cyan/02uberintroblock_wmodellinks_cyan.html', {
     #     'site_skin': os.environ['SITE_SKIN'],
     #     'model': model,
     #     'page': 'input'})
     # html = html + linksLeft.linksLeft()
     #
-    # html = html + hwbiInputPage(request, model, header)
+    # html = html + cyanInputPage(request, model, header)
     #
     # html = html + render_to_string('06uberfooter.html', {'links': ''})
 
@@ -40,11 +40,11 @@ def hwbi_input_page(request, model='hwbi', header='none'):
     # return response
 
     html = render_to_string('04ubertext_start_index_drupal.html', {'TITLE': header})
-    html += hwbi_input_page_html(request, model, header)
+    html += cyan_input_page_html(request, model, header)
     html += render_to_string('04ubertext_end_drupal.html', {})
 
     return html
 
 
-def hwbi_input_page_html(request, model, dummy):
-    return render_to_string('hwbi/hwbi_input_page.html', {})
+def cyan_input_page_html(request, model, dummy):
+    return render_to_string('cyan/cyan_input_page.html', {})

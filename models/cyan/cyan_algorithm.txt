@@ -1,11 +1,20 @@
-<p>MERIS and OLCI remotely-sensed imagery are processed using a second-derivative CyAN algorithm to estimate a cyanobacteria index value for each 300x300meter pixel.</p>
+<p>Imagery from the Envisat <a href="https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/envisat/instruments/meris">
+MERIS</a> and Sentinel-3 <a href="https://sentinel.esa.int/web/sentinel/user-guides/sentinel-3-olci">OLCI</a> satellite
+sensors are processed using second derivative spectral shape algorithms to estimate cyanobacteria index values.</p>
 
 <br>
 <p>
-The CyAN algorithm equations is shown below.
+The cyanobacteria detection algorithm (<a href="http://www.sciencedirect.com/science/article/pii/S0034425714002211">Lunetta et al. 2015</a>)
+ processes reflectance with a "spectral shape" (SS) equation:
 </p>
 
-<img src = "/static/images/d01_equation.png" width="400">
-<br>
-<img src = "/static/images/d02_equation.png" width="400">
+<img src = "/static/images/equation.png" width="400" align="middle">
+
+<p>
+where λ indicates a wavelength and R is the amount of reflectance at that wavelength.
+ For MERIS imagery, wavelengths 620, 665, 681, 709, and 754 nm are especially relevant to detect cyanobacteria and to differentiate
+ cyan blooms from green algae.
+ For example, an equation with spectral shape SS(681 nm), λ = 681 nm, λ+ = 709 nm, and λ− = 665 nm is centered on the
+ 681 nm band and covers peaks in both chlorophyll absorption and chlorophyll fluorescence.
+</p>
 <br>

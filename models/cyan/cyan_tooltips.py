@@ -1,4 +1,4 @@
 """
-.. module:: hwbi_tooltips
+.. module:: cyan_tooltips
    :synopsis: A useful module indeed.
 """

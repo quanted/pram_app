@@ -1,40 +1,30 @@
-<!--
-  <p>
-Specific EPA guidance and the Microsoft Excel version of the HWBI model are not currently available on the Internet:
-</p>
-<ul class="bullet">
-  <li></li>
-</ul>
--->
-
 <p>
-<h3>Source Code:</h3>
-</p>
-<ul class="bullet">
-  <li><a href="https://github.com/puruckertom/ubertool_src/tree/master/iec">HWBI API documentation on GitHub</a></li>
-</ul>
+
+<h3>Primary Resources</h3>
+<br>
+<a href="https://www.epa.gov/water-research/cyanobacteria-assessment-network-cyan-project">Cyanobacteria Assessment Network (CyAN) Project Website</a>
+<br>
+<br>
+<a href="https://github.com/USEPA/EPA-CyanoEA">CyAN source code and documentation on GitHub</a>
+<br>
+<br>
+<br>
+
+
+</ul><h4><strong>Publications</strong></h4>
+
+<ul><li><a href="http://www.sciencedirect.com/science/article/pii/S0034425714002211">Evaluation of cyanobacteria cell count detection derived from MERIS imagery across the eastern USA</a></li>
+	<li>A satellite perspective to monitor water quality using your mobile phone. Lake Line</li>
+	<li><a href="https://eos.org/project-updates/agencies-collaborate-develop-a-cyanobacteria-assessment-network">Agencies Collaborate, Develop a Cyanobacteria Assessment Network (CyAN)</a></li>
+	<li><a href="http://www.sciencedirect.com/science/article/pii/S0034425715302443">An evaluation of time-series smoothing algorithms for land-cover classifications using MODIS-NDVI multi-temporal data. </a> </li>
+	<li><a href="http://www.sciencedirect.com/science/article/pii/S1568988315301839">Challenges for mapping cyanotoxin patterns from remote sensing of cyanobacteria.</a></li>
+	<li>Forecasting annual cyanobacterial bloom biomass to inform management decisions in Lake Erie.  </li>
 
 <br>
-<p>
-<h3>Reports:</h3>
-</p>
-<ul class="bullet">
-  <li><a href="https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=242106">Smith, L.M., H.M. Smith, J.L. Case,
-   L.C. Harwell, J.K. Summers, C. Wade. 2012. Indicators and Methods for Constructing a U.S. Human Well-being Index (HWBI)
-    for Ecosystem Services Research. United States Environmental Protection Agency. Office of Research and Development,
-     Gulf Ecology Division, Gulf Breeze, FL 32561. Report # EPA/600/R-12/023.</a></li>
+<br>
+</ul><h4><strong>Associated Reports</strong></h4>
 
-  <li><a href="https://cfpub.epa.gov/si/si_public_record_Report.cfm?dirEntryId=289300">Smith, L.M., Harwell, L.C., Summers,
-   J.K., Smith, H.M., Wade, C.M., Straub, K.R. and Case, J.L. 2014. A U.S. Human Well-Being Index (HWBI) for Multiple
-    Scales: Linking Services Provisioning to Human Well-Being Endpoints (2000-2010). EPA/600/R-14/223, Washington, D.C.:
-     U.S. Environmental Protection Agency, September 2014.</a></li>
-
-  <li><a href="http://link.springer.com/article/10.1007%2Fs10745-013-9597-5#page-1">Smith, L. M., Case, J. L., Harwell,
-   L. C., Smith, H. M., and Summers, J. K. (2013). Development of Relative Importance Values as Contribution Weights for
-    Evaluating Human Wellbeing: An Ecosystem Services Example. Human Ecology. 41(4): 631-641.</a></li>
-
-
-  <li><a href="https://cfpub.epa.gov/si/si_public_record_Report.cfm?dirEntryID=278817">Summers, J.K., L.M., Smith, L.C.
-  Harwell, J.L. Case, C.M. Wade, K.R. Straub and H.M. Smith. 2014. An Index of Human Well-Being for the U.S.: A TRIO
-  Approach. Sustainability. 6, 3915-3935; doi: 10.3390/su6063915</a></li>
-  </ul>
+<ul><li><a href="/clusters-program/white-house-water-summit-march-22-2016">White House Water Summit Commitments Report</a> (p. 5)</li>
+	<li><a href="/research/science-protect-public-health-and-environment-epa-research-program-overview-2016-2019">EPA Research Program Overview 2016-2019</a> (p. 15)</li>
+	<li><a href="/research/epa-research-2015-yearbook">EPA Research 2015 Yearbook</a> (p. 16)</li>
+</ul>

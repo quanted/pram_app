@@ -1,9 +1,9 @@
-﻿<p>PiSCES delivers a fish assemblage for any NHD-Plus stream reach in the conterminous United States by referencing HUC-based distributional information 
+﻿PiSCES delivers a fish assemblage for any NHD-Plus stream reach in the conterminous United States by referencing HUC-based distributional information
 for over 1,000 native and non-native species obtained from NatureServe, the USGS, and the Peterson Field Guide to Freshwater Fishes of North America 
 (Page and Burr 2011).  In addition to using current geographic distributions, PiSCES can refine potential communities to reflect information on species 
 rarity, stream size preferences, and occurrence envelopes for water quality metrics (pH, conductivity, turbidity, dissolved oxygen) and stream 
 characteristics (watershed area, mean width, depth, and slope).  PiSCES can also create an abundance distribution for a fish community using an 
-approach that associates abundance of a species to its maximum body size.</p>
-
+approach that associates abundance of a species to its maximum body size.
+<br>
+<br>
 <img src = "/static/images/Pisces.png" alt="Pisces" height="450" width="725">
-<figcaption></figcaption>

@@ -1,15 +1,107 @@
-<p>MERIS and OLCI remotely-sensed imagery are processed using a second-derivative CyAN algorithm to estimate a cyanobacteria index value for each 300x300meter pixel.<p>
+<p>The PiSCES database incorporates environmental and fish species information to predict species occurrence in watersheds of the continental U.S.
+Processing environmental and biological data involves several process steps.</p>
 
+<center><img src = "/static/images/schematic_diagram.png" width="400" align="middle">
+<figcaption>Figure 1. Schematic diagram of information/data flow in PiSCES.</figcaption></center>
+
+
+<br>
 <p>
+To characterize <b>stream size</b>, the Peterson Guide defines lotic systems using a narrative term related to a mean stream width:
+<ul>
+    <li>Headwater/Spring: 0-1 m
+    <li>Creek: 1-5 m
+    <li>Small River: 5-25 m
+    <li>Medium River: 25-50 m
+    <li>Large River: > 50 m
+</p>
+</ul>
 
 
+<br>
+<p>
+Next, bankfull width is derived using regional regression equations (Table 1, Figure 2) and converted to <b>stream width under mean flow conditions</b> by
+multiplying the bankfull width by 0.75 (Cassie, 2006).
+</p>
+<br>
+<center>
+<figcaption>Table 1. Regression equations for predicting the log10 of bankfull width (m) for the nine hydrologic regions shown in Figure 2.</figcaption>
+<img src = "/static/images/table1.png" width="600">
+<br>
+<br>
+<img src = "/static/images/fig2stream_width.png" width="600">
+<figcaption>Figure 2. Stream Width Regressions based on nine hydrologic regions, as shown in the National Rivers and Streams Assessment (USEPA 2013).</figcaption></center>
+<br>
+
+
+<br>
+<p>
+<b>Species Rarity</b> descriptors (Page and Burr, 2011) were converted into a numeric scale:
+<ul style="list-style-type:none">
+    <li>1: Abundant
+    <li>2: Abundant/Common
+    <li>3: Common
+    <li>4: Fairly Common
+    <li>5: Common/Uncommon
+    <li>6: Uncommon
+    <li>7: Uncommon/Rare
+    <li>8: Rare
+    <li>9: Extremely Rare
+    <li>10: Extinct
+</ul>
 </p>
 
-<br>
-
-
-<img src = "/static/images/schematic_diagram.png" width="400">
-<figcaption>Figure 1. Schematic diagram of information/data flow in PiSCES.</figcaption>
 
 <br>
-<p>The Pisces algorithm equations is shown below.</p>
+<p>
+Our method for calculating <b>occurrence envelopes</b> (which hypothetically should be wider than preference bounds) can be described as follows:
+<ul style="list-style-type:none">
+    <li>1) Sort every site by a given parameter value (e.g., conductivity), smallest to largest
+    <li>2) For each species, raise the recorded density at each site by an exponent ≥ 0. A value of 1 gives full weight to the measured densities, and the resulting envelopes will be influenced by sites where density of the species was highest. A value close to 0 transforms density data into presence/absence data, i.e., every site where the species was captured will be weighted equally.
+    <li>3) For a species of interest, use the sorted site list to calculate a cumulative proportion (Pi) of the transformed densities (Di) created in the previous step:
+<br>
+<br>
+    <center><img src = "/static/images/OE_equation.png" width="250"></center>
+<br>
+    where <i>n</i> is the total number of sites in the dataset.</p>
+</ul>
+
+<br>
+<p>Identify the parameter values at the sites where Pi surpasses some threshold (e.g., the Lower Occurrence Envelope at
+ 0.05; the Upper Occurrence Envelope at 0.95)</p>
+
+<center><img src = "/static/images/fig3.png" width="300"><img src = "/static/images/fig3b.png" width="260">
+<figcaption>Figure 3. Two approaches to calculating environmental parameter/species preferences.  The left diagram illustrates the approach
+ of Stranko et al. (2005), using the abundance of a species across various sites; the right diagram shows our approach,
+  using the cumulative proportion of transformed densities.</figcaption></center>
+
+
+
+<br>
+<p>There were a total of 51 genera for which occurrence envelopes could be calculated using the mid-Atlantic EMAP and
+ West Virginia REMAP data (Table 4). For most, we were able to calculate lower and upper bounds for the eight parameters
+  we investigated. Missing values for cells in Table 4 arise because some parameters values were not recorded at some of
+   the surveyed sites, so certain genus/parameter combinations dropped below a sample size of 5, stated earlier as our
+    threshold for envelope calculation.</p>
+
+<center><img src = "/static/images/table4.png" width="650">
+<figcaption>Table 4. Occurrence envelopes for 51 genera based on the mid-Atlantic EMAP and WV REMAP datasets for eight
+ parameters: Con = conductivity (µS/cm), pH, W = stream width (m), Slp = stream slope (%), Ar = drainage area (ha), Dp
+  = stream depth (cm), DO = dissolved oxygen (% saturation), TSS = total suspended solids (mg/l).</figcaption></center>
+
+
+<br>
+To fill in gaps in Table 4, we used envelope values from designated surrogate genera that shared ecological, morphological
+ and/or physiological similarities to the genus with missing data (Table 5). We also used this approach to add four genera
+  that were found in the EMAP/REMAP data, but for which no envelopes could be calculated because they were not found at
+   more than 5 sites.
+<br>
+<center><img src = "/static/images/table5.png" width="350">
+<figcaption>Table 5. Surrogate genera used to fill in the missing envelope estimates in Table 4, as well as an additional
+ four genera found in the EMAP/REMAP data for which no envelopes could be calculated.
+</figcaption></center>
+
+<br>
+Table 6 shows the 10th and 90th percentiles of the eight investigated parameters from the 795 EMAP/REMAP survey sites. As discussed in the Methods, these were used to re-formulate the genera occurrence envelopes given in Table 4 based on a genus’ interpreted intolerance to extreme values of each parameter. For example, the 10th percentile of specific conductance across all examined sites was 45 µS/cm. In the second column of Table 4, each genus with a specific conductance lower bound less than 45 would be defined as “insensitive” to low specific conductance, and its lower envelope bound would be instead set to the lowest value of specific conductance found in the dataset (given in parentheses). When filtering a potential fish assemblage using stream characteristics, PiSCES gives the user the option of using the originally-formulated envelopes shown in Table 4, or these sensitivity-adjusted envelopes, which are less restrictive and will result in larger potential communities.
+
+Table 6. 10th and 90th percentiles for the eight parameters in the EMAP/REMAP dataset used for revisiting the upper and lower bounds of the occurrence envelopes shown in Table 4.  Minimum and maximum dataset values are shown in parentheses.

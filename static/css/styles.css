@@ -534,6 +534,10 @@ input[type="submit"] {
   background-color: #9A8BB0;
   color: #F2AD9A;
 }
+#icon_pisces {
+  background-color: #6da7ce;
+  color: #393047;
+}
 #landing_links ul {
   list-style: none;
   text-align: center;

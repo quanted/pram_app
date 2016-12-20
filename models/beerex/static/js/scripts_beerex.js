@@ -1,12 +1,12 @@
 $(document).ready(function() {
   
     // Add 'dividers' between table sections
-    $('#id_chemical_name, #id_ld50_mammal_water, #id_noael_mammal_water, #id_ld50_avian_water, #id_noaec_duck').closest('tr').before('<tr><td colspan="2"></td></tr>');
+    $('#id_log_kow, #id_adult_contact_ld50, #id_empirical_residue, #id_lw1_jelly').closest('tr').before('<tr><td colspan="2"></td></tr>');
     // Default 'readonly' inputs
-    $('#id_bodyweight_tested_mammal, #id_noael_bodyweight_tested_mammal, #id_bodyweight_tested_bird').prop('readonly', true);
+    $('#id_log_kow, #id_koc, #id_mass_tree_vegetation, #id_empirical_pollen, #id_empirical_nectar, #id_empirical_jelly').prop('readonly', true);
     // onChange functions
-    $('#id_ld50_species_tested_mammal').change(function() {
-        if ($(this).val() == "350"){
+    $('#id_application_method').change(function() {
+        if ($(this).val() == "soil application"){
             $('#id_bodyweight_tested_mammal').prop('readonly', true).val('350');
         }
         else{

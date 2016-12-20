@@ -17,7 +17,7 @@ def ordered_list(model=None, page=None):
                 # ('Agdrift-T-Rex', 'agdrift_trex'),
                 # ('Agdrift-T-Herps', 'agdrift_therps'),
                 ('Earthworm', 'earthworm'),
-                ('Beerex', 'beerex'),
+                ('Bee-REX', 'beerex'),
             ])
         ),
         ('Aquatic Models', OrderedDict([

@@ -58,7 +58,7 @@ class BeerexInp(forms.Form):
         label='Adult contact LD50 (ug a.i./bee)',
         initial=0.043,
         validators=[validation.validate_positive])
-    adult_oral_ld50 = forms.ChoiceField(
+    adult_oral_ld50 = forms.FloatField(
         required=True,
         label='Adult oral LD50 (ug a.i./bee)',
         initial=0.0039,

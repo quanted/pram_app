@@ -8,8 +8,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-import os
-import sys
+
+import os, sys
+
 
 
 # Get machine IP address
@@ -43,13 +44,16 @@ if not os.environ.get('UBERTOOL_REST_SERVER'):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!  <-- We do not use this for anything
-try:
-    import secret
-    SECRET_KEY = secret.SECRET_KEY
-except ImportError:
-    SECRET_KEY = "ShhhDontTellAnyone"
 
+# SECURITY WARNING: keep the secret key used in production secret!  <-- We do not use this for anything
+# try:
+#     import secret
+#     SECRET_KEY = secret.SECRET_KEY
+# except ImportError:
+#     SECRET_KEY = "ShhhDontTellAnyone"
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'wx$p52y!1p!*p$$y^d!f9@5=)3o#88+08-i9_mc8*-8h+x2&@w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

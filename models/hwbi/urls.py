@@ -1,12 +1,13 @@
 from django.conf.urls import url
 import views
-from views_hwbi import description, algorithms, input, references
+from views_hwbi import description, algorithms, input, map, references
 
 
 urlpatterns = [
     url(r'^$', description.description_page, {'model': "hwbi"}),
     url(r'^description$', description.description_page, {'model': "hwbi"}),
     url(r'^input$', input.input_page, {'model': "hwbi"}),
+    url(r'^map$', map.map_page, {'model': "hwbi"}),
     url(r'^algorithms$', algorithms.algorithm_page, {'model': "hwbi"}),
     url(r'^references$', references.references_page, {'model': "hwbi"}),
     # TODO: Delete next two endpoints...

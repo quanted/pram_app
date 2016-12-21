@@ -16,7 +16,15 @@ Specific EPA guidance and the Microsoft Excel version of the Pisces model are no
 
 <br>
 <p>
-<h3>References:</h3>
+<h3>Primary Reference:</h3>
+</p>
+<ul>
+<li><a href="https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=297970">Cyterski, Mike. PisCES: Pis(cine) Community Estimation Software. US EPA Office of Research and Development, Washington, DC, EPA/600/F-14/451, 2014</a>
+</ul>
+
+<br>
+<p>
+<h3>Additional References:</h3>
 </p>
 <ul class="bullet">
 <li> Angermeier, P. and Winston, M. 1999. Characterizing fish community diversity across Virginia landscapes: prerequisite for conservation. Ecological Applications, 9(1): 335-349. </li>

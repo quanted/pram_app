@@ -1,13 +1,13 @@
 <p>The PiSCES database incorporates environmental and biological information to predict fish species occurrence in watersheds of the continental U.S.
-Processing riverine and species data involves several process steps.</p>
+Processing species and landscape data involves several steps.</p>
 
-<center><img src = "/static/images/schematic_diagram.png" width="400" align="middle">
+<center><img src = "/static/images/fig1_schematic.png" width="400" align="middle">
 <figcaption>Figure 1. Schematic diagram of information/data flow in PiSCES.</figcaption></center>
 
 
 <br>
 <p>
-To characterize <b>stream size</b>, the Peterson Guide defines lotic systems using a narrative term related to a mean stream width:
+To characterize <b>stream size</b>, the Peterson Guide defines lotic systems using a narrative term related to mean stream width:
 <ul>
     <li>Headwater/Spring: 0-1 m
     <li>Creek: 1-5 m
@@ -58,8 +58,12 @@ multiplying the bankfull width by 0.75 (Cassie, 2006).
 Our method for calculating <b>occurrence envelopes</b> (which hypothetically should be wider than preference bounds) can be described as follows:
 <ul style="list-style-type:none">
     <li>1) Sort every site by a given parameter value (e.g., conductivity), smallest to largest
-    <li>2) For each species, raise the recorded density at each site by an exponent ≥ 0. A value of 1 gives full weight to the measured densities, and the resulting envelopes will be influenced by sites where density of the species was highest. A value close to 0 transforms density data into presence/absence data, i.e., every site where the species was captured will be weighted equally.
-    <li>3) For a species of interest, use the sorted site list to calculate a cumulative proportion (Pi) of the transformed densities (Di) created in the previous step:
+    <li>2) For each species, raise the recorded density at each site by an exponent ≥ 0. A value of 1 gives full weight
+    to the measured densities, and the resulting envelopes will be influenced by sites where density of the species was
+    highest. A value close to 0 transforms density data into presence/absence data, i.e., every site where the species was
+    captured will be weighted equally.
+    <li>3) For a species of interest, use the sorted site list to calculate a cumulative proportion (Pi) of the transformed
+    densities (Di) created in the previous step:
 <br>
 <br>
     <center><img src = "/static/images/OE_equation.png" width="250"></center>
@@ -80,7 +84,7 @@ Our method for calculating <b>occurrence envelopes</b> (which hypothetically sho
 <br>
 <p>There were a total of 51 genera for which occurrence envelopes could be calculated using the mid-Atlantic EMAP and
  West Virginia REMAP data (Table 2). For most, we were able to calculate lower and upper bounds for the eight parameters
-  we investigated. Missing values for cells in Table 4 arise because some parameters values were not recorded at some of
+  we investigated. Missing values for cells in Table 2 arise because some parameters values were not recorded at some of
    the surveyed sites, so certain genus/parameter combinations dropped below a sample size of 5, stated earlier as our
     threshold for envelope calculation.</p>
 
@@ -91,7 +95,7 @@ Our method for calculating <b>occurrence envelopes</b> (which hypothetically sho
 
 
 <br>
-To fill in gaps in Table 2, we used envelope values from designated surrogate genera that shared ecological, morphological
+To fill in gaps in Table 2, we used envelope values from designated <b>surrogate genera</b> that shared ecological, morphological
  and/or physiological similarities to the genus with missing data (Table 3). We also used this approach to add four genera
   that were found in the EMAP/REMAP data, but for which no envelopes could be calculated because they were not found at
    more than 5 sites.
@@ -102,8 +106,8 @@ To fill in gaps in Table 2, we used envelope values from designated surrogate ge
 </figcaption></center>
 
 <br>
-Table 4 shows the 10th and 90th percentiles of the eight investigated parameters from the 795 EMAP/REMAP survey sites.
-As discussed in the Methods, these were used to re-formulate the genera occurrence envelopes given in Table 2 based on a
+Table 4 shows the 10th and 90th percentiles of the <b>eight investigated parameters</b> from the 795 EMAP/REMAP survey sites.
+These were used to re-formulate the genera occurrence envelopes given in Table 2 based on a
 genus’ interpreted intolerance to extreme values of each parameter. For example, the 10th percentile of specific
 conductance across all examined sites was 45 µS/cm. In the second column of Table 2, each genus with a specific
 conductance lower bound less than 45 would be defined as “insensitive” to low specific conductance, and its lower
@@ -119,14 +123,13 @@ and will result in larger potential communities.
 </figcaption></center>
 
 <br>
-There is no doubt variability in tolerance and habitat preferences between species of the same genus (Barbour et al. 1999,
+There is variability in tolerance and habitat preferences between species of the same genus (Barbour et al. 1999,
  Page and Burr 2011), but this variability is generally not as great as between-genera variability, thus these derived
   envelopes can be informative. Being genus-specific, the envelopes are wider than what would be expected for individual
    species, which will lead PiSCES to predict the possibility of more species than would commonly be found in a routine
     fish survey.
 
-<br>
-<br>
+
 <br>
 <br>
 <br>
@@ -136,7 +139,7 @@ the <b>community size spectrum</b> (Sheldon et al. 1972; Pope and Knights 1982; 
 
 <br>
 <br>
-log2(Abundance) = -α * log2(Maximum Length, cm)
+<center>log2(Abundance) = -α * log2(Maximum Length, cm)</center>
 
 <br>
 <br>
@@ -146,8 +149,8 @@ often the case in heavily exploited fisheries (Duplisea and Castonguay 2006). We
 0.5 and 2.0.
 <br>
 <br>
-The table below shows how this approach works for a hypothetical community of seven fish species ranging in length from
-10 to 60cm, with α = 1.5. The second column is log2Abundance as determined by Equation 2. Column three is the anti-base2
+Table 5 shows how this approach works for a hypothetical community of seven fish species ranging in length from
+10 to 60cm, with α = 1.5. The second column is log2Abundance. Column three is the anti-base2
 logarithm (2^) of these values, and column four is each abundance divided by the sum of column three, so the values in
 Column 4 sum to 1. This relative abundance for each species is then multiplied by the user-specified total abundance
 (1,500 in this example) to provide an estimate of the absolute number of individuals of each species in the reach (column five).
@@ -159,9 +162,7 @@ Column 4 sum to 1. This relative abundance for each species is then multiplied b
 <figcaption>Table 5. Calculations for determining a hypothetical community spectrum. Total abundance is 1,500 fish and α=1.5.
 </figcaption></center>
 
-<br>
-<br>
-<br>
+
 <br>
 <br>
 <br>
@@ -171,19 +172,8 @@ Species are categorized as Intolerant, Moderately Tolerant, or Tolerant.
 
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
 The user can sort the PiSCES database to show <b>groups of species</b> that share evolutionary commonality
-(essentially corresponding to taxonomic families): Anchovy, Black Bass, Bowfin, Burbot, Catfish, Cavefish, Characin,
-Cichlid, Clupeid, Cod, Darter, Drum, Eel, Flounder, Gar, Goby, Knifefish, Lamprey, Livebearer, Loach, Madtom, Minnow,
-Mooneye, Mudminnow, Mullet, Needlefish, Paddlefish, Perch, Pike, Pipefish, Pirate Perch, Pupfish, Pygmy Sunfish, Salmonid,
-Sculpin, Silverside, Smelt, Snakehead, Splitfin, Stickleback, Stingray, Sturgeon, Sucker, Sunfish, Surfperch, Topminnow,
-Trout-Perch, White Bass, and Whitefish.
-<br>
-<br>
-The finalized PiSCES database contains information on 1015 fish species representing 200 genera. Table 6 shows
+(essentially corresponding to taxonomic families). The finalized PiSCES database contains information on 1015 fish species representing 200 genera. Table 6 shows
 categorization of the 49 groups in terms of sport fishes, non-game fishes, subsistence species, and those entirely
 exotic to the US. Note that some groups can be found in more than one column, and a group was classified according to
 the majority of the species comprising that group.
@@ -195,7 +185,7 @@ the majority of the species comprising that group.
 <figcaption>Table 6. Categorization of the 49 groups of fishes in PiSCES.</figcaption></center>
 <br>
 <br>
-Ancillary Characteristics. PiSCES also has the following information for each species in its database:
+PiSCES also has the following <b>ancillary information</b> for each species in its database:
 <ul>
     <li>Origin: Native to US or Introduced
     <li>Human Use: Sport Fish, Non-Game, Subsistence
@@ -207,18 +197,15 @@ Ancillary Characteristics. PiSCES also has the following information for each sp
 </ul>
 
 <br>
-<br>
 These descriptors were taken from information in Page and Burr (2011), NatureServe.com, and FishBase.org. Information on
  subsistence species was found in Kappen et al. (2012). For most fish groups, species whose maximum body size was over
   25cm were considered sport fishes unless their rarity measure was 7 or greater. For Salmonids, this threshold was 20cm,
    and for Sunfish and Black Bass, the threshold was 15cm. Species under these thresholds were designated as non-game.
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
+
+<br>
+<br>
+<br>
 In summarizing PiSCES development outcomes and the introductory discussion on motivation, design,
  and intended use, three major benefits are derived from its final design and functionality. In stand-alone mode, PISCES
   allows users to develop reasonably reliable estimates of fish communities in lotic systems across the US.  This

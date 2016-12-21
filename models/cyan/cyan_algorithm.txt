@@ -8,7 +8,7 @@ The cyanobacteria detection algorithm (<a href="http://www.sciencedirect.com/sci
  processes reflectance with a "spectral shape" (SS) equation:
 </p>
 
-<img src = "/static/images/equation.png" width="400" align="middle">
+<center><img src = "/static/images/equation.png" width="400" align="middle"></center>
 
 <p>
 where λ indicates a wavelength and R is the amount of reflectance at that wavelength.

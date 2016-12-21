@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.conf import settings
-import secret
+#import secret
 import views
 import linksLeft
 

@@ -93,7 +93,7 @@ def gett2data(beerex_obj):
 def gett3data(beerex_obj):
     data = { 
         "Application Method": ['Foliar Spray', 'Soil Application', 'Seed Treatment', 'Tree Trunk'],
-        "EECs (ug a.i./mg)": ['%g' % beerex_obj.out_eec_foliar, '%g' % beerex_obj.out_eec_soil,'%g' % beerex_obj.out_eec_seed, '%s' % beerex_obj.out_eec_tree,],
+        "EECs (ug a.i./mg)": ['%g' % beerex_obj.out_eec_spray, '%g' % beerex_obj.out_eec_soil,'%g' % beerex_obj.out_eec_seed, '%s' % beerex_obj.out_eec_tree,],
     }
     return data
 

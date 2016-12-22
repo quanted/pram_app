@@ -82,7 +82,7 @@ class BeerexInp(forms.Form):
         required=True,
         label='Empirical data for pesticide residue in pollen, nectar, or jelly',
         choices=empirical_residue_CHOICES,
-        initial='no',
+        initial='yes',
         validators=[validation.validate_choicefield])
     empirical_pollen = forms.FloatField(
         required=False,

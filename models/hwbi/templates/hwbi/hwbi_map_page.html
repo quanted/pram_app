@@ -22,10 +22,10 @@ fieldset, img {
 caption, th {
 	text-align: left;
 }
-#map-wrapper {
-	width: 960px;
-	margin: 0 auto;
-}
+{##map-wrapper {#}
+{#	width: 960px;#}
+{#	margin: 0 auto;#}
+{#}#}
 #map-wrapper p {
 	font-family: Georgia, serif;
 	font-size: 16px;
@@ -194,7 +194,7 @@ div.tooltip .sc_moe {
     width: 100%;
     padding-bottom: 100%; /* aspect ratio */
     vertical-align: top;
-    overflow: hidden;
+{#    overflow: hidden;#}
 }
 .svg-content-responsive {
     display: inline-block;
@@ -205,10 +205,10 @@ div.tooltip .sc_moe {
 </style>
 
 
-<div class="main column clearfix" id="map-wrapper">
-    <div>
+<div id="map-wrapper">
 
     <p><em>Select a county to see how others compare.</em></p>
+    <br>
 
         <div id="tooltip" class="tooltip" style="opacity: 0; left: 752px; top: 70px;">
 
@@ -232,7 +232,7 @@ div.tooltip .sc_moe {
             <div class="sc">22.0<span class="sc_moe">0.6</span></div>
             <div class="_label exspace">(0 to 100 scale)</div>
         </div>
-    </div>
+
 </div>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -246,6 +246,8 @@ var width = window.innerWidth,
     center = [width / 2, height / 2],
     defaultFill = "#e0e0e0";
 
+console.log(width);
+
 var formatHwbi = d3.format(".1f");
 var qcolors = ["#8c510a", "#D9A55F", "#e0e0e0", "#80cdc1", "#35978f"];
 var qlabels = ["Much More", "More", "About same", "Less", "Much Less"];
@@ -258,7 +260,7 @@ var currFIPS,
 
 
 var projection = d3.geo.albersUsa()
-    .scale(1280)
+    .scale(2250)
     .translate([width / 2, height / 2]);
 
 var path = d3.geo.path()
@@ -269,14 +271,16 @@ var zoom = d3.behavior.zoom()
     .on("zoom", move);
 
 
-var svg = d3.select("body #map-wrapper").append("svg")
-{#    .attr("width", width)#}
-{#    .attr("height", height)#}
-   .classed("svg-container", true) //container class to make it responsive
+var svg = d3.select("body #map-wrapper")
    .append("svg")
+       .attr("preserveAspectRatio", "xMinYMin meet")
+       .attr("viewBox", "0 0 1000 700") //aspect ratio. similar to scale
+
+   .append("svg")
+   .classed("svg-container", true) //container class to make it responsive
    //responsive SVG needs these 2 attributes and no width and height attr
    .attr("preserveAspectRatio", "xMinYMin meet")
-   .attr("viewBox", "0 0 600 400")
+   .attr("viewBox", "0 0 1950 100") //aspect ratio. similar to scale
    //class to make it responsive
    .classed("svg-content-responsive", true)
     .attr("id", "countymap")
@@ -291,7 +295,7 @@ svg.append("rect")
     .attr("height", height);
 
 svg.append("svg:image")
-    .attr("xlink:href", "/static/images/progress-anim.gif")
+    .attr("xlink:href", "/static/images/progress_anim.gif")
     .attr("id", "progress-image")
     .attr("width", 43)
     .attr("height", 11)

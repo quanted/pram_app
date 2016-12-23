@@ -4,7 +4,7 @@ $( document ).ready(function() {
         $(".rslides").responsiveSlides({
             auto: true,             // Boolean: Animate automatically, true or false
             speed: 3000,            // Integer: Speed of the transition, in milliseconds
-            timeout: 6000,          // Integer: Time between slide transitions, in milliseconds
+            timeout: 60000,          // Integer: Time between slide transitions, in milliseconds
             pager: false,           // Boolean: Show pager, true or false
             nav: false,             // Boolean: Show navigation, true or false
             random: false,          // Boolean: Randomize the order of the slides, true or false

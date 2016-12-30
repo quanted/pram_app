@@ -27,7 +27,7 @@ git checkout current_dev_branch
 # python version 2.7
 #this directory is already git ignored in the repo
 
-#if you nned to run a configuration addition for conda env
+#if you need to run a configuration addition for conda env
 #for a conda env you may have to use the command line and
 #activate the virtual environment from the repo directory
 ./env/Scripts/activate
@@ -38,9 +38,10 @@ pip install whatever_package_conda_didnt_install
 #run from pycharm by clicking the green arrow in the title bar nest
 #to the ubertool_eco icon
 #or you may have to configure by selecting Edit Configurations in the title bar
+#and associating python with manage.py
 
 #run from the command line
-
+python manage.py
 
 #you can then visit your browser in (for example):
 http://127.0.0.1:5000/

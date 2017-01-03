@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^cyan/', include('models.cyan.urls')),
     url(r'^ubertool/cyan/?', include('models.cyan.urls')),
     url(r'^pisces/', include('models.pisces.urls')),
+    url(r'^ubertool/pisces/?', include('models.pisces.urls')),
     url(r'^ubertool/webice/', include('models.webice.urls')),
     # url(r'^eco/test/?$', include('models.test.urls')),
     url(r'^ubertool/login/auth/?$', misc.login_auth),

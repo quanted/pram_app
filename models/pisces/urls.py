@@ -1,12 +1,13 @@
 from django.conf.urls import url
 import views
-from views_pisces import description, algorithms, input, references
+from views_pisces import description, algorithms, input, map, references
 
 
 urlpatterns = [
     url(r'^$', description.description_page, {'model': "pisces"}),
     url(r'^description$', description.description_page, {'model': "pisces"}),
     url(r'^input$', input.input_page, {'model': "pisces"}),
+    url(r'^map$', map.map_page, {'model': "pisces"}),
     url(r'^algorithms$', algorithms.algorithm_page, {'model': "pisces"}),
     url(r'^references$', references.references_page, {'model': "pisces"}),
     # TODO: Delete next two endpoints...

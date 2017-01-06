@@ -2,7 +2,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 import importlib
 import links_left
-from REST import rest_funcs
+from ubertool_app.REST import rest_funcs
 import os
 import StringIO, logging
 

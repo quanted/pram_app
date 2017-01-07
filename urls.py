@@ -1,12 +1,20 @@
 #  https://docs.djangoproject.com/en/1.6/intro/tutorial03/
 from django.conf.urls import include, url
-from views import misc, landing, geoserver, description, input, output, algorithms, references, batch, qaqc, history, generateReport
+from views import misc, landing
+from views import geoserver, description, input, output, algorithms, references, batch, qaqc, history, generateReport
 
+#(?P<name>regex) - Round brackets group the regex between them
 
 # All view functions here must be in '/views/views.py'
+print('qed.ubertool_app.urls')
+#print(request.path)
+
+#builds list of urlpatterns to pair with python methods to be called
 urlpatterns = [
-    url(r'^$', landing.eco_landing_page),
-    url(r'^ubertool/?$', landing.eco_landing_page),
+    url(r'^/$', landing.eco_landing_page),
+    #url(r'^/terrplant$', description.description_page),
+    url(r'^(?P<model>.*?)/?$', description.description_page),
+    #url(r'^(?P<model>.*?)/description/?$', description.description_page),
     #url(r'^api/cts/', include('cts_api.urls')),
     #url(r'^docs/', include('docs.urls')),
     #url(r'^api/', include('api.urls')),
@@ -15,14 +23,13 @@ urlpatterns = [
     #url(r'^hwbi/', include('models.hwbi.urls')),
     #url(r'^ubertool/hwbi/?', include('models.hwbi.urls')),
     #url(r'^ubertool/webice/', include('models.webice.urls')),
-    # url(r'^eco/test/?$', include('models.test.urls')),
+    #url(r'^eco/test/?$', include('models.test.urls')),
     #url(r'^ubertool/login/auth/?$', misc.login_auth),
     #url(r'^ubertool/login*', misc.login),
     #url(r'^ubertool/ore/', include('models.ore.urls')),
     #url(r'^geoserver/?$', geoserver.test_page),
     #url(r'^geoserver/query/(?P<jid>\d{20})$', geoserver.sam_huc_query),
     #url(r'^geoserver/sam_done/(?P<jid>\d{20})$', geoserver.sam_done_query),
-    #url(r'^ubertool/(?P<model>.*?)/description/?$', description.description_page),
     #url(r'^ubertool/(?P<model>.*?)/input/?$', input.input_page),
     #url(r'^ubertool/(?P<model>.*?)/output/?$', output.output_page),
     #url(r'^ubertool/(?P<model>.*?)/algorithms/?$', algorithms.algorithm_page),
@@ -34,14 +41,13 @@ urlpatterns = [
     #url(r'^ubertool/(?P<model>.*?)/history/?$', history.historyPage),
     #url(r'^ubertool/(?P<model>.*?)/history/query?$', history.historyQueryAjax),
     #url(r'^ubertool/(?P<model>.*?)/history/revisit?$', history.historyPageRevist),
-    # url(r'^ubertool/.*?/history_revisit\.html$', history.historyPageRevist),
+    #url(r'^ubertool/.*?/history_revisit\.html$', history.historyPageRevist),
     #url(r'^ubertool/(?P<model>.*?)/pdf/?$', generateReport.pdfReceiver),
     #url(r'^ubertool/(?P<model>.*?)/html/?$', generateReport.htmlReceiver),
     #url(r'^ubertool/docs/?$', misc.docs_redirect),
     #url(r'^ubertool/api/?$', misc.api_redirect),
     #url(r'^ubertool/links/?$', misc.links),
-    # url(r'^eco/.*?/przm5_intermediate\.html', przm5_intermediate.przm5IntermediatePage),
-    #url(r'^ubertool/(?P<model>.*?)/?$', description.description_page),
+    #url(r'^eco/.*?/przm5_intermediate\.html', przm5_intermediate.przm5IntermediatePage),
     #url(r'^eco_index\.html$', landing.eco_landing_page),  # Legacy links
     #url(r'^(?P<model>.*?)_description\.html$', description.description_page),  # Legacy links
     #url(r'^(?P<model>.*?)_input\.html$', input.input_page),  # Legacy links

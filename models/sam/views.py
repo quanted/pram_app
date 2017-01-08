@@ -65,3 +65,14 @@ description = '<p>The Spatial Aquatic Model (SAM) is an exposure model d' \
               'Concentration Calculator, which outputs the daily pesticide concentration in ' \
               'the receiving water body based on the transport, degradation, and washout of the ' \
               'pesticide mass.</p>'
+
+history = '<p>User History</p>'
+
+algorithm = '<p></p>'
+
+references = '<p>
+<ul class="bullet">
+<li><a href="http://sam-manual.s3-website-us-east-1.amazonaws.com/SAM_ubertool_user_manual_21Apr2015.pdf">SAM User Manual
+4/21/2015</a>
+</ul>
+</p>'

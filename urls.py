@@ -1,70 +1,95 @@
 #  https://docs.djangoproject.com/en/1.6/intro/tutorial03/
 from django.conf.urls import include, url
 from views import misc, landing
-from views import geoserver, description, input, output, algorithms, references, batch, qaqc, history, generateReport
+from views import description, input, output, algorithms, references, qaqc
+from views import geoserver, batch, history, generateReport
 
-#(?P<name>regex) - Round brackets group the regex between them
-
-# All view functions here must be in '/views/views.py'
 print('qed.ubertool_app.urls')
-#print(request.path)
 
-#builds list of urlpatterns to pair with python methods to be called
+#model_patterns = [
+#    #url(r'^$', description.description_page),
+#    url(r'^description$', description.description_page),
+#    url(r'^algorithms/?$', algorithms.algorithm_page),
+#    url(r'^references/?$', references.references_page),
+#    url(r'^qaqc/$', qaqc.qaqc_page),
+#]
+#url(r'^ubertool/(?P<model>.*?)/algorithms/?$', algorithms.algorithm_page),
+
+#(?P<name>regex) - Round brackets group the regex between them, we are capturing the model name
+#as an argument
+#In Python regular expressions, the syntax for named regular-expression
+#groups is (?P<name>pattern), where name is the name of the group and pattern is some pattern to match
 urlpatterns = [
-    url(r'^/$', landing.eco_landing_page),
-    #url(r'^/terrplant$', description.description_page),
-    url(r'^(?P<model>.*?)/?$', description.description_page),
-    #url(r'^cyan/', include('models.cyan.urls')),
-    #url(r'^ubertool/cyan/?', include('models.cyan.urls')),
-    #url(r'^pisces/', include('models.pisces.urls')),
-    #url(r'^ubertool/pisces/?', include('models.pisces.urls')),
-    #url(r'^(?P<model>.*?)/description/?$', description.description_page),
-    #url(r'^api/cts/', include('cts_api.urls')),
-    #url(r'^docs/', include('docs.urls')),
-    #url(r'^api/', include('api.urls')),
-    #url(r'^api/ubertool/', include('api.urls')),
-    #url(r'^rest/', include('REST.urls')),
-    #url(r'^hwbi/', include('models.hwbi.urls')),
-    #url(r'^ubertool/hwbi/?', include('models.hwbi.urls')),
-    #url(r'^ubertool/webice/', include('models.webice.urls')),
-    #url(r'^eco/test/?$', include('models.test.urls')),
-    #url(r'^ubertool/login/auth/?$', misc.login_auth),
-    #url(r'^ubertool/login*', misc.login),
-    #url(r'^ubertool/ore/', include('models.ore.urls')),
-    #url(r'^geoserver/?$', geoserver.test_page),
-    #url(r'^geoserver/query/(?P<jid>\d{20})$', geoserver.sam_huc_query),
-    #url(r'^geoserver/sam_done/(?P<jid>\d{20})$', geoserver.sam_done_query),
-    #url(r'^ubertool/(?P<model>.*?)/input/?$', input.input_page),
-    #url(r'^ubertool/(?P<model>.*?)/output/?$', output.output_page),
-    #url(r'^ubertool/(?P<model>.*?)/algorithms/?$', algorithms.algorithm_page),
-    #url(r'^ubertool/(?P<model>.*?)/references/?$', references.references_page),
-    #url(r'^ubertool/(?P<model>.*?)/batchinput/?$', batch.batchInputPage),
-    #url(r'^ubertool/(?P<model>.*?)/batchoutput/?$', batch.batchOutputPage),
-    #url(r'^ubertool/(?P<model>.*?)/qaqc/(?P<runID>.*?)/?$', qaqc.qaqcRunView),
-    #url(r'^ubertool/(?P<model>.*?)/qaqc/?$', qaqc.qaqcPage),
-    #url(r'^ubertool/(?P<model>.*?)/history/?$', history.historyPage),
-    #url(r'^ubertool/(?P<model>.*?)/history/query?$', history.historyQueryAjax),
-    #url(r'^ubertool/(?P<model>.*?)/history/revisit?$', history.historyPageRevist),
-    #url(r'^ubertool/.*?/history_revisit\.html$', history.historyPageRevist),
-    #url(r'^ubertool/(?P<model>.*?)/pdf/?$', generateReport.pdfReceiver),
-    #url(r'^ubertool/(?P<model>.*?)/html/?$', generateReport.htmlReceiver),
-    #url(r'^ubertool/docs/?$', misc.docs_redirect),
-    #url(r'^ubertool/api/?$', misc.api_redirect),
-    #url(r'^ubertool/links/?$', misc.links),
-    #url(r'^eco/.*?/przm5_intermediate\.html', przm5_intermediate.przm5IntermediatePage),
-    #url(r'^eco_index\.html$', landing.eco_landing_page),  # Legacy links
-    #url(r'^(?P<model>.*?)_description\.html$', description.description_page),  # Legacy links
-    #url(r'^(?P<model>.*?)_input\.html$', input.input_page),  # Legacy links
-    #url(r'^(?P<model>.*?)_output\.html$', output.output_page),  # Legacy links
-    #url(r'^(?P<model>.*?)_algorithms\.html$', algorithms.algorithm_page),  # Legacy links
-    #url(r'^(?P<model>.*?)_references\.html$', references.references_page),  # Legacy links
-    #url(r'^(?P<model>.*?)_batchinput\.html$', batch.batchInputPage),  # Legacy links
-    #url(r'^(?P<model>.*?)_batchoutput\.html$', batch.batchOutputPage),  # Legacy links
-    #url(r'^(?P<model>.*?)_qaqc\.html$', qaqc.qaqcPage),  # Legacy links
-    #url(r'^(?P<model>.*?)_history\.html$', history.historyPage),  # Legacy links
-    # url(r'^ubertool/api/', include('rest_framework_swagger.urls')),
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', landing.eco_landing_page),
+    #url(r'^(?P<model>.*?)/?$', description.description_page), #this catches everything...
+    url(r'^(?P<model>.*?)/$', description.description_page),
+    url(r'^(?P<model>.*?)/description/?$', description.description_page),
+    url(r'^(?P<model>.*?)/algorithms/?$', algorithms.algorithm_page),
+    url(r'^(?P<model>.*?)/references/?$', references.references_page),
+    url(r'^(?P<model>.*?)/qaqc/?$', qaqc.qaqc_page),
+    url(r'^(?P<model>.*?)/input/?$', input.input_page),
+    url(r'^(?P<model>.*?)/output/?$', output.output_page),
+    #url(r'^(?P<model>.*?)/?', include(model_patterns)),
 ]
+
+# #builds list of urlpatterns to pair with python methods to be called
+# urlpatterns = [
+#     url(r'^$', landing.eco_landing_page),
+#     url(r'^(?P<model>)/$', description.description_page),
+#     url(r'^(?P<model>)/description/$', description.description_page),
+#     url(r'^(?P<model>)/algorithms/$', algorithms.algorithm_page),
+#     url(r'^(?P<model>)/references/$', algorithms.algorithm_page),
+#     #url(r'^cyan/', include('models.cyan.urls')),
+#     #url(r'^ubertool/cyan/?', include('models.cyan.urls')),
+#     #url(r'^pisces/', include('models.pisces.urls')),
+#     #url(r'^ubertool/pisces/?', include('models.pisces.urls')),
+#     #url(r'^(?P<model>.*?)/description/?$', description.description_page),
+#     #url(r'^api/cts/', include('cts_api.urls')),
+#     #url(r'^docs/', include('docs.urls')),
+#     #url(r'^api/', include('api.urls')),
+#     #url(r'^api/ubertool/', include('api.urls')),
+#     #url(r'^rest/', include('REST.urls')),
+#     #url(r'^hwbi/', include('models.hwbi.urls')),
+#     #url(r'^ubertool/hwbi/?', include('models.hwbi.urls')),
+#     #url(r'^ubertool/webice/', include('models.webice.urls')),
+#     #url(r'^eco/test/?$', include('models.test.urls')),
+#     #url(r'^ubertool/login/auth/?$', misc.login_auth),
+#     #url(r'^ubertool/login*', misc.login),
+#     #url(r'^ubertool/ore/', include('models.ore.urls')),
+#     #url(r'^geoserver/?$', geoserver.test_page),
+#     #url(r'^geoserver/query/(?P<jid>\d{20})$', geoserver.sam_huc_query),
+#     #url(r'^geoserver/sam_done/(?P<jid>\d{20})$', geoserver.sam_done_query),
+#     #url(r'^ubertool/(?P<model>.*?)/input/?$', input.input_page),
+#     #url(r'^ubertool/(?P<model>.*?)/output/?$', output.output_page),
+#     #url(r'^ubertool/(?P<model>.*?)/algorithms/?$', algorithms.algorithm_page),
+#     #url(r'^ubertool/(?P<model>.*?)/references/?$', references.references_page),
+#     #url(r'^ubertool/(?P<model>.*?)/batchinput/?$', batch.batchInputPage),
+#     #url(r'^ubertool/(?P<model>.*?)/batchoutput/?$', batch.batchOutputPage),
+#     #url(r'^ubertool/(?P<model>.*?)/qaqc/(?P<runID>.*?)/?$', qaqc.qaqcRunView),
+#     #url(r'^ubertool/(?P<model>.*?)/qaqc/?$', qaqc.qaqcPage),
+#     #url(r'^ubertool/(?P<model>.*?)/history/?$', history.historyPage),
+#     #url(r'^ubertool/(?P<model>.*?)/history/query?$', history.historyQueryAjax),
+#     #url(r'^ubertool/(?P<model>.*?)/history/revisit?$', history.historyPageRevist),
+#     #url(r'^ubertool/.*?/history_revisit\.html$', history.historyPageRevist),
+#     #url(r'^ubertool/(?P<model>.*?)/pdf/?$', generateReport.pdfReceiver),
+#     #url(r'^ubertool/(?P<model>.*?)/html/?$', generateReport.htmlReceiver),
+#     #url(r'^ubertool/docs/?$', misc.docs_redirect),
+#     #url(r'^ubertool/api/?$', misc.api_redirect),
+#     #url(r'^ubertool/links/?$', misc.links),
+#     #url(r'^eco/.*?/przm5_intermediate\.html', przm5_intermediate.przm5IntermediatePage),
+#     #url(r'^eco_index\.html$', landing.eco_landing_page),  # Legacy links
+#     #url(r'^(?P<model>.*?)_description\.html$', description.description_page),  # Legacy links
+#     #url(r'^(?P<model>.*?)_input\.html$', input.input_page),  # Legacy links
+#     #url(r'^(?P<model>.*?)_output\.html$', output.output_page),  # Legacy links
+#     #url(r'^(?P<model>.*?)_algorithms\.html$', algorithms.algorithm_page),  # Legacy links
+#     #url(r'^(?P<model>.*?)_references\.html$', references.references_page),  # Legacy links
+#     #url(r'^(?P<model>.*?)_batchinput\.html$', batch.batchInputPage),  # Legacy links
+#     #url(r'^(?P<model>.*?)_batchoutput\.html$', batch.batchOutputPage),  # Legacy links
+#     #url(r'^(?P<model>.*?)_qaqc\.html$', qaqc.qaqcPage),  # Legacy links
+#     #url(r'^(?P<model>.*?)_history\.html$', history.historyPage),  # Legacy links
+#     # url(r'^ubertool/api/', include('rest_framework_swagger.urls')),
+#     # url(r'^admin/', include(admin.site.urls)),
+# ]
 
 # 404 Error view (file not found)
 handler404 = misc.file_not_found

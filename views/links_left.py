@@ -30,6 +30,7 @@ def ordered_list(model=None, page=None):
                 # ('PFAM', 'pfam'),
                 # ('PRZM-EXAMS', 'przm_exams'),
                 ('SAM', 'sam'),
+                #('SWC', 'swc'),
                 # ('Web-ICE', 'webice'),
                 # ('VVWM', 'vvwm'),
                 # ('Surface Water Calculator', 'swc'),

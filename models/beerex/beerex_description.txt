@@ -1,1 +1,0 @@
-The purpose of this model is to provide a risk assessment of pesticide exposure of honeybees to pesticides through four separate methods of pesticide application. This model is intended for use in problem formulation to determine potential pathways of concern.

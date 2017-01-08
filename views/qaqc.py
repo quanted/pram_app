@@ -128,7 +128,7 @@ def qaqcRunView(request, model='none', runID=''):
     return response
 
 
-def qaqcPage(request, model='none'):
+def qaqc_page(request, model='none'):
     """
         View to render QAQC page HTML for each model
     """

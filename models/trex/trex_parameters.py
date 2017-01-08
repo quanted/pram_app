@@ -5,7 +5,7 @@
 from django import forms
 from django.utils.safestring import mark_safe
 from django.core import validators
-from models.forms import validation
+from ubertool_app.models.forms import validation
 
 Applicationtype_CHOICES = (
 ('Broadcast-Granular', 'Broadcast-Granular'), ('Row/Band/In-furrow-Granular', 'Row/Band/In-furrow-Granular'),

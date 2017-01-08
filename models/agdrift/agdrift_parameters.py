@@ -5,7 +5,7 @@
 from django import forms
 from django.utils.safestring import mark_safe
 from django.core import validators
-from models.forms import validation
+from ubertool_app.models.forms import validation
 
 
 Application_method_CHOICES=(('0','Make a selection'),('Aerial','Tier I Aerial'),('Ground','Tier I Ground'),('Orchard/Airblast','Tier I Orchard/Airblast'))

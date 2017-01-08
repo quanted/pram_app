@@ -7,18 +7,38 @@ import os
 from django.conf import settings
 from django.shortcuts import redirect
 
+def get_model_header(model):
+
+    model_views_location = 'ubertool_app.models.' + model + '.views'
+    #import_module is py27 specific
+    viewmodule = importlib.import_module(model_views_location)
+    header = viewmodule.header
+    return header
+
+def get_model_input_module(model):
+
+    model_module_location = 'ubertool_app.models.' + model + '.' + model + '_input'
+    # import_module is py27 specific
+    model_input_module = importlib.import_module(model_module_location)
+    return model_input_module
 
 def input_page(request, model='none', header='none'):
 
+    print(request.path)
+    print('ubertool_app.views.input_page')
     # If on public server, test user authentication
     # if settings.AUTH:
     #     if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
     #         if not request.user.is_authenticated():
     #             return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
-    viewmodule = importlib.import_module('.views', 'models.'+model)
-    inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
-    header = viewmodule.header
+    #viewmodule = importlib.import_module('.views', 'models.'+model)
+    #inputmodule = importlib.import_module('.'+model+'_input', 'models.'+model)
+    #header = viewmodule.header
+    #get formatted model name and description for description page
+    model = model.lstrip('/')
+    header = get_model_header(model)
+    input_module = get_model_input_module(model)
 
     # import logging
 
@@ -73,7 +93,8 @@ def input_page(request, model='none', header='none'):
         'MODEL': model,
         'PAGE': 'input'})
 
-    input_page_func = getattr(inputmodule, model + '_input_page')  # function name example: 'sip_input_page'
+    # function name example: 'sip_input_page'
+    input_page_func = getattr(input_module, model + '_input_page')
     html += input_page_func(request, model, header)
 
     html += links_left.ordered_list(model, 'run_model')

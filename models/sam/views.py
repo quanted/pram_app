@@ -4,8 +4,8 @@
 """
 
 #these should be in templates
-# How model name appears on web page
-header = 'SAM'
+
+algorithm = '<p></p>'
 
 #model description html for description page
 description = '<p>The Spatial Aquatic Model (SAM) is an exposure model d' \
@@ -66,13 +66,13 @@ description = '<p>The Spatial Aquatic Model (SAM) is an exposure model d' \
               'the receiving water body based on the transport, degradation, and washout of the ' \
               'pesticide mass.</p>'
 
+# How model name appears on web page
+header = 'SAM'
+
 history = '<p>User History</p>'
 
-algorithm = '<p></p>'
-
-references = '<p>
-<ul class="bullet">
-<li><a href="http://sam-manual.s3-website-us-east-1.amazonaws.com/SAM_ubertool_user_manual_21Apr2015.pdf">SAM User Manual
-4/21/2015</a>
-</ul>
-</p>'
+references = '<p><ul class=\"bullet\">' \
+             '<li><a href=\"http://sam-manual.s3-website-us-east-1.amazonaws.com/SAM_ubertool_user_manual_21Apr2015.pdf\">SAM User Manual' \
+             '4/21/2015</a>' \
+             '</ul>' \
+             '</p>'

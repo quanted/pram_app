@@ -112,6 +112,7 @@ INSTALLED_APPS = (
     'models.earthworm',
     'models.rice',
     'models.kabam',
+    'models.beerex',
     'models.ore',
     'models.hwbi',
     'models.cyan',

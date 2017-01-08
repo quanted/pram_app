@@ -5,13 +5,16 @@ You can view this page at: <localhost:port>/ubertool/boilerplate
 
 Steps to create a new model based off of this boilerplate:
 
-    1) Copy this folder ("qed/ubertool_eco/modesl/boilerplate") and rename it to the new desired model name.
-        e.g. qed/ubertool_eco/modesl/pices
-    2) Now you have to rename everywhere that says "boilplate" in the code to your new model name (e.g. "pices")
+    1) Copy this folder ("qed/ubertool_eco/models/boilerplate") and rename it to the new desired model name.
+        e.g. qed/ubertool_eco/models/pisces
+    2) Now you have to rename everywhere that says "boilplate" in the code to your new model name (e.g. "pisces")
         Note: there are a few occurrences of "Boilplate" (capitalized). This is important. So if you do a
         "find and replace" approach, make sure its case sensitive
             e.g. "BoilplateInp" in the "boilerplate_parameters.py"
-    3) All occurrences of the model name in the code are "magic strings" and need to be formatted exact to work
+    3) All occurrences of the model name in the code are "magic strings" and need to be formatted exactly to work
+    4) Add the new model name to the django settings.py file. Scroll to the section commented "# Application definition"
+    where "INSTALLED_APPS" are defined. Add your new model name to the list of installed apps.
+        e.g.     'models.pisces',
 
 
 
@@ -23,7 +26,7 @@ Input Page:
     then you can copy the "<model>_input.py" from a similar model.
         Note: models with "tabbed" input pages are done differently than non-tabbed models
 
-    If you want a custom input page (e.g. pices), then you have to adapt the "<model>_input.py" to suit your needs.
+    If you want a custom input page (e.g. pisces), then you have to adapt the "<model>_input.py" to suit your needs.
         Things to consider when taking this approach:
 
             1) The "<model>_input.py" represents only a portion of whole "Input" page. "/views/input.py" renders the

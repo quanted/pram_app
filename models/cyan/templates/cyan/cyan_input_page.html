@@ -1,0 +1,704 @@
+<html>
+<style>
+	#map {
+	  height: 400px;
+	  width: 675px;
+	  background: white;
+	  padding: 10px;
+	}
+	#basemaps-wrapper {
+	  background: white;
+	  padding: 10px;
+	  width: 675px;
+	}
+	ul.tabs{
+	  margin: 0px;
+	  padding: 0px;
+	  list-style: none;
+	}
+	ul.tabs li{
+	  background: none;
+	  color: #222;
+	  display: inline-block;
+	  padding: 10px 15px;
+	  cursor: pointer;
+	}
+	ul.tabs li.current{
+	  background: #ededed;
+	  color: #222;
+	}
+	.tab-content{
+	  display: none;
+	  background: #ededed;
+	  padding: 15px;
+	}
+	.tab-content.current{
+	  display: inherit;
+	}
+    {#remove all EPA css transitions for leaflet map#}
+    * {
+         -o-transition-property: none !important;
+         -moz-transition-property: none !important;
+         -ms-transition-property: none !important;
+         -webkit-transition-property: none !important;
+         transition-property: none !important;
+    }
+</style>
+
+<head>
+	<!-- jquery ajax, morris, and raphael for timeseries chart-->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="/static/js/morris.min.js"></script>
+	<link rel="stylesheet" href="/static/css/morris.css">
+
+	<!-- d3 -->
+	<link rel="stylesheet" type="text/css" href="/static/css/d3.parcoords.css">
+	<script src="/static/js/d3.min.js"></script>
+	<script src="/static/js/d3.parcoords.js"></script>
+
+	<!-- Load Leaflet from CDN-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet.css" />
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.0.0/leaflet.ajax.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet-src.js"></script>
+
+	<!-- Load Esri Leaflet from CDN -->
+	<script src="https://cdn.jsdelivr.net/leaflet.esri/2.0.1/esri-leaflet.js"></script>
+</head>
+<body>
+
+       		<!--- top map div -->
+  			<div id="CyAN Dashboard" class="row cols-2">
+
+            	<!--- leaflet map search tool css -->
+				<link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.1/esri-leaflet-geocoder.css">
+				<script src="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.1/esri-leaflet-geocoder.js"></script>
+				<script src="/static/js/lakes.js" type = "text/javascript"></script>
+
+
+                <div class="col size-1of2">
+                    <div class="box multi news">
+                    	<div class="pane-content" id="mapDiv">
+
+                          <!--leaflet map tabs-->
+                          <ul class="tabs">
+                            <li class="tab-link current" data-tab="map">Lakes</li>
+                            <li class="tab-link" data-tab="tab-2">Points</li>
+                            <li class="tab-link" data-tab="tab-3">Polygons</li>
+                          </ul>
+                          <div id="map" class="tab-content current"></div>
+                          <div id="tab-2" class="tab-content"></div>
+                          <div id="tab-3" class="tab-content"></div>
+
+                          <!-- toggle script -->
+                          <script>
+                          $(document).ready(function(){
+                            $('ul.tabs li').click(function(){
+                              var tab_id = $(this).attr('data-tab');
+                              $('ul.tabs li').removeClass('current');
+                              $('.tab-content').removeClass('current');
+                              $(this).addClass('current');
+                              $("#"+tab_id).addClass('current');
+                            })
+                          })
+                          </script>
+
+
+						<div id="basemaps-wrapper" class="leaflet-bar">
+						  <select name="basemaps" id="basemaps" onChange="changeBasemap(basemaps)">
+						    <option value="Topographic">Topographic</option>
+						    <option value="Streets">Streets</option>
+						    <option value="NationalGeographic">National Geographic</option>
+						    <option value="Imagery">Imagery</option>
+						    <option value="ShadedRelief">Shaded Relief</option>
+						  </select>
+						</div>
+
+                          <!-- leaflet map script -->
+                          <script>
+						  var map = L.map('map').setView([28.1486, -81.59735], 7);
+						  var layer = L.esri.basemapLayer('Topographic').addTo(map);
+						  var layerLabels;
+
+
+						  function setBasemap(basemap) {
+						    if (layer) {
+						      map.removeLayer(layer);
+						    }
+
+						    layer = L.esri.basemapLayer(basemap);
+
+						    map.addLayer(layer);
+
+						    if (layerLabels) {
+						      map.removeLayer(layerLabels);
+						    }
+
+						    if (basemap === 'ShadedRelief'
+						     || basemap === 'Imagery'
+						     || basemap === 'Terrain'
+						   ) {
+						      layerLabels = L.esri.basemapLayer(basemap + 'Labels');
+						      map.addLayer(layerLabels);
+						    }
+						  }
+
+						  function changeBasemap(basemaps){
+						    var basemap = basemaps.value;
+						    setBasemap(basemap);
+						  }
+
+
+  //                         //terrain wms from TopOSM
+  //                         var map = L.map('map').setView([28.1486, -83.59735], 6);
+  //                         var Stamen_TopOSMRelief = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+  //                           //attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  //                           subdomains: 'abcd',
+  //                           minZoom: 0,
+  //                           maxZoom: 20,
+  //                           ext: 'jpg',
+  //                           bounds: [[22, -132], [51, -56]]
+  //                         });
+  //                         Stamen_TopOSMRelief.addTo(map);
+
+
+                        //office of water watersgeo wms server NHDPlus waterbodies (slooooow)
+						// var NHDPlus = L.esri.featureLayer({
+						// 	url: 'https://watersgeo.epa.gov/arcgis/rest/services/NHDPlus_NP21/NHDSnapshot_NP21_Labeled/MapServer/1'
+						// 	}).addTo(map);
+
+
+                          //map search function
+						  var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
+
+						  var searchControl = L.esri.Geocoding.geosearch({
+						    providers: [
+						      arcgisOnline,
+						      L.esri.Geocoding.featureLayerProvider({
+						        url: 'https://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/gisday/FeatureServer/0/',
+						        searchFields: ['Name', 'Organization'],
+						        label: 'GIS Day Events',
+						        bufferRadius: 5000,
+						        formatSuggestion: function(feature){
+						          return feature.properties.Name + ' - ' + feature.properties.Organization;
+						        }
+						      })
+						    ]
+						  }).addTo(map);
+
+                          //on map click, pop-up lat long info
+                          var popup = L.popup();
+                          function onMapClick(e) {
+                              popup
+                                  .setLatLng(e.latlng)
+                                  .setContent(e.latlng.toString())
+                                  .openOn(map);
+                          }
+                          map.on('click', onMapClick);
+
+                          //add lake geojson file to map
+						  var layer = L.geoJson(lakes, {
+							}).addTo(map);
+
+
+                          //resize leaflet map based on window/div size
+							$(window).on("resize", function() {
+							    $("#map")
+							    .height($("#mapDiv").height()*.8)
+							    .width($("#mapDiv").width()*.95)
+								$("#basemaps-wrapper")
+							    .width($("#mapDiv").width()*.95);
+							    map.invalidateSize();
+							})
+							.trigger("resize");
+
+                          </script>
+                        </div>
+                    </div>
+                </div>
+
+                <!--- intro paragraph -->
+                <div class="col size-2of4">
+	                <div class="box multi news">
+                       	<div class="pane-content">
+                            <img src="/static/images/cyan_logo.png" style="width:164px;height:75px;">
+                            <p>
+                            Explore cyanobacteria trends over time. Choose to view patterns for  individual lakes, point locations, or draw your own polygon boundaries.
+                             <br><br>
+                            Select areas of interest by clicking on the map, seaching the table, or selecting parameter ranges using the graphical "Cyano Bloom Properties" data explorer.
+                            </p>
+               			</div>
+ 	               </div>
+                </div>
+
+                <!--- change over time line graph -->
+                <div class="col size-1of2">
+                	<div class="box multi news">
+                		<h3 class="pane-title">Cyano Index Monthly Max</h3>
+                		<div class="pane-content" id="line-graph" style="height: 250px;">
+
+							<script>
+							$(function () {
+    						window.m =
+								Morris.Line({
+								  element: 'line-graph',
+								  //pointSize: '3',
+								  hideHover: true,
+								  //xLabels: "month",
+								  //events: ['2009-01', '2011-02'],
+								  resize: true,
+								  data: [
+									{ month: '2008-01', a: 250, b: 184, c: 230 },
+									{ month: '2008-02', a: 249, b: 249, c: 228 },
+									{ month: '2008-03', a: 243, b: 247, c: 243 },
+									{ month: '2008-04', a: 247, b: 236, c: 250 },
+									{ month: '2008-05', a: 250, b: 234, c: 250 },
+									{ month: '2008-06', a: 249, b: 235, c: 242 },
+									{ month: '2008-07', a: 237, b: 213, c: 250 },
+									{ month: '2008-08', a: 232, b: 204, c: 250 },
+									{ month: '2008-09', a: 237, b: 165, c: 165 },
+									{ month: '2008-10', a: 238, b: 153, c: 218 },
+									{ month: '2008-11', a: 230, b: 166, c: 214 },
+									{ month: '2008-12', a: 231, b: 198, c: 222 },
+									{ month: '2009-01', a: 235, b: 180, c: 218 },
+									{ month: '2009-02', a: 226, b: 179, c: 250 },
+									{ month: '2009-03', a: 233, b: 176, c: 241 },
+									{ month: '2009-04', a: 243, b: 212, c: 248 },
+									{ month: '2009-05', a: 243, b: 207, c: 241 },
+									{ month: '2009-06', a: 227, b: 196, c: 249 },
+									{ month: '2009-07', a: 230, b: 192, c: 250 },
+									{ month: '2009-08', a: 233, b: 195, c: 250 },
+									{ month: '2009-09', a: 227, b: 170, c: 250 },
+									{ month: '2009-10', a: 228, b: 209, c: 250 },
+									{ month: '2009-11', a: 228, b: 174, c: 240 },
+									{ month: '2009-12', a: 219, b: 142, c: 234 },
+									{ month: '2010-01', a: 218, b: 169, c: 217 },
+									{ month: '2010-02', a: 215, b: 190, c: 220 },
+									{ month: '2010-03', a: 225, b: 176, c: 218 },
+									{ month: '2010-04', a: 222, b: 180, c: 186 },
+									{ month: '2010-05', a: 240, b: 243, c: 215 },
+									{ month: '2010-06', a: 221, b: 249, c: 241 },
+									{ month: '2010-07', a: 236, b: 205, c: 244 },
+									{ month: '2010-08', a: 220, b: 207, c: 250 },
+									{ month: '2010-09', a: 224, b: 208, c: 248 },
+									{ month: '2010-10', a: 225, b: 190, c: 250 },
+									{ month: '2010-11', a: 225, b: 212, c: 250 },
+									{ month: '2010-12', a: 229, b: 202, c: 249 },
+									{ month: '2011-01', a: 220, b: 193, c: 233 },
+									{ month: '2011-02', a: 238, b: 189, c: 216 },
+									{ month: '2011-03', a: 241, b: 197, c: 217 },
+									{ month: '2011-04', a: 236, b: 209, c: 242 },
+									{ month: '2011-05', a: 235, b: 209, c: 245 },
+									{ month: '2011-06', a: 233, b: 242, c: 237 },
+									{ month: '2011-07', a: 231, b: 219, c: 242 },
+									{ month: '2011-08', a: 224, b: 207, c: 244 },
+									{ month: '2011-09', a: 225, b: 215, c: 234 },
+									{ month: '2011-10', a: 223, b: 215, c: 238 },
+									{ month: '2011-11', a: 228, b: 204, c: 204 },
+									{ month: '2011-12', a: 235, b: 161, c: 196 }
+								  ],
+								  xkey: 'month',
+								  ykeys: ['a', 'b', 'c'],
+								  labels: ['Lake Apopka', 'Lake George', 'Lake Okeechobee']
+								});
+
+							    $(window).on('resize', function() {
+							          window.m.redraw();
+							          window.recentResize = true;
+							          setTimeout(function(){ window.recentResize = false; }, 100);
+							    });
+							});
+
+							</script>
+					    </div>
+					</div>
+				</div>
+
+			</div><!---end top dashboard div-->
+
+			<!---start bottom dashboard div-->
+  			<div id="CyAN Dashboard" class="row cols-2">
+
+	            <!---d3.js Cyano Bloom Properties-->
+	            <div class="col size-1of2">
+	                <div class="box multi news">
+	                	<h3 class="pane-title">Cyano Bloom Properties</h3>
+        	            <div class="pane-content" id="sizeDiv">
+        	            <p>
+                            Explore multivarite data for >1800 lakes. Hover on a line to highlight.
+                            Click and drag along axises to search for lakes within a range of values.
+                        </p>
+	                    <div id="divParcoords" class="parcoords" style="height:340px">
+
+	                      <script>
+   						function drawParcoords() {
+	                      // load csv file and create the chart
+	                      d3.csv('/static/data/bloom_properties.csv', function(data) {
+	                        // var colorgen = d3.scale.ordinal()
+	                        //   .range(["#a6cee3","#1f78b4","#b2df8a","#33a02c",
+	                        //   "#fb9a99","#e31a1c","#fdbf6f","#ff7f00",
+	                        //   "#cab2d6","#6a3d9a","#ffff99","#b15928"
+	                        //   ]);
+
+	                        var color = function(d) { return colors(d.watershed); };
+
+	                        //map width and height
+							  var w = parseInt(d3.select("#sizeDiv").style("width"));
+
+	                        var parcoords = d3.parcoords()("#divParcoords")
+	                          .data(data)
+	                          .width(w)
+	                          .height(350)
+	                          .hideAxis(["name"])
+	                          .color(color)
+	                          .alpha(0.25)
+	                          .composite("darken")
+	                          .margin({ top: 15, left: 3, bottom: 5, right: 0 })
+	                          .mode("queue")
+	                          .render()
+	                          .brushMode("1D-axes");  // enable brushing
+
+	                        parcoords.svg.selectAll("text")
+	                          .style("font", "10px sans-serif");
+	                      });
+
+	                      var colors = d3.scale.category20();
+
+	                      // create a chart in every element with class "parcoords-coloring"
+	                      d3.selectAll(".parcoords-coloring")
+	                        .each(function(d,i) {
+	                          var color = colors(i);
+
+	                          var chart = d3.parcoords()(this)
+	                            .data(data3.slice(7*i,7*i+30))
+	                            .alpha(0.6)
+	                            .color(color)
+	                            .margin({
+	                              top: 0,
+	                              left: 0,
+	                              bottom: 24,
+	                              right: 0
+	                            })
+	                            .render();
+
+	                          // color labels
+	                          var text = chart.svg
+	                          .append("text")
+	                            .attr("x", 162)
+	                            .attr("y", 64)
+	                            .style({
+	                              "text-anchor": "end",
+	                              "font-weight": "bold",
+	                              "font-size": "11px",
+	                              "fill": "#ddd"
+	                            })
+	                            .text(colors(i))
+
+	                          // hover effect
+	                          d3.select(this).on({
+	                            "mouseover": function() { text.style("fill", "#222"); },
+	                            "mouseout": function() { text.style("fill", "#ddd"); }
+	                          })
+							});
+						};
+
+						drawParcoords();
+
+						//map d3.js parcoords responsive to window resize. not yet implemented bc lengthy parcoords.js code and possibility of different parcoords implementation.
+
+   			// 			function redraw() {
+	     //                  // load csv file and create the chart
+	     //                  d3.csv('data/bloom_properties.csv', function(data) {
+
+	     //                    var color = function(d) { return colors(d.watershed); };
+
+	     //                    //map width and height
+						// 	  var size = parseInt(d3.select("#sizeDiv").style("width"));
+						// 	  var w = size;
+
+	     //                    var parcoords = d3.parcoords()("#divParcoords")
+	     //                      .data(data)
+	     //                      .width(w)
+	     //                      .height(250)
+	     //                      .hideAxis(["name"])
+	     //                      .color(color)
+	     //                      .alpha(0.25)
+	     //                      .composite("darken")
+	     //                      .margin({ top: 15, left: 3, bottom: 5, right: 0 })
+	     //                      .mode("queue")
+	     //                      .render()
+	     //                      .brushMode("1D-axes");  // enable brushing
+
+	     //                    parcoords.svg.selectAll("text")
+	     //                      .style("font", "10px sans-serif");
+	     //                  });
+
+	     //                  var colors = d3.scale.category20();
+
+	     //                  // create a chart in every element with class "parcoords-coloring"
+	     //                  d3.selectAll(".parcoords-coloring")
+	     //                    .each(function(d,i) {
+	     //                      var color = colors(i);
+
+	     //                      var chart = d3.parcoords()(this)
+	     //                        .data(data3.slice(7*i,7*i+30))
+	     //                        .alpha(0.6)
+	     //                        .color(color)
+	     //                        .margin({
+	     //                          top: 0,
+	     //                          left: 0,
+	     //                          bottom: 24,
+	     //                          right: 0
+	     //                        })
+	     //                        .render();
+
+	     //                      // color labels
+	     //                      var text = chart.svg
+	     //                        .attr("x", 162)
+	     //                        .attr("y", 64)
+	     //                        .style({
+	     //                          "text-anchor": "end",
+	     //                          "font-weight": "bold",
+	     //                          "font-size": "11px",
+	     //                          "fill": "#ddd"
+	     //                        })
+	     //                        .text(colors(i))
+
+	     //                      // hover effect
+	     //                      d3.select(this).on({
+	     //                        "mouseover": function() { text.style("fill", "#222"); },
+	     //                        "mouseout": function() { text.style("fill", "#ddd"); }
+	     //                      })
+						// 	});
+						// };
+
+						// //resize leaflet map based on window/div size
+						// d3.select(window).on('resize', redraw);
+						// redraw();
+
+	                      </script>
+	                    </div>
+	                </div>
+	                </div>
+	            </div>
+
+	            <!--- data table -->
+	            <div class="col size-1of2">
+                	<div class="box multi news">
+                		<h3 class="pane-title">Cyano Data Table</h3>
+                		<div class="pane-content">
+							<table id="datatable">
+		                      <thead>
+		                        <tr>
+		                          <th>Lake NHD reachcode</th>
+		                          <th>avg bloom duration (days)</th>
+		                          <th>avg bloom extent (meters)</th>
+		                          <th>annual max bloom (cells/L)</th>
+		                        </tr>
+		                      </thead>
+		                      <tbody>
+		                        <tr class="odd gradeX">
+		                          <td>03080101008767</td>
+		                          <td>4</td>
+		                          <td>102</td>
+		                          <td class="center"> 4</td>
+		                          </tr>
+		                        <tr class="even gradeC">
+		                          <td>03080101008799</td>
+		                          <td>5</td>
+		                          <td>140</td>
+		                          <td class="center">5</td>
+		                          </tr>
+		                        <tr class="odd gradeA">
+		                          <td>03080101008768</td>
+		                          <td>5</td>
+		                          <td>60</td>
+		                          <td class="center">5.5</td>
+		                          </tr>
+		                        <tr class="even gradeA">
+		                          <td>03080101008769</td>
+		                          <td>6</td>
+		                          <td>95</td>
+		                          <td class="center">6</td>
+		                          </tr>
+		                        <tr class="odd gradeA">
+		                          <td>03080101008770</td>
+		                          <td>7</td>
+		                          <td>42</td>
+		                          <td class="center">7</td>
+		                          </tr>
+		                        <tr class="even gradeA">
+		                          <td>03080101008771</td>
+		                          <td>4</td>
+		                          <td>86</td>
+		                          <td class="center">6</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008772</td>
+		                          <td>18</td>
+		                          <td>160</td>
+		                          <td class="center">1.7</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008773</td>
+		                          <td>16</td>
+		                          <td>160</td>
+		                          <td class="center">1.8</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008774</td>
+		                          <td>8</td>
+		                          <td>160</td>
+		                          <td class="center">1.8</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008775</td>
+		                          <td>15</td>
+		                          <td>24</td>
+		                          <td class="center">1.9</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008776</td>
+		                          <td>22</td>
+		                          <td>20</td>
+		                          <td class="center">1.8</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008777</td>
+		                          <td>23</td>
+		                          <td>120</td>
+		                          <td class="center">1.8</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008778</td>
+		                          <td>9</td>
+		                          <td>140</td>
+		                          <td class="center">1.7</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008779</td>
+		                          <td>4</td>
+		                          <td>105</td>
+		                          <td class="center">1.7</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008780</td>
+		                          <td>7</td>
+		                          <td>160</td>
+		                          <td class="center">1.8</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008781</td>
+		                          <td>21</td>
+		                          <td>149</td>
+		                          <td class="center">1</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008782</td>
+		                          <td>5</td>
+		                          <td>141</td>
+		                          <td class="center">1.1</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008783</td>
+		                          <td>9</td>
+		                          <td>142</td>
+		                          <td class="center">1.2</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008784</td>
+		                          <td>3</td>
+		                          <td>140</td>
+		                          <td class="center">1.3</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008785</td>
+		                          <td>6</td>
+		                          <td>140</td>
+		                          <td class="center">1.4</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008786</td>
+		                          <td>4</td>
+		                          <td>140</td>
+		                          <td class="center">1.5</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008787</td>
+		                          <td>9</td>
+		                          <td>140</td>
+		                          <td class="center">1.6</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008788</td>
+		                          <td>7</td>
+		                          <td>95</td>
+		                          <td class="center">1.7</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008789</td>
+		                          <td>8</td>
+		                          <td>95</td>
+		                          <td class="center">1.8</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008790</td>
+		                          <td>1</td>
+		                          <td>160</td>
+		                          <td class="center">1.8</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008791</td>
+		                          <td>20</td>
+		                          <td>90</td>
+		                          <td class="center">1.8</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008792</td>
+		                          <td>2</td>
+		                          <td>30</td>
+		                          <td class="center">5.5</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008793</td>
+		                          <td>3</td>
+		                          <td>88</td>
+		                          <td class="center">3.8</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008794</td>
+		                          <td>2</td>
+		                          <td>49</td>
+		                          <td class="center">4.3</td>
+		                          </tr>
+		                        <tr class="gradeA">
+		                          <td>03080101008795</td>
+		                          <td>3</td>
+		                          <td>98</td>
+		                          <td class="center">2.1</td>
+		                          </tr>
+		                      </tbody>
+	                        </table>
+
+					    </div>
+	                </div>
+	            </div>
+
+            </div><!--- end lower CyAN div -->
+
+<!--datatables import. -->
+<link rel="stylesheet" href="https://www.epa.gov/sites/all/libraries/js/datatables/media/css/jquery.dataTables.min.css">
+<script src="https://www.epa.gov/sites/all/libraries/js/datatables/media/js/jquery.dataTables.min.js"></script>
+<script>
+  jQuery(function(){
+    jQuery("#datatable").dataTable(
+  	  // "pageLength": 5
+      // "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
+      // "iDisplayLength": 25
+    );
+  });
+  </script>
+
+</body>
+</html>

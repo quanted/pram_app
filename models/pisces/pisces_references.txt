@@ -1,0 +1,95 @@
+<!--
+  <p>
+Specific EPA guidance and the Microsoft Excel version of the Pisces model are not currently available on the Internet:
+</p>
+<ul class="bullet">
+  <li></li>
+</ul>
+-->
+
+<p>
+<h3>Source Code:</h3>
+</p>
+<ul class="bullet">
+  <li><a href="https://github.com/USEPA/PiSCES">Pisces API documentation on GitHub</a></li>
+</ul>
+
+<br>
+<p>
+<h3>Primary Reference:</h3>
+</p>
+<ul>
+<li><a href="https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=297970">Cyterski, Mike. PisCES: Pis(cine) Community Estimation Software. US EPA Office of Research and Development, Washington, DC, EPA/600/F-14/451, 2014</a>
+</ul>
+
+<br>
+<p>
+<h3>Additional References:</h3>
+</p>
+<ul class="bullet">
+<li> Angermeier, P. and Winston, M. 1999. Characterizing fish community diversity across Virginia landscapes: prerequisite for conservation. Ecological Applications, 9(1): 335-349. </li>
+<li> Barber, M., Suarez, L. and Lassiter, R. 1998. Modeling bioconcentration of nonpolar organic pollutants by fish.  Environmental Toxicology and Chemistry, 7(7): 545-558. </li>
+<li> Barbour, M., Gerritsen, J., Snyder, B. and Stribling, J. 1999. Rapid Bioassessment Protocols for Use in Streams and Wadeable Rivers: Periphyton, Benthic Macroinvertebrates and Fish, Second Edition. EPA 841-B-99-002. U.S. Environmental Protection Agency; Office of Water; Washington, D.C. </li>
+<li> Baxter, C. and Hauer, F. 2000. Geomorphology, hyporheic exchange, and selection of spawning habitat by bull trout (Salvelinus confluentus). Canadian Journal of Fisheries and Aquatic Sciences, 57(7): 1470–1481. </li>
+<li> Bertolo, A. and Magnan, P. 2006. Spatial and environmental correlates of fish community structure in Canadian Shield lakes. Canadian Journal of Fisheries and Aquatic Sciences, 63(12): 2780-2792. </li>
+<li> Boicourt, W., Gallegos, C., Harding Jr., L., Houde, E., Mallonee, M., McClain, C., and Roman, M. 2004. Trophic indicators of ecosystem health in Chesapeake Bay. 2004 Progress Report. USEPA Grant R828677C002. http://cfpub.epa.gov/ncer_abstracts/index.cfm/fuseaction/display.abstractDetail/abstract/6126/repo </li>
+<li> Caissie, D. 2006. River discharge and channel width relationships for New Brunswick Rivers. Canadian Technical Report of Fisheries and Aquatic Sciences 2637. Canadian Department of Fisheries and Oceans, Moncton, NB.  http://www.dfo-mpo.gc.ca/Library/320466.pdf </li>
+<li> Dauwalter, D., Splinter, D., Fisher, W. and Marston, R. 2008. Biogeography, ecoregions, and geomorphology affect fish species composition in streams of eastern Oklahoma, USA. Environmental Biology of Fishes, 82(3), 237-249. </li>
+<li> Davis, W., Snyder, B., Stribling, J. and Stoughton, C. 1996. Summary of State biological assessment programs for streams and rivers. EPA 230-R-96-007. U. S. Environmental Protection Agency, Office of Planning, Policy, and Evaluation, Washington, DC. </li>
+<li> Duplisea, D. and Castonguay, M. 2006. Comparison and utility of different size-based metrics of fish communities for detecting fishery impacts. Canadian Journal of Fisheries and Aquatic Sciences, 63: 810-820. </li>
+<li> Eros, T., Saly, P., Takacs, P., Higgins, C., Biro, P. and Schmera, D. 2014. Quantifying temporal variability in the metacommunity structure of stream fishes: the influence of non-native species and environmental drivers. Hydrobiologia, 722(1): 31-43. </li>
+<li> Fausch, K., Lyons, J., Karr, J. and Angermeier, P. 1990. Fish communities as indicators of environmental degradation. Pages 123-144 in: Biological indicators of stress in fish, Symposium 8 (Editor: Adams, S.). American Fisheries Society, Bethesda, Maryland. </li>
+<li> Faustini, J., Kaufmann, P. and Herlihy, A. 2009. Downstream variation in bankfull width of wadeable streams across the conterminous United States. Geomorphology 108: 292-311. </li>
+<li> Fransen, B., Duke, S., McWethy, G., Walter, J. and Bilby, R. 2006. A logistic regression model for predicting the upstream extent of fish occurrence based on geographical information systems data. North American Journal of Fisheries Management, 26: 960–975. </li>
+<li> Han, B. and Straškraba, M. 1998. Size dependence of biomass spectra and size intervals: the effects of size scales and size intervals. Journal of Theoretical Biology, 191: 259–265. </li>
+<li> Herlihy, A., Larsen, D., Paulsen, S., Urquhart, N. and Rosenbaum, B. 2000. Designing a spatially balanced, randomized site selection process for regional stream surveys: the EMAP Mid-Atlantic pilot study. Environmental Monitoring and Assessment, 63(1): 95-113. </li>
+<li> Hughes, R. and Oberdorff, T. 1999. Applications of IBI concepts and metrics to waters outside the United States and Canada. Pages 79-83 in: Assessing the Sustainability and Biological Integrity of Water Resources Using Fish Communities (Editor: Simon, T.). Lewis Press, Boca Raton, Florida. </li>
+<li> Jackson, D., Peres-Neto, P. and Olden, J. 2001. What controls who is where in freshwater fish communities the roles of biotic, abiotic, and spatial factors. Canadian Journal of Fisheries and Aquatic Sciences, 58(1): 157-170. </li>
+<li> Johnston, J., McGarvey, D., Barber, M., Laniak, G., Babendreier, J., Parmar, R., Wolfe, K., Kraemer, S., Cyterski, M., Knightes, C., Rashleigh, B., Suarez, L. and Ambrose, R. 2011. An integrated modeling framework for performing environmental assessments: Application to ecosystem services in the Albemarle-Pamlico basins (NC and VA, USA). Ecological Modelling 222(14): 2471-2484. </li>
+<li> Kappen, A., Allison, T. and Verhaaren, B. 2012. Treaty rights and subsistence fishing in the US waters of the Great Lakes, Upper Mississippi River, and Ohio River basins. USACE, Chicago, IL. http://glmris.anl.gov/documents/docs/Subsistence_Fishing_Report.pdf </li>
+<li> Karr, J. 1981. Assessment of biotic integrity using fish communities. Fisheries, 6(6): 21-27. </li>
+<li> Karr, J. and Chu, E. 1999. Restoring life in running waters: better biological monitoring. Island Press, Washington, D.C. </li>
+<li> Karr, J. and Dudley, D. 1981. Ecological perspective on water quality goals. Environmental management, 5(1): 55-68. </li>
+<li> Karr, J., Fausch, K., Angermeier, P., Yant, P. and Schlosser, I. 1986. Assessing biological integrity in running waters: a method and its rationale. Special Publication 5. Illinois Natural History Survey, Champaign, IL. </li>
+<li> Kelso, J. and Johnson, M. 1991. Factors related to the biomass and production of fish communities in small, oligotrophic lakes vulnerable to acidification. Canadian Journal of Fisheries and Aquatic Sciences, 48(12): 2523-2532. </li>
+<li> Kendrick, T. and Francis, M. 2002. Fish assemblages in the Hauraki Gulf, New Zealand. New Zealand Journal of Marine and Freshwater Research, 36(4): 699-717. </li>
+<li> Kennard, M., Olden, J., Arthington, A., Pusey, B. and Poff, N. 2007. Multiscale effects of flow regime and habitat and their interaction on fish assemblage structure in eastern Australia. Canadian Journal of Fisheries and Aquatic Sciences, 64(10): 1346-1359. </li>
+<li> Kovacs, T., Martel, P. and Voss, R. 2002. Assessing the biological status of fish in a river receiving pulp and paper mill effluents. Environmental pollution, 118(1): 123-140. </li>
+<li> Madejczyk, J., Mundahl, N. and Lehtinen, R. 1998. Fish assemblages of natural and artificial habitats within the channel border of the upper Mississippi River. The American Midland Naturalist, 139(2): 296-310. </li>
+<li> McCleary, R. and Hassan, M. 2011. Predictive modeling and spatial mapping of fish distributions in small streams of the Canadian Rocky Mountain foothills. Canadian Journal of Fisheries and Aquatic Sciences, 65: 319–333. </li>
+<li> McCormick, F., Peck, D. and Larsen, D. 2000. Comparison of geographic classification schemes for Mid-Atlantic stream fish assemblages. Journal of the North American Benthological Society, 19(3): 385-404. </li>
+<li> Miller, D., Hughes, R., Karr, J., Leonard, P., Moyle, P., Schrader, L. and Orth, D. 1988. Regional applications of an index of biotic integrity for use in water resource management. Fisheries, 13(5): 12-20. </li>
+<li> NatureServe. 2010. Digital Distribution Maps of the Freshwater Fishes in the Conterminous United States. Version 3.0. Arlington, VA. U.S.A. </li>
+<li> Oakes, R., Gido, K., Falke, J., Olden, J. and Brock, B. 2005. Modelling of stream fishes in the Great Plains, USA. Ecology of Freshwater Fish, 14: 361–374. </li>
+<li> Ornellas, A. and Coutinho, R. 1998. Spatial and temporal patterns of distribution and abundance of a tropical fish assemblage in a seasonal Sargassum bed, Cabo Frio Island, Brazil. Journal of Fish Biology, 53(sA): 198-208. </li>
+<li> Page, L. and Burr, B. 2011. Peterson Field Guide to Freshwater Fishes of North America North of Mexico. 2nd Edition. Houghton Mifflin Harcourt, Boston. </li>
+<li> Page, L., Espinosa-Pérez, H., Findley, L., Gilbert, C., Lea, R., Mandrak, N., Mayden, R. and Nelson, J. 2013. Common and Scientific Names of Fishes from the United States, Canada, and Mexico. 7th Edition. American Fisheries Society, Special Publication 34, Bethesda, MD. </li>
+<li> Plafkin, J., Barbour, M., Porter, K., Gross, S., and Hughes, R. 1989. Rapid Bioassessment Protocols for use in Streams and Rivers: Benthic Macroinvertebrates and Fish. U.S. Environmental Protection Agency. EPA 440/4-89/001. USEPA, Washington, DC. </li>
+<li> Pool, T., Olden, J., Whittier, J. and Paukert, C. 2010. Environmental drivers of fish functional diversity and composition in the Lower Colorado River Basin. Canadian Journal of Fisheries and Aquatic Sciences, 67(11): 1791-1807. </li>
+<li> Pope, J. and Knights, B. 1982. Comparisons of length distributions of combined catches of all demersal fishes in surveys in the North Sea and Faroe Bank. Pages 116-118 in: Multispecies Approaches to Fisheries Management (Editor: Mercer, M.). Canadian Special Publication of Fisheries and Aquatic Sciences, 59. </li>
+<li> Quist, M., Hubert, W. and Rahel, F. 2004. Elevation and stream-size thresholds affect distributions of native and exotic warmwater fishes in Wyoming. Journal of Freshwater Ecology, 19(2): 227-236. </li>
+<li> Rahel, F. 2002. Homogenization of freshwater faunas. Annual Review of Ecology and Systematics, 33: 291-315. </li>
+<li> Rashleigh, B., Parmar, R., Johnston, J. and Barber, M. 2005. Predictive habitat models for the occurrence of stream fishes in the Mid-Atlantic Highlands. North American Journal of Fisheries Management, 25(4): 1353-1366. </li>
+<li> Saiki, M. and Martin, B. 2001. Survey of fish and environmental conditions in Abbotts Lagoon, Point Reyes National Seashore, California. California Fish and Game, 87(4): 123–138. </li>
+<li> Schaefer, J., Clark, S. and Warren Jr, M. 2012. Diversity and stability in Mississippi stream fish assemblages. Freshwater Science, 31(3): 882-894. </li>
+<li> Schweizer, P. and  Jager, H. 2011. Modeling regional variation in riverine fish biodiversity in the Arkansas–White–Red River basin. Transactions of the American Fisheries Society, 140(5): 1227-1239. </li>
+<li> Sheldon, R., Prakash, A. and Sutcliffe, W. 1972. The size distribution of particles in the ocean. Limnology and Oceanography, 18: 719–733. </li>
+<li> Shuter, B. and Post, J. 1990. Climate, population viability, and the zoogeography of temperate fishes. Transactions of the American Fisheries Society, 119(2): 314-336. </li>
+<li> Simon, T. 1998. Assessing the Sustainability and Biological Integrity of Water Resources using Fish Communities. CRC Press, Boca Raton, Florida. </li>
+<li> Simon, T. and Lyons, J. 1995. Application of the index of biotic integrity to evaluate water resource integrity in freshwater ecosystems. Pages 245-262 in: Biological assessment and criteria—Tools for water resource planning and decision making (Editors: Davis, W. and Simon, T.). Lewis Publishers, Boca Raton, Florida. </li>
+<li> Smith, C. and Powell, C. 1971. The summer fish communities of Brier Creek, Marshall County, Oklahoma. American Museum Novitates, 2458, 1–30. </li>
+<li> Stepenuck, K., Crunkilton, R. and Wang, L. 2002. Impacts of Urban Landuse on Macroinvertebrate Communities in Southeastern Wisconsin Streams. Journal of the American Water Resources Association, 38(4):1041-1052. </li>
+<li> Stoddard, J., Larsen, D., Hawkins, C., Johnson, R. and Norris, R. 2006. Setting expectations for the ecological condition of streams: the concept of reference condition. Ecological Applications, 16(4): 1267-1276. </li>
+<li> Stranko, S., Hurd, M. and Klauda, R. 2005. Applying a large, statewide database to the assessment, stressor diagnosis, and restoration of stream fish communities. Environmental Monitoring and Assessment, 108: 99–121. </li>
+<li> Taylor, C. and Warren Jr, M. 2001. Dynamics in species composition of stream fish assemblages: environmental variability and nested subsets. Ecology, 82(8): 2320-2330. </li>
+<li> Taylor, C., Holder, T., Fiorillo, R., Williams, L., Thomas, R. and Warren Jr, M. 2006. Distribution, abundance, and diversity of stream fishes under variable environmental conditions. Canadian Journal of Fisheries and Aquatic Sciences, 63(1): 43-54. </li>
+<li> Taylor, C., Millican, D., Roberts, M. and Slack, W. 2008. Long‐term change to fish assemblages and the flow regime in a southeastern US river system after extensive aquatic ecosystem fragmentation. Ecography, 31(6): 787-797. </li>
+<li> Tonn, W. 1990. Climate change and fish communities: A conceptual framework. Transactions of the American Fisheries Society, 119: 337–352. </li>
+<li> USEPA and USGS. 2005. National Hydrography Dataset Plus – NHDPlus, Version 1.0. </li>
+<li> USEPA Office of Research and Development. 2006. Watershed Health Assessment Tools Investigating Fisheries - WHAT IF version 2.0: A Manager's Guide to New Features. EPA/600/R-06/109. USEPA, Washington, DC. </li>
+<li> USEPA Office of Wetlands, Oceans, and Watersheds. 2013. National Rivers and Streams Assessment 2008-2009. EPA/841/D-13/001. USEPA, Washington, DC. http://www.horizon-systems.com/NHDPlus/NHDPlusV1_home.php. </li>
+<li> Wang, L., Lyons, J., Kanehl, P., Bannerman, R. and Emmons, E. 2000. Watershed urbanization and changes in fish communities in southeastern Wisconsin streams. Journal of the American Water Resources Association 36: 1173–1175. </li>
+<li> Weaver, L. and Garman, G. 1994. Urbanization of a watershed and historical changes in a stream fish assemblage. Transactions of the American Fisheries Society, 123(2): 162-172. </li>
+<li> Wesche, T. and Isaak, D. 1999. Watershed management and land use practices. Pages 217-248 in: Inland fisheries management in North America, 2nd edition (Editors: Kohler, C. and Hubert, W). American Fisheries Society, Bethesda, Maryland. </li>
+<li> Yoder, C. and Smith, M. 1998. Using fish assemblages in a state biological assessment and criteria program: essential concepts and considerations. Pages 17-56 in: Assessing the Sustainability and Biological Integrity of Water Resources Using Fish Communities (Editor: Simon, T.). Lewis Press, Boca Raton, FL. </li>
+</ul>

@@ -1,0 +1,30 @@
+<p>
+
+<h3>Primary Resources</h3>
+<br>
+<a href="https://www.epa.gov/water-research/cyanobacteria-assessment-network-cyan-project">Cyanobacteria Assessment Network (CyAN) Project Website</a>
+<br>
+<br>
+<a href="https://github.com/USEPA/EPA-CyanoEA">CyAN source code and documentation on GitHub</a>
+<br>
+<br>
+<br>
+
+
+</ul><h4><strong>Publications</strong></h4>
+
+<ul><li><a href="http://www.sciencedirect.com/science/article/pii/S0034425714002211">Evaluation of cyanobacteria cell count detection derived from MERIS imagery across the eastern USA</a></li>
+	<li>A satellite perspective to monitor water quality using your mobile phone. Lake Line</li>
+	<li><a href="https://eos.org/project-updates/agencies-collaborate-develop-a-cyanobacteria-assessment-network">Agencies Collaborate, Develop a Cyanobacteria Assessment Network (CyAN)</a></li>
+	<li><a href="http://www.sciencedirect.com/science/article/pii/S0034425715302443">An evaluation of time-series smoothing algorithms for land-cover classifications using MODIS-NDVI multi-temporal data. </a> </li>
+	<li><a href="http://www.sciencedirect.com/science/article/pii/S1568988315301839">Challenges for mapping cyanotoxin patterns from remote sensing of cyanobacteria.</a></li>
+	<li>Forecasting annual cyanobacterial bloom biomass to inform management decisions in Lake Erie.  </li>
+
+<br>
+<br>
+</ul><h4><strong>Associated Reports</strong></h4>
+
+<ul><li><a href="/clusters-program/white-house-water-summit-march-22-2016">White House Water Summit Commitments Report</a> (p. 5)</li>
+	<li><a href="/research/science-protect-public-health-and-environment-epa-research-program-overview-2016-2019">EPA Research Program Overview 2016-2019</a> (p. 15)</li>
+	<li><a href="/research/epa-research-2015-yearbook">EPA Research 2015 Yearbook</a> (p. 16)</li>
+</ul>

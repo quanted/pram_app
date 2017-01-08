@@ -1,0 +1,137 @@
+<style>
+    #map {
+        width: 100%;
+        height: 450px;
+    }
+    #basemaps-wrapper {
+        background: white;
+        padding: 10px;
+        width: 100%;
+	}
+    .legend {
+        text-align: left;
+        line-height: 18px;
+        color: #555;
+    }
+    .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+    }
+    {#datatables font size#}
+    th {
+        font-size: 12px;
+    }
+    td {
+        font-size: 11px;
+    }
+        {#remove all EPA css transitions for leaflet map#}
+    * {
+         -o-transition-property: none !important;
+         -moz-transition-property: none !important;
+         -ms-transition-property: none !important;
+         -webkit-transition-property: none !important;
+         transition-property: none !important;
+    }
+</style>
+
+<head>
+
+
+<!-- jquery -->
+<script   src="http://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+<!-- datatables import -->
+<link rel="stylesheet" href="https://www.epa.gov/sites/all/libraries/js/datatables/media/css/jquery.dataTables.min.css">
+<script src="https://www.epa.gov/sites/all/libraries/js/datatables/media/js/jquery.dataTables.min.js"></script>
+
+<!-- local js -->
+<script src="/static/scripts/huc250k_4326_sp.js"></script>
+<script src="/static/scripts/waterslayer.js"></script>
+<script src="/static/scripts/leafletmap.js"></script>
+<script src="/static/scripts/pisces_datatable.js"></script>
+
+
+</head>
+<body>
+  <div class="panel-display panel-1col clearfix" >
+    <div class="panel-panel panel-col">
+
+        <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/leaflet.esri/2.0.1/esri-leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.1/esri-leaflet-geocoder.css">
+	<script src="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.1/esri-leaflet-geocoder.js"></script>
+
+                <!--- content div -->
+                <div class="col-md-10">
+                  <div class="box multi news">
+                    <div class="pane-content" id="mapDiv">
+                      <p><strong>Select a HUC 8 watershed</strong> on the map to view a list of fish species associated with the area.</p>
+                        <!-- leaflet map div -->
+                        <div id="map"></div>
+                        <!-- basemap wrapper -->
+						<div id="basemaps-wrapper" class="leaflet-bar">
+						  <select name="basemaps" id="basemaps" onChange="changeBasemap(basemaps)">
+						    <option value="Topographic">Topographic</option>
+						    <option value="Streets">Streets</option>
+						    <option value="NationalGeographic">National Geographic</option>
+						    <option value="Imagery">Imagery</option>
+						    <option value="ShadedRelief">Shaded Relief</option>
+						  </select>
+						</div>
+                        <br>
+                        <!-- datatables div -->
+                        <div>
+                        <table id="fish_data_table" width="90%"></table>
+                        </div>
+                    </div>
+                  </div>
+                 </div>
+
+                <script>
+                // initialize the map
+                var map = L.map('map', { renderer: L.svg({ padding: 100 }) }).setView([33.95, -83.38], 8);
+
+                // load a tile layer
+                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    subdomains: ['a', 'b', 'c']
+                }).addTo(map);
+
+                var huc8Layer = L.geoJson(huc8s, {
+                    style: hucStyle,
+                    onEachFeature: onEachFeature,
+                }).addTo(map);
+
+
+                //map search function
+                var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
+
+                var searchControl = L.esri.Geocoding.geosearch({
+                    providers: [
+                      arcgisOnline,
+                      L.esri.Geocoding.featureLayerProvider({
+                          url: 'https://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/gisday/FeatureServer/0/',
+                          searchFields: ['Name', 'Organization'],
+                          label: 'GIS Day Events',
+                          bufferRadius: 5000,
+                          formatSuggestion: function(feature){
+                              return feature.properties.Name + ' - ' + feature.properties.Organization;
+                          }
+                      })
+                    ]
+                }).addTo(map);
+
+
+
+                </script>
+
+    </div>
+  </div>
+
+</body>
+</html>

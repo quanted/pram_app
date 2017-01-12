@@ -223,7 +223,7 @@ def output_page(request, model='none', header=''):
 
     header = viewmodule.header
 
-    parametersmodule = importlib.import_module('ubertool_app.' + model + '_parameters', 'models.' + model)
+    parametersmodule = importlib.import_module(model + '_parameters', 'ubertool_app.models.' + model)
 
     try:
         # Class name must be ModelInp, e.g. SipInp or TerrplantInp

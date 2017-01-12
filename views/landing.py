@@ -26,6 +26,7 @@ def eco_landing_page_new(request):
     #})
     html += render_to_string('02epa_drupal_header_bluestripe.html', {})
     html += render_to_string('04uber_drupal_frog_intro.html', {})
+    #http://jsfiddle.net/9zGQ8/
     html += links_left.ordered_list() #fills out 05ubertext_links_left_drupal.html
     html += render_to_string('06ubertext_start_index_drupal.html', {
         'TITLE': u"\u00FCbertool",

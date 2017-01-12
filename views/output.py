@@ -223,7 +223,7 @@ def output_page(request, model='none', header=''):
 
     header = viewmodule.header
 
-    parametersmodule = importlib.import_module('.' + model + '_parameters', 'models.' + model)
+    parametersmodule = importlib.import_module('ubertool_app.' + model + '_parameters', 'models.' + model)
 
     try:
         # Class name must be ModelInp, e.g. SipInp or TerrplantInp
@@ -238,7 +238,7 @@ def output_page(request, model='none', header=''):
         else:
             # If Form is not valid, redraw Input page (this is the same as 'input.py', expect for 'form_data')
             logging.info(form.errors)
-            input_module = importlib.import_module('.' + model + '_input', 'models.' + model)
+            input_module = importlib.import_module('ubertool_app.' + model + '_input', 'models.' + model)
 
             # Render input page view with POSTed values and show errors
             html = render_to_string('01uberheader_main_drupal.html', {

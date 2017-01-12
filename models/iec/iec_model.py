@@ -4,7 +4,7 @@
 """
 
 import logging
-from REST import auth_s3, rest_funcs
+from ubertool_app.REST import auth_s3, rest_funcs
 import json
 import os
 import requests

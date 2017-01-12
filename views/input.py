@@ -7,6 +7,8 @@ import os
 from django.conf import settings
 from django.shortcuts import redirect
 
+print('qed.ubertool_app.views.input')
+
 def get_model_header(model):
 
     model_views_location = 'ubertool_app.models.' + model + '.views'

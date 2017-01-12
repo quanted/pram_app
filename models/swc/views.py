@@ -6,3 +6,7 @@
 ################ How model name appears on web page ################
 header = 'Surface Water Calculator'
 ####################################################################
+
+batch = '<p>Will be back soon...</p>'
+
+qaqc = '<p>Will be back soon..</p>'

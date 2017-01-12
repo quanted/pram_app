@@ -11,7 +11,7 @@ import os
 import logging
 logger = logging.getLogger('PRZM5 Model')
 import requests
-from REST import auth_s3, rest_funcs
+from ubertool_app.REST import auth_s3, rest_funcs
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()

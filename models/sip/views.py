@@ -50,31 +50,31 @@ references = '<p>' \
              'Specific EPA guidance and the Microsoft Excel version of the model on the Screening Imbibition Program can be found here:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/models/terrestrial/index.htm#sip\" target=\"_blank\">SIP Documentation</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/models/terrestrial/sip/sip_user_guide.html\" target=\"_blank\">User\'s Guide</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/models/terrestrial/sip/sip_v_1_0.xls\" target=\"_blank\">SIP Excel Implementation</a></li>' \
+             '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/sip-version-10-users-guide-pesticide-exposure-birds">SIP Documentation</a></li>' \
+             '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/sip-version-10-users-guide-pesticide-exposure-birds">User\'s Guide</a></li>' \
+             '<li><a href=\"https://www.epa.gov/sites/production/files/2015-06/sip_v_1_0.xls">SIP Excel Implementation</a></li>' \
              '</ul>' \
              '<p>' \
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/puruckertom/ubertool_eco/tree/master/models/sip target=\"_blank\"\">ubertool_src on github (front end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/ubertool_app/tree/master/models/sip"\">ubertool_src on github (front end)</a></li>' \
              '<li><a href=\"https://github.com/puruckertom/ubertool_ecorest/tree/master/REST_UBER/sip_rest\" target=\"_blank\">ubertool_src on github (back end model)</a></li>' \
              '</ul>' \
              '<p>Example reports documenting the use of SIP in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"http://op.bna.com/env.nsf/id/jstn-8van2d/$File/Atrazine%20Report.pdf\" target=\"_blank\">Atrazine- FIFRA Scientific Advisory Panel</a></li>' \
+             '<li><a href=\"https://www.regulations.gov/document?D=EPA-HQ-OPP-2012-0230-0005\">Atrazine- FIFRA Scientific Advisory Panel</a></li>' \
              '</ul>' \
              '<p>' \
              'General EPA guidance on how SIP fits into the overall ecological risk assessment process for pesticides can be found at the following links:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"http://www.epa.gov/oppfead1/endanger/consultation/ecorisk-overview.pdf\" target=\"_blank\">EPA Ecological Risk Assessment Process Overview</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/ecorisk_ders/\" target=\"_blank\">EPA Ecological Risk Assessment Technical Overview</a></li>' \
-             '<li><a href=\"nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=40000006.TXT\" target=\"_blank\">Science Policy Handbook on Risk Characterization</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/ecorisk_ders/toera_analysis_exp.htm\" target=\"_blank\">EPA Ecological Risk Assessment Exposure Characterization</a></li>' \
-             '<li><a href=\"http://www.epa.gov/pesticides/science/efed/policy_guidance/team_authors/endangered_species_reregistration_workgroup/esa_conceptual_model_pf.htm\" target=\"_blank\">' \
+             '<li><a href=\"https://www.epa.gov/risk/ecological-risk-assessment\">EPA Ecological Risk Assessment Process Overview</a></li>' \
+             '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/ecological-risk-assessment-pesticides-technical\">EPA Ecological Risk Assessment Technical Overview</a></li>' \
+             '<li><a href=\"https://nepis.epa.gov/Exe/ZyNET.exe/40000006.TXT?ZyActionD=ZyDocument&Client=EPA&Index=2000+Thru+2005&Docs=&Query=&Time=&EndTime=&SearchMethod=1&TocRestrict=n&Toc=&TocEntry=&QField=&QFieldYear=&QFieldMonth=&QFieldDay=&IntQFieldOp=0&ExtQFieldOp=0&XmlQuery=&File=D%3A%5Czyfiles%5CIndex%20Data%5C00thru05%5CTxt%5C00000002%5C40000006.txt&User=ANONYMOUS&Password=anonymous&SortMethod=h%7C-&MaximumDocuments=1&FuzzyDegree=0&ImageQuality=r75g8/r75g8/x150y150g16/i425&Display=hpfr&DefSeekPage=x&SearchBack=ZyActionL&Back=ZyActionS&BackDesc=Results%20page&MaximumPages=1&ZyEntry=1&SeekPage=x&ZyPURL\">Science Policy Handbook on Risk Characterization</a></li>' \
+             '<li><a href=\"https://www.epa.gov/risk">EPA Ecological Risk Assessment Exposure Characterization</a></li>' \
+             '<li><a href=\"https://www.epa.gov/sites/production/files/2016-10/documents/pfam-whitepaper.pdf">' \
              'EPA Development of Conceptual Models</a></li>' \
              '</ul>' \
              '<p>' \
@@ -85,10 +85,10 @@ references = '<p>' \
              'for Pesticide Registration Actions, Ed Odenkirchen (USEPA)</a></li>' \
              '<li><a href=\"http://www.agrodiv.org/documents/denver11/Evaluating%20Agrochemical%20Aquatic%20Exposure/35_Parker_Ronald.pdf\" target=\"_blank\">' \
              'Overview of Issues in Aquatic Exposure Modeling in the USEPA Office of Pesticide Programs, Environmental Fate and Effects Division, Don Brady and Ron Parker (USEPA)</a></li>' \
-             '<li><a href=\"http://www.complianceservices.com/wp-content/uploads/2013/06/Next-Steps-in-Endangered-Species-Risk-Assessments.pdf\" target=\"_blank\">Next Steps in Endangered Species Risk Assessments, Cliff Habig (Compliance Services International)</a></li>' \
-             '<li><a href=\"http://nctc.fws.gov/resources/course-resources/pesticides/2011Presentations/Tab%2013%20%20Pesticide%20Risk%20Assessment.pdf\" target=\"_blank\">EPA Pesticide Ecological Risk Assessment Methods, Fish and Wildlife Service Training</a></li>' \
-             '<li><a href=\"http://www.calcitrusquality.org/wp-content/uploads/2011/07/Prometryncasestudy.pdf\" target=\"_blank\">Minor Crop Farm Alliance Endangered Species Assessment Workshop- Prometryn Case Study</a></li>' \
-             '<li><a href=\"http://www.nap.edu/catalog.php?record_id=18344\" target=\"_blank\">Assessing Risks to Endangered and Threatened Species From Pesticides (National Academy of Sciences)</a></li>' \
+             '<li><a href=\"http://www.complianceservices.com/wp-content/uploads/2013/06/Next-Steps-in-Endangered-Species-Risk-Assessments.pdf">Next Steps in Endangered Species Risk Assessments, Cliff Habig (Compliance Services International)</a></li>' \
+             '<li><a href=\"http://nctc.fws.gov/resources/course-resources/pesticides/2011Presentations/Tab%2013%20%20Pesticide%20Risk%20Assessment.pdf">EPA Pesticide Ecological Risk Assessment Methods, Fish and Wildlife Service Training</a></li>' \
+             '<li><a href=\"http://www.calcitrusquality.org/wp-content/uploads/2011/07/Prometryncasestudy.pdf">Minor Crop Farm Alliance Endangered Species Assessment Workshop- Prometryn Case Study</a></li>' \
+             '<li><a href=\"http://www.nap.edu/catalog.php?record_id=18344">Assessing Risks to Endangered and Threatened Species From Pesticides (National Academy of Sciences)</a></li>' \
              '</ul>'
 
 

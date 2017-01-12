@@ -54,11 +54,11 @@ history = '<p>User History</p>'
 references = '<p>The web page for the Spray Drift Task Force, specific EPA guidance and the executable ' \
              'version of the model on the AgDrift Program can be found here:</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"http://www.agdrift.com/\">AgDrift Task Force</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/models/terrestrial/terrplant/terrplant_user_guide.html\">' \
+             '<li><a href=\"https://www.epa.gov/pesticide-registration/prn-90-3-announcing-formation-industry-wide-spray-drift-task-force-notice/\">AgDrift Task Force</a></li>' \
+             '<li><a href=\"https://github.com/quanted/static_qed/blob/master/docs/AgDrift_user_manual_pub_Fes2003.pdf\">' \
              'Users Guide</a></li>' \
-             '<li><a href=\"http://www.agdrift.com/AgDRIFt2/DownloadAgDrift2_0.htm\">AgDrift Availability</a></li>' \
-             '<li><a href=\"http://www.agdrift.com/PDF_FILES/Version%20Control.pdf\">AgDrift Version Changes</a></li>' \
+             '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/models-pesticide-risk-assessment#AgDrift\">AgDrift Availability</a></li>' \
+             '<li><a href=\"https://https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/models-pesticide-risk-assessment#AgDrift\">AgDrift Version Changes</a></li>' \
              '</ul>' \
              '<p>Current github source code:' \
              '</p>' \
@@ -73,18 +73,17 @@ references = '<p>The web page for the Spray Drift Task Force, specific EPA guida
              '<ul class=\"bullet\">' \
              '<li><a href=\"http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.178.3144&rep=rep1&type=pdf\">' \
              'Metolachlor- Delta Smelt and California Tiger Salamander</a></li>' \
-             '<li><a href=\"http://epa.gov/espp/litstatus/effects/redleg-frog/aldicarb/esa_final.pdf\">' \
+             '<li><a href=\"https://www3.epa.gov/pesticides/endanger/litstatus/effects/redleg-frog/aldicarb/esa_final.pdf\">' \
              'Aldicarb- California Red-legged frog</a></li>' \
              '<li><a href=\"http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.168.6045&rep=rep1&type=pdf\">' \
              'Atrazine- Freshwater Mussel</a></li>' \
-             '<li><a href=\"http://op.bna.com/env.nsf/id/jstn-8van2d/$File/Atrazine%20Report.pdf\">' \
+             '<li><a href=\"https://www.regulations.gov/document?D=EPA-HQ-OPP-2012-0230-0005\">' \
              'Atrazine- FIFRA Scientific Advisory Panel<a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppsrrd1/REDs/mefluidide_red.pdf\">' \
+             '<li><a href=\"https://www.regulations.gov/document?D=EPA-HQ-OPP-2007-0431-0020\">' \
              'Reregistration Eligibility Decision for Mefluidide</a></li>' \
-             '<li><a href=\"http://www.epa.gov/espp/litstatus/effects/24d/attachment-b.pdf\">' \
+             '<li><a href=\"https://www.regulations.gov/document?D=EPA-HQ-OPP-2004-0167-0217\">' \
              'Reregistration Eligibility Document for 2,4-D</a></li>' \
-             '<li><a href=\"http://www.blm.gov/pgdata/etc/medialib/blm/wo/Planning_and_Renewable_Resources/' \
-             'veis.Par.99022.File.dat/AgDrift%20Model.pdf\">AgDrift Modeling for Human Health Risk Assessment</a>' \
+             '<li><a href=\"https://www.blm.gov/style/medialib/blm/wo/Planning_and_Renewable_Resources/vegeis.Par.82221.File.dat/Appendix%20C%20-%20AgDrift%20Modeling.pdf\">AgDrift Modeling for Human Health Risk Assessment</a>' \
              '</ul>' \
              '<p>Example reports for the use of PRZM in NOAA consultations with the EPA (Endangered Species ' \
              'Act Section 7 Consultations) concerning the impact of pesticides on listed species:' \
@@ -108,18 +107,17 @@ references = '<p>The web page for the Spray Drift Task Force, specific EPA guida
              'pesticides can be found at the following links:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"http://www.epa.gov/oppfead1/endanger/consultation/ecorisk-overview.pdf\">' \
+             '<li><a href=\"https://www.epa.gov/risk/ecological-risk-assessment\">' \
              'EPA Ecological Risk Assessment Process Overview</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/ecorisk_ders/\">' \
+             '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/ecological-risk-assessment-pesticides-technical\">' \
              'EPA Ecological Risk Assessment Technical Overview</a></li>' \
-             '<li><a href=\"http://www.epa.gov/OSA/spc/pdfs/rchandbk.pdf\">' \
+             '<li><a href=\"https://nepis.epa.gov/Exe/ZyNET.exe/40000006.TXT?ZyActionD=ZyDocument&Client=EPA&Index=2000+Thru+2005&Docs=&Query=&Time=&EndTime=&SearchMethod=1&TocRestrict=n&Toc=&TocEntry=&QField=&QFieldYear=&QFieldMonth=&QFieldDay=&IntQFieldOp=0&ExtQFieldOp=0&XmlQuery=&File=D%3A%5Czyfiles%5CIndex%20Data%5C00thru05%5CTxt%5C00000002%5C40000006.txt&User=ANONYMOUS&Password=anonymous&SortMethod=h%7C-&MaximumDocuments=1&FuzzyDegree=0&ImageQuality=r75g8/r75g8/x150y150g16/i425&Display=hpfr&DefSeekPage=x&SearchBack=ZyActionL&Back=ZyActionS&BackDesc=Results%20page&MaximumPages=1&ZyEntry=1&SeekPage=x&ZyPURL\">' \
              'Science Policy Handbook on Risk Characterization</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/ecorisk_ders/toera_analysis_exp.htm\">' \
+             '<li><a href=\"https://www.epa.gov/risk\">' \
              'EPA Ecological Risk Assessment Exposure Characterization</a></li>' \
-             '<li><a href=\"http://www.epa.gov/pesticides/science/efed/policy_guidance/team_authors/' \
-             'endangered_species_reregistration_workgroup/esa_conceptual_model_pf.htm\">' \
+             '<li><a href=\"https://www.epa.gov/sites/production/files/2016-10/documents/pfam-whitepaper.pdf\">' \
              'EPA Development of Conceptual Models</a></li>' \
-             '<li><a href=\"http://www.agdrift.com/PDF_FILES/Ground.pdf\">' \
+             '<li><a href=\"http://pesticidemodels.org/wp-content/uploads/2014/01/Ground.pdf\">' \
              'A Summary of Ground Application Studies</a></li>' \
              '</ul>' \
              '<p>' \
@@ -132,15 +130,15 @@ references = '<p>The web page for the Spray Drift Task Force, specific EPA guida
              'Ed Odenkirchen (USEPA)</a></li>' \
              '<li><a href=\"http://www.agrodiv.org/documents/denver11/Evaluating%20Agrochemical%20Aquatic%20Exposure/35_Parker_Ronald.pdf\">' \
              'Overview of Issues in Aquatic Exposure Modeling in the USEPA Office of Pesticide Programs, Environmental Fate and Effects Division, Don Brady and Ron Parker (USEPA)</a></li>' \
-             '<li><a href=\"http://www.complianceservices.com/File.ashx?cid=199\">' \
+             '<li><a href=\"http://www.complianceservices.com/wp-content/uploads/2013/06/Next-Steps-in-Endangered-Species-Risk-Assessments.pdf\">' \
              'Next Steps in Endangered Species Risk Assessments, Cliff Habig (Compliance Services International)</a></li>' \
-             '<li><a href=\"http://training.fws.gov/EC/Resources/pesticides/2011Presentations/Tab%2013%20%20Pesticide%20Risk%20Assessment.pdf\">' \
+             '<li><a href=\"https://nctc.fws.gov/resources/course-resources/pesticides/2011Presentations/Tab%2013%20%20Pesticide%20Risk%20Assessment.pdf\">' \
              'EPA Pesticide Ecological Risk Assessment Methods, Fish and Wildlife Service Training</a></li>' \
              '<li><a href=\"http://www.calcitrusquality.org/wp-content/uploads/2011/07/Prometryncasestudy.pdf\">' \
              'Minor Crop Farm Alliance Endangered Species Assessment Workshop- Prometryn Case Study</a></li>' \
-             '<li><a href=\"http://pep.wsu.edu/wrpm/WRPM_11_files/Agenda%20and%20PPT%20pdfs/13Brady5-18-11PM.pdf\">' \
+             '<li><a href=\"https://www.epa.gov/risk/risk-tools-and-databases\">' \
              'Ecological Risk Assessment and Improving Evaluation Tools, Don Brady (USEPA)</a></li><li><a href=\"www.cdpr.ca.gov/docs/enforce/drftinit/confs/2001/esterly.ppt\">AgDrift Training, Dave Easterly, Environmental Focus, Inc\"' \
-             '<li><a href=\"http://tpsalliance.org/conference/sessions/2B_Hewitt_Droplet%20Size%20Calculators.pdf\">' \
+             '<li><a href=\"http://tpsalliance.org/pdf/conference/2008/2B_Hewitt_Droplet%20Size%20Calculators.pdf\">' \
              'Atomization Models for Actual Tank Mixes, Andrew Hewitt, University of Queensland</a></li>' \
              '<li><a href=\"http://www.nap.edu/catalog.php?record_id=18344\">' \
              'Assessing Risks to Endangered and Threatened Species From Pesticides (National Academy of Sciences)</a>' \
@@ -149,14 +147,14 @@ references = '<p>The web page for the Spray Drift Task Force, specific EPA guida
              'Peer reviewed literature on AgDrift:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"http://nctc.fws.gov/EC/Resources/pesticides/Risk%20Assessment/agdispevaluationETC.pdf\">' \
+             '<li><a href=\"https://nctc.fws.gov/resources/course-resources/pesticides/Risk%20Assessment/agdispevaluationETC.pdf\">' \
              'Bird, S.L., Perry, S.G., Ray, S.L., & Teske, M.E. 2002. Evaluation of the AgDISP aerial spray algorithms ' \
              'in the AgDRIFT model. Environmental Toxicology and Chemistry. 21(3):672-681.</a></li>' \
-             '<li><a href=\"http://training.fws.gov/branchsites/csp/resources/pesticides/risk%20assessment/agdriftestimatesetc.pdf\">' \
+             '<li><a href=\"https://training.fws.gov/resources/course-resources/pesticides/Risk%20Assessment/agdriftestimatesETC.pdf\">' \
              'Teske, M.E., Bird, S.L., Esterly, D.M., Curbishley, T.B., Ray, S.L., Perry, S.G. 2002. ' \
              'AgDrift: A model for estimating near-field spray drift from aerial applications. Environmental Toxicology and Chemistry. 21(3):659-671.</a></li>' \
              '<li>Hewitt, A.J., Johnson, D.R., Fish, J.D., Hermansky, C.G., Valcore, D.L. 2002. Development of the spray drift task force database for aerial applications. Environmental Toxicology and Chemistry. 21(3):648-658.</li>' \
-             '<li><a href=\"http://www.ecotox.org.au/aje/archives/vol8no2p3.pdf\">' \
+             '<li><a href=\"http://onlinelibrary.wiley.com/doi/10.1002/etc.5620210326/epdf\">' \
              'Hewitt, A.J., Teske, M.E., Thistle, H.W., 2002. The Development of the AgDrift Model for Aerial Applications from Helicopters and Fixed-Wing Aircraft.' \
              'Australasian Journal of Ecotoxicology, 8:3-6.</a></li>' \
              '<li><a href=\"http://www.ecotox.org.au/aje/archives/vol8no2p7.pdf\">' \

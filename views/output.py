@@ -17,8 +17,9 @@ _UPDATED_MODELS = (
     'earthworm',
     'rice',
     'agdrift',
-    'kabam'
-    'beerex'
+    'kabam',
+    'beerex',
+    'sam'
 )
 
 
@@ -55,12 +56,12 @@ def output_page_view(request, model='none', header=''):
     # if not, use old method with '*_output' module
     if model in _UPDATED_MODELS:
         logging.info('=========== New Model Handler - Single Model Run ===========')
-        from models import model_handler
+        from ubertool_app.models import model_handler
         model_obj = model_handler.modelInputPOSTReceiver(request, model)
 
     elif model in {'sam'}:
         logging.info('=========== New Model Handler FORTRAN ===========')
-        from models import model_handler
+        from ubertool_app.models import model_handler
 
         if model == 'sam':
             """
@@ -70,7 +71,7 @@ def output_page_view(request, model='none', header=''):
             will be available at a later time (e.g. from the History page).
             """
 
-            import models.sam.sam_tables as tablesmodule
+            import ubertool_app.models.sam.sam_tables as tablesmodule
 
             if request.POST['scenario_selection'] == '0':
                 """ Custom Run """
@@ -124,8 +125,8 @@ def output_page_view(request, model='none', header=''):
         """ 
             TEMPORARY FOR ORE TESTING / DEVELOPMENT ON ECO
         """
-        import models.ore.ore_output
-        tables_html = models.ore.ore_output.oreOutputPage(request)
+        import ubertool_app.models.ore.ore_output
+        tables_html = ubertool_app.models.ore.ore_output.oreOutputPage(request)
 
         html = render_to_string('01uberheader.html', {
             'site_skin': os.environ['SITE_SKIN'],

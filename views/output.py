@@ -224,7 +224,7 @@ def output_page(request, model='none', header=''):
 
     header = viewmodule.header
 
-    model_parameters_location = 'ubertool_app.models.' + model + '.' + model + '_parameter'
+    model_parameters_location = 'ubertool_app.models.' + model + '.' + model + '_parameters'
     model_input_location = 'ubertool_app.models.' + model + '.' + model + '_input'
     parametersmodule = importlib.import_module(model_parameters_location)
 

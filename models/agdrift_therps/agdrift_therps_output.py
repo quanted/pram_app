@@ -9,8 +9,8 @@ from django.views.decorators.http import require_POST
 
 @require_POST
 def agdrift_therpsOutputPage(request):
-    from models.agdrift import agdrift_model,agdrift_tables
-    from models.therps import therps_model,therps_tables
+    from ubertool_app.models.agdrift import agdrift_model,agdrift_tables
+    from ubertool_app.models.therps import therps_model,therps_tables
     import agdrift_therps_tables
 
 

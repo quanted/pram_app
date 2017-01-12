@@ -8,18 +8,18 @@ import logging
 
 
 _UPDATED_MODELS = (
-    'terrplant',
+    'agdrift',
+    'beerex',
+    'earthworm',
+    'iec',
+    'kabam',
+    'rice',
+    'sam',
     'sip',
     'stir',
     'trex',
+    'terrplant',
     'therps',
-    'iec',
-    'earthworm',
-    'rice',
-    'agdrift',
-    'kabam',
-    'beerex',
-    'sam'
 )
 
 
@@ -153,7 +153,7 @@ def output_page_view(request, model='none', header=''):
 
         # All models that use the 'model_output.py' to format the inputs before sending to back end server
         # Dynamically import the model output module
-        outputmodule = importlib.import_module('.' + model + '_output', 'models.' + model)
+        outputmodule = importlib.import_module('.' + model + '_output', 'ubertool_app.models.' + model)
         # Call '*_output' function; function name = 'model'OutputPage  (e.g. 'sipOutputPage')
         outputPageFunc = getattr(outputmodule, model + 'OutputPage')
         model_obj = outputPageFunc(request)
@@ -165,7 +165,7 @@ def output_page_view(request, model='none', header=''):
         model_obj = model_obj[1]
     else:
         # Dynamically import the model table module
-        tablesmodule = importlib.import_module('.' + model + '_tables', 'models.' + model)
+        tablesmodule = importlib.import_module('.' + model + '_tables', 'ubertool_app.models.' + model)
 
         # logging.info(model_obj.__dict__)
         """ Generate Timestamp HTML from "*_tables" module """

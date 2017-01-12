@@ -4,6 +4,22 @@ import importlib
 import links_left
 import os
 
+print('qed.ubertool_app.views.qaqc')
+
+def get_model_header(model):
+
+    model_views_location = 'ubertool_app.models.' + model + '.views'
+    #import_module is py27 specific
+    viewmodule = importlib.import_module(model_views_location)
+    header = viewmodule.header
+    return header
+
+def get_model_qaqc(model):
+    model_views_location = 'ubertool_app.models.' + model + '.views'
+    #import_module is py27 specific
+    viewmodule = importlib.import_module(model_views_location)
+    qaqc = viewmodule.qaqc
+    return qaqc
 
 def qaqcRun(model):
     """
@@ -133,21 +149,42 @@ def qaqc_page(request, model='none'):
         View to render QAQC page HTML for each model
     """
 
-    viewmodule = importlib.import_module('.views', 'models.'+model)
-    header = viewmodule.header
+    print(request.path)
+    print('ubertool_app.views.qaqc_page')
 
-    html = render_to_string('01uberheader.html', {
-            'site_skin' : os.environ['SITE_SKIN'],
-            'title': header+' QA/QC'})
-    html = html + render_to_string('02uberintroblock_wmodellinks.html', {
-            'site_skin' : os.environ['SITE_SKIN'],
-            'model':model,
-            'page':'qaqc'})
-    html = html + links_left.ordered_list()
-    html = html + render_to_string('04uberqaqc_start.html', {
-            'model':model,
-            'model_attributes': header+' QAQC'})
-    html = html + render_to_string('06uberfooter.html', {'links': ''})
+    model = model.lstrip('/')
+    header = get_model_header(model)
+    qaqc = get_model_qaqc(model)
+
+    #viewmodule = importlib.import_module('.views', 'ubertool_app.models.'+model)
+    #header = viewmodule.header
+
+    html = render_to_string('01uberheader_main_drupal.html', {
+        'SITE_SKIN': os.environ['SITE_SKIN'],
+        'TITLE': header + ' QAQC'})
+    html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
+        'CONTACT_URL': os.environ['CONTACT_URL'],
+        'MODEL': model,
+        'PAGE': 'qaqc'})
+    html += render_to_string('04ubertext_start_index_drupal.html', {
+        'TITLE': header + ' QAQC',
+        'TEXT_PARAGRAPH': qaqc})
+    html += render_to_string('04ubertext_end_drupal.html', {})
+    html += links_left.ordered_list(model, 'qaqc')
+    html += render_to_string('06uberfooter.html', {})
+
+    # html = render_to_string('01uberheader.html', {
+    #         'site_skin' : os.environ['SITE_SKIN'],
+    #         'title': header+' QA/QC'})
+    # html = html + render_to_string('02uberintroblock_wmodellinks.html', {
+    #         'site_skin' : os.environ['SITE_SKIN'],
+    #         'model':model,
+    #         'page':'qaqc'})
+    # html = html + links_left.ordered_list()
+    # #html = html + render_to_string('04uberqaqc_start.html', {
+    # #        'model':model,
+    # #        'model_attributes': header+' QAQC'})
+    # html = html + render_to_string('06uberfooter.html', {'links': ''})
 
     response = HttpResponse()
     response.write(html)

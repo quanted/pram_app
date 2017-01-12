@@ -6,6 +6,7 @@ import links_left
 import os
 import logging
 
+print('qed.ubertool_app.views.output')
 
 _UPDATED_MODELS = (
     'agdrift',

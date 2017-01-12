@@ -7,3 +7,6 @@
 header = 'PRZM5'
 ####################################################################
 
+batch = '<p>Will be back soon...</p>'
+
+qaqc = '<p>Will be back soon..</p>'

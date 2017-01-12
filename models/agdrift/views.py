@@ -5,6 +5,10 @@
 
 #these should be in a template loading database
 
+batch = '<p>Will be back soon...</p>'
+
+qaqc = '<p>Will be back soon..</p>'
+
 #model algorithm html for algorithm page
 algorithm = '<p>The AgDRIFT model is both a mechanistic and empirical model which is ' \
             'used to evaluate off-site deposition of pesticides applied by aerial, ground, ' \

@@ -3,6 +3,10 @@
    :synopsis: A useful module indeed.
 """
 
+batch = '<p>Will be back soon...</p>'
+
+qaqc = '<p>Will be back soon..</p>'
+
 #model algorithm html for algorithm page
 algorithm = '<p>Predictor of chance of individual effect using probit dose-response curve slope ' \
             'and median lethal estimate which is based on the following formula:</p>' \

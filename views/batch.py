@@ -5,6 +5,7 @@ import links_left
 import os
 import logging
 
+print('qed.ubertool_app.views.batch')
 
 def batchRun(request, model):
     """
@@ -101,7 +102,7 @@ def batchOutputPage(request, model='none', header='none'):
     return response
 
 
-def batchInputPage(request, model='none', header='none'):
+def batch_page(request, model='none', header='none'):
     viewmodule = importlib.import_module('.views', 'models.'+model)
     header = viewmodule.header
     
@@ -113,14 +114,14 @@ def batchInputPage(request, model='none', header='none'):
             'model':model,
             'page':'batchinput'})
     html = html + links_left.ordered_list()
-    html = html + render_to_string('04uberbatchinput.html', {
-            'model': model,
-            'model_attributes': header+' Batch Run'})
-    if model == 'przm':
-        html = html + render_to_string('04uberbatchinput_jquery_przm_batch.html', {'model':model, 'header':header})
-    else:
-        html = html + render_to_string('04uberbatchinput_jquery.html', {'model':model, 'header':header})
-    html = html + render_to_string('05ubertext_links_right.html', {})
+    #html = html + render_to_string('04uberbatchinput.html', {
+    #        'model': model,
+    #        'model_attributes': header+' Batch Run'})
+    #if model == 'przm':
+    #    html = html + render_to_string('04uberbatchinput_jquery_przm_batch.html', {'model':model, 'header':header})
+    #else:
+    #    html = html + render_to_string('04uberbatchinput_jquery.html', {'model':model, 'header':header})
+    #html = html + render_to_string('05ubertext_links_right.html', {})
     html = html + render_to_string('06uberfooter.html', {'links': ''})
 
     response = HttpResponse()

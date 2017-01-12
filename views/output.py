@@ -218,12 +218,15 @@ def output_page(request, model='none', header=''):
     view.  If invalid, it returns the error to the model input page.
     This method maps to: '/ubertool/<model>/output'
     """
-
-    viewmodule = importlib.import_module('.views', 'ubertool_app.models.' + model)
+    #model_module_location = 'ubertool_app.models.' + model + '.' + model + '_input'
+    model_views_location = 'ubertool_app.models.' + model + '.views'
+    viewmodule = importlib.import_module(model_views_location)
 
     header = viewmodule.header
 
-    parametersmodule = importlib.import_module('.' + model + '_parameters', 'ubertool_app.models.' + model)
+    model_parameters_location = 'ubertool_app.models.' + model + '.' + model + '_parameter'
+    model_input_location = 'ubertool_app.models.' + model + '.' + model + '_input'
+    parametersmodule = importlib.import_module(model_parameters_location)
 
     try:
         # Class name must be ModelInp, e.g. SipInp or TerrplantInp
@@ -238,7 +241,7 @@ def output_page(request, model='none', header=''):
         else:
             # If Form is not valid, redraw Input page (this is the same as 'input.py', expect for 'form_data')
             logging.info(form.errors)
-            input_module = importlib.import_module('.' + model + '_input', 'ubertool_app.models.' + model)
+            input_module = importlib.import_module(model_input_location)
 
             # Render input page view with POSTed values and show errors
             html = render_to_string('01uberheader_main_drupal.html', {

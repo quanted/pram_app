@@ -219,7 +219,7 @@ def output_page(request, model='none', header=''):
     This method maps to: '/ubertool/<model>/output'
     """
 
-    viewmodule = importlib.import_module('.views', 'models.' + model)
+    viewmodule = importlib.import_module('.views', 'ubertool_app.models.' + model)
 
     header = viewmodule.header
 

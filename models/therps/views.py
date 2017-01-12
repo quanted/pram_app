@@ -165,16 +165,17 @@ references = '<p>' \
              'Specific EPA guidance and the Microsoft Excel version of the model on the T-Herps Program can be found here:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/models/terrestrial/index.htm#therps\">T-Herps Documentation</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/models/terrestrial/therps/t_herps_user_guide.htm\">User\'s Guide</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/models/terrestrial/therps/t_herps_v1_0_may_15_2007.xls\">T-Herps Excel Implementation</a></li>' \
+             '<li><a href=\"http://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/models-pesticide-risk-assessment#t-herps\">T-Herps Documentation</a></li>' \
+             '<li><a href=\"http://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/t-herps-version-10-users-guide-risk-amphibians-and\">User\'s Guide</a></li>' \
+             '<li><a href=\"http://www.epa.gov/sites/production/files/2016-11/t-herps_v._1.0_may_15_2007.xls\">T-Herps Excel Implementation</a></li>' \
              '</ul>' \
              '<p>' \
              '<p>' \
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/puruckertom/ubertool_src/tree/master/therps\">ubertool_src on GitHub</a></li>' \
+             '<li><a href=\"http://github.com/quanted/ubertool_app/tree/master/models/therps\">ubertool_app on GitHub</a></li>' \
+             '<li><a href=\"http://github.com/quanted/ubertool/tree/master/ubertool/therps\">ubertool on GitHub</a></li>' \
              '</ul>' \
              'Example reports documenting the use of T-Herps in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:' \
              '</p>' \
@@ -185,15 +186,15 @@ references = '<p>' \
              'General EPA guidance on how T-Herps fits into the overall ecological risk assessment process for pesticides can be found at the following links:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"http://www.epa.gov/oppfead1/endanger/consultation/ecorisk-overview.pdf\">' \
+             '<li><a href=\"http://www.epa.gov/sites/production/files/2014-11/documents/ecorisk-overview.pdf\">' \
              'EPA Ecological Risk Assessment Process Overview</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/ecorisk_ders/\">' \
+             '<li><a href=\"http://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/ecological-risk-assessment-pesticides-technical\">' \
              'EPA Ecological Risk Assessment Technical Overview</a></li>' \
-             '<li><a href=\"http://www.epa.gov/OSA/spc/pdfs/rchandbk.pdf\">' \
+             '<li><a href=\"http://nepis.epa.gov/Exe/ZyPDF.cgi?Dockey=40000006.txt\">' \
              'Science Policy Handbook on Risk Characterization</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/ecorisk_ders/toera_analysis_exp.htm\">' \
+             '<li><a href=\"http://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/technical-overview-ecological-risk-assessment-1\">' \
              'EPA Ecological Risk Assessment Exposure Characterization</a></li>' \
-             '<li><a href=\"http://www.epa.gov/pesticides/science/efed/policy_guidance/team_authors/endangered_species_reregistration_workgroup/esa_conceptual_model_pf.htm\">' \
+             '<li><a href=\"http://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/guidance-development-conceptual-models-problem\">' \
              'EPA Development of Conceptual Models</a></li>' \
              '</ul>' \
              '<p>' \
@@ -204,10 +205,9 @@ references = '<p>' \
              'for Pesticide Registration Actions, Ed Odenkirchen (USEPA)</a></li>' \
              '<li><a href=\"http://www.agrodiv.org/documents/denver11/Evaluating%20Agrochemical%20Aquatic%20Exposure/35_Parker_Ronald.pdf\">' \
              'Overview of Issues in Aquatic Exposure Modeling in the USEPA Office of Pesticide Programs, Environmental Fate and Effects Division, Don Brady and Ron Parker (USEPA)</a></li>' \
-             '<li><a href=\"http://www.complianceservices.com/File.ashx?cid=199\">Next Steps in Endangered Species Risk Assessments, Cliff Habig (Compliance Services International)</a></li>' \
-             '<li><a href=\"http://training.fws.gov/EC/Resources/pesticides/2011Presentations/Tab%2013%20%20Pesticide%20Risk%20Assessment.pdf\">EPA Pesticide Ecological Risk Assessment Methods, Fish and Wildlife Service Training</a>' \
+             '<li><a href=\"http://www.complianceservices.com/wp-content/uploads/2013/06/Next-Steps-in-Endangered-Species-Risk-Assessments.pdf\">Next Steps in Endangered Species Risk Assessments, Cliff Habig (Compliance Services International)</a></li>' \
+             '<li><a href=\"http://training.fws.gov/resources/course-resources/pesticides/2011Presentations/Tab%2013%20%20Pesticide%20Risk%20Assessment.pdf\">EPA Pesticide Ecological Risk Assessment Methods, Fish and Wildlife Service Training</a>' \
              '<li><a href=\"http://www.calcitrusquality.org/wp-content/uploads/2011/07/Prometryncasestudy.pdf\">Minor Crop Farm Alliance Endangered Species Assessment Workshop- Prometryn Case Study</a></li>' \
-             '<li><a href=\"http://pep.wsu.edu/wrpm/WRPM_11_files/Agenda%20and%20PPT%20pdfs/13Brady5-18-11PM.pdf\">Ecological Risk Assessment and Improving Evaluation Tools</a></li>' \
              '<li><a href=\"http://www.nap.edu/catalog.php?record_id=18344\">Assessing Risks to Endangered and Threatened Species From Pesticides (National Academy of Sciences)</a></li>' \
              '</ul>'
 

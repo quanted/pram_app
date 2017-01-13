@@ -4,6 +4,9 @@
 """
 
 #these should be in templates
+batch = '<p>Will be back soon...</p>'
+
+qaqc = '<p>Will be back soon..</p>'
 
 #model algorithm html for algorithm page
 algorithm = '<p>The formula of the Tier I Rice Model v1.0:</p>' \

@@ -5,6 +5,10 @@
 
 #these should be in templates
 
+batch = '<p>Will be back soon...</p>'
+
+qaqc = '<p>Will be back soon..</p>'
+
 #model algorithm html for algorithm page
 algorithm = '<p>The KABAM model is used to estimate the potential bioaccumulation of hydrophobic organic pesticides in freshwater foodwebs and to estimate the risks to birds and mammals consuming the prey items from these freshwater food webs. The first part of the model calculate the parameters necessary to determine the pesticide concentration in tissues, bioaccumulation factors, bioconcentration factors, biomagnification factors and biota sediment accumulation factors for each trophic level in the aquatic food web. The KABAM model includes a trophic level representation for phytoplankton, zooplankton, benthic invertebrates, filter feeders, small fish, medium fish and large fish. The second part of the model estimates exposure and toxicological effects of a pesticide into risk estimates for mammals and birds consumging contaminated prey. Equations for the bioaccumulation of the food web are below:</p>' \
             '<img src = \"/static_qed/images/latex/kabam/kabam_image1.png\">' \

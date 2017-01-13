@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^(?P<model>.*?)/qaqc/?$', qaqc.qaqc_page),
     url(r'^(?P<model>.*?)/input/?$', input.input_page),
     url(r'^(?P<model>.*?)/output/?$', output.output_page),
+    url(r'^(?P<model>.*?)/batch/?$', batch.batch_page),
     #url(r'^(?P<model>.*?)/?', include(model_patterns)),
 ]
 

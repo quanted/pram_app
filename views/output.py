@@ -6,19 +6,21 @@ import links_left
 import os
 import logging
 
+print('qed.ubertool_app.views.output')
 
 _UPDATED_MODELS = (
-    'terrplant',
+    'agdrift',
+    'beerex',
+    'earthworm',
+    'iec',
+    'kabam',
+    'rice',
+    'sam',
     'sip',
     'stir',
     'trex',
+    'terrplant',
     'therps',
-    'iec',
-    'earthworm',
-    'rice',
-    'agdrift',
-    'kabam'
-    'beerex'
 )
 
 
@@ -55,12 +57,12 @@ def output_page_view(request, model='none', header=''):
     # if not, use old method with '*_output' module
     if model in _UPDATED_MODELS:
         logging.info('=========== New Model Handler - Single Model Run ===========')
-        from models import model_handler
+        from ubertool_app.models import model_handler
         model_obj = model_handler.modelInputPOSTReceiver(request, model)
 
     elif model in {'sam'}:
         logging.info('=========== New Model Handler FORTRAN ===========')
-        from models import model_handler
+        from ubertool_app.models import model_handler
 
         if model == 'sam':
             """
@@ -70,7 +72,7 @@ def output_page_view(request, model='none', header=''):
             will be available at a later time (e.g. from the History page).
             """
 
-            import models.sam.sam_tables as tablesmodule
+            import ubertool_app.models.sam.sam_tables as tablesmodule
 
             if request.POST['scenario_selection'] == '0':
                 """ Custom Run """
@@ -124,8 +126,8 @@ def output_page_view(request, model='none', header=''):
         """ 
             TEMPORARY FOR ORE TESTING / DEVELOPMENT ON ECO
         """
-        import models.ore.ore_output
-        tables_html = models.ore.ore_output.oreOutputPage(request)
+        import ubertool_app.models.ore.ore_output
+        tables_html = ubertool_app.models.ore.ore_output.oreOutputPage(request)
 
         html = render_to_string('01uberheader.html', {
             'site_skin': os.environ['SITE_SKIN'],
@@ -152,7 +154,7 @@ def output_page_view(request, model='none', header=''):
 
         # All models that use the 'model_output.py' to format the inputs before sending to back end server
         # Dynamically import the model output module
-        outputmodule = importlib.import_module('.' + model + '_output', 'models.' + model)
+        outputmodule = importlib.import_module('.' + model + '_output', 'ubertool_app.models.' + model)
         # Call '*_output' function; function name = 'model'OutputPage  (e.g. 'sipOutputPage')
         outputPageFunc = getattr(outputmodule, model + 'OutputPage')
         model_obj = outputPageFunc(request)
@@ -164,7 +166,7 @@ def output_page_view(request, model='none', header=''):
         model_obj = model_obj[1]
     else:
         # Dynamically import the model table module
-        tablesmodule = importlib.import_module('.' + model + '_tables', 'models.' + model)
+        tablesmodule = importlib.import_module('.' + model + '_tables', 'ubertool_app.models.' + model)
 
         # logging.info(model_obj.__dict__)
         """ Generate Timestamp HTML from "*_tables" module """
@@ -218,12 +220,15 @@ def output_page(request, model='none', header=''):
     view.  If invalid, it returns the error to the model input page.
     This method maps to: '/ubertool/<model>/output'
     """
-
-    viewmodule = importlib.import_module('.views', 'models.' + model)
+    #model_module_location = 'ubertool_app.models.' + model + '.' + model + '_input'
+    model_views_location = 'ubertool_app.models.' + model + '.views'
+    viewmodule = importlib.import_module(model_views_location)
 
     header = viewmodule.header
 
-    parametersmodule = importlib.import_module('ubertool_app.' + model + '_parameters', 'models.' + model)
+    model_parameters_location = 'ubertool_app.models.' + model + '.' + model + '_parameters'
+    model_input_location = 'ubertool_app.models.' + model + '.' + model + '_input'
+    parametersmodule = importlib.import_module(model_parameters_location)
 
     try:
         # Class name must be ModelInp, e.g. SipInp or TerrplantInp
@@ -238,7 +243,7 @@ def output_page(request, model='none', header=''):
         else:
             # If Form is not valid, redraw Input page (this is the same as 'input.py', expect for 'form_data')
             logging.info(form.errors)
-            input_module = importlib.import_module('ubertool_app.' + model + '_input', 'models.' + model)
+            input_module = importlib.import_module(model_input_location)
 
             # Render input page view with POSTed values and show errors
             html = render_to_string('01uberheader_main_drupal.html', {

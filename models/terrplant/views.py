@@ -52,7 +52,7 @@ references = '<p>' \
              '<ul class=\"bullet\">' \
              '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/terrplant-version-122-users-guide-pesticide-exposure\">TerrPlant Documentation</a></li>' \
              '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/terrplant-version-122-users-guide-pesticide-exposure\">User\'s Guide</a></li>' \
-             '<li><a href=\"http://https://www.epa.gov/sites/production/files/2016-11/terrplant_v1.2.210-29-2009.xls\">TerrPlant Excel Implementation</a></li>' \
+             '<li><a href=\"http://https://www.epa.gov/sites/production/files/2016-11/terrplant_v1.2.210-29-2009.xls">TerrPlant Excel Implementation</a></li>' \
              '</ul>' \
              '<p>' \
              'Current github source code:' \

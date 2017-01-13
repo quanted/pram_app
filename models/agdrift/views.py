@@ -58,7 +58,7 @@ references = '<p>The web page for the Spray Drift Task Force, specific EPA guida
              '<li><a href=\"https://github.com/quanted/static_qed/blob/master/docs/AgDrift_user_manual_pub_Fes2003.pdf\">' \
              'Users Guide</a></li>' \
              '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/models-pesticide-risk-assessment#AgDrift\">AgDrift Availability</a></li>' \
-             '<li><a href=\"https://https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/models-pesticide-risk-assessment#AgDrift\">AgDrift Version Changes</a></li>' \
+             '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/models-pesticide-risk-assessment#AgDrift\">AgDrift Version Changes</a></li>' \
              '</ul>' \
              '<p>Current github source code:' \
              '</p>' \
@@ -137,7 +137,8 @@ references = '<p>The web page for the Spray Drift Task Force, specific EPA guida
              '<li><a href=\"http://www.calcitrusquality.org/wp-content/uploads/2011/07/Prometryncasestudy.pdf\">' \
              'Minor Crop Farm Alliance Endangered Species Assessment Workshop- Prometryn Case Study</a></li>' \
              '<li><a href=\"https://www.epa.gov/risk/risk-tools-and-databases\">' \
-             'Ecological Risk Assessment and Improving Evaluation Tools, Don Brady (USEPA)</a></li><li><a href=\"www.cdpr.ca.gov/docs/enforce/drftinit/confs/2001/esterly.ppt\">AgDrift Training, Dave Easterly, Environmental Focus, Inc\"' \
+             'Ecological Risk Assessment and Improving Evaluation Tools, Don Brady (USEPA)</a></li>' \
+             '<li><a href=\"www.cdpr.ca.gov/docs/enforce/drftinit/confs/2001/esterly.ppt">AgDrift Training, Dave Easterly, Environmental Focus, Inc\"' \
              '<li><a href=\"http://tpsalliance.org/pdf/conference/2008/2B_Hewitt_Droplet%20Size%20Calculators.pdf\">' \
              'Atomization Models for Actual Tank Mixes, Andrew Hewitt, University of Queensland</a></li>' \
              '<li><a href=\"http://www.nap.edu/catalog.php?record_id=18344\">' \
@@ -153,7 +154,7 @@ references = '<p>The web page for the Spray Drift Task Force, specific EPA guida
              '<li><a href=\"https://training.fws.gov/resources/course-resources/pesticides/Risk%20Assessment/agdriftestimatesETC.pdf\">' \
              'Teske, M.E., Bird, S.L., Esterly, D.M., Curbishley, T.B., Ray, S.L., Perry, S.G. 2002. ' \
              'AgDrift: A model for estimating near-field spray drift from aerial applications. Environmental Toxicology and Chemistry. 21(3):659-671.</a></li>' \
-             '<li>Hewitt, A.J., Johnson, D.R., Fish, J.D., Hermansky, C.G., Valcore, D.L. 2002. Development of the spray drift task force database for aerial applications. Environmental Toxicology and Chemistry. 21(3):648-658.</li>' \
+             'Hewitt, A.J., Johnson, D.R., Fish, J.D., Hermansky, C.G., Valcore, D.L. 2002. Development of the spray drift task force database for aerial applications. Environmental Toxicology and Chemistry. 21(3):648-658.' \
              '<li><a href=\"http://onlinelibrary.wiley.com/doi/10.1002/etc.5620210326/epdf\">' \
              'Hewitt, A.J., Teske, M.E., Thistle, H.W., 2002. The Development of the AgDrift Model for Aerial Applications from Helicopters and Fixed-Wing Aircraft.' \
              'Australasian Journal of Ecotoxicology, 8:3-6.</a></li>' \

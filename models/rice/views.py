@@ -38,7 +38,7 @@ references = '<p>EPA guidance on the Tier I Rice Program can be found here:' \
              '<ul class=\"bullet\">' \
              '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/tier-i-rice-model-version-10-guidance-estimating">Tier I Rice Documentation</a></li>' \
              '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/tier-i-rice-model-version-10-guidance-estimating">User\'s Guide</a></li>' \
-             '<li><a href=\"EPA Guidance for Tier I Estimation of Aqueous Pesticide Concentrations in Rice Paddies">EPA Guidance for Tier I Estimation of Aqueous Pesticide Concentrations in Rice Paddies</a></li>' \
+             '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/tier-i-rice-model-version-10-guidance-estimating">EPA Guidance for Tier I Estimation of Aqueous Pesticide Concentrations in Rice Paddies</a></li>' \
              '<li><a href=\"http://www.cdpr.ca.gov/docs/emon/pubs/ehapreps/report_263.pdf\">California DPR: Review and Evaluation of Pesticide Modeling Approaches in Rice Paddies</a></li>' \
              '</ul>' \
              '<p>' \

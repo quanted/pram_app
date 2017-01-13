@@ -152,7 +152,9 @@ history = '<p>User History</p>'
 references = '<p> Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/puruckertom/ubertool_src/tree/master/earthworm\">ubertool_src on GitHub' \
+             '<li><a href=\"http://github.com/quanted/ubertool_app/tree/master/models/earthworm\">ubertool_app on GitHub' \
+             '</a></li>' \
+             '<li><a href=\"http://github.com/quanted/ubertool/tree/master/ubertool/earthworm\"> ubertool on GitHub' \
              '</a></li>' \
              '</ul>' \
              '<p>' \

@@ -4,6 +4,7 @@ import importlib
 import links_left
 import os
 
+print('qed.ubertool_app.views.description')
 
 def get_model_header(model):
 

@@ -5,6 +5,10 @@
 
 #these should be in templates
 
+batch = '<p>Will be back soon...</p>'
+
+qaqc = '<p>Will be back soon..</p>'
+
 algorithm = '<p></p>'
 
 #model description html for description page

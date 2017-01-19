@@ -9,8 +9,6 @@ from django.template import Context, Template
 from django.utils.safestring import mark_safe
 import time
 import datetime
-import time
-import datetime
 import logging
 
 logger = logging.getLogger("IecTables")

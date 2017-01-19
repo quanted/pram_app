@@ -1,3 +1,0 @@
-python manage.py runserver 8089
-
-Last digits are the port number; set to whatever you want.

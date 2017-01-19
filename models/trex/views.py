@@ -104,21 +104,9 @@ references = '<p>' \
              '<li><a href=\"https://www.epa.gov/risk/risk-tools-and-databases\">Ecological Risk Assessment and Improving Evaluation Tools</a></li>' \
              '<li><a href=\"http://www.nap.edu/catalog.php?record_id=18344\">Assessing Risks to Endangered and Threatened Species From Pesticides (National Academy of Sciences)</a></li>' \
              '</ul>' \
-             # '<h3>References</h3>' \
-             # '<ul class=\"bullet\">' \
-             # '<li>Environmental Protection Agency (2012). User\'s Guide T-REX Version 1.5 (Terrestrial Residue EXposure model). http://www.epa.gov/oppefed1/models/terrestrial/trex/t_rex_user_guide.htm</li>' \
-             # '<li>Honegger, J.L., Mortensen, S.R., &amp; Carr, K.H. (2008). Overview of the Analysis of Possible Risk to Threatened and Endangered Species Associated with use of glyphophosphate-containing herbicides in Alfalfa production (pp.1-27). Retrieved from http://www.aphis.usda.gov/biotechnology/downloads/alfalfa/gealfalfa_deis_tesanaysis_ovrview.pdf</li>' \
-             # '<li>Weir, S.M., Suski, J.G., and Salice, C.J. (2010). Ecological risk of anthropogenic pollutants to reptiles: Evaluating assumptions of sensitivity and exposure. Environmental Pollution, 158(12), 3596-606.</li>' \
-             # '<li>Environmental Protection Agency (2006). Reregistration Eligibility Decision for Metaldehyde. List A. Case No. 0576. http://www.epa.gov/opp00001/reregistration/REDs/metaldehyde_red.pdf</li>' \
-             # '<li>Environmental Protection Agency (2010). Risks of Metolachlor and S-Metolachlor Use to Federally Threatened Delta Smelt (<i>Hypomesus transpacificus</i>) and California Tiger Salamander (<i>Ambystoma californiense</i>) (Central California Distinct Population Segment) and Federally Endangered Sonoma County and Santa Barbara County Distinct Population Segments of California Tiger Salamander. 29 June 2010. </li>' \
-             # '<li>Environmental Protection Agency (2010). Environmental Fate and Ecological Risk Assessment for Boscalid New use on Rapeseed, Including Canola (Seed Treatment). 23 December 2010. http://www.epa.gov/opp00001/chem_search/cleared_reviews/csr_PC-128008_23-Dec-10_a.pdf</li>' \
-             # '<li>Environmental Protection Agency (2008). Risks of Permethrin Use to the Federally Threatened California Red-legged Frog (<i>Rana aurora draytonii</i>) and Bay Checkerspot Butterfly (<i>Euphydryas editha bayensis</i>), and the Federally Endangered California Clapper Rail (<i>Rallus longirostris obsoletus</i>), Salt Marsh Harvest Mouse (<i>Reithrodontomys raviventris</i>), and San Francisco Garter Snake (<i>Thamnophis sirtalis tetrataenia</i>)' \
-             # 'http://www.epa.gov/oppfead1/endanger/litstatus/effects/redleg-frog/permethrin/determination.pdf</li>' \
-             # '<li>Environmental Protection Agency (2008). Risks of Phorate use to Federally Threatened California Red-legged Frog (<i>Rana aurora draytonii</i>) to Federally Threatened Valley Elderberry Loghorn Beetle (<i>Desmocerus californicus dimphorus</i>) to Federally Threatened Bay Checkerspot Butterfly (<i>Euphydryas editha bayensis</i>) to Federally Endangered San Joaquin Kit Fox (<i>Vulpes macrotis mutica</i>). 10 October 2008. http://www.epa.gov/espp/litstatus/effects/redleg-frog/phorate/determination.pdf</li>' \
-             # '</ul>'
              '</p>' \
-			 'References on T-REX:' \
-			 '</p>' \
+             'References on T-REX:' \
+             '</p>' \
              '<ul class=\"bullet\">' \
              '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/t-rex-version-15-users-guide-calculating-pesticide">' \
              'Environmental Protection Agency (2012). User\'s Guide T-REX Version 1.5 (Terrestrial Residue EXposure model</a></li>' \
@@ -129,3 +117,16 @@ references = '<p>' \
              'Environmental Protection Agency (2008). Risks of Permethrin Use to the Federally Threatened California Red-legged Frog (Rana aurora draytonii) and Bay Checkerspot Butterfly (Euphydryas editha bayensis), and the Federally Endangered California Clapper Rail (Rallus longirostris obsoletus), Salt Marsh Harvest Mouse (Reithrodontomys raviventris), and San Francisco Garter Snake (Thamnophis sirtalis tetrataenia)</a></li>' \
              '<li><a href=\"https://www3.epa.gov/pesticides/endanger/litstatus/effects/redleg-frog/permethrin/determination.pdf">' \
              '</ul>'
+
+# '<h3>References</h3>'
+# '<ul class=\"bullet\">' \
+# '<li>Environmental Protection Agency (2012). User\'s Guide T-REX Version 1.5 (Terrestrial Residue EXposure model). http://www.epa.gov/oppefed1/models/terrestrial/trex/t_rex_user_guide.htm</li>' \
+# '<li>Honegger, J.L., Mortensen, S.R., &amp; Carr, K.H. (2008). Overview of the Analysis of Possible Risk to Threatened and Endangered Species Associated with use of glyphophosphate-containing herbicides in Alfalfa production (pp.1-27). Retrieved from http://www.aphis.usda.gov/biotechnology/downloads/alfalfa/gealfalfa_deis_tesanaysis_ovrview.pdf</li>' \
+# '<li>Weir, S.M., Suski, J.G., and Salice, C.J. (2010). Ecological risk of anthropogenic pollutants to reptiles: Evaluating assumptions of sensitivity and exposure. Environmental Pollution, 158(12), 3596-606.</li>' \
+# '<li>Environmental Protection Agency (2006). Reregistration Eligibility Decision for Metaldehyde. List A. Case No. 0576. http://www.epa.gov/opp00001/reregistration/REDs/metaldehyde_red.pdf</li>' \
+# '<li>Environmental Protection Agency (2010). Risks of Metolachlor and S-Metolachlor Use to Federally Threatened Delta Smelt (<i>Hypomesus transpacificus</i>) and California Tiger Salamander (<i>Ambystoma californiense</i>) (Central California Distinct Population Segment) and Federally Endangered Sonoma County and Santa Barbara County Distinct Population Segments of California Tiger Salamander. 29 June 2010. </li>' \
+# '<li>Environmental Protection Agency (2010). Environmental Fate and Ecological Risk Assessment for Boscalid New use on Rapeseed, Including Canola (Seed Treatment). 23 December 2010. http://www.epa.gov/opp00001/chem_search/cleared_reviews/csr_PC-128008_23-Dec-10_a.pdf</li>' \
+# '<li>Environmental Protection Agency (2008). Risks of Permethrin Use to the Federally Threatened California Red-legged Frog (<i>Rana aurora draytonii</i>) and Bay Checkerspot Butterfly (<i>Euphydryas editha bayensis</i>), and the Federally Endangered California Clapper Rail (<i>Rallus longirostris obsoletus</i>), Salt Marsh Harvest Mouse (<i>Reithrodontomys raviventris</i>), and San Francisco Garter Snake (<i>Thamnophis sirtalis tetrataenia</i>)' \
+# 'http://www.epa.gov/oppfead1/endanger/litstatus/effects/redleg-frog/permethrin/determination.pdf</li>' \
+# '<li>Environmental Protection Agency (2008). Risks of Phorate use to Federally Threatened California Red-legged Frog (<i>Rana aurora draytonii</i>) to Federally Threatened Valley Elderberry Loghorn Beetle (<i>Desmocerus californicus dimphorus</i>) to Federally Threatened Bay Checkerspot Butterfly (<i>Euphydryas editha bayensis</i>) to Federally Endangered San Joaquin Kit Fox (<i>Vulpes macrotis mutica</i>). 10 October 2008. http://www.epa.gov/espp/litstatus/effects/redleg-frog/phorate/determination.pdf</li>' \
+# '</ul>'

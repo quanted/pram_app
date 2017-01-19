@@ -152,7 +152,9 @@ history = '<p>User History</p>'
 references = '<p> Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/puruckertom/ubertool_src/tree/master/earthworm\">ubertool_src on GitHub' \
+             '<li><a href=\"http://github.com/quanted/ubertool_app/tree/master/models/earthworm\">ubertool_app on GitHub' \
+             '</a></li>' \
+             '<li><a href=\"http://github.com/quanted/ubertool/tree/master/ubertool/earthworm\"> ubertool on GitHub' \
              '</a></li>' \
              '</ul>' \
              '<p>' \
@@ -169,4 +171,32 @@ references = '<p> Current github source code:' \
              '<p>' \
              'USEPA. 2008. User\'s Guide: T-REX Version 1.4.1 (Terrestrial Residue Exposure model). United States ' \
              'Environmental Protection Agency. Environmental Fate and Effects Division.' \
-             '</p>'
+             '</p>' \
+             '<p>' \
+             'General EPA guidance on how Earthworm fits into the overall ecological risk assessment process for pesticides can be found at the following links:' \
+             '</p>' \
+             '<ul class=\"bullet\">' \
+             '<li><a href=\"http://www.epa.gov/sites/production/files/2014-11/documents/ecorisk-overview.pdf\">' \
+             'EPA Ecological Risk Assessment Process Overview</a></li>' \
+             '<li><a href=\"http://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/ecological-risk-assessment-pesticides-technical\">' \
+             'EPA Ecological Risk Assessment Technical Overview</a></li>' \
+             '<li><a href=\"http://nepis.epa.gov/Exe/ZyPDF.cgi?Dockey=40000006.txt\">' \
+             'Science Policy Handbook on Risk Characterization</a></li>' \
+             '<li><a href=\"http://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/technical-overview-ecological-risk-assessment-1\">' \
+             'EPA Ecological Risk Assessment Exposure Characterization</a></li>' \
+             '<li><a href=\"http://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/guidance-development-conceptual-models-problem\">' \
+             'EPA Development of Conceptual Models</a></li>' \
+             '</ul>' \
+             '<p>' \
+             'Presentations/posters/abstracts/reports on the subject of EPA\'s ecological risk assessment models, including T-Herps.' \
+             '</p>' \
+             '<ul class=\"bullet\">' \
+             '<li><a href=\"http://www.agrodiv.org/documents/denver11/Endangered%20Species%20Act%20and%20Regulation/AGRO219_Odenkirchen_Edward.pdf\">Advancements in Endangered Species Act Effects Determination' \
+             'for Pesticide Registration Actions, Ed Odenkirchen (USEPA)</a></li>' \
+             '<li><a href=\"http://www.agrodiv.org/documents/denver11/Evaluating%20Agrochemical%20Aquatic%20Exposure/35_Parker_Ronald.pdf\">' \
+             'Overview of Issues in Aquatic Exposure Modeling in the USEPA Office of Pesticide Programs, Environmental Fate and Effects Division, Don Brady and Ron Parker (USEPA)</a></li>' \
+             '<li><a href=\"http://www.complianceservices.com/wp-content/uploads/2013/06/Next-Steps-in-Endangered-Species-Risk-Assessments.pdf\">Next Steps in Endangered Species Risk Assessments, Cliff Habig (Compliance Services International)</a></li>' \
+             '<li><a href=\"http://training.fws.gov/resources/course-resources/pesticides/2011Presentations/Tab%2013%20%20Pesticide%20Risk%20Assessment.pdf\">EPA Pesticide Ecological Risk Assessment Methods, Fish and Wildlife Service Training</a>' \
+             '<li><a href=\"http://www.calcitrusquality.org/wp-content/uploads/2011/07/Prometryncasestudy.pdf\">Minor Crop Farm Alliance Endangered Species Assessment Workshop- Prometryn Case Study</a></li>' \
+             '<li><a href=\"http://www.nap.edu/catalog.php?record_id=18344\">Assessing Risks to Endangered and Threatened Species From Pesticides (National Academy of Sciences)</a></li>' \
+             '</ul>'

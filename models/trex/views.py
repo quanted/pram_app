@@ -113,8 +113,8 @@ references = '<p>' \
              'Environmental Protection Agency (2012). User\'s Guide T-REX Version 1.5 (Terrestrial Residue EXposure model</a></li>' \
              '<li><a href=\"https://www.aphis.usda.gov/biotechnology/downloads/alfalfa/gealfalfa_deis_tesanalysis_ovrview.pdf">' \
              'Honegger, J.L., Mortensen, S.R., & Carr, K.H. (2008). Overview of the Analysis of Possible Risk to Threatened and Endangered Species Associated with use of glyphophosphate-containing herbicides in Alfalfa production (pp.1-27)</a></li>' \
-             'Weir, S.M., Suski, J.G., and Salice, C.J. (2010). Ecological risk of anthropogenic pollutants to reptiles: Evaluating assumptions of sensitivity and exposure. Environmental Pollution, 158(12), 3596-606.</a></li>' \
              '<li><a href=\"https://www.researchgate.net/publication/46380657_Ecological_risk_of_anthropogenic_pollutants_to_reptiles_Evaluating_assumptions_of_sensitivity_and_exposure">' \
+             'Weir, S.M., Suski, J.G., and Salice, C.J. (2010). Ecological risk of anthropogenic pollutants to reptiles: Evaluating assumptions of sensitivity and exposure. Environmental Pollution, 158(12), 3596-606.</a></li>' \
              'Environmental Protection Agency (2008). Risks of Permethrin Use to the Federally Threatened California Red-legged Frog (Rana aurora draytonii) and Bay Checkerspot Butterfly (Euphydryas editha bayensis), and the Federally Endangered California Clapper Rail (Rallus longirostris obsoletus), Salt Marsh Harvest Mouse (Reithrodontomys raviventris), and San Francisco Garter Snake (Thamnophis sirtalis tetrataenia)</a></li>' \
              '<li><a href=\"https://www3.epa.gov/pesticides/endanger/litstatus/effects/redleg-frog/permethrin/determination.pdf">' \
              '</ul>'

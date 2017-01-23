@@ -77,11 +77,18 @@ history = '<p>User History</p>'
 
 references = '<p><ul class=\"bullet\">' \
              '<li><a href=\"http://sam-manual.s3-website-us-east-1.amazonaws.com/SAM_ubertool_user_manual_21Apr2015.pdf\">SAM User Manual' \
-             '4/21/2015</a>' \
-             '<li><a href=\"https://github.com/quanted/static_qed/blob/master/docs/SAM_Developmental_Manual\">' \
+             ' 4/21/2015</a>' \
+             '<li><a href=\"https://github.com/quanted/static_qed/blob/master/docs/SAM_Developmental_Manual.pdf">' \
              'DEVELOPMENT OF A SPATIAL AQUATIC MODEL (SAM) FOR PESTICIDE ASSESSMENTS</a></li>' \
              '</ul>' \
              '</p>'\
+             'Current github source code:' \
+             '</p>' \
+             '<ul class=\"bullet\">' \
+             '<li><a href=\"https://github.com/quanted/ubertool_app/tree/master/models/sam">ubertool_src on GitHub (front end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/sam">ubertool_src on GitHub (back end)</a></li>' \
+             '</ul>' \
+             '<p>' \
              'Presentations/posters/abstracts/reports on the subject of EPA\'s ecological risk assessment ' \
              'models, including SAM.' \
              '</p>' \
@@ -99,7 +106,8 @@ references = '<p><ul class=\"bullet\">' \
              'Minor Crop Farm Alliance Endangered Species Assessment Workshop- Prometryn Case Study</a></li>' \
              '<li><a href=\"https://www.epa.gov/risk/risk-tools-and-databases\">' \
              'Ecological Risk Assessment and Improving Evaluation Tools, Don Brady (USEPA)</a></li>' \
-             '<li><a href=\"www.cdpr.ca.gov/docs/enforce/drftinit/confs/2001/esterly.ppt">AgDrift Training, Dave Easterly, Environmental Focus, Inc\"' \
+             '<li><a href=\"www.cdpr.ca.gov/docs/enforce/drftinit/confs/2001/esterly.ppt">' \
+             'AgDrift Training, Dave Easterly, Environmental Focus, Inc</a></li>' \
              '<li><a href=\"http://tpsalliance.org/pdf/conference/2008/2B_Hewitt_Droplet%20Size%20Calculators.pdf\">' \
              'Atomization Models for Actual Tank Mixes, Andrew Hewitt, University of Queensland</a></li>' \
              '<li><a href=\"http://www.nap.edu/catalog.php?record_id=18344\">' \

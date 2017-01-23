@@ -158,21 +158,6 @@ references = '<p> Current github source code:' \
              '</a></li>' \
              '</ul>' \
              '<p>' \
-             'Belfroid, A., M. Sikkenk, W. Seinen, K.V. Gestel, J. Hermens. 1994. The toxicokinetic behavior of ' \
-             'chlorobenzenes in earthworm (<i>Eisenia andrei</i>) experiments in soil. Environ. Toxicol. Chem. 13: 93-99.' \
-             '</p>' \
-             '<p>Cobb, G.P., E.H. Hol, P.W. Allen, J.A Gagne, R.J. Kendall. 1995. Uptake, metabolism, and toxicity of ' \
-             'terbufos in the earthworm (<i>Lumbricus terrestris</i>) exposed to COUNTER-15G in artificial soils. ' \
-             'Environ. Toxicol. Chem. 14(2): 279-285.' \
-             '</p>' \
-             '<p>' \
-             'Mackay, D. and S. Paterson. 1981. Calculating fugacity. Environ. Sci. Technol. 15: 1006-1014.' \
-             '</p>' \
-             '<p>' \
-             'USEPA. 2008. User\'s Guide: T-REX Version 1.4.1 (Terrestrial Residue Exposure model). United States ' \
-             'Environmental Protection Agency. Environmental Fate and Effects Division.' \
-             '</p>' \
-             '<p>' \
              'General EPA guidance on how Earthworm fits into the overall ecological risk assessment process for pesticides can be found at the following links:' \
              '</p>' \
              '<ul class=\"bullet\">' \
@@ -199,4 +184,17 @@ references = '<p> Current github source code:' \
              '<li><a href=\"http://training.fws.gov/resources/course-resources/pesticides/2011Presentations/Tab%2013%20%20Pesticide%20Risk%20Assessment.pdf\">EPA Pesticide Ecological Risk Assessment Methods, Fish and Wildlife Service Training</a>' \
              '<li><a href=\"http://www.calcitrusquality.org/wp-content/uploads/2011/07/Prometryncasestudy.pdf\">Minor Crop Farm Alliance Endangered Species Assessment Workshop- Prometryn Case Study</a></li>' \
              '<li><a href=\"http://www.nap.edu/catalog.php?record_id=18344\">Assessing Risks to Endangered and Threatened Species From Pesticides (National Academy of Sciences)</a></li>' \
+             '</ul>'\
+             '<p>' \
+             'Peer reviewed literature on Earthworm:' \
+             '</p>' \
+             '<ul class=\"bullet\">' \
+             '<li><a href=\"http://ac.els-cdn.com/S0147651383710146/1-s2.0-S0147651383710146-main.pdf?_tid=2e556034-e18c-11e6-b151-00000aacb35f&acdnat=1485190467_3330fd664a7b7f22894aacd6c688fb7d">' \
+             'Belfroid, A., M. Sikkenk, W. Seinen, K.V. Gestel, J. Hermens. 1994. The toxicokinetic behavior of ' \
+             'chlorobenzenes in earthworm (<i>Eisenia andrei</i>) experiments in soil. Environ. Toxicol. Chem. 13: 93-99.</a></li>' \
+             '<li><a href=\"http://onlinelibrary.wiley.com/doi/10.1002/etc.5620140213/abstract?systemMessage=WOL+Usage+report+download+page+will+be+unavailable+on+Friday+27th+January+2017+at+23%3A00+GMT%2F+18%3A00+EST%2F+07%3A00+SGT+%28Saturday+28th+Jan+for+SGT%29++for+up+to+2+hours+due+to+essential+server+maintenance.+Apologies+for+the+inconvenience.">Cobb, G.P., E.H. Hol, P.W. Allen, J.A Gagne, R.J. Kendall. 1995. Uptake, metabolism, and toxicity of ' \
+             'terbufos in the earthworm (<i>Lumbricus terrestris</i>) exposed to COUNTER-15G in artificial soils. ' \
+             'Environ. Toxicol. Chem. 14(2): 279-285. </a></li>' \
+             '<li><a href=\"http://pubs.acs.org/doi/pdf/10.1021/es00091a001">Mackay, D. and S. Paterson. 1981. Calculating fugacity. Environ. Sci. Technol. 15: 1006-1014.</a></li>' \
              '</ul>'
+

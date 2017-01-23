@@ -62,7 +62,7 @@ references = '<p>' \
              '</p>' \
              '<ul class=\"bullet\">' \
              '<li><a href=\"https://github.com/quanted/ubertool_app/tree/master/models/sip"\">ubertool_src on github (front end)</a></li>' \
-             '<li><a href=\"https://github.com/puruckertom/ubertool_ecorest/tree/master/REST_UBER/sip_rest\" target=\"_blank\">ubertool_src on github (back end model)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/sip">ubertool_src on github (back end model)</a></li>' \
              '</ul>' \
              '<p>Example reports documenting the use of SIP in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:' \
              '</p>' \

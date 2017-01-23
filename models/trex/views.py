@@ -56,13 +56,14 @@ references = '<p>' \
              '<ul class=\"bullet\">' \
              '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/t-rex-version-15-users-guide-calculating-pesticide">T-Rex (1.5.1) Documentation</a></li>' \
              '<li><a href=\"https://www.epa.gov/pesticide-science-and-assessing-pesticide-risks/t-rex-version-15-users-guide-calculating-pesticide">User\'s Guide</a></li>' \
-             '<li><a href=\"http://www.epa.gov/oppefed1/models/terrestrial/trex/trex_v1_5_1_webversion.xlsm">T-Rex Excel Implementation</a></li>' \
+             '<li><a href=\"https://www.epa.gov/sites/production/files/2015-06/trex_v1_5_2_webversion.xlsm">T-Rex Excel Implementation</a></li>' \
              '</ul>' \
              '<p>' \
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/trex">ubertool_src on GitHub</a></li>' \
+             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/trex">ubertool_src on GitHub (front end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/trex\">ubertool_src on GitHub (back end model)</a></li>' \
              '</ul>' \
              '<p>' \
              'Example reports documenting the use of T-Rex in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:' \
@@ -112,7 +113,7 @@ references = '<p>' \
              'Environmental Protection Agency (2012). User\'s Guide T-REX Version 1.5 (Terrestrial Residue EXposure model</a></li>' \
              '<li><a href=\"https://www.aphis.usda.gov/biotechnology/downloads/alfalfa/gealfalfa_deis_tesanalysis_ovrview.pdf">' \
              'Honegger, J.L., Mortensen, S.R., & Carr, K.H. (2008). Overview of the Analysis of Possible Risk to Threatened and Endangered Species Associated with use of glyphophosphate-containing herbicides in Alfalfa production (pp.1-27)</a></li>' \
-             '<li>Weir, S.M., Suski, J.G., and Salice, C.J. (2010). Ecological risk of anthropogenic pollutants to reptiles: Evaluating assumptions of sensitivity and exposure. Environmental Pollution, 158(12), 3596-606.</li>' \
+             'Weir, S.M., Suski, J.G., and Salice, C.J. (2010). Ecological risk of anthropogenic pollutants to reptiles: Evaluating assumptions of sensitivity and exposure. Environmental Pollution, 158(12), 3596-606.</a></li>' \
              '<li><a href=\"https://www.researchgate.net/publication/46380657_Ecological_risk_of_anthropogenic_pollutants_to_reptiles_Evaluating_assumptions_of_sensitivity_and_exposure">' \
              'Environmental Protection Agency (2008). Risks of Permethrin Use to the Federally Threatened California Red-legged Frog (Rana aurora draytonii) and Bay Checkerspot Butterfly (Euphydryas editha bayensis), and the Federally Endangered California Clapper Rail (Rallus longirostris obsoletus), Salt Marsh Harvest Mouse (Reithrodontomys raviventris), and San Francisco Garter Snake (Thamnophis sirtalis tetrataenia)</a></li>' \
              '<li><a href=\"https://www3.epa.gov/pesticides/endanger/litstatus/effects/redleg-frog/permethrin/determination.pdf">' \

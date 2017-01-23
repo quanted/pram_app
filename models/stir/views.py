@@ -74,7 +74,7 @@ references = '<p>Specific EPA guidance and the Microsoft Excel version of the mo
              '</p>' \
              '<ul class=\"bullet\">' \
              '<li><a href=\"https://github.com/puruckertom/ubertool_eco/tree/master/models/stir\">ubertool_src on GitHub (front end)</a></li>' \
-             '<li><a href=\"https://github.com/puruckertom/ubertool_ecorest/tree/master/REST_UBER/stir_rest\">ubertool_src on GitHub (back end model)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/stir">ubertool_src on GitHub (back end model)</a></li>' \
              '</ul>' \
              '<p>' \
              'Example reports documenting the use of STIR in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:' \

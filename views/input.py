@@ -66,7 +66,7 @@ def input_page(request, model='none', header='none'):
 
     #css and scripts
     html += render_to_string('09epa_drupal_ubertool_css.html', {})
-    #html += render_to_string('09epa_drupal_ubertool_scripts.html', {})
+    html += render_to_string('09epa_drupal_ubertool_scripts.html', {})
 
     #epa template footer
     html += render_to_string('10epa_drupal_footer.html', {})

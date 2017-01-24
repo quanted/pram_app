@@ -11,7 +11,7 @@ def eco_landing_redirect(request):
     return redirect('/ubertool')
 
 
-def eco_landing_page_new(request):
+def eco_landing_page(request):
     text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'ubertool_app/views/landing_text.txt'), 'r')
     xx = text_file2.read()
 
@@ -26,14 +26,14 @@ def eco_landing_page_new(request):
     #    'TITLE': u"\u00FCbertool"
     #})
     html += render_to_string('02epa_drupal_header_bluestripe_onesidebar.html', {})
-    html += render_to_string('03epa_drupal_section_title.html', {})
+    html += render_to_string('03epa_drupal_section_title_ubertool.html', {})
 
     #main body of text
-    html += render_to_string('04uber_drupal_frog_intro.html', {})
+    #html += render_to_string('04uber_drupal_frog_intro.html', {})
     #http://jsfiddle.net/9zGQ8/
 
     html += render_to_string('06ubertext_start_index_drupal.html', {
-        'TITLE': u"\u00FCbertool",
+        'TITLE': 'Ecological assessment of pesticides',
         'TEXT_PARAGRAPH': xx
     })
     html += render_to_string('07ubertext_end_drupal.html', {})
@@ -49,7 +49,7 @@ def eco_landing_page_new(request):
 
     return response
 
-def eco_landing_page(request):
+def eco_landing_page_old(request):
     text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'ubertool_app/views/landing_text.txt'), 'r')
     xx = text_file2.read()
 

@@ -27,22 +27,48 @@ _UPDATED_MODELS = (
 def output_page_html(header, model, tables_html):
     """Generates HTML to fill '.articles_output' div on output page"""
 
-    html = render_to_string('01uberheader_main_drupal.html', {
+    #html = render_to_string('01uberheader_main_drupal.html', {
+    #    'SITE_SKIN': os.environ['SITE_SKIN'],
+    #    'TITLE': header})
+    #html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
+    #    'CONTACT_URL': os.environ['CONTACT_URL'],
+    #    'MODEL': model,
+    #    'PAGE': 'description'})
+
+    #epa template header
+    html = render_to_string('01epa_drupal_header.html', {
         'SITE_SKIN': os.environ['SITE_SKIN'],
-        'TITLE': header})
-    html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
-        'CONTACT_URL': os.environ['CONTACT_URL'],
-        'MODEL': model,
-        'PAGE': 'description'})
-    html += render_to_string('04uberoutput_start_drupal.html', {
-        'TITLE': header + ' Output'})
-    html += tables_html
-    # if model is not "sam":
-    #     print " model: " + model
-    #     html += render_to_string('export.html', {})
-    html += render_to_string('04ubertext_end_drupal.html', {})
-    html += links_left.ordered_list(model, 'run_model')
-    html += render_to_string('06uberfooter.html', {})
+        'TITLE': u"\u00FCbertool"
+    })
+    html += render_to_string('02epa_drupal_header_bluestripe_onesidebar.html', {})
+    html += render_to_string('03epa_drupal_section_title_ubertool.html', {})
+
+    #main body
+    #need from css love from here
+    #html += render_to_string('04uberoutput_start_drupal.html', {
+    #    'TITLE': header + ' Output'})
+    html += render_to_string('06ubertext_start_index_drupal.html', {
+        'TITLE': header + ' Output',
+        'TEXT_PARAGRAPH': tables_html
+    })
+    html += render_to_string('07ubertext_end_drupal.html', {})
+    html += links_left.ordered_list(model)
+
+    #html += render_to_string('04uberoutput_start_drupal.html', {
+    #    'TITLE': header + ' Output'})
+    #html += tables_html
+    ## if model is not "sam":
+    ##     print " model: " + model
+    ##     html += render_to_string('export.html', {})
+    #html += render_to_string('04ubertext_end_drupal.html', {})
+    #html += links_left.ordered_list(model, 'run_model')
+
+    #css and scripts
+    html += render_to_string('09epa_drupal_ubertool_css.html', {})
+    #html += render_to_string('09epa_drupal_ubertool_scripts.html', {})
+
+    #epa template footer
+    html += render_to_string('10epa_drupal_footer.html', {})
 
     return html
 

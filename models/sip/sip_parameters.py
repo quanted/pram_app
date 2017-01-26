@@ -41,7 +41,7 @@ class SipInp(forms.Form):
         choices=Species_of_the_tested_mamm_CHOICES,
         initial='350',
         validators=[validation.validate_choicefield])
-    bodyweight_tested_mammal = forms.FloatField(
+    ld50_bodyweight_tested_mammal_other = forms.FloatField(
         required=True,
         label='Body weight (g) of mammalian species',
         initial=350,
@@ -57,7 +57,7 @@ class SipInp(forms.Form):
         choices=Species_of_the_tested_mamm_CHOICES,
         initial='350',
         validators=[validation.validate_choicefield])
-    noael_bodyweight_tested_mammal = forms.FloatField(
+    noael_bodyweight_tested_mammal_other = forms.FloatField(
         required=True,
         label='Body weight (g) of mammalian species',
         initial=350,
@@ -72,13 +72,13 @@ class SipInp(forms.Form):
         label=mark_safe('Avian LD<sub>50</sub> (mg/kg-bw)'),
         initial=2292,
         validators=[validation.validate_positive])
-    species_tested_bird = forms.ChoiceField(
+    ld50_species_tested_bird = forms.ChoiceField(
         required=True,
         label=mark_safe('Avian test species'),
         choices=Species_of_the_tested_bird_CHOICES,
         initial='178',
         validators=[validation.validate_choicefield])
-    bodyweight_tested_bird = forms.FloatField(
+    ld50_bodyweight_tested_bird_other = forms.FloatField(
         required=True,
         label='Body weight (g) of avian species',
         initial=178,
@@ -108,7 +108,7 @@ class SipInp(forms.Form):
         required=False,
         label='NOAEC (mg/kg-diet) for other bird species',
         validators=[validation.validate_positive])
-    bodyweight_bird_other_1 = forms.FloatField(
+    noaec_bodyweight_bird_other_1 = forms.FloatField(
         required=False,
         label='Body weight (g) of other avian species',
         validators=[validation.validate_positive])
@@ -116,7 +116,7 @@ class SipInp(forms.Form):
         required=False,
         label='NOAEC (mg/kg-diet) for 2nd other bird species',
         validators=[validation.validate_positive])
-    bodyweight_bird_other_2 = forms.FloatField(
+    noaec_bodyweight_bird_other_2 = forms.FloatField(
         required=False,
         label='Body weight (g) of 2nd other avian species',
         validators=[validation.validate_positive])

@@ -133,7 +133,7 @@ def gett2data(kabam_obj):
                       'Phytoplankton', 'Zooplankton', 'Benthic Invertebrates', 'Filter Feeders', 'Small Fish',
                       'Medium Fish', 'Large Fish'],
         mark_safe("Total <br>(&#956;g/kg-ww)"): [mark_safe('%.0f (&#956;g/L)' % kabam_obj.water_column_eec),
-                                                 mark_safe('%.0f (&#956;g/L)' % kabam_obj.out_water_dissolved),
+                                                 mark_safe('%.0f (&#956;g/L)' % kabam_obj.out_free_pest_conc_watercol),
                                                  mark_safe('%.0f (&#956;g/L)' % (1e6 * kabam_obj.pore_water_eec)),
                                                  mark_safe('%.0f (&#956;g/kg-dw)' % (1e6 * kabam_obj.conc_ss)),
                                                  '%.0f' % (1e6 * kabam_obj.out_cb_phytoplankton),

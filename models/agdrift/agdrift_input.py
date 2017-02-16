@@ -4,12 +4,11 @@
 """
 
 from django.template.loader import render_to_string
-
+import agdrift_parameters
 
 def agdrift_input_page(request, model='', header='', form_data=None):
-    import agdrift_parameters
-
-    html = render_to_string('04uberinput_start_drupal.html', {
+    html = render_to_string('04uberinput_jquery.html', {'model': model})
+    html += render_to_string('04uberinput_start_drupal.html', {
         'MODEL': model,
         'TITLE': header})
     html += render_to_string('04uberinput_form.html', {

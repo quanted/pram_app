@@ -115,11 +115,11 @@ class AgdriftInp(forms.Form):
         validators=[validation.validate_greaterthan0])
     user_wetland_width = forms.FloatField(
         label=mark_safe('Wetland Width (ft)'),
-        initial='0.4921',
+        initial='208.7',
         validators=[validation.validate_greaterthan0])
     user_wetland_depth = forms.FloatField(
         label=mark_safe('Wetland depth (ft)'),
-        initial='208.7',
+        initial='0.4921',
         validators=[validation.validate_greaterthan0])
     terrestrial_field_type = forms.ChoiceField(
         label='Terrestrial Field type',

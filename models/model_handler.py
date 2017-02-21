@@ -124,6 +124,9 @@ def modelInputPOSTReceiver(request, model):
     for key in request.POST:
         args["inputs"][key] = {"0": request.POST.get(key)}
     args["run_type"] = "single"
+    logging.info("model:")
+    logging.info(model)
+    logging.info("args:")
     logging.info(args)
 
     response = call_model_server(model, args)

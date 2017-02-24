@@ -130,6 +130,27 @@ class AgdriftInp(forms.Form):
         label=mark_safe('Downwind width of Area (ft)'),
         initial='208.7',
         validators=[validation.validate_greaterthan0])
+    user_avg_dep_gha = forms.FloatField(
+        label=mark_safe('Initial Average Deposition (g/ha)'),
+        initial='8.82',
+        validators=[validation.validate_greaterthan0])
+    user_avg_dep_mgcm2 = forms.FloatField(
+        label=mark_safe('Initial Average Deposition (mg/cm2)'),
+        initial='6.56',
+        validators=[validation.validate_greaterthan0])
+    user_avg_dep_lbac = forms.FloatField(
+        label=mark_safe('Pond depth (ft)'),
+        initial='6.56',
+        validators=[validation.validate_greaterthan0])
+    user_avg_conc_ngl = forms.FloatField(
+        label=mark_safe('Initial Average Deposition (lb/ac)'),
+        initial='0.0079',
+        validators=[validation.validate_greaterthan0])
+    user_frac_applied = forms.FloatField(
+        label=mark_safe('Fraction applied'),
+        initial='0.0314',
+        validators=[validation.validate_range01])
+
 #    extending_settings = forms.ChoiceField(
             # label='Optional settings', choices=Extended_settings_CHOICES, initial='Make a selection')
  #   init_avg_dep_foa = forms.FloatField(

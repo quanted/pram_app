@@ -46,12 +46,14 @@ def qaqc_page(request, model='none'):
     html += render_to_string('03epa_drupal_section_title_ubertool.html', {})
 
     #main body
-    html += render_to_string('06ubertext_start_index_drupal.html', {
-        'TITLE': header + ' QA/QC',
-        'TEXT_PARAGRAPH': qaqc
-    })
+    #html += render_to_string('06ubertext_start_index_drupal.html', {
+    #    'TITLE': header + ' QA/QC',
+    #    'TEXT_PARAGRAPH': qaqc
+    #})
+    snip_qaqc = 'snip_' + model + '_nosetests.html'
+    html += render_to_string(snip_qaqc, {})
     html += render_to_string('07ubertext_end_drupal.html', {})
-    html += links_left.ordered_list(model, 'qaqc')
+    #html += links_left.ordered_list(model, 'qaqc')
 
     #css and scripts
     html += render_to_string('09epa_drupal_ubertool_css.html', {})

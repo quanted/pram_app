@@ -22,6 +22,8 @@ print('qed.ubertool_app.urls')
 #groups is (?P<name>pattern), where name is the name of the group and pattern is some pattern to match
 urlpatterns = [
     url(r'^$', landing.eco_landing_page),
+    url(r'^docs/', include('ubertool_app.docs.urls')),
+    url(r'^api/', include('ubertool_app.api.urls')),
     #url(r'^test/$', landing.eco_landing_page_new), #testing before deployment
     #url(r'^(?P<model>.*?)/?$', description.description_page), #this catches everything...
     url(r'^(?P<model>.*?)/$', description.description_page),
@@ -32,8 +34,6 @@ urlpatterns = [
     url(r'^(?P<model>.*?)/input/?$', input.input_page),
     url(r'^(?P<model>.*?)/output/?$', output.output_page),
     url(r'^(?P<model>.*?)/batch/?$', batch.batch_page),
-    url(r'^docs/', include('ubertool_app.docs.urls')),
-    url(r'^api/', include('ubertool_app.api.urls')),
     #url(r'^(?P<model>.*?)/?', include(model_patterns)),
 ]
 

@@ -3,6 +3,7 @@ from django.conf.urls import include, url
 from views import misc, landing
 from views import description, input, output, algorithms, references, qaqc
 from views import geoserver, batch, history, generateReport
+from api import urls
 
 print('qed.ubertool_app.urls')
 
@@ -31,6 +32,8 @@ urlpatterns = [
     url(r'^(?P<model>.*?)/input/?$', input.input_page),
     url(r'^(?P<model>.*?)/output/?$', output.output_page),
     url(r'^(?P<model>.*?)/batch/?$', batch.batch_page),
+    url(r'^docs/', include('ubertool_app.docs.urls')),
+    url(r'^api/', include('ubertool_app.api.urls')),
     #url(r'^(?P<model>.*?)/?', include(model_patterns)),
 ]
 

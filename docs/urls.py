@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from docs.views import DocsRootView, serve_docs
+from ubertool_app.docs.views import DocsRootView, serve_docs
 
 urlpatterns = [
     url(r'^$', DocsRootView.as_view(), name='docs_root'),

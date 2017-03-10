@@ -45,3 +45,6 @@ python manage.py
 
 #you can then visit your browser in (for example):
 http://127.0.0.1:5000/
+
+#master is now a protected branch, you must commit to a sprint/feature branch
+#then make a pull request to someone else for review

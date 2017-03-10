@@ -24,6 +24,7 @@ print('qed.ubertool_app.urls')
 #groups is (?P<name>pattern), where name is the name of the group and pattern is some pattern to match
 urlpatterns = [
     url(r'^$', landing.eco_landing_page),
+    url(r'^links/?$', misc.links),
     #docs
     url(r'^docs/$', docs_views.DocsRootView.as_view(), name='docs_root'),
     #url(r'^(?P<path>.*)$', serve_docs, name='docs_files')

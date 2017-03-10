@@ -3,6 +3,8 @@ from django.conf.urls import include, url
 from views import misc, landing
 from views import description, input, output, algorithms, references, qaqc
 from views import geoserver, batch, history, generateReport
+from api import views as api_views
+from docs import views as docs_views
 from api import urls
 
 print('qed.ubertool_app.urls')
@@ -22,8 +24,14 @@ print('qed.ubertool_app.urls')
 #groups is (?P<name>pattern), where name is the name of the group and pattern is some pattern to match
 urlpatterns = [
     url(r'^$', landing.eco_landing_page),
-    url(r'^docs/', include('ubertool_app.docs.urls')),
-    url(r'^api/', include('ubertool_app.api.urls')),
+    #docs
+    url(r'^docs/$', docs_views.DocsRootView.as_view(), name='docs_root'),
+    #url(r'^(?P<path>.*)$', serve_docs, name='docs_files')
+    #url(r'^docs/', include('ubertool_app.docs.urls')),
+    #/api
+    #url(r'^api/', include('ubertool_app.api.urls')),
+    url(r'^api/$', api_views.api_docs_view, name='api_docs_view'),
+    url(r'^api/spec/?$', api_views.api_docs_json),
     #url(r'^test/$', landing.eco_landing_page_new), #testing before deployment
     #url(r'^(?P<model>.*?)/?$', description.description_page), #this catches everything...
     url(r'^(?P<model>.*?)/$', description.description_page),

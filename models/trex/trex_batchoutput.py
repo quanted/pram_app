@@ -716,8 +716,8 @@ def html_table(row_inp_all):
             tw_mamm.append(tw_mamm_temp)
 
             Input_header="""<div class="out_">
-                                <br><H3>Batch Calculation of Iteration %s</H3>
-                            </div>"""%(iter)
+                                <br><H3>Batch Calculation of Iteration {0!s}</H3>
+                            </div>""".format((iter))
 
             trex_obj_temp = trex_model.trex("batch", chem_name_temp, use_temp, formu_name_temp, a_i_temp, Application_type_temp, seed_treatment_name_temp, m_s_r_p_temp, crop_use_temp, r_s_temp, b_w_temp, p_i_temp, den_temp, h_l_temp, n_a_temp, rate_out_temp, day_out_temp,
                             ld50_bird_temp, lc50_bird_temp, NOAEC_bird_temp, NOAEL_bird_temp, aw_bird_sm_temp, aw_bird_md_temp, aw_bird_lg_temp, 

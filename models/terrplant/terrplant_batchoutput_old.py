@@ -158,9 +158,9 @@ def html_table(row_inp_all):
 
             batch_header = """
                 <div class="out_">
-                    <br><H3>Batch Calculation of Iteration %s:</H3>
+                    <br><H3>Batch Calculation of Iteration {0!s}:</H3>
                 </div>
-                """%(iter)
+                """.format((iter))
 
             html_temp = terrplant_tables.table_all(terr)
 

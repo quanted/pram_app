@@ -454,11 +454,11 @@ def pre_canned_tables(request):
                     </tr>
                     <tr>
                         <td>Simulation is finished. Please download your file from here</td>
-                        <td><a href=%s>Link</a></td>
+                        <td><a href={0!s}>Link</a></td>
                     </tr>
                 </table>
             </div>
-    """ % link
+    """.format(link)
 
     html = html + render_to_string('sam_mapping_demo.html', {'SCENARIO' : scenario})
     html = html + render_to_string('sam_charts_demo.html', {'SCENARIO' : scenario})
@@ -481,13 +481,13 @@ def custom_run_tables(request, jid):
                     <tbody>
                         <tr>
                             <th>Output Data Link:</th>
-                            <td><a href="history/revisit?model_name=sam&jid=%s">Download SAM Output</a></td>
+                            <td><a href="history/revisit?model_name=sam&jid={0!s}">Download SAM Output</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    """ % (jid)
+    """.format((jid))
 
     return html
 

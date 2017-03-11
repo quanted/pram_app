@@ -74,8 +74,8 @@ def gett1data(sip_obj):
 def gett2data(sip_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % sip_obj.out_dose_mamm, '%g' % sip_obj.out_at_mamm, '%g' % sip_obj.out_acute_mamm, '%s' % sip_obj.out_acuconm,],
-        "Chronic": ['%g' % sip_obj.out_dose_mamm, '%g' % sip_obj.out_act, '%g' % sip_obj.out_chron_mamm, '%s' % sip_obj.out_chronconm,],
+        "Acute": ['{0:g}'.format(sip_obj.out_dose_mamm), '{0:g}'.format(sip_obj.out_at_mamm), '{0:g}'.format(sip_obj.out_acute_mamm), '{0!s}'.format(sip_obj.out_acuconm),],
+        "Chronic": ['{0:g}'.format(sip_obj.out_dose_mamm), '{0:g}'.format(sip_obj.out_act), '{0:g}'.format(sip_obj.out_chron_mamm), '{0!s}'.format(sip_obj.out_chronconm),],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
     return data
@@ -83,10 +83,10 @@ def gett2data(sip_obj):
 def gett2dataqaqc(sip_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % sip_obj.out_dose_mamm, '%g' % sip_obj.out_at_mamm, '%g' % sip_obj.out_acute_mamm, '%s' % sip_obj.out_acuconm,],
-        "Acute-Expected": ['%g' % sip_obj.dose_mamm_exp,'%g' % sip_obj.at_mamm_exp,'%g' % sip_obj.acute_mamm_exp,'%s' % sip_obj.acuconm_exp,],
-        "Chronic": ['%g' % sip_obj.out_dose_mamm, '%g' % sip_obj.out_act, '%g' % sip_obj.out_chron_mamm, '%s' % sip_obj.out_chronconm,],
-        "Chronic-Expected": ['%g' % sip_obj.dose_mamm_exp,'%g' % sip_obj.act_exp,'%g' % sip_obj.chron_mamm_exp,'%s' % sip_obj.chronconm_exp,],
+        "Acute": ['{0:g}'.format(sip_obj.out_dose_mamm), '{0:g}'.format(sip_obj.out_at_mamm), '{0:g}'.format(sip_obj.out_acute_mamm), '{0!s}'.format(sip_obj.out_acuconm),],
+        "Acute-Expected": ['{0:g}'.format(sip_obj.dose_mamm_exp),'{0:g}'.format(sip_obj.at_mamm_exp),'{0:g}'.format(sip_obj.acute_mamm_exp),'{0!s}'.format(sip_obj.acuconm_exp),],
+        "Chronic": ['{0:g}'.format(sip_obj.out_dose_mamm), '{0:g}'.format(sip_obj.out_act), '{0:g}'.format(sip_obj.out_chron_mamm), '{0!s}'.format(sip_obj.out_chronconm),],
+        "Chronic-Expected": ['{0:g}'.format(sip_obj.dose_mamm_exp),'{0:g}'.format(sip_obj.act_exp),'{0:g}'.format(sip_obj.chron_mamm_exp),'{0!s}'.format(sip_obj.chronconm_exp),],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
     return data
@@ -94,8 +94,8 @@ def gett2dataqaqc(sip_obj):
 def gett3data(sip_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % sip_obj.out_dose_bird, '%g' % sip_obj.out_at_bird,'%g' % sip_obj.out_acute_bird, '%s' % sip_obj.out_acuconb,],
-        "Chronic": ['%g' % sip_obj.out_dose_bird, '%g' % sip_obj.out_det,'%g' % sip_obj.out_chron_bird, '%s' % sip_obj.out_chronconb,],
+        "Acute": ['{0:g}'.format(sip_obj.out_dose_bird), '{0:g}'.format(sip_obj.out_at_bird),'{0:g}'.format(sip_obj.out_acute_bird), '{0!s}'.format(sip_obj.out_acuconb),],
+        "Chronic": ['{0:g}'.format(sip_obj.out_dose_bird), '{0:g}'.format(sip_obj.out_det),'{0:g}'.format(sip_obj.out_chron_bird), '{0!s}'.format(sip_obj.out_chronconb),],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
     return data
@@ -103,10 +103,10 @@ def gett3data(sip_obj):
 def gett3dataqaqc(sip_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%g' % sip_obj.out_dose_bird, '%g' % sip_obj.out_at_bird,'%g' % sip_obj.out_acute_bird, '%s' % sip_obj.out_acuconb,],
-        "Acute-Expected": ['%g' % sip_obj.dose_bird_exp, '%g' % sip_obj.at_bird_exp, '%g' % sip_obj.acute_bird_exp, '%s' % sip_obj.acuconb_exp,],
-        "Chronic": ['%g' % sip_obj.out_dose_bird, '%g' % sip_obj.out_det,'%g' % sip_obj.out_chron_bird, '%s' % sip_obj.out_chronconb,],
-        "Chronic-Expected": ['%g' % sip_obj.dose_bird_exp,'%g' % sip_obj.det_exp,'%g' % sip_obj.chron_bird_exp,'%s' % sip_obj.chronconb_exp,],
+        "Acute": ['{0:g}'.format(sip_obj.out_dose_bird), '{0:g}'.format(sip_obj.out_at_bird),'{0:g}'.format(sip_obj.out_acute_bird), '{0!s}'.format(sip_obj.out_acuconb),],
+        "Acute-Expected": ['{0:g}'.format(sip_obj.dose_bird_exp), '{0:g}'.format(sip_obj.at_bird_exp), '{0:g}'.format(sip_obj.acute_bird_exp), '{0!s}'.format(sip_obj.acuconb_exp),],
+        "Chronic": ['{0:g}'.format(sip_obj.out_dose_bird), '{0:g}'.format(sip_obj.out_det),'{0:g}'.format(sip_obj.out_chron_bird), '{0!s}'.format(sip_obj.out_chronconb),],
+        "Chronic-Expected": ['{0:g}'.format(sip_obj.dose_bird_exp),'{0:g}'.format(sip_obj.det_exp),'{0:g}'.format(sip_obj.chron_bird_exp),'{0!s}'.format(sip_obj.chronconb_exp),],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
     return data

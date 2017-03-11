@@ -7,8 +7,8 @@ def auth_check():
 	
 	api_key=keys_Picloud_S3.picloud_api_key
 	api_secretkey=keys_Picloud_S3.picloud_api_secretkey
-	base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
-	return {'Authorization' : 'Basic %s' % base64string, 'Content-Type' : 'application/json'}
+	base64string = base64.encodestring('{0!s}:{1!s}'.format(api_key, api_secretkey))[:-1]
+	return {'Authorization' : 'Basic {0!s}'.format(base64string), 'Content-Type' : 'application/json'}
 
 def setHTTPHeaders():
 	"""

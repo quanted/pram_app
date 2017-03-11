@@ -119,11 +119,11 @@ def gett1data(sm):
 def table_sum_1(i,application_rate,column_height,spray_drift_fraction,direct_spray_duration,molecular_weight,vapor_pressure):
         #pre-table sum_input_1
         html = """
-        <H3 class="out_1 collapsible" id="section1"><span></span>Batch Summary Statistics (Iterations=%s)</H3>
+        <H3 class="out_1 collapsible" id="section1"><span></span>Batch Summary Statistics (Iterations={0!s})</H3>
         <div class="out_">
             <H4 class="out_1 collapsible" id="section4"><span></span>Chemical Properties</H4>
                 <div class="out_ container_output">
-        """%(i-1)
+        """.format((i-1))
 
         #table sum_input_1
         tsuminputdata_1 = gettsumdata_1(application_rate,column_height,spray_drift_fraction,direct_spray_duration,molecular_weight,vapor_pressure)
@@ -139,10 +139,10 @@ def gettsumdata_1(application_rate,column_height,spray_drift_fraction,direct_spr
     data = { 
         "Parameter": ['Application Rate', 'Direct Spray Column Height', 'Spray Fraction Inhaled', 'Direct Spray Inhalation Duration', 
                       'Molecular Weight', 'Vapor Pressure', ],
-        "Mean": ['%.2e' % numpy.mean(application_rate), '%.2e' % numpy.mean(column_height), '%.2e' % numpy.mean(spray_drift_fraction), '%.2e' % numpy.mean(direct_spray_duration), '%.2e' % numpy.mean(molecular_weight), '%.2e' % numpy.mean(vapor_pressure),],
-        "Std":  ['%.2e' % numpy.std(application_rate), '%.2e' % numpy.mean(column_height), '%.2e' % numpy.mean(spray_drift_fraction), '%.2e' % numpy.mean(direct_spray_duration), '%.2e' % numpy.std(molecular_weight), '%.2e' % numpy.std(vapor_pressure),],
-        "Min":  ['%.2e' % numpy.min(application_rate), '%.2e' % numpy.mean(column_height), '%.2e' % numpy.mean(spray_drift_fraction), '%.2e' % numpy.mean(direct_spray_duration), '%.2e' % numpy.min(molecular_weight), '%.2e' % numpy.min(vapor_pressure),],
-        "Max":  ['%.2e' % numpy.max(application_rate), '%.2e' % numpy.mean(column_height), '%.2e' % numpy.mean(spray_drift_fraction), '%.2e' % numpy.mean(direct_spray_duration), '%.2e' % numpy.max(molecular_weight), '%.2e' % numpy.max(vapor_pressure),],
+        "Mean": ['{0:.2e}'.format(numpy.mean(application_rate)), '{0:.2e}'.format(numpy.mean(column_height)), '{0:.2e}'.format(numpy.mean(spray_drift_fraction)), '{0:.2e}'.format(numpy.mean(direct_spray_duration)), '{0:.2e}'.format(numpy.mean(molecular_weight)), '{0:.2e}'.format(numpy.mean(vapor_pressure)),],
+        "Std":  ['{0:.2e}'.format(numpy.std(application_rate)), '{0:.2e}'.format(numpy.mean(column_height)), '{0:.2e}'.format(numpy.mean(spray_drift_fraction)), '{0:.2e}'.format(numpy.mean(direct_spray_duration)), '{0:.2e}'.format(numpy.std(molecular_weight)), '{0:.2e}'.format(numpy.std(vapor_pressure)),],
+        "Min":  ['{0:.2e}'.format(numpy.min(application_rate)), '{0:.2e}'.format(numpy.mean(column_height)), '{0:.2e}'.format(numpy.mean(spray_drift_fraction)), '{0:.2e}'.format(numpy.mean(direct_spray_duration)), '{0:.2e}'.format(numpy.min(molecular_weight)), '{0:.2e}'.format(numpy.min(vapor_pressure)),],
+        "Max":  ['{0:.2e}'.format(numpy.max(application_rate)), '{0:.2e}'.format(numpy.mean(column_height)), '{0:.2e}'.format(numpy.mean(spray_drift_fraction)), '{0:.2e}'.format(numpy.mean(direct_spray_duration)), '{0:.2e}'.format(numpy.max(molecular_weight)), '{0:.2e}'.format(numpy.max(vapor_pressure)),],
         "Unit": ['lbs a.i./A', 'm','','minutes','g/mol','torr',],
     }
     return data
@@ -227,10 +227,10 @@ def gettsumdata_2(avian_oral_ld50,body_weight_assessed_bird,body_weight_tested_b
         "Parameter": ['Avian Oral LD50','Assessed Bird Body Weight','Tested Bird Body Weight','Mineau Scaling Factor',
             'Mammalian Inhalation LC50','Rat Inhalation Study Duration','Assessed Mammal Body Weight','Tested Mammal Body Weight',
             'Mammal Oral LD50',],
-        "Mean": ['%.2e' % numpy.mean(avian_oral_ld50), '%.2e' % numpy.mean(body_weight_assessed_bird), '%.2e' % numpy.mean(body_weight_tested_bird), '%.2e' % numpy.mean(mineau_scaling_factor), '%.2e' % numpy.mean(mammal_inhalation_lc50), '%.2e' % numpy.mean(duration_mammal_inhalation_study),'%.2e' % numpy.mean(body_weight_assessed_mammal), '%.2e' % numpy.mean(body_weight_tested_mammal), '%.2e' % numpy.mean(mammal_oral_ld50),],
-        "Std":  ['%.2e' % numpy.std(avian_oral_ld50), '%.2e' % numpy.mean(body_weight_assessed_bird), '%.2e' % numpy.mean(body_weight_tested_bird), '%.2e' % numpy.mean(mineau_scaling_factor), '%.2e' % numpy.std(mammal_inhalation_lc50), '%.2e' % numpy.std(duration_mammal_inhalation_study),'%.2e' % numpy.std(body_weight_assessed_mammal), '%.2e' % numpy.std(body_weight_tested_mammal), '%.2e' % numpy.std(mammal_oral_ld50),],
-        "Min":  ['%.2e' % numpy.min(avian_oral_ld50), '%.2e' % numpy.mean(body_weight_assessed_bird), '%.2e' % numpy.mean(body_weight_tested_bird), '%.2e' % numpy.mean(mineau_scaling_factor), '%.2e' % numpy.min(mammal_inhalation_lc50), '%.2e' % numpy.min(duration_mammal_inhalation_study),'%.2e' % numpy.min(body_weight_assessed_mammal), '%.2e' % numpy.min(body_weight_tested_mammal), '%.2e' % numpy.min(mammal_oral_ld50),],
-        "Max":  ['%.2e' % numpy.max(avian_oral_ld50), '%.2e' % numpy.mean(body_weight_assessed_bird), '%.2e' % numpy.mean(body_weight_tested_bird), '%.2e' % numpy.mean(mineau_scaling_factor), '%.2e' % numpy.max(mammal_inhalation_lc50), '%.2e' % numpy.max(duration_mammal_inhalation_study),'%.2e' % numpy.max(body_weight_assessed_mammal), '%.2e' % numpy.max(body_weight_tested_mammal), '%.2e' % numpy.max(mammal_oral_ld50),],
+        "Mean": ['{0:.2e}'.format(numpy.mean(avian_oral_ld50)), '{0:.2e}'.format(numpy.mean(body_weight_assessed_bird)), '{0:.2e}'.format(numpy.mean(body_weight_tested_bird)), '{0:.2e}'.format(numpy.mean(mineau_scaling_factor)), '{0:.2e}'.format(numpy.mean(mammal_inhalation_lc50)), '{0:.2e}'.format(numpy.mean(duration_mammal_inhalation_study)),'{0:.2e}'.format(numpy.mean(body_weight_assessed_mammal)), '{0:.2e}'.format(numpy.mean(body_weight_tested_mammal)), '{0:.2e}'.format(numpy.mean(mammal_oral_ld50)),],
+        "Std":  ['{0:.2e}'.format(numpy.std(avian_oral_ld50)), '{0:.2e}'.format(numpy.mean(body_weight_assessed_bird)), '{0:.2e}'.format(numpy.mean(body_weight_tested_bird)), '{0:.2e}'.format(numpy.mean(mineau_scaling_factor)), '{0:.2e}'.format(numpy.std(mammal_inhalation_lc50)), '{0:.2e}'.format(numpy.std(duration_mammal_inhalation_study)),'{0:.2e}'.format(numpy.std(body_weight_assessed_mammal)), '{0:.2e}'.format(numpy.std(body_weight_tested_mammal)), '{0:.2e}'.format(numpy.std(mammal_oral_ld50)),],
+        "Min":  ['{0:.2e}'.format(numpy.min(avian_oral_ld50)), '{0:.2e}'.format(numpy.mean(body_weight_assessed_bird)), '{0:.2e}'.format(numpy.mean(body_weight_tested_bird)), '{0:.2e}'.format(numpy.mean(mineau_scaling_factor)), '{0:.2e}'.format(numpy.min(mammal_inhalation_lc50)), '{0:.2e}'.format(numpy.min(duration_mammal_inhalation_study)),'{0:.2e}'.format(numpy.min(body_weight_assessed_mammal)), '{0:.2e}'.format(numpy.min(body_weight_tested_mammal)), '{0:.2e}'.format(numpy.min(mammal_oral_ld50)),],
+        "Max":  ['{0:.2e}'.format(numpy.max(avian_oral_ld50)), '{0:.2e}'.format(numpy.mean(body_weight_assessed_bird)), '{0:.2e}'.format(numpy.mean(body_weight_tested_bird)), '{0:.2e}'.format(numpy.mean(mineau_scaling_factor)), '{0:.2e}'.format(numpy.max(mammal_inhalation_lc50)), '{0:.2e}'.format(numpy.max(duration_mammal_inhalation_study)),'{0:.2e}'.format(numpy.max(body_weight_assessed_mammal)), '{0:.2e}'.format(numpy.max(body_weight_tested_mammal)), '{0:.2e}'.format(numpy.max(mammal_oral_ld50)),],
         "Unit": ['mg/kg-bw','kg','kg','','mg/kg-bw','hours','kg','kg','mg/kg-bw',],
     }
     return data
@@ -261,9 +261,9 @@ def gett3data(sm):
           'Estimated Avian Inhalation LD50','Adjusted Avian Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Bird','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50',],
         #"Value": [cs,ir_avian,out_vid_avian,ld50est,ld50adj,ratio_vd_avian,out_sid_avian,out_ratio_sid_avian,],
-        "Value": ['%.2e' % sm.out_sat_air_conc,'%.2e' % sm.out_inh_rate_avian,'%.2e' % sm.out_vid_avian,
-            '%.2e' % sm.out_estimated_avian_inhalation_ld50,'%.2e' % sm.out_adjusted_avian_inhalation_ld50,'%.2e' % sm.out_ratio_vid_avian,
-            '%.2e' % sm.out_sid_avian,'%.2e' % sm.out_ratio_sid_avian,],
+        "Value": ['{0:.2e}'.format(sm.out_sat_air_conc),'{0:.2e}'.format(sm.out_inh_rate_avian),'{0:.2e}'.format(sm.out_vid_avian),
+            '{0:.2e}'.format(sm.out_estimated_avian_inhalation_ld50),'{0:.2e}'.format(sm.out_adjusted_avian_inhalation_ld50),'{0:.2e}'.format(sm.out_ratio_vid_avian),
+            '{0:.2e}'.format(sm.out_sid_avian),'{0:.2e}'.format(sm.out_ratio_sid_avian),],
         "Units": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -292,10 +292,10 @@ def gettsumdata_3(out_sat_air_conc,out_inh_rate_avian,out_vid_avian,out_estimate
         "Parameter": ['Saturated Air Concentration of Pesticide','Avian Inhalation Rate','Maximum 1-hour Avian Vapor Inhalation Dose',
           'Estimated Avian Inhalation LD50','Adjusted Avian Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Bird','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50',],
-        "Mean": ['%.2e' % numpy.mean(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_avian), '%.2e' % numpy.mean(out_vid_avian), '%.2e' % numpy.mean(out_estimated_avian_inhalation_ld50), '%.2e' % numpy.mean(out_adjusted_avian_inhalation_ld50), '%.2e' % numpy.mean(out_ratio_vid_avian),'%.2e' % numpy.mean(out_sid_avian), '%.2e' % numpy.mean(out_ratio_sid_avian),],
-        "Std":  ['%.2e' % numpy.std(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_avian), '%.2e' % numpy.mean(out_vid_avian), '%.2e' % numpy.mean(out_estimated_avian_inhalation_ld50), '%.2e' % numpy.std(out_adjusted_avian_inhalation_ld50), '%.2e' % numpy.std(out_ratio_vid_avian),'%.2e' % numpy.std(out_sid_avian), '%.2e' % numpy.std(out_ratio_sid_avian),],
-        "Min":  ['%.2e' % numpy.min(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_avian), '%.2e' % numpy.mean(out_vid_avian), '%.2e' % numpy.mean(out_estimated_avian_inhalation_ld50), '%.2e' % numpy.min(out_adjusted_avian_inhalation_ld50), '%.2e' % numpy.min(out_ratio_vid_avian),'%.2e' % numpy.min(out_sid_avian), '%.2e' % numpy.min(out_ratio_sid_avian),],
-        "Max":  ['%.2e' % numpy.max(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_avian), '%.2e' % numpy.mean(out_vid_avian), '%.2e' % numpy.mean(out_estimated_avian_inhalation_ld50), '%.2e' % numpy.max(out_adjusted_avian_inhalation_ld50), '%.2e' % numpy.max(out_ratio_vid_avian),'%.2e' % numpy.max(out_sid_avian), '%.2e' % numpy.max(out_ratio_sid_avian),],
+        "Mean": ['{0:.2e}'.format(numpy.mean(out_sat_air_conc)), '{0:.2e}'.format(numpy.mean(out_inh_rate_avian)), '{0:.2e}'.format(numpy.mean(out_vid_avian)), '{0:.2e}'.format(numpy.mean(out_estimated_avian_inhalation_ld50)), '{0:.2e}'.format(numpy.mean(out_adjusted_avian_inhalation_ld50)), '{0:.2e}'.format(numpy.mean(out_ratio_vid_avian)),'{0:.2e}'.format(numpy.mean(out_sid_avian)), '{0:.2e}'.format(numpy.mean(out_ratio_sid_avian)),],
+        "Std":  ['{0:.2e}'.format(numpy.std(out_sat_air_conc)), '{0:.2e}'.format(numpy.mean(out_inh_rate_avian)), '{0:.2e}'.format(numpy.mean(out_vid_avian)), '{0:.2e}'.format(numpy.mean(out_estimated_avian_inhalation_ld50)), '{0:.2e}'.format(numpy.std(out_adjusted_avian_inhalation_ld50)), '{0:.2e}'.format(numpy.std(out_ratio_vid_avian)),'{0:.2e}'.format(numpy.std(out_sid_avian)), '{0:.2e}'.format(numpy.std(out_ratio_sid_avian)),],
+        "Min":  ['{0:.2e}'.format(numpy.min(out_sat_air_conc)), '{0:.2e}'.format(numpy.mean(out_inh_rate_avian)), '{0:.2e}'.format(numpy.mean(out_vid_avian)), '{0:.2e}'.format(numpy.mean(out_estimated_avian_inhalation_ld50)), '{0:.2e}'.format(numpy.min(out_adjusted_avian_inhalation_ld50)), '{0:.2e}'.format(numpy.min(out_ratio_vid_avian)),'{0:.2e}'.format(numpy.min(out_sid_avian)), '{0:.2e}'.format(numpy.min(out_ratio_sid_avian)),],
+        "Max":  ['{0:.2e}'.format(numpy.max(out_sat_air_conc)), '{0:.2e}'.format(numpy.mean(out_inh_rate_avian)), '{0:.2e}'.format(numpy.mean(out_vid_avian)), '{0:.2e}'.format(numpy.mean(out_estimated_avian_inhalation_ld50)), '{0:.2e}'.format(numpy.max(out_adjusted_avian_inhalation_ld50)), '{0:.2e}'.format(numpy.max(out_ratio_vid_avian)),'{0:.2e}'.format(numpy.max(out_sid_avian)), '{0:.2e}'.format(numpy.max(out_ratio_sid_avian)),],
         "Unit": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -324,12 +324,12 @@ def gett3dataqaqc(sm):
           'Estimated Avian Inhalation LD50','Adjusted Avian Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Bird','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50',],
         #"Value": [cs,ir_avian,out_vid_avian,ld50est,ld50adj,ratio_vd_avian,out_sid_avian,out_ratio_sid_avian,],
-        "Value": ['%.2e' % sm.out_sat_air_conc,'%.2e' % sm.out_inh_rate_avian,'%.2e' % sm.out_vid_avian,
-            '%.2e' % sm.out_estimated_avian_inhalation_ld50,'%.2e' % sm.out_adjusted_avian_inhalation_ld50,'%.2e' % sm.out_ratio_vid_avian,
-            '%.2e' % sm.out_sid_avian,'%.2e' % sm.out_ratio_sid_avian,],
-        "Expected Value": ['%.2e' % sm.exp_out_sat_air_conc,'%.2e' % sm.exp_out_inh_rate_avian,'%.2e' % sm.exp_out_vid_avian,
-            '%.2e' % sm.exp_out_estimated_avian_inhalation_ld50,'%.2e' % sm.exp_out_adjusted_avian_inhalation_ld50,'%.2e' % sm.exp_out_ratio_vid_avian,
-            '%.2e' % sm.exp_out_sid_avian,'%.2e' % sm.exp_out_ratio_sid_avian,],
+        "Value": ['{0:.2e}'.format(sm.out_sat_air_conc),'{0:.2e}'.format(sm.out_inh_rate_avian),'{0:.2e}'.format(sm.out_vid_avian),
+            '{0:.2e}'.format(sm.out_estimated_avian_inhalation_ld50),'{0:.2e}'.format(sm.out_adjusted_avian_inhalation_ld50),'{0:.2e}'.format(sm.out_ratio_vid_avian),
+            '{0:.2e}'.format(sm.out_sid_avian),'{0:.2e}'.format(sm.out_ratio_sid_avian),],
+        "Expected Value": ['{0:.2e}'.format(sm.exp_out_sat_air_conc),'{0:.2e}'.format(sm.exp_out_inh_rate_avian),'{0:.2e}'.format(sm.exp_out_vid_avian),
+            '{0:.2e}'.format(sm.exp_out_estimated_avian_inhalation_ld50),'{0:.2e}'.format(sm.exp_out_adjusted_avian_inhalation_ld50),'{0:.2e}'.format(sm.exp_out_ratio_vid_avian),
+            '{0:.2e}'.format(sm.exp_out_sid_avian),'{0:.2e}'.format(sm.exp_out_ratio_sid_avian),],
         "Units": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -356,9 +356,9 @@ def gett4data(sm):
         "Parameter": ['Saturated Air Concentration of Pesticide','Mammal Inhalation Rate','Maximum 1-hour Mammal Vapor Inhalation Dose',
           'Mammal Inhalation LD50','Adjusted Mammal Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Mammal','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50',],
-        "Value": ['%.2e' % sm.out_sat_air_conc,'%.2e' % sm.out_inh_rate_mammal,'%.2e' % sm.out_vid_mammal,
-            '%.2e' % sm.out_mammal_inhalation_ld50,'%.2e' % sm.out_adjusted_mammal_inhalation_ld50,'%.2e' % sm.out_ratio_vid_mammal,
-            '%.2e' % sm.out_sid_mammal,'%.2e' % sm.out_ratio_sid_mammal,],
+        "Value": ['{0:.2e}'.format(sm.out_sat_air_conc),'{0:.2e}'.format(sm.out_inh_rate_mammal),'{0:.2e}'.format(sm.out_vid_mammal),
+            '{0:.2e}'.format(sm.out_mammal_inhalation_ld50),'{0:.2e}'.format(sm.out_adjusted_mammal_inhalation_ld50),'{0:.2e}'.format(sm.out_ratio_vid_mammal),
+            '{0:.2e}'.format(sm.out_sid_mammal),'{0:.2e}'.format(sm.out_ratio_sid_mammal),],
         "Units": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -385,10 +385,10 @@ def gettsumdata_4(out_sat_air_conc,out_inh_rate_mammal,out_vid_mammal,out_mammal
         "Parameter": ['Saturated Air Concentration of Pesticide','Mammal Inhalation Rate','Maximum 1-hour Mammal Vapor Inhalation Dose',
           'Mammal Inhalation LD50','Adjusted Mammal Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Mammal','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50'],
-        "Mean": ['%.2e' % numpy.mean(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_mammal), '%.2e' % numpy.mean(out_vid_mammal), '%.2e' % numpy.mean(out_mammal_inhalation_ld50), '%.2e' % numpy.mean(out_adjusted_mammal_inhalation_ld50), '%.2e' % numpy.mean(out_ratio_vid_mammal),'%.2e' % numpy.mean(out_sid_mammal), '%.2e' % numpy.mean(out_ratio_sid_mammal),],
-        "Std":  ['%.2e' % numpy.std(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_mammal), '%.2e' % numpy.mean(out_vid_mammal), '%.2e' % numpy.mean(out_mammal_inhalation_ld50), '%.2e' % numpy.std(out_adjusted_mammal_inhalation_ld50), '%.2e' % numpy.std(out_ratio_vid_mammal),'%.2e' % numpy.std(out_sid_mammal), '%.2e' % numpy.std(out_ratio_sid_mammal),],
-        "Min":  ['%.2e' % numpy.min(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_mammal), '%.2e' % numpy.mean(out_vid_mammal), '%.2e' % numpy.mean(out_mammal_inhalation_ld50), '%.2e' % numpy.min(out_adjusted_mammal_inhalation_ld50), '%.2e' % numpy.min(out_ratio_vid_mammal),'%.2e' % numpy.min(out_sid_mammal), '%.2e' % numpy.min(out_ratio_sid_mammal),],
-        "Max":  ['%.2e' % numpy.max(out_sat_air_conc), '%.2e' % numpy.mean(out_inh_rate_mammal), '%.2e' % numpy.mean(out_vid_mammal), '%.2e' % numpy.mean(out_mammal_inhalation_ld50), '%.2e' % numpy.max(out_adjusted_mammal_inhalation_ld50), '%.2e' % numpy.max(out_ratio_vid_mammal),'%.2e' % numpy.max(out_sid_mammal), '%.2e' % numpy.max(out_ratio_sid_mammal),],
+        "Mean": ['{0:.2e}'.format(numpy.mean(out_sat_air_conc)), '{0:.2e}'.format(numpy.mean(out_inh_rate_mammal)), '{0:.2e}'.format(numpy.mean(out_vid_mammal)), '{0:.2e}'.format(numpy.mean(out_mammal_inhalation_ld50)), '{0:.2e}'.format(numpy.mean(out_adjusted_mammal_inhalation_ld50)), '{0:.2e}'.format(numpy.mean(out_ratio_vid_mammal)),'{0:.2e}'.format(numpy.mean(out_sid_mammal)), '{0:.2e}'.format(numpy.mean(out_ratio_sid_mammal)),],
+        "Std":  ['{0:.2e}'.format(numpy.std(out_sat_air_conc)), '{0:.2e}'.format(numpy.mean(out_inh_rate_mammal)), '{0:.2e}'.format(numpy.mean(out_vid_mammal)), '{0:.2e}'.format(numpy.mean(out_mammal_inhalation_ld50)), '{0:.2e}'.format(numpy.std(out_adjusted_mammal_inhalation_ld50)), '{0:.2e}'.format(numpy.std(out_ratio_vid_mammal)),'{0:.2e}'.format(numpy.std(out_sid_mammal)), '{0:.2e}'.format(numpy.std(out_ratio_sid_mammal)),],
+        "Min":  ['{0:.2e}'.format(numpy.min(out_sat_air_conc)), '{0:.2e}'.format(numpy.mean(out_inh_rate_mammal)), '{0:.2e}'.format(numpy.mean(out_vid_mammal)), '{0:.2e}'.format(numpy.mean(out_mammal_inhalation_ld50)), '{0:.2e}'.format(numpy.min(out_adjusted_mammal_inhalation_ld50)), '{0:.2e}'.format(numpy.min(out_ratio_vid_mammal)),'{0:.2e}'.format(numpy.min(out_sid_mammal)), '{0:.2e}'.format(numpy.min(out_ratio_sid_mammal)),],
+        "Max":  ['{0:.2e}'.format(numpy.max(out_sat_air_conc)), '{0:.2e}'.format(numpy.mean(out_inh_rate_mammal)), '{0:.2e}'.format(numpy.mean(out_vid_mammal)), '{0:.2e}'.format(numpy.mean(out_mammal_inhalation_ld50)), '{0:.2e}'.format(numpy.max(out_adjusted_mammal_inhalation_ld50)), '{0:.2e}'.format(numpy.max(out_ratio_vid_mammal)),'{0:.2e}'.format(numpy.max(out_sid_mammal)), '{0:.2e}'.format(numpy.max(out_ratio_sid_mammal)),],
         "Unit": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -413,12 +413,12 @@ def gett4dataqaqc(sm):
         "Parameter": ['Saturated Air Concentration of Pesticide','Mammal Inhalation Rate','Maximum 1-hour Mammal Vapor Inhalation Dose',
           'Mammal Inhalation LD50','Adjusted Mammal Inhalation LD50','Ratio of Vapor Dose to Adjusted Inhalation LD50',
           'Spray Droplet Inhalation Dose of Assessed Mammal','Ratio of Droplet Inhalation Dose to Adjusted Inhalation LD50',],
-        "Value": ['%.2e' % sm.out_sat_air_conc,'%.2e' % sm.out_inh_rate_mammal,'%.2e' % sm.out_vid_mammal,
-            '%.2e' % sm.out_mammal_inhalation_ld50,'%.2e' % sm.out_adjusted_mammal_inhalation_ld50,'%.2e' % sm.out_ratio_vid_mammal,
-            '%.2e' % sm.out_sid_mammal,'%.2e' % sm.out_ratio_sid_mammal,],
-        "Expected Value": ['%.2e' % sm.exp_out_sat_air_conc,'%.2e' % sm.exp_out_inh_rate_mammal,'%.2e' % sm.exp_out_vid_mammal,
-            '%.2e' % sm.exp_out_mammal_inhalation_ld50,'%.2e' % sm.exp_out_adjusted_mammal_inhalation_ld50,'%.2e' % sm.exp_out_ratio_vid_mammal,
-            '%.2e' % sm.exp_sid_mammal,'%.2e' % sm.exp_ratio_sid_mammal,],
+        "Value": ['{0:.2e}'.format(sm.out_sat_air_conc),'{0:.2e}'.format(sm.out_inh_rate_mammal),'{0:.2e}'.format(sm.out_vid_mammal),
+            '{0:.2e}'.format(sm.out_mammal_inhalation_ld50),'{0:.2e}'.format(sm.out_adjusted_mammal_inhalation_ld50),'{0:.2e}'.format(sm.out_ratio_vid_mammal),
+            '{0:.2e}'.format(sm.out_sid_mammal),'{0:.2e}'.format(sm.out_ratio_sid_mammal),],
+        "Expected Value": ['{0:.2e}'.format(sm.exp_out_sat_air_conc),'{0:.2e}'.format(sm.exp_out_inh_rate_mammal),'{0:.2e}'.format(sm.exp_out_vid_mammal),
+            '{0:.2e}'.format(sm.exp_out_mammal_inhalation_ld50),'{0:.2e}'.format(sm.exp_out_adjusted_mammal_inhalation_ld50),'{0:.2e}'.format(sm.exp_out_ratio_vid_mammal),
+            '{0:.2e}'.format(sm.exp_sid_mammal),'{0:.2e}'.format(sm.exp_ratio_sid_mammal),],
         "Units": ['mg/m3','cm3/hr','mg/kg-bw','mg/kg-bw','mg/kg-bw','unitless','mg/kg-bw','unitless',],
     }
     return data
@@ -444,7 +444,7 @@ def gett5data(sm):
     data = { 
         "Parameter": ['Avian: Ratio of Vapor Dose to Adjusted Inhalation LD50','Avian: Ratio of Droplet Dose to Adjusted Inhalation LD50',
           'Mammal: Ratio of Vapor Dose to Adjusted Inhalation LD50','Mammal: Ratio of Droplet Dose to Adjusted Inhalation LD50',],
-        "Value": ['%.2e' % sm.out_ratio_vid_avian,'%.2e' % sm.out_ratio_sid_avian,'%.2e' % sm.out_ratio_vid_mammal,'%.2e' % sm.out_ratio_sid_mammal,],
+        "Value": ['{0:.2e}'.format(sm.out_ratio_vid_avian),'{0:.2e}'.format(sm.out_ratio_sid_avian),'{0:.2e}'.format(sm.out_ratio_vid_mammal),'{0:.2e}'.format(sm.out_ratio_sid_mammal),],
         "Results": [sm.out_loc_vid_avian,sm.out_loc_sid_avian,sm.out_loc_vid_mammal,sm.out_loc_sid_mammal,],
     }
     return data
@@ -471,10 +471,10 @@ def gettsumdata_5(out_ratio_vid_avian, out_ratio_sid_avian, out_ratio_vid_mammal
     data = { 
         "Parameter": ['Avian: Ratio of Vapor Dose to Adjusted Inhalation LD50','Avian: Ratio of Droplet Dose to Adjusted Inhalation LD50',
           'Mammal: Ratio of Vapor Dose to Adjusted Inhalation LD50','Mammal: Ratio of Droplet Dose to Adjusted Inhalation LD50'],
-        "Mean": ['%.2e' % numpy.mean(out_ratio_vid_avian), '%.2e' % numpy.mean(out_ratio_sid_avian), '%.2e' % numpy.mean(out_ratio_vid_mammal), '%.2e' % numpy.mean(out_ratio_sid_mammal),],
-        "Std":  ['%.2e' % numpy.std(out_ratio_vid_avian), '%.2e' % numpy.mean(out_ratio_sid_avian), '%.2e' % numpy.mean(out_ratio_vid_mammal), '%.2e' % numpy.mean(out_ratio_sid_mammal),],
-        "Min":  ['%.2e' % numpy.min(out_ratio_vid_avian), '%.2e' % numpy.mean(out_ratio_sid_avian), '%.2e' % numpy.mean(out_ratio_vid_mammal), '%.2e' % numpy.mean(out_ratio_sid_mammal),],
-        "Max":  ['%.2e' % numpy.max(out_ratio_vid_avian), '%.2e' % numpy.mean(out_ratio_sid_avian), '%.2e' % numpy.mean(out_ratio_vid_mammal), '%.2e' % numpy.mean(out_ratio_sid_mammal),],
+        "Mean": ['{0:.2e}'.format(numpy.mean(out_ratio_vid_avian)), '{0:.2e}'.format(numpy.mean(out_ratio_sid_avian)), '{0:.2e}'.format(numpy.mean(out_ratio_vid_mammal)), '{0:.2e}'.format(numpy.mean(out_ratio_sid_mammal)),],
+        "Std":  ['{0:.2e}'.format(numpy.std(out_ratio_vid_avian)), '{0:.2e}'.format(numpy.mean(out_ratio_sid_avian)), '{0:.2e}'.format(numpy.mean(out_ratio_vid_mammal)), '{0:.2e}'.format(numpy.mean(out_ratio_sid_mammal)),],
+        "Min":  ['{0:.2e}'.format(numpy.min(out_ratio_vid_avian)), '{0:.2e}'.format(numpy.mean(out_ratio_sid_avian)), '{0:.2e}'.format(numpy.mean(out_ratio_vid_mammal)), '{0:.2e}'.format(numpy.mean(out_ratio_sid_mammal)),],
+        "Max":  ['{0:.2e}'.format(numpy.max(out_ratio_vid_avian)), '{0:.2e}'.format(numpy.mean(out_ratio_sid_avian)), '{0:.2e}'.format(numpy.mean(out_ratio_vid_mammal)), '{0:.2e}'.format(numpy.mean(out_ratio_sid_mammal)),],
     }
     return data
 
@@ -498,8 +498,8 @@ def gett5dataqaqc(sm):
     data = { 
         "Parameter": ['Avian: Ratio of Vapor Dose to Adjusted Inhalation LD50','Avian: Ratio of Droplet Dose to Adjusted Inhalation LD50',
           'Mammal: Ratio of Vapor Dose to Adjusted Inhalation LD50','Mammal: Ratio of Droplet Dose to Adjusted Inhalation LD50',],
-        "Value": ['%.2e' % sm.out_ratio_vid_avian,'%.2e' % sm.out_ratio_sid_avian,'%.2e' % sm.out_ratio_vid_mammal,'%.2e' % sm.out_ratio_sid_mammal,],
-        "Expected Value": ['%.2e' % sm.exp_out_ratio_vid_avian,'%.2e' % sm.exp_out_ratio_sid_avian,'%.2e' % sm.exp_out_ratio_vid_mammal,'%.2e' % sm.exp_ratio_sid_mammal,],
+        "Value": ['{0:.2e}'.format(sm.out_ratio_vid_avian),'{0:.2e}'.format(sm.out_ratio_sid_avian),'{0:.2e}'.format(sm.out_ratio_vid_mammal),'{0:.2e}'.format(sm.out_ratio_sid_mammal),],
+        "Expected Value": ['{0:.2e}'.format(sm.exp_out_ratio_vid_avian),'{0:.2e}'.format(sm.exp_out_ratio_sid_avian),'{0:.2e}'.format(sm.exp_out_ratio_vid_mammal),'{0:.2e}'.format(sm.exp_ratio_sid_mammal),],
         "Results": [sm.out_loc_vid_avian,sm.out_loc_sid_avian,sm.out_loc_vid_mammal,sm.out_loc_sid_mammal,],
         "Expected Results": [sm.exp_loc_out_vid_avian,sm.exp_loc_out_sid_avian,sm.exp_loc_out_vid_mammal,sm.exp_loc_sid_mammal,],
     }

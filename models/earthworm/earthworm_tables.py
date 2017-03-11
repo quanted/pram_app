@@ -79,7 +79,7 @@ def getdjtemplate():
 def earthwormoutput(earthworm_obj):
     data = { 
         "Parameter": ['Chemical concentration in earthworm tissue',],
-        "Value": ['%.5e' %earthworm_obj.out_earthworm_fugacity,],
+        "Value": ['{0:.5e}'.format(earthworm_obj.out_earthworm_fugacity),],
         
         "Units": ['g/kg',],
     }
@@ -91,14 +91,14 @@ def gettsumdata(Kow, L, Cs, Kd, Ps):
         "Parameter": [mark_safe('Octanol to water partition coefficient K<sub>OW</sub>'), 'Lipid fraction of earthworm L', mark_safe('Chemical concentration in soil C<sub>S</sub>'), mark_safe('Soil partitioning coefficient K<sub>d</sub>'), 
                     mark_safe('Bulk density of soil &#961;<sub>s</sub>'),mark_safe('Chemical concentration in pore water of soil C<sub>W</sub>'),
                     mark_safe('Molecular weight of chemical MW'),mark_safe('Density of earthworm &#961;<sub>E</sub>')],
-        "Mean": ['%.2e' % numpy.mean(Kow),'%.2e' % numpy.mean(L),'%.2e' % numpy.mean(Cs), '%.2e' % numpy.mean(Kd), 
-                 '%.2e' % numpy.mean(Ps),], # '%.2e' % numpy.mean(Cw), '%.2e' % numpy.mean(MW), '%.2e' % numpy.mean(Pe),],
-        "Std":  ['%.2e' % numpy.std(Kow),'%.2e' % numpy.std(L),'%.2e' % numpy.std(Cs), '%.2e' % numpy.std(Kd), 
-                '%.2e' % numpy.std(Ps),], # '%.2e' % numpy.std(Cw), '%.2e' % numpy.std(MW), '%.2e' % numpy.std(Pe),],
-        "Min":  ['%.2e' % numpy.min(Kow),'%.2e' % numpy.min(L),'%.2e' % numpy.min(Cs), '%.2e' % numpy.min(Kd), 
-                '%.2e' % numpy.min(Ps),], # '%.2e' % numpy.min(Cw), '%.2e' % numpy.min(MW), '%.2e' % numpy.min(Pe),],
-        "Max":  ['%.2e' % numpy.max(Kow),'%.2e' % numpy.max(L),'%.2e' % numpy.max(Cs), '%.2e' % numpy.max(Kd), 
-                '%.2e' % numpy.max(Ps),], # '%.2e' % numpy.max(Cw), '%.2e' % numpy.max(MW), '%.2e' % numpy.max(Pe),],
+        "Mean": ['{0:.2e}'.format(numpy.mean(Kow)),'{0:.2e}'.format(numpy.mean(L)),'{0:.2e}'.format(numpy.mean(Cs)), '{0:.2e}'.format(numpy.mean(Kd)), 
+                 '{0:.2e}'.format(numpy.mean(Ps)),], # '%.2e' % numpy.mean(Cw), '%.2e' % numpy.mean(MW), '%.2e' % numpy.mean(Pe),],
+        "Std":  ['{0:.2e}'.format(numpy.std(Kow)),'{0:.2e}'.format(numpy.std(L)),'{0:.2e}'.format(numpy.std(Cs)), '{0:.2e}'.format(numpy.std(Kd)), 
+                '{0:.2e}'.format(numpy.std(Ps)),], # '%.2e' % numpy.std(Cw), '%.2e' % numpy.std(MW), '%.2e' % numpy.std(Pe),],
+        "Min":  ['{0:.2e}'.format(numpy.min(Kow)),'{0:.2e}'.format(numpy.min(L)),'{0:.2e}'.format(numpy.min(Cs)), '{0:.2e}'.format(numpy.min(Kd)), 
+                '{0:.2e}'.format(numpy.min(Ps)),], # '%.2e' % numpy.min(Cw), '%.2e' % numpy.min(MW), '%.2e' % numpy.min(Pe),],
+        "Max":  ['{0:.2e}'.format(numpy.max(Kow)),'{0:.2e}'.format(numpy.max(L)),'{0:.2e}'.format(numpy.max(Cs)), '{0:.2e}'.format(numpy.max(Kd)), 
+                '{0:.2e}'.format(numpy.max(Ps)),], # '%.2e' % numpy.max(Cw), '%.2e' % numpy.max(MW), '%.2e' % numpy.max(Pe),],
         "Units": ['none', 'none', mark_safe('mol/m<sup>3</sup>'),mark_safe('cm<sup>3</sup>/g'),mark_safe('g/cm<sup>3</sup>'),mark_safe('mol/m<sup>3</sup>'),'g/mol',mark_safe('kg/m<sup>3</sup>'),],
     }
     return data
@@ -107,10 +107,10 @@ def gettsumdata(Kow, L, Cs, Kd, Ps):
 def gettsumdata_out(Ce_out):
     data = { 
         "Parameter": ['Chemical concentration in earthworm tissue',],
-        "Mean":['%.2e' % numpy.mean(Ce_out),],
-        "Std":['%.2e' % numpy.std(Ce_out),],
-        "Min":['%.2e' % numpy.min(Ce_out),],
-        "Max":['%.2e' % numpy.max(Ce_out),],
+        "Mean":['{0:.2e}'.format(numpy.mean(Ce_out)),],
+        "Std":['{0:.2e}'.format(numpy.std(Ce_out)),],
+        "Min":['{0:.2e}'.format(numpy.min(Ce_out)),],
+        "Max":['{0:.2e}'.format(numpy.max(Ce_out)),],
         "Units": ['g/kg',],
     }
     return data

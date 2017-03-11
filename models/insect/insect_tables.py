@@ -82,8 +82,8 @@ def gett1dataqaqc(insect_obj):
 def gett2data(insect_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%.3e' % insect_obj.dose_mamm_out, '%.4f' % insect_obj.at_mamm_out, '%.4f' % insect_obj.acute_mamm_out, '%s' % insect_obj.acuconm_out,],
-        "Chronic": ['%.3e' % insect_obj.dose_mamm_out, '%.4f' % insect_obj.act_out, '%.4f' % insect_obj.chron_mamm_out, '%s' % insect_obj.chronconm_out,],
+        "Acute": ['{0:.3e}'.format(insect_obj.dose_mamm_out), '{0:.4f}'.format(insect_obj.at_mamm_out), '{0:.4f}'.format(insect_obj.acute_mamm_out), '{0!s}'.format(insect_obj.acuconm_out),],
+        "Chronic": ['{0:.3e}'.format(insect_obj.dose_mamm_out), '{0:.4f}'.format(insect_obj.act_out), '{0:.4f}'.format(insect_obj.chron_mamm_out), '{0!s}'.format(insect_obj.chronconm_out),],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
     return data
@@ -91,10 +91,10 @@ def gett2data(insect_obj):
 def gett2dataqaqc(insect_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%.3e' % insect_obj.dose_mamm_out, '%.4f' % insect_obj.at_mamm_out, '%.4f' % insect_obj.acute_mamm_out, '%s' % insect_obj.acuconm_out,],
-        "Acute-Expected": ['%.3e' % insect_obj.dose_mamm_out_expected,'%.4f' % insect_obj.at_mamm_out_expected,'%.4f' % insect_obj.acute_mamm_out_expected,'%s' % insect_obj.acuconm_out_expected,],
-        "Chronic": ['%.3e' % insect_obj.dose_mamm_out, '%.4f' % insect_obj.act_out, '%.4f' % insect_obj.chron_mamm_out, '%s' % insect_obj.chronconm_out,],
-        "Chronic-Expected": ['%.3e' % insect_obj.dose_mamm_out_expected,'%.4f' % insect_obj.act_out_expected,'%.4f' % insect_obj.chron_mamm_out_expected,'%s' % insect_obj.chronconm_out_expected,],
+        "Acute": ['{0:.3e}'.format(insect_obj.dose_mamm_out), '{0:.4f}'.format(insect_obj.at_mamm_out), '{0:.4f}'.format(insect_obj.acute_mamm_out), '{0!s}'.format(insect_obj.acuconm_out),],
+        "Acute-Expected": ['{0:.3e}'.format(insect_obj.dose_mamm_out_expected),'{0:.4f}'.format(insect_obj.at_mamm_out_expected),'{0:.4f}'.format(insect_obj.acute_mamm_out_expected),'{0!s}'.format(insect_obj.acuconm_out_expected),],
+        "Chronic": ['{0:.3e}'.format(insect_obj.dose_mamm_out), '{0:.4f}'.format(insect_obj.act_out), '{0:.4f}'.format(insect_obj.chron_mamm_out), '{0!s}'.format(insect_obj.chronconm_out),],
+        "Chronic-Expected": ['{0:.3e}'.format(insect_obj.dose_mamm_out_expected),'{0:.4f}'.format(insect_obj.act_out_expected),'{0:.4f}'.format(insect_obj.chron_mamm_out_expected),'{0!s}'.format(insect_obj.chronconm_out_expected),],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
     return data
@@ -102,8 +102,8 @@ def gett2dataqaqc(insect_obj):
 def gett3data(insect_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%.5e' % insect_obj.dose_bird_out, '%.4f' % insect_obj.at_bird_out,'%.4f' % insect_obj.acute_bird_out, '%s' % insect_obj.acuconb_out,],
-        "Chronic": ['%.5e' % insect_obj.dose_bird_out, '%.4f' % insect_obj.det_out,'%.4f' % insect_obj.chron_bird_out, '%s' % insect_obj.chronconb_out,],
+        "Acute": ['{0:.5e}'.format(insect_obj.dose_bird_out), '{0:.4f}'.format(insect_obj.at_bird_out),'{0:.4f}'.format(insect_obj.acute_bird_out), '{0!s}'.format(insect_obj.acuconb_out),],
+        "Chronic": ['{0:.5e}'.format(insect_obj.dose_bird_out), '{0:.4f}'.format(insect_obj.det_out),'{0:.4f}'.format(insect_obj.chron_bird_out), '{0!s}'.format(insect_obj.chronconb_out),],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
     return data
@@ -111,10 +111,10 @@ def gett3data(insect_obj):
 def gett3dataqaqc(insect_obj):
     data = { 
         "Parameter": ['Upper Bound Exposure', 'Adjusted Toxicity Value', 'Ratio of Exposure to Toxicity', 'Conclusion',],
-        "Acute": ['%.5e' % insect_obj.dose_bird_out, '%.4f' % insect_obj.at_bird_out,'%.4f' % insect_obj.acute_bird_out, '%s' % insect_obj.acuconb_out,],
-        "Acute-Expected": ['%.5e' % insect_obj.dose_bird_out_expected, '%.4f' % insect_obj.at_bird_out_expected, '%.4f' % insect_obj.acute_bird_out_expected, '%s' % insect_obj.acuconb_out_expected,],
-        "Chronic": ['%.5e' % insect_obj.dose_bird_out, '%.4f' % insect_obj.det_out,'%.4f' % insect_obj.chron_bird_out, '%s' % insect_obj.chronconb_out,],
-        "Chronic-Expected": ['%.5e' % insect_obj.dose_bird_out_expected,'%.4f' % insect_obj.det_out_expected,'%.4f' % insect_obj.chron_bird_out_expected,'%s' % insect_obj.chronconb_out_expected,],
+        "Acute": ['{0:.5e}'.format(insect_obj.dose_bird_out), '{0:.4f}'.format(insect_obj.at_bird_out),'{0:.4f}'.format(insect_obj.acute_bird_out), '{0!s}'.format(insect_obj.acuconb_out),],
+        "Acute-Expected": ['{0:.5e}'.format(insect_obj.dose_bird_out_expected), '{0:.4f}'.format(insect_obj.at_bird_out_expected), '{0:.4f}'.format(insect_obj.acute_bird_out_expected), '{0!s}'.format(insect_obj.acuconb_out_expected),],
+        "Chronic": ['{0:.5e}'.format(insect_obj.dose_bird_out), '{0:.4f}'.format(insect_obj.det_out),'{0:.4f}'.format(insect_obj.chron_bird_out), '{0!s}'.format(insect_obj.chronconb_out),],
+        "Chronic-Expected": ['{0:.5e}'.format(insect_obj.dose_bird_out_expected),'{0:.4f}'.format(insect_obj.det_out_expected),'{0:.4f}'.format(insect_obj.chron_bird_out_expected),'{0!s}'.format(insect_obj.chronconb_out_expected),],
         "Units": ['mg/kg-bw', 'mg/kg-bw', '', '',],
     }
     return data
@@ -124,22 +124,22 @@ def gettsumdata(bw_quail,bw_duck,bwb_other,bw_rat,bwm_other,sol,
     data = { 
         "Parameter": ['BW Quail', 'BW Duck', 'BW Bird Other', 'BW Rat', 'BW Mammal Other', 'Avian LD50', 'Mammalian LD50', 
                     'Solubility','AW Bird' , 'Mineau', 'AW Mammalian', 'NOAEC','NOAEL'],
-        "Mean": ['%.2e' % numpy.mean(bw_quail),'%.2e' % numpy.mean(bw_duck),'%.2e' % numpy.mean(bwb_other), '%.2e' % numpy.mean(bw_rat), 
-                 '%.2e' % numpy.mean(bwm_other), '%.2e' % numpy.mean(sol), '%.2e' % numpy.mean(avian_ld50), '%.2e' % numpy.mean(mammalian_ld50),
-                 '%.2e' % numpy.mean(aw_bird), '%.2e' % numpy.mean(mineau), '%.2e' % numpy.mean(aw_mamm),
-                 '%.2e' % numpy.mean(noaec), '%.2e' % numpy.mean(noael),],
-        "Std": ['%.2e' % numpy.std(bw_quail),'%.2e' % numpy.std(bw_duck),'%.2e' % numpy.std(bwb_other), '%.2e' % numpy.std(bw_rat), 
-                '%.2e' % numpy.std(bwm_other), '%.2e' % numpy.std(sol), '%.2e' % numpy.std(avian_ld50), '%.2e' % numpy.std(mammalian_ld50),
-                 '%.2e' % numpy.std(aw_bird), '%.2e' % numpy.std(mineau), '%.2e' % numpy.std(aw_mamm),
-                 '%.2e' % numpy.std(noaec),'%.2e' % numpy.std(noael),],
-        "Min": ['%.2e' % numpy.min(bw_quail),'%.2e' % numpy.min(bw_duck),'%.2e' % numpy.min(bwb_other), '%.2e' % numpy.min(bw_rat), 
-                '%.2e' % numpy.min(bwm_other), '%.2e' % numpy.min(sol), '%.2e' % numpy.min(avian_ld50), '%.2e' % numpy.min(mammalian_ld50),
-                 '%.2e' % numpy.min(aw_bird), '%.2e' % numpy.min(mineau), '%.2e' % numpy.min(aw_mamm),
-                 '%.2e' % numpy.min(noaec),'%.2e' % numpy.min(noael),],
-         "Max": ['%.2e' % numpy.max(bw_quail),'%.2e' % numpy.max(bw_duck),'%.2e' % numpy.max(bwb_other), '%.2e' % numpy.max(bw_rat), 
-                '%.2e' % numpy.max(bwm_other), '%.2e' % numpy.max(sol), '%.2e' % numpy.max(avian_ld50), '%.2e' % numpy.max(mammalian_ld50),
-                 '%.2e' % numpy.max(aw_bird), '%.2e' % numpy.max(mineau), '%.2e' % numpy.max(aw_mamm),
-                 '%.2e' % numpy.max(noaec),'%.2e' % numpy.max(noael),],
+        "Mean": ['{0:.2e}'.format(numpy.mean(bw_quail)),'{0:.2e}'.format(numpy.mean(bw_duck)),'{0:.2e}'.format(numpy.mean(bwb_other)), '{0:.2e}'.format(numpy.mean(bw_rat)), 
+                 '{0:.2e}'.format(numpy.mean(bwm_other)), '{0:.2e}'.format(numpy.mean(sol)), '{0:.2e}'.format(numpy.mean(avian_ld50)), '{0:.2e}'.format(numpy.mean(mammalian_ld50)),
+                 '{0:.2e}'.format(numpy.mean(aw_bird)), '{0:.2e}'.format(numpy.mean(mineau)), '{0:.2e}'.format(numpy.mean(aw_mamm)),
+                 '{0:.2e}'.format(numpy.mean(noaec)), '{0:.2e}'.format(numpy.mean(noael)),],
+        "Std": ['{0:.2e}'.format(numpy.std(bw_quail)),'{0:.2e}'.format(numpy.std(bw_duck)),'{0:.2e}'.format(numpy.std(bwb_other)), '{0:.2e}'.format(numpy.std(bw_rat)), 
+                '{0:.2e}'.format(numpy.std(bwm_other)), '{0:.2e}'.format(numpy.std(sol)), '{0:.2e}'.format(numpy.std(avian_ld50)), '{0:.2e}'.format(numpy.std(mammalian_ld50)),
+                 '{0:.2e}'.format(numpy.std(aw_bird)), '{0:.2e}'.format(numpy.std(mineau)), '{0:.2e}'.format(numpy.std(aw_mamm)),
+                 '{0:.2e}'.format(numpy.std(noaec)),'{0:.2e}'.format(numpy.std(noael)),],
+        "Min": ['{0:.2e}'.format(numpy.min(bw_quail)),'{0:.2e}'.format(numpy.min(bw_duck)),'{0:.2e}'.format(numpy.min(bwb_other)), '{0:.2e}'.format(numpy.min(bw_rat)), 
+                '{0:.2e}'.format(numpy.min(bwm_other)), '{0:.2e}'.format(numpy.min(sol)), '{0:.2e}'.format(numpy.min(avian_ld50)), '{0:.2e}'.format(numpy.min(mammalian_ld50)),
+                 '{0:.2e}'.format(numpy.min(aw_bird)), '{0:.2e}'.format(numpy.min(mineau)), '{0:.2e}'.format(numpy.min(aw_mamm)),
+                 '{0:.2e}'.format(numpy.min(noaec)),'{0:.2e}'.format(numpy.min(noael)),],
+         "Max": ['{0:.2e}'.format(numpy.max(bw_quail)),'{0:.2e}'.format(numpy.max(bw_duck)),'{0:.2e}'.format(numpy.max(bwb_other)), '{0:.2e}'.format(numpy.max(bw_rat)), 
+                '{0:.2e}'.format(numpy.max(bwm_other)), '{0:.2e}'.format(numpy.max(sol)), '{0:.2e}'.format(numpy.max(avian_ld50)), '{0:.2e}'.format(numpy.max(mammalian_ld50)),
+                 '{0:.2e}'.format(numpy.max(aw_bird)), '{0:.2e}'.format(numpy.max(mineau)), '{0:.2e}'.format(numpy.max(aw_mamm)),
+                 '{0:.2e}'.format(numpy.max(noaec)),'{0:.2e}'.format(numpy.max(noael)),],
         "Unit": ['g', 'g', 'g', 'g', 'g','mg/kg-bw', 'mg/kg-bw', 'mg/L','g', '', 'g','mg/kg-diet', 'mg/kg-bw',],
     }
     return data
@@ -159,25 +159,25 @@ def gettsumdata_out(dose_bird_out, dose_mamm_out, at_bird_out,
                     'Ratio of Exposure to Toxicity (Chronic) - Mammalian',],
 
         "Mean": [
-                 '%.2e' % numpy.mean(dose_bird_out), '%.2e' % numpy.mean(dose_mamm_out), '%.2e' % numpy.mean(at_bird_out),
-                 '%.2e' % numpy.mean(at_mamm_out), '%.2e' % numpy.mean(act_out), '%.2e' % numpy.mean(det_out),
-                 '%.2e' % numpy.mean(acute_bird_out), '%.2e' % numpy.mean(acute_mamm_out),
-                 '%.2e' % numpy.mean(chron_bird_out), '%.2e' % numpy.mean(chron_mamm_out),],
+                 '{0:.2e}'.format(numpy.mean(dose_bird_out)), '{0:.2e}'.format(numpy.mean(dose_mamm_out)), '{0:.2e}'.format(numpy.mean(at_bird_out)),
+                 '{0:.2e}'.format(numpy.mean(at_mamm_out)), '{0:.2e}'.format(numpy.mean(act_out)), '{0:.2e}'.format(numpy.mean(det_out)),
+                 '{0:.2e}'.format(numpy.mean(acute_bird_out)), '{0:.2e}'.format(numpy.mean(acute_mamm_out)),
+                 '{0:.2e}'.format(numpy.mean(chron_bird_out)), '{0:.2e}'.format(numpy.mean(chron_mamm_out)),],
 
-        "Std": ['%.2e' % numpy.std(dose_bird_out), '%.2e' % numpy.std(dose_mamm_out), '%.2e' % numpy.std(at_bird_out),
-                '%.2e' % numpy.std(at_mamm_out), '%.2e' % numpy.std(act_out), '%.2e' % numpy.std(det_out),
-                '%.2e' % numpy.std(acute_bird_out), '%.2e' % numpy.std(acute_mamm_out),
-                '%.2e' % numpy.std(chron_bird_out), '%.2e' % numpy.std(chron_mamm_out),],
+        "Std": ['{0:.2e}'.format(numpy.std(dose_bird_out)), '{0:.2e}'.format(numpy.std(dose_mamm_out)), '{0:.2e}'.format(numpy.std(at_bird_out)),
+                '{0:.2e}'.format(numpy.std(at_mamm_out)), '{0:.2e}'.format(numpy.std(act_out)), '{0:.2e}'.format(numpy.std(det_out)),
+                '{0:.2e}'.format(numpy.std(acute_bird_out)), '{0:.2e}'.format(numpy.std(acute_mamm_out)),
+                '{0:.2e}'.format(numpy.std(chron_bird_out)), '{0:.2e}'.format(numpy.std(chron_mamm_out)),],
 
-        "Min": ['%.2e' % numpy.min(dose_bird_out), '%.2e' % numpy.min(dose_mamm_out), '%.2e' % numpy.min(at_bird_out),
-                '%.2e' % numpy.min(at_mamm_out), '%.2e' % numpy.min(act_out), '%.2e' % numpy.min(det_out),
-                '%.2e' % numpy.min(acute_bird_out), '%.2e' % numpy.min(acute_mamm_out),
-                '%.2e' % numpy.min(chron_bird_out), '%.2e' % numpy.min(chron_mamm_out),],
+        "Min": ['{0:.2e}'.format(numpy.min(dose_bird_out)), '{0:.2e}'.format(numpy.min(dose_mamm_out)), '{0:.2e}'.format(numpy.min(at_bird_out)),
+                '{0:.2e}'.format(numpy.min(at_mamm_out)), '{0:.2e}'.format(numpy.min(act_out)), '{0:.2e}'.format(numpy.min(det_out)),
+                '{0:.2e}'.format(numpy.min(acute_bird_out)), '{0:.2e}'.format(numpy.min(acute_mamm_out)),
+                '{0:.2e}'.format(numpy.min(chron_bird_out)), '{0:.2e}'.format(numpy.min(chron_mamm_out)),],
 
-         "Max": ['%.2e' % numpy.max(dose_bird_out), '%.2e' % numpy.min(dose_mamm_out), '%.2e' % numpy.min(at_bird_out),
-                '%.2e' % numpy.max(at_mamm_out), '%.2e' % numpy.max(act_out), '%.2e' % numpy.min(det_out),
-                '%.2e' % numpy.max(acute_bird_out), '%.2e' % numpy.min(acute_mamm_out),
-                '%.2e' % numpy.max(chron_bird_out), '%.2e' % numpy.max(chron_mamm_out),],
+         "Max": ['{0:.2e}'.format(numpy.max(dose_bird_out)), '{0:.2e}'.format(numpy.min(dose_mamm_out)), '{0:.2e}'.format(numpy.min(at_bird_out)),
+                '{0:.2e}'.format(numpy.max(at_mamm_out)), '{0:.2e}'.format(numpy.max(act_out)), '{0:.2e}'.format(numpy.min(det_out)),
+                '{0:.2e}'.format(numpy.max(acute_bird_out)), '{0:.2e}'.format(numpy.min(acute_mamm_out)),
+                '{0:.2e}'.format(numpy.max(chron_bird_out)), '{0:.2e}'.format(numpy.max(chron_mamm_out)),],
 
         "Unit": ['mg/kg-bw', 'mg/kg-bw','mg/kg-bw', 'mg/kg-bw', 'mg/kg-bw', 'mg/kg-bw', '','', '', '',],
     }
@@ -255,9 +255,9 @@ def table_2(insect_obj):
         <br>
         <H3 class="out_1 collapsible" id="section3"><span></span>Insect Output</H3>
         <div class="out_1">
-            <H4 class="out_1 collapsible" id="section4"><span></span>Mammalian Results (%s g)</H4>
+            <H4 class="out_1 collapsible" id="section4"><span></span>Mammalian Results ({0!s} g)</H4>
                 <div class="out_ container_output">
-        """%(insect_obj.aw_mamm)
+        """.format((insect_obj.aw_mamm))
         t2data = gett2data(insect_obj)
         t2rows = gethtmlrowsfromcols(t2data,pvrheadings)
         html = html + tmpl.render(Context(dict(data=t2rows, headings=pvrheadings)))
@@ -271,9 +271,9 @@ def table_2_qaqc(insect_obj):
         <br>
         <H3 class="out_1 collapsible" id="section3"><span></span>Insect Output</H3>
         <div class="out_1">
-            <H4 class="out_1 collapsible" id="section4"><span></span>Mammalian Results (%s g)</H4>
+            <H4 class="out_1 collapsible" id="section4"><span></span>Mammalian Results ({0!s} g)</H4>
                 <div class="out_ container_output">
-        """%(insect_obj.aw_mamm)
+        """.format((insect_obj.aw_mamm))
         t2data = gett2dataqaqc(insect_obj)
         t2rows = gethtmlrowsfromcols(t2data,pvrheadingsqaqc)
         html = html + tmpl.render(Context(dict(data=t2rows, headings=pvrheadingsqaqc)))
@@ -284,9 +284,9 @@ def table_2_qaqc(insect_obj):
 
 def table_3(insect_obj):
         html = """
-            <H4 class="out_1 collapsible" id="section4"><span></span>Avian Results (%s g)</H4>
+            <H4 class="out_1 collapsible" id="section4"><span></span>Avian Results ({0!s} g)</H4>
                 <div class="out_ container_output">
-        """%(insect_obj.aw_bird)
+        """.format((insect_obj.aw_bird))
         t3data = gett3data(insect_obj)
         t3rows = gethtmlrowsfromcols(t3data,pvrheadings)
         html = html + tmpl.render(Context(dict(data=t3rows, headings=pvrheadings)))
@@ -298,9 +298,9 @@ def table_3(insect_obj):
 
 def table_3_qaqc(insect_obj):
         html = """
-            <H4 class="out_1 collapsible" id="section4"><span></span>Avian Results (%s g)</H4>
+            <H4 class="out_1 collapsible" id="section4"><span></span>Avian Results ({0!s} g)</H4>
                 <div class="out_ container_output">
-        """%(insect_obj.aw_bird)
+        """.format((insect_obj.aw_bird))
         t3data = gett3dataqaqc(insect_obj)
         t3rows = gethtmlrowsfromcols(t3data,pvrheadingsqaqc)
         html = html + tmpl.render(Context(dict(data=t3rows, headings=pvrheadingsqaqc)))

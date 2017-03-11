@@ -30,9 +30,9 @@ class historyoutputPage(webapp.RequestHandler):
 
             batch_header = """
                 <div class="out_">
-                    <br><H3>Batch Calculation of Iteration %s:</H3>
+                    <br><H3>Batch Calculation of Iteration {0!s}:</H3>
                 </div>
-                """%(single_obj.iter_index+1)
+                """.format((single_obj.iter_index+1))
             iter_html = iter_html + batch_header + przm_tables.table_all(single_obj)
 
         ####Finally, assemble batchout page############ 

@@ -67,8 +67,8 @@ def gett1data(przm5_obj):
     data = { 
         "Parameter": ['Sorption Coefficient Type', 'Sorption Coefficient', 'Soil Halflife', 'Soil Reference Temp',
                       'Foliar Halflife', 'Number of Degradates'],
-        "Value": ['%s' % przm5_obj.koc_check_text, '%s' % przm5_obj.Koc[0], '%s' % przm5_obj.soilHalfLifeBox[0], '%s' % przm5_obj.soilTempBox1,
-                  '%s' % przm5_obj.foliarHalfLifeBox[0], '%s' % przm5_obj.deg_check],
+        "Value": ['{0!s}'.format(przm5_obj.koc_check_text), '{0!s}'.format(przm5_obj.Koc[0]), '{0!s}'.format(przm5_obj.soilHalfLifeBox[0]), '{0!s}'.format(przm5_obj.soilTempBox1),
+                  '{0!s}'.format(przm5_obj.foliarHalfLifeBox[0]), '{0!s}'.format(przm5_obj.deg_check)],
         "Units": ['', 'mL/g', 'day', '<sup>o</sup>C', 'day', ''],
     }
     return data
@@ -77,8 +77,8 @@ def gett1data_b(przm5_obj):
     data = { 
         "Parameter": ['Sorption Coefficient', 'Soil Halflife', 'Soil Reference Temp', 'Foliar Halflife',
                       'Molar Conversion Factors (Soil)', 'Molar Conversion Factors (Foliar)',],
-        "Value": ['%s' % przm5_obj.Koc[1], '%s' % przm5_obj.soilHalfLifeBox[1], 25, '%s' % przm5_obj.foliarHalfLifeBox[1],
-                  '%s' % przm5_obj.convertSoil1, '%s' % przm5_obj.convert_Foliar1,],
+        "Value": ['{0!s}'.format(przm5_obj.Koc[1]), '{0!s}'.format(przm5_obj.soilHalfLifeBox[1]), 25, '{0!s}'.format(przm5_obj.foliarHalfLifeBox[1]),
+                  '{0!s}'.format(przm5_obj.convertSoil1), '{0!s}'.format(przm5_obj.convert_Foliar1),],
         "Units": ['mL/g', 'day', '<sup>o</sup>C', 'day', '', ''],
     }
     return data
@@ -87,8 +87,8 @@ def gett1data_c(przm5_obj):
     data = { 
         "Parameter": ['Sorption Coefficient', 'Soil Halflife', 'Soil Reference Temp', 'Foliar Halflife',
                       'Source of Degradate 2', 'Molar Conversion Factors (Soil)', 'Molar Conversion Factors (Foliar)',],
-        "Value": ['%s' % przm5_obj.Koc[2], '%s' % przm5_obj.soilHalfLifeBox[2], 25, '%s' % przm5_obj.foliarHalfLifeBox[2],
-                  '%s' % przm5_obj.deg2_source_text, '%s' % przm5_obj.convertSoil2, '%s' % przm5_obj.convert_Foliar2,],
+        "Value": ['{0!s}'.format(przm5_obj.Koc[2]), '{0!s}'.format(przm5_obj.soilHalfLifeBox[2]), 25, '{0!s}'.format(przm5_obj.foliarHalfLifeBox[2]),
+                  '{0!s}'.format(przm5_obj.deg2_source_text), '{0!s}'.format(przm5_obj.convertSoil2), '{0!s}'.format(przm5_obj.convert_Foliar2),],
         "Units": ['mL/g', 'day', '<sup>o</sup>C', 'day', '', '', ''],
     }
     return data
@@ -97,7 +97,7 @@ def gett1data_c(przm5_obj):
 def gett2data(przm5_obj):
     data = { 
         "Parameter": ['Choose Way of Entering Application Dates', 'Number of Applications', 'Specify Years?', 'Enter Eff. & Drift/T for',],
-        "Value": ['%s' % przm5_obj.app_date_type_text, '%s' % przm5_obj.noa, '%s' % 'No', '%s' % 'Pond',],
+        "Value": ['{0!s}'.format(przm5_obj.app_date_type_text), '{0!s}'.format(przm5_obj.noa), '{0!s}'.format('No'), '{0!s}'.format('Pond'),],
     }
     return data
 
@@ -108,10 +108,10 @@ def gett3data(przm5_obj):
                           'Pan Factor', 'Snowmelt Factor', 'Evaportation Depth', 'Root Depth', 'Canopy Cover',
                           'Canopy Height', 'Canopy Holdup', 'Irrigation', 'Extra Water Fraction', 'Allowed Depletion', 
                           'Max Rate', 'Post-Harvest Foliage', 'No. of Horizons', 'Simulate Temperature'],
-            "Value": ['%s' % przm5_obj.scenID, '%s' % przm5_obj.dvf_file, '%s' % przm5_obj.Emerge_text, '%s' % przm5_obj.Mature_text, '%s' % przm5_obj.Harvest_text,
-                      '%s' % przm5_obj.pfac, '%s' % przm5_obj.snowmelt, '%s' % przm5_obj.evapDepth, '%s' % przm5_obj.rootDepth, '%s' % przm5_obj.canopyCover,
-                      '%s' % przm5_obj.canopyHeight, '%s' % przm5_obj.canopyHoldup, '%s' % przm5_obj.irflag_text, '%s' % przm5_obj.fleach, '%s' % przm5_obj.depletion, 
-                      '%s' % przm5_obj.rateIrrig, '%s' % przm5_obj.PestDispHarvest_text, '%s' % przm5_obj.noh, '%s' % 'No',],
+            "Value": ['{0!s}'.format(przm5_obj.scenID), '{0!s}'.format(przm5_obj.dvf_file), '{0!s}'.format(przm5_obj.Emerge_text), '{0!s}'.format(przm5_obj.Mature_text), '{0!s}'.format(przm5_obj.Harvest_text),
+                      '{0!s}'.format(przm5_obj.pfac), '{0!s}'.format(przm5_obj.snowmelt), '{0!s}'.format(przm5_obj.evapDepth), '{0!s}'.format(przm5_obj.rootDepth), '{0!s}'.format(przm5_obj.canopyCover),
+                      '{0!s}'.format(przm5_obj.canopyHeight), '{0!s}'.format(przm5_obj.canopyHoldup), '{0!s}'.format(przm5_obj.irflag_text), '{0!s}'.format(przm5_obj.fleach), '{0!s}'.format(przm5_obj.depletion), 
+                      '{0!s}'.format(przm5_obj.rateIrrig), '{0!s}'.format(przm5_obj.PestDispHarvest_text), '{0!s}'.format(przm5_obj.noh), '{0!s}'.format('No'),],
             "Units": ['', '', '', '', '',
                       '', '', '', 'cm', '%',
                       'cm', 'cm', '', '', '',
@@ -123,10 +123,10 @@ def gett3data(przm5_obj):
                           'Pan Factor', 'Snowmelt Factor', 'Evaportation Depth', 'Root Depth', 'Canopy Cover',
                           'Canopy Height', 'Canopy Holdup', 'Irrigation', 'Extra Water Fraction', 'Allowed Depletion', 
                           'Max Rate', 'Post-Harvest Foliage', 'No. of Horizons', 'Simulate Temperature', 'Lower BC Temperature', 'Albedo'],
-            "Value": ['%s' % przm5_obj.scenID, '%s' % przm5_obj.dvf_file, '%s' % przm5_obj.Emerge_text, '%s' % przm5_obj.Mature_text, '%s' % przm5_obj.Harvest_text,
-                      '%s' % przm5_obj.pfac, '%s' % przm5_obj.snowmelt, '%s' % przm5_obj.evapDepth, '%s' % przm5_obj.rootDepth, '%s' % przm5_obj.canopyCover,
-                      '%s' % przm5_obj.canopyHeight, '%s' % przm5_obj.canopyHoldup, '%s' % przm5_obj.irflag_text, '%s' % przm5_obj.fleach, '%s' % przm5_obj.depletion, 
-                      '%s' % przm5_obj.rateIrrig, '%s' % przm5_obj.PestDispHarvest_text, '%s' % przm5_obj.noh, '%s' % 'Yes', '%s' % przm5_obj.bcTemp, '%s' % przm5_obj.albedo,],
+            "Value": ['{0!s}'.format(przm5_obj.scenID), '{0!s}'.format(przm5_obj.dvf_file), '{0!s}'.format(przm5_obj.Emerge_text), '{0!s}'.format(przm5_obj.Mature_text), '{0!s}'.format(przm5_obj.Harvest_text),
+                      '{0!s}'.format(przm5_obj.pfac), '{0!s}'.format(przm5_obj.snowmelt), '{0!s}'.format(przm5_obj.evapDepth), '{0!s}'.format(przm5_obj.rootDepth), '{0!s}'.format(przm5_obj.canopyCover),
+                      '{0!s}'.format(przm5_obj.canopyHeight), '{0!s}'.format(przm5_obj.canopyHoldup), '{0!s}'.format(przm5_obj.irflag_text), '{0!s}'.format(przm5_obj.fleach), '{0!s}'.format(przm5_obj.depletion), 
+                      '{0!s}'.format(przm5_obj.rateIrrig), '{0!s}'.format(przm5_obj.PestDispHarvest_text), '{0!s}'.format(przm5_obj.noh), '{0!s}'.format('Yes'), '{0!s}'.format(przm5_obj.bcTemp), '{0!s}'.format(przm5_obj.albedo),],
             "Units": ['', '', '', '', '',
                       '', '', '', 'cm', '%',
                       'cm', 'cm', '', '', '',
@@ -139,8 +139,8 @@ def gett4data(przm5_obj):
     data = { 
         "Parameter": ['USLE K', 'USLE LS', 'USLE P', 'IREG', 'Slope',
                       'R-Depth', 'R-Decline', 'Efficiency', 'E-Depth', 'E-Decline',],
-        "Value": ['%s' % przm5_obj.uslek, '%s' % przm5_obj.uslels, '%s' % przm5_obj.uslep, '%s' % przm5_obj.ireg, '%s' % przm5_obj.slope,
-                  '%s' % przm5_obj.rDepthBox, '%s' % przm5_obj.rDeclineBox, '%s' % przm5_obj.rBypassBox, '%s' % przm5_obj.eDepthBox, '%s' % przm5_obj.eDeclineBox,],
+        "Value": ['{0!s}'.format(przm5_obj.uslek), '{0!s}'.format(przm5_obj.uslels), '{0!s}'.format(przm5_obj.uslep), '{0!s}'.format(przm5_obj.ireg), '{0!s}'.format(przm5_obj.slope),
+                  '{0!s}'.format(przm5_obj.rDepthBox), '{0!s}'.format(przm5_obj.rDeclineBox), '{0!s}'.format(przm5_obj.rBypassBox), '{0!s}'.format(przm5_obj.eDepthBox), '{0!s}'.format(przm5_obj.eDeclineBox),],
         "Units": ['', '', '', '', '%',
                   'cm', '1/cm', '', 'cm', '1/cm',],
     }
@@ -149,7 +149,7 @@ def gett4data(przm5_obj):
 def gett5data(przm5_obj):
     data = { 
         "Parameter": ['Area of Field', 'Hydraulic Length',],
-        "Value": ['%s' % przm5_obj.fieldSize, '%s' % przm5_obj.hydlength,],
+        "Value": ['{0!s}'.format(przm5_obj.fieldSize), '{0!s}'.format(przm5_obj.hydlength),],
         "Units": ['ha.', 'm',],
     }
     return data
@@ -248,9 +248,9 @@ def table_1_c(przm5_obj):
     return html
 
 def table_2(przm5_obj):
-    html = """<H4 class="out_3 collapsible" id="section2"><span></span>Application (n=%s)</H4>
+    html = """<H4 class="out_3 collapsible" id="section2"><span></span>Application (n={0!s})</H4>
                 <div class="out_input_table out_">
-               """%(przm5_obj.noa)
+               """.format((przm5_obj.noa))
     if przm5_obj.app_date_type == '0':
         przm5_obj.app_date_type_text = 'Absolute Dates'
     else:
@@ -272,14 +272,14 @@ table_2b_headings = getheader_table_2b()
 
 def gett2data_b(Day, Month, Amount, Method, Depth, Eff, Drift):
     data = { 
-        "Day": ['%s' %Day,],
-        "Month": ['%s' %Month, ],
+        "Day": ['{0!s}'.format(Day),],
+        "Month": ['{0!s}'.format(Month), ],
         "Year": ['NA'],
-        "Amount": ['%s' %Amount,],
-        "Application": ['%s' %Method,],
-        "Depth": ['%s' %Depth,],
-        "Eff": ['%s' %Eff,],
-        "Drift": ['%s' %Drift,],
+        "Amount": ['{0!s}'.format(Amount),],
+        "Application": ['{0!s}'.format(Method),],
+        "Depth": ['{0!s}'.format(Depth),],
+        "Eff": ['{0!s}'.format(Eff),],
+        "Drift": ['{0!s}'.format(Drift),],
     }
     return data
 
@@ -344,12 +344,12 @@ table_3b_headings = getheader_table_3b()
 
 def gett3data_b(thick, rho, max_cap, min_cap, oc, n):
     data = { 
-        "thick": ['%s' %thick,],
-        "rho": ['%s' %rho, ],
-        "max_cap": ['%s' %max_cap,],
-        "min_cap": ['%s' %min_cap,],
-        "oc": ['%s' %oc,],
-        "n": ['%s' %n,],
+        "thick": ['{0!s}'.format(thick),],
+        "rho": ['{0!s}'.format(rho), ],
+        "max_cap": ['{0!s}'.format(max_cap),],
+        "min_cap": ['{0!s}'.format(min_cap),],
+        "oc": ['{0!s}'.format(oc),],
+        "n": ['{0!s}'.format(n),],
     }
     return data
 
@@ -403,13 +403,13 @@ table_4b_headings = getheader_table_4b()
 
 def gett4data_b(No, Day, Month, Year, CN, C, N):
     data = { 
-        "No": ['%s' %No,],
-        "Day": ['%s' %Day, ],
-        "Month": ['%s' %Month,],
-        "Year": ['%s' %Year,],
-        "CN": ['%s' %CN,],
-        "C": ['%s' %C,],
-        "N": ['%s' %N,],
+        "No": ['{0!s}'.format(No),],
+        "Day": ['{0!s}'.format(Day), ],
+        "Month": ['{0!s}'.format(Month),],
+        "Year": ['{0!s}'.format(Year),],
+        "CN": ['{0!s}'.format(CN),],
+        "C": ['{0!s}'.format(C),],
+        "N": ['{0!s}'.format(N),],
     }
     return data
 
@@ -472,11 +472,11 @@ def table_6(przm5_obj):
                                 </tr>
                                 <tr>
                                     <td>Simulation is finished. Please download your file from here</td>
-                                    <td><a href=%s>Link</a></td>
+                                    <td><a href={0!s}>Link</a></td>
                                 </tr>
                             </table>
                         </div>
-                </div>"""%(przm5_obj.link)
+                </div>""".format((przm5_obj.link))
     return html
 
 def table_7(przm5_obj):
@@ -485,18 +485,18 @@ def table_7(przm5_obj):
                     <table class="out_" style="display: none">
                         <tr>
                             <td id="x_pre_irr">pre+irr</td>
-                            <td id="x_pre_irr_val_%s">%s</td>
+                            <td id="x_pre_irr_val_{0!s}">{1!s}</td>
                         </tr>
                         <tr>
                             <td id="x_et">et</td>
-                            <td id="x_et_val_%s">%s</td>
+                            <td id="x_et_val_{2!s}">{3!s}</td>
                         </tr>
                         <tr>
                             <td id="x_runoff">runoff</td>
-                            <td id="x_runoff_val_%s">%s</td>
+                            <td id="x_runoff_val_{4!s}">{5!s}</td>
                         </tr>                          
                     </table>
-                </div>"""%(1, przm5_obj.PRCP_IRRG_sum, 1, przm5_obj.CEVP_TETD_sum, 1, przm5_obj.RUNF_sum)
+                </div>""".format(1, przm5_obj.PRCP_IRRG_sum, 1, przm5_obj.CEVP_TETD_sum, 1, przm5_obj.RUNF_sum)
     return html
 
 def table_8(przm5_obj):

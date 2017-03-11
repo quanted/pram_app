@@ -62,10 +62,10 @@ def getdjtemplate():
 
 def gett1data(pfam_obj):
     data = { 
-        "Parameter": [mark_safe('Water Column Half life @%s &#8451;') %pfam_obj.wat_t, mark_safe('Benthic Compartment Half Life @%s &#8451;') %pfam_obj.ben_t, mark_safe('Unflooded Soil Half Life @%s &#8451;') %pfam_obj.unf_t, 'Aqueous Near-Surface Photolysis Half Life @%s Degrees Latitude' %pfam_obj.aqu_t,
+        "Parameter": [mark_safe('Water Column Half life @%s &#8451;') %pfam_obj.wat_t, mark_safe('Benthic Compartment Half Life @%s &#8451;') %pfam_obj.ben_t, mark_safe('Unflooded Soil Half Life @%s &#8451;') %pfam_obj.unf_t, 'Aqueous Near-Surface Photolysis Half Life @{0!s} Degrees Latitude'.format(pfam_obj.aqu_t),
                       'Hydrolysis Half Life', 'Molecular Weight', 'Vapor Pressure', 'Solubility', 'Koc', 'Heat of Henry', 'Henry Reference Temperature'],
-        "Value": ['%s' % pfam_obj.wat_hl, pfam_obj.ben_hl, '%s' % pfam_obj.unf_hl, '%s' % pfam_obj.aqu_hl,
-                  '%s' % pfam_obj.hyd_hl, '%s' % pfam_obj.mw, '%s' % pfam_obj.vp, '%s' % pfam_obj.sol, '%s' % pfam_obj.koc, '%s' % pfam_obj.hea_h, '%s' % pfam_obj.hea_r_t],
+        "Value": ['{0!s}'.format(pfam_obj.wat_hl), pfam_obj.ben_hl, '{0!s}'.format(pfam_obj.unf_hl), '{0!s}'.format(pfam_obj.aqu_hl),
+                  '{0!s}'.format(pfam_obj.hyd_hl), '{0!s}'.format(pfam_obj.mw), '{0!s}'.format(pfam_obj.vp), '{0!s}'.format(pfam_obj.sol), '{0!s}'.format(pfam_obj.koc), '{0!s}'.format(pfam_obj.hea_h), '{0!s}'.format(pfam_obj.hea_r_t)],
         "Units": ['days', 'days', 'days', 'days', 'days', 'g/mol', 'torr', 'mg/l', 'ml/g', 'J/mol', mark_safe('&#8451;')],
     }
     return data
@@ -121,8 +121,8 @@ def table_2(pfam_obj):
             <div class="out_ container_output">
               <table class="out_application_pre" width="604">
                 <tr>
-                  <td width="50%%">Number of Applications</td>
-                  <td id="noa_out" width="50%%">%s</td>
+                  <td width="50%">Number of Applications</td>
+                  <td id="noa_out" width="50%">{0!s}</td>
                 </tr>
               </table>
               <table class="out_application" width="604">
@@ -134,14 +134,14 @@ def table_2(pfam_obj):
                   <th scope="col" width="125">Slow Release (1/day)</th>
                 </tr>
                 <tr>
-                  <td id="mm_out" data-val='%s' style="display: none"></td>  
-                  <td id="dd_out" data-val='%s' style="display: none"></td>  
-                  <td id="ma_out" data-val='%s' style="display: none"></td>  
-                  <td id="sr_out" data-val='%s' style="display: none"></td>  
+                  <td id="mm_out" data-val='{1!s}' style="display: none"></td>  
+                  <td id="dd_out" data-val='{2!s}' style="display: none"></td>  
+                  <td id="ma_out" data-val='{3!s}' style="display: none"></td>  
+                  <td id="sr_out" data-val='{4!s}' style="display: none"></td>  
                 </tr>                               
               </table>
             </div>
-       """%(pfam_obj.noa, pfam_obj.mm_out, pfam_obj.dd_out, pfam_obj.ma_out, pfam_obj.sr_out)
+       """.format(pfam_obj.noa, pfam_obj.mm_out, pfam_obj.dd_out, pfam_obj.ma_out, pfam_obj.sr_out)
     return html
 
 def table_3(pfam_obj):
@@ -157,16 +157,16 @@ def table_3(pfam_obj):
                 <tr>
                   <td>Weather File</td>
                   <td></td>                            
-                  <td>%s</td>
+                  <td>{0!s}</td>
                 </tr>                          
                 <tr>
                   <td>Latitude (for Photolysis Calculations)</td>
                   <td>degree</td>                            
-                  <td>%s</td>
+                  <td>{1!s}</td>
                 </tr>                           
               </table>
             </div>
-    """%(pfam_obj.weather, pfam_obj.wea_l)    
+    """.format(pfam_obj.weather, pfam_obj.wea_l)    
     return html
 
 def table_4(pfam_obj):
@@ -182,12 +182,12 @@ def table_4(pfam_obj):
                 <tr>
                   <td>Number of Events</td>
                   <td></td>
-                  <td id="nof_out">%s</td>
+                  <td id="nof_out">{0!s}</td>
                 </tr>
                 <tr>
                   <td>Date for Event 1</td>
                   <td></td>
-                  <td id="noa_out">%s</td>
+                  <td id="noa_out">{1!s}</td>
                 </tr>
               </table>
               <table class="out_floods">
@@ -200,15 +200,15 @@ def table_4(pfam_obj):
                   <th scope="col">Turn Over (1/day)</th>                            
                 </tr>
                 <tr>          
-                  <td id="nod_out" data-val='%s' style="display: none"></td>  
-                  <td id="fl_out" data-val='%s' style="display: none"></td>  
-                  <td id="wl_out" data-val='%s' style="display: none"></td>  
-                  <td id="ml_out" data-val='%s' style="display: none"></td>
-                  <td id="to_out" data-val='%s' style="display: none"></td>  
+                  <td id="nod_out" data-val='{2!s}' style="display: none"></td>  
+                  <td id="fl_out" data-val='{3!s}' style="display: none"></td>  
+                  <td id="wl_out" data-val='{4!s}' style="display: none"></td>  
+                  <td id="ml_out" data-val='{5!s}' style="display: none"></td>
+                  <td id="to_out" data-val='{6!s}' style="display: none"></td>  
                 </tr>                               
               </table>
             </div>
-      """%(pfam_obj.nof, pfam_obj.date_f1, pfam_obj.nod_out, pfam_obj.fl_out, 
+      """.format(pfam_obj.nof, pfam_obj.date_f1, pfam_obj.nod_out, pfam_obj.fl_out, 
                         pfam_obj.wl_out, pfam_obj.ml_out, pfam_obj.to_out)
     return html
 
@@ -225,26 +225,26 @@ def table_5(pfam_obj):
                 <tr>
                   <td>Zero Height Reference</td>
                   <td></td>                            
-                  <td>%s</td>
+                  <td>{0!s}</td>
                 </tr>                          
                 <tr>
                   <td>Days from Zero Height to Full Height</td>
                   <td>days</td>                            
-                  <td>%s</td>
+                  <td>{1!s}</td>
                 </tr>
                 <tr>
                   <td>Days from Zero Height to Removal</td>
                   <td>days</td>                            
-                  <td>%s</td>
+                  <td>{2!s}</td>
                 </tr> 
                 <tr>
                   <td>Maximum Fractional Area Coverage</td>
                   <td></td>                            
-                  <td>%s</td>
+                  <td>{3!s}</td>
                 </tr>                                                                                    
               </table>
             </div>
-    """%(pfam_obj.zero_height_ref, pfam_obj.days_zero_full, pfam_obj.days_zero_removal, pfam_obj.max_frac_cov)       
+    """.format(pfam_obj.zero_height_ref, pfam_obj.days_zero_full, pfam_obj.days_zero_removal, pfam_obj.max_frac_cov)       
     return html
 
 def table_6(pfam_obj):
@@ -260,71 +260,71 @@ def table_6(pfam_obj):
                 <tr>
                   <td>Mass Transfer Coefficient</td>
                   <td>m</td>                            
-                  <td>%s</td>
+                  <td>{0!s}</td>
                 </tr>                          
                 <tr>
                   <td>Leakage</td>
                   <td>m/d</td>                            
-                  <td>%s</td>
+                  <td>{1!s}</td>
                 </tr>
                 <tr>
                   <td>Reference Depth</td>
                   <td>m</td>                            
-                  <td>%s</td>
+                  <td>{2!s}</td>
                 </tr> 
                 <tr>
                   <td>Benthic Depth</td>
                   <td>m</td>                            
-                  <td>%s</td>
+                  <td>{3!s}</td>
                 </tr>
                 <tr>
                   <td>Benthic Porosity</td>
                   <td></td>                            
-                  <td>%s</td>
+                  <td>{4!s}</td>
                 </tr>   
                 <tr>
                   <td>Dry Bulk Density</td>
                   <td>g/cm<sup>3</sup></td>                            
-                  <td>%s</td>
+                  <td>{5!s}</td>
                 </tr>
                 <tr>
                   <td>Foc Water Column on SS</td>
                   <td></td>                            
-                  <td>%s</td>
+                  <td>{6!s}</td>
                 </tr>  
                 <tr>
                   <td>Foc Benthic</td>
                   <td></td>                            
-                  <td>%s</td>
+                  <td>{7!s}</td>
                 </tr> 
                 <tr>
                   <td>SS</td>
                   <td>mg/L</td>                            
-                  <td>%s</td>
+                  <td>{8!s}</td>
                 </tr> 
                 <tr>
                   <td>Water column DOC</td>
                   <td>mg/L</td>                            
-                  <td>%s</td>
+                  <td>{9!s}</td>
                 </tr> 
                 <tr>
                   <td>Chlorophyll, CHL</td>
                   <td>mg/L</td>                            
-                  <td>%s</td>
+                  <td>{10!s}</td>
                 </tr> 
                 <tr>
                   <td>Dfac</td>
                   <td></td>                            
-                  <td>%s</td>
+                  <td>{11!s}</td>
                 </tr>
                 <tr>
                   <td>Q10</td>
                   <td></td>                            
-                  <td>%s</td>
+                  <td>{12!s}</td>
                 </tr>
               </table>
             </div>
-    """%(pfam_obj.mas_tras_cof, pfam_obj.leak, pfam_obj.ref_d, pfam_obj.ben_d, 
+    """.format(pfam_obj.mas_tras_cof, pfam_obj.leak, pfam_obj.ref_d, pfam_obj.ben_d, 
          pfam_obj.ben_por, pfam_obj.dry_bkd, pfam_obj.foc_wat, pfam_obj.foc_ben, 
          pfam_obj.ss, pfam_obj.wat_c_doc, pfam_obj.chl, pfam_obj.dfac, pfam_obj.q10)   
     return html
@@ -342,12 +342,12 @@ def table_7(pfam_obj):
                 <tr>             
                   <td scope="col">Area of Application</td>
                   <td scope="col">m<sup>2</sup></td>                            
-                  <td scope="col">%s</td>
+                  <td scope="col">{0!s}</td>
                 </tr>
               </table>
             </div>
         </div>
-    """%(pfam_obj.area_app)   
+    """.format((pfam_obj.area_app))   
     return html
 
 def table_8(pfam_obj):
@@ -359,21 +359,21 @@ def table_8(pfam_obj):
               <table class="results">
                 <tr>
                   <th>Simulation is finished. Please download your file from here</th>
-                  <th><a href=%s>Link</a></th>
+                  <th><a href={0!s}>Link</a></th>
                 </tr>
                 <tr style="display: none">
-                  <td id="x_date1" data-val='%s'></td>
-                  <td id="x_re_v_f" data-val='%s'></td>
-                  <td id="x_re_c_f" data-val='%s'></td>
-                  <td id="x_date2" data-val='%s'></td>
-                  <td id="x_water" data-val='%s'></td>
-                  <td id="x_water_level" data-val='%s'></td>
-                  <td id="x_ben_tot" data-val='%s'></td>
-                  <td id="x_ben_por" data-val='%s'></td>
+                  <td id="x_date1" data-val='{1!s}'></td>
+                  <td id="x_re_v_f" data-val='{2!s}'></td>
+                  <td id="x_re_c_f" data-val='{3!s}'></td>
+                  <td id="x_date2" data-val='{4!s}'></td>
+                  <td id="x_water" data-val='{5!s}'></td>
+                  <td id="x_water_level" data-val='{6!s}'></td>
+                  <td id="x_ben_tot" data-val='{7!s}'></td>
+                  <td id="x_ben_por" data-val='{8!s}'></td>
                 </tr>
               </table>
             </div>
-      """%(pfam_obj.link, pfam_obj.x_date1, pfam_obj.x_re_v_f, pfam_obj.x_re_c_f, 
+      """.format(pfam_obj.link, pfam_obj.x_date1, pfam_obj.x_re_v_f, pfam_obj.x_re_c_f, 
            pfam_obj.x_date2, pfam_obj.x_water, pfam_obj.x_water_level, pfam_obj.x_ben_tot, pfam_obj.x_ben_por)  
     return html
 

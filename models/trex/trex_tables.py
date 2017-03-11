@@ -381,9 +381,9 @@ def gett1data_broad(trex_obj):
     data = {
         "Parameter": ['Chemical Name', 'Use', 'Formulated product name', 'Percentage active ingredient',
                       'Application type', 'Percentage incorporated', 'Foliar dissipation half-life', ],
-        "Value": ['%s' % trex_obj.chemical_name, '%s' % trex_obj.use, '%s' % trex_obj.formu_name,
-                  '%s' % trex_obj.percent_act_ing, '%s' % trex_obj.application_type,
-                  '%s' % trex_obj.percent_incorp, '%s' % trex_obj.foliar_diss_hlife, ],
+        "Value": ['{0!s}'.format(trex_obj.chemical_name), '{0!s}'.format(trex_obj.use), '{0!s}'.format(trex_obj.formu_name),
+                  '{0!s}'.format(trex_obj.percent_act_ing), '{0!s}'.format(trex_obj.application_type),
+                  '{0!s}'.format(trex_obj.percent_incorp), '{0!s}'.format(trex_obj.foliar_diss_hlife), ],
         "Units": ['', '', '', '%', '', '%', 'days', ],
     }
     return data
@@ -394,9 +394,9 @@ def gett1data_band(trex_obj):
         "Parameter": ['Chemical Name', 'Use', 'Formulated product name', 'Percentage active ingredient',
                       'Application type', 'Row spacing', 'Bandwidth', 'Percentage incorporated',
                       'Foliar dissipation half-life', ],
-        "Value": ['%s' % trex_obj.chemical_name, '%s' % trex_obj.use, '%s' % trex_obj.formu_name,
-                  '%s' % trex_obj.percent_act_ing, '%s' % trex_obj.application_type,
-                  '%.4s' % trex_obj.row_spacing, '%.4s' % trex_obj.bandwidth, '%s' % trex_obj.percent_incorp, '%s' % trex_obj.foliar_diss_hlife, ],
+        "Value": ['{0!s}'.format(trex_obj.chemical_name), '{0!s}'.format(trex_obj.use), '{0!s}'.format(trex_obj.formu_name),
+                  '{0!s}'.format(trex_obj.percent_act_ing), '{0!s}'.format(trex_obj.application_type),
+                  '{0:.4!s}'.format(trex_obj.row_spacing), '{0:.4!s}'.format(trex_obj.bandwidth), '{0!s}'.format(trex_obj.percent_incorp), '{0!s}'.format(trex_obj.foliar_diss_hlife), ],
         "Units": ['', '', '', '%', '', 'inch', 'inch', '%', 'days', ],
     }
     return data
@@ -407,10 +407,10 @@ def gett1data_seed(trex_obj):
         "Parameter": ['Chemical Name', 'Use', 'Formulated product name', 'Percentage active ingredient',
                       'Application type', 'Seed treatment formulation name', 'Crop use', 'Density of product',
                       'Seeding rare'],
-        "Value": ['%s' % trex_obj.chemical_name, '%s' % trex_obj.use, '%s' % trex_obj.formu_name,
-                  '%s' % trex_obj.percent_act_ing, '%s' % trex_obj.application_type,
-                  '%s' % trex_obj.seed_treatment_formulation_name, '%s' % trex_obj.seed_crop, '%s' % trex_obj.density,
-                  '%s' % trex_obj.max_seed_rate, ],
+        "Value": ['{0!s}'.format(trex_obj.chemical_name), '{0!s}'.format(trex_obj.use), '{0!s}'.format(trex_obj.formu_name),
+                  '{0!s}'.format(trex_obj.percent_act_ing), '{0!s}'.format(trex_obj.application_type),
+                  '{0!s}'.format(trex_obj.seed_treatment_formulation_name), '{0!s}'.format(trex_obj.seed_crop), '{0!s}'.format(trex_obj.density),
+                  '{0!s}'.format(trex_obj.max_seed_rate), ],
         "Units": ['', '', '', '%', '', '', '', 'lbs/gal', 'lbs/acre', ],
     }
     return data
@@ -418,9 +418,9 @@ def gett1data_seed(trex_obj):
 
 def gett2data(index, rate, day):
     data = {
-        "App": ['%s' % index, ],
+        "App": ['{0!s}'.format(index), ],
         "Rate": [rate, ],
-        "Day of Application": ['%s' % day, ],
+        "Day of Application": ['{0!s}'.format(day), ],
     }
     return data
 
@@ -433,16 +433,16 @@ def gett3data(trex_obj):
                       'Avian NOAEL', 'Test species (for Avian NOAEL)', 'Weight',
                       'Body weight of assessed bird small', 'Body weight of assessed bird medium',
                       'Body weight of assessed bird large', 'Mineau scaling factor', ],
-        "Value": ['%s' % trex_obj.ld50_bird, '%s' % trex_obj.species_of_the_tested_bird_avian_ld50,
-                  '%s' % trex_obj.tw_bird_ld50,
-                  '%s' % trex_obj.lc50_bird, '%s' % trex_obj.species_of_the_tested_bird_avian_lc50,
-                  '%s' % trex_obj.tw_bird_lc50,
-                  '%s' % trex_obj.noaec_bird, '%s' % trex_obj.species_of_the_tested_bird_avian_noaec,
-                  '%s' % trex_obj.tw_bird_noaec,
-                  '%s' % trex_obj.noael_bird, '%s' % trex_obj.species_of_the_tested_bird_avian_noael,
-                  '%s' % trex_obj.tw_bird_noael,
-                  '%s' % trex_obj.aw_bird_sm, '%s' % trex_obj.aw_bird_md, '%s' % trex_obj.aw_bird_lg,
-                  '%s' % trex_obj.mineau_sca_fact, ],
+        "Value": ['{0!s}'.format(trex_obj.ld50_bird), '{0!s}'.format(trex_obj.species_of_the_tested_bird_avian_ld50),
+                  '{0!s}'.format(trex_obj.tw_bird_ld50),
+                  '{0!s}'.format(trex_obj.lc50_bird), '{0!s}'.format(trex_obj.species_of_the_tested_bird_avian_lc50),
+                  '{0!s}'.format(trex_obj.tw_bird_lc50),
+                  '{0!s}'.format(trex_obj.noaec_bird), '{0!s}'.format(trex_obj.species_of_the_tested_bird_avian_noaec),
+                  '{0!s}'.format(trex_obj.tw_bird_noaec),
+                  '{0!s}'.format(trex_obj.noael_bird), '{0!s}'.format(trex_obj.species_of_the_tested_bird_avian_noael),
+                  '{0!s}'.format(trex_obj.tw_bird_noael),
+                  '{0!s}'.format(trex_obj.aw_bird_sm), '{0!s}'.format(trex_obj.aw_bird_md), '{0!s}'.format(trex_obj.aw_bird_lg),
+                  '{0!s}'.format(trex_obj.mineau_sca_fact), ],
         "Units": ['mg/kg-bw', '', 'g', 'mg/kg-diet', '', 'g', 'mg/kg-diet', '', 'g', 'mg/kg-bw', '', 'g', 'g', 'g', 'g',
                   ''],
     }
@@ -455,10 +455,10 @@ def gett4data(trex_obj):
                       'Body weight of assessed mammal small',
                       'Body weight of assessed mammal medium', 'Body weight of assessed mammal large',
                       'Body weight of tested mammal', ],
-        "Value": ['%s' % trex_obj.ld50_mamm, '%s' % trex_obj.lc50_mamm, '%s' % trex_obj.noaec_mamm,
-                  '%s' % trex_obj.noael_mamm,
-                  '%s' % trex_obj.aw_mamm_sm, '%s' % trex_obj.aw_mamm_md, '%s' % trex_obj.aw_mamm_lg,
-                  '%s' % trex_obj.tw_mamm, ],
+        "Value": ['{0!s}'.format(trex_obj.ld50_mamm), '{0!s}'.format(trex_obj.lc50_mamm), '{0!s}'.format(trex_obj.noaec_mamm),
+                  '{0!s}'.format(trex_obj.noael_mamm),
+                  '{0!s}'.format(trex_obj.aw_mamm_sm), '{0!s}'.format(trex_obj.aw_mamm_md), '{0!s}'.format(trex_obj.aw_mamm_lg),
+                  '{0!s}'.format(trex_obj.tw_mamm), ],
         "Units": ['mg/kg-bw', 'mg/kg-diet', 'mg/kg-diet', 'mg/kg-bw', 'g', 'g', 'g', 'g', ],
     }
     return data
@@ -469,12 +469,12 @@ def gett5data(out_sa_bird_1_s, out_sa_bird_2_s, out_sc_bird_s, out_sa_mamm_1_s, 
               out_sa_bird_1_l, out_sa_bird_2_l, out_sc_bird_l, out_sa_mamm_1_l, out_sa_mamm_2_l, out_sc_mamm_l):
     data = {
         "Size": ['Small', 'Medium', 'Large', ],
-        "AAcute #1": ['%.2e' % out_sa_bird_1_s, '%.2e' % out_sa_bird_1_m, '%.2e' % out_sa_bird_1_l, ],
-        "AAcute #2": ['%.2e' % out_sa_bird_2_s, '%.2e' % out_sa_bird_2_m, '%.2e' % out_sa_bird_2_l, ],
-        "AChronic": ['%.2e' % out_sc_bird_s, '%.2e' % out_sc_bird_m, '%.2e' % out_sc_bird_l, ],
-        "MAcute #1": ['%.2e' % out_sa_mamm_1_s, '%.2e' % out_sa_mamm_1_m, '%.2e' % out_sa_mamm_1_l, ],
-        "MAcute #2": ['%.2e' % out_sa_mamm_2_s, '%.2e' % out_sa_mamm_2_m, '%.2e' % out_sa_mamm_2_l, ],
-        "MChronic": ['%.2e' % out_sc_mamm_s, '%.2e' % out_sc_mamm_m, '%.2e' % out_sc_mamm_l, ],
+        "AAcute #1": ['{0:.2e}'.format(out_sa_bird_1_s), '{0:.2e}'.format(out_sa_bird_1_m), '{0:.2e}'.format(out_sa_bird_1_l), ],
+        "AAcute #2": ['{0:.2e}'.format(out_sa_bird_2_s), '{0:.2e}'.format(out_sa_bird_2_m), '{0:.2e}'.format(out_sa_bird_2_l), ],
+        "AChronic": ['{0:.2e}'.format(out_sc_bird_s), '{0:.2e}'.format(out_sc_bird_m), '{0:.2e}'.format(out_sc_bird_l), ],
+        "MAcute #1": ['{0:.2e}'.format(out_sa_mamm_1_s), '{0:.2e}'.format(out_sa_mamm_1_m), '{0:.2e}'.format(out_sa_mamm_1_l), ],
+        "MAcute #2": ['{0:.2e}'.format(out_sa_mamm_2_s), '{0:.2e}'.format(out_sa_mamm_2_m), '{0:.2e}'.format(out_sa_mamm_2_l), ],
+        "MChronic": ['{0:.2e}'.format(out_sc_mamm_s), '{0:.2e}'.format(out_sc_mamm_m), '{0:.2e}'.format(out_sc_mamm_l), ],
     }
     return data
 
@@ -482,8 +482,8 @@ def gett5data(out_sa_bird_1_s, out_sa_bird_2_s, out_sc_bird_s, out_sa_mamm_1_s, 
 def gett6data(out_eec_diet_sg, out_eec_diet_tg, out_eec_diet_bp, out_eec_diet_fr, out_eec_diet_ar):
     data = {
         "Application Target": ['Short Grass', 'Tall Grass', 'Broadleaf Plants', 'Fruits/Pods/Seeds', 'Arthropods', ],
-        "Value": ['%.2e' % out_eec_diet_sg, '%.2e' % out_eec_diet_tg, '%.2e' % out_eec_diet_bp, '%.2e' % out_eec_diet_fr,
-                  '%.2e' % out_eec_diet_ar],
+        "Value": ['{0:.2e}'.format(out_eec_diet_sg), '{0:.2e}'.format(out_eec_diet_tg), '{0:.2e}'.format(out_eec_diet_bp), '{0:.2e}'.format(out_eec_diet_fr),
+                  '{0:.2e}'.format(out_eec_diet_ar)],
     }
     return data
 
@@ -494,12 +494,12 @@ def gett7data(out_eec_dose_bird_sg_sm, out_eec_dose_bird_sg_md, out_eec_dose_bir
               out_eec_dose_bird_se_sm, out_eec_dose_bird_se_md, out_eec_dose_bird_se_lg):
     data = {
         "Application Target": ['Short Grass', 'Tall Grass', 'Broadleaf Plants', 'Fruits/Pods', 'Arthropods', 'Seeds', ],
-        "Small": ['%.2e' % out_eec_dose_bird_sg_sm, '%.2e' % out_eec_dose_bird_tg_sm, '%.2e' % out_eec_dose_bird_bp_sm,
-                  '%.2e' % out_eec_dose_bird_fp_sm, '%.2e' % out_eec_dose_bird_ar_sm, '%.2e' % out_eec_dose_bird_se_sm],
-        "Medium": ['%.2e' % out_eec_dose_bird_sg_md, '%.2e' % out_eec_dose_bird_tg_md, '%.2e' % out_eec_dose_bird_bp_md,
-                   '%.2e' % out_eec_dose_bird_fp_md, '%.2e' % out_eec_dose_bird_ar_md, '%.2e' % out_eec_dose_bird_se_md],
-        "Large": ['%.2e' % out_eec_dose_bird_sg_lg, '%.2e' % out_eec_dose_bird_tg_lg, '%.2e' % out_eec_dose_bird_bp_lg,
-                  '%.2e' % out_eec_dose_bird_fp_lg, '%.2e' % out_eec_dose_bird_ar_lg, '%.2e' % out_eec_dose_bird_se_lg],
+        "Small": ['{0:.2e}'.format(out_eec_dose_bird_sg_sm), '{0:.2e}'.format(out_eec_dose_bird_tg_sm), '{0:.2e}'.format(out_eec_dose_bird_bp_sm),
+                  '{0:.2e}'.format(out_eec_dose_bird_fp_sm), '{0:.2e}'.format(out_eec_dose_bird_ar_sm), '{0:.2e}'.format(out_eec_dose_bird_se_sm)],
+        "Medium": ['{0:.2e}'.format(out_eec_dose_bird_sg_md), '{0:.2e}'.format(out_eec_dose_bird_tg_md), '{0:.2e}'.format(out_eec_dose_bird_bp_md),
+                   '{0:.2e}'.format(out_eec_dose_bird_fp_md), '{0:.2e}'.format(out_eec_dose_bird_ar_md), '{0:.2e}'.format(out_eec_dose_bird_se_md)],
+        "Large": ['{0:.2e}'.format(out_eec_dose_bird_sg_lg), '{0:.2e}'.format(out_eec_dose_bird_tg_lg), '{0:.2e}'.format(out_eec_dose_bird_bp_lg),
+                  '{0:.2e}'.format(out_eec_dose_bird_fp_lg), '{0:.2e}'.format(out_eec_dose_bird_ar_lg), '{0:.2e}'.format(out_eec_dose_bird_se_lg)],
     }
     return data
 
@@ -509,12 +509,12 @@ def gett7_add_data(out_arq_bird_sg_sm, out_arq_bird_sg_md, out_arq_bird_sg_lg, o
                    out_arq_bird_ar_sm, out_arq_bird_ar_md, out_arq_bird_ar_lg, out_arq_bird_se_sm, out_arq_bird_se_md, out_arq_bird_se_lg):
     data = {
         "Application Target": ['Short Grass', 'Tall Grass', 'Broadleaf Plants', 'Fruits/Pods', 'Arthropods', 'Seeds', ],
-        "Small": ['%.2e' % out_arq_bird_sg_sm, '%.2e' % out_arq_bird_tg_sm, '%.2e' % out_arq_bird_bp_sm,
-                  '%.2e' % out_arq_bird_fp_sm, '%.2e' % out_arq_bird_ar_sm, '%.2e' % out_arq_bird_se_sm],
-        "Medium": ['%.2e' % out_arq_bird_sg_md, '%.2e' % out_arq_bird_tg_md, '%.2e' % out_arq_bird_bp_md,
-                   '%.2e' % out_arq_bird_fp_md, '%.2e' % out_arq_bird_ar_md, '%.2e' % out_arq_bird_se_md],
-        "Large": ['%.2e' % out_arq_bird_sg_lg, '%.2e' % out_arq_bird_tg_lg, '%.2e' % out_arq_bird_bp_lg,
-                  '%.2e' % out_arq_bird_fp_lg, '%.2e' % out_arq_bird_ar_lg, '%.2e' % out_arq_bird_se_lg],
+        "Small": ['{0:.2e}'.format(out_arq_bird_sg_sm), '{0:.2e}'.format(out_arq_bird_tg_sm), '{0:.2e}'.format(out_arq_bird_bp_sm),
+                  '{0:.2e}'.format(out_arq_bird_fp_sm), '{0:.2e}'.format(out_arq_bird_ar_sm), '{0:.2e}'.format(out_arq_bird_se_sm)],
+        "Medium": ['{0:.2e}'.format(out_arq_bird_sg_md), '{0:.2e}'.format(out_arq_bird_tg_md), '{0:.2e}'.format(out_arq_bird_bp_md),
+                   '{0:.2e}'.format(out_arq_bird_fp_md), '{0:.2e}'.format(out_arq_bird_ar_md), '{0:.2e}'.format(out_arq_bird_se_md)],
+        "Large": ['{0:.2e}'.format(out_arq_bird_sg_lg), '{0:.2e}'.format(out_arq_bird_tg_lg), '{0:.2e}'.format(out_arq_bird_bp_lg),
+                  '{0:.2e}'.format(out_arq_bird_fp_lg), '{0:.2e}'.format(out_arq_bird_ar_lg), '{0:.2e}'.format(out_arq_bird_se_lg)],
     }
     return data
 
@@ -523,10 +523,10 @@ def gett8data(out_arq_diet_bird_sg_a, out_arq_diet_bird_sg_c, out_arq_diet_bird_
               out_arq_diet_bird_bp_c, out_arq_diet_bird_fp_a, out_arq_diet_bird_fp_c, out_arq_diet_bird_ar_a, out_arq_diet_bird_ar_c):
     data = {
         "Application Target": ['Short Grass', 'Tall Grass', 'Broadleaf Plants', 'Fruits/Pods', 'Arthropods', ],
-        "Acute": ['%.2e' % out_arq_diet_bird_sg_a, '%.2e' % out_arq_diet_bird_tg_a, '%.2e' % out_arq_diet_bird_bp_a,
-                  '%.2e' % out_arq_diet_bird_fp_a, '%.2e' % out_arq_diet_bird_ar_a, ],
-        "Chronic": ['%.2e' % out_arq_diet_bird_sg_c, '%.2e' % out_arq_diet_bird_tg_c, '%.2e' % out_arq_diet_bird_bp_c,
-                    '%.2e' % out_arq_diet_bird_fp_c, '%.2e' % out_arq_diet_bird_ar_c, ],
+        "Acute": ['{0:.2e}'.format(out_arq_diet_bird_sg_a), '{0:.2e}'.format(out_arq_diet_bird_tg_a), '{0:.2e}'.format(out_arq_diet_bird_bp_a),
+                  '{0:.2e}'.format(out_arq_diet_bird_fp_a), '{0:.2e}'.format(out_arq_diet_bird_ar_a), ],
+        "Chronic": ['{0:.2e}'.format(out_arq_diet_bird_sg_c), '{0:.2e}'.format(out_arq_diet_bird_tg_c), '{0:.2e}'.format(out_arq_diet_bird_bp_c),
+                    '{0:.2e}'.format(out_arq_diet_bird_fp_c), '{0:.2e}'.format(out_arq_diet_bird_ar_c), ],
     }
     return data
 
@@ -537,12 +537,12 @@ def gett9data(out_eec_dose_mamm_sg_sm, out_eec_dose_mamm_sg_md, out_eec_dose_mam
               out_eec_dose_mamm_se_sm, out_eec_dose_mamm_se_md, out_eec_dose_mamm_se_lg):
     data = {
         "Application Target": ['Short Grass', 'Tall Grass', 'Broadleaf Plants', 'Fruits/Pods', 'Arthropods', 'Seeds', ],
-        "Small": ['%.2e' % out_eec_dose_mamm_sg_sm, '%.2e' % out_eec_dose_mamm_tg_sm, '%.2e' % out_eec_dose_mamm_bp_sm,
-                  '%.2e' % out_eec_dose_mamm_fp_sm, '%.2e' % out_eec_dose_mamm_ar_sm, '%.2e' % out_eec_dose_mamm_se_sm],
-        "Medium": ['%.2e' % out_eec_dose_mamm_sg_md, '%.2e' % out_eec_dose_mamm_tg_md, '%.2e' % out_eec_dose_mamm_bp_md,
-                   '%.2e' % out_eec_dose_mamm_fp_md, '%.2e' % out_eec_dose_mamm_ar_md, '%.2e' % out_eec_dose_mamm_se_md],
-        "Large": ['%.2e' % out_eec_dose_mamm_sg_lg, '%.2e' % out_eec_dose_mamm_tg_lg, '%.2e' % out_eec_dose_mamm_bp_lg,
-                  '%.2e' % out_eec_dose_mamm_fp_lg, '%.2e' % out_eec_dose_mamm_ar_lg, '%.2e' % out_eec_dose_mamm_se_lg],
+        "Small": ['{0:.2e}'.format(out_eec_dose_mamm_sg_sm), '{0:.2e}'.format(out_eec_dose_mamm_tg_sm), '{0:.2e}'.format(out_eec_dose_mamm_bp_sm),
+                  '{0:.2e}'.format(out_eec_dose_mamm_fp_sm), '{0:.2e}'.format(out_eec_dose_mamm_ar_sm), '{0:.2e}'.format(out_eec_dose_mamm_se_sm)],
+        "Medium": ['{0:.2e}'.format(out_eec_dose_mamm_sg_md), '{0:.2e}'.format(out_eec_dose_mamm_tg_md), '{0:.2e}'.format(out_eec_dose_mamm_bp_md),
+                   '{0:.2e}'.format(out_eec_dose_mamm_fp_md), '{0:.2e}'.format(out_eec_dose_mamm_ar_md), '{0:.2e}'.format(out_eec_dose_mamm_se_md)],
+        "Large": ['{0:.2e}'.format(out_eec_dose_mamm_sg_lg), '{0:.2e}'.format(out_eec_dose_mamm_tg_lg), '{0:.2e}'.format(out_eec_dose_mamm_bp_lg),
+                  '{0:.2e}'.format(out_eec_dose_mamm_fp_lg), '{0:.2e}'.format(out_eec_dose_mamm_ar_lg), '{0:.2e}'.format(out_eec_dose_mamm_se_lg)],
     }
     return data
 
@@ -557,21 +557,21 @@ def gett10data(out_arq_dose_mamm_sg_sm, out_crq_dose_mamm_sg_sm, out_arq_dose_ma
                out_crq_dose_mamm_se_lg):
     data = {
         "Application Target": ['Short Grass', 'Tall Grass', 'Broadleaf Plants', 'Fruits/Pods', 'Arthropods', 'Seeds', ],
-        "Acute_sm": ['%.2e' % out_arq_dose_mamm_sg_sm, '%.2e' % out_arq_dose_mamm_tg_sm, '%.2e' % out_arq_dose_mamm_bp_sm,
-                     '%.2e' % out_arq_dose_mamm_fp_sm, '%.2e' % out_arq_dose_mamm_ar_sm, '%.2e' % out_arq_dose_mamm_se_sm],
-        "Chronic_sm": ['%.2e' % out_crq_dose_mamm_sg_sm, '%.2e' % out_crq_dose_mamm_tg_sm,
-                       '%.2e' % out_crq_dose_mamm_bp_sm, '%.2e' % out_crq_dose_mamm_fp_sm,
-                       '%.2e' % out_crq_dose_mamm_ar_sm, '%.2e' % out_crq_dose_mamm_se_sm],
-        "Acute_md": ['%.2e' % out_arq_dose_mamm_sg_md, '%.2e' % out_arq_dose_mamm_tg_md, '%.2e' % out_arq_dose_mamm_bp_md,
-                     '%.2e' % out_arq_dose_mamm_fp_md, '%.2e' % out_arq_dose_mamm_ar_md, '%.2e' % out_arq_dose_mamm_se_md],
-        "Chronic_md": ['%.2e' % out_crq_dose_mamm_sg_md, '%.2e' % out_crq_dose_mamm_tg_md,
-                       '%.2e' % out_crq_dose_mamm_bp_md, '%.2e' % out_crq_dose_mamm_fp_md,
-                       '%.2e' % out_crq_dose_mamm_ar_md, '%.2e' % out_crq_dose_mamm_se_md],
-        "Acute_lg": ['%.2e' % out_arq_dose_mamm_sg_lg, '%.2e' % out_arq_dose_mamm_tg_lg, '%.2e' % out_arq_dose_mamm_bp_lg,
-                     '%.2e' % out_arq_dose_mamm_fp_lg, '%.2e' % out_arq_dose_mamm_ar_lg, '%.2e' % out_arq_dose_mamm_se_lg],
-        "Chronic_lg": ['%.2e' % out_crq_dose_mamm_sg_lg, '%.2e' % out_crq_dose_mamm_tg_lg,
-                       '%.2e' % out_crq_dose_mamm_bp_lg, '%.2e' % out_crq_dose_mamm_fp_lg,
-                       '%.2e' % out_crq_dose_mamm_ar_lg, '%.2e' % out_crq_dose_mamm_se_lg],
+        "Acute_sm": ['{0:.2e}'.format(out_arq_dose_mamm_sg_sm), '{0:.2e}'.format(out_arq_dose_mamm_tg_sm), '{0:.2e}'.format(out_arq_dose_mamm_bp_sm),
+                     '{0:.2e}'.format(out_arq_dose_mamm_fp_sm), '{0:.2e}'.format(out_arq_dose_mamm_ar_sm), '{0:.2e}'.format(out_arq_dose_mamm_se_sm)],
+        "Chronic_sm": ['{0:.2e}'.format(out_crq_dose_mamm_sg_sm), '{0:.2e}'.format(out_crq_dose_mamm_tg_sm),
+                       '{0:.2e}'.format(out_crq_dose_mamm_bp_sm), '{0:.2e}'.format(out_crq_dose_mamm_fp_sm),
+                       '{0:.2e}'.format(out_crq_dose_mamm_ar_sm), '{0:.2e}'.format(out_crq_dose_mamm_se_sm)],
+        "Acute_md": ['{0:.2e}'.format(out_arq_dose_mamm_sg_md), '{0:.2e}'.format(out_arq_dose_mamm_tg_md), '{0:.2e}'.format(out_arq_dose_mamm_bp_md),
+                     '{0:.2e}'.format(out_arq_dose_mamm_fp_md), '{0:.2e}'.format(out_arq_dose_mamm_ar_md), '{0:.2e}'.format(out_arq_dose_mamm_se_md)],
+        "Chronic_md": ['{0:.2e}'.format(out_crq_dose_mamm_sg_md), '{0:.2e}'.format(out_crq_dose_mamm_tg_md),
+                       '{0:.2e}'.format(out_crq_dose_mamm_bp_md), '{0:.2e}'.format(out_crq_dose_mamm_fp_md),
+                       '{0:.2e}'.format(out_crq_dose_mamm_ar_md), '{0:.2e}'.format(out_crq_dose_mamm_se_md)],
+        "Acute_lg": ['{0:.2e}'.format(out_arq_dose_mamm_sg_lg), '{0:.2e}'.format(out_arq_dose_mamm_tg_lg), '{0:.2e}'.format(out_arq_dose_mamm_bp_lg),
+                     '{0:.2e}'.format(out_arq_dose_mamm_fp_lg), '{0:.2e}'.format(out_arq_dose_mamm_ar_lg), '{0:.2e}'.format(out_arq_dose_mamm_se_lg)],
+        "Chronic_lg": ['{0:.2e}'.format(out_crq_dose_mamm_sg_lg), '{0:.2e}'.format(out_crq_dose_mamm_tg_lg),
+                       '{0:.2e}'.format(out_crq_dose_mamm_bp_lg), '{0:.2e}'.format(out_crq_dose_mamm_fp_lg),
+                       '{0:.2e}'.format(out_crq_dose_mamm_ar_lg), '{0:.2e}'.format(out_crq_dose_mamm_se_lg)],
     }
     return data
 
@@ -580,10 +580,10 @@ def gett11data(out_arq_diet_mamm_sg, out_crq_diet_bird_sg, out_arq_diet_mamm_tg,
                out_crq_diet_bird_bp, out_arq_diet_mamm_fp, out_crq_diet_bird_fp, out_arq_diet_mamm_ar, out_crq_diet_bird_ar):
     data = {
         "Application Target": ['Short Grass', 'Tall Grass', 'Broadleaf Plants', 'Fruits/Pods/Seeds', 'Arthropods', ],
-        "Acute": ['%.2e' % out_arq_diet_mamm_sg, '%.2e' % out_arq_diet_mamm_tg, '%.2e' % out_arq_diet_mamm_bp,
-                  '%.2e' % out_arq_diet_mamm_fp, '%.2e' % out_arq_diet_mamm_ar],
-        "Chronic": ['%.2e' % out_crq_diet_bird_sg, '%.2e' % out_crq_diet_bird_tg, '%.2e' % out_crq_diet_bird_bp,
-                    '%.2e' % out_crq_diet_bird_fp, '%.2e' % out_crq_diet_bird_ar],
+        "Acute": ['{0:.2e}'.format(out_arq_diet_mamm_sg), '{0:.2e}'.format(out_arq_diet_mamm_tg), '{0:.2e}'.format(out_arq_diet_mamm_bp),
+                  '{0:.2e}'.format(out_arq_diet_mamm_fp), '{0:.2e}'.format(out_arq_diet_mamm_ar)],
+        "Chronic": ['{0:.2e}'.format(out_crq_diet_bird_sg), '{0:.2e}'.format(out_crq_diet_bird_tg), '{0:.2e}'.format(out_crq_diet_bird_bp),
+                    '{0:.2e}'.format(out_crq_diet_bird_fp), '{0:.2e}'.format(out_crq_diet_bird_ar)],
     }
     return data
 
@@ -592,10 +592,10 @@ def gett11data_na(out_arq_diet_mamm_sg, out_crq_diet_bird_sg, out_arq_diet_mamm_
                   out_crq_diet_bird_bp, out_arq_diet_mamm_fp, out_crq_diet_bird_fp, out_arq_diet_mamm_ar, out_crq_diet_bird_ar):
     data = {
         "Application Target": ['Short Grass', 'Tall Grass', 'Broadleaf Plants', 'Fruits/Pods/Seeds', 'Arthropods', ],
-        "Acute": ['%s' % out_arq_diet_mamm_sg, '%s' % out_arq_diet_mamm_tg, '%s' % out_arq_diet_mamm_bp,
-                  '%s' % out_arq_diet_mamm_fp, '%s' % out_arq_diet_mamm_ar],
-        "Chronic": ['%.2e' % out_crq_diet_bird_sg, '%.2e' % out_crq_diet_bird_tg, '%.2e' % out_crq_diet_bird_bp,
-                    '%.2e' % out_crq_diet_bird_fp, '%.2e' % out_crq_diet_bird_ar],
+        "Acute": ['{0!s}'.format(out_arq_diet_mamm_sg), '{0!s}'.format(out_arq_diet_mamm_tg), '{0!s}'.format(out_arq_diet_mamm_bp),
+                  '{0!s}'.format(out_arq_diet_mamm_fp), '{0!s}'.format(out_arq_diet_mamm_ar)],
+        "Chronic": ['{0:.2e}'.format(out_crq_diet_bird_sg), '{0:.2e}'.format(out_crq_diet_bird_tg), '{0:.2e}'.format(out_crq_diet_bird_bp),
+                    '{0:.2e}'.format(out_crq_diet_bird_fp), '{0:.2e}'.format(out_crq_diet_bird_ar)],
     }
     return data
 
@@ -603,8 +603,8 @@ def gett11data_na(out_arq_diet_mamm_sg, out_crq_diet_bird_sg, out_arq_diet_mamm_
 def gett12data(out_ld50_rg_bird_sm, out_ld50_rg_mamm_sm, out_ld50_rg_bird_md, out_ld50_rg_mamm_md, out_ld50_rg_bird_lg, out_ld50_rg_mamm_lg):
     data = {
         "Animal Size": ['Small', 'Medium', 'Large', ],
-        "Avian": ['%.2e' % out_ld50_rg_bird_sm, '%.2e' % out_ld50_rg_bird_md, '%.2e' % out_ld50_rg_bird_lg, ],
-        "Mammal": ['%.2e' % out_ld50_rg_mamm_sm, '%.2e' % out_ld50_rg_mamm_md, '%.2e' % out_ld50_rg_mamm_lg, ],
+        "Avian": ['{0:.2e}'.format(out_ld50_rg_bird_sm), '{0:.2e}'.format(out_ld50_rg_bird_md), '{0:.2e}'.format(out_ld50_rg_bird_lg), ],
+        "Mammal": ['{0:.2e}'.format(out_ld50_rg_mamm_sm), '{0:.2e}'.format(out_ld50_rg_mamm_md), '{0:.2e}'.format(out_ld50_rg_mamm_lg), ],
     }
     return data
 
@@ -619,18 +619,18 @@ def gett5data_qaqc(out_sa_bird_1_s, out_sa_bird_2_s, out_sc_bird_s, out_sa_mamm_
         "Type": ['Calculated Value', 'Expected Value', 'Calculated Value', 'Expected Value', 'Calculated Value',
                  'Expected Value', ],
         "Size": ['Small', 'Small', 'Medium', 'Medium', 'Large', 'Large', ],
-        "AAcute #1": ['%.2e' % out_sa_bird_1_s, '%.2e' % out_sa_bird_1_s_exp, '%.2e' % out_sa_bird_1_m, '%.2e' % out_sa_bird_1_m_exp,
-                      '%.2e' % out_sa_bird_1_l, '%.2e' % out_sa_bird_1_l_exp, ],
-        "AAcute #2": ['%.2e' % out_sa_bird_2_s, '%.2e' % out_sa_bird_2_s_exp, '%.2e' % out_sa_bird_2_m, '%.2e' % out_sa_bird_2_m_exp,
-                      '%.2e' % out_sa_bird_2_l, '%.2e' % out_sa_bird_2_l_exp, ],
-        "AChronic": ['%.2e' % out_sc_bird_s, '%.2e' % out_sc_bird_s_exp, '%.2e' % out_sc_bird_m, '%.2e' % out_sc_bird_m_exp,
-                     '%.2e' % out_sc_bird_l, '%.2e' % out_sc_bird_l_exp, ],
-        "MAcute #1": ['%.2e' % out_sa_mamm_1_s, '%.2e' % out_sa_mamm_1_s_exp, '%.2e' % out_sa_mamm_1_m, '%.2e' % out_sa_mamm_1_m_exp,
-                      '%.2e' % out_sa_mamm_1_l, '%.2e' % out_sa_mamm_1_l_exp, ],
-        "MAcute #2": ['%.2e' % out_sa_mamm_2_s, '%.2e' % out_sa_mamm_2_s_exp, '%.2e' % out_sa_mamm_2_m, '%.2e' % out_sa_mamm_2_m_exp,
-                      '%.2e' % out_sa_mamm_2_l, '%.2e' % out_sa_mamm_2_l_exp, ],
-        "MChronic": ['%.2e' % out_sc_mamm_s, '%.2e' % out_sc_mamm_s_exp, '%.2e' % out_sc_mamm_m, '%.2e' % out_sc_mamm_m_exp,
-                     '%.2e' % out_sc_mamm_l, '%.2e' % out_sc_mamm_l_exp, ],
+        "AAcute #1": ['{0:.2e}'.format(out_sa_bird_1_s), '{0:.2e}'.format(out_sa_bird_1_s_exp), '{0:.2e}'.format(out_sa_bird_1_m), '{0:.2e}'.format(out_sa_bird_1_m_exp),
+                      '{0:.2e}'.format(out_sa_bird_1_l), '{0:.2e}'.format(out_sa_bird_1_l_exp), ],
+        "AAcute #2": ['{0:.2e}'.format(out_sa_bird_2_s), '{0:.2e}'.format(out_sa_bird_2_s_exp), '{0:.2e}'.format(out_sa_bird_2_m), '{0:.2e}'.format(out_sa_bird_2_m_exp),
+                      '{0:.2e}'.format(out_sa_bird_2_l), '{0:.2e}'.format(out_sa_bird_2_l_exp), ],
+        "AChronic": ['{0:.2e}'.format(out_sc_bird_s), '{0:.2e}'.format(out_sc_bird_s_exp), '{0:.2e}'.format(out_sc_bird_m), '{0:.2e}'.format(out_sc_bird_m_exp),
+                     '{0:.2e}'.format(out_sc_bird_l), '{0:.2e}'.format(out_sc_bird_l_exp), ],
+        "MAcute #1": ['{0:.2e}'.format(out_sa_mamm_1_s), '{0:.2e}'.format(out_sa_mamm_1_s_exp), '{0:.2e}'.format(out_sa_mamm_1_m), '{0:.2e}'.format(out_sa_mamm_1_m_exp),
+                      '{0:.2e}'.format(out_sa_mamm_1_l), '{0:.2e}'.format(out_sa_mamm_1_l_exp), ],
+        "MAcute #2": ['{0:.2e}'.format(out_sa_mamm_2_s), '{0:.2e}'.format(out_sa_mamm_2_s_exp), '{0:.2e}'.format(out_sa_mamm_2_m), '{0:.2e}'.format(out_sa_mamm_2_m_exp),
+                      '{0:.2e}'.format(out_sa_mamm_2_l), '{0:.2e}'.format(out_sa_mamm_2_l_exp), ],
+        "MChronic": ['{0:.2e}'.format(out_sc_mamm_s), '{0:.2e}'.format(out_sc_mamm_s_exp), '{0:.2e}'.format(out_sc_mamm_m), '{0:.2e}'.format(out_sc_mamm_m_exp),
+                     '{0:.2e}'.format(out_sc_mamm_l), '{0:.2e}'.format(out_sc_mamm_l_exp), ],
     }
     return data
 
@@ -643,9 +643,9 @@ def gett6data_qaqc(out_eec_diet_sg, out_eec_diet_tg, out_eec_diet_bp, out_eec_di
         "Application Target": ['Short Grass', 'Short Grass', 'Tall Grass', 'Tall Grass', 'Broadleaf Plants',
                                'Broadleaf Plants', 'Fruits/Pods/Seeds', 'Fruits/Pods/Seeds', 'Arthropods',
                                'Arthropods', ],
-        "Value": ['%.2e' % out_eec_diet_sg, '%.2e' % out_eec_diet_sg_exp, '%.2e' % out_eec_diet_tg, '%.2e' % out_eec_diet_tg_exp,
-                  '%.2e' % out_eec_diet_bp, '%.2e' % out_eec_diet_bp_exp, '%.2e' % out_eec_diet_fr, '%.2e' % out_eec_diet_fr_exp,
-                  '%.2e' % out_eec_diet_ar, '%.2e' % out_eec_diet_ar_exp],
+        "Value": ['{0:.2e}'.format(out_eec_diet_sg), '{0:.2e}'.format(out_eec_diet_sg_exp), '{0:.2e}'.format(out_eec_diet_tg), '{0:.2e}'.format(out_eec_diet_tg_exp),
+                  '{0:.2e}'.format(out_eec_diet_bp), '{0:.2e}'.format(out_eec_diet_bp_exp), '{0:.2e}'.format(out_eec_diet_fr), '{0:.2e}'.format(out_eec_diet_fr_exp),
+                  '{0:.2e}'.format(out_eec_diet_ar), '{0:.2e}'.format(out_eec_diet_ar_exp)],
     }
     return data
 
@@ -667,18 +667,18 @@ def gett7data_qaqc(out_eec_dose_bird_sg_sm, out_eec_dose_bird_sg_md, out_eec_dos
         "Application Target": ['Short Grass', 'Short Grass', 'Tall Grass', 'Tall Grass', 'Broadleaf Plants',
                                'Broadleaf Plants', 'Fruits/Pods', 'Fruits/Pods', 'Arthropods', 'Arthropods', 'Seeds',
                                'Seeds', ],
-        "Small": ['%.2e' % out_eec_dose_bird_sg_sm[0], '%.2e' % out_eec_dose_bird_sg_sm_exp, '%.2e' % out_eec_dose_bird_tg_sm[0],
-                  '%.2e' % out_eec_dose_bird_tg_sm_exp, '%.2e' % out_eec_dose_bird_bp_sm[0], '%.2e' % out_eec_dose_bird_bp_sm_exp,
-                  '%.2e' % out_eec_dose_bird_fp_sm[0], '%.2e' % out_eec_dose_bird_fp_sm_exp, '%.2e' % out_eec_dose_bird_ar_sm[0],
-                  '%.2e' % out_eec_dose_bird_ar_sm_exp, '%.2e' % out_eec_dose_bird_se_sm[0], '%.2e' % out_eec_dose_bird_se_sm_exp],
-        "Medium": ['%.2e' % out_eec_dose_bird_sg_md[0], '%.2e' % out_eec_dose_bird_sg_md_exp, '%.2e' % out_eec_dose_bird_tg_md[0],
-                   '%.2e' % out_eec_dose_bird_tg_md_exp, '%.2e' % out_eec_dose_bird_bp_md[0], '%.2e' % out_eec_dose_bird_bp_md_exp,
-                   '%.2e' % out_eec_dose_bird_fp_md[0], '%.2e' % out_eec_dose_bird_fp_md_exp, '%.2e' % out_eec_dose_bird_ar_md[0],
-                   '%.2e' % out_eec_dose_bird_ar_md_exp, '%.2e' % out_eec_dose_bird_se_md[0], '%.2e' % out_eec_dose_bird_se_md_exp],
-        "Large": ['%.2e' % out_eec_dose_bird_sg_lg[0], '%.2e' % out_eec_dose_bird_sg_lg_exp, '%.2e' % out_eec_dose_bird_tg_lg[0],
-                  '%.2e' % out_eec_dose_bird_tg_lg_exp, '%.2e' % out_eec_dose_bird_bp_lg[0], '%.2e' % out_eec_dose_bird_bp_lg_exp,
-                  '%.2e' % out_eec_dose_bird_fp_lg[0], '%.2e' % out_eec_dose_bird_fp_lg_exp, '%.2e' % out_eec_dose_bird_ar_lg[0],
-                  '%.2e' % out_eec_dose_bird_ar_lg_exp, '%.2e' % out_eec_dose_bird_se_lg[0], '%.2e' % out_eec_dose_bird_se_lg_exp],
+        "Small": ['{0:.2e}'.format(out_eec_dose_bird_sg_sm[0]), '{0:.2e}'.format(out_eec_dose_bird_sg_sm_exp), '{0:.2e}'.format(out_eec_dose_bird_tg_sm[0]),
+                  '{0:.2e}'.format(out_eec_dose_bird_tg_sm_exp), '{0:.2e}'.format(out_eec_dose_bird_bp_sm[0]), '{0:.2e}'.format(out_eec_dose_bird_bp_sm_exp),
+                  '{0:.2e}'.format(out_eec_dose_bird_fp_sm[0]), '{0:.2e}'.format(out_eec_dose_bird_fp_sm_exp), '{0:.2e}'.format(out_eec_dose_bird_ar_sm[0]),
+                  '{0:.2e}'.format(out_eec_dose_bird_ar_sm_exp), '{0:.2e}'.format(out_eec_dose_bird_se_sm[0]), '{0:.2e}'.format(out_eec_dose_bird_se_sm_exp)],
+        "Medium": ['{0:.2e}'.format(out_eec_dose_bird_sg_md[0]), '{0:.2e}'.format(out_eec_dose_bird_sg_md_exp), '{0:.2e}'.format(out_eec_dose_bird_tg_md[0]),
+                   '{0:.2e}'.format(out_eec_dose_bird_tg_md_exp), '{0:.2e}'.format(out_eec_dose_bird_bp_md[0]), '{0:.2e}'.format(out_eec_dose_bird_bp_md_exp),
+                   '{0:.2e}'.format(out_eec_dose_bird_fp_md[0]), '{0:.2e}'.format(out_eec_dose_bird_fp_md_exp), '{0:.2e}'.format(out_eec_dose_bird_ar_md[0]),
+                   '{0:.2e}'.format(out_eec_dose_bird_ar_md_exp), '{0:.2e}'.format(out_eec_dose_bird_se_md[0]), '{0:.2e}'.format(out_eec_dose_bird_se_md_exp)],
+        "Large": ['{0:.2e}'.format(out_eec_dose_bird_sg_lg[0]), '{0:.2e}'.format(out_eec_dose_bird_sg_lg_exp), '{0:.2e}'.format(out_eec_dose_bird_tg_lg[0]),
+                  '{0:.2e}'.format(out_eec_dose_bird_tg_lg_exp), '{0:.2e}'.format(out_eec_dose_bird_bp_lg[0]), '{0:.2e}'.format(out_eec_dose_bird_bp_lg_exp),
+                  '{0:.2e}'.format(out_eec_dose_bird_fp_lg[0]), '{0:.2e}'.format(out_eec_dose_bird_fp_lg_exp), '{0:.2e}'.format(out_eec_dose_bird_ar_lg[0]),
+                  '{0:.2e}'.format(out_eec_dose_bird_ar_lg_exp), '{0:.2e}'.format(out_eec_dose_bird_se_lg[0]), '{0:.2e}'.format(out_eec_dose_bird_se_lg_exp)],
     }
     return data
 
@@ -698,18 +698,18 @@ def gett7_add_data_qaqc(out_arq_bird_sg_sm, out_arq_bird_sg_md, out_arq_bird_sg_
         "Application Target": ['Short Grass', 'Short Grass', 'Tall Grass', 'Tall Grass', 'Broadleaf Plants',
                                'Broadleaf Plants', 'Fruits/Pods', 'Fruits/Pods', 'Arthropods', 'Arthropods', 'Seeds',
                                'Seeds', ],
-        "Small": ['%.2e' % out_arq_bird_sg_sm, '%.2e' % out_arq_bird_sg_sm_exp, '%.2e' % out_arq_bird_tg_sm,
-                  '%.2e' % out_arq_bird_tg_sm_exp, '%.2e' % out_arq_bird_bp_sm, '%.2e' % out_arq_bird_bp_sm_exp,
-                  '%.2e' % out_arq_bird_fp_sm, '%.2e' % out_arq_bird_fp_sm_exp, '%.2e' % out_arq_bird_ar_sm,
-                  '%.2e' % out_arq_bird_ar_sm_exp, '%.2e' % out_arq_bird_se_sm, '%.2e' % out_arq_bird_se_sm_exp],
-        "Medium": ['%.2e' % out_arq_bird_sg_md, '%.2e' % out_arq_bird_sg_md_exp, '%.2e' % out_arq_bird_tg_md,
-                   '%.2e' % out_arq_bird_tg_md_exp, '%.2e' % out_arq_bird_bp_md, '%.2e' % out_arq_bird_bp_md_exp,
-                   '%.2e' % out_arq_bird_fp_md, '%.2e' % out_arq_bird_fp_md_exp, '%.2e' % out_arq_bird_ar_md,
-                   '%.2e' % out_arq_bird_ar_md_exp, '%.2e' % out_arq_bird_se_md, '%.2e' % out_arq_bird_se_md_exp],
-        "Large": ['%.2e' % out_arq_bird_sg_lg, '%.2e' % out_arq_bird_sg_lg_exp, '%.2e' % out_arq_bird_tg_lg,
-                  '%.2e' % out_arq_bird_tg_lg_exp, '%.2e' % out_arq_bird_bp_lg, '%.2e' % out_arq_bird_bp_lg_exp,
-                  '%.2e' % out_arq_bird_fp_lg, '%.2e' % out_arq_bird_fp_lg_exp, '%.2e' % out_arq_bird_ar_lg,
-                  '%.2e' % out_arq_bird_ar_lg_exp, '%.2e' % out_arq_bird_se_lg, '%.2e' % out_arq_bird_se_lg_exp],
+        "Small": ['{0:.2e}'.format(out_arq_bird_sg_sm), '{0:.2e}'.format(out_arq_bird_sg_sm_exp), '{0:.2e}'.format(out_arq_bird_tg_sm),
+                  '{0:.2e}'.format(out_arq_bird_tg_sm_exp), '{0:.2e}'.format(out_arq_bird_bp_sm), '{0:.2e}'.format(out_arq_bird_bp_sm_exp),
+                  '{0:.2e}'.format(out_arq_bird_fp_sm), '{0:.2e}'.format(out_arq_bird_fp_sm_exp), '{0:.2e}'.format(out_arq_bird_ar_sm),
+                  '{0:.2e}'.format(out_arq_bird_ar_sm_exp), '{0:.2e}'.format(out_arq_bird_se_sm), '{0:.2e}'.format(out_arq_bird_se_sm_exp)],
+        "Medium": ['{0:.2e}'.format(out_arq_bird_sg_md), '{0:.2e}'.format(out_arq_bird_sg_md_exp), '{0:.2e}'.format(out_arq_bird_tg_md),
+                   '{0:.2e}'.format(out_arq_bird_tg_md_exp), '{0:.2e}'.format(out_arq_bird_bp_md), '{0:.2e}'.format(out_arq_bird_bp_md_exp),
+                   '{0:.2e}'.format(out_arq_bird_fp_md), '{0:.2e}'.format(out_arq_bird_fp_md_exp), '{0:.2e}'.format(out_arq_bird_ar_md),
+                   '{0:.2e}'.format(out_arq_bird_ar_md_exp), '{0:.2e}'.format(out_arq_bird_se_md), '{0:.2e}'.format(out_arq_bird_se_md_exp)],
+        "Large": ['{0:.2e}'.format(out_arq_bird_sg_lg), '{0:.2e}'.format(out_arq_bird_sg_lg_exp), '{0:.2e}'.format(out_arq_bird_tg_lg),
+                  '{0:.2e}'.format(out_arq_bird_tg_lg_exp), '{0:.2e}'.format(out_arq_bird_bp_lg), '{0:.2e}'.format(out_arq_bird_bp_lg_exp),
+                  '{0:.2e}'.format(out_arq_bird_fp_lg), '{0:.2e}'.format(out_arq_bird_fp_lg_exp), '{0:.2e}'.format(out_arq_bird_ar_lg),
+                  '{0:.2e}'.format(out_arq_bird_ar_lg_exp), '{0:.2e}'.format(out_arq_bird_se_lg), '{0:.2e}'.format(out_arq_bird_se_lg_exp)],
     }
     return data
 
@@ -724,14 +724,14 @@ def gett8data_qaqc(out_arq_diet_bird_sg_a, out_arq_diet_bird_sg_c, out_arq_diet_
                  'Expected Value', 'Calculated Value', 'Expected Value', 'Calculated Value', 'Expected Value', ],
         "Application Target": ['Short Grass', 'Short Grass', 'Tall Grass', 'Tall Grass', 'Broadleaf Plants',
                                'Broadleaf Plants', 'Fruits/Pods', 'Fruits/Pods', 'Arthropods', 'Arthropods', ],
-        "Acute": ['%.2e' % out_arq_diet_bird_sg_a, '%.2e' % out_arq_diet_bird_sg_a_exp, '%.2e' % out_arq_diet_bird_tg_a,
-                  '%.2e' % out_arq_diet_bird_tg_a_exp, '%.2e' % out_arq_diet_bird_bp_a, '%.2e' % out_arq_diet_bird_bp_a_exp,
-                  '%.2e' % out_arq_diet_bird_fp_a, '%.2e' % out_arq_diet_bird_fp_a_exp, '%.2e' % out_arq_diet_bird_ar_a,
-                  '%.2e' % out_arq_diet_bird_ar_a_exp, ],
-        "Chronic": ['%.2e' % out_arq_diet_bird_sg_c, '%.2e' % out_arq_diet_bird_sg_c_exp, '%.2e' % out_arq_diet_bird_tg_c,
-                    '%.2e' % out_arq_diet_bird_tg_c_exp, '%.2e' % out_arq_diet_bird_bp_c, '%.2e' % out_arq_diet_bird_bp_c_exp,
-                    '%.2e' % out_arq_diet_bird_fp_c, '%.2e' % out_arq_diet_bird_fp_c_exp, '%.2e' % out_arq_diet_bird_ar_c,
-                    '%.2e' % out_arq_diet_bird_ar_c_exp, ],
+        "Acute": ['{0:.2e}'.format(out_arq_diet_bird_sg_a), '{0:.2e}'.format(out_arq_diet_bird_sg_a_exp), '{0:.2e}'.format(out_arq_diet_bird_tg_a),
+                  '{0:.2e}'.format(out_arq_diet_bird_tg_a_exp), '{0:.2e}'.format(out_arq_diet_bird_bp_a), '{0:.2e}'.format(out_arq_diet_bird_bp_a_exp),
+                  '{0:.2e}'.format(out_arq_diet_bird_fp_a), '{0:.2e}'.format(out_arq_diet_bird_fp_a_exp), '{0:.2e}'.format(out_arq_diet_bird_ar_a),
+                  '{0:.2e}'.format(out_arq_diet_bird_ar_a_exp), ],
+        "Chronic": ['{0:.2e}'.format(out_arq_diet_bird_sg_c), '{0:.2e}'.format(out_arq_diet_bird_sg_c_exp), '{0:.2e}'.format(out_arq_diet_bird_tg_c),
+                    '{0:.2e}'.format(out_arq_diet_bird_tg_c_exp), '{0:.2e}'.format(out_arq_diet_bird_bp_c), '{0:.2e}'.format(out_arq_diet_bird_bp_c_exp),
+                    '{0:.2e}'.format(out_arq_diet_bird_fp_c), '{0:.2e}'.format(out_arq_diet_bird_fp_c_exp), '{0:.2e}'.format(out_arq_diet_bird_ar_c),
+                    '{0:.2e}'.format(out_arq_diet_bird_ar_c_exp), ],
     }
     return data
 
@@ -753,18 +753,18 @@ def gett9data_qaqc(out_eec_dose_mamm_sg_sm, out_eec_dose_mamm_sg_md, out_eec_dos
         "Application Target": ['Short Grass', 'Short Grass', 'Tall Grass', 'Tall Grass', 'Broadleaf Plants',
                                'Broadleaf Plants', 'Fruits/Pods', 'Fruits/Pods', 'Arthropods', 'Arthropods', 'Seeds',
                                'Seeds', ],
-        "Small": ['%.2e' % out_eec_dose_mamm_sg_sm, '%.2e' % out_eec_dose_mamm_sg_sm_exp, '%.2e' % out_eec_dose_mamm_tg_sm,
-                  '%.2e' % out_eec_dose_mamm_tg_sm_exp, '%.2e' % out_eec_dose_mamm_bp_sm, '%.2e' % out_eec_dose_mamm_bp_sm_exp,
-                  '%.2e' % out_eec_dose_mamm_fp_sm, '%.2e' % out_eec_dose_mamm_fp_sm_exp, '%.2e' % out_eec_dose_mamm_ar_sm,
-                  '%.2e' % out_eec_dose_mamm_ar_sm_exp, '%.2e' % out_eec_dose_mamm_se_sm, '%.2e' % out_eec_dose_mamm_se_sm_exp],
-        "Medium": ['%.2e' % out_eec_dose_mamm_sg_md, '%.2e' % out_eec_dose_mamm_sg_md_exp, '%.2e' % out_eec_dose_mamm_tg_md,
-                   '%.2e' % out_eec_dose_mamm_tg_md_exp, '%.2e' % out_eec_dose_mamm_bp_md, '%.2e' % out_eec_dose_mamm_bp_md_exp,
-                   '%.2e' % out_eec_dose_mamm_fp_md, '%.2e' % out_eec_dose_mamm_fp_md_exp, '%.2e' % out_eec_dose_mamm_ar_md,
-                   '%.2e' % out_eec_dose_mamm_ar_md_exp, '%.2e' % out_eec_dose_mamm_se_md, '%.2e' % out_eec_dose_mamm_se_md_exp],
-        "Large": ['%.2e' % out_eec_dose_mamm_sg_lg, '%.2e' % out_eec_dose_mamm_sg_lg_exp, '%.2e' % out_eec_dose_mamm_tg_lg,
-                  '%.2e' % out_eec_dose_mamm_tg_lg_exp, '%.2e' % out_eec_dose_mamm_bp_lg, '%.2e' % out_eec_dose_mamm_bp_lg_exp,
-                  '%.2e' % out_eec_dose_mamm_fp_lg, '%.2e' % out_eec_dose_mamm_fp_lg_exp, '%.2e' % out_eec_dose_mamm_ar_lg,
-                  '%.2e' % out_eec_dose_mamm_ar_lg_exp, '%.2e' % out_eec_dose_mamm_se_lg, '%.2e' % out_eec_dose_mamm_se_lg_exp],
+        "Small": ['{0:.2e}'.format(out_eec_dose_mamm_sg_sm), '{0:.2e}'.format(out_eec_dose_mamm_sg_sm_exp), '{0:.2e}'.format(out_eec_dose_mamm_tg_sm),
+                  '{0:.2e}'.format(out_eec_dose_mamm_tg_sm_exp), '{0:.2e}'.format(out_eec_dose_mamm_bp_sm), '{0:.2e}'.format(out_eec_dose_mamm_bp_sm_exp),
+                  '{0:.2e}'.format(out_eec_dose_mamm_fp_sm), '{0:.2e}'.format(out_eec_dose_mamm_fp_sm_exp), '{0:.2e}'.format(out_eec_dose_mamm_ar_sm),
+                  '{0:.2e}'.format(out_eec_dose_mamm_ar_sm_exp), '{0:.2e}'.format(out_eec_dose_mamm_se_sm), '{0:.2e}'.format(out_eec_dose_mamm_se_sm_exp)],
+        "Medium": ['{0:.2e}'.format(out_eec_dose_mamm_sg_md), '{0:.2e}'.format(out_eec_dose_mamm_sg_md_exp), '{0:.2e}'.format(out_eec_dose_mamm_tg_md),
+                   '{0:.2e}'.format(out_eec_dose_mamm_tg_md_exp), '{0:.2e}'.format(out_eec_dose_mamm_bp_md), '{0:.2e}'.format(out_eec_dose_mamm_bp_md_exp),
+                   '{0:.2e}'.format(out_eec_dose_mamm_fp_md), '{0:.2e}'.format(out_eec_dose_mamm_fp_md_exp), '{0:.2e}'.format(out_eec_dose_mamm_ar_md),
+                   '{0:.2e}'.format(out_eec_dose_mamm_ar_md_exp), '{0:.2e}'.format(out_eec_dose_mamm_se_md), '{0:.2e}'.format(out_eec_dose_mamm_se_md_exp)],
+        "Large": ['{0:.2e}'.format(out_eec_dose_mamm_sg_lg), '{0:.2e}'.format(out_eec_dose_mamm_sg_lg_exp), '{0:.2e}'.format(out_eec_dose_mamm_tg_lg),
+                  '{0:.2e}'.format(out_eec_dose_mamm_tg_lg_exp), '{0:.2e}'.format(out_eec_dose_mamm_bp_lg), '{0:.2e}'.format(out_eec_dose_mamm_bp_lg_exp),
+                  '{0:.2e}'.format(out_eec_dose_mamm_fp_lg), '{0:.2e}'.format(out_eec_dose_mamm_fp_lg_exp), '{0:.2e}'.format(out_eec_dose_mamm_ar_lg),
+                  '{0:.2e}'.format(out_eec_dose_mamm_ar_lg_exp), '{0:.2e}'.format(out_eec_dose_mamm_se_lg), '{0:.2e}'.format(out_eec_dose_mamm_se_lg_exp)],
     }
     return data
 
@@ -794,42 +794,42 @@ def gett10data_qaqc(out_arq_dose_mamm_sg_sm, out_crq_dose_mamm_sg_sm, out_arq_do
         "Application Target": ['Short Grass', 'Short Grass', 'Tall Grass', 'Tall Grass', 'Broadleaf Plants',
                                'Broadleaf Plants', 'Fruits/Pods', 'Fruits/Pods', 'Arthropods', 'Arthropods', 'Seeds',
                                'Seeds', ],
-        "Acute_sm": ['%.2e' % out_arq_dose_mamm_sg_sm, '%.2e' % out_arq_dose_mamm_sg_sm_exp, '%.2e' % out_arq_dose_mamm_tg_sm,
-                     '%.2e' % out_arq_dose_mamm_tg_sm_exp, '%.2e' % out_arq_dose_mamm_bp_sm,
-                     '%.2e' % out_arq_dose_mamm_bp_sm_exp, '%.2e' % out_arq_dose_mamm_fp_sm,
-                     '%.2e' % out_arq_dose_mamm_fp_sm_exp, '%.2e' % out_arq_dose_mamm_ar_sm,
-                     '%.2e' % out_arq_dose_mamm_ar_sm_exp, '%.2e' % out_arq_dose_mamm_se_sm,
-                     '%.2e' % out_arq_dose_mamm_se_sm_exp],
-        "Chronic_sm": ['%.2e' % out_crq_dose_mamm_sg_sm, '%.2e' % out_crq_dose_mamm_sg_sm_exp,
-                       '%.2e' % out_crq_dose_mamm_tg_sm, '%.2e' % out_crq_dose_mamm_tg_sm_exp,
-                       '%.2e' % out_crq_dose_mamm_bp_sm, '%.2e' % out_crq_dose_mamm_bp_sm_exp,
-                       '%.2e' % out_crq_dose_mamm_fp_sm, '%.2e' % out_crq_dose_mamm_fp_sm_exp,
-                       '%.2e' % out_crq_dose_mamm_ar_sm, '%.2e' % out_crq_dose_mamm_ar_sm_exp,
-                       '%.2e' % out_crq_dose_mamm_se_sm, '%.2e' % out_crq_dose_mamm_se_sm_exp],
-        "Acute_md": ['%.2e' % out_arq_dose_mamm_sg_md, '%.2e' % out_arq_dose_mamm_sg_md_exp, '%.2e' % out_arq_dose_mamm_tg_md,
-                     '%.2e' % out_arq_dose_mamm_tg_md_exp, '%.2e' % out_arq_dose_mamm_bp_md,
-                     '%.2e' % out_arq_dose_mamm_bp_md_exp, '%.2e' % out_arq_dose_mamm_fp_md,
-                     '%.2e' % out_arq_dose_mamm_fp_md_exp, '%.2e' % out_arq_dose_mamm_ar_md,
-                     '%.2e' % out_arq_dose_mamm_ar_md_exp, '%.2e' % out_arq_dose_mamm_se_md,
-                     '%.2e' % out_arq_dose_mamm_se_md_exp],
-        "Chronic_md": ['%.2e' % out_crq_dose_mamm_sg_md, '%.2e' % out_crq_dose_mamm_sg_md_exp,
-                       '%.2e' % out_crq_dose_mamm_tg_md, '%.2e' % out_crq_dose_mamm_tg_md_exp,
-                       '%.2e' % out_crq_dose_mamm_bp_md, '%.2e' % out_crq_dose_mamm_bp_md_exp,
-                       '%.2e' % out_crq_dose_mamm_fp_md, '%.2e' % out_crq_dose_mamm_fp_md_exp,
-                       '%.2e' % out_crq_dose_mamm_ar_md, '%.2e' % out_crq_dose_mamm_ar_md_exp,
-                       '%.2e' % out_crq_dose_mamm_se_md, '%.2e' % out_crq_dose_mamm_se_md_exp],
-        "Acute_lg": ['%.2e' % out_arq_dose_mamm_sg_lg, '%.2e' % out_arq_dose_mamm_sg_lg_exp, '%.2e' % out_arq_dose_mamm_tg_lg,
-                     '%.2e' % out_arq_dose_mamm_tg_lg_exp, '%.2e' % out_arq_dose_mamm_bp_lg,
-                     '%.2e' % out_arq_dose_mamm_bp_lg_exp, '%.2e' % out_arq_dose_mamm_fp_lg,
-                     '%.2e' % out_arq_dose_mamm_fp_lg_exp, '%.2e' % out_arq_dose_mamm_ar_lg,
-                     '%.2e' % out_arq_dose_mamm_ar_lg_exp, '%.2e' % out_arq_dose_mamm_se_lg,
-                     '%.2e' % out_arq_dose_mamm_se_lg_exp],
-        "Chronic_lg": ['%.2e' % out_crq_dose_mamm_sg_lg, '%.2e' % out_crq_dose_mamm_sg_lg_exp,
-                       '%.2e' % out_crq_dose_mamm_tg_lg, '%.2e' % out_crq_dose_mamm_tg_lg_exp,
-                       '%.2e' % out_crq_dose_mamm_bp_lg, '%.2e' % out_crq_dose_mamm_bp_lg_exp,
-                       '%.2e' % out_crq_dose_mamm_fp_lg, '%.2e' % out_crq_dose_mamm_fp_lg_exp,
-                       '%.2e' % out_crq_dose_mamm_ar_lg, '%.2e' % out_crq_dose_mamm_ar_lg_exp,
-                       '%.2e' % out_crq_dose_mamm_se_lg, '%.2e' % out_crq_dose_mamm_se_lg_exp],
+        "Acute_sm": ['{0:.2e}'.format(out_arq_dose_mamm_sg_sm), '{0:.2e}'.format(out_arq_dose_mamm_sg_sm_exp), '{0:.2e}'.format(out_arq_dose_mamm_tg_sm),
+                     '{0:.2e}'.format(out_arq_dose_mamm_tg_sm_exp), '{0:.2e}'.format(out_arq_dose_mamm_bp_sm),
+                     '{0:.2e}'.format(out_arq_dose_mamm_bp_sm_exp), '{0:.2e}'.format(out_arq_dose_mamm_fp_sm),
+                     '{0:.2e}'.format(out_arq_dose_mamm_fp_sm_exp), '{0:.2e}'.format(out_arq_dose_mamm_ar_sm),
+                     '{0:.2e}'.format(out_arq_dose_mamm_ar_sm_exp), '{0:.2e}'.format(out_arq_dose_mamm_se_sm),
+                     '{0:.2e}'.format(out_arq_dose_mamm_se_sm_exp)],
+        "Chronic_sm": ['{0:.2e}'.format(out_crq_dose_mamm_sg_sm), '{0:.2e}'.format(out_crq_dose_mamm_sg_sm_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_tg_sm), '{0:.2e}'.format(out_crq_dose_mamm_tg_sm_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_bp_sm), '{0:.2e}'.format(out_crq_dose_mamm_bp_sm_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_fp_sm), '{0:.2e}'.format(out_crq_dose_mamm_fp_sm_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_ar_sm), '{0:.2e}'.format(out_crq_dose_mamm_ar_sm_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_se_sm), '{0:.2e}'.format(out_crq_dose_mamm_se_sm_exp)],
+        "Acute_md": ['{0:.2e}'.format(out_arq_dose_mamm_sg_md), '{0:.2e}'.format(out_arq_dose_mamm_sg_md_exp), '{0:.2e}'.format(out_arq_dose_mamm_tg_md),
+                     '{0:.2e}'.format(out_arq_dose_mamm_tg_md_exp), '{0:.2e}'.format(out_arq_dose_mamm_bp_md),
+                     '{0:.2e}'.format(out_arq_dose_mamm_bp_md_exp), '{0:.2e}'.format(out_arq_dose_mamm_fp_md),
+                     '{0:.2e}'.format(out_arq_dose_mamm_fp_md_exp), '{0:.2e}'.format(out_arq_dose_mamm_ar_md),
+                     '{0:.2e}'.format(out_arq_dose_mamm_ar_md_exp), '{0:.2e}'.format(out_arq_dose_mamm_se_md),
+                     '{0:.2e}'.format(out_arq_dose_mamm_se_md_exp)],
+        "Chronic_md": ['{0:.2e}'.format(out_crq_dose_mamm_sg_md), '{0:.2e}'.format(out_crq_dose_mamm_sg_md_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_tg_md), '{0:.2e}'.format(out_crq_dose_mamm_tg_md_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_bp_md), '{0:.2e}'.format(out_crq_dose_mamm_bp_md_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_fp_md), '{0:.2e}'.format(out_crq_dose_mamm_fp_md_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_ar_md), '{0:.2e}'.format(out_crq_dose_mamm_ar_md_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_se_md), '{0:.2e}'.format(out_crq_dose_mamm_se_md_exp)],
+        "Acute_lg": ['{0:.2e}'.format(out_arq_dose_mamm_sg_lg), '{0:.2e}'.format(out_arq_dose_mamm_sg_lg_exp), '{0:.2e}'.format(out_arq_dose_mamm_tg_lg),
+                     '{0:.2e}'.format(out_arq_dose_mamm_tg_lg_exp), '{0:.2e}'.format(out_arq_dose_mamm_bp_lg),
+                     '{0:.2e}'.format(out_arq_dose_mamm_bp_lg_exp), '{0:.2e}'.format(out_arq_dose_mamm_fp_lg),
+                     '{0:.2e}'.format(out_arq_dose_mamm_fp_lg_exp), '{0:.2e}'.format(out_arq_dose_mamm_ar_lg),
+                     '{0:.2e}'.format(out_arq_dose_mamm_ar_lg_exp), '{0:.2e}'.format(out_arq_dose_mamm_se_lg),
+                     '{0:.2e}'.format(out_arq_dose_mamm_se_lg_exp)],
+        "Chronic_lg": ['{0:.2e}'.format(out_crq_dose_mamm_sg_lg), '{0:.2e}'.format(out_crq_dose_mamm_sg_lg_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_tg_lg), '{0:.2e}'.format(out_crq_dose_mamm_tg_lg_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_bp_lg), '{0:.2e}'.format(out_crq_dose_mamm_bp_lg_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_fp_lg), '{0:.2e}'.format(out_crq_dose_mamm_fp_lg_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_ar_lg), '{0:.2e}'.format(out_crq_dose_mamm_ar_lg_exp),
+                       '{0:.2e}'.format(out_crq_dose_mamm_se_lg), '{0:.2e}'.format(out_crq_dose_mamm_se_lg_exp)],
     }
     return data
 
@@ -845,14 +845,14 @@ def gett11data_na_qaqc(out_arq_diet_mamm_sg, out_crq_diet_bird_sg, out_arq_diet_
         "Application Target": ['Short Grass', 'Short Grass', 'Tall Grass', 'Tall Grass', 'Broadleaf Plants',
                                'Broadleaf Plants', 'Fruits/Pods/Seeds', 'Fruits/Pods/Seeds', 'Arthropods',
                                'Arthropods'],
-        "Acute": ['%s' % out_arq_diet_mamm_sg, '%s' % out_arq_diet_mamm_sg_exp, '%s' % out_arq_diet_mamm_tg,
-                  '%s' % out_arq_diet_mamm_tg_exp, '%s' % out_arq_diet_mamm_bp, '%s' % out_arq_diet_mamm_bp_exp,
-                  '%s' % out_arq_diet_mamm_fp, '%s' % out_arq_diet_mamm_fp_exp, '%s' % out_arq_diet_mamm_ar,
-                  '%s' % out_arq_diet_mamm_ar_exp],
-        "Chronic": ['%.2e' % out_crq_diet_bird_sg, '%.2e' % out_crq_diet_bird_sg_exp, '%.2e' % out_crq_diet_bird_tg,
-                    '%.2e' % out_crq_diet_bird_tg_exp, '%.2e' % out_crq_diet_bird_bp, '%.2e' % out_crq_diet_bird_bp_exp,
-                    '%.2e' % out_crq_diet_bird_fp, '%.2e' % out_crq_diet_bird_fp_exp, '%.2e' % out_crq_diet_bird_ar,
-                    '%.2e' % out_crq_diet_bird_ar_exp],
+        "Acute": ['{0!s}'.format(out_arq_diet_mamm_sg), '{0!s}'.format(out_arq_diet_mamm_sg_exp), '{0!s}'.format(out_arq_diet_mamm_tg),
+                  '{0!s}'.format(out_arq_diet_mamm_tg_exp), '{0!s}'.format(out_arq_diet_mamm_bp), '{0!s}'.format(out_arq_diet_mamm_bp_exp),
+                  '{0!s}'.format(out_arq_diet_mamm_fp), '{0!s}'.format(out_arq_diet_mamm_fp_exp), '{0!s}'.format(out_arq_diet_mamm_ar),
+                  '{0!s}'.format(out_arq_diet_mamm_ar_exp)],
+        "Chronic": ['{0:.2e}'.format(out_crq_diet_bird_sg), '{0:.2e}'.format(out_crq_diet_bird_sg_exp), '{0:.2e}'.format(out_crq_diet_bird_tg),
+                    '{0:.2e}'.format(out_crq_diet_bird_tg_exp), '{0:.2e}'.format(out_crq_diet_bird_bp), '{0:.2e}'.format(out_crq_diet_bird_bp_exp),
+                    '{0:.2e}'.format(out_crq_diet_bird_fp), '{0:.2e}'.format(out_crq_diet_bird_fp_exp), '{0:.2e}'.format(out_crq_diet_bird_ar),
+                    '{0:.2e}'.format(out_crq_diet_bird_ar_exp)],
     }
     return data
 
@@ -864,10 +864,10 @@ def gett12data_qaqc(out_ld50_rg_bird_sm, out_ld50_rg_mamm_sm, out_ld50_rg_bird_m
     data = {
         "Type": ['Calculated Value', 'Expected Value', 'Calculated Value', 'Expected Value', 'Calculated Value',
                  'Expected Value', ], "Animal Size": ['Small', 'Small', 'Medium', 'Medium', 'Large', 'Large', ],
-        "Avian": ['%.2e' % out_ld50_rg_bird_sm, '%.2e' % out_ld50_rg_bird_sm_exp, '%.2e' % out_ld50_rg_bird_md,
-                  '%.2e' % out_ld50_rg_bird_md_exp, '%.2e' % out_ld50_rg_bird_lg, '%.2e' % out_ld50_rg_bird_lg_exp, ],
-        "Mammal": ['%.2e' % out_ld50_rg_mamm_sm, '%.2e' % out_ld50_rg_mamm_sm_exp, '%.2e' % out_ld50_rg_mamm_md,
-                   '%.2e' % out_ld50_rg_mamm_md_exp, '%.2e' % out_ld50_rg_mamm_lg, '%.2e' % out_ld50_rg_mamm_lg_exp, ],
+        "Avian": ['{0:.2e}'.format(out_ld50_rg_bird_sm), '{0:.2e}'.format(out_ld50_rg_bird_sm_exp), '{0:.2e}'.format(out_ld50_rg_bird_md),
+                  '{0:.2e}'.format(out_ld50_rg_bird_md_exp), '{0:.2e}'.format(out_ld50_rg_bird_lg), '{0:.2e}'.format(out_ld50_rg_bird_lg_exp), ],
+        "Mammal": ['{0:.2e}'.format(out_ld50_rg_mamm_sm), '{0:.2e}'.format(out_ld50_rg_mamm_sm_exp), '{0:.2e}'.format(out_ld50_rg_mamm_md),
+                   '{0:.2e}'.format(out_ld50_rg_mamm_md_exp), '{0:.2e}'.format(out_ld50_rg_mamm_lg), '{0:.2e}'.format(out_ld50_rg_mamm_lg_exp), ],
     }
     return data
 
@@ -879,22 +879,22 @@ def gettsumdata_1(a_i, max_seed_rate, b_w, percent_incorp, den, Foliar_dissipati
         percent_incorp_min = 'N/A'
         percent_incorp_max = 'N/A'
     else:
-        percent_incorp_mean = '%.2e' % np.mean(percent_incorp)
-        percent_incorp_std = '%.2e' % np.std(percent_incorp)
-        percent_incorp_min = '%.2e' % np.min(percent_incorp)
-        percent_incorp_max = '%.2e' % np.max(percent_incorp)
+        percent_incorp_mean = '{0:.2e}'.format(np.mean(percent_incorp))
+        percent_incorp_std = '{0:.2e}'.format(np.std(percent_incorp))
+        percent_incorp_min = '{0:.2e}'.format(np.min(percent_incorp))
+        percent_incorp_max = '{0:.2e}'.format(np.max(percent_incorp))
     data = {
         "Parameter": ['Percentage active ingredient', 'Row spacing', 'Bandwidth', 'Percentage incorporated',
                       'Density of product', 'Foliar dissipation half-life', 'Number of application',
                       'Application rate', ],
-        "Mean": ['%.2e' % np.mean(a_i), '%.2e' % np.mean(max_seed_rate), '%.2e' % np.mean(b_w), percent_incorp_mean, '%.2e' % np.mean(den),
-                 '%.2e' % np.mean(Foliar_dissipation_half_life), '%.2e' % np.mean(num_apps), '%.2e' % np.mean(rate_out_t), ],
-        "Std": ['%.2e' % np.std(a_i), '%.2e' % np.mean(max_seed_rate), '%.2e' % np.mean(b_w), percent_incorp_std, '%.2e' % np.mean(den),
-                '%.2e' % np.std(Foliar_dissipation_half_life), '%.2e' % np.std(num_apps), '%.2e' % np.std(rate_out_t), ],
-        "Min": ['%.2e' % np.min(a_i), '%.2e' % np.mean(max_seed_rate), '%.2e' % np.mean(b_w), percent_incorp_min, '%.2e' % np.mean(den),
-                '%.2e' % np.min(Foliar_dissipation_half_life), '%.2e' % np.min(num_apps), '%.2e' % np.min(rate_out_t), ],
-        "Max": ['%.2e' % np.max(a_i), '%.2e' % np.mean(max_seed_rate), '%.2e' % np.mean(b_w), percent_incorp_max, '%.2e' % np.mean(den),
-                '%.2e' % np.max(Foliar_dissipation_half_life), '%.2e' % np.max(num_apps), '%.2e' % np.max(rate_out_t), ],
+        "Mean": ['{0:.2e}'.format(np.mean(a_i)), '{0:.2e}'.format(np.mean(max_seed_rate)), '{0:.2e}'.format(np.mean(b_w)), percent_incorp_mean, '{0:.2e}'.format(np.mean(den)),
+                 '{0:.2e}'.format(np.mean(Foliar_dissipation_half_life)), '{0:.2e}'.format(np.mean(num_apps)), '{0:.2e}'.format(np.mean(rate_out_t)), ],
+        "Std": ['{0:.2e}'.format(np.std(a_i)), '{0:.2e}'.format(np.mean(max_seed_rate)), '{0:.2e}'.format(np.mean(b_w)), percent_incorp_std, '{0:.2e}'.format(np.mean(den)),
+                '{0:.2e}'.format(np.std(Foliar_dissipation_half_life)), '{0:.2e}'.format(np.std(num_apps)), '{0:.2e}'.format(np.std(rate_out_t)), ],
+        "Min": ['{0:.2e}'.format(np.min(a_i)), '{0:.2e}'.format(np.mean(max_seed_rate)), '{0:.2e}'.format(np.mean(b_w)), percent_incorp_min, '{0:.2e}'.format(np.mean(den)),
+                '{0:.2e}'.format(np.min(Foliar_dissipation_half_life)), '{0:.2e}'.format(np.min(num_apps)), '{0:.2e}'.format(np.min(rate_out_t)), ],
+        "Max": ['{0:.2e}'.format(np.max(a_i)), '{0:.2e}'.format(np.mean(max_seed_rate)), '{0:.2e}'.format(np.mean(b_w)), percent_incorp_max, '{0:.2e}'.format(np.mean(den)),
+                '{0:.2e}'.format(np.max(Foliar_dissipation_half_life)), '{0:.2e}'.format(np.max(num_apps)), '{0:.2e}'.format(np.max(rate_out_t)), ],
         "Unit": ['%', 'inch', 'inch', '%', 'lbs/gal', 'days', '', ],
     }
     return data
@@ -908,10 +908,10 @@ def gettsumdata_2(avian_ld50, avian_lc50, avian_NOAEC, avian_NOAEL, bw_assessed_
         avian_lc50_min = 'N/A'
         avian_lc50_max = 'N/A'
     else:
-        avian_lc50_mean = '%.2e' % np.mean(avian_lc50)
-        avian_lc50_std = '%.2e' % np.std(avian_lc50)
-        avian_lc50_min = '%.2e' % np.min(avian_lc50)
-        avian_lc50_max = '%.2e' % np.max(avian_lc50)
+        avian_lc50_mean = '{0:.2e}'.format(np.mean(avian_lc50))
+        avian_lc50_std = '{0:.2e}'.format(np.std(avian_lc50))
+        avian_lc50_min = '{0:.2e}'.format(np.min(avian_lc50))
+        avian_lc50_max = '{0:.2e}'.format(np.max(avian_lc50))
 
     data = {
         "Parameter": ['Avian LD50', 'Weight (LD50)', 'Avian LC50', 'Weight (LC50)',
@@ -919,26 +919,26 @@ def gettsumdata_2(avian_ld50, avian_lc50, avian_NOAEC, avian_NOAEL, bw_assessed_
                       'Body weight of assessed bird small', 'Body weight of assessed bird medium',
                       'Body weight of assessed bird large',
                       'Mineau scaling factor', ],
-        "Mean": ['%.2e' % np.mean(avian_ld50), '%.2e' % np.mean(tw_bird_ld50), avian_lc50_mean,
-                 '%.2e' % np.mean(tw_bird_lc50), '%.2e' % np.mean(avian_NOAEC), '%.2e' % np.mean(tw_bird_noaec),
-                 '%.2e' % np.mean(avian_NOAEL), '%.2e' % np.mean(tw_bird_noael), '%.2e' % np.mean(bw_assessed_bird_s),
-                 '%.2e' % np.mean(bw_assessed_bird_m), '%.2e' % np.mean(bw_assessed_bird_l),
-                 '%.2e' % np.mean(mineau_scaling_factor), ],
-        "Std": ['%.2e' % np.std(avian_ld50), '%.2e' % np.std(tw_bird_ld50), avian_lc50_std,
-                '%.2e' % np.std(tw_bird_lc50), '%.2e' % np.std(avian_NOAEC), '%.2e' % np.std(tw_bird_noaec),
-                '%.2e' % np.std(avian_NOAEL), '%.2e' % np.std(tw_bird_noael), '%.2e' % np.std(bw_assessed_bird_s),
-                '%.2e' % np.std(bw_assessed_bird_m), '%.2e' % np.std(bw_assessed_bird_l),
-                '%.2e' % np.std(mineau_scaling_factor), ],
-        "Min": ['%.2e' % np.min(avian_ld50), '%.2e' % np.min(tw_bird_ld50), avian_lc50_min,
-                '%.2e' % np.min(tw_bird_lc50), '%.2e' % np.min(avian_NOAEC), '%.2e' % np.min(tw_bird_noaec),
-                '%.2e' % np.min(avian_NOAEL), '%.2e' % np.min(tw_bird_noael), '%.2e' % np.min(bw_assessed_bird_s),
-                '%.2e' % np.min(bw_assessed_bird_m), '%.2e' % np.min(bw_assessed_bird_l),
-                '%.2e' % np.min(mineau_scaling_factor), ],
-        "Max": ['%.2e' % np.max(avian_ld50), '%.2e' % np.max(tw_bird_ld50), avian_lc50_max,
-                '%.2e' % np.max(tw_bird_lc50), '%.2e' % np.max(avian_NOAEC), '%.2e' % np.max(tw_bird_noaec),
-                '%.2e' % np.max(avian_NOAEL), '%.2e' % np.max(tw_bird_noael), '%.2e' % np.max(bw_assessed_bird_s),
-                '%.2e' % np.max(bw_assessed_bird_m), '%.2e' % np.max(bw_assessed_bird_l),
-                '%.2e' % np.max(mineau_scaling_factor), ],
+        "Mean": ['{0:.2e}'.format(np.mean(avian_ld50)), '{0:.2e}'.format(np.mean(tw_bird_ld50)), avian_lc50_mean,
+                 '{0:.2e}'.format(np.mean(tw_bird_lc50)), '{0:.2e}'.format(np.mean(avian_NOAEC)), '{0:.2e}'.format(np.mean(tw_bird_noaec)),
+                 '{0:.2e}'.format(np.mean(avian_NOAEL)), '{0:.2e}'.format(np.mean(tw_bird_noael)), '{0:.2e}'.format(np.mean(bw_assessed_bird_s)),
+                 '{0:.2e}'.format(np.mean(bw_assessed_bird_m)), '{0:.2e}'.format(np.mean(bw_assessed_bird_l)),
+                 '{0:.2e}'.format(np.mean(mineau_scaling_factor)), ],
+        "Std": ['{0:.2e}'.format(np.std(avian_ld50)), '{0:.2e}'.format(np.std(tw_bird_ld50)), avian_lc50_std,
+                '{0:.2e}'.format(np.std(tw_bird_lc50)), '{0:.2e}'.format(np.std(avian_NOAEC)), '{0:.2e}'.format(np.std(tw_bird_noaec)),
+                '{0:.2e}'.format(np.std(avian_NOAEL)), '{0:.2e}'.format(np.std(tw_bird_noael)), '{0:.2e}'.format(np.std(bw_assessed_bird_s)),
+                '{0:.2e}'.format(np.std(bw_assessed_bird_m)), '{0:.2e}'.format(np.std(bw_assessed_bird_l)),
+                '{0:.2e}'.format(np.std(mineau_scaling_factor)), ],
+        "Min": ['{0:.2e}'.format(np.min(avian_ld50)), '{0:.2e}'.format(np.min(tw_bird_ld50)), avian_lc50_min,
+                '{0:.2e}'.format(np.min(tw_bird_lc50)), '{0:.2e}'.format(np.min(avian_NOAEC)), '{0:.2e}'.format(np.min(tw_bird_noaec)),
+                '{0:.2e}'.format(np.min(avian_NOAEL)), '{0:.2e}'.format(np.min(tw_bird_noael)), '{0:.2e}'.format(np.min(bw_assessed_bird_s)),
+                '{0:.2e}'.format(np.min(bw_assessed_bird_m)), '{0:.2e}'.format(np.min(bw_assessed_bird_l)),
+                '{0:.2e}'.format(np.min(mineau_scaling_factor)), ],
+        "Max": ['{0:.2e}'.format(np.max(avian_ld50)), '{0:.2e}'.format(np.max(tw_bird_ld50)), avian_lc50_max,
+                '{0:.2e}'.format(np.max(tw_bird_lc50)), '{0:.2e}'.format(np.max(avian_NOAEC)), '{0:.2e}'.format(np.max(tw_bird_noaec)),
+                '{0:.2e}'.format(np.max(avian_NOAEL)), '{0:.2e}'.format(np.max(tw_bird_noael)), '{0:.2e}'.format(np.max(bw_assessed_bird_s)),
+                '{0:.2e}'.format(np.max(bw_assessed_bird_m)), '{0:.2e}'.format(np.max(bw_assessed_bird_l)),
+                '{0:.2e}'.format(np.max(mineau_scaling_factor)), ],
         "Unit": ['mg/kg-bw', 'g', 'mg/kg-diet', 'g', 'mg/kg-diet', 'g', 'mg/kg-bw', 'g', 'g', 'g', 'g', '', ],
     }
     return data
@@ -953,32 +953,32 @@ def gettsumdata_3(mammalian_ld50, mammalian_lc50, mammalian_NOAEC, mammalian_NOA
         mammalian_lc50_min = 'N/A'
         mammalian_lc50_max = 'N/A'
     else:
-        mammalian_lc50_mean = '%.2e' % np.mean(mammalian_lc50)
-        mammalian_lc50_std = '%.2e' % np.std(mammalian_lc50)
-        mammalian_lc50_min = '%.2e' % np.min(mammalian_lc50)
-        mammalian_lc50_max = '%.2e' % np.max(mammalian_lc50)
+        mammalian_lc50_mean = '{0:.2e}'.format(np.mean(mammalian_lc50))
+        mammalian_lc50_std = '{0:.2e}'.format(np.std(mammalian_lc50))
+        mammalian_lc50_min = '{0:.2e}'.format(np.min(mammalian_lc50))
+        mammalian_lc50_max = '{0:.2e}'.format(np.max(mammalian_lc50))
 
     data = {
         "Parameter": ['Mammalian LD50', 'Mammalian LC50', 'Mammalian NOAEC', 'Mammalian NOAEL',
                       'Body weight of assessed mammal small',
                       'Body weight of assessed mammal medium', 'Body weight of assessed mammal large',
                       'Body weight of tested mammal', ],
-        "Mean": ['%.2e' % np.mean(mammalian_ld50), mammalian_lc50_mean, '%.2e' % np.mean(mammalian_NOAEC),
-                 '%.2e' % np.mean(mammalian_NOAEL), '%.2e' % np.mean(bw_assessed_mamm_s),
-                 '%.2e' % np.mean(bw_assessed_mamm_m), '%.2e' % np.mean(bw_assessed_mamm_l),
-                 '%.2e' % np.mean(bw_tested_mamm), ],
-        "Std": ['%.2e' % np.std(mammalian_ld50), mammalian_lc50_std, '%.2e' % np.std(mammalian_NOAEC),
-                '%.2e' % np.std(mammalian_NOAEL), '%.2e' % np.std(bw_assessed_mamm_s),
-                '%.2e' % np.std(bw_assessed_mamm_m), '%.2e' % np.std(bw_assessed_mamm_l),
-                '%.2e' % np.std(bw_tested_mamm), ],
-        "Min": ['%.2e' % np.min(mammalian_ld50), mammalian_lc50_min, '%.2e' % np.min(mammalian_NOAEC),
-                '%.2e' % np.min(mammalian_NOAEL), '%.2e' % np.min(bw_assessed_mamm_s),
-                '%.2e' % np.min(bw_assessed_mamm_m), '%.2e' % np.min(bw_assessed_mamm_l),
-                '%.2e' % np.min(bw_tested_mamm), ],
-        "Max": ['%.2e' % np.max(mammalian_ld50), mammalian_lc50_max, '%.2e' % np.max(mammalian_NOAEC),
-                '%.2e' % np.max(mammalian_NOAEL), '%.2e' % np.max(bw_assessed_mamm_s),
-                '%.2e' % np.max(bw_assessed_mamm_m), '%.2e' % np.max(bw_assessed_mamm_l),
-                '%.2e' % np.max(bw_tested_mamm), ],
+        "Mean": ['{0:.2e}'.format(np.mean(mammalian_ld50)), mammalian_lc50_mean, '{0:.2e}'.format(np.mean(mammalian_NOAEC)),
+                 '{0:.2e}'.format(np.mean(mammalian_NOAEL)), '{0:.2e}'.format(np.mean(bw_assessed_mamm_s)),
+                 '{0:.2e}'.format(np.mean(bw_assessed_mamm_m)), '{0:.2e}'.format(np.mean(bw_assessed_mamm_l)),
+                 '{0:.2e}'.format(np.mean(bw_tested_mamm)), ],
+        "Std": ['{0:.2e}'.format(np.std(mammalian_ld50)), mammalian_lc50_std, '{0:.2e}'.format(np.std(mammalian_NOAEC)),
+                '{0:.2e}'.format(np.std(mammalian_NOAEL)), '{0:.2e}'.format(np.std(bw_assessed_mamm_s)),
+                '{0:.2e}'.format(np.std(bw_assessed_mamm_m)), '{0:.2e}'.format(np.std(bw_assessed_mamm_l)),
+                '{0:.2e}'.format(np.std(bw_tested_mamm)), ],
+        "Min": ['{0:.2e}'.format(np.min(mammalian_ld50)), mammalian_lc50_min, '{0:.2e}'.format(np.min(mammalian_NOAEC)),
+                '{0:.2e}'.format(np.min(mammalian_NOAEL)), '{0:.2e}'.format(np.min(bw_assessed_mamm_s)),
+                '{0:.2e}'.format(np.min(bw_assessed_mamm_m)), '{0:.2e}'.format(np.min(bw_assessed_mamm_l)),
+                '{0:.2e}'.format(np.min(bw_tested_mamm)), ],
+        "Max": ['{0:.2e}'.format(np.max(mammalian_ld50)), mammalian_lc50_max, '{0:.2e}'.format(np.max(mammalian_NOAEC)),
+                '{0:.2e}'.format(np.max(mammalian_NOAEL)), '{0:.2e}'.format(np.max(bw_assessed_mamm_s)),
+                '{0:.2e}'.format(np.max(bw_assessed_mamm_m)), '{0:.2e}'.format(np.max(bw_assessed_mamm_l)),
+                '{0:.2e}'.format(np.max(bw_tested_mamm)), ],
         "Unit": ['mg/kg-bw', 'mg/kg-diet', 'mg/kg-diet', 'mg/kg-bw', 'g', 'g', 'g', 'g', ],
     }
     return data
@@ -991,47 +991,47 @@ def gettsumdata_5(out_sa_bird_1_s_out, out_sa_bird_2_s_out, out_sc_bird_s_out, o
         "Size": ['Small', 'Small', 'Small', 'Small', 'Medium', 'Medium', 'Medium', 'Medium', 'Large', 'Large', 'Large',
                  'Large', ],
         "Metric": ['Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', ],
-        "AAcute #1": ['%.2e' % np.mean(out_sa_bird_1_s_out), '%.2e' % np.std(out_sa_bird_1_s_out),
-                      '%.2e' % np.min(out_sa_bird_1_s_out), '%.2e' % np.max(out_sa_bird_1_s_out),
-                      '%.2e' % np.mean(out_sa_bird_1_m_out), '%.2e' % np.std(out_sa_bird_1_m_out),
-                      '%.2e' % np.min(out_sa_bird_1_m_out), '%.2e' % np.max(out_sa_bird_1_m_out),
-                      '%.2e' % np.mean(out_sa_bird_1_l_out), '%.2e' % np.std(out_sa_bird_1_l_out),
-                      '%.2e' % np.min(out_sa_bird_1_l_out), '%.2e' % np.max(out_sa_bird_1_l_out), ],
+        "AAcute #1": ['{0:.2e}'.format(np.mean(out_sa_bird_1_s_out)), '{0:.2e}'.format(np.std(out_sa_bird_1_s_out)),
+                      '{0:.2e}'.format(np.min(out_sa_bird_1_s_out)), '{0:.2e}'.format(np.max(out_sa_bird_1_s_out)),
+                      '{0:.2e}'.format(np.mean(out_sa_bird_1_m_out)), '{0:.2e}'.format(np.std(out_sa_bird_1_m_out)),
+                      '{0:.2e}'.format(np.min(out_sa_bird_1_m_out)), '{0:.2e}'.format(np.max(out_sa_bird_1_m_out)),
+                      '{0:.2e}'.format(np.mean(out_sa_bird_1_l_out)), '{0:.2e}'.format(np.std(out_sa_bird_1_l_out)),
+                      '{0:.2e}'.format(np.min(out_sa_bird_1_l_out)), '{0:.2e}'.format(np.max(out_sa_bird_1_l_out)), ],
 
-        "AAcute #2": ['%.2e' % np.mean(out_sa_bird_2_s_out), '%.2e' % np.std(out_sa_bird_2_s_out),
-                      '%.2e' % np.min(out_sa_bird_2_s_out), '%.2e' % np.max(out_sa_bird_2_s_out),
-                      '%.2e' % np.mean(out_sa_bird_2_m_out), '%.2e' % np.std(out_sa_bird_2_m_out),
-                      '%.2e' % np.min(out_sa_bird_2_m_out), '%.2e' % np.max(out_sa_bird_2_m_out),
-                      '%.2e' % np.mean(out_sa_bird_2_l_out), '%.2e' % np.std(out_sa_bird_2_l_out),
-                      '%.2e' % np.min(out_sa_bird_2_l_out), '%.2e' % np.max(out_sa_bird_2_l_out), ],
+        "AAcute #2": ['{0:.2e}'.format(np.mean(out_sa_bird_2_s_out)), '{0:.2e}'.format(np.std(out_sa_bird_2_s_out)),
+                      '{0:.2e}'.format(np.min(out_sa_bird_2_s_out)), '{0:.2e}'.format(np.max(out_sa_bird_2_s_out)),
+                      '{0:.2e}'.format(np.mean(out_sa_bird_2_m_out)), '{0:.2e}'.format(np.std(out_sa_bird_2_m_out)),
+                      '{0:.2e}'.format(np.min(out_sa_bird_2_m_out)), '{0:.2e}'.format(np.max(out_sa_bird_2_m_out)),
+                      '{0:.2e}'.format(np.mean(out_sa_bird_2_l_out)), '{0:.2e}'.format(np.std(out_sa_bird_2_l_out)),
+                      '{0:.2e}'.format(np.min(out_sa_bird_2_l_out)), '{0:.2e}'.format(np.max(out_sa_bird_2_l_out)), ],
 
-        "AChronic": ['%.2e' % np.mean(out_sc_bird_s_out), '%.2e' % np.std(out_sc_bird_s_out), '%.2e' % np.min(out_sc_bird_s_out),
-                     '%.2e' % np.max(out_sc_bird_s_out),
-                     '%.2e' % np.mean(out_sc_bird_m_out), '%.2e' % np.std(out_sc_bird_m_out), '%.2e' % np.min(out_sc_bird_m_out),
-                     '%.2e' % np.max(out_sc_bird_m_out),
-                     '%.2e' % np.mean(out_sc_bird_l_out), '%.2e' % np.std(out_sc_bird_l_out), '%.2e' % np.min(out_sc_bird_l_out),
-                     '%.2e' % np.max(out_sc_bird_l_out), ],
+        "AChronic": ['{0:.2e}'.format(np.mean(out_sc_bird_s_out)), '{0:.2e}'.format(np.std(out_sc_bird_s_out)), '{0:.2e}'.format(np.min(out_sc_bird_s_out)),
+                     '{0:.2e}'.format(np.max(out_sc_bird_s_out)),
+                     '{0:.2e}'.format(np.mean(out_sc_bird_m_out)), '{0:.2e}'.format(np.std(out_sc_bird_m_out)), '{0:.2e}'.format(np.min(out_sc_bird_m_out)),
+                     '{0:.2e}'.format(np.max(out_sc_bird_m_out)),
+                     '{0:.2e}'.format(np.mean(out_sc_bird_l_out)), '{0:.2e}'.format(np.std(out_sc_bird_l_out)), '{0:.2e}'.format(np.min(out_sc_bird_l_out)),
+                     '{0:.2e}'.format(np.max(out_sc_bird_l_out)), ],
 
-        "MAcute #1": ['%.2e' % np.mean(out_sa_mamm_1_s_out), '%.2e' % np.std(out_sa_mamm_1_s_out),
-                      '%.2e' % np.min(out_sa_mamm_1_s_out), '%.2e' % np.max(out_sa_mamm_1_s_out),
-                      '%.2e' % np.mean(out_sa_mamm_1_m_out), '%.2e' % np.std(out_sa_mamm_1_m_out),
-                      '%.2e' % np.min(out_sa_mamm_1_m_out), '%.2e' % np.max(out_sa_mamm_1_m_out),
-                      '%.2e' % np.mean(out_sa_mamm_1_l_out), '%.2e' % np.std(out_sa_mamm_1_l_out),
-                      '%.2e' % np.min(out_sa_mamm_1_l_out), '%.2e' % np.max(out_sa_mamm_1_l_out), ],
+        "MAcute #1": ['{0:.2e}'.format(np.mean(out_sa_mamm_1_s_out)), '{0:.2e}'.format(np.std(out_sa_mamm_1_s_out)),
+                      '{0:.2e}'.format(np.min(out_sa_mamm_1_s_out)), '{0:.2e}'.format(np.max(out_sa_mamm_1_s_out)),
+                      '{0:.2e}'.format(np.mean(out_sa_mamm_1_m_out)), '{0:.2e}'.format(np.std(out_sa_mamm_1_m_out)),
+                      '{0:.2e}'.format(np.min(out_sa_mamm_1_m_out)), '{0:.2e}'.format(np.max(out_sa_mamm_1_m_out)),
+                      '{0:.2e}'.format(np.mean(out_sa_mamm_1_l_out)), '{0:.2e}'.format(np.std(out_sa_mamm_1_l_out)),
+                      '{0:.2e}'.format(np.min(out_sa_mamm_1_l_out)), '{0:.2e}'.format(np.max(out_sa_mamm_1_l_out)), ],
 
-        "MAcute #2": ['%.2e' % np.mean(out_sa_mamm_2_s_out), '%.2e' % np.std(out_sa_mamm_2_s_out),
-                      '%.2e' % np.min(out_sa_mamm_2_s_out), '%.2e' % np.max(out_sa_mamm_2_s_out),
-                      '%.2e' % np.mean(out_sa_mamm_2_m_out), '%.2e' % np.std(out_sa_mamm_2_m_out),
-                      '%.2e' % np.min(out_sa_mamm_2_m_out), '%.2e' % np.max(out_sa_mamm_2_m_out),
-                      '%.2e' % np.mean(out_sa_mamm_2_l_out), '%.2e' % np.std(out_sa_mamm_2_l_out),
-                      '%.2e' % np.min(out_sa_mamm_2_l_out), '%.2e' % np.max(out_sa_mamm_2_l_out), ],
+        "MAcute #2": ['{0:.2e}'.format(np.mean(out_sa_mamm_2_s_out)), '{0:.2e}'.format(np.std(out_sa_mamm_2_s_out)),
+                      '{0:.2e}'.format(np.min(out_sa_mamm_2_s_out)), '{0:.2e}'.format(np.max(out_sa_mamm_2_s_out)),
+                      '{0:.2e}'.format(np.mean(out_sa_mamm_2_m_out)), '{0:.2e}'.format(np.std(out_sa_mamm_2_m_out)),
+                      '{0:.2e}'.format(np.min(out_sa_mamm_2_m_out)), '{0:.2e}'.format(np.max(out_sa_mamm_2_m_out)),
+                      '{0:.2e}'.format(np.mean(out_sa_mamm_2_l_out)), '{0:.2e}'.format(np.std(out_sa_mamm_2_l_out)),
+                      '{0:.2e}'.format(np.min(out_sa_mamm_2_l_out)), '{0:.2e}'.format(np.max(out_sa_mamm_2_l_out)), ],
 
-        "MChronic": ['%.2e' % np.mean(out_sc_mamm_s_out), '%.2e' % np.std(out_sc_mamm_s_out), '%.2e' % np.min(out_sc_mamm_s_out),
-                     '%.2e' % np.max(out_sc_mamm_s_out),
-                     '%.2e' % np.mean(out_sc_mamm_m_out), '%.2e' % np.std(out_sc_mamm_m_out), '%.2e' % np.min(out_sc_mamm_m_out),
-                     '%.2e' % np.max(out_sc_mamm_m_out),
-                     '%.2e' % np.mean(out_sc_mamm_l_out), '%.2e' % np.std(out_sc_mamm_l_out), '%.2e' % np.min(out_sc_mamm_l_out),
-                     '%.2e' % np.max(out_sc_mamm_l_out), ],
+        "MChronic": ['{0:.2e}'.format(np.mean(out_sc_mamm_s_out)), '{0:.2e}'.format(np.std(out_sc_mamm_s_out)), '{0:.2e}'.format(np.min(out_sc_mamm_s_out)),
+                     '{0:.2e}'.format(np.max(out_sc_mamm_s_out)),
+                     '{0:.2e}'.format(np.mean(out_sc_mamm_m_out)), '{0:.2e}'.format(np.std(out_sc_mamm_m_out)), '{0:.2e}'.format(np.min(out_sc_mamm_m_out)),
+                     '{0:.2e}'.format(np.max(out_sc_mamm_m_out)),
+                     '{0:.2e}'.format(np.mean(out_sc_mamm_l_out)), '{0:.2e}'.format(np.std(out_sc_mamm_l_out)), '{0:.2e}'.format(np.min(out_sc_mamm_l_out)),
+                     '{0:.2e}'.format(np.max(out_sc_mamm_l_out)), ],
     }
     return data
 
@@ -1040,16 +1040,16 @@ def gettsumdata_6(out_eec_diet_sg_RBG_out, out_eec_diet_tg_RBG_out, out_eec_diet
                   out_eec_diet_ar_RBG_out):
     data = {
         "Metric": ['Mean', 'Std', 'Min', 'Max', ],
-        "Short Grass": ['%.2e' % np.mean(out_eec_diet_sg_RBG_out), '%.2e' % np.std(out_eec_diet_sg_RBG_out),
-                        '%.2e' % np.min(out_eec_diet_sg_RBG_out), '%.2e' % np.max(out_eec_diet_sg_RBG_out), ],
-        "Tall Grass": ['%.2e' % np.mean(out_eec_diet_tg_RBG_out), '%.2e' % np.std(out_eec_diet_tg_RBG_out),
-                       '%.2e' % np.min(out_eec_diet_tg_RBG_out), '%.2e' % np.max(out_eec_diet_tg_RBG_out), ],
-        "Broadleaf Plants": ['%.2e' % np.mean(out_eec_diet_bp_RBG_out), '%.2e' % np.std(out_eec_diet_bp_RBG_out),
-                             '%.2e' % np.min(out_eec_diet_bp_RBG_out), '%.2e' % np.max(out_eec_diet_bp_RBG_out), ],
-        "Fruits/Pods/Seeds": ['%.2e' % np.mean(out_eec_diet_fr_RBG_out), '%.2e' % np.std(out_eec_diet_fr_RBG_out),
-                              '%.2e' % np.min(out_eec_diet_fr_RBG_out), '%.2e' % np.max(out_eec_diet_fr_RBG_out), ],
-        "Arthropods": ['%.2e' % np.mean(out_eec_diet_ar_RBG_out), '%.2e' % np.std(out_eec_diet_ar_RBG_out),
-                       '%.2e' % np.min(out_eec_diet_ar_RBG_out), '%.2e' % np.max(out_eec_diet_ar_RBG_out), ],
+        "Short Grass": ['{0:.2e}'.format(np.mean(out_eec_diet_sg_RBG_out)), '{0:.2e}'.format(np.std(out_eec_diet_sg_RBG_out)),
+                        '{0:.2e}'.format(np.min(out_eec_diet_sg_RBG_out)), '{0:.2e}'.format(np.max(out_eec_diet_sg_RBG_out)), ],
+        "Tall Grass": ['{0:.2e}'.format(np.mean(out_eec_diet_tg_RBG_out)), '{0:.2e}'.format(np.std(out_eec_diet_tg_RBG_out)),
+                       '{0:.2e}'.format(np.min(out_eec_diet_tg_RBG_out)), '{0:.2e}'.format(np.max(out_eec_diet_tg_RBG_out)), ],
+        "Broadleaf Plants": ['{0:.2e}'.format(np.mean(out_eec_diet_bp_RBG_out)), '{0:.2e}'.format(np.std(out_eec_diet_bp_RBG_out)),
+                             '{0:.2e}'.format(np.min(out_eec_diet_bp_RBG_out)), '{0:.2e}'.format(np.max(out_eec_diet_bp_RBG_out)), ],
+        "Fruits/Pods/Seeds": ['{0:.2e}'.format(np.mean(out_eec_diet_fr_RBG_out)), '{0:.2e}'.format(np.std(out_eec_diet_fr_RBG_out)),
+                              '{0:.2e}'.format(np.min(out_eec_diet_fr_RBG_out)), '{0:.2e}'.format(np.max(out_eec_diet_fr_RBG_out)), ],
+        "Arthropods": ['{0:.2e}'.format(np.mean(out_eec_diet_ar_RBG_out)), '{0:.2e}'.format(np.std(out_eec_diet_ar_RBG_out)),
+                       '{0:.2e}'.format(np.min(out_eec_diet_ar_RBG_out)), '{0:.2e}'.format(np.max(out_eec_diet_ar_RBG_out)), ],
     }
     return data
 
@@ -1063,47 +1063,47 @@ def gettsumdata_7(out_eec_dose_bird_sg_sm_out, out_eec_dose_bird_sg_md_out, out_
         "Animal Size": ['Small', 'Small', 'Small', 'Small', 'Medium', 'Medium', 'Medium', 'Medium', 'Large', 'Large',
                         'Large', 'Large', ],
         "Metric": ['Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', ],
-        "Short Grass": ['%.2e' % np.mean(out_eec_dose_bird_sg_sm_out), '%.2e' % np.std(out_eec_dose_bird_sg_sm_out),
-                        '%.2e' % np.min(out_eec_dose_bird_sg_sm_out), '%.2e' % np.max(out_eec_dose_bird_sg_sm_out),
-                        '%.2e' % np.mean(out_eec_dose_bird_sg_md_out), '%.2e' % np.std(out_eec_dose_bird_sg_md_out),
-                        '%.2e' % np.min(out_eec_dose_bird_sg_md_out), '%.2e' % np.max(out_eec_dose_bird_sg_md_out),
-                        '%.2e' % np.mean(out_eec_dose_bird_sg_lg_out), '%.2e' % np.std(out_eec_dose_bird_sg_lg_out),
-                        '%.2e' % np.min(out_eec_dose_bird_sg_lg_out), '%.2e' % np.max(out_eec_dose_bird_sg_lg_out), ],
+        "Short Grass": ['{0:.2e}'.format(np.mean(out_eec_dose_bird_sg_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_sg_sm_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_bird_sg_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_sg_sm_out)),
+                        '{0:.2e}'.format(np.mean(out_eec_dose_bird_sg_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_sg_md_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_bird_sg_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_sg_md_out)),
+                        '{0:.2e}'.format(np.mean(out_eec_dose_bird_sg_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_sg_lg_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_bird_sg_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_sg_lg_out)), ],
 
-        "Tall Grass": ['%.2e' % np.mean(out_eec_dose_bird_tg_sm_out), '%.2e' % np.std(out_eec_dose_bird_tg_sm_out),
-                       '%.2e' % np.min(out_eec_dose_bird_tg_sm_out), '%.2e' % np.max(out_eec_dose_bird_tg_sm_out),
-                       '%.2e' % np.mean(out_eec_dose_bird_tg_md_out), '%.2e' % np.std(out_eec_dose_bird_tg_md_out),
-                       '%.2e' % np.min(out_eec_dose_bird_tg_md_out), '%.2e' % np.max(out_eec_dose_bird_tg_md_out),
-                       '%.2e' % np.mean(out_eec_dose_bird_tg_lg_out), '%.2e' % np.std(out_eec_dose_bird_tg_lg_out),
-                       '%.2e' % np.min(out_eec_dose_bird_tg_lg_out), '%.2e' % np.max(out_eec_dose_bird_tg_lg_out), ],
+        "Tall Grass": ['{0:.2e}'.format(np.mean(out_eec_dose_bird_tg_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_tg_sm_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_bird_tg_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_tg_sm_out)),
+                       '{0:.2e}'.format(np.mean(out_eec_dose_bird_tg_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_tg_md_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_bird_tg_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_tg_md_out)),
+                       '{0:.2e}'.format(np.mean(out_eec_dose_bird_tg_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_tg_lg_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_bird_tg_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_tg_lg_out)), ],
 
-        "Broadleaf Plants": ['%.2e' % np.mean(out_eec_dose_bird_bp_sm_out), '%.2e' % np.std(out_eec_dose_bird_bp_sm_out),
-                             '%.2e' % np.min(out_eec_dose_bird_bp_sm_out), '%.2e' % np.max(out_eec_dose_bird_bp_sm_out),
-                             '%.2e' % np.mean(out_eec_dose_bird_bp_md_out), '%.2e' % np.std(out_eec_dose_bird_bp_md_out),
-                             '%.2e' % np.min(out_eec_dose_bird_bp_md_out), '%.2e' % np.max(out_eec_dose_bird_bp_md_out),
-                             '%.2e' % np.mean(out_eec_dose_bird_bp_lg_out), '%.2e' % np.std(out_eec_dose_bird_bp_lg_out),
-                             '%.2e' % np.min(out_eec_dose_bird_bp_lg_out), '%.2e' % np.max(out_eec_dose_bird_bp_lg_out), ],
+        "Broadleaf Plants": ['{0:.2e}'.format(np.mean(out_eec_dose_bird_bp_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_bp_sm_out)),
+                             '{0:.2e}'.format(np.min(out_eec_dose_bird_bp_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_bp_sm_out)),
+                             '{0:.2e}'.format(np.mean(out_eec_dose_bird_bp_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_bp_md_out)),
+                             '{0:.2e}'.format(np.min(out_eec_dose_bird_bp_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_bp_md_out)),
+                             '{0:.2e}'.format(np.mean(out_eec_dose_bird_bp_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_bp_lg_out)),
+                             '{0:.2e}'.format(np.min(out_eec_dose_bird_bp_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_bp_lg_out)), ],
 
-        "Fruits/Pods": ['%.2e' % np.mean(out_eec_dose_bird_fp_sm_out), '%.2e' % np.std(out_eec_dose_bird_fp_sm_out),
-                        '%.2e' % np.min(out_eec_dose_bird_fp_sm_out), '%.2e' % np.max(out_eec_dose_bird_fp_sm_out),
-                        '%.2e' % np.mean(out_eec_dose_bird_fp_md_out), '%.2e' % np.std(out_eec_dose_bird_fp_md_out),
-                        '%.2e' % np.min(out_eec_dose_bird_fp_md_out), '%.2e' % np.max(out_eec_dose_bird_fp_md_out),
-                        '%.2e' % np.mean(out_eec_dose_bird_fp_lg_out), '%.2e' % np.std(out_eec_dose_bird_fp_lg_out),
-                        '%.2e' % np.min(out_eec_dose_bird_fp_lg_out), '%.2e' % np.max(out_eec_dose_bird_fp_lg_out), ],
+        "Fruits/Pods": ['{0:.2e}'.format(np.mean(out_eec_dose_bird_fp_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_fp_sm_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_bird_fp_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_fp_sm_out)),
+                        '{0:.2e}'.format(np.mean(out_eec_dose_bird_fp_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_fp_md_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_bird_fp_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_fp_md_out)),
+                        '{0:.2e}'.format(np.mean(out_eec_dose_bird_fp_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_fp_lg_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_bird_fp_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_fp_lg_out)), ],
 
-        "Arthropods": ['%.2e' % np.mean(out_eec_dose_bird_ar_sm_out), '%.2e' % np.std(out_eec_dose_bird_ar_sm_out),
-                       '%.2e' % np.min(out_eec_dose_bird_ar_sm_out), '%.2e' % np.max(out_eec_dose_bird_ar_sm_out),
-                       '%.2e' % np.mean(out_eec_dose_bird_ar_md_out), '%.2e' % np.std(out_eec_dose_bird_ar_md_out),
-                       '%.2e' % np.min(out_eec_dose_bird_ar_md_out), '%.2e' % np.max(out_eec_dose_bird_ar_md_out),
-                       '%.2e' % np.mean(out_eec_dose_bird_ar_lg_out), '%.2e' % np.std(out_eec_dose_bird_ar_lg_out),
-                       '%.2e' % np.min(out_eec_dose_bird_ar_lg_out), '%.2e' % np.max(out_eec_dose_bird_ar_lg_out), ],
+        "Arthropods": ['{0:.2e}'.format(np.mean(out_eec_dose_bird_ar_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_ar_sm_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_bird_ar_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_ar_sm_out)),
+                       '{0:.2e}'.format(np.mean(out_eec_dose_bird_ar_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_ar_md_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_bird_ar_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_ar_md_out)),
+                       '{0:.2e}'.format(np.mean(out_eec_dose_bird_ar_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_ar_lg_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_bird_ar_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_ar_lg_out)), ],
 
-        "Seeds": ['%.2e' % np.mean(out_eec_dose_bird_se_sm_out), '%.2e' % np.std(out_eec_dose_bird_se_sm_out),
-                  '%.2e' % np.min(out_eec_dose_bird_se_sm_out), '%.2e' % np.max(out_eec_dose_bird_se_sm_out),
-                  '%.2e' % np.mean(out_eec_dose_bird_se_md_out), '%.2e' % np.std(out_eec_dose_bird_se_md_out),
-                  '%.2e' % np.min(out_eec_dose_bird_se_md_out), '%.2e' % np.max(out_eec_dose_bird_se_md_out),
-                  '%.2e' % np.mean(out_eec_dose_bird_se_lg_out), '%.2e' % np.std(out_eec_dose_bird_se_lg_out),
-                  '%.2e' % np.min(out_eec_dose_bird_se_lg_out), '%.2e' % np.max(out_eec_dose_bird_se_lg_out), ],
+        "Seeds": ['{0:.2e}'.format(np.mean(out_eec_dose_bird_se_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_se_sm_out)),
+                  '{0:.2e}'.format(np.min(out_eec_dose_bird_se_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_se_sm_out)),
+                  '{0:.2e}'.format(np.mean(out_eec_dose_bird_se_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_se_md_out)),
+                  '{0:.2e}'.format(np.min(out_eec_dose_bird_se_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_se_md_out)),
+                  '{0:.2e}'.format(np.mean(out_eec_dose_bird_se_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_bird_se_lg_out)),
+                  '{0:.2e}'.format(np.min(out_eec_dose_bird_se_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_bird_se_lg_out)), ],
     }
     return data
 
@@ -1114,30 +1114,30 @@ def gettsumdata_8(out_arq_diet_bird_sg_a_out, out_arq_diet_bird_sg_c_out, out_ar
     data = {
         "Type": ['Acute', 'Acute', 'Acute', 'Acute', 'Chronic', 'Chronic', 'Chronic', 'Chronic', ],
         "Metric": ['Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', ],
-        "Short Grass": ['%.2e' % np.mean(out_arq_diet_bird_sg_a_out), '%.2e' % np.std(out_arq_diet_bird_sg_a_out),
-                        '%.2e' % np.min(out_arq_diet_bird_sg_a_out), '%.2e' % np.max(out_arq_diet_bird_sg_a_out),
-                        '%.2e' % np.mean(out_arq_diet_bird_sg_c_out), '%.2e' % np.std(out_arq_diet_bird_sg_c_out),
-                        '%.2e' % np.min(out_arq_diet_bird_sg_c_out), '%.2e' % np.max(out_arq_diet_bird_sg_c_out), ],
+        "Short Grass": ['{0:.2e}'.format(np.mean(out_arq_diet_bird_sg_a_out)), '{0:.2e}'.format(np.std(out_arq_diet_bird_sg_a_out)),
+                        '{0:.2e}'.format(np.min(out_arq_diet_bird_sg_a_out)), '{0:.2e}'.format(np.max(out_arq_diet_bird_sg_a_out)),
+                        '{0:.2e}'.format(np.mean(out_arq_diet_bird_sg_c_out)), '{0:.2e}'.format(np.std(out_arq_diet_bird_sg_c_out)),
+                        '{0:.2e}'.format(np.min(out_arq_diet_bird_sg_c_out)), '{0:.2e}'.format(np.max(out_arq_diet_bird_sg_c_out)), ],
 
-        "Tall Grass": ['%.2e' % np.mean(out_arq_diet_bird_tg_a_out), '%.2e' % np.std(out_arq_diet_bird_tg_a_out),
-                       '%.2e' % np.min(out_arq_diet_bird_tg_a_out), '%.2e' % np.max(out_arq_diet_bird_tg_a_out),
-                       '%.2e' % np.mean(out_arq_diet_bird_tg_c_out), '%.2e' % np.std(out_arq_diet_bird_tg_c_out),
-                       '%.2e' % np.min(out_arq_diet_bird_tg_c_out), '%.2e' % np.max(out_arq_diet_bird_tg_c_out), ],
+        "Tall Grass": ['{0:.2e}'.format(np.mean(out_arq_diet_bird_tg_a_out)), '{0:.2e}'.format(np.std(out_arq_diet_bird_tg_a_out)),
+                       '{0:.2e}'.format(np.min(out_arq_diet_bird_tg_a_out)), '{0:.2e}'.format(np.max(out_arq_diet_bird_tg_a_out)),
+                       '{0:.2e}'.format(np.mean(out_arq_diet_bird_tg_c_out)), '{0:.2e}'.format(np.std(out_arq_diet_bird_tg_c_out)),
+                       '{0:.2e}'.format(np.min(out_arq_diet_bird_tg_c_out)), '{0:.2e}'.format(np.max(out_arq_diet_bird_tg_c_out)), ],
 
-        "Broadleaf Plants": ['%.2e' % np.mean(out_arq_diet_bird_bp_a_out), '%.2e' % np.std(out_arq_diet_bird_bp_a_out),
-                             '%.2e' % np.min(out_arq_diet_bird_bp_a_out), '%.2e' % np.max(out_arq_diet_bird_bp_a_out),
-                             '%.2e' % np.mean(out_arq_diet_bird_bp_c_out), '%.2e' % np.std(out_arq_diet_bird_bp_c_out),
-                             '%.2e' % np.min(out_arq_diet_bird_bp_c_out), '%.2e' % np.max(out_arq_diet_bird_bp_c_out), ],
+        "Broadleaf Plants": ['{0:.2e}'.format(np.mean(out_arq_diet_bird_bp_a_out)), '{0:.2e}'.format(np.std(out_arq_diet_bird_bp_a_out)),
+                             '{0:.2e}'.format(np.min(out_arq_diet_bird_bp_a_out)), '{0:.2e}'.format(np.max(out_arq_diet_bird_bp_a_out)),
+                             '{0:.2e}'.format(np.mean(out_arq_diet_bird_bp_c_out)), '{0:.2e}'.format(np.std(out_arq_diet_bird_bp_c_out)),
+                             '{0:.2e}'.format(np.min(out_arq_diet_bird_bp_c_out)), '{0:.2e}'.format(np.max(out_arq_diet_bird_bp_c_out)), ],
 
-        "Fruits/Pods": ['%.2e' % np.mean(out_arq_diet_bird_fp_a_out), '%.2e' % np.std(out_arq_diet_bird_fp_a_out),
-                        '%.2e' % np.min(out_arq_diet_bird_fp_a_out), '%.2e' % np.max(out_arq_diet_bird_fp_a_out),
-                        '%.2e' % np.mean(out_arq_diet_bird_fp_c_out), '%.2e' % np.std(out_arq_diet_bird_fp_c_out),
-                        '%.2e' % np.min(out_arq_diet_bird_fp_c_out), '%.2e' % np.max(out_arq_diet_bird_fp_c_out), ],
+        "Fruits/Pods": ['{0:.2e}'.format(np.mean(out_arq_diet_bird_fp_a_out)), '{0:.2e}'.format(np.std(out_arq_diet_bird_fp_a_out)),
+                        '{0:.2e}'.format(np.min(out_arq_diet_bird_fp_a_out)), '{0:.2e}'.format(np.max(out_arq_diet_bird_fp_a_out)),
+                        '{0:.2e}'.format(np.mean(out_arq_diet_bird_fp_c_out)), '{0:.2e}'.format(np.std(out_arq_diet_bird_fp_c_out)),
+                        '{0:.2e}'.format(np.min(out_arq_diet_bird_fp_c_out)), '{0:.2e}'.format(np.max(out_arq_diet_bird_fp_c_out)), ],
 
-        "Arthropods": ['%.2e' % np.mean(out_arq_diet_bird_ar_a_out), '%.2e' % np.std(out_arq_diet_bird_ar_a_out),
-                       '%.2e' % np.min(out_arq_diet_bird_ar_a_out), '%.2e' % np.max(out_arq_diet_bird_ar_a_out),
-                       '%.2e' % np.mean(out_arq_diet_bird_ar_c_out), '%.2e' % np.std(out_arq_diet_bird_ar_c_out),
-                       '%.2e' % np.min(out_arq_diet_bird_ar_c_out), '%.2e' % np.max(out_arq_diet_bird_ar_c_out), ],
+        "Arthropods": ['{0:.2e}'.format(np.mean(out_arq_diet_bird_ar_a_out)), '{0:.2e}'.format(np.std(out_arq_diet_bird_ar_a_out)),
+                       '{0:.2e}'.format(np.min(out_arq_diet_bird_ar_a_out)), '{0:.2e}'.format(np.max(out_arq_diet_bird_ar_a_out)),
+                       '{0:.2e}'.format(np.mean(out_arq_diet_bird_ar_c_out)), '{0:.2e}'.format(np.std(out_arq_diet_bird_ar_c_out)),
+                       '{0:.2e}'.format(np.min(out_arq_diet_bird_ar_c_out)), '{0:.2e}'.format(np.max(out_arq_diet_bird_ar_c_out)), ],
     }
     return data
 
@@ -1151,47 +1151,47 @@ def gettsumdata_9(out_eec_dose_mamm_sg_sm_out, out_eec_dose_mamm_sg_md_out, out_
         "Animal Size": ['Small', 'Small', 'Small', 'Small', 'Medium', 'Medium', 'Medium', 'Medium', 'Large', 'Large',
                         'Large', 'Large', ],
         "Metric": ['Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', ],
-        "Short Grass": ['%.2e' % np.mean(out_eec_dose_mamm_sg_sm_out), '%.2e' % np.std(out_eec_dose_mamm_sg_sm_out),
-                        '%.2e' % np.min(out_eec_dose_mamm_sg_sm_out), '%.2e' % np.max(out_eec_dose_mamm_sg_sm_out),
-                        '%.2e' % np.mean(out_eec_dose_mamm_sg_md_out), '%.2e' % np.std(out_eec_dose_mamm_sg_md_out),
-                        '%.2e' % np.min(out_eec_dose_mamm_sg_md_out), '%.2e' % np.max(out_eec_dose_mamm_sg_md_out),
-                        '%.2e' % np.mean(out_eec_dose_mamm_sg_lg_out), '%.2e' % np.std(out_eec_dose_mamm_sg_lg_out),
-                        '%.2e' % np.min(out_eec_dose_mamm_sg_lg_out), '%.2e' % np.max(out_eec_dose_mamm_sg_lg_out), ],
+        "Short Grass": ['{0:.2e}'.format(np.mean(out_eec_dose_mamm_sg_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_sg_sm_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_mamm_sg_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_sg_sm_out)),
+                        '{0:.2e}'.format(np.mean(out_eec_dose_mamm_sg_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_sg_md_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_mamm_sg_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_sg_md_out)),
+                        '{0:.2e}'.format(np.mean(out_eec_dose_mamm_sg_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_sg_lg_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_mamm_sg_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_sg_lg_out)), ],
 
-        "Tall Grass": ['%.2e' % np.mean(out_eec_dose_mamm_tg_sm_out), '%.2e' % np.std(out_eec_dose_mamm_tg_sm_out),
-                       '%.2e' % np.min(out_eec_dose_mamm_tg_sm_out), '%.2e' % np.max(out_eec_dose_mamm_tg_sm_out),
-                       '%.2e' % np.mean(out_eec_dose_mamm_tg_md_out), '%.2e' % np.std(out_eec_dose_mamm_tg_md_out),
-                       '%.2e' % np.min(out_eec_dose_mamm_tg_md_out), '%.2e' % np.max(out_eec_dose_mamm_tg_md_out),
-                       '%.2e' % np.mean(out_eec_dose_mamm_tg_lg_out), '%.2e' % np.std(out_eec_dose_mamm_tg_lg_out),
-                       '%.2e' % np.min(out_eec_dose_mamm_tg_lg_out), '%.2e' % np.max(out_eec_dose_mamm_tg_lg_out), ],
+        "Tall Grass": ['{0:.2e}'.format(np.mean(out_eec_dose_mamm_tg_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_tg_sm_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_mamm_tg_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_tg_sm_out)),
+                       '{0:.2e}'.format(np.mean(out_eec_dose_mamm_tg_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_tg_md_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_mamm_tg_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_tg_md_out)),
+                       '{0:.2e}'.format(np.mean(out_eec_dose_mamm_tg_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_tg_lg_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_mamm_tg_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_tg_lg_out)), ],
 
-        "Broadleaf Plants": ['%.2e' % np.mean(out_eec_dose_mamm_bp_sm_out), '%.2e' % np.std(out_eec_dose_mamm_bp_sm_out),
-                             '%.2e' % np.min(out_eec_dose_mamm_bp_sm_out), '%.2e' % np.max(out_eec_dose_mamm_bp_sm_out),
-                             '%.2e' % np.mean(out_eec_dose_mamm_bp_md_out), '%.2e' % np.std(out_eec_dose_mamm_bp_md_out),
-                             '%.2e' % np.min(out_eec_dose_mamm_bp_md_out), '%.2e' % np.max(out_eec_dose_mamm_bp_md_out),
-                             '%.2e' % np.mean(out_eec_dose_mamm_bp_lg_out), '%.2e' % np.std(out_eec_dose_mamm_bp_lg_out),
-                             '%.2e' % np.min(out_eec_dose_mamm_bp_lg_out), '%.2e' % np.max(out_eec_dose_mamm_bp_lg_out), ],
+        "Broadleaf Plants": ['{0:.2e}'.format(np.mean(out_eec_dose_mamm_bp_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_bp_sm_out)),
+                             '{0:.2e}'.format(np.min(out_eec_dose_mamm_bp_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_bp_sm_out)),
+                             '{0:.2e}'.format(np.mean(out_eec_dose_mamm_bp_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_bp_md_out)),
+                             '{0:.2e}'.format(np.min(out_eec_dose_mamm_bp_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_bp_md_out)),
+                             '{0:.2e}'.format(np.mean(out_eec_dose_mamm_bp_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_bp_lg_out)),
+                             '{0:.2e}'.format(np.min(out_eec_dose_mamm_bp_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_bp_lg_out)), ],
 
-        "Fruits/Pods": ['%.2e' % np.mean(out_eec_dose_mamm_fp_sm_out), '%.2e' % np.std(out_eec_dose_mamm_fp_sm_out),
-                        '%.2e' % np.min(out_eec_dose_mamm_fp_sm_out), '%.2e' % np.max(out_eec_dose_mamm_fp_sm_out),
-                        '%.2e' % np.mean(out_eec_dose_mamm_fp_md_out), '%.2e' % np.std(out_eec_dose_mamm_fp_md_out),
-                        '%.2e' % np.min(out_eec_dose_mamm_fp_md_out), '%.2e' % np.max(out_eec_dose_mamm_fp_md_out),
-                        '%.2e' % np.mean(out_eec_dose_mamm_fp_lg_out), '%.2e' % np.std(out_eec_dose_mamm_fp_lg_out),
-                        '%.2e' % np.min(out_eec_dose_mamm_fp_lg_out), '%.2e' % np.max(out_eec_dose_mamm_fp_lg_out), ],
+        "Fruits/Pods": ['{0:.2e}'.format(np.mean(out_eec_dose_mamm_fp_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_fp_sm_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_mamm_fp_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_fp_sm_out)),
+                        '{0:.2e}'.format(np.mean(out_eec_dose_mamm_fp_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_fp_md_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_mamm_fp_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_fp_md_out)),
+                        '{0:.2e}'.format(np.mean(out_eec_dose_mamm_fp_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_fp_lg_out)),
+                        '{0:.2e}'.format(np.min(out_eec_dose_mamm_fp_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_fp_lg_out)), ],
 
-        "Arthropods": ['%.2e' % np.mean(out_eec_dose_mamm_ar_sm_out), '%.2e' % np.std(out_eec_dose_mamm_ar_sm_out),
-                       '%.2e' % np.min(out_eec_dose_mamm_ar_sm_out), '%.2e' % np.max(out_eec_dose_mamm_ar_sm_out),
-                       '%.2e' % np.mean(out_eec_dose_mamm_ar_md_out), '%.2e' % np.std(out_eec_dose_mamm_ar_md_out),
-                       '%.2e' % np.min(out_eec_dose_mamm_ar_md_out), '%.2e' % np.max(out_eec_dose_mamm_ar_md_out),
-                       '%.2e' % np.mean(out_eec_dose_mamm_ar_lg_out), '%.2e' % np.std(out_eec_dose_mamm_ar_lg_out),
-                       '%.2e' % np.min(out_eec_dose_mamm_ar_lg_out), '%.2e' % np.max(out_eec_dose_mamm_ar_lg_out), ],
+        "Arthropods": ['{0:.2e}'.format(np.mean(out_eec_dose_mamm_ar_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_ar_sm_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_mamm_ar_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_ar_sm_out)),
+                       '{0:.2e}'.format(np.mean(out_eec_dose_mamm_ar_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_ar_md_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_mamm_ar_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_ar_md_out)),
+                       '{0:.2e}'.format(np.mean(out_eec_dose_mamm_ar_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_ar_lg_out)),
+                       '{0:.2e}'.format(np.min(out_eec_dose_mamm_ar_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_ar_lg_out)), ],
 
-        "Seeds": ['%.2e' % np.mean(out_eec_dose_mamm_se_sm_out), '%.2e' % np.std(out_eec_dose_mamm_se_sm_out),
-                  '%.2e' % np.min(out_eec_dose_mamm_se_sm_out), '%.2e' % np.max(out_eec_dose_mamm_se_sm_out),
-                  '%.2e' % np.mean(out_eec_dose_mamm_se_md_out), '%.2e' % np.std(out_eec_dose_mamm_se_md_out),
-                  '%.2e' % np.min(out_eec_dose_mamm_se_md_out), '%.2e' % np.max(out_eec_dose_mamm_se_md_out),
-                  '%.2e' % np.mean(out_eec_dose_mamm_se_lg_out), '%.2e' % np.std(out_eec_dose_mamm_se_lg_out),
-                  '%.2e' % np.min(out_eec_dose_mamm_se_lg_out), '%.2e' % np.max(out_eec_dose_mamm_se_lg_out), ],
+        "Seeds": ['{0:.2e}'.format(np.mean(out_eec_dose_mamm_se_sm_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_se_sm_out)),
+                  '{0:.2e}'.format(np.min(out_eec_dose_mamm_se_sm_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_se_sm_out)),
+                  '{0:.2e}'.format(np.mean(out_eec_dose_mamm_se_md_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_se_md_out)),
+                  '{0:.2e}'.format(np.min(out_eec_dose_mamm_se_md_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_se_md_out)),
+                  '{0:.2e}'.format(np.mean(out_eec_dose_mamm_se_lg_out)), '{0:.2e}'.format(np.std(out_eec_dose_mamm_se_lg_out)),
+                  '{0:.2e}'.format(np.min(out_eec_dose_mamm_se_lg_out)), '{0:.2e}'.format(np.max(out_eec_dose_mamm_se_lg_out)), ],
     }
     return data
 
@@ -1215,83 +1215,83 @@ def gettsumdata_10(out_arq_dose_mamm_sg_sm, out_crq_dose_mamm_sg_sm, out_arq_dos
         "Metric": ['Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', 'Mean', 'Std',
                    'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', ],
 
-        "Short Grass": ['%.2e' % np.mean(out_arq_dose_mamm_sg_sm), '%.2e' % np.std(out_arq_dose_mamm_sg_sm),
-                        '%.2e' % np.min(out_arq_dose_mamm_sg_sm), '%.2e' % np.max(out_arq_dose_mamm_sg_sm),
-                        '%.2e' % np.mean(out_crq_dose_mamm_sg_sm), '%.2e' % np.std(out_crq_dose_mamm_sg_sm),
-                        '%.2e' % np.min(out_crq_dose_mamm_sg_sm), '%.2e' % np.max(out_crq_dose_mamm_sg_sm),
-                        '%.2e' % np.mean(out_arq_dose_mamm_sg_md), '%.2e' % np.std(out_arq_dose_mamm_sg_md),
-                        '%.2e' % np.min(out_arq_dose_mamm_sg_md), '%.2e' % np.max(out_arq_dose_mamm_sg_md),
-                        '%.2e' % np.mean(out_crq_dose_mamm_sg_md), '%.2e' % np.std(out_crq_dose_mamm_sg_md),
-                        '%.2e' % np.min(out_crq_dose_mamm_sg_md), '%.2e' % np.max(out_crq_dose_mamm_sg_md),
-                        '%.2e' % np.mean(out_arq_dose_mamm_sg_lg), '%.2e' % np.std(out_arq_dose_mamm_sg_lg),
-                        '%.2e' % np.min(out_arq_dose_mamm_sg_lg), '%.2e' % np.max(out_arq_dose_mamm_sg_lg),
-                        '%.2e' % np.mean(out_crq_dose_mamm_sg_lg), '%.2e' % np.std(out_crq_dose_mamm_sg_lg),
-                        '%.2e' % np.min(out_crq_dose_mamm_sg_lg), '%.2e' % np.max(out_crq_dose_mamm_sg_lg), ],
+        "Short Grass": ['{0:.2e}'.format(np.mean(out_arq_dose_mamm_sg_sm)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_sg_sm)),
+                        '{0:.2e}'.format(np.min(out_arq_dose_mamm_sg_sm)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_sg_sm)),
+                        '{0:.2e}'.format(np.mean(out_crq_dose_mamm_sg_sm)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_sg_sm)),
+                        '{0:.2e}'.format(np.min(out_crq_dose_mamm_sg_sm)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_sg_sm)),
+                        '{0:.2e}'.format(np.mean(out_arq_dose_mamm_sg_md)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_sg_md)),
+                        '{0:.2e}'.format(np.min(out_arq_dose_mamm_sg_md)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_sg_md)),
+                        '{0:.2e}'.format(np.mean(out_crq_dose_mamm_sg_md)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_sg_md)),
+                        '{0:.2e}'.format(np.min(out_crq_dose_mamm_sg_md)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_sg_md)),
+                        '{0:.2e}'.format(np.mean(out_arq_dose_mamm_sg_lg)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_sg_lg)),
+                        '{0:.2e}'.format(np.min(out_arq_dose_mamm_sg_lg)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_sg_lg)),
+                        '{0:.2e}'.format(np.mean(out_crq_dose_mamm_sg_lg)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_sg_lg)),
+                        '{0:.2e}'.format(np.min(out_crq_dose_mamm_sg_lg)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_sg_lg)), ],
 
-        "Tall Grass": ['%.2e' % np.mean(out_arq_dose_mamm_tg_sm), '%.2e' % np.std(out_arq_dose_mamm_tg_sm),
-                       '%.2e' % np.min(out_arq_dose_mamm_tg_sm), '%.2e' % np.max(out_arq_dose_mamm_tg_sm),
-                       '%.2e' % np.mean(out_crq_dose_mamm_tg_sm), '%.2e' % np.std(out_crq_dose_mamm_tg_sm),
-                       '%.2e' % np.min(out_crq_dose_mamm_tg_sm), '%.2e' % np.max(out_crq_dose_mamm_tg_sm),
-                       '%.2e' % np.mean(out_arq_dose_mamm_tg_md), '%.2e' % np.std(out_arq_dose_mamm_tg_md),
-                       '%.2e' % np.min(out_arq_dose_mamm_tg_md), '%.2e' % np.max(out_arq_dose_mamm_tg_md),
-                       '%.2e' % np.mean(out_crq_dose_mamm_tg_md), '%.2e' % np.std(out_crq_dose_mamm_tg_md),
-                       '%.2e' % np.min(out_crq_dose_mamm_tg_md), '%.2e' % np.max(out_crq_dose_mamm_tg_md),
-                       '%.2e' % np.mean(out_arq_dose_mamm_tg_lg), '%.2e' % np.std(out_arq_dose_mamm_tg_lg),
-                       '%.2e' % np.min(out_arq_dose_mamm_tg_lg), '%.2e' % np.max(out_arq_dose_mamm_tg_lg),
-                       '%.2e' % np.mean(out_crq_dose_mamm_tg_lg), '%.2e' % np.std(out_crq_dose_mamm_tg_lg),
-                       '%.2e' % np.min(out_crq_dose_mamm_tg_lg), '%.2e' % np.max(out_crq_dose_mamm_tg_lg), ],
+        "Tall Grass": ['{0:.2e}'.format(np.mean(out_arq_dose_mamm_tg_sm)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_tg_sm)),
+                       '{0:.2e}'.format(np.min(out_arq_dose_mamm_tg_sm)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_tg_sm)),
+                       '{0:.2e}'.format(np.mean(out_crq_dose_mamm_tg_sm)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_tg_sm)),
+                       '{0:.2e}'.format(np.min(out_crq_dose_mamm_tg_sm)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_tg_sm)),
+                       '{0:.2e}'.format(np.mean(out_arq_dose_mamm_tg_md)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_tg_md)),
+                       '{0:.2e}'.format(np.min(out_arq_dose_mamm_tg_md)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_tg_md)),
+                       '{0:.2e}'.format(np.mean(out_crq_dose_mamm_tg_md)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_tg_md)),
+                       '{0:.2e}'.format(np.min(out_crq_dose_mamm_tg_md)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_tg_md)),
+                       '{0:.2e}'.format(np.mean(out_arq_dose_mamm_tg_lg)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_tg_lg)),
+                       '{0:.2e}'.format(np.min(out_arq_dose_mamm_tg_lg)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_tg_lg)),
+                       '{0:.2e}'.format(np.mean(out_crq_dose_mamm_tg_lg)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_tg_lg)),
+                       '{0:.2e}'.format(np.min(out_crq_dose_mamm_tg_lg)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_tg_lg)), ],
 
-        "Broadleaf Plants": ['%.2e' % np.mean(out_arq_dose_mamm_bp_sm), '%.2e' % np.std(out_arq_dose_mamm_bp_sm),
-                             '%.2e' % np.min(out_arq_dose_mamm_bp_sm), '%.2e' % np.max(out_arq_dose_mamm_bp_sm),
-                             '%.2e' % np.mean(out_crq_dose_mamm_bp_sm), '%.2e' % np.std(out_crq_dose_mamm_bp_sm),
-                             '%.2e' % np.min(out_crq_dose_mamm_bp_sm), '%.2e' % np.max(out_crq_dose_mamm_bp_sm),
-                             '%.2e' % np.mean(out_arq_dose_mamm_bp_md), '%.2e' % np.std(out_arq_dose_mamm_bp_md),
-                             '%.2e' % np.min(out_arq_dose_mamm_bp_md), '%.2e' % np.max(out_arq_dose_mamm_bp_md),
-                             '%.2e' % np.mean(out_crq_dose_mamm_bp_md), '%.2e' % np.std(out_crq_dose_mamm_bp_md),
-                             '%.2e' % np.min(out_crq_dose_mamm_bp_md), '%.2e' % np.max(out_crq_dose_mamm_bp_md),
-                             '%.2e' % np.mean(out_arq_dose_mamm_bp_lg), '%.2e' % np.std(out_arq_dose_mamm_bp_lg),
-                             '%.2e' % np.min(out_arq_dose_mamm_bp_lg), '%.2e' % np.max(out_arq_dose_mamm_bp_lg),
-                             '%.2e' % np.mean(out_crq_dose_mamm_bp_lg), '%.2e' % np.std(out_crq_dose_mamm_bp_lg),
-                             '%.2e' % np.min(out_crq_dose_mamm_bp_lg), '%.2e' % np.max(out_crq_dose_mamm_bp_lg), ],
+        "Broadleaf Plants": ['{0:.2e}'.format(np.mean(out_arq_dose_mamm_bp_sm)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_bp_sm)),
+                             '{0:.2e}'.format(np.min(out_arq_dose_mamm_bp_sm)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_bp_sm)),
+                             '{0:.2e}'.format(np.mean(out_crq_dose_mamm_bp_sm)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_bp_sm)),
+                             '{0:.2e}'.format(np.min(out_crq_dose_mamm_bp_sm)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_bp_sm)),
+                             '{0:.2e}'.format(np.mean(out_arq_dose_mamm_bp_md)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_bp_md)),
+                             '{0:.2e}'.format(np.min(out_arq_dose_mamm_bp_md)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_bp_md)),
+                             '{0:.2e}'.format(np.mean(out_crq_dose_mamm_bp_md)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_bp_md)),
+                             '{0:.2e}'.format(np.min(out_crq_dose_mamm_bp_md)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_bp_md)),
+                             '{0:.2e}'.format(np.mean(out_arq_dose_mamm_bp_lg)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_bp_lg)),
+                             '{0:.2e}'.format(np.min(out_arq_dose_mamm_bp_lg)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_bp_lg)),
+                             '{0:.2e}'.format(np.mean(out_crq_dose_mamm_bp_lg)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_bp_lg)),
+                             '{0:.2e}'.format(np.min(out_crq_dose_mamm_bp_lg)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_bp_lg)), ],
 
-        "Fruits/Pods": ['%.2e' % np.mean(out_arq_dose_mamm_fp_sm), '%.2e' % np.std(out_arq_dose_mamm_fp_sm),
-                        '%.2e' % np.min(out_arq_dose_mamm_fp_sm), '%.2e' % np.max(out_arq_dose_mamm_fp_sm),
-                        '%.2e' % np.mean(out_crq_dose_mamm_fp_sm), '%.2e' % np.std(out_crq_dose_mamm_fp_sm),
-                        '%.2e' % np.min(out_crq_dose_mamm_fp_sm), '%.2e' % np.max(out_crq_dose_mamm_fp_sm),
-                        '%.2e' % np.mean(out_arq_dose_mamm_fp_md), '%.2e' % np.std(out_arq_dose_mamm_fp_md),
-                        '%.2e' % np.min(out_arq_dose_mamm_fp_md), '%.2e' % np.max(out_arq_dose_mamm_fp_md),
-                        '%.2e' % np.mean(out_crq_dose_mamm_fp_md), '%.2e' % np.std(out_crq_dose_mamm_fp_md),
-                        '%.2e' % np.min(out_crq_dose_mamm_fp_md), '%.2e' % np.max(out_crq_dose_mamm_fp_md),
-                        '%.2e' % np.mean(out_arq_dose_mamm_fp_lg), '%.2e' % np.std(out_arq_dose_mamm_fp_lg),
-                        '%.2e' % np.min(out_arq_dose_mamm_fp_lg), '%.2e' % np.max(out_arq_dose_mamm_fp_lg),
-                        '%.2e' % np.mean(out_crq_dose_mamm_fp_lg), '%.2e' % np.std(out_crq_dose_mamm_fp_lg),
-                        '%.2e' % np.min(out_crq_dose_mamm_fp_lg), '%.2e' % np.max(out_crq_dose_mamm_fp_lg), ],
+        "Fruits/Pods": ['{0:.2e}'.format(np.mean(out_arq_dose_mamm_fp_sm)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_fp_sm)),
+                        '{0:.2e}'.format(np.min(out_arq_dose_mamm_fp_sm)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_fp_sm)),
+                        '{0:.2e}'.format(np.mean(out_crq_dose_mamm_fp_sm)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_fp_sm)),
+                        '{0:.2e}'.format(np.min(out_crq_dose_mamm_fp_sm)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_fp_sm)),
+                        '{0:.2e}'.format(np.mean(out_arq_dose_mamm_fp_md)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_fp_md)),
+                        '{0:.2e}'.format(np.min(out_arq_dose_mamm_fp_md)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_fp_md)),
+                        '{0:.2e}'.format(np.mean(out_crq_dose_mamm_fp_md)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_fp_md)),
+                        '{0:.2e}'.format(np.min(out_crq_dose_mamm_fp_md)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_fp_md)),
+                        '{0:.2e}'.format(np.mean(out_arq_dose_mamm_fp_lg)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_fp_lg)),
+                        '{0:.2e}'.format(np.min(out_arq_dose_mamm_fp_lg)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_fp_lg)),
+                        '{0:.2e}'.format(np.mean(out_crq_dose_mamm_fp_lg)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_fp_lg)),
+                        '{0:.2e}'.format(np.min(out_crq_dose_mamm_fp_lg)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_fp_lg)), ],
 
-        "Arthropods": ['%.2e' % np.mean(out_arq_dose_mamm_ar_sm), '%.2e' % np.std(out_arq_dose_mamm_ar_sm),
-                       '%.2e' % np.min(out_arq_dose_mamm_ar_sm), '%.2e' % np.max(out_arq_dose_mamm_ar_sm),
-                       '%.2e' % np.mean(out_crq_dose_mamm_ar_sm), '%.2e' % np.std(out_crq_dose_mamm_ar_sm),
-                       '%.2e' % np.min(out_crq_dose_mamm_ar_sm), '%.2e' % np.max(out_crq_dose_mamm_ar_sm),
-                       '%.2e' % np.mean(out_arq_dose_mamm_ar_md), '%.2e' % np.std(out_arq_dose_mamm_ar_md),
-                       '%.2e' % np.min(out_arq_dose_mamm_ar_md), '%.2e' % np.max(out_arq_dose_mamm_ar_md),
-                       '%.2e' % np.mean(out_crq_dose_mamm_ar_md), '%.2e' % np.std(out_crq_dose_mamm_ar_md),
-                       '%.2e' % np.min(out_crq_dose_mamm_ar_md), '%.2e' % np.max(out_crq_dose_mamm_ar_md),
-                       '%.2e' % np.mean(out_arq_dose_mamm_ar_lg), '%.2e' % np.std(out_arq_dose_mamm_ar_lg),
-                       '%.2e' % np.min(out_arq_dose_mamm_ar_lg), '%.2e' % np.max(out_arq_dose_mamm_ar_lg),
-                       '%.2e' % np.mean(out_crq_dose_mamm_ar_lg), '%.2e' % np.std(out_crq_dose_mamm_ar_lg),
-                       '%.2e' % np.min(out_crq_dose_mamm_ar_lg), '%.2e' % np.max(out_crq_dose_mamm_ar_lg), ],
+        "Arthropods": ['{0:.2e}'.format(np.mean(out_arq_dose_mamm_ar_sm)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_ar_sm)),
+                       '{0:.2e}'.format(np.min(out_arq_dose_mamm_ar_sm)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_ar_sm)),
+                       '{0:.2e}'.format(np.mean(out_crq_dose_mamm_ar_sm)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_ar_sm)),
+                       '{0:.2e}'.format(np.min(out_crq_dose_mamm_ar_sm)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_ar_sm)),
+                       '{0:.2e}'.format(np.mean(out_arq_dose_mamm_ar_md)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_ar_md)),
+                       '{0:.2e}'.format(np.min(out_arq_dose_mamm_ar_md)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_ar_md)),
+                       '{0:.2e}'.format(np.mean(out_crq_dose_mamm_ar_md)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_ar_md)),
+                       '{0:.2e}'.format(np.min(out_crq_dose_mamm_ar_md)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_ar_md)),
+                       '{0:.2e}'.format(np.mean(out_arq_dose_mamm_ar_lg)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_ar_lg)),
+                       '{0:.2e}'.format(np.min(out_arq_dose_mamm_ar_lg)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_ar_lg)),
+                       '{0:.2e}'.format(np.mean(out_crq_dose_mamm_ar_lg)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_ar_lg)),
+                       '{0:.2e}'.format(np.min(out_crq_dose_mamm_ar_lg)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_ar_lg)), ],
 
-        "Seeds": ['%.2e' % np.mean(out_arq_dose_mamm_ar_sm), '%.2e' % np.std(out_arq_dose_mamm_se_sm),
-                  '%.2e' % np.min(out_arq_dose_mamm_se_sm), '%.2e' % np.max(out_arq_dose_mamm_se_sm),
-                  '%.2e' % np.mean(out_crq_dose_mamm_se_sm), '%.2e' % np.std(out_crq_dose_mamm_se_sm),
-                  '%.2e' % np.min(out_crq_dose_mamm_se_sm), '%.2e' % np.max(out_crq_dose_mamm_se_sm),
-                  '%.2e' % np.mean(out_arq_dose_mamm_se_md), '%.2e' % np.std(out_arq_dose_mamm_se_md),
-                  '%.2e' % np.min(out_arq_dose_mamm_se_md), '%.2e' % np.max(out_arq_dose_mamm_se_md),
-                  '%.2e' % np.mean(out_crq_dose_mamm_se_md), '%.2e' % np.std(out_crq_dose_mamm_se_md),
-                  '%.2e' % np.min(out_crq_dose_mamm_se_md), '%.2e' % np.max(out_crq_dose_mamm_se_md),
-                  '%.2e' % np.mean(out_arq_dose_mamm_se_lg), '%.2e' % np.std(out_arq_dose_mamm_se_lg),
-                  '%.2e' % np.min(out_arq_dose_mamm_se_lg), '%.2e' % np.max(out_arq_dose_mamm_se_lg),
-                  '%.2e' % np.mean(out_crq_dose_mamm_se_lg), '%.2e' % np.std(out_crq_dose_mamm_se_lg),
-                  '%.2e' % np.min(out_crq_dose_mamm_se_lg), '%.2e' % np.max(out_crq_dose_mamm_se_lg), ],
+        "Seeds": ['{0:.2e}'.format(np.mean(out_arq_dose_mamm_ar_sm)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_se_sm)),
+                  '{0:.2e}'.format(np.min(out_arq_dose_mamm_se_sm)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_se_sm)),
+                  '{0:.2e}'.format(np.mean(out_crq_dose_mamm_se_sm)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_se_sm)),
+                  '{0:.2e}'.format(np.min(out_crq_dose_mamm_se_sm)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_se_sm)),
+                  '{0:.2e}'.format(np.mean(out_arq_dose_mamm_se_md)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_se_md)),
+                  '{0:.2e}'.format(np.min(out_arq_dose_mamm_se_md)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_se_md)),
+                  '{0:.2e}'.format(np.mean(out_crq_dose_mamm_se_md)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_se_md)),
+                  '{0:.2e}'.format(np.min(out_crq_dose_mamm_se_md)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_se_md)),
+                  '{0:.2e}'.format(np.mean(out_arq_dose_mamm_se_lg)), '{0:.2e}'.format(np.std(out_arq_dose_mamm_se_lg)),
+                  '{0:.2e}'.format(np.min(out_arq_dose_mamm_se_lg)), '{0:.2e}'.format(np.max(out_arq_dose_mamm_se_lg)),
+                  '{0:.2e}'.format(np.mean(out_crq_dose_mamm_se_lg)), '{0:.2e}'.format(np.std(out_crq_dose_mamm_se_lg)),
+                  '{0:.2e}'.format(np.min(out_crq_dose_mamm_se_lg)), '{0:.2e}'.format(np.max(out_crq_dose_mamm_se_lg)), ],
     }
     return data
 
@@ -1320,48 +1320,48 @@ def gettsumdata_11(out_arq_diet_mamm_sg, out_crq_diet_mamm_sg, out_arq_diet_mamm
         out_arq_diet_mamm_ar_min = 'N/A'
         out_arq_diet_mamm_ar_max = 'N/A'
     else:
-        out_arq_diet_mamm_sg_mean = '%.2e' % np.mean(out_arq_diet_mamm_sg)
-        out_arq_diet_mamm_sg_std = '%.2e' % np.std(out_arq_diet_mamm_sg)
-        out_arq_diet_mamm_sg_min = '%.2e' % np.min(out_arq_diet_mamm_sg)
-        out_arq_diet_mamm_sg_max = '%.2e' % np.max(out_arq_diet_mamm_sg)
-        out_arq_diet_mamm_tg_mean = '%.2e' % np.mean(out_arq_diet_mamm_tg)
-        out_arq_diet_mamm_tg_std = '%.2e' % np.std(out_arq_diet_mamm_tg)
-        out_arq_diet_mamm_tg_min = '%.2e' % np.min(out_arq_diet_mamm_tg)
-        out_arq_diet_mamm_tg_max = '%.2e' % np.max(out_arq_diet_mamm_tg)
-        out_arq_diet_mamm_bp_mean = '%.2e' % np.mean(out_arq_diet_mamm_bp)
-        out_arq_diet_mamm_bp_std = '%.2e' % np.std(out_arq_diet_mamm_bp)
-        out_arq_diet_mamm_bp_min = '%.2e' % np.min(out_arq_diet_mamm_bp)
-        out_arq_diet_mamm_bp_max = '%.2e' % np.max(out_arq_diet_mamm_bp)
-        out_arq_diet_mamm_fp_mean = '%.2e' % np.mean(out_arq_diet_mamm_fp)
-        out_arq_diet_mamm_fp_std = '%.2e' % np.std(out_arq_diet_mamm_fp)
-        out_arq_diet_mamm_fp_min = '%.2e' % np.min(out_arq_diet_mamm_fp)
-        out_arq_diet_mamm_fp_max = '%.2e' % np.max(out_arq_diet_mamm_fp)
-        out_arq_diet_mamm_ar_mean = '%.2e' % np.mean(out_arq_diet_mamm_ar)
-        out_arq_diet_mamm_amax_seed_ratetd = '%.2e' % np.std(out_arq_diet_mamm_ar)
-        out_arq_diet_mamm_ar_min = '%.2e' % np.min(out_arq_diet_mamm_ar)
-        out_arq_diet_mamm_ar_max = '%.2e' % np.max(out_arq_diet_mamm_ar)
+        out_arq_diet_mamm_sg_mean = '{0:.2e}'.format(np.mean(out_arq_diet_mamm_sg))
+        out_arq_diet_mamm_sg_std = '{0:.2e}'.format(np.std(out_arq_diet_mamm_sg))
+        out_arq_diet_mamm_sg_min = '{0:.2e}'.format(np.min(out_arq_diet_mamm_sg))
+        out_arq_diet_mamm_sg_max = '{0:.2e}'.format(np.max(out_arq_diet_mamm_sg))
+        out_arq_diet_mamm_tg_mean = '{0:.2e}'.format(np.mean(out_arq_diet_mamm_tg))
+        out_arq_diet_mamm_tg_std = '{0:.2e}'.format(np.std(out_arq_diet_mamm_tg))
+        out_arq_diet_mamm_tg_min = '{0:.2e}'.format(np.min(out_arq_diet_mamm_tg))
+        out_arq_diet_mamm_tg_max = '{0:.2e}'.format(np.max(out_arq_diet_mamm_tg))
+        out_arq_diet_mamm_bp_mean = '{0:.2e}'.format(np.mean(out_arq_diet_mamm_bp))
+        out_arq_diet_mamm_bp_std = '{0:.2e}'.format(np.std(out_arq_diet_mamm_bp))
+        out_arq_diet_mamm_bp_min = '{0:.2e}'.format(np.min(out_arq_diet_mamm_bp))
+        out_arq_diet_mamm_bp_max = '{0:.2e}'.format(np.max(out_arq_diet_mamm_bp))
+        out_arq_diet_mamm_fp_mean = '{0:.2e}'.format(np.mean(out_arq_diet_mamm_fp))
+        out_arq_diet_mamm_fp_std = '{0:.2e}'.format(np.std(out_arq_diet_mamm_fp))
+        out_arq_diet_mamm_fp_min = '{0:.2e}'.format(np.min(out_arq_diet_mamm_fp))
+        out_arq_diet_mamm_fp_max = '{0:.2e}'.format(np.max(out_arq_diet_mamm_fp))
+        out_arq_diet_mamm_ar_mean = '{0:.2e}'.format(np.mean(out_arq_diet_mamm_ar))
+        out_arq_diet_mamm_amax_seed_ratetd = '{0:.2e}'.format(np.std(out_arq_diet_mamm_ar))
+        out_arq_diet_mamm_ar_min = '{0:.2e}'.format(np.min(out_arq_diet_mamm_ar))
+        out_arq_diet_mamm_ar_max = '{0:.2e}'.format(np.max(out_arq_diet_mamm_ar))
     data = {
         "Type": ['Acute', 'Acute', 'Acute', 'Acute', 'Chronic', 'Chronic', 'Chronic', 'Chronic', ],
         "Metric": ['Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', ],
         "Short Grass": [out_arq_diet_mamm_sg_mean, out_arq_diet_mamm_sg_std, out_arq_diet_mamm_sg_min, out_arq_diet_mamm_sg_max,
-                        '%.2e' % np.mean(out_crq_diet_mamm_sg), '%.2e' % np.std(out_crq_diet_mamm_sg),
-                        '%.2e' % np.min(out_crq_diet_mamm_sg), '%.2e' % np.max(out_crq_diet_mamm_sg), ],
+                        '{0:.2e}'.format(np.mean(out_crq_diet_mamm_sg)), '{0:.2e}'.format(np.std(out_crq_diet_mamm_sg)),
+                        '{0:.2e}'.format(np.min(out_crq_diet_mamm_sg)), '{0:.2e}'.format(np.max(out_crq_diet_mamm_sg)), ],
 
         "Tall Grass": [out_arq_diet_mamm_tg_mean, out_arq_diet_mamm_tg_std, out_arq_diet_mamm_tg_min, out_arq_diet_mamm_tg_max,
-                       '%.2e' % np.mean(out_crq_diet_mamm_tg), '%.2e' % np.std(out_crq_diet_mamm_tg),
-                       '%.2e' % np.min(out_crq_diet_mamm_tg), '%.2e' % np.max(out_crq_diet_mamm_tg), ],
+                       '{0:.2e}'.format(np.mean(out_crq_diet_mamm_tg)), '{0:.2e}'.format(np.std(out_crq_diet_mamm_tg)),
+                       '{0:.2e}'.format(np.min(out_crq_diet_mamm_tg)), '{0:.2e}'.format(np.max(out_crq_diet_mamm_tg)), ],
 
         "Broadleaf Plants": [out_arq_diet_mamm_bp_mean, out_arq_diet_mamm_bp_std, out_arq_diet_mamm_bp_min, out_arq_diet_mamm_bp_max,
-                             '%.2e' % np.mean(out_crq_diet_mamm_bp), '%.2e' % np.std(out_crq_diet_mamm_bp),
-                             '%.2e' % np.min(out_crq_diet_mamm_bp), '%.2e' % np.max(out_crq_diet_mamm_bp), ],
+                             '{0:.2e}'.format(np.mean(out_crq_diet_mamm_bp)), '{0:.2e}'.format(np.std(out_crq_diet_mamm_bp)),
+                             '{0:.2e}'.format(np.min(out_crq_diet_mamm_bp)), '{0:.2e}'.format(np.max(out_crq_diet_mamm_bp)), ],
 
         "Fruits/Pods/Seeds": [out_arq_diet_mamm_fp_mean, out_arq_diet_mamm_fp_std, out_arq_diet_mamm_fp_min, out_arq_diet_mamm_fp_max,
-                              '%.2e' % np.mean(out_crq_diet_mamm_fp), '%.2e' % np.std(out_crq_diet_mamm_fp),
-                              '%.2e' % np.min(out_crq_diet_mamm_fp), '%.2e' % np.max(out_crq_diet_mamm_fp), ],
+                              '{0:.2e}'.format(np.mean(out_crq_diet_mamm_fp)), '{0:.2e}'.format(np.std(out_crq_diet_mamm_fp)),
+                              '{0:.2e}'.format(np.min(out_crq_diet_mamm_fp)), '{0:.2e}'.format(np.max(out_crq_diet_mamm_fp)), ],
 
         "Arthropods": [out_arq_diet_mamm_ar_mean, out_arq_diet_mamm_amax_seed_ratetd, out_arq_diet_mamm_ar_min, out_arq_diet_mamm_ar_max,
-                       '%.2e' % np.mean(out_crq_diet_mamm_ar), '%.2e' % np.std(out_crq_diet_mamm_ar),
-                       '%.2e' % np.min(out_crq_diet_mamm_ar), '%.2e' % np.max(out_crq_diet_mamm_ar), ],
+                       '{0:.2e}'.format(np.mean(out_crq_diet_mamm_ar)), '{0:.2e}'.format(np.std(out_crq_diet_mamm_ar)),
+                       '{0:.2e}'.format(np.min(out_crq_diet_mamm_ar)), '{0:.2e}'.format(np.max(out_crq_diet_mamm_ar)), ],
     }
     return data
 
@@ -1372,18 +1372,18 @@ def gettsumdata_12(out_ld50_rg_bird_sm_out, out_ld50_rg_mamm_sm_out, out_ld50_rg
         "Animal Size": ['Small', 'Small', 'Small', 'Small', 'Medium', 'Medium', 'Medium', 'Medium', 'Large', 'Large',
                         'Large', 'Large', ],
         "Metric": ['Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', 'Mean', 'Std', 'Min', 'Max', ],
-        "Avian": ['%.2e' % np.mean(out_ld50_rg_bird_sm_out), '%.2e' % np.std(out_ld50_rg_bird_sm_out),
-                  '%.2e' % np.min(out_ld50_rg_bird_sm_out), '%.2e' % np.max(out_ld50_rg_bird_sm_out),
-                  '%.2e' % np.mean(out_ld50_rg_bird_md_out), '%.2e' % np.std(out_ld50_rg_bird_md_out),
-                  '%.2e' % np.min(out_ld50_rg_bird_md_out), '%.2e' % np.max(out_ld50_rg_bird_md_out),
-                  '%.2e' % np.mean(out_ld50_rg_bird_lg_out), '%.2e' % np.std(out_ld50_rg_bird_lg_out),
-                  '%.2e' % np.min(out_ld50_rg_bird_lg_out), '%.2e' % np.max(out_ld50_rg_bird_lg_out), ],
-        "Mammal": ['%.2e' % np.mean(out_ld50_rg_mamm_sm_out), '%.2e' % np.std(out_ld50_rg_mamm_sm_out),
-                   '%.2e' % np.min(out_ld50_rg_mamm_sm_out), '%.2e' % np.max(out_ld50_rg_mamm_sm_out),
-                   '%.2e' % np.mean(out_ld50_rg_mamm_md_out), '%.2e' % np.std(out_ld50_rg_mamm_md_out),
-                   '%.2e' % np.min(out_ld50_rg_mamm_md_out), '%.2e' % np.max(out_ld50_rg_mamm_md_out),
-                   '%.2e' % np.mean(out_ld50_rg_mamm_lg_out), '%.2e' % np.std(out_ld50_rg_mamm_lg_out),
-                   '%.2e' % np.min(out_ld50_rg_mamm_lg_out), '%.2e' % np.max(out_ld50_rg_mamm_lg_out), ],
+        "Avian": ['{0:.2e}'.format(np.mean(out_ld50_rg_bird_sm_out)), '{0:.2e}'.format(np.std(out_ld50_rg_bird_sm_out)),
+                  '{0:.2e}'.format(np.min(out_ld50_rg_bird_sm_out)), '{0:.2e}'.format(np.max(out_ld50_rg_bird_sm_out)),
+                  '{0:.2e}'.format(np.mean(out_ld50_rg_bird_md_out)), '{0:.2e}'.format(np.std(out_ld50_rg_bird_md_out)),
+                  '{0:.2e}'.format(np.min(out_ld50_rg_bird_md_out)), '{0:.2e}'.format(np.max(out_ld50_rg_bird_md_out)),
+                  '{0:.2e}'.format(np.mean(out_ld50_rg_bird_lg_out)), '{0:.2e}'.format(np.std(out_ld50_rg_bird_lg_out)),
+                  '{0:.2e}'.format(np.min(out_ld50_rg_bird_lg_out)), '{0:.2e}'.format(np.max(out_ld50_rg_bird_lg_out)), ],
+        "Mammal": ['{0:.2e}'.format(np.mean(out_ld50_rg_mamm_sm_out)), '{0:.2e}'.format(np.std(out_ld50_rg_mamm_sm_out)),
+                   '{0:.2e}'.format(np.min(out_ld50_rg_mamm_sm_out)), '{0:.2e}'.format(np.max(out_ld50_rg_mamm_sm_out)),
+                   '{0:.2e}'.format(np.mean(out_ld50_rg_mamm_md_out)), '{0:.2e}'.format(np.std(out_ld50_rg_mamm_md_out)),
+                   '{0:.2e}'.format(np.min(out_ld50_rg_mamm_md_out)), '{0:.2e}'.format(np.max(out_ld50_rg_mamm_md_out)),
+                   '{0:.2e}'.format(np.mean(out_ld50_rg_mamm_lg_out)), '{0:.2e}'.format(np.std(out_ld50_rg_mamm_lg_out)),
+                   '{0:.2e}'.format(np.min(out_ld50_rg_mamm_lg_out)), '{0:.2e}'.format(np.max(out_ld50_rg_mamm_lg_out)), ],
     }
     return data
 
@@ -1489,11 +1489,11 @@ def table_all_qaqc(trex_obj):
 def table_sum_1(i, a_i, max_seed_rate, b_w, percent_incorp, den, Foliar_dissipation_half_life, num_apps, app_rates):
     # pre-table sum_input_1
     html = """
-        <H3 class="out_1 collapsible" id="section1"><span></span>Batch Summary Statistics (Iterations=%s)</H3>
+        <H3 class="out_1 collapsible" id="section1"><span></span>Batch Summary Statistics (Iterations={0!s})</H3>
         <div class="out_">
             <H4 class="out_1 collapsible" id="section4"><span></span>Chemical Properties</H4>
                 <div class="out_ container_output">
-        """ % (i - 1)
+        """.format((i - 1))
 
     rate_out_t = []
     for jj in app_rates.split(','):
@@ -1555,9 +1555,9 @@ def table_sum_5(application_type_ST, out_sa_bird_1_s_out, out_sa_bird_2_s_out, o
                 out_sc_mamm_l_out):
     # pre-table sum_5
     html = """
-        <H3 class="out_3 collapsible" id="section4"><span></span>Batch Outputs: Application Type : Seed Treatment (N=%s)</H3>
+        <H3 class="out_3 collapsible" id="section4"><span></span>Batch Outputs: Application Type : Seed Treatment (N={0!s})</H3>
                 <div class="out_ container_output">
-        """ % (application_type_ST)
+        """.format((application_type_ST))
 
     # table sum_output_5
     tsuminputdata_5 = gettsumdata_5(out_sa_bird_1_s_out, out_sa_bird_2_s_out, out_sc_bird_s_out, out_sa_mamm_1_s_out, out_sa_mamm_2_s_out,
@@ -1578,11 +1578,11 @@ def table_sum_6(application_type, application_type_str, out_eec_diet_sg_RBG_out,
     # pre-table sum_6
     html = """
         <br>
-        <H3 class="out_3 collapsible" id="section4"><span></span>Batch Outputs: Application Type : %s (N=%s)</H3>
+        <H3 class="out_3 collapsible" id="section4"><span></span>Batch Outputs: Application Type : {0!s} (N={1!s})</H3>
         <div class="out_">
             <H4 class="out_1 collapsible" id="section3"><span></span>Dietary based EECs (ppm)</H4>
                 <div class="out_ container_output">
-        """ % (application_type_str, application_type)
+        """.format(application_type_str, application_type)
 
     # table sum_output_6
     tsuminputdata_6 = gettsumdata_6(out_eec_diet_sg_RBG_out, out_eec_diet_tg_RBG_out, out_eec_diet_bp_RBG_out, out_eec_diet_fr_RBG_out,
@@ -1859,9 +1859,9 @@ def table_1(trex_obj):
 def table_2(trex_obj):
     # #pre-table 2
     html = """
-            <H4 class="out_2 collapsible" id="section3"><span></span>Chemical Application (n=%s)</H4>
+            <H4 class="out_2 collapsible" id="section3"><span></span>Chemical Application (n={0!s})</H4>
                 <div class="out_ container_output">
-        """ % (trex_obj.num_apps)
+        """.format((trex_obj.num_apps))
     # table 2
     t2data_all = []
     for i in range(int(trex_obj.num_apps)):
@@ -1920,9 +1920,9 @@ def table_5(trex_obj):
     # pre-table 5
     html = """
         <br>
-        <H3 class="out_1 collapsible" id="section6"><span></span>Results (Upper Bound Kenaga): Application Type : %s</H3>
+        <H3 class="out_1 collapsible" id="section6"><span></span>Results (Upper Bound Kenaga): Application Type : {0!s}</H3>
             <div class="out_ container_output">
-        """ % (trex_obj.application_type)
+        """.format((trex_obj.application_type))
     # table 5
     out_sa_bird_1_s = trex_obj.out_sa_bird_1_s
     out_sa_bird_2_s = trex_obj.out_sa_bird_2_s
@@ -1967,11 +1967,11 @@ def table_6(trex_obj):
     # pre-table 6
     html = """
         <br>
-        <H3 class="out_1 collapsible" id="section6"><span></span>Results: Application Type : %s</H3>
+        <H3 class="out_1 collapsible" id="section6"><span></span>Results: Application Type : {0!s}</H3>
         <div class="out_">
             <H4 class="out_ collapsible" id="section7"><span></span>Dietary Based EECs (mg/kg-dietary item)</H4>
                 <div class="out_ container_output">
-        """ % (trex_obj.application_type)
+        """.format((trex_obj.application_type))
     # table 6
     out_eec_diet_sg = trex_obj.out_eec_diet_sg
     out_eec_diet_tg = trex_obj.out_eec_diet_tg

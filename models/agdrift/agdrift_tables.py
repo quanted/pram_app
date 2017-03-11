@@ -140,9 +140,9 @@ def gett5data(agdrift_obj):
                       'Initial Average Deposition (lb/ac)', 'Initial Average Concentration (ng/L)',
                       'Initial Average Deposition (mg/cm2)', 'Distance to Point or Waterbody (ft)', ],
         # "Value": ['%.3f' % agdrift_obj.out_init_avg_dep_foa,'%.3f' % agdrift_obj.out_avg_dep_gha,'%.3f' % agdrift_obj.out_avg_dep_lbac, '%.3f' % agdrift_obj.out_deposition_ngl, '%.3f' % agdrift_obj.out_avg_field_dep_mgcm,],
-        "Value": ['%.5f' % agdrift_obj.out_avg_dep_foa, '%.5f' % agdrift_obj.out_avg_dep_gha,
-                  '%.5f' % agdrift_obj.out_avg_dep_lbac, '%.5f' % agdrift_obj.out_avg_waterconc_ngl,
-                  '%.5f' % agdrift_obj.out_avg_field_dep_mgcm, '%.d' % int(agdrift_obj.downwind_distance), ],
+        "Value": ['{0:.5f}'.format(agdrift_obj.out_avg_dep_foa), '{0:.5f}'.format(agdrift_obj.out_avg_dep_gha),
+                  '{0:.5f}'.format(agdrift_obj.out_avg_dep_lbac), '{0:.5f}'.format(agdrift_obj.out_avg_waterconc_ngl),
+                  '{0:.5f}'.format(agdrift_obj.out_avg_field_dep_mgcm), '{0:d}'.format(int(agdrift_obj.downwind_distance)), ],
     }
     return data
 
@@ -262,18 +262,18 @@ def table_6(agdrift_obj):
         <table style="display:none;">
             <tr>
                 <td>distance</td>
-                <td id="distance%s">%s</td>
+                <td id="distance{0!s}">{1!s}</td>
             </tr>
             <tr>
                 <td>deposition</td>
-                <td id="deposition%s">%s</td>
+                <td id="deposition{2!s}">{3!s}</td>
             </tr>
         </table>
         <br>
         <h3 class="out_6 collapsible" id="section2"><span></span>Results</h3>
             <H4 class="out_6 collapsible" id="section3"><span></span>Plot of spray drift</H4>
                 <div class="out_"></div>
-        """ % (1, agdrift_obj.out_x, 1, agdrift_obj.out_express_y)  # agdrift_obj.loop_indx
+        """.format(1, agdrift_obj.out_x, 1, agdrift_obj.out_express_y)  # agdrift_obj.loop_indx
 
     # t2data = gett2data(agdrift_obj)
     # t2rows = gethtmlrowsfromcols(t2data,pvrheadings)

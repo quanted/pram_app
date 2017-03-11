@@ -70,28 +70,28 @@ def exams_pi(exams_obj):
 
         # print vars(exams_obj)
         lines[8] = "chem name is " + exams_obj.chem_name + '\n'
-        lines[9] = "set mwt(1)= %10.4E"%float(exams_obj.mw) + '\n'
-        lines[10] = "set sol(1,1)= %10.4E"%float(exams_obj.sol) + '\n'
-        lines[12] = "set Koc(1)= %10.4E"%float(exams_obj.koc) + '\n'
-        lines[13] = "set vapr(1)= %10.4E"%float(exams_obj.vp) + '\n'
+        lines[9] = "set mwt(1)= {0:10.4E}".format(float(exams_obj.mw)) + '\n'
+        lines[10] = "set sol(1,1)= {0:10.4E}".format(float(exams_obj.sol)) + '\n'
+        lines[12] = "set Koc(1)= {0:10.4E}".format(float(exams_obj.koc)) + '\n'
+        lines[13] = "set vapr(1)= {0:10.4E}".format(float(exams_obj.vp)) + '\n'
 
         if exams_obj.anm > 0:
             exams_obj.kbacs = np.log(2)/(float(exams_obj.anm)*24.0)
         else:
             exams_obj.kbacs=0
-        lines[15]="set kbacs(*,1,1)= %10.4E"%(exams_obj.kbacs) + '\n'
+        lines[15]="set kbacs(*,1,1)= {0:10.4E}".format((exams_obj.kbacs)) + '\n'
 
         if exams_obj.aem > 0:
             exams_obj.kbacw = np.log(2)/(float(exams_obj.aem)*24.0)
         else:
             exams_obj.kbacw=0
-        lines[19]="set kbacw(*,1,1)= %10.4E"%(exams_obj.kbacw) + '\n'
+        lines[19]="set kbacw(*,1,1)= {0:10.4E}".format((exams_obj.kbacw)) + '\n'
 
         if exams_obj.aqp > 0:
             exams_obj.kdp = np.log(2)/(float(exams_obj.aqp)*24.0)
         else:
             exams_obj.kdp=0
-        lines[22]="set kdp(1,1)= %10.4E"%(exams_obj.kdp) + '\n'
+        lines[22]="set kdp(1,1)= {0:10.4E}".format((exams_obj.kdp)) + '\n'
 
         if exams_obj.farm == "Yes":
             lines[33]="set evap(*,*)=0.0 \n"
@@ -124,10 +124,10 @@ def exams_pi(exams_obj):
         if exams_obj.k_abn[2] < 7.9E-5:
             exams_obj.k_abn[2] = 0
 
-        lines[23]="set kah(1,1,1)= %10.4E"%(exams_obj.k_abn[0]) + '\n'
-        lines[24]="set knh(1,1,1)= %10.4E"%(exams_obj.k_abn[1]) + '\n'
-        lines[25]="set kbh(1,1,1)= %10.4E"%(exams_obj.k_abn[2]) + '\n'
-        lines[30]="read meteorology %s"%(exams_obj.met) + '\n'
+        lines[23]="set kah(1,1,1)= {0:10.4E}".format((exams_obj.k_abn[0])) + '\n'
+        lines[24]="set knh(1,1,1)= {0:10.4E}".format((exams_obj.k_abn[1])) + '\n'
+        lines[25]="set kbh(1,1,1)= {0:10.4E}".format((exams_obj.k_abn[2])) + '\n'
+        lines[30]="read meteorology {0!s}".format((exams_obj.met)) + '\n'
 
         print vars(exams_obj)
         out = open(file_name, 'w')

@@ -15,7 +15,7 @@ Application_method_CHOICES=(('0','Make a selection'),
                             ('Tier I Ground','Tier I Ground'),
                             ('Tier I Orchard/Airblast','Tier I Orchard/Airblast'))
 Drop_size_distribution_CHOICES=(('0','Make a selection'),
-                                ('Very fine to fine','Very fine to fine'),
+                                ('Very Fine to Fine','Very Fine to Fine'),
                                 ('Fine to Medium','Fine to Medium'),
                                 ('Medium to Coarse','Medium to Coarse'),
                                 ('Coarse to Very Coarse','Coarse to Very Coarse'))
@@ -62,15 +62,15 @@ class AgdriftInp(forms.Form):
         widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
         initial='00')
-    ecosystem_type = forms.ChoiceField(
-        label='Ecosystem type',
-        choices=Ecosystem_type_CHOICES,
-        initial='Aquatic Assessment',
-        validators=[validation.validate_choicefield])
     application_method = forms.ChoiceField(
         label='Application Method',
         choices=Application_method_CHOICES,
         initial='Tier I Aerial',
+        validators=[validation.validate_choicefield])
+    ecosystem_type = forms.ChoiceField(
+        label='Ecosystem type',
+        choices=Ecosystem_type_CHOICES,
+        initial='Aquatic Assessment',
         validators=[validation.validate_choicefield])
     aquatic_body_type = forms.ChoiceField(
         label='Aquatic Assessment Type',
@@ -92,7 +92,7 @@ class AgdriftInp(forms.Form):
         initial='High',
         validators=[validation.validate_choicefield])
     airblast_type = forms.ChoiceField(
-        label='Orchard type',
+        label='Orchard-Airblast Type',
         choices=Orchard_CHOICES,
         initial='Orchard',
         validators=[validation.validate_choicefield])

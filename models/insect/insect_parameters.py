@@ -6,9 +6,7 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms
-from django.db import models
 from django.utils.safestring import mark_safe
-from django.core import validators
 from models.forms import validation
 
 Species_of_the_tested_bird_CHOICES=(('0','Make a selection'),('178','Northern bobwhite quail'),('1580','Mallard duck'),('1','Other'))

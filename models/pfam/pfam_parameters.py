@@ -4,7 +4,6 @@
 """
 from django import forms
 from django.utils.safestring import mark_safe
-from django.core import validators
 from models.forms import validation
 
 weather_CHOICES = (('0', 'Make a selection'), ('wTest', 'test1'))

@@ -1,10 +1,12 @@
-from django.template.loader import render_to_string
-from django.http import HttpResponse
+import StringIO
 import importlib
+import os
+
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+
 import links_left
 from ubertool_app.REST import rest_funcs
-import os
-import StringIO, logging
 
 
 def historyPage(request, model='none', header='none'):

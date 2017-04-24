@@ -1,6 +1,5 @@
-from django.conf.urls import url
 from REST import rest_funcs
-
+from django.conf.urls import url
 
 urlpatterns = [
     url(r'ubertool/(?P<model>.*)/(?P<jid>.*)/?$', rest_funcs.rest_proxy),

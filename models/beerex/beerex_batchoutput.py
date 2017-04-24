@@ -3,8 +3,9 @@
    :synopsis: A useful module indeed.
 """
 
-from django.views.decorators.http import require_POST
 import logging
+
+from django.views.decorators.http import require_POST
 
 
 def read_batch_csv(csv):

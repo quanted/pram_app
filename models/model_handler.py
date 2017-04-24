@@ -11,12 +11,12 @@
    "*_model" module in the model's module directory.
 """
 
-from ubertool_app.REST import auth_s3, rest_funcs
-import os
 import json
-import re
 import logging
+import os
+import re
 
+from ubertool_app.REST import auth_s3, rest_funcs
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()
@@ -94,8 +94,6 @@ def replace_nans(encoded):
 
 
 def create_dataframe(response):
-    import pandas as pd
-
     logging.info("=========== model_handler.create_dataframe")
     # Load 'inputs' key from JSON response to Pandas DataFrame
     logging.info("=========== inputs")
@@ -210,7 +208,6 @@ def generate_model_object_list(response):
     run_type = response.json()['run_type']
     jid = response.json()['_id']
 
-    import pandas as pd
     # Load 'inputs' key from JSON response to Pandas DataFrame
     pd_obj_in = pd.io.json.read_json(json.dumps(response.json()['inputs']))
     # Load 'outputs' key from JSON response to Pandas DataFrame

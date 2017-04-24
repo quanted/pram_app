@@ -3,13 +3,13 @@
    :synopsis: A useful module indeed.
 """
 
-from django.views.decorators.http import require_POST
 import csv
-import iec_model, iec_tables
 import logging
-from threading import Thread
-import Queue
-from collections import OrderedDict
+
+from django.views.decorators.http import require_POST
+
+import iec_model
+import iec_tables
 
 logger = logging.getLogger('IECBatchPage')
 dose_response = []

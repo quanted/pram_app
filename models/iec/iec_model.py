@@ -3,11 +3,12 @@
    :synopsis: A useful module indeed.
 """
 
-import logging
-from ubertool_app.REST import auth_s3, rest_funcs
 import json
 import os
+
 import requests
+
+from ubertool_app.REST import auth_s3, rest_funcs
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()

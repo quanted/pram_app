@@ -9,13 +9,13 @@ Compatible with Python versions 2.4-3.x
 
 __version__ = "1.2.0"
 
-from struct import pack, unpack, calcsize, error
+import array
+import itertools
 import os
 import sys
-import time
-import array
 import tempfile
-import itertools
+import time
+from struct import pack, unpack, calcsize, error
 
 #
 # Constants for shape types

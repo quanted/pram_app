@@ -6,7 +6,6 @@
 from django.template.loader import render_to_string
 
 def agdrift_therpsInputPage(request, model='', header='', formData=None):
-    import agdrift_therps_parameters
     from models.agdrift import agdrift_parameters
     from models.therps import therps_parameters
 

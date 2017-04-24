@@ -3,11 +3,11 @@
    :synopsis: A useful module indeed.
 """
 
-import numpy
+import datetime
+import logging
+
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
-import logging
-import datetime
 
 logger = logging.getLogger("beerexTables")
 

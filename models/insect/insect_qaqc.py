@@ -3,12 +3,13 @@
    :synopsis: A useful module indeed.
 """
 
-import insect_model
+import csv
 import logging
 import os
 import unittest
 from StringIO import StringIO
-import csv
+
+import insect_model
 
 logger = logging.getLogger('InsectQaqcPage')
 

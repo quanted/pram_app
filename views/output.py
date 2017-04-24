@@ -1,10 +1,12 @@
+import importlib
+import logging
+import os
+
+from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
-from django.http import HttpResponse
-import importlib
+
 import links_left
-import os
-import logging
 
 print('qed.ubertool_app.views.output')
 

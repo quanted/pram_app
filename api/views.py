@@ -1,8 +1,8 @@
 import os
+
+import requests
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-import requests
-
 
 rest_server = os.environ['UBERTOOL_REST_SERVER']
 

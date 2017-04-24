@@ -3,12 +3,12 @@
    :synopsis: A useful module indeed.
 """
 
+import datetime
+import logging
+
 import numpy
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
-import logging
-import time
-import datetime
 
 logger = logging.getLogger("InsectTables")
 

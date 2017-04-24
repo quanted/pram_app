@@ -3,15 +3,16 @@
    :synopsis: A useful module indeed.
 """
 
+import Queue
+import csv
+import logging
+from collections import OrderedDict
+from threading import Thread
+
 from django.views.decorators.http import require_POST
 
-import csv
-import insect_model,insect_tables
-
-import logging
-from threading import Thread
-import Queue
-from collections import OrderedDict
+import insect_model
+import insect_tables
 
 logger = logging.getLogger("InsectBatchOutput")
 

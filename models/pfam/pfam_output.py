@@ -3,10 +3,10 @@
    :synopsis: A useful module indeed.
 """
 
+import numpy as np
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
-import numpy as np
-import json
+
 
 @require_POST
 def pfamOutputPage(request):

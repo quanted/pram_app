@@ -4,10 +4,10 @@
 """
 
 # import numpy
-from django.template import Context, Template
-from django.utils.safestring import mark_safe
-import exams_model
 import datetime
+
+from django.template import Context, Template
+
 
 def getheaderpvu():
 	headings = ["Parameter", "Value", "Units"]

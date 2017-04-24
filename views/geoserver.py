@@ -1,8 +1,9 @@
+import json
+import logging
+
+from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
-from django.http import HttpResponse
-import logging
-import json
 
 
 def test_page(request):

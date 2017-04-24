@@ -3,14 +3,14 @@
    :synopsis: A useful module indeed.
 """
 
-from ubertool_app.REST import auth_s3, rest_funcs
 import json
 import logging
+
+from ubertool_app.REST import auth_s3, rest_funcs
+
 logger = logging.getLogger('SAM Model')
 import os
 import requests
-from collections import OrderedDict
-import datetime
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()

@@ -3,9 +3,11 @@
    :synopsis: A useful module indeed.
 """
 
-from ubertool_app.REST import auth_s3, rest_funcs
 import json
 import logging
+
+from ubertool_app.REST import auth_s3, rest_funcs
+
 logger = logging.getLogger('Insect Model')
 import os
 import requests

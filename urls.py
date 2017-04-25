@@ -1,11 +1,11 @@
 #  https://docs.djangoproject.com/en/1.6/intro/tutorial03/
-from django.conf.urls import include, url
-from views import misc, landing
-from views import description, input, output, algorithms, references, qaqc
-from views import geoserver, batch, history, generateReport
+from django.conf.urls import url
+
 from api import views as api_views
 from docs import views as docs_views
-from api import urls
+from views import batch
+from views import description, input, output, algorithms, references, qaqc
+from views import misc, landing
 
 print('qed.ubertool_app.urls')
 

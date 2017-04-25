@@ -3,11 +3,12 @@
    :synopsis: A useful module indeed.
 """
 
+import datetime
+import logging
+
 import numpy as np
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
-import logging
-import datetime
 
 logger = logging.getLogger("KabamTables")
 

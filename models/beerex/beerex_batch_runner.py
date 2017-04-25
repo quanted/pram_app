@@ -3,11 +3,9 @@
    :synopsis: A useful module indeed.
 """
 
-import numpy as np
 import logging
 import sys
 sys.path.append("utils")
-import json_utils
 sys.path.append("./beerex")
 import beerex_model
 

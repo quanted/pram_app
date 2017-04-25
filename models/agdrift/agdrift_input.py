@@ -4,7 +4,9 @@
 """
 
 from django.template.loader import render_to_string
+
 import agdrift_parameters
+
 
 def agdrift_input_page(request, model='', header='', form_data=None):
     html = render_to_string('04uberinput_jquery.html', {'model': model})

@@ -7,18 +7,20 @@ Takes SAM output files and summarizes them by user-specified concentration and e
 shapefiles containing summary data
 """
 
-import glob
-import datetime
-import os
 import csv
-import sys
-import itertools
-import shapefile
-import math
-import re
+import datetime
 import getopt
+import glob
+import itertools
+import math
+import os
+import re
+import sys
 
 from __builtin__ import max
+
+import shapefile
+
 
 def clear_tables(d, files):
     del_files = [os.path.join(d, f) for f in os.listdir(d) if f.split(".")[0] in files]

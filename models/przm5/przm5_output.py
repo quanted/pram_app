@@ -3,9 +3,8 @@
    :synopsis: A useful module indeed.
 """
 
-from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
-import logging
+
 
 @require_POST
 def przm5OutputPage(request):

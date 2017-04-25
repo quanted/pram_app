@@ -1,13 +1,13 @@
-from django.views.decorators.http import require_POST
 import StringIO
-from django.http import HttpResponse
-from django.conf import settings
 import datetime
-import pytz
 import json
 import os
 
-import logging
+import pytz
+from django.conf import settings
+from django.http import HttpResponse
+from django.views.decorators.http import require_POST
+
 
 def parsePOST(request):
     pdf_t = request.POST.get('pdf_t')

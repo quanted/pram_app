@@ -3,14 +3,14 @@
    :synopsis: A useful module indeed.
 """
 
-from django.views.decorators.http import require_POST
-from StringIO import StringIO
-import trex_model, trex_tables
-import csv
-from threading import Thread
 import Queue
+import csv
 from collections import OrderedDict
-import logging
+from threading import Thread
+
+import trex_model
+import trex_tables
+from django.views.decorators.http import require_POST
 
 chem_name = []
 use = []

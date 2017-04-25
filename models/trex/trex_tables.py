@@ -3,8 +3,9 @@
    :synopsis: A useful module indeed.
 """
 
-import numpy as np
 import datetime
+
+import numpy as np
 from django.template import Context, Template
 
 

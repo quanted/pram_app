@@ -2,9 +2,10 @@
 .. module:: therps_tables
    :synopsis: A useful module indeed.
 """
+import datetime
+
 import numpy as np
 from django.template import Context, Template
-import datetime
 
 
 def getheaderpvu():

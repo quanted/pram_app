@@ -52,8 +52,8 @@ def html_table(row,iter):
     calculation_input.append(str(row[8]))
 
     Input_header="""<div class="out_">
-                        <br><H3>Batch Calculation of Iteration %s</H3>
-                    </div>"""%(iter)
+                        <br><H3>Batch Calculation of Iteration {0!s}</H3>
+                    </div>""".format((iter))
 
     agdrift_obj_temp = agdrift_model.agdrift(True,True,'batch',drop_size[iter-1],ecosystem_type[iter-1], application_method[iter-1],boom_height[iter-1],orchard_type[iter-1],application_rate[iter-1],distance[iter-1],aquatic_type[iter-1],calculation_input[iter-1],)
     agdrift_obj_temp.loop_indx = str(iter)

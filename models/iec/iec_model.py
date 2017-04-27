@@ -25,9 +25,9 @@ class iec(object):
 
     def __str__(self):
         string_rep = ''
-        string_rep = string_rep + "dose_response = %.2e" % self.dose_response
-        string_rep = string_rep + "lc50 = %.2e" % self.lc50
-        string_rep = string_rep + "threshold = %.2e" % self.threshold
+        string_rep = string_rep + "dose_response = {0:.2e}".format(self.dose_response)
+        string_rep = string_rep + "lc50 = {0:.2e}".format(self.lc50)
+        string_rep = string_rep + "threshold = {0:.2e}".format(self.threshold)
         return string_rep
 
 

@@ -143,9 +143,9 @@ def html_table(row_inp_all):
 
             batch_header = """
                 <div class="out_">
-                    <br><H3>Batch Calculation of Iteration %s:</H3>
+                    <br><H3>Batch Calculation of Iteration {0!s}:</H3>
                 </div>
-                """%(iter + 1)
+                """.format((iter + 1))
 
             out_html_temp = batch_header + insect_tables.table_all(insect_obj)
             out_html_all[iter]=out_html_temp

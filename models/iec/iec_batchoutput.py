@@ -32,8 +32,8 @@ def html_table(row_inp,iter):
     threshold.append(float(row_inp[2]))
 
     Input_header="""<div class="out_">
-                        <br><H3>Batch Calculation of Iteration %s</H3>
-                    </div>"""%(iter)
+                        <br><H3>Batch Calculation of Iteration {0!s}</H3>
+                    </div>""".format((iter))
 
     iec_obj_temp = iec_model.iec(True,True, 'batch',dose_response[iter-1],lc50[iter-1],threshold[iter-1])
     iec_obj_temp.loop_indx = str(iter)

@@ -74,9 +74,9 @@ def html_table(row_inp_all):
 
             batch_header = """
                 <div class="out_">
-                    <br><H3>Batch Calculation of Iteration %s:</H3>
+                    <br><H3>Batch Calculation of Iteration {0!s}:</H3>
                 </div>
-                """%(iter)
+                """.format((iter))
 
             html_temp = earthworm_tables.table_all_batch(earthworm_tables.pvuheadings,earthworm_tables.sumheadings,earthworm_tables.tmpl, earth)
             out_html_temp = batch_header + html_temp

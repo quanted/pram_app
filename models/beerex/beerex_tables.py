@@ -85,7 +85,7 @@ def gett1data(beerex_obj):
 def gett2data(beerex_obj):
     data = { 
         "Description": ['Adult Contact LD50', 'Adult Oral LD50', 'Adult Oral NOAEL', 'Larval LD50', 'Larval NOAEL'],
-        "Value (ug a.i./bee)": ['%g' % beerex_obj.adult_contact_ld50, '%g' % beerex_obj.adult_oral_ld50, '%g' % beerex_obj.adult_oral_noael, '%g' % beerex_obj.larval_ld50, '%s' % beerex_obj.larval_noael,]
+        "Value (ug a.i./bee)": ['{0:g}'.format(beerex_obj.adult_contact_ld50), '{0:g}'.format(beerex_obj.adult_oral_ld50), '{0:g}'.format(beerex_obj.adult_oral_noael), '{0:g}'.format(beerex_obj.larval_ld50), '{0!s}'.format(beerex_obj.larval_noael),]
     }
     return data
 
@@ -93,7 +93,7 @@ def gett2data(beerex_obj):
 def gett3data(beerex_obj):
     data = { 
         "Application Method": ['Foliar Spray', 'Soil Application', 'Seed Treatment', 'Tree Trunk'],
-        "EECs (ug a.i./mg)": ['%g' % beerex_obj.out_eec_spray, '%g' % beerex_obj.out_eec_soil,'%g' % beerex_obj.out_eec_seed, '%s' % beerex_obj.out_eec_tree,],
+        "EECs (ug a.i./mg)": ['{0:g}'.format(beerex_obj.out_eec_spray), '{0:g}'.format(beerex_obj.out_eec_soil),'{0:g}'.format(beerex_obj.out_eec_seed), '{0!s}'.format(beerex_obj.out_eec_tree),],
     }
     return data
 
@@ -107,30 +107,30 @@ def gett4data(beerex_obj):
                                'Adult Worker (foraging for nectar)', 'Adult Worker (maintenance of hive in winter)', 'Adult Drone',
                                'Adult Queen (laying 1500 eggs/day)'],
         "Average Age (days)": ['1', '2', '3', '4', '5', '6+', '1', '2', '3', '4+', '0-10', '6-17', '11-18', '>18', '>18', '0-90', '>10', 'entire lifestage'],
-        "Jelly (mg/day)": ['%g' % beerex_obj.lw1_jelly, '%g' % beerex_obj.lw2_jelly, '%g' % beerex_obj.lw3_jelly, '%g', '%g', '%g', '%g' % beerex_obj.lq1_jelly,
-                           '%g' % beerex_obj.lq2_jelly, '%g' % beerex_obj.lq3_jelly, '%g' % beerex_obj.lq4_jelly, '%g', '%g', '%g', '%g', '%g', '%g', '%g', '%s' % beerex_obj.aq_jelly],
-        "Nectar (mg/day)": ['%g', '%g', '%g', '%g' % beerex_obj.lw4_nectar, '%g' % beerex_obj.lw5_nectar, '%g' % beerex_obj.ld6_nectar, '%g', '%g', '%g', '%g',
-                            '%g' % beerex_obj.aw_cell_nectar, '%g' % beerex_obj.aw_brood_nectar, '%g' % beerex_obj.aw_comb_nectar, '%g' % beerex_obj.aw_fpollen_nectar,
-                            '%g' % beerex_obj.aw_fnectar_nectar, '%g' % beerex_obj.aw_winter_nectar, '%g' % beerex_obj.ad_nectar, '%s'],
-        "Pollen (mg/day)": ['%g', '%g', '%g', '%g' % beerex_obj.lw4_pollen, '%g' % beerex_obj.lw5_pollen, '%g' % beerex_obj.ld6_pollen, '%g', '%g', '%g', '%g',
-                            '%g' % beerex_obj.aw_cell_pollen, '%g' % beerex_obj.aw_brood_pollen, '%g' % beerex_obj.aw_comb_pollen, '%g' % beerex_obj.aw_fpollen_pollen,
-                            '%g' % beerex_obj.aw_fnectar_pollen, '%g' % beerex_obj.aw_winter_pollen, '%g' % beerex_obj.ad_pollen, '%s'],
-        "Total Dose (ug a.i./bee)": ['%g' % beerex_obj.out_lw1_total_dose, '%g' % beerex_obj.out_lw2_total_dose, '%g' % beerex_obj.out_lw3_total_dose,
-                                     '%g' % beerex_obj.out_lw4_total_dose, '%g' % beerex_obj.out_lw5_total_dose, '%g' % beerex_obj.out_ld6_total_dose,
-                                     '%g' % beerex_obj.out_lq1_total_dose, '%g' % beerex_obj.out_lq2_total_dose, '%g' % beerex_obj.out_lq3_total_dose,
-                                     '%g' % beerex_obj.out_lq4_total_dose, '%g' % beerex_obj.out_aw_cell_total_dose, '%g' % beerex_obj.out_aw_brood_total_dose,
-                                     '%g' % beerex_obj.out_aw_comb_total_dose, '%g' % beerex_obj.out_aw_fpollen_total_dose, '%g' % beerex_obj.out_aw_fnectar_total_dose,
-                                     '%g' % beerex_obj.out_aw_winter_total_dose, '%g' % beerex_obj.out_ad_total_dose, '%s' % beerex_obj.out_aq_total_dose],
-        "Acute RQ": ['%g' % beerex_obj.out_lw1_acute_rq, '%g' % beerex_obj.out_lw2_acute_rq, '%g' % beerex_obj.out_lw3_acute_rq, '%g' % beerex_obj.out_lw4_acute_rq,
-                     '%g' % beerex_obj.out_lw5_acute_rq, '%g' % beerex_obj.out_ld6_acute_rq, '%g' % beerex_obj.out_lq1_acute_rq, '%g' % beerex_obj.out_lq2_acute_rq,
-                     '%g' % beerex_obj.out_lq3_acute_rq, '%g' % beerex_obj.out_lq4_acute_rq, '%g' % beerex_obj.out_aw_cell_acute_rq, '%g' % beerex_obj.out_aw_brood_acute_rq,
-                     '%g' % beerex_obj.out_aw_comb_acute_rq, '%g' % beerex_obj.out_aw_pollen_acute_rq, '%s' % beerex_obj.out_aw_nectar_acute_rq,
-                     '%g' % beerex_obj.out_aw_winter_acute_rq, '%g' % beerex_obj.out_ad_chronic_rq, '%g' % beerex_obj.out_aq_chronic_rq],
-        "Chronic RQ": ['%g' % beerex_obj.out_lw1_chronic_rq, '%g' % beerex_obj.out_lw2_chronic_rq, '%g' % beerex_obj.out_lw3_chronic_rq, '%g' % beerex_obj.out_lw4_chronic_rq,
-                       '%g' % beerex_obj.out_lw5_chronic_rq, '%g' % beerex_obj.out_ld6_chronic_rq, '%g' % beerex_obj.out_lq1_chronic_rq, '%g' % beerex_obj.out_lq2_chronic_rq,
-                       '%g' % beerex_obj.out_lq3_chronic_rq, '%g' % beerex_obj.out_lq4_chronic_rq, '%g' % beerex_obj.out_aw_cell_chronic_rq, '%g' % beerex_obj.out_aw_brood_chronic_rq,
-                       '%g' % beerex_obj.out_aw_comb_chronic_rq, '%g' % beerex_obj.out_aw_pollen_chronic_rq, '%g' % beerex_obj.out_aw_nectar_chronic_rq,
-                       '%g' % beerex_obj.out_aw_winter_chronic_rq, '%g' % beerex_obj.out_ad_chronic_rq, '%s' % beerex_obj.out_aq_chronic_rq]
+        "Jelly (mg/day)": ['{0:g}'.format(beerex_obj.lw1_jelly), '{0:g}'.format(beerex_obj.lw2_jelly), '{0:g}'.format(beerex_obj.lw3_jelly), '%g', '%g', '%g', '{0:g}'.format(beerex_obj.lq1_jelly),
+                           '{0:g}'.format(beerex_obj.lq2_jelly), '{0:g}'.format(beerex_obj.lq3_jelly), '{0:g}'.format(beerex_obj.lq4_jelly), '%g', '%g', '%g', '%g', '%g', '%g', '%g', '{0!s}'.format(beerex_obj.aq_jelly)],
+        "Nectar (mg/day)": ['%g', '%g', '%g', '{0:g}'.format(beerex_obj.lw4_nectar), '{0:g}'.format(beerex_obj.lw5_nectar), '{0:g}'.format(beerex_obj.ld6_nectar), '%g', '%g', '%g', '%g',
+                            '{0:g}'.format(beerex_obj.aw_cell_nectar), '{0:g}'.format(beerex_obj.aw_brood_nectar), '{0:g}'.format(beerex_obj.aw_comb_nectar), '{0:g}'.format(beerex_obj.aw_fpollen_nectar),
+                            '{0:g}'.format(beerex_obj.aw_fnectar_nectar), '{0:g}'.format(beerex_obj.aw_winter_nectar), '{0:g}'.format(beerex_obj.ad_nectar), '%s'],
+        "Pollen (mg/day)": ['%g', '%g', '%g', '{0:g}'.format(beerex_obj.lw4_pollen), '{0:g}'.format(beerex_obj.lw5_pollen), '{0:g}'.format(beerex_obj.ld6_pollen), '%g', '%g', '%g', '%g',
+                            '{0:g}'.format(beerex_obj.aw_cell_pollen), '{0:g}'.format(beerex_obj.aw_brood_pollen), '{0:g}'.format(beerex_obj.aw_comb_pollen), '{0:g}'.format(beerex_obj.aw_fpollen_pollen),
+                            '{0:g}'.format(beerex_obj.aw_fnectar_pollen), '{0:g}'.format(beerex_obj.aw_winter_pollen), '{0:g}'.format(beerex_obj.ad_pollen), '%s'],
+        "Total Dose (ug a.i./bee)": ['{0:g}'.format(beerex_obj.out_lw1_total_dose), '{0:g}'.format(beerex_obj.out_lw2_total_dose), '{0:g}'.format(beerex_obj.out_lw3_total_dose),
+                                     '{0:g}'.format(beerex_obj.out_lw4_total_dose), '{0:g}'.format(beerex_obj.out_lw5_total_dose), '{0:g}'.format(beerex_obj.out_ld6_total_dose),
+                                     '{0:g}'.format(beerex_obj.out_lq1_total_dose), '{0:g}'.format(beerex_obj.out_lq2_total_dose), '{0:g}'.format(beerex_obj.out_lq3_total_dose),
+                                     '{0:g}'.format(beerex_obj.out_lq4_total_dose), '{0:g}'.format(beerex_obj.out_aw_cell_total_dose), '{0:g}'.format(beerex_obj.out_aw_brood_total_dose),
+                                     '{0:g}'.format(beerex_obj.out_aw_comb_total_dose), '{0:g}'.format(beerex_obj.out_aw_fpollen_total_dose), '{0:g}'.format(beerex_obj.out_aw_fnectar_total_dose),
+                                     '{0:g}'.format(beerex_obj.out_aw_winter_total_dose), '{0:g}'.format(beerex_obj.out_ad_total_dose), '{0!s}'.format(beerex_obj.out_aq_total_dose)],
+        "Acute RQ": ['{0:g}'.format(beerex_obj.out_lw1_acute_rq), '{0:g}'.format(beerex_obj.out_lw2_acute_rq), '{0:g}'.format(beerex_obj.out_lw3_acute_rq), '{0:g}'.format(beerex_obj.out_lw4_acute_rq),
+                     '{0:g}'.format(beerex_obj.out_lw5_acute_rq), '{0:g}'.format(beerex_obj.out_ld6_acute_rq), '{0:g}'.format(beerex_obj.out_lq1_acute_rq), '{0:g}'.format(beerex_obj.out_lq2_acute_rq),
+                     '{0:g}'.format(beerex_obj.out_lq3_acute_rq), '{0:g}'.format(beerex_obj.out_lq4_acute_rq), '{0:g}'.format(beerex_obj.out_aw_cell_acute_rq), '{0:g}'.format(beerex_obj.out_aw_brood_acute_rq),
+                     '{0:g}'.format(beerex_obj.out_aw_comb_acute_rq), '{0:g}'.format(beerex_obj.out_aw_pollen_acute_rq), '{0!s}'.format(beerex_obj.out_aw_nectar_acute_rq),
+                     '{0:g}'.format(beerex_obj.out_aw_winter_acute_rq), '{0:g}'.format(beerex_obj.out_ad_chronic_rq), '{0:g}'.format(beerex_obj.out_aq_chronic_rq)],
+        "Chronic RQ": ['{0:g}'.format(beerex_obj.out_lw1_chronic_rq), '{0:g}'.format(beerex_obj.out_lw2_chronic_rq), '{0:g}'.format(beerex_obj.out_lw3_chronic_rq), '{0:g}'.format(beerex_obj.out_lw4_chronic_rq),
+                       '{0:g}'.format(beerex_obj.out_lw5_chronic_rq), '{0:g}'.format(beerex_obj.out_ld6_chronic_rq), '{0:g}'.format(beerex_obj.out_lq1_chronic_rq), '{0:g}'.format(beerex_obj.out_lq2_chronic_rq),
+                       '{0:g}'.format(beerex_obj.out_lq3_chronic_rq), '{0:g}'.format(beerex_obj.out_lq4_chronic_rq), '{0:g}'.format(beerex_obj.out_aw_cell_chronic_rq), '{0:g}'.format(beerex_obj.out_aw_brood_chronic_rq),
+                       '{0:g}'.format(beerex_obj.out_aw_comb_chronic_rq), '{0:g}'.format(beerex_obj.out_aw_pollen_chronic_rq), '{0:g}'.format(beerex_obj.out_aw_nectar_chronic_rq),
+                       '{0:g}'.format(beerex_obj.out_aw_winter_chronic_rq), '{0:g}'.format(beerex_obj.out_ad_chronic_rq), '{0!s}'.format(beerex_obj.out_aq_chronic_rq)]
     }
     return data
 

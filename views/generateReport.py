@@ -19,7 +19,7 @@ def parsePOST(request):
     final_str = final_str + """<br>"""
     if (int(pdf_nop)>0):
         for i in range(int(pdf_nop)):
-            final_str = final_str + """<img id="imgChart1" src="%s" />"""%(pdf_p[i])
+            final_str = final_str + """<img id="imgChart1" src="{0!s}" />""".format((pdf_p[i]))
             final_str = final_str + """<br>"""
 
     # Styling
@@ -60,8 +60,8 @@ def link_callback(uri, rel):
             raise Exception(
                     # 'media URI must start with %s or %s' % \
                     # (sUrl, mUrl))
-                    'media URI must start with %s' % \
-                    (sUrl))
+                    'media URI must start with {0!s}'.format( \
+                    (sUrl)))
     return path
 
 

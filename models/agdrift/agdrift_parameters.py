@@ -7,49 +7,37 @@ from django.utils.safestring import mark_safe
 
 from ubertool_app.models.forms import validation
 
-Ecosystem_type_CHOICES=(('0','Make a selection'),
-                        ('Aquatic Assessment','Aquatic Assessment'),
+Ecosystem_type_CHOICES=(('Aquatic Assessment','Aquatic Assessment'),
                         ('Terrestrial Assessment', 'Terrestrial Assessment'))
-Application_method_CHOICES=(('0','Make a selection'),
-                            ('Tier I Aerial','Tier I Aerial'),
+Application_method_CHOICES=(('Tier I Aerial','Tier I Aerial'),
                             ('Tier I Ground','Tier I Ground'),
                             ('Tier I Orchard/Airblast','Tier I Orchard/Airblast'))
-Drop_size_distribution_aerial_CHOICES=(('0','Make a selection'),
-                                ('Very Fine to Fine','Very Fine to Fine'),
+Drop_size_distribution_aerial_CHOICES=(('Very Fine to Fine','Very Fine to Fine'),
                                 ('Fine to Medium','Fine to Medium'),
                                 ('Medium to Coarse','Medium to Coarse'),
                                 ('Coarse to Very Coarse','Coarse to Very Coarse'))
-Drop_size_distribution_ground_CHOICES=(('0','Make a selection'),
-                                ('Very Fine to Fine','Very Fine to Fine'),
+Drop_size_distribution_ground_CHOICES=(('Very Fine to Fine','Very Fine to Fine'),
                                 ('Fine to Medium/Coarse','Fine to Medium/Coarse'))
-Boom_height_CHOICES=(('0','Make a selection'),
-                     ('Low','Low'),
+Boom_height_CHOICES=(('Low','Low'),
                      ('High','High'))
 
-Orchard_CHOICES=(('0','Make a selection'),
-                 ('Normal','Normal (Stone and Pome Fruit Vineyard)'),
+Orchard_CHOICES=(('Normal','Normal (Stone and Pome Fruit Vineyard)'),
                  ('Dense','Dense (Citrus, tall trees)'),
                  ('Sparse', 'Sparse (Young, dormant)'),
                  ('Vineyard', 'Vineyard'),
                  ('Orchard','Orchard'))
-Terrestrial_type_CHOICES=(('0','Make a selection'),
-                          # ('EPA Defined Terrestrial','EPA Defined Terrestrial'),
-                          # ('User Defined Terrestrial','User Defined Terrestrial'))
-                          ('Point Deposition','Point Deposition'),
+Terrestrial_type_CHOICES=(('Point Deposition','Point Deposition'),
                           ('User Defined Terrestrial Area','User Defined Terrestrial Area'))
-Aquatic_type_CHOICES=(('0','Make a selection'),
-                      ('EPA Defined Pond','EPA Defined Pond'),
+Aquatic_type_CHOICES=(('EPA Defined Pond','EPA Defined Pond'),
                       ('EPA Defined Wetland', 'EPA Defined Wetland'),
                       ('User Defined Waterbody', 'User Defined Waterbody'))
-Calculation_input_CHOICES=(('0','Make a selection'),
-                           ('Distance','Distance to waterbody or field'),
+Calculation_input_CHOICES=(('Distance','Distance to waterbody or field'),
                            ('Fraction','Fraction of applied'),
                            ('Initial Average Deposition (g/ha)','Initial Average Deposition (g/ha)'),
                            ('Initial Average Deposition (lb/ac)', 'Initial Average Deposition (lb/ac)'),
                            ('Initial Average Concentration (ng/L)', 'Initial Average Concentration (ng/L)'),
                            ('Initial Average Deposiion (mg/cm2)','Initial Average Deposition (mg/cm2)'))
-Version_CHOICES = (('0','Make a selection'),
-                   ('1.0','1.0'),
+Version_CHOICES = ( ('1.0','1.0'),
                    ('2.1.1', '2.1.1'),
                    ('3.0', '3.0'))
 #Aquatic Assessment
@@ -114,18 +102,22 @@ class AgdriftInp(forms.Form):
     epa_pond_width = forms.FloatField(
         label=mark_safe('EPA Defined Pond Width (ft)'),
         initial='208.7',
+        disabled=True,
         validators=[validation.validate_greaterthan0])
     epa_pond_depth = forms.FloatField(
         label=mark_safe('EPA Defined Pond depth (ft)'),
         initial='6.56',
+        disabled=True,
         validators=[validation.validate_greaterthan0])
     epa_wetland_width = forms.FloatField(
         label=mark_safe('EPA Defined Wetland Width (ft)'),
         initial='208.7',
+        disabled=True,
         validators=[validation.validate_greaterthan0])
     epa_wetland_depth = forms.FloatField(
         label=mark_safe('EPA Defined Wetland depth (ft)'),
         initial='0.4921',
+        disabled=True,
         validators=[validation.validate_greaterthan0])
     user_waterbody_width = forms.FloatField(
         label=mark_safe('User Defined Waterbody Width (ft)'),

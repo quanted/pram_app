@@ -14,6 +14,7 @@
 import json
 import logging
 import os
+import pandas as pd
 import re
 
 from ubertool_app.REST import auth_s3, rest_funcs

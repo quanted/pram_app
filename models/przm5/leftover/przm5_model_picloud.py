@@ -15,8 +15,8 @@ logger = logging.getLogger('PRZM5 Model')
 ############Provide the key and connect to the picloud####################
 api_key=keys_Picloud_S3.picloud_api_key
 api_secretkey=keys_Picloud_S3.picloud_api_secretkey
-base64string = base64.encodestring('%s:%s' % (api_key, api_secretkey))[:-1]
-http_headers = {'Authorization' : 'Basic %s' % base64string}
+base64string = base64.encodestring('{0!s}:{1!s}'.format(api_key, api_secretkey))[:-1]
+http_headers = {'Authorization' : 'Basic {0!s}'.format(base64string)}
 ###########################################################################
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
@@ -80,8 +80,8 @@ def get_jid(pfac, snowmelt, evapDepth,
     output_st = ''
         
     while output_st!="done":
-        response_st = urlfetch.fetch(url='https://api.picloud.com/job/?jids=%s&field=status' %jid, headers=http_headers)
-        output_st = json.loads(response_st.content)['info']['%s' %jid]['status']
+        response_st = urlfetch.fetch(url='https://api.picloud.com/job/?jids={0!s}&field=status'.format(jid), headers=http_headers)
+        output_st = json.loads(response_st.content)['info']['{0!s}'.format(jid)]['status']
 
     url_val = 'https://api.picloud.com/job/result/?jid='+str(jid)
     response_val = urlfetch.fetch(url=url_val, method=urlfetch.GET, headers=http_headers)

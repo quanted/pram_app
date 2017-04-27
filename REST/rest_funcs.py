@@ -298,7 +298,7 @@ def self_documentation(request):
 
     response = requests.get(rest_url + request.path)
 
-    html = "<h3>You are at: %s</h3>" % path
+    html = "<h3>You are at: {0!s}</h3>".format(path)
 
     return HttpResponse(html, content_type="text/html")
 

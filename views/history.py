@@ -263,21 +263,21 @@ def table_1(user_hist_obj):
         else:
             history_revisit_link = 'history/revisit'
 
-        html = html + '''<form method="get" action=%s target="_blank">'''%(history_revisit_link)
-        html = html + '''<tr id="%s"><td style="display:none"><input name="model_name" id="model_name" value=%s type="text"></td>'''%(i+1, user_hist_obj.model_name)
-        html = html + "<td>%s</td>"%(i+1)
-        html = html + "<td>%s</td>"%(user_hist_obj.user_id[i])
-        html = html + "<td>%s</td>"%(user_hist_obj.time_id[i])
-        html = html + '''<td style="display:none"><input name="jid" id="jid" value=%s type="text"></td>'''%(user_hist_obj.jid[i])
+        html = html + '''<form method="get" action={0!s} target="_blank">'''.format((history_revisit_link))
+        html = html + '''<tr id="{0!s}"><td style="display:none"><input name="model_name" id="model_name" value={1!s} type="text"></td>'''.format(i+1, user_hist_obj.model_name)
+        html = html + "<td>{0!s}</td>".format((i+1))
+        html = html + "<td>{0!s}</td>".format((user_hist_obj.user_id[i]))
+        html = html + "<td>{0!s}</td>".format((user_hist_obj.time_id[i]))
+        html = html + '''<td style="display:none"><input name="jid" id="jid" value={0!s} type="text"></td>'''.format((user_hist_obj.jid[i]))
         try:
             # Geneec does not have 'run_type' key
-            html = html + '''<td>%s</td>'''%(user_hist_obj.run_type[i].upper())
+            html = html + '''<td>{0!s}</td>'''.format((user_hist_obj.run_type[i].upper()))
         except:
             html = html + '''<td>SINGLE</td>'''
-        html = html + '''<td><input type="submit" value="View" class="input_button_%s" ></td></tr>'''%(i+1)
+        html = html + '''<td><input type="submit" value="View" class="input_button_{0!s}" ></td></tr>'''.format((i+1))
         html = html + "</form>"
 
-    html = html + '''<tr style="display:none"><td id="total_num">%s</td></tr>'''%(user_hist_obj.total_num)
+    html = html + '''<tr style="display:none"><td id="total_num">{0!s}</td></tr>'''.format((user_hist_obj.total_num))
     html = html + '''
             </tbody></table><br>
             <div id="holder_pagination"></div>

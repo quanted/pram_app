@@ -111,14 +111,14 @@ out_fun_chronconm = []
 
 def set_globals(**kwargs):
     for argname in kwargs:
-        globals()['%s_in' % argname] = kwargs[argname]
+        globals()['{0!s}_in'.format(argname)] = kwargs[argname]
 
 class TestCase_fw_bird_out(unittest.TestCase):
     def setUp(self):
         self.insect_obj = insect_object_in
     def testFW_bird_out_in(self):
         out_fun_fw_bird.append(self.insect_obj.fw_bird_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("fw_bird",self.insect_obj.fw_bird_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("fw_bird", self.insect_obj.fw_bird_out, fun)
         self.assertEqual(round(fun,3),round(self.fw_bird_out,3),testFailureMessage)
 
 class TestCase_fw_mamm_out(unittest.TestCase):
@@ -126,7 +126,7 @@ class TestCase_fw_mamm_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testFW_mamm_out_in(self):
         out_fun_fw_mamm.append(self.insect_obj.fw_mamm_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("fw_mamm",self.insect_obj.fw_mamm_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("fw_mamm", self.insect_obj.fw_mamm_out, fun)
         self.assertEqual(round(fun,3),round(self.fw_mamm_out,3),testFailureMessage)
 
 class TestCase_dose_bird_out(unittest.TestCase):
@@ -134,7 +134,7 @@ class TestCase_dose_bird_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testdose_bird_out_in(self):
         out_fun_dose_bird.append(self.insect_obj.dose_bird_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("dose_bird",self.insect_obj.dose_bird_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("dose_bird", self.insect_obj.dose_bird_out, fun)
         self.assertEqual(round(fun,3),round(self.dose_bird_out,3),testFailureMessage)
 
 class TestCase_dose_mamm_out(unittest.TestCase):
@@ -142,7 +142,7 @@ class TestCase_dose_mamm_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testdose_mamm_out_in(self):
         out_fun_dose_mamm.append(self.insect_obj.dose_mamm_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("dose_mamm",self.insect_obj.dose_mamm_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("dose_mamm", self.insect_obj.dose_mamm_out, fun)
         self.assertEqual(round(fun,3),round(self.dose_mamm_out,3),testFailureMessage)
 
 class TestCase_at_bird_out(unittest.TestCase):
@@ -150,7 +150,7 @@ class TestCase_at_bird_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testat_bird_out_in(self):
         out_fun_at_bird.append(self.insect_obj.at_bird_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("at_bird",self.insect_obj.at_bird_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("at_bird", self.insect_obj.at_bird_out, fun)
         self.assertEqual(round(fun,3),round(self.at_bird_out,3),testFailureMessage)
 
 class TestCase_at_mamm_out(unittest.TestCase):
@@ -158,7 +158,7 @@ class TestCase_at_mamm_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testat_mamm_out_in(self):
         out_fun_at_mamm.append(self.insect_obj.at_mamm_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("at_mamm",self.insect_obj.at_mamm_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("at_mamm", self.insect_obj.at_mamm_out, fun)
         self.assertEqual(round(fun,3),round(self.at_mamm_out,3),testFailureMessage)
 
 class TestCase_fi_bird_out(unittest.TestCase):
@@ -166,7 +166,7 @@ class TestCase_fi_bird_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testfi_bird_out_in(self):
         out_fun_fi_bird.append(self.insect_obj.fi_bird_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("fi_bird",self.insect_obj.fi_bird_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("fi_bird", self.insect_obj.fi_bird_out, fun)
         self.assertEqual(round(fun,3),round(self.fi_bird_out,3),testFailureMessage)
 
 class TestCase_det_out(unittest.TestCase):
@@ -174,7 +174,7 @@ class TestCase_det_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testdet_out_in(self):
         out_fun_det.append(self.insect_obj.det_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("det",self.insect_obj.det_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("det", self.insect_obj.det_out, fun)
         self.assertEqual(round(fun,3),round(self.det_out,3),testFailureMessage)
 
 class TestCase_act_out(unittest.TestCase):
@@ -182,7 +182,7 @@ class TestCase_act_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testact_out_in(self):
         out_fun_act.append(self.insect_obj.act_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("act",self.insect_obj.act_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("act", self.insect_obj.act_out, fun)
         self.assertEqual(round(fun,3),round(self.act_out,3),testFailureMessage)
 
 class TestCase_acute_bird_out(unittest.TestCase):
@@ -190,7 +190,7 @@ class TestCase_acute_bird_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testacute_bird_out_in(self):
         out_fun_acute_bird.append(self.insect_obj.acute_bird_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("acute_bird",self.insect_obj.acute_bird_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("acute_bird", self.insect_obj.acute_bird_out, fun)
         self.assertEqual(round(fun,3),round(self.acute_bird_out,3),testFailureMessage)
 
 class TestCase_acuconb_out(unittest.TestCase):
@@ -198,7 +198,7 @@ class TestCase_acuconb_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testacuconb_out_in(self):
         out_fun_acuconb.append(self.insect_obj.acuconb_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("acuconb",self.insect_obj.acuconb_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("acuconb", self.insect_obj.acuconb_out, fun)
         self.assertEqual(fun,self.acuconb_out,testFailureMessage)
 
 class TestCase_acute_mamm_out(unittest.TestCase):
@@ -206,7 +206,7 @@ class TestCase_acute_mamm_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testacute_mamm_out_in(self):
         out_fun_acute_mamm.append(self.insect_obj.acute_mamm_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("acute_mamm",self.insect_obj.acute_mamm_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("acute_mamm", self.insect_obj.acute_mamm_out, fun)
         self.assertEqual(round(fun,3),round(self.acute_mamm_out,3),testFailureMessage)
 
 class TestCase_acuconm_out(unittest.TestCase):
@@ -214,7 +214,7 @@ class TestCase_acuconm_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testacuconm_out_in(self):
         out_fun_acuconm.append(self.insect_obj.acuconm_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("acuconm",self.insect_obj.acuconm_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("acuconm", self.insect_obj.acuconm_out, fun)
         self.assertEqual(fun,self.acuconm_out,testFailureMessage)
 
 class TestCase_chron_bird_out(unittest.TestCase):
@@ -222,7 +222,7 @@ class TestCase_chron_bird_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testchron_bird_out_in(self):
         out_fun_chron_bird.append(self.insect_obj.chron_bird_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("chron_bird",self.insect_obj.chron_bird_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("chron_bird", self.insect_obj.chron_bird_out, fun)
         self.assertEqual(round(fun,3),round(self.chron_bird_out,3),testFailureMessage)
 
 class TestCase_chronconb_out(unittest.TestCase):
@@ -230,7 +230,7 @@ class TestCase_chronconb_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testacuconb_out_in(self):
         out_fun_chronconb.append(self.insect_obj.chronconb_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("chronconb",self.insect_obj.chronconb_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("chronconb", self.insect_obj.chronconb_out, fun)
         self.assertEqual(fun,self.chronconb_out,testFailureMessage)
 
 class TestCase_chron_mamm_out(unittest.TestCase):
@@ -238,7 +238,7 @@ class TestCase_chron_mamm_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testchron_mamm_out_in(self):
         out_fun_chron_mamm.append(self.insect_obj.chron_mamm_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("chron_mamm",self.insect_obj.chron_mamm_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("chron_mamm", self.insect_obj.chron_mamm_out, fun)
         self.assertEqual(round(fun,3),round(self.chron_mamm_out,3),testFailureMessage)
 
 class TestCase_chronconm_out(unittest.TestCase):
@@ -246,7 +246,7 @@ class TestCase_chronconm_out(unittest.TestCase):
         self.insect_obj = insect_object_in
     def testchronconm_out_in(self):
         out_fun_chronconm.append(self.insect_obj.chronconm_out)
-        testFailureMessage = "Test of function name: %s expected: %s != calculated: %s" % ("chronconm",self.insect_obj.chronconm_out,fun)
+        testFailureMessage = "Test of function name: {0!s} expected: {1!s} != calculated: {2!s}".format("chronconm", self.insect_obj.chronconm_out, fun)
         self.assertEqual(fun,self.chronconm_out,testFailureMessage)
 
 def suite(TestCaseName, **kwargs):

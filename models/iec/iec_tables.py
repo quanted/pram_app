@@ -79,10 +79,10 @@ def gett1data(iec_obj):
 def gettsumdata_1(lc50_pool, threshold_pool, dose_response_pool):
     data = { 
         "Parameter": ['lc50 or LD50', 'Threshold', 'Slope',],
-        "Mean": ['%.2e' % numpy.mean(lc50_pool),'%.2e' % numpy.mean(threshold_pool),'%.2e' % numpy.mean(dose_response_pool)],
-        "Std": ['%.2e' % numpy.std(lc50_pool),'%.2e' % numpy.std(threshold_pool),'%.2e' % numpy.std(dose_response_pool)],
-        "Min": ['%.2e' % numpy.min(lc50_pool),'%.2e' % numpy.min(threshold_pool),'%.2e' % numpy.min(dose_response_pool)],
-        "Max": ['%.2e' % numpy.max(lc50_pool),'%.2e' % numpy.max(threshold_pool),'%.2e' % numpy.max(dose_response_pool)],
+        "Mean": ['{0:.2e}'.format(numpy.mean(lc50_pool)),'{0:.2e}'.format(numpy.mean(threshold_pool)),'{0:.2e}'.format(numpy.mean(dose_response_pool))],
+        "Std": ['{0:.2e}'.format(numpy.std(lc50_pool)),'{0:.2e}'.format(numpy.std(threshold_pool)),'{0:.2e}'.format(numpy.std(dose_response_pool))],
+        "Min": ['{0:.2e}'.format(numpy.min(lc50_pool)),'{0:.2e}'.format(numpy.min(threshold_pool)),'{0:.2e}'.format(numpy.min(dose_response_pool))],
+        "Max": ['{0:.2e}'.format(numpy.max(lc50_pool)),'{0:.2e}'.format(numpy.max(threshold_pool)),'{0:.2e}'.format(numpy.max(dose_response_pool))],
     }
     return data
 
@@ -90,25 +90,25 @@ def gett2data(iec_obj):
     #logger.info(vars(iec_obj))
     data = { 
         "Parameter": ['Z Score', '"f8"', 'Chance of Individual Effect',],
-        "Value": ['%.2f' % iec_obj.out_z_score_f,'%.2e' % iec_obj.out_f8_f,'%.2f' % iec_obj.out_chance_f, ],
+        "Value": ['{0:.2f}'.format(iec_obj.out_z_score_f),'{0:.2e}'.format(iec_obj.out_f8_f),'{0:.2f}'.format(iec_obj.out_chance_f), ],
     }
     return data
 
 def gettsumdata_2_un(z_score_f_pool, f8_f_pool, chance_f_pool):
     data = { 
         "Parameter": ['Z Score', '"f8"', 'Chance of Individual Effect',],
-        "Mean": ['%.2e' % numpy.mean(z_score_f_pool),'%.2e' % numpy.mean(f8_f_pool),'%.2e' % numpy.mean(chance_f_pool)],
-        "Std": ['%.2e' % numpy.std(z_score_f_pool),'%.2e' % numpy.std(f8_f_pool),'%.2e' % numpy.std(chance_f_pool)],
-        "Min": ['%.2e' % numpy.min(z_score_f_pool),'%.2e' % numpy.min(f8_f_pool),'%.2e' % numpy.min(chance_f_pool)],
-        "Max": ['%.2e' % numpy.max(z_score_f_pool),'%.2e' % numpy.max(f8_f_pool),'%.2e' % numpy.max(chance_f_pool)],
+        "Mean": ['{0:.2e}'.format(numpy.mean(z_score_f_pool)),'{0:.2e}'.format(numpy.mean(f8_f_pool)),'{0:.2e}'.format(numpy.mean(chance_f_pool))],
+        "Std": ['{0:.2e}'.format(numpy.std(z_score_f_pool)),'{0:.2e}'.format(numpy.std(f8_f_pool)),'{0:.2e}'.format(numpy.std(chance_f_pool))],
+        "Min": ['{0:.2e}'.format(numpy.min(z_score_f_pool)),'{0:.2e}'.format(numpy.min(f8_f_pool)),'{0:.2e}'.format(numpy.min(chance_f_pool))],
+        "Max": ['{0:.2e}'.format(numpy.max(z_score_f_pool)),'{0:.2e}'.format(numpy.max(f8_f_pool)),'{0:.2e}'.format(numpy.max(chance_f_pool))],
     }
     return data
 
 def gett2dataqaqc(iec_obj):
     data = { 
         "Parameter": ['Z Score', '"f8"', 'Chance of Individual Effect',],
-        "Value": ['%.2f' % iec_obj.out_z_score_f,'%.2e' % iec_obj.out_f8_f,'%.2f' % iec_obj.out_chance_f, ],
-        "Expected Value": ['%.2f' % iec_obj.z_score_f_out_expected,'%.2e' % iec_obj.f8_f_out_expected,'%.2f' % iec_obj.chance_f_out_expected, ],
+        "Value": ['{0:.2f}'.format(iec_obj.out_z_score_f),'{0:.2e}'.format(iec_obj.out_f8_f),'{0:.2f}'.format(iec_obj.out_chance_f), ],
+        "Expected Value": ['{0:.2f}'.format(iec_obj.z_score_f_out_expected),'{0:.2e}'.format(iec_obj.f8_f_out_expected),'{0:.2f}'.format(iec_obj.chance_f_out_expected), ],
     }
     return data
 
@@ -116,10 +116,10 @@ def gett2dataqaqc(iec_obj):
 def gettsumdata(dose_response,lc50,threshold):
     data = { 
         "Parameter": ['Dose Response', 'lc50', 'Threshold'],
-        "Mean": ['%.2e' % numpy.mean(dose_response), '%.2e' % numpy.mean(lc50),'%.2e' % numpy.mean(threshold),],
-        "Std": ['%.2e' % numpy.std(dose_response),'%.2e' % numpy.std(lc50),'%.2e' % numpy.std(threshold),],
-        "Min": ['%.2e' % numpy.min(dose_response),'%.2e' % numpy.min(lc50),'%.2e' % numpy.min(threshold),],
-         "Max": ['%.2e' % numpy.max(dose_response),'%.2e' % numpy.max(lc50),'%.2e' % numpy.max(threshold),],
+        "Mean": ['{0:.2e}'.format(numpy.mean(dose_response)), '{0:.2e}'.format(numpy.mean(lc50)),'{0:.2e}'.format(numpy.mean(threshold)),],
+        "Std": ['{0:.2e}'.format(numpy.std(dose_response)),'{0:.2e}'.format(numpy.std(lc50)),'{0:.2e}'.format(numpy.std(threshold)),],
+        "Min": ['{0:.2e}'.format(numpy.min(dose_response)),'{0:.2e}'.format(numpy.min(lc50)),'{0:.2e}'.format(numpy.min(threshold)),],
+         "Max": ['{0:.2e}'.format(numpy.max(dose_response)),'{0:.2e}'.format(numpy.max(lc50)),'{0:.2e}'.format(numpy.max(threshold)),],
         "Unit": ['','mg/kg-bw', '',],
     }
     return data
@@ -128,10 +128,10 @@ def gettsumdata(dose_response,lc50,threshold):
 def gettsumdata_out(out_z_score_f, out_f8_f, out_chance_f):
     data = {
         "Parameter": ['Z Score F', 'f8', 'Chance F',],
-        "Mean": ['%.2e' % numpy.mean(out_z_score_f),'%.2e' % numpy.mean(out_f8_f),'%.2e' % numpy.mean(out_chance_f),],
-        "Std": ['%.2e' % numpy.std(out_z_score_f),'%.2e' % numpy.std(out_f8_f),'%.2e' % numpy.std(out_chance_f),],
-        "Min": ['%.2e' % numpy.min(out_z_score_f),'%.2e' % numpy.min(out_f8_f),'%.2e' % numpy.min(out_chance_f),],
-         "Max": ['%.2e' % numpy.max(out_z_score_f),'%.2e' % numpy.max(out_f8_f),'%.2e' % numpy.max(out_chance_f),],
+        "Mean": ['{0:.2e}'.format(numpy.mean(out_z_score_f)),'{0:.2e}'.format(numpy.mean(out_f8_f)),'{0:.2e}'.format(numpy.mean(out_chance_f)),],
+        "Std": ['{0:.2e}'.format(numpy.std(out_z_score_f)),'{0:.2e}'.format(numpy.std(out_f8_f)),'{0:.2e}'.format(numpy.std(out_chance_f)),],
+        "Min": ['{0:.2e}'.format(numpy.min(out_z_score_f)),'{0:.2e}'.format(numpy.min(out_f8_f)),'{0:.2e}'.format(numpy.min(out_chance_f)),],
+         "Max": ['{0:.2e}'.format(numpy.max(out_z_score_f)),'{0:.2e}'.format(numpy.max(out_f8_f)),'{0:.2e}'.format(numpy.max(out_chance_f)),],
         "Unit": ['','mg/kg-bw', '',],
     }
     return data

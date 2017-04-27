@@ -76,12 +76,12 @@ else:
 @decorator
 def serve_docs(request, path, **kwargs):
     if DOCS_ACCESS not in DOCS_ACCESS_CHOICES:
-        raise DocsAccessSettingError('DOCS_ACCESS setting value is incorrect: %s (choises are: %s)' % (
+        raise DocsAccessSettingError('DOCS_ACCESS setting value is incorrect: {0!s} (choises are: {1!s})'.format(
             DOCS_ACCESS,
             DOCS_ACCESS_CHOICES
         ))
     if 'document_root' not in kwargs and not DOCS_ROOT:
-        raise DocsRootSettingError('DOCS_ROOT setting value is incorrect: %s (must be a valid path)' % DOCS_ROOT)
+        raise DocsRootSettingError('DOCS_ROOT setting value is incorrect: {0!s} (must be a valid path)'.format(DOCS_ROOT))
     if 'document_root' not in kwargs and DOCS_ROOT:
         kwargs['document_root'] = DOCS_ROOT
     return serve(request, path, **kwargs)

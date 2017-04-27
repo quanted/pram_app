@@ -69,9 +69,9 @@ def gett1data(rice_obj):
             mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',
             mark_safe('Sediment porosity, K<sub>d</sub>'), 
             mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
-        "Value": ['%s' % rice_obj.chemical_name, '%.4f' % rice_obj.mai, '%.2f' % rice_obj.area, 
-            '%.2f' % rice_obj.dsed, '%.2f' % rice_obj.pb, '%.2f' % rice_obj.dw, 
-            '%.4f' % rice_obj.osed, '%.2f' % rice_obj.kd],
+        "Value": ['{0!s}'.format(rice_obj.chemical_name), '{0:.4f}'.format(rice_obj.mai), '{0:.2f}'.format(rice_obj.area), 
+            '{0:.2f}'.format(rice_obj.dsed), '{0:.2f}'.format(rice_obj.pb), '{0:.2f}'.format(rice_obj.dw), 
+            '{0:.4f}'.format(rice_obj.osed), '{0:.2f}'.format(rice_obj.kd)],
         "Units": ['','kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
     }
     return data
@@ -88,7 +88,7 @@ def gett1dataqaqc(rice_obj):
 def gett2data(rice_obj):
     data = { 
         "Parameter": ['Sediment Mass', 'Water Column Volume', 'Mass per unit area', 'Water Concentration',],
-        "Calculated-Value": ['%.2f' % rice_obj.out_msed, '%.2f' % rice_obj.out_vw, '%.4f' % rice_obj.out_mass_area, '%.4f' % rice_obj.out_cw,],
+        "Calculated-Value": ['{0:.2f}'.format(rice_obj.out_msed), '{0:.2f}'.format(rice_obj.out_vw), '{0:.4f}'.format(rice_obj.out_mass_area), '{0:.4f}'.format(rice_obj.out_cw),],
         "Units": ['kg', mark_safe('m<sup>3</sup>'), 'kg/ha', mark_safe('&#956;g/L'),],
     }
     return data
@@ -96,8 +96,8 @@ def gett2data(rice_obj):
 def gett2dataqaqc(rice_obj):
     data = { 
         "Parameter": ['Sediment Mass', 'Water Column Volume', 'Mass per unit area', 'Water Concentration',],
-        "Calculated-Value": ['%.2f' % rice_obj.out_msed, '%.2f' % rice_obj.out_vw, '%.4f' % rice_obj.out_mass_area, '%.4f' % rice_obj.out_cw,],
-        "Expected-Value": ['%.2f' % rice_obj.exp_msed, '%.2f' % rice_obj.exp_vw, '%.4f' % rice_obj.exp_mass_area, '%.4f' % rice_obj.exp_cw,],
+        "Calculated-Value": ['{0:.2f}'.format(rice_obj.out_msed), '{0:.2f}'.format(rice_obj.out_vw), '{0:.4f}'.format(rice_obj.out_mass_area), '{0:.4f}'.format(rice_obj.out_cw),],
+        "Expected-Value": ['{0:.2f}'.format(rice_obj.exp_msed), '{0:.2f}'.format(rice_obj.exp_vw), '{0:.4f}'.format(rice_obj.exp_mass_area), '{0:.4f}'.format(rice_obj.exp_cw),],
         "Units": ['kg', mark_safe('m<sup>3</sup>'), 'kg/ha', mark_safe('&#956;g/L'),],
     }
     return data
@@ -105,14 +105,14 @@ def gett2dataqaqc(rice_obj):
 def gettsumdata(mai, dsed, a, pb, dw, osed, kd):
     data = {
         "Parameter": ['Mass applied to patty','Area of patty','Sediment Depth',mark_safe('Sediment bulk density, &#961;<sub>b</sub>'),'Water column depth',mark_safe('Sediment porosity, K<sub>d</sub>'), mark_safe('Water-Sediment partitioning coefficient, K<sub>d</sub>')],
-        "Mean": ['%.2e' % numpy.mean(mai),'%.2e' % numpy.mean(dsed),'%.2e' % numpy.mean(a), '%.2e' % numpy.mean(pb), 
-                 '%.2e' % numpy.mean(dw), '%.2e' % numpy.mean(osed), '%.2e' % numpy.mean(kd)],
-        "Std": ['%.2e' % numpy.std(mai),'%.2e' % numpy.std(dsed),'%.2e' % numpy.std(a), '%.2e' % numpy.std(pb), 
-                '%.2e' % numpy.std(dw), '%.2e' % numpy.std(osed), '%.2e' % numpy.std(kd)],
-        "Min": ['%.2e' % numpy.min(mai),'%.2e' % numpy.min(dsed),'%.2e' % numpy.min(a), '%.2e' % numpy.min(pb), 
-                '%.2e' % numpy.min(dw), '%.2e' % numpy.min(osed), '%.2e' % numpy.min(kd)],
-         "Max": ['%.2e' % numpy.max(mai),'%.2e' % numpy.max(dsed),'%.2e' % numpy.max(a), '%.2e' % numpy.max(pb), 
-                '%.2e' % numpy.max(dw), '%.2e' % numpy.max(osed), '%.2e' % numpy.max(kd)],
+        "Mean": ['{0:.2e}'.format(numpy.mean(mai)),'{0:.2e}'.format(numpy.mean(dsed)),'{0:.2e}'.format(numpy.mean(a)), '{0:.2e}'.format(numpy.mean(pb)), 
+                 '{0:.2e}'.format(numpy.mean(dw)), '{0:.2e}'.format(numpy.mean(osed)), '{0:.2e}'.format(numpy.mean(kd))],
+        "Std": ['{0:.2e}'.format(numpy.std(mai)),'{0:.2e}'.format(numpy.std(dsed)),'{0:.2e}'.format(numpy.std(a)), '{0:.2e}'.format(numpy.std(pb)), 
+                '{0:.2e}'.format(numpy.std(dw)), '{0:.2e}'.format(numpy.std(osed)), '{0:.2e}'.format(numpy.std(kd))],
+        "Min": ['{0:.2e}'.format(numpy.min(mai)),'{0:.2e}'.format(numpy.min(dsed)),'{0:.2e}'.format(numpy.min(a)), '{0:.2e}'.format(numpy.min(pb)), 
+                '{0:.2e}'.format(numpy.min(dw)), '{0:.2e}'.format(numpy.min(osed)), '{0:.2e}'.format(numpy.min(kd))],
+         "Max": ['{0:.2e}'.format(numpy.max(mai)),'{0:.2e}'.format(numpy.max(dsed)),'{0:.2e}'.format(numpy.max(a)), '{0:.2e}'.format(numpy.max(pb)), 
+                '{0:.2e}'.format(numpy.max(dw)), '{0:.2e}'.format(numpy.max(osed)), '{0:.2e}'.format(numpy.max(kd))],
         "Unit": ['kg',mark_safe('m<sup>2</sup>'),'m',mark_safe('kg/m<sup>3</sup>'),'m','','L/kg'],
     }
     return data
@@ -120,10 +120,10 @@ def gettsumdata(mai, dsed, a, pb, dw, osed, kd):
 def gettsumdata_out(msed, vw, mass_area, cw):
     data = {
         "Parameter": ['Sediment Mass', 'Water Column Volume', 'Mass per unit area', 'Water Concentration',],
-        "Mean": ['%.2e' % numpy.mean(msed),'%.2e' % numpy.mean(vw),'%.2e' % numpy.mean(mass_area), '%.2e' % numpy.mean(cw)],
-        "Std": ['%.2e' % numpy.std(msed),'%.2e' % numpy.std(vw),'%.2e' % numpy.std(mass_area), '%.2e' % numpy.std(cw)],
-        "Min": ['%.2e' % numpy.min(msed),'%.2e' % numpy.min(vw),'%.2e' % numpy.min(mass_area), '%.2e' % numpy.min(cw)],
-         "Max": ['%.2e' % numpy.max(msed),'%.2e' % numpy.max(vw),'%.2e' % numpy.max(mass_area), '%.2e' % numpy.max(cw)],
+        "Mean": ['{0:.2e}'.format(numpy.mean(msed)),'{0:.2e}'.format(numpy.mean(vw)),'{0:.2e}'.format(numpy.mean(mass_area)), '{0:.2e}'.format(numpy.mean(cw))],
+        "Std": ['{0:.2e}'.format(numpy.std(msed)),'{0:.2e}'.format(numpy.std(vw)),'{0:.2e}'.format(numpy.std(mass_area)), '{0:.2e}'.format(numpy.std(cw))],
+        "Min": ['{0:.2e}'.format(numpy.min(msed)),'{0:.2e}'.format(numpy.min(vw)),'{0:.2e}'.format(numpy.min(mass_area)), '{0:.2e}'.format(numpy.min(cw))],
+         "Max": ['{0:.2e}'.format(numpy.max(msed)),'{0:.2e}'.format(numpy.max(vw)),'{0:.2e}'.format(numpy.max(mass_area)), '{0:.2e}'.format(numpy.max(cw))],
         "Unit": ['kg', mark_safe('m<sup>3</sup>'), 'kg/ha', mark_safe('&#956;g/L'),],
     }
     return data

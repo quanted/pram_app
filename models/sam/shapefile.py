@@ -249,17 +249,17 @@ class Reader:
             (shapeName, ext) = os.path.splitext(shapefile)
             self.shapeName = shapeName
             try:
-                self.shp = open("%s.shp" % shapeName, "rb")
+                self.shp = open("{0!s}.shp".format(shapeName), "rb")
             except IOError:
-                raise ShapefileException("Unable to open %s.shp" % shapeName)
+                raise ShapefileException("Unable to open {0!s}.shp".format(shapeName))
             try:
-                self.shx = open("%s.shx" % shapeName, "rb")
+                self.shx = open("{0!s}.shx".format(shapeName), "rb")
             except IOError:
-                raise ShapefileException("Unable to open %s.shx" % shapeName)
+                raise ShapefileException("Unable to open {0!s}.shx".format(shapeName))
             try:
-                self.dbf = open("%s.dbf" % shapeName, "rb")
+                self.dbf = open("{0!s}.dbf".format(shapeName), "rb")
             except IOError:
-                raise ShapefileException("Unable to open %s.dbf" % shapeName)
+                raise ShapefileException("Unable to open {0!s}.dbf".format(shapeName))
         if self.shp:
             self.__shpHeader()
         if self.dbf:
@@ -328,23 +328,23 @@ class Reader:
             nPoints = unpack("<i", f.read(4))[0]
         # Read parts
         if nParts:
-            record.parts = _Array('i', unpack("<%si" % nParts, f.read(nParts * 4)))
+            record.parts = _Array('i', unpack("<{0!s}i".format(nParts), f.read(nParts * 4)))
         # Read part types for Multipatch - 31
         if shapeType == 31:
-            record.partTypes = _Array('i', unpack("<%si" % nParts, f.read(nParts * 4)))
+            record.partTypes = _Array('i', unpack("<{0!s}i".format(nParts), f.read(nParts * 4)))
         # Read points - produces a list of [x,y] values
         if nPoints:
             record.points = [_Array('d', unpack("<2d", f.read(16))) for p in range(nPoints)]
         # Read z extremes and values
         if shapeType in (13,15,18,31):
             (zmin, zmax) = unpack("<2d", f.read(16))
-            record.z = _Array('d', unpack("<%sd" % nPoints, f.read(nPoints * 8)))
+            record.z = _Array('d', unpack("<{0!s}d".format(nPoints), f.read(nPoints * 8)))
         # Read m extremes and values if header m values do not equal 0.0
         if shapeType in (13,15,18,23,25,28,31) and not 0.0 in self.measure:
             (mmin, mmax) = unpack("<2d", f.read(16))
             # Measure values less than -10e38 are nodata values according to the spec
             record.m = []
-            for m in _Array('d', unpack("<%sd" % nPoints, f.read(nPoints * 8))):
+            for m in _Array('d', unpack("<{0!s}d".format(nPoints), f.read(nPoints * 8))):
                 if m > -10e38:
                     record.m.append(m)
                 else:
@@ -461,7 +461,7 @@ class Reader:
         """Calculates the size of a .shp geometry record."""
         if not self.numRecords:
             self.__dbfHeader()
-        fmt = ''.join(['%ds' % fieldinfo[2] for fieldinfo in self.fields])
+        fmt = ''.join(['{0:d}s'.format(fieldinfo[2]) for fieldinfo in self.fields])
         fmtSize = calcsize(fmt)
         return (fmt, fmtSize)
 
@@ -778,7 +778,7 @@ class Writer:
                 try:
                     f.write(pack("<4d", *self.__bbox([s])))
                 except error:
-                    raise ShapefileException("Falied to write bounding box for record %s. Expected floats." % recNum)
+                    raise ShapefileException("Falied to write bounding box for record {0!s}. Expected floats.".format(recNum))
             # Shape types with parts
             if s.shapeType in (3,5,13,15,23,25,31):
                 # Number of parts
@@ -800,39 +800,39 @@ class Writer:
                 try:
                     [f.write(pack("<2d", *p[:2])) for p in s.points]
                 except error:
-                    raise ShapefileException("Failed to write points for record %s. Expected floats." % recNum)
+                    raise ShapefileException("Failed to write points for record {0!s}. Expected floats.".format(recNum))
             # Write z extremes and values
             if s.shapeType in (13,15,18,31):
                 try:
                     f.write(pack("<2d", *self.__zbox([s])))
                 except error:
-                    raise ShapefileException("Failed to write elevation extremes for record %s. Expected floats." % recNum)
+                    raise ShapefileException("Failed to write elevation extremes for record {0!s}. Expected floats.".format(recNum))
                 try:
                     if hasattr(s,"z"):
-                        f.write(pack("<%sd" % len(s.z), *s.z))
+                        f.write(pack("<{0!s}d".format(len(s.z)), *s.z))
                     else:
                         [f.write(pack("<d", p[2])) for p in s.points]  
                 except error:
-                    raise ShapefileException("Failed to write elevation values for record %s. Expected floats." % recNum)
+                    raise ShapefileException("Failed to write elevation values for record {0!s}. Expected floats.".format(recNum))
             # Write m extremes and values
             if s.shapeType in (13,15,18,23,25,28,31):
                 try:
                     if hasattr(s,"m"):
-                        f.write(pack("<%sd" % len(s.m), *s.m))
+                        f.write(pack("<{0!s}d".format(len(s.m)), *s.m))
                     else:
                         f.write(pack("<2d", *self.__mbox([s])))
                 except error:
-                    raise ShapefileException("Failed to write measure extremes for record %s. Expected floats" % recNum)
+                    raise ShapefileException("Failed to write measure extremes for record {0!s}. Expected floats".format(recNum))
                 try:
                     [f.write(pack("<d", p[3])) for p in s.points]
                 except error:
-                    raise ShapefileException("Failed to write measure values for record %s. Expected floats" % recNum)
+                    raise ShapefileException("Failed to write measure values for record {0!s}. Expected floats".format(recNum))
             # Write a single point
             if s.shapeType in (1,11,21):
                 try:
                     f.write(pack("<2d", s.points[0][0], s.points[0][1]))
                 except error:
-                    raise ShapefileException("Failed to write point for record %s. Expected floats." % recNum)
+                    raise ShapefileException("Failed to write point for record {0!s}. Expected floats.".format(recNum))
             # Write a single Z value
             if s.shapeType == 11:
                 if hasattr(s, "z"):
@@ -841,14 +841,14 @@ class Writer:
                             s.z = (0,)    
                         f.write(pack("<d", s.z[0]))
                     except error:
-                        raise ShapefileException("Failed to write elevation value for record %s. Expected floats." % recNum)
+                        raise ShapefileException("Failed to write elevation value for record {0!s}. Expected floats.".format(recNum))
                 else:
                     try:
                         if len(s.points[0])<3:
                             s.points[0].append(0)
                         f.write(pack("<d", s.points[0][2]))
                     except error:
-                        raise ShapefileException("Failed to write elevation value for record %s. Expected floats." % recNum)
+                        raise ShapefileException("Failed to write elevation value for record {0!s}. Expected floats.".format(recNum))
             # Write a single M value
             if s.shapeType in (11,21):
                 if hasattr(s, "m"):
@@ -857,14 +857,14 @@ class Writer:
                             s.m = (0,) 
                         f.write(pack("<1d", s.m[0]))
                     except error:
-                        raise ShapefileException("Failed to write measure value for record %s. Expected floats." % recNum)    
+                        raise ShapefileException("Failed to write measure value for record {0!s}. Expected floats.".format(recNum))    
                 else:                                
                     try:
                         if len(s.points[0])<4:
                             s.points[0].append(0)
                         f.write(pack("<1d", s.points[0][3]))
                     except error:
-                        raise ShapefileException("Failed to write measure value for record %s. Expected floats." % recNum)
+                        raise ShapefileException("Failed to write measure value for record {0!s}. Expected floats.".format(recNum))
             # Finalize record length as 16-bit words
             finish = f.tell()
             length = (finish - start) // 2
@@ -1049,7 +1049,7 @@ class Editor(Writer):
             Writer.__init__(self, shapeType)
         elif is_string(shapefile):
             base = os.path.splitext(shapefile)[0]
-            if os.path.isfile("%s.shp" % base):
+            if os.path.isfile("{0!s}.shp".format(base)):
                 r = Reader(base)
                 Writer.__init__(self, r.shapeType)
                 self._shapes = r.shapes()

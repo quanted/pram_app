@@ -66,16 +66,16 @@ def gett1data(exams_obj):
         "Parameter": ['Chemical Name', 'Scenario', 'Farm Pond (no flow)', 'Molecular Weight',
                       'Solubility', 'Aquatic Sediment', 'Vapor Pressure', 'Aerobic aquatic metabolism', 'Anaerobic aquatic metabolism',
                       'Aquatic Direct Photolysis', 'Test Temperature',],
-        "Value": ['%s' % exams_obj.chem_name, '%s' % exams_obj.scenarios, '%s' % exams_obj.farm, '%s' % exams_obj.mw,
-                  '%s' % exams_obj.sol, '%s' % exams_obj.koc, '%s' % exams_obj.vp, '%s' % exams_obj.aem, '%s' % exams_obj.anm,
-                  '%s' % exams_obj.aqp, '%s' % exams_obj.tmper,],
+        "Value": ['{0!s}'.format(exams_obj.chem_name), '{0!s}'.format(exams_obj.scenarios), '{0!s}'.format(exams_obj.farm), '{0!s}'.format(exams_obj.mw),
+                  '{0!s}'.format(exams_obj.sol), '{0!s}'.format(exams_obj.koc), '{0!s}'.format(exams_obj.vp), '{0!s}'.format(exams_obj.aem), '{0!s}'.format(exams_obj.anm),
+                  '{0!s}'.format(exams_obj.aqp), '{0!s}'.format(exams_obj.tmper),],
         "Units": ['', '', '', 'g/mol', 'mg/L', 'mL/g', 'torr', 'days', 'days', 'days', '<sup>o</sup>C'],
     }
     return data
 
 def gett2data(index, pH, HL):
     data = { 
-        "Index": ['%s' %index,  ],
+        "Index": ['{0!s}'.format(index),  ],
         "Test pH": [pH,],
         "Half-life (days)": [HL,],
     }
@@ -128,9 +128,9 @@ def table_1(exams_obj):
 def table_2(exams_obj):
         # #pre-table 2
         html = """
-            <H4 class="out_2 collapsible" id="section3"><span></span>Hydrolysis Tests (Number of Tested pH=%s)</H4>
+            <H4 class="out_2 collapsible" id="section3"><span></span>Hydrolysis Tests (Number of Tested pH={0!s})</H4>
                 <div class="out_ container_output">
-        """ %(exams_obj.n_ph)
+        """.format((exams_obj.n_ph))
         #table 2
         t2data_all=[]
         for i in range(int(exams_obj.n_ph)):
@@ -158,8 +158,8 @@ def table_3(exams_obj):
                           </tr>
                           <tr>
                             <td><div align="center">Simulation is finished. Please download your file from here</div></td>
-                            <td><div align="center"><a href=%s>Link</a></div></td>
+                            <td><div align="center"><a href={0!s}>Link</a></div></td>
                           </tr>
-        </table><br></div></div>"""%(exams_obj.link)
+        </table><br></div></div>""".format((exams_obj.link))
         return html
 

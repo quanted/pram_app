@@ -7,7 +7,7 @@ from django.utils.safestring import mark_safe
 
 from ubertool_app.models.forms import validation
 
-Ecosystem_type_CHOICES=(('Aquatic Assessment','Aquatic Assessment'),
+Assessment_type_CHOICES=(('Aquatic Assessment','Aquatic Assessment'),
                         ('Terrestrial Assessment', 'Terrestrial Assessment'))
 Application_method_CHOICES=(('Tier I Aerial','Tier I Aerial'),
                             ('Tier I Ground','Tier I Ground'),
@@ -30,7 +30,8 @@ Terrestrial_type_CHOICES=(('Point Deposition','Point Deposition'),
                           ('User Defined Terrestrial Area','User Defined Terrestrial Area'))
 Aquatic_type_CHOICES=(('EPA Defined Pond','EPA Defined Pond'),
                       ('EPA Defined Wetland', 'EPA Defined Wetland'),
-                      ('User Defined Waterbody', 'User Defined Waterbody'))
+                      ('User Defined Pond', 'User Defined Pond'),
+                      ('User Defined Wetland', 'User Defined Wetland'))
 Calculation_input_CHOICES=(('Distance','Distance to waterbody or field'),
                            ('Fraction','Fraction of applied'),
                            ('Initial Average Deposition (g/ha)','Initial Average Deposition (g/ha)'),
@@ -85,8 +86,8 @@ class AgdriftInp(forms.Form):
         initial='Orchard',
         validators=[validation.validate_choicefield])
     ecosystem_type = forms.ChoiceField(
-        label='Ecosystem type',
-        choices=Ecosystem_type_CHOICES,
+        label='Assessment type',
+        choices=Assessment_type_CHOICES,
         initial='Aquatic Assessment',
         validators=[validation.validate_choicefield])
     aquatic_body_type = forms.ChoiceField(
@@ -119,13 +120,21 @@ class AgdriftInp(forms.Form):
         initial='0.4921',
         disabled=True,
         validators=[validation.validate_greaterthan0])
-    user_waterbody_width = forms.FloatField(
-        label=mark_safe('User Defined Waterbody Width (ft)'),
+    user_pond_width = forms.FloatField(
+        label=mark_safe('User Defined Pond Width (ft)'),
         initial='208.7',
         validators=[validation.validate_greaterthan0])
-    user_waterbody_depth = forms.FloatField(
-        label=mark_safe('User Defined Wtaerbody depth (ft)'),
+    user_pond_depth = forms.FloatField(
+        label=mark_safe('User Defined Pond Depth (ft)'),
         initial='6.56',
+        validators=[validation.validate_greaterthan0])
+    user_wetland_width = forms.FloatField(
+        label=mark_safe('User Defined Wetland Width (ft)'),
+        initial='208.7',
+        validators=[validation.validate_greaterthan0])
+    user_wetland_depth = forms.FloatField(
+        label=mark_safe('User Defined Wetland Depth (ft)'),
+        initial='0.4921',
         validators=[validation.validate_greaterthan0])
     user_terrestrial_width = forms.FloatField(
         label=mark_safe('Downwind width of Terrestrial Area (ft)'),

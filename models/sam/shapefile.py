@@ -648,7 +648,9 @@ class Writer:
         size //= 2
         return size
 
-    def __bbox(self, shapes, shapeTypes=[]):
+    def __bbox(self, shapes, shapeTypes=None):
+        if shapeTypes is None:
+            shapeTypes = []
         x = []
         y = []
         for s in shapes:
@@ -660,7 +662,9 @@ class Writer:
             y.extend(py)
         return [min(x), min(y), max(x), max(y)]
 
-    def __zbox(self, shapes, shapeTypes=[]):
+    def __zbox(self, shapes, shapeTypes=None):
+        if shapeTypes is None:
+            shapeTypes = []
         z = []
         for s in shapes:
             try:
@@ -671,7 +675,9 @@ class Writer:
         if not z: z.append(0)
         return [min(z), max(z)]
 
-    def __mbox(self, shapes, shapeTypes=[]):
+    def __mbox(self, shapes, shapeTypes=None):
+        if shapeTypes is None:
+            shapeTypes = []
         m = [0]
         for s in shapes:
             try:
@@ -911,18 +917,24 @@ class Writer:
         pointShape.points.append([x, y, z, m])
         self._shapes.append(pointShape)
 
-    def line(self, parts=[], shapeType=POLYLINE):
+    def line(self, parts=None, shapeType=POLYLINE):
         """Creates a line shape. This method is just a convienience method
         which wraps 'poly()'.
         """
+        if parts is None:
+            parts = []
         self.poly(parts, shapeType, [])
 
-    def poly(self, parts=[], shapeType=POLYGON, partTypes=[]):
+    def poly(self, parts=None, shapeType=POLYGON, partTypes=None):
         """Creates a shape that has multiple collections of points (parts)
         including lines, polygons, and even multipoint shapes. If no shape type
         is specified it defaults to 'polygon'. If no part types are specified
         (which they normally won't be) then all parts default to the shape type.
         """
+        if parts is None:
+            parts = []
+        if partTypes is None:
+            partTypes = []
         polyShape = _Shape(shapeType)
         polyShape.parts = []
         polyShape.points = []

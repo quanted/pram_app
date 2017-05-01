@@ -302,7 +302,7 @@ def table_2_b(przm5_obj):
             t2_d_data_temp=gett2data_b(Day_temp, Month_temp, Amount_temp, Method_temp, Depth_temp, Eff_temp, Drift_temp)
             t2_b_data_all.append(t2_d_data_temp)
 
-        t2_b_data = dict([(k,[t2data_ind[k][0] for t2data_ind in t2_b_data_all]) for k in t2_d_data_temp])
+        t2_b_data = {k: [t2data_ind[k][0] for t2data_ind in t2_b_data_all] for k in t2_d_data_temp}
         t2_b_rows = gethtmlrowsfromcols(t2_b_data, table_2b_headings[0])
         html = html + tmpl.render(Context(dict(data=t2_b_rows, headings=table_2b_headings[1])))
         html = html + """
@@ -371,7 +371,7 @@ def table_3_b(przm5_obj):
             t3_b_data_temp=gett3data_b(thick_temp, rho_temp, max_cap_temp, min_cap_temp, oc_temp, n_temp)
             t3_b_data_all.append(t3_b_data_temp)
 
-        t3_b_data = dict([(k,[t3data_ind[k][0] for t3data_ind in t3_b_data_all]) for k in t3_b_data_temp])
+        t3_b_data = {k: [t3data_ind[k][0] for t3data_ind in t3_b_data_all] for k in t3_b_data_temp}
         t3_b_rows = gethtmlrowsfromcols(t3_b_data, table_3b_headings[0])
         html = html + tmpl.render(Context(dict(data=t3_b_rows, headings=table_3b_headings[1])))
         html = html + """
@@ -435,7 +435,7 @@ def table_4_b(przm5_obj):
             t4_b_data_temp=gett4data_b(No_temp, Day_temp, Month_temp, Year_temp, CN_temp, C_temp, N_temp)
             t4_b_data_all.append(t4_b_data_temp)
 
-        t4_b_data = dict([(k,[t4data_ind[k][0] for t4data_ind in t4_b_data_all]) for k in t4_b_data_temp])
+        t4_b_data = {k: [t4data_ind[k][0] for t4data_ind in t4_b_data_all] for k in t4_b_data_temp}
         t4_b_rows = gethtmlrowsfromcols(t4_b_data, table_4b_headings[0])
         html = html + tmpl.render(Context(dict(data=t4_b_rows, headings=table_4b_headings[1])))
         html = html + """

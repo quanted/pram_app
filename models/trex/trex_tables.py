@@ -1871,7 +1871,7 @@ def table_2(trex_obj):
         day_temp = day_out_list[i]
         t2data_temp = gett2data(i + 1, rate_temp, day_temp)
         t2data_all.append(t2data_temp)
-    t2data = dict([(k, [t2data_ind[k][0] for t2data_ind in t2data_all]) for k in t2data_temp])
+    t2data = {k: [t2data_ind[k][0] for t2data_ind in t2data_all] for k in t2data_temp}
     t2rows = gethtmlrowsfromcols(t2data, pvaheadings[0])
     if trex_obj.application_type == "Seed Treatment":
         html = html + tmpl.render(Context(dict(data=t2rows, headings=pvaheadings[1])))

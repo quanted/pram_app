@@ -7,7 +7,7 @@ from django.utils.safestring import mark_safe
 
 from ubertool_app.models.forms import validation
 
-Assessment_type_CHOICES=(('Aquatic Assessment','Aquatic Assessment'),
+Ecosystem_type_CHOICES=(('Aquatic Assessment','Aquatic Assessment'),
                         ('Terrestrial Assessment', 'Terrestrial Assessment'))
 Application_method_CHOICES=(('Tier I Aerial','Tier I Aerial'),
                             ('Tier I Ground','Tier I Ground'),
@@ -87,7 +87,7 @@ class AgdriftInp(forms.Form):
         validators=[validation.validate_choicefield])
     ecosystem_type = forms.ChoiceField(
         label='Assessment type',
-        choices=Assessment_type_CHOICES,
+        choices=Ecosystem_type_CHOICES,
         initial='Aquatic Assessment',
         validators=[validation.validate_choicefield])
     aquatic_body_type = forms.ChoiceField(

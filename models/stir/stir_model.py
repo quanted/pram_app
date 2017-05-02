@@ -141,7 +141,6 @@ class StirModel(object):
                    "vapor_pressure": self.vapor_pressure, "avian_oral_ld50": self.avian_oral_ld50,
                    "body_weight_assessed_bird": self.body_weight_assessed_bird,
                    "body_weight_tested_bird": self.body_weight_tested_bird,
-                   "body_weight_tested_bird": self.body_weight_tested_bird,
                    "mineau_scaling_factor": self.mineau_scaling_factor,
                    "mammal_inhalation_lc50": self.mammal_inhalation_lc50,
                    "duration_mammal_inhalation_study": self.duration_mammal_inhalation_study,

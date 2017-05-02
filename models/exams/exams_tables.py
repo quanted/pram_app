@@ -138,7 +138,7 @@ def table_2(exams_obj):
             hl_out_temp=exams_obj.hl_out[i]
             t2data_temp=gett2data(i+1, ph_out_temp, hl_out_temp)
             t2data_all.append(t2data_temp)
-        t2data = dict([(k,[t2data_ind[k][0] for t2data_ind in t2data_all]) for k in t2data_temp])
+        t2data = {k: [t2data_ind[k][0] for t2data_ind in t2data_all] for k in t2data_temp}
         t2rows = gethtmlrowsfromcols(t2data,pvaheadings)
         html = html + tmpl.render(Context(dict(data=t2rows, headings=pvaheadings)))
         html = html + """

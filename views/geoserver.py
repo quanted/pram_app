@@ -69,7 +69,7 @@ def sam_done_query(request, jid):
 
     response = {}
 
-    if request == None:
+    if request is None:
         response['done'] = False
     else:
         try:

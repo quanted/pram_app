@@ -1,5 +1,6 @@
-from django.template.loader import render_to_string
 from collections import OrderedDict
+
+from django.template.loader import render_to_string
 
 
 # 03ubertext_links_left:

@@ -1,8 +1,10 @@
-from django.template.loader import render_to_string
-from django.http import HttpResponse
 import importlib
-import links_left
 import os
+
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+
+import links_left
 
 print('qed.ubertool_app.views.qaqc')
 

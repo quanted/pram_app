@@ -4,7 +4,6 @@
 """
 
 from django.views.decorators.http import require_POST
-import logging
 
 
 def read_batch_csv(csv):

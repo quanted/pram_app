@@ -3,14 +3,12 @@
    :synopsis: A useful module indeed.
 """
 
-from django.template import Context, Template
-from django.utils.safestring import mark_safe
-import przm5_model
-import time
 import datetime
-import os
-from django.template.loader import render_to_string
 import logging
+
+from django.template import Context, Template
+from django.template.loader import render_to_string
+
 
 def getheaderpvu():
     headings = ["Parameter", "Value", "Units"]

@@ -7,7 +7,6 @@ Created on Tue Jan 17 14:50:59 2012
 import os
 os.environ['DJANGO_SETTINGS_MODULE']='settings'
 from django import forms
-from django.db import models
 from django.utils.safestring import mark_safe
 
 class swcInp_chem(forms.Form):

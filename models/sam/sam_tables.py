@@ -2,12 +2,11 @@
 .. module:: sam_tables
    :synopsis: A useful module indeed.
 """
-from django.template import Context, Template
-from django.utils.safestring import mark_safe
-import time
 import datetime
+
+from django.template import Context, Template
 from django.template.loader import render_to_string
-import sam_parameters
+from django.utils.safestring import mark_safe
 
 
 # def timestamp(sam_obj="", batch_jid=""):

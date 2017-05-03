@@ -1,16 +1,16 @@
-import os
-import json
-from django.http import HttpResponse
-import auth_s3
-import requests
-import numpy as np
 import ast
-import logging
 import datetime
-import pytz
+import json
+import logging
+import os
 import warnings
-from django.views.decorators.http import require_GET, require_POST
 
+import numpy as np
+import pytz
+import requests
+from django.http import HttpResponse
+
+import auth_s3
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()

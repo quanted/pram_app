@@ -1,14 +1,15 @@
-from django.views.generic import RedirectView
-from django.core.urlresolvers import reverse
-from django.views.static import serve
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
 from functools import wraps
+
+from django.conf import settings
 from django.contrib.admin.forms import AdminAuthenticationForm
-from django.contrib.auth.views import login
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import login
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
+from django.views.generic import RedirectView
+from django.views.static import serve
 from exceptions import ValueError
 
 

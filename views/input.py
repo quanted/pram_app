@@ -1,11 +1,12 @@
-from django.template.loader import render_to_string
-from django.http import HttpResponse, HttpResponseRedirect
 import importlib
-import links_left
 import os
+
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+
+import links_left
+
 #import secret
-from django.conf import settings
-from django.shortcuts import redirect
 
 print('qed.ubertool_app.views.input')
 

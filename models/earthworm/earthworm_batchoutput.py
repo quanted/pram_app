@@ -3,13 +3,17 @@
    :synopsis: A useful module indeed.
 """
 
-from django.views.decorators.http import require_POST
-import csv
-import earthworm_model, earthworm_tables
-import logging
-from threading import Thread
 import Queue
+import csv
+import logging
 from collections import OrderedDict
+from threading import Thread
+
+from django.views.decorators.http import require_POST
+
+import earthworm_model
+import earthworm_tables
+
 logger = logging.getLogger("earthwormBatchOutput")
 
 ######Pre-defined inputs########

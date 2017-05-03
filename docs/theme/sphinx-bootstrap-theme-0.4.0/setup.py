@@ -1,5 +1,6 @@
 """Sphinx Bootstrap Theme package."""
 import os
+
 from setuptools import setup, find_packages
 
 from sphinx_bootstrap_theme import __version__

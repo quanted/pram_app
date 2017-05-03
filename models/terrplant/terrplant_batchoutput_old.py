@@ -3,17 +3,15 @@
    :synopsis: A useful module indeed.
 """
 
-from django.views.decorators.http import require_POST
-
-from StringIO import StringIO
-
-import terrplant_model,terrplant_tables
-
-import logging
-import csv
-from threading import Thread
 import Queue
+import csv
+import logging
 from collections import OrderedDict
+from threading import Thread
+
+import terrplant_model
+import terrplant_tables
+from django.views.decorators.http import require_POST
 
 application_rate=[]
 incorporation_depth=[]

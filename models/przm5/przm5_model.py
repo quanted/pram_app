@@ -4,11 +4,11 @@
 """
 
 import json
-from datetime import datetime, timedelta
-import time
-from collections import OrderedDict
-import os
 import logging
+import os
+from collections import OrderedDict
+from datetime import datetime
+
 logger = logging.getLogger('PRZM5 Model')
 import requests
 from ubertool_app.REST import auth_s3, rest_funcs

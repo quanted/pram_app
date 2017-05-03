@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-import keys_Picloud_S3
 import base64
-import urllib
-from google.appengine.api import urlfetch
 import json
-from datetime import datetime,timedelta
-from collections import OrderedDict
-
-import os
 import logging
+import os
+import urllib
+from collections import OrderedDict
+from datetime import datetime
+
+import keys_Picloud_S3
+from google.appengine.api import urlfetch
+
 logger = logging.getLogger('PRZM5 Model')
 
 ############Provide the key and connect to the picloud####################

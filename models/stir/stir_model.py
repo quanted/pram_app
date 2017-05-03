@@ -3,11 +3,13 @@
    :synopsis: A useful module indeed.
 """
 
-import logging
 import json
-from ubertool_app.REST import auth_s3, rest_funcs
+import logging
 import os
+
 import requests
+
+from ubertool_app.REST import auth_s3, rest_funcs
 
 logger = logging.getLogger('stir Model')
 

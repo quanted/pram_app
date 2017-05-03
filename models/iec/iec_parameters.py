@@ -4,7 +4,7 @@
 """
 from django import forms
 from django.utils.safestring import mark_safe
-from django.core import validators
+
 from ubertool_app.models.forms import validation
 
 SELECT_VERSION = (('1.0', '1.0'),)

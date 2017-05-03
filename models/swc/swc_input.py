@@ -6,7 +6,6 @@
 from django.template.loader import render_to_string
 
 def swcInputPage(request, model='', header='', formData=None):
-    import swc_parameters
     from models.przm5 import przm5_parameters
     from models.vvwm import vvwm_parameters
     

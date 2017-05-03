@@ -1,24 +1,21 @@
 #!/usr/bin/python
 #
 
-import exams_model
-
 import os
-import stat
-import shutil
-import subprocess
-import numpy as np
-from scipy.optimize import leastsq
-import zipfile
-from boto.s3.connection import S3Connection
-from boto.s3.key import Key
-from boto.s3.bucket import Bucket
-import string
 import random
-import operator
-import re
+import shutil
+import string
+import subprocess
+import zipfile
+
+import exams_model
 # from ubertool_src import keys_Picloud_S3
 import keys_Picloud_S3
+import numpy as np
+from boto.s3.bucket import Bucket
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+from scipy.optimize import leastsq
 
 exams_obj = exams_model.exams('chem_name_1', 'CA Almonds MLRA-17', 'Yes', 70, 71, 72, 73, 24, 25, 26, 27, 3, [5.0, 7.0, 11.0], [11.0, 12.0, 10.0])
 

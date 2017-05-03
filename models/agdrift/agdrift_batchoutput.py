@@ -3,14 +3,13 @@
    :synopsis: A useful module indeed.
 """
 
-from django.views.decorators.http import require_POST
-from StringIO import StringIO
-import agdrift_model, agdrift_tables
 import csv
-from threading import Thread
-import Queue
-from collections import OrderedDict
 import logging
+
+from django.views.decorators.http import require_POST
+
+import agdrift_model
+import agdrift_tables
 
 logger=logging.getLogger('agdrift batch')
 

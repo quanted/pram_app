@@ -3,15 +3,11 @@
    :synopsis: A useful module indeed.
 """
 
-import numpy
 # import django
-from django.template import Context, Template
-from django.utils.safestring import mark_safe
-import agdrift_model, agdrift_parameters
-import time
 import datetime
 import logging
-from django.template.loader import render_to_string
+
+from django.template import Context, Template
 
 logger = logging.getLogger("AgdriftTables")
 
@@ -69,43 +65,101 @@ def getdjtemplate():
 
 
 def gett1data(agdrift_obj):
-    # general inputs
-    data = {
-        "Parameter": ['Assessment type', 'Application method', 'Aquatic Body Type', 'Drop size', 'Scenario',
-                      'Scenario Type', 'Application rate', 'Calculation Input',],
-        "Value": [agdrift_obj.ecosystem_type, agdrift_obj.application_method, agdrift_obj.aquatic_body_type,
-                  agdrift_obj.drop_size, agdrift_obj.out_sim_scenario_chk, agdrift_obj.out_sim_scenario_id,
-                  agdrift_obj.application_rate, agdrift_obj.calculation_input,],
-    }
+    # general inputs describing scenario to be executed
+
+    #localize variables for table construction
+    assess_type = agdrift_obj.ecosystem_type
+    app_rate = agdrift_obj.application_rate
+    calc_input = agdrift_obj.calculation_input
+    chem_name = agdrift_obj.chemical_name
+    app_method = agdrift_obj.application_method
+
+    if(app_method == 'Tier I Aerial'):
+        drop_size = agdrift_obj.drop_size_aerial
+
+        data = {
+            "Parameter": ['Chemical Name', 'Application method', 'Drop size', 'Assessment type', 'Application rate',
+                          'Calculation Input', ],
+            "Value": [chem_name, app_method, drop_size, assess_type, app_rate, calc_input,],
+        }
+    elif(app_method == 'Tier I Ground'):
+        drop_size = agdrift_obj.drop_size_ground
+        boom_hgt = agdrift_obj.boom_height
+
+        data = {
+            "Parameter": ['Chemical Name', 'Application method', 'Drop size', 'Boom Height', 'Assessment type',
+                          'Application rate', 'Calculation Input', ],
+            "Value": [chem_name, app_method, drop_size, boom_hgt, assess_type, app_rate, calc_input,],
+        }
+    else:  #this is the airblast application
+        blast_type = agdrift_obj.airblast_type
+
+        data = {
+            "Parameter": ['Chemical Name', 'Application method', 'Airblast Type', 'Assessment type',
+                          'Application rate', 'Calculation Input', ],
+            "Value": [chem_name, app_method, blast_type, assess_type, app_rate, calc_input,],
+        }
+
     return data
 
 
 def gett2data(agdrift_obj):
-    if(agdrift_obj.aquatic_body_type == 'EPA Defined Pond'):
-        width = agdrift_obj.out_default_width
-        length = agdrift_obj.out_default_length
-        depth = agdrift_obj.out_default_pond_depth
-    elif(agdrift_obj.aquatic_body_type == 'User Defined Pond'):
-        width = agdrift_obj.user_pond_width
-        length = 'NA'
-        depth = agdrift_obj.user_pond_depth
-    #'EPA Defined Pond', 'User Defined Pond', 'EPA Defined Wetland', 'User Defined Wetland'
-    elif(agdrift_obj.aquatic_body_type == 'EPA Defined Wetland'):
-        width = agdrift_obj.out_default_width
-        length = agdrift_obj.out_default_length
-        depth = agdrift_obj.out_default_wetland_depth
-    elif(agdrift_obj.aquatic_body_type == 'User Defined Wetland'):
-        width = agdrift_obj.user_pond_width
-        length = 'NA'
-        depth = agdrift_obj.user_pond_depth
-    else:
-        width = 'NA'
-        depth = 'NA'
+    #dimentions of the exposure area (i.e., pond, wetland, or terrestrial field)
 
-    data = {
-        "Parameter": ['Downwind distance (feet)', 'Width (feet)', 'Length (feet)', 'Depth (feet)',],
-        "Value": [agdrift_obj.downwind_distance, width, length, depth, ],
-    }
+    #localize variables for table construction
+    assess_type = agdrift_obj.ecosystem_type
+
+    if(assess_type == 'Aquatic Assessment'):
+        waterbody_type = agdrift_obj.aquatic_body_type
+
+        if(waterbody_type == 'EPA Defined Pond'):
+            #width = agdrift_obj.default_width
+            #length = agdrift_obj.default_length
+            #depth = agdrift_obj.default_pond_depth
+            width = 208.7
+            length = 515.8
+            depth = 6.56
+        elif(waterbody_type == 'User Defined Pond'):
+            width = agdrift_obj.user_pond_width
+            length = agdrift_obj.sqft_per_hectare / width
+            depth = agdrift_obj.user_pond_depth
+        elif(waterbody_type == 'EPA Defined Wetland'):
+            #width = agdrift_obj.default_width
+            #length = agdrift_obj.default_length
+            #depth = agdrift_obj.out_default_wetland_depth
+            width = 208.7
+            length = 515.8
+            depth = 6.56
+        elif(waterbody_type == 'User Defined Wetland'):
+            width = agdrift_obj.user_wetland_width
+            length = agdrift_obj.sqft_per_hectare / width
+            depth = agdrift_obj.user_wetland_depth
+
+        data = {
+            "Parameter": ['Waterbody_type', 'Width (feet)', 'Length (feet)', 'Depth (feet)', ],
+            "Value": [waterbody_type, width, length, depth, ],
+        }
+
+    else:  #this is a terrestrial assessment
+        terrestrial_type = agdrift_obj.terrestrial_field_type
+
+        if(terrestrial_type == 'Point Deposition'):  #this is a point deposition
+            width = 'NA'
+            depth = 'NA'
+            length = 'NA'
+            data = {
+                "Parameter": ['Terrestrial Type', 'Width (feet)', 'Length (feet)', 'Depth (feet)', ],
+                "Value": [terrestrial_type, width, length, depth, ],
+            }
+        else: #this is a point deposition
+            width = agdrift_obj.user_terrestrial_width
+            length = agdrift_obj.sqft_per_hectare / width
+            depth = 'NA'
+
+            data = {
+                "Parameter": ['Terrestrial Type', 'Width (feet)', 'Length (feet)', 'Depth (feet)', ],
+                "Value": [terrestrial_type, width, length, depth, ],
+            }
     return data
 
 
@@ -133,17 +187,37 @@ def gett4data(agdrift_obj):
 #        "Value": [agdrift_obj.results[0], agdrift_obj.results[1],],
 #    }
 #    return data
+
+
 def gett5data(agdrift_obj):
-    logger.info(vars(agdrift_obj))
-    data = {
-        "Parameter": ['Spray drift fraction of applied', 'Initial Average Deposition (g/ha)',
-                      'Initial Average Deposition (lb/ac)', 'Initial Average Concentration (ng/L)',
-                      'Initial Average Deposition (mg/cm2)', 'Distance to Point or Waterbody (ft)', ],
-        # "Value": ['%.3f' % agdrift_obj.out_init_avg_dep_foa,'%.3f' % agdrift_obj.out_avg_dep_gha,'%.3f' % agdrift_obj.out_avg_dep_lbac, '%.3f' % agdrift_obj.out_deposition_ngl, '%.3f' % agdrift_obj.out_avg_field_dep_mgcm,],
-        "Value": ['{0:.5f}'.format(agdrift_obj.out_avg_dep_foa), '{0:.5f}'.format(agdrift_obj.out_avg_dep_gha),
-                  '{0:.5f}'.format(agdrift_obj.out_avg_dep_lbac), '{0:.5f}'.format(agdrift_obj.out_avg_waterconc_ngl),
-                  '{0:.5f}'.format(agdrift_obj.out_avg_field_dep_mgcm), '{0:d}'.format(int(agdrift_obj.downwind_distance)), ],
-    }
+    #model outputs (note: user specifies any one of these and the rest are calculated
+
+    #localize variables for table construction
+    foa = agdrift_obj.out_avg_dep_foa
+    gha = agdrift_obj.out_avg_dep_gha
+    lbac = agdrift_obj.out_avg_dep_lbac
+    ngl = agdrift_obj.out_avg_waterconc_ngl
+    mgcm2 = agdrift_obj.out_avg_field_dep_mgcm2
+    dist = int(agdrift_obj.downwind_distance)
+
+    if(agdrift_obj.ecosystem_type == 'Aquatic Assessment'):
+        data = {
+            "Parameter": ['Distance to Point or Waterbody (ft)', 'Spray drift fraction of applied',
+                          'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
+                          'Initial Average Concentration (ng/L)', ],
+            # "Value": ['%.3f' % agdrift_obj.out_init_avg_dep_foa,'%.3f' % agdrift_obj.out_avg_dep_gha,'%.3f' % agdrift_obj.out_avg_dep_lbac, '%.3f' % agdrift_obj.out_deposition_ngl, '%.3f' % agdrift_obj.out_avg_field_dep_mgcm,],
+            "Value": ['{0:.5f}'.format(dist), '{0:.5f}'.format(foa), '{0:.5f}'.format(gha),
+                      '{0:.5f}'.format(lbac), '{0:.5f}'.format(ngl), ],
+        }
+    else:
+        data = {
+            "Parameter": ['Distance to Point or Waterbody (ft)', 'Spray drift fraction of applied',
+                          'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
+                          'Initial Average Deposition (mg/cm2)', ],
+             "Value": ['{0:.5f}'.format(dist), '{0:.5f}'.format(foa), '{0:.5f}'.format(gha),
+                      '{0:.5f}'.format(lbac), '{0:.5f}'.format(mgcm2), ],
+        }
+
     return data
 
 

@@ -4,7 +4,7 @@
 """
 from django import forms
 from django.utils.safestring import mark_safe
-from django.core import validators
+
 from ubertool_app.models.forms import validation
 
 SELECT_RECEPTOR = (('Avian', 'Avian'), ('Mammalian', 'Mammalian'), ('Both', 'Both'))

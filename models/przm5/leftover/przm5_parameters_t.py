@@ -4,7 +4,6 @@ Created on Sun Apr 29 23:18:30 2012
 
 @author: tao
 """
-import os
 import datetime
 
 dvf_file = "test.dvf"

@@ -3,10 +3,11 @@
    :synopsis: A useful module indeed.
 """
 
-import os
-from bisect import *
 import logging
+import os
+
 from ubertool_app.REST import auth_s3, rest_funcs
+
 logger = logging.getLogger('agdrift Model')
 import json
 import requests

@@ -26,7 +26,7 @@ def clear_tables(d, files):
     del_files = [os.path.join(d, f) for f in os.listdir(d) if f.split(".")[0] in files]
     for f in del_files:
         os.remove(f)
-    print "Removed {} existing files".format(len(del_files))
+    print "Removed {0} existing files".format(len(del_files))
 
 
 def get_parameters(parameter_file):
@@ -119,7 +119,7 @@ def summarize_concentration(subset, attr, run_combinations):
     """
     out = {}
     for ivl, op in run_combinations:
-        run_id = "{}_{}d_{}".format(attr, ivl, op.__name__)
+        run_id = "{0}_{1}d_{2}".format(attr, ivl, op.__name__)
         out[run_id] = 'nan'
         if len(subset) > ivl:
             out[run_id] = op([sum((float(subset[day][attr]) for day in period if subset[day][attr])) / ivl
@@ -143,7 +143,7 @@ def summarize_exposure(subset, attr, run_combinations):
 
     out = {}
     for pct, ivl in run_combinations:
-        run_id = "{}_{}pct_{}d".format(attr, ivl, pct)
+        run_id = "{0}_{1}pct_{2}d".format(attr, ivl, pct)
         out[run_id] = 'nan'
         if len(subset) > ivl:
             data = sorted([float(v[attr]) if not math.isnan(float(v[attr])) else -1 for v in subset.values()])
@@ -163,7 +163,7 @@ def write_shapefile(out_map, out_dir, table, bid_field, geom_file):
     """
     output_file = os.path.join(out_dir, table + ".shp")
     if not os.path.exists(output_file):
-        print "Writing to file {}...".format(output_file)
+        print "Writing to file {0}...".format(output_file)
         w = shapefile.Writer(shapefile.POLYGON)
         w.field("BasinID", 'C', '20')
         for year in sorted(out_map):
@@ -196,7 +196,7 @@ def write_table(out_map, out_dir, table):
     with open(output_file, mode) as f:
         writer = csv.DictWriter(f, sorted(out_map.keys()), 'nan', "ignore")
         if mode == 'wb':
-            print "Writing to file {}...".format(output_file)
+            print "Writing to file {0}...".format(output_file)
             writer.writeheader()
         writer.writerow(out_map)
 
@@ -219,13 +219,13 @@ def main(argv):
     p = get_parameters(parameter_file)
     for i, h in enumerate(iter(p['files'])):
         basin = os.path.basename(h).split("_")[0]
-        print "Processing basin {} ({}/{})...".format(basin, i+1, len(p['files']))
+        print "Processing basin {0} ({1}/{2})...".format(basin, i+1, len(p['files']))
         record = read_file(h, p['julian_start'], p['infile_header'])
         output = {}
         intervals = sorted({('year', d.year) for d in record}) if p['annual'] else []
         intervals += sorted({('month', d.month) for d in record}) if ['monthly'] else []
         for type, interval in intervals:
-            key = "{}{}".format(type[0], interval)
+            key = "{0}{1}".format(type[0], interval)
             subset = {date: val for date, val in record.iteritems() if getattr(date, type) == interval}
             output[key] = summarize_concentration(subset, "AvgC", p['conc_combinations']) if p['concentration'] else []
             output[key].update(summarize_exceedance(subset, "AvgC", p['threshold']) if p['exceedance'] else {})

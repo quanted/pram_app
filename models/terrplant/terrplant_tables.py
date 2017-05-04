@@ -119,8 +119,6 @@ def gett3dataqaqc(terrplant_obj):
 def gett4data(terrplant_obj):
     data = { 
         "Plant Type": ['Monocot', 'Dicot',],
-        "ec25": [terrplant_obj.ec25_nonlisted_seedling_emergence_monocot,terrplant_obj.noaec_listed_seedling_emergence_monocot,],
-        "noaec": [terrplant_obj.ec25_nonlisted_seedling_emergence_dicot,terrplant_obj.noaec_listed_seedling_emergence_dicot,],
         "ec25": [terrplant_obj.ec25_nonlisted_vegetative_vigor_monocot,terrplant_obj.noaec_listed_vegetative_vigor_monocot,],
         "noaec":[terrplant_obj.ec25_nonlisted_vegetative_vigor_dicot,terrplant_obj.noaec_listed_vegetative_vigor_dicot,],
     }
@@ -129,8 +127,6 @@ def gett4data(terrplant_obj):
 def gett4dataqaqc(terrplant_obj):
     data = { 
         "Plant Type": ['Monocot', 'Dicot',],
-        "ec25": [terrplant_obj.ec25_nonlisted_seedling_emergence_monocot,terrplant_obj.noaec_listed_seedling_emergence_monocot,],
-        "noaec": [terrplant_obj.ec25_nonlisted_seedling_emergence_dicot,terrplant_obj.noaec_listed_seedling_emergence_dicot,],
         "ec25": [terrplant_obj.ec25_nonlisted_vegetative_vigor_monocot,terrplant_obj.noaec_listed_vegetative_vigor_monocot,],
         "noaec":[terrplant_obj.ec25_nonlisted_vegetative_vigor_dicot,terrplant_obj.noaec_listed_vegetative_vigor_dicot,],
     }

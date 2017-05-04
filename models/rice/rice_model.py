@@ -26,7 +26,7 @@ class rice(object):
         self.jid = rest_funcs.gen_jid()
 
         if set_variables:
-            if vars_dict != None:
+            if vars_dict is not None:
                 self.__dict__.update(vars_dict)
             else:
                 self.set_variables(version_rice,run_type,chemical_name,mai,dsed,a,pb,dw,osed,kd)

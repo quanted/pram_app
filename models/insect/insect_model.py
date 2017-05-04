@@ -22,7 +22,7 @@ class insect(object):
         self.set_default_variables()
         self.jid = rest_funcs.gen_jid()
         if set_variables:
-            if vars_dict != None:
+            if vars_dict is not None:
                 self.__dict__.update(vars_dict)
             else:
                 self.set_variables(run_type, chemical_name, b_species, m_species, bw_quail, bw_duck, bwb_other, bw_rat, bwm_other, sol, ld50_a, ld50_m, aw_bird, mineau, aw_mamm, noaec_d, noaec_q, noaec_o, Species_of_the_bird_NOAEC_CHOICES, noael)

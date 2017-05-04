@@ -19,7 +19,7 @@ class iec(object):
         self.set_default_variables()
         self.jid = rest_funcs.gen_jid()
         if set_variables:
-            if vars_dict != None:
+            if vars_dict is not None:
                 self.__dict__.update(vars_dict)
             else:
                 self.set_variables(run_type,dose_response,lc50,threshold)

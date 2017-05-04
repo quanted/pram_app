@@ -16,7 +16,7 @@ Drop_size_distribution_aerial_CHOICES=(('Very Fine to Fine','Very Fine to Fine')
                                 ('Fine to Medium','Fine to Medium'),
                                 ('Medium to Coarse','Medium to Coarse'),
                                 ('Coarse to Very Coarse','Coarse to Very Coarse'))
-Drop_size_distribution_ground_CHOICES=(('Very Fine to Fine','Very Fine to Fine'),
+Drop_size_distribution_ground_CHOICES=(('Very Fine','Very Fine'),
                                 ('Fine to Medium/Coarse','Fine to Medium/Coarse'))
 Boom_height_CHOICES=(('Low','Low'),
                      ('High','High'))
@@ -26,8 +26,8 @@ Orchard_CHOICES=(('Normal','Normal (Stone and Pome Fruit Vineyard)'),
                  ('Sparse', 'Sparse (Young, dormant)'),
                  ('Vineyard', 'Vineyard'),
                  ('Orchard','Orchard'))
-Terrestrial_type_CHOICES=(('Point Deposition','Point Deposition'),
-                          ('User Defined Terrestrial Area','User Defined Terrestrial Area'))
+Terrestrial_type_CHOICES=(('EPA Defined Terrestrial','EPA Defined Terrestrial'),
+                          ('User Defined Terrestrial','User Defined Terrestrial'))
 Aquatic_type_CHOICES=(('EPA Defined Pond','EPA Defined Pond'),
                       ('EPA Defined Wetland', 'EPA Defined Wetland'),
                       ('User Defined Pond', 'User Defined Pond'),
@@ -37,7 +37,7 @@ Calculation_input_CHOICES=(('Distance','Distance to waterbody or field'),
                            ('Initial Average Deposition (g/ha)','Initial Average Deposition (g/ha)'),
                            ('Initial Average Deposition (lb/ac)', 'Initial Average Deposition (lb/ac)'),
                            ('Initial Average Concentration (ng/L)', 'Initial Average Concentration (ng/L)'),
-                           ('Initial Average Deposiion (mg/cm2)','Initial Average Deposition (mg/cm2)'))
+                           ('Initial Average Deposition (mg/cm2)','Initial Average Deposition (mg/cm2)'))
 Version_CHOICES = ( ('1.0','1.0'),
                    ('2.1.1', '2.1.1'),
                    ('3.0', '3.0'))
@@ -73,7 +73,7 @@ class AgdriftInp(forms.Form):
     drop_size_ground = forms.ChoiceField(
         label='Drop Size Distribution-Ground',
         choices=Drop_size_distribution_ground_CHOICES,
-        initial='Very Fine to Fine',
+        initial='Very Fine',
         validators=[validation.validate_choicefield])
     boom_height = forms.ChoiceField(
         label='Boom height',
@@ -98,7 +98,7 @@ class AgdriftInp(forms.Form):
     terrestrial_field_type = forms.ChoiceField(
         label='Terrestrial Assessment Type',
         choices=Terrestrial_type_CHOICES,
-        initial='Point Deposition',
+        initial='EPA Defined Terrestrial',
         validators=[validation.validate_choicefield])
     epa_pond_width = forms.FloatField(
         label=mark_safe('EPA Defined Pond Width (ft)'),
@@ -154,7 +154,7 @@ class AgdriftInp(forms.Form):
         initial='225',
         validators=[validation.validate_integer, validation.validate_greaterthan0])
     user_frac_applied = forms.FloatField(
-        label=mark_safe('Fraction applied'),
+        label=mark_safe('Fraction of applied'),
         initial='0.0314',
         validators=[validation.validate_range01])
     user_avg_dep_gha = forms.FloatField(
@@ -163,14 +163,14 @@ class AgdriftInp(forms.Form):
         validators=[validation.validate_greaterthan0])
     user_avg_dep_mgcm2 = forms.FloatField(
         label=mark_safe('Initial Average Deposition (mg/cm2)'),
-        initial='6.56',
+        initial='0.0005',
         validators=[validation.validate_greaterthan0])
     user_avg_dep_lbac = forms.FloatField(
         label=mark_safe('Initial Average Deposition (lb/ac)'),
-        initial='6.56',
+        initial='0.005',
         validators=[validation.validate_greaterthan0])
     user_avg_conc_ngl = forms.FloatField(
-        label=mark_safe('Initial Average Deposition (ng/L)'),
+        label=mark_safe('Initial Average Concentration (ng/L)'),
         initial='0.0079',
         validators=[validation.validate_greaterthan0])
 

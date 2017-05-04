@@ -127,7 +127,7 @@ class _Shape:
                 ps = None
                 coordinates = []
                 for part in self.parts:
-                    if ps == None:
+                    if ps is None:
                         ps = part
                         continue
                     else:
@@ -149,7 +149,7 @@ class _Shape:
                 ps = None
                 coordinates = []
                 for part in self.parts:
-                    if ps == None:
+                    if ps is None:
                         ps = part
                         continue
                     else:
@@ -381,7 +381,7 @@ class Reader:
                 # Offsets are 16-bit words just like the file length
                 self._offsets.append(unpack(">i", shx.read(4))[0] * 2)
                 shx.seek(shx.tell() + 4)
-        if not i == None:
+        if not i is None:
             return self._offsets[i]
 
     def shape(self, i=0):

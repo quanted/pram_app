@@ -30,7 +30,7 @@ class StirModel(object):
                  vars_dict=None):
         self.set_default_variables()
         if set_variables:
-            if vars_dict != None:
+            if vars_dict is not None:
                 self.__dict__.update(vars_dict)
             else:
                 self.set_variables(run_type, chemical_name, application_rate, column_height, spray_drift_fraction,

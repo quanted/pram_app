@@ -51,23 +51,28 @@ class AgdriftInp(forms.Form):
     version = forms.ChoiceField(
         label='Version',
         choices=Version_CHOICES,
+        #show_hidden_initial= False,
         initial='2.1.1')
     chemical_name = forms.CharField(
         widget=forms.Textarea (attrs={'cols': 30, 'rows': 1}),
         label='Chemical Name',
+        #show_hidden_initial=False,
         initial='Alachlor')
     pc_code = forms.CharField(
         widget=forms.Textarea (attrs={'cols': 20, 'rows': 1}),
         label='PC Code',
+        #show_hidden_initial=False,
         initial='00')
     application_method = forms.ChoiceField(
         label='Application Method',
         choices=Application_method_CHOICES,
+        #show_hidden_initial=False,
         initial='Tier I Aerial',
         validators=[validation.validate_choicefield])
     drop_size_aerial = forms.ChoiceField(
         label='Drop Size Distribution-Aerial',
         choices=Drop_size_distribution_aerial_CHOICES,
+        #show_hidden_initial=False,
         initial='Fine to Medium',
         validators=[validation.validate_choicefield])
     drop_size_ground = forms.ChoiceField(

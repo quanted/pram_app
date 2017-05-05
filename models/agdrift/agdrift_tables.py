@@ -197,6 +197,7 @@ def gett5data(agdrift_obj):
     #model outputs (note: user specifies any one of these and the rest are calculated
 
     #localize variables for table construction
+    range_chk = agdrift_obj.out_range_chk
     foa = agdrift_obj.out_avg_dep_foa
     gha = agdrift_obj.out_avg_dep_gha
     lbac = agdrift_obj.out_avg_dep_lbac
@@ -205,22 +206,41 @@ def gett5data(agdrift_obj):
     dist = agdrift_obj.out_distance_downwind
 
     if(agdrift_obj.ecosystem_type == 'Aquatic Assessment'):
-        data = {
-            "Parameter": ['Distance to Waterbody (ft)', 'Spray drift fraction of applied',
-                          'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
-                          'Initial Average Concentration (ng/L)', ],
-            # "Value": ['%.3f' % agdrift_obj.out_init_avg_dep_foa,'%.3f' % agdrift_obj.out_avg_dep_gha,'%.3f' % agdrift_obj.out_avg_dep_lbac, '%.3f' % agdrift_obj.out_deposition_ngl, '%.3f' % agdrift_obj.out_avg_field_dep_mgcm,],
-            "Value": ['{0:.5f}'.format(dist), '{0:.5f}'.format(foa), '{0:.5f}'.format(gha),
-                      '{0:.5f}'.format(lbac), '{0:.5f}'.format(ngl), ],
-        }
+        if (range_chk == 'out of range'):
+            data = {
+                "Parameter": ['Range Check', 'Distance to Waterbody (ft)', 'Spray drift fraction of applied',
+                              'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
+                              'Initial Average Concentration (ng/L)', ],
+                # "Value": ['%.3f' % agdrift_obj.out_init_avg_dep_foa,'%.3f' % agdrift_obj.out_avg_dep_gha,'%.3f' % agdrift_obj.out_avg_dep_lbac, '%.3f' % agdrift_obj.out_deposition_ngl, '%.3f' % agdrift_obj.out_avg_field_dep_mgcm,],
+                "Value": ['calculated distance is out of range', '{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
+                          '{0:.4e}'.format(lbac), '{0:.4e}'.format(ngl), ],
+            }
+        else:
+            data = {
+                "Parameter": ['Distance to Waterbody (ft)', 'Spray drift fraction of applied',
+                              'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
+                              'Initial Average Concentration (ng/L)', ],
+                # "Value": ['%.3f' % agdrift_obj.out_init_avg_dep_foa,'%.3f' % agdrift_obj.out_avg_dep_gha,'%.3f' % agdrift_obj.out_avg_dep_lbac, '%.3f' % agdrift_obj.out_deposition_ngl, '%.3f' % agdrift_obj.out_avg_field_dep_mgcm,],
+                "Value": ['{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
+                          '{0:.4e}'.format(lbac), '{0:.4e}'.format(ngl), ],
+            }
     else:
-        data = {
-            "Parameter": ['Distance to Point or Field (ft)', 'Spray drift fraction of applied',
-                          'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
-                          'Initial Average Deposition (mg/cm2)', ],
-             "Value": ['{0:.5f}'.format(dist), '{0:.5f}'.format(foa), '{0:.5f}'.format(gha),
-                      '{0:.5f}'.format(lbac), '{0:.5f}'.format(mgcm2), ],
-        }
+        if (range_chk == 'out of range'):
+            data = {
+                "Parameter": ['Range Check', 'Distance to Point or Field (ft)', 'Spray drift fraction of applied',
+                              'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
+                              'Initial Average Deposition (mg/cm2)', ],
+                 "Value": ['calculate distance is out of range', '{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
+                          '{0:.4e}'.format(lbac), '{0:.4e}'.format(mgcm2), ],
+            }
+        else:
+            data = {
+                "Parameter": ['Distance to Point or Field (ft)', 'Spray drift fraction of applied',
+                              'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
+                              'Initial Average Deposition (mg/cm2)', ],
+                "Value": ['{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
+                          '{0:.4e}'.format(lbac), '{0:.4e}'.format(mgcm2), ],
+            }
 
     return data
 

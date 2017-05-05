@@ -111,29 +111,33 @@ def gett2data(agdrift_obj):
 
     if(assess_type == 'Aquatic Assessment'):
         waterbody_type = agdrift_obj.aquatic_body_type
+        
+        width = agdrift_obj.out_area_width
+        length = agdrift_obj.out_area_length
+        depth = agdrift_obj.out_area_depth
 
-        if(waterbody_type == 'EPA Defined Pond'):
-            #width = agdrift_obj.default_width
-            #length = agdrift_obj.default_length
-            #depth = agdrift_obj.default_pond_depth
-            width = 208.7
-            length = 515.8
-            depth = 6.56
-        elif(waterbody_type == 'User Defined Pond'):
-            width = agdrift_obj.user_pond_width
-            length = agdrift_obj.sqft_per_hectare / width
-            depth = agdrift_obj.user_pond_depth
-        elif(waterbody_type == 'EPA Defined Wetland'):
-            #width = agdrift_obj.default_width
-            #length = agdrift_obj.default_length
-            #depth = agdrift_obj.out_default_wetland_depth
-            width = 208.7
-            length = 515.8
-            depth = 6.56
-        elif(waterbody_type == 'User Defined Wetland'):
-            width = agdrift_obj.user_wetland_width
-            length = agdrift_obj.sqft_per_hectare / width
-            depth = agdrift_obj.user_wetland_depth
+        # if(waterbody_type == 'EPA Defined Pond'):
+        #     #width = agdrift_obj.default_width
+        #     #length = agdrift_obj.default_length
+        #     #depth = agdrift_obj.default_pond_depth
+        #     width = 208.7
+        #     length = 515.8
+        #     depth = 6.56
+        # elif(waterbody_type == 'User Defined Pond'):
+        #     width = agdrift_obj.user_pond_width
+        #     length = agdrift_obj.sqft_per_hectare / width
+        #     depth = agdrift_obj.user_pond_depth
+        # elif(waterbody_type == 'EPA Defined Wetland'):
+        #     #width = agdrift_obj.default_width
+        #     #length = agdrift_obj.default_length
+        #     #depth = agdrift_obj.out_default_wetland_depth
+        #     width = 208.7
+        #     length = 515.8
+        #     depth = 6.56
+        # elif(waterbody_type == 'User Defined Wetland'):
+        #     width = agdrift_obj.user_wetland_width
+        #     length = agdrift_obj.sqft_per_hectare / width
+        #     depth = agdrift_obj.user_wetland_depth
 
         data = {
             "Parameter": ['Waterbody_type', 'Width (feet)', 'Length (feet)', 'Depth (feet)', ],
@@ -143,7 +147,7 @@ def gett2data(agdrift_obj):
     else:  #this is a terrestrial assessment
         terrestrial_type = agdrift_obj.terrestrial_field_type
 
-        if(terrestrial_type == 'Point Deposition'):  #this is a point deposition
+        if(terrestrial_type == 'EPA Defined Terrestrial'):  #this is a point deposition
             width = 'NA'
             depth = 'NA'
             length = 'NA'
@@ -153,7 +157,7 @@ def gett2data(agdrift_obj):
             }
         else: #this is a point deposition
             width = agdrift_obj.user_terrestrial_width
-            length = agdrift_obj.sqft_per_hectare / width
+            length = 'NA'  #length of terrestrial field is not relevant to output calculations 
             depth = 'NA'
 
             data = {
@@ -198,11 +202,11 @@ def gett5data(agdrift_obj):
     lbac = agdrift_obj.out_avg_dep_lbac
     ngl = agdrift_obj.out_avg_waterconc_ngl
     mgcm2 = agdrift_obj.out_avg_field_dep_mgcm2
-    dist = int(agdrift_obj.downwind_distance)
+    dist = agdrift_obj.out_distance_downwind
 
     if(agdrift_obj.ecosystem_type == 'Aquatic Assessment'):
         data = {
-            "Parameter": ['Distance to Point or Waterbody (ft)', 'Spray drift fraction of applied',
+            "Parameter": ['Distance to Waterbody (ft)', 'Spray drift fraction of applied',
                           'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
                           'Initial Average Concentration (ng/L)', ],
             # "Value": ['%.3f' % agdrift_obj.out_init_avg_dep_foa,'%.3f' % agdrift_obj.out_avg_dep_gha,'%.3f' % agdrift_obj.out_avg_dep_lbac, '%.3f' % agdrift_obj.out_deposition_ngl, '%.3f' % agdrift_obj.out_avg_field_dep_mgcm,],
@@ -211,7 +215,7 @@ def gett5data(agdrift_obj):
         }
     else:
         data = {
-            "Parameter": ['Distance to Point or Waterbody (ft)', 'Spray drift fraction of applied',
+            "Parameter": ['Distance to Point or Field (ft)', 'Spray drift fraction of applied',
                           'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
                           'Initial Average Deposition (mg/cm2)', ],
              "Value": ['{0:.5f}'.format(dist), '{0:.5f}'.format(foa), '{0:.5f}'.format(gha),

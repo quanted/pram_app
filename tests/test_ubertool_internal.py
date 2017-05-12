@@ -1,5 +1,7 @@
+import datetime
 import requests
 import unittest
+import numpy as np
 import numpy.testing as npt
 import linkcheck_helper
 
@@ -41,26 +43,30 @@ class TestUbertoolPages(unittest.TestCase):
 
     @staticmethod
     def test_qed_200():
-        test_name = "Model page access for ubertool models \n"
+        start_time = datetime.datetime.utcnow()
+        test_name = str(start_time) + "\nModel page access for ubertool models \n"
+        assert_error = False
         try:
             #returns array of status codes for each page
-            response = [requests.get(m).status_code for m in model_pages]
+            response = np.asarray([requests.get(m).status_code for m in model_pages])
             n_tests = len(response)
-            response_200s = [200]*n_tests
+            response_200s = np.asarray([200] * n_tests)
+            n_successes = sum(response_200s == response)
+            test_result = str(n_successes) + " of " + str(n_tests) + " pass.\n"
+            test_name = test_name + test_result
             #find which tests failed and pass to another documentation function
-            assert_error = False
             try:
                 npt.assert_array_equal(response, response_200s, '200 error', True)
             except AssertionError:
                 assert_error = True
             except Exception as e:
                 # handle any other exception
-                print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+                print("Error '{0}' occured. Arguments {1}.".format(e.message, e.args))
         except Exception as e:
             # handle any other exception
-            print "Error '{0}' occured. Arguments {1}.".format(e.message, e.args)
+            print("Error '{0}' occured. Arguments {1}.".format(e.message, e.args))
         finally:
-            linkcheck_helper.write_report(test_name, assert_error, model_pages, response)
+            linkcheck_helper.write_report(test_name, assert_error, model_pages, response, start_time)
         return
 
 # unittest will

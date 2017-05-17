@@ -74,7 +74,7 @@ def gett1data(agdrift_obj):
     chem_name = agdrift_obj.chemical_name
     app_method = agdrift_obj.application_method
 
-    if(app_method == 'Tier I Aerial'):
+    if(app_method == 'tier_1_aerial'):
         drop_size = agdrift_obj.drop_size_aerial
 
         data = {
@@ -82,7 +82,7 @@ def gett1data(agdrift_obj):
                           'Calculation Input', ],
             "Value": [chem_name, app_method, drop_size, assess_type, app_rate, calc_input,],
         }
-    elif(app_method == 'Tier I Ground'):
+    elif(app_method == 'tier_1_ground'):
         drop_size = agdrift_obj.drop_size_ground
         boom_hgt = agdrift_obj.boom_height
 
@@ -109,7 +109,7 @@ def gett2data(agdrift_obj):
     #localize variables for table construction
     assess_type = agdrift_obj.ecosystem_type
 
-    if(assess_type == 'Aquatic Assessment'):
+    if(assess_type == 'aquatic_assessment'):
         waterbody_type = agdrift_obj.aquatic_body_type
         
         width = agdrift_obj.out_area_width
@@ -147,7 +147,7 @@ def gett2data(agdrift_obj):
     else:  #this is a terrestrial assessment
         terrestrial_type = agdrift_obj.terrestrial_field_type
 
-        if(terrestrial_type == 'EPA Defined Terrestrial'):  #this is a point deposition
+        if(terrestrial_type == 'epa_defined_terrestrial'):  #this is a point deposition
             width = 'NA'
             depth = 'NA'
             length = 'NA'
@@ -155,7 +155,7 @@ def gett2data(agdrift_obj):
                 "Parameter": ['Terrestrial Type', 'Width (feet)', 'Length (feet)', 'Depth (feet)', ],
                 "Value": [terrestrial_type, width, length, depth, ],
             }
-        else: #this is a point deposition
+        else: #this is an average deposition over a field
             width = agdrift_obj.user_terrestrial_width
             length = 'NA'  #length of terrestrial field is not relevant to output calculations 
             depth = 'NA'
@@ -197,7 +197,11 @@ def gett5data(agdrift_obj):
     #model outputs (note: user specifies any one of these and the rest are calculated
 
     #localize variables for table construction
-    range_chk = agdrift_obj.out_range_chk
+
+
+
+    range_chk_out = agdrift_obj.out_range_chk
+    range_chk_in =  agdrift_obj.out_sim_scenario_chk
     foa = agdrift_obj.out_avg_dep_foa
     gha = agdrift_obj.out_avg_dep_gha
     lbac = agdrift_obj.out_avg_dep_lbac
@@ -205,14 +209,14 @@ def gett5data(agdrift_obj):
     mgcm2 = agdrift_obj.out_avg_field_dep_mgcm2
     dist = agdrift_obj.out_distance_downwind
 
-    if(agdrift_obj.ecosystem_type == 'Aquatic Assessment'):
-        if (range_chk == 'out of range'):
+    if(agdrift_obj.ecosystem_type == 'aquatic_assessment'):
+        if (range_chk_out == 'out of range' or 'Invalid' in range_chk_in ):
             data = {
                 "Parameter": ['Range Check', 'Distance to Waterbody (ft)', 'Spray drift fraction of applied',
                               'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
                               'Initial Average Concentration (ng/L)', ],
                 # "Value": ['%.3f' % agdrift_obj.out_init_avg_dep_foa,'%.3f' % agdrift_obj.out_avg_dep_gha,'%.3f' % agdrift_obj.out_avg_dep_lbac, '%.3f' % agdrift_obj.out_deposition_ngl, '%.3f' % agdrift_obj.out_avg_field_dep_mgcm,],
-                "Value": ['calculated distance is out of range', '{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
+                "Value": ['width and/or distance is out of range', '{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
                           '{0:.4e}'.format(lbac), '{0:.4e}'.format(ngl), ],
             }
         else:
@@ -224,18 +228,37 @@ def gett5data(agdrift_obj):
                 "Value": ['{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
                           '{0:.4e}'.format(lbac), '{0:.4e}'.format(ngl), ],
             }
-    else:
-        if (range_chk == 'out of range'):
+    elif(agdrift_obj.ecosystem_type == 'terrestrial_assessment'
+         and agdrift_obj.terrestrial_field_type == 'epa_defined_terrestrial'):
+        if (range_chk_out == 'out of range'):
             data = {
-                "Parameter": ['Range Check', 'Distance to Point or Field (ft)', 'Spray drift fraction of applied',
-                              'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
-                              'Initial Average Deposition (mg/cm2)', ],
-                 "Value": ['calculate distance is out of range', '{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
+                "Parameter": ['Range Check', 'Distance to Point (ft)', 'Spray drift fraction of applied',
+                              'Initial Point Deposition (g/ha)', 'Initial Point Deposition (lb/ac)',
+                              'Initial Point Deposition (mg/cm2)', ],
+                 "Value": ['calculated distance is out of range', '{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
                           '{0:.4e}'.format(lbac), '{0:.4e}'.format(mgcm2), ],
             }
         else:
             data = {
-                "Parameter": ['Distance to Point or Field (ft)', 'Spray drift fraction of applied',
+                "Parameter": ['Distance to Point (ft)', 'Spray drift fraction of applied',
+                              'Initial Point Deposition (g/ha)', 'Initial Point Deposition (lb/ac)',
+                              'Initial Point Deposition (mg/cm2)', ],
+                "Value": ['{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
+                          '{0:.4e}'.format(lbac), '{0:.4e}'.format(mgcm2), ],
+            }
+    elif(agdrift_obj.ecosystem_type == 'terrestrial_assessment'
+         and agdrift_obj.terrestrial_field_type == 'user_defined_terrestrial'):
+        if (range_chk_out == 'out of range'):
+            data = {
+                "Parameter": ['Range Check', 'Distance to Terrestrial Field (ft)', 'Spray drift fraction of applied',
+                              'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
+                              'Initial Average Deposition (mg/cm2)', ],
+                 "Value": ['calculated distance is out of range', '{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),
+                          '{0:.4e}'.format(lbac), '{0:.4e}'.format(mgcm2), ],
+            }
+        else:
+            data = {
+                "Parameter": ['Distance to Terrestrial Field (ft)', 'Spray drift fraction of applied',
                               'Initial Average Deposition (g/ha)', 'Initial Average Deposition (lb/ac)',
                               'Initial Average Deposition (mg/cm2)', ],
                 "Value": ['{0:.2f}'.format(dist), '{0:.4e}'.format(foa), '{0:.4e}'.format(gha),

@@ -7,37 +7,37 @@ from django.utils.safestring import mark_safe
 
 from ubertool_app.models.forms import validation
 
-Ecosystem_type_CHOICES=(('Aquatic Assessment','Aquatic Assessment'),
-                        ('Terrestrial Assessment', 'Terrestrial Assessment'))
-Application_method_CHOICES=(('Tier I Aerial','Tier I Aerial'),
-                            ('Tier I Ground','Tier I Ground'),
-                            ('Tier I Orchard/Airblast','Tier I Orchard/Airblast'))
-Drop_size_distribution_aerial_CHOICES=(('Very Fine to Fine','Very Fine to Fine'),
-                                ('Fine to Medium','Fine to Medium'),
-                                ('Medium to Coarse','Medium to Coarse'),
-                                ('Coarse to Very Coarse','Coarse to Very Coarse'))
-Drop_size_distribution_ground_CHOICES=(('Very Fine','Very Fine'),
-                                ('Fine to Medium/Coarse','Fine to Medium/Coarse'))
-Boom_height_CHOICES=(('Low','Low'),
-                     ('High','High'))
+Ecosystem_type_CHOICES=(('aquatic_assessment','Aquatic Assessment'),
+                        ('terrestrial_assessment', 'Terrestrial Assessment'))
+Application_method_CHOICES=(('tier_1_aerial','Tier I Aerial'),
+                            ('tier_1_ground','Tier I Ground'),
+                            ('tier_1_airblast','Tier I Airblast'))
+Drop_size_distribution_aerial_CHOICES=(('very_fine_to_fine','Very Fine to Fine'),
+                                ('fine_to_medium','Fine to Medium'),
+                                ('medium_to_coarse','Medium to Coarse'),
+                                ('coarse_to_very_coarse','Coarse to Very Coarse'))
+Drop_size_distribution_ground_CHOICES=(('very_fine','Very Fine'),
+                                ('fine_to_medium-coarse','Fine to Medium/Coarse'))
+Boom_height_CHOICES=(('low','Low'),
+                     ('high','High'))
 
-Orchard_CHOICES=(('Normal','Normal (Stone and Pome Fruit Vineyard)'),
-                 ('Dense','Dense (Citrus, tall trees)'),
-                 ('Sparse', 'Sparse (Young, dormant)'),
-                 ('Vineyard', 'Vineyard'),
-                 ('Orchard','Orchard'))
-Terrestrial_type_CHOICES=(('EPA Defined Terrestrial','EPA Defined Terrestrial'),
-                          ('User Defined Terrestrial','User Defined Terrestrial'))
-Aquatic_type_CHOICES=(('EPA Defined Pond','EPA Defined Pond'),
-                      ('EPA Defined Wetland', 'EPA Defined Wetland'),
-                      ('User Defined Pond', 'User Defined Pond'),
-                      ('User Defined Wetland', 'User Defined Wetland'))
-Calculation_input_CHOICES=(('Distance','Distance to waterbody or field'),
-                           ('Fraction','Fraction of applied'),
-                           ('Initial Average Deposition (g/ha)','Initial Average Deposition (g/ha)'),
-                           ('Initial Average Deposition (lb/ac)', 'Initial Average Deposition (lb/ac)'),
-                           ('Initial Average Concentration (ng/L)', 'Initial Average Concentration (ng/L)'),
-                           ('Initial Average Deposition (mg/cm2)','Initial Average Deposition (mg/cm2)'))
+Orchard_CHOICES=(('normal','Normal (Stone and Pome Fruit Vineyard)'),
+                 ('dense','Dense (Citrus, tall trees)'),
+                 ('sparse', 'Sparse (Young, dormant)'),
+                 ('vineyard', 'Vineyard'),
+                 ('orchard','Orchard'))
+Terrestrial_type_CHOICES=(('epa_defined_terrestrial','EPA Defined Terrestrial (Point Deposition)'),
+                          ('user_defined_terrestrial','User Defined Terrestrial'))
+Aquatic_type_CHOICES=(('epa_defined_pond','EPA Defined Pond'),
+                      ('epa_defined_wetland', 'EPA Defined Wetland'),
+                      ('user_defined_pond', 'User Defined Pond'),
+                      ('user_defined_wetland', 'User Defined Wetland'))
+Calculation_input_CHOICES=(('distance_to_point_or_area_ft','Distance to point, waterbody, or field (ft)'),
+                           ('fraction_of_applied','Fraction of applied'),
+                           ('initial_deposition_gha','Initial Pt/Avg Deposition (g/ha)'),
+                           ('initial_deposition_lbac', 'Initial Pt/Avg Deposition (lb/ac)'),
+                           ('initial_deposition_mgcm2','Initial Pt/Avg Deposition (mg/cm2)'),
+                           ('initial_concentration_ngL', 'Initial Average Concentration (ng/L)'))
 Version_CHOICES = ( ('1.0','1.0'),
                    ('2.1.1', '2.1.1'),
                    ('3.0', '3.0'))
@@ -146,16 +146,16 @@ class AgdriftInp(forms.Form):
         initial='208.7',
         validators=[validation.validate_greaterthan0])
     application_rate = forms.FloatField(
-        label=mark_safe('Active rate (lb/ac)'),
+        label=mark_safe('Application rate (lb/ac)'),
         initial='0.5',
         validators=[validation.validate_greaterthan0])
     calculation_input = forms.ChoiceField(
         label = 'Initial Input Type for Calculation',
         choices=Calculation_input_CHOICES,
-        initial ='Distance',
+        initial ='Distance to point, waterbody, or field (ft)',
         validators=[validation.validate_choicefield])
     downwind_distance = forms.FloatField(
-        label=mark_safe('Distance to water body or terrestrial point from edge of field (ft)'),
+        label=mark_safe('Distance to waterbody or field (ft)'),
         initial='225',
         validators=[validation.validate_integer, validation.validate_greaterthan0])
     user_frac_applied = forms.FloatField(
@@ -163,15 +163,15 @@ class AgdriftInp(forms.Form):
         initial='0.0314',
         validators=[validation.validate_range01])
     user_avg_dep_gha = forms.FloatField(
-        label=mark_safe('Initial Average Deposition (g/ha)'),
+        label=mark_safe('Initial Pt/Avg Deposition (g/ha)'),
         initial='8.82',
         validators=[validation.validate_greaterthan0])
     user_avg_dep_mgcm2 = forms.FloatField(
-        label=mark_safe('Initial Average Deposition (mg/cm2)'),
+        label=mark_safe('Initial Pt/Avg Deposition (mg/cm2)'),
         initial='0.0005',
         validators=[validation.validate_greaterthan0])
     user_avg_dep_lbac = forms.FloatField(
-        label=mark_safe('Initial Average Deposition (lb/ac)'),
+        label=mark_safe('Initial Pt/Avg Deposition (lb/ac)'),
         initial='0.005',
         validators=[validation.validate_greaterthan0])
     user_avg_conc_ngl = forms.FloatField(

@@ -1,6 +1,9 @@
 """
 .. module:: agdrift_model
    :synopsis: A useful module indeed.
+   
+   THIS CODE IS NO LONGER USED
+   
 """
 
 import logging
@@ -85,8 +88,9 @@ class agdrift(object):
         all_dic = {"drop_size":drop_size, "ecosystem_type":ecosystem_type, "application_method":application_method, 
                    "boom_height":boom_height, "orchard_type":orchard_type, "application_rate":application_rate, 
                    "distance":distance, "aquatic_type":aquatic_type, "calculation_input":calculation_input, 
-                   "out_init_avg_dep_foa":out_init_avg_dep_foa, "out_avg_depo_gha":out_avg_depo_gha, "out_avg_depo_lbac":out_avg_depo_lbac,
-                   "out_deposition_ngl":out_deposition_ngl, "out_deposition_mgcm":out_deposition_mgcm, "out_nasae":out_nasae, "out_y":out_y, "out_x":out_x,
+                   "out_init_avg_dep_foa":out_init_avg_dep_foa, "out_avg_depo_gha":out_avg_depo_gha,
+                   "out_avg_depo_lbac":out_avg_depo_lbac, "out_deposition_ngl":out_deposition_ngl,
+                   "out_deposition_mgcm":out_deposition_mgcm, "out_nasae":out_nasae, "out_y":out_y, "out_x":out_x,
                    "out_express_y":out_express_y}
         data = json.dumps(all_dic)
 

@@ -57,12 +57,12 @@ class SamInp_chem(forms.Form):
         label='')
     surface_soil_half_life = forms.FloatField(
         required=False,
-        label='Surface Soil Halflife (days) 25⁰C',
+        label='Surface Soil Halflife (days) 25C',
         initial=10,
         validators=[validation.validate_positive])
     soil_reference_temperature = forms.FloatField(
         required=False,
-        label='Soil reference temperature, ⁰C',
+        label='Soil reference temperature, C',
         initial=10,
         validators=[validation.validate_positive])
     foliar_halflife = forms.FloatField(
@@ -79,7 +79,7 @@ class SamInp_chem(forms.Form):
         validators=[validation.validate_positive])
     water_reference_temperature = forms.FloatField(
         required=False,
-        label='Water reference temperature, ⁰C',
+        label='Water reference temperature, C',
         initial=100,
         validators=[validation.validate_positive])
     benthic_metabolism_halflife = forms.FloatField(
@@ -89,7 +89,7 @@ class SamInp_chem(forms.Form):
         validators=[validation.validate_positive])
     benthic_reference_temperature = forms.FloatField(
         required=False,
-        label='Benthic reference temperature, ⁰C',
+        label='Benthic reference temperature, C',
         initial=100,
         validators=[validation.validate_positive])
     aqueous_photolysis_halflife = forms.FloatField(
@@ -99,7 +99,7 @@ class SamInp_chem(forms.Form):
         validators=[validation.validate_positive])
     photolysis_reference_latitude = forms.FloatField(
         required=False,
-        label='Photolysis reference latitude, ⁰',
+        label='Photolysis reference latitude, degrees',
         initial=100,
         validators=[validation.validate_positive])
     hydrolysis_halflife = forms.FloatField(

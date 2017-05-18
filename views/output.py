@@ -149,33 +149,6 @@ def output_page_view(request, model='none', header=''):
 
         else:
             model_obj = model_handler.modelInputPOSTReceiverFortran(request, model)
-
-    elif model in {'ore'}:
-        """ 
-            TEMPORARY FOR ORE TESTING / DEVELOPMENT ON ECO
-        """
-        import ubertool_app.models.ore.ore_output
-        tables_html = ubertool_app.models.ore.ore_output.oreOutputPage(request)
-
-        html = render_to_string('01uberheader.html', {
-            'site_skin': os.environ['SITE_SKIN'],
-            'title': header + ' Output'})
-        html += render_to_string('02uberintroblock_wmodellinks.html', {
-            'site_skin': os.environ['SITE_SKIN'],
-            'model': model,
-            'page': 'output'})
-        html += links_left.ordered_list()
-        html += render_to_string('04uberoutput_start.html', {
-            'model_attributes': header + ' Output'})
-        html += tables_html
-        html += render_to_string('export.html', {})
-        html += render_to_string('04uberoutput_end.html', {'model': model})
-        html += render_to_string('06uberfooter.html', {'links': ''})
-
-        response = HttpResponse()
-        response.write(html)
-        return response
-
     else:
 
         # TODO: This section should be removed as it is not used anymore...(pre-objectifying method)
@@ -273,22 +246,33 @@ def output_page(request, model='none', header=''):
             logging.info(form.errors)
             input_module = importlib.import_module(model_input_location)
 
-            # Render input page view with POSTed values and show errors
-            html = render_to_string('01uberheader_main_drupal.html', {
+            # # Render input page view with POSTed values and show errors
+            # html = render_to_string('01uberheader_main_drupal.html', {
+            #     'SITE_SKIN': os.environ['SITE_SKIN'],
+            #     'TITLE': header})
+            # html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
+            #     'CONTACT_URL': os.environ['CONTACT_URL'],
+            #     'MODEL': model,
+            #     'PAGE': 'input'})
+
+            # epa template header
+            html = render_to_string('01epa_drupal_header.html', {
                 'SITE_SKIN': os.environ['SITE_SKIN'],
-                'TITLE': header})
-            html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
-                'CONTACT_URL': os.environ['CONTACT_URL'],
-                'MODEL': model,
-                'PAGE': 'input'})
+                'TITLE': u"\u00FCbertool"
+            })
+            html += render_to_string('02epa_drupal_header_bluestripe_onesidebar.html', {})
+            html += render_to_string('03epa_drupal_section_title_ubertool.html', {})
 
             input_page_func = getattr(input_module,
                                       model + '_input_page')  # function name example: 'sip_input_page'
             html += input_page_func(request, model, header,
                                           form_data=request.POST)  # form_data contains the already POSTed form data
 
-            html += links_left.ordered_list(model, 'run_model')
-            html += render_to_string('06uberfooter.html', {})
+            # html += links_left.ordered_list(model, 'run_model')
+            # html += render_to_string('06uberfooter.html', {})
+
+            html += render_to_string('07ubertext_end_drupal.html', {})
+            html += links_left.ordered_list(model)
 
             response = HttpResponse()
             response.write(html)

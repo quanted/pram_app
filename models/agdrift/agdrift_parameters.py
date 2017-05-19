@@ -103,7 +103,7 @@ class AgdriftInp(forms.Form):
     terrestrial_field_type = forms.ChoiceField(
         label='Terrestrial Assessment Type',
         choices=Terrestrial_type_CHOICES,
-        initial='EPA Defined Terrestrial',
+        initial='EPA Defined Terrestrial (Point Deposition)',
         validators=[validation.validate_choicefield])
     epa_pond_width = forms.FloatField(
         label=mark_safe('EPA Defined Pond Width (ft)'),
@@ -157,7 +157,7 @@ class AgdriftInp(forms.Form):
     downwind_distance = forms.FloatField(
         label=mark_safe('Distance to waterbody or field (ft)'),
         initial='225',
-        validators=[validation.validate_integer, validation.validate_greaterthan0])
+        validators=[validation.validate_integer, validation.validate_positive])
     user_frac_applied = forms.FloatField(
         label=mark_safe('Fraction of applied'),
         initial='0.0314',

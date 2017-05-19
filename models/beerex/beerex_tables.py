@@ -28,7 +28,7 @@ def getheadereecs():
 
 
 def getheaderrqs():
-    headings = ["Life Stage & Caste", "Age (days)", "Jelly (mg/day)", "Nectar (mg/day)", "Pollen (mg/day)", "Total Dose (ug a.i./bee)", "Acute RQ", "Chronic RQ"]
+    headings = ["Life Stage and Caste", "Age (days)", "Jelly (mg/day)", "Nectar (mg/day)", "Pollen (mg/day)", "Total Dose (ug a.i./bee)", "Acute RQ", "Chronic RQ"]
     return headings
 
 
@@ -100,13 +100,13 @@ def gett3data(beerex_obj):
 
 def gett4data(beerex_obj):
     data = { 
-        "Life Stage & Caste": ['Larval Worker', 'Larval Worker', 'Larval Worker', 'Larval Worker', 'Larval Worker',
+        "Life Stage and Caste": ['Larval Worker', 'Larval Worker', 'Larval Worker', 'Larval Worker', 'Larval Worker',
                                'Larval Drone', 'Larval Queen', 'Larval Queen', 'Larval Queen', 'Larval Queen',
                                'Adult Worker (cell cleaning and capping)', 'Adult Worker (brood and queen tending, nurse bees)',
                                'Adult Worker (comb building, cleaning and food handling)', 'Adult Worker (foraging for pollen)',
                                'Adult Worker (foraging for nectar)', 'Adult Worker (maintenance of hive in winter)', 'Adult Drone',
                                'Adult Queen (laying 1500 eggs/day)'],
-        "Average Age (days)": ['1', '2', '3', '4', '5', '6+', '1', '2', '3', '4+', '0-10', '6-17', '11-18', '>18', '>18', '0-90', '>10', 'entire lifestage'],
+        "Age (days)": ['1', '2', '3', '4', '5', '6+', '1', '2', '3', '4+', '0-10', '6-17', '11-18', '>18', '>18', '0-90', '>10', 'entire lifestage'],
         "Jelly (mg/day)": ['{0:g}'.format(beerex_obj.lw1_jelly), '{0:g}'.format(beerex_obj.lw2_jelly), '{0:g}'.format(beerex_obj.lw3_jelly), '%g', '%g', '%g', '{0:g}'.format(beerex_obj.lq1_jelly),
                            '{0:g}'.format(beerex_obj.lq2_jelly), '{0:g}'.format(beerex_obj.lq3_jelly), '{0:g}'.format(beerex_obj.lq4_jelly), '%g', '%g', '%g', '%g', '%g', '%g', '%g', '{0!s}'.format(beerex_obj.aq_jelly)],
         "Nectar (mg/day)": ['%g', '%g', '%g', '{0:g}'.format(beerex_obj.lw4_nectar), '{0:g}'.format(beerex_obj.lw5_nectar), '{0:g}'.format(beerex_obj.ld6_nectar), '%g', '%g', '%g', '%g',
@@ -119,7 +119,7 @@ def gett4data(beerex_obj):
                                      '{0:g}'.format(beerex_obj.out_lw4_total_dose), '{0:g}'.format(beerex_obj.out_lw5_total_dose), '{0:g}'.format(beerex_obj.out_ld6_total_dose),
                                      '{0:g}'.format(beerex_obj.out_lq1_total_dose), '{0:g}'.format(beerex_obj.out_lq2_total_dose), '{0:g}'.format(beerex_obj.out_lq3_total_dose),
                                      '{0:g}'.format(beerex_obj.out_lq4_total_dose), '{0:g}'.format(beerex_obj.out_aw_cell_total_dose), '{0:g}'.format(beerex_obj.out_aw_brood_total_dose),
-                                     '{0:g}'.format(beerex_obj.out_aw_comb_total_dose), '{0:g}'.format(beerex_obj.out_aw_fpollen_total_dose), '{0:g}'.format(beerex_obj.out_aw_fnectar_total_dose),
+                                     '{0:g}'.format(beerex_obj.out_aw_comb_total_dose), '{0:g}'.format(beerex_obj.out_aw_pollen_total_dose), '{0:g}'.format(beerex_obj.out_aw_nectar_total_dose),
                                      '{0:g}'.format(beerex_obj.out_aw_winter_total_dose), '{0:g}'.format(beerex_obj.out_ad_total_dose), '{0!s}'.format(beerex_obj.out_aq_total_dose)],
         "Acute RQ": ['{0:g}'.format(beerex_obj.out_lw1_acute_rq), '{0:g}'.format(beerex_obj.out_lw2_acute_rq), '{0:g}'.format(beerex_obj.out_lw3_acute_rq), '{0:g}'.format(beerex_obj.out_lw4_acute_rq),
                      '{0:g}'.format(beerex_obj.out_lw5_acute_rq), '{0:g}'.format(beerex_obj.out_ld6_acute_rq), '{0:g}'.format(beerex_obj.out_lq1_acute_rq), '{0:g}'.format(beerex_obj.out_lq2_acute_rq),

@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
-import helper_functions
-import links_left
+from . import helper_functions
+from . import links_left
 import os
 
 #import secret

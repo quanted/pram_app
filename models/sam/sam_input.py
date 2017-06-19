@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 def sam_input_page(request, model='', header='', form_data=None):
-    import sam_parameters
+    from . import sam_parameters
 
     html = render_to_string('04uberinput_jquery.html', {'model': model})
     html += '<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>'

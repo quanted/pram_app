@@ -26,13 +26,13 @@ def sam_huc_query(request, jid):
     # "20150402133114784000"
     from REST import rest_funcs
 
-    print jid
+
 
     geoserver_post_dict = json.loads(request.body)
 
     try:
         huc12_id = geoserver_post_dict['features'][0]['properties']['huc12']
-        print huc12_id
+
     except IndexError:
 
         html = "Try again..."

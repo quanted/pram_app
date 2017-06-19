@@ -5,7 +5,7 @@ import os
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
-import links_left
+from . import links_left
 from ubertool_app.REST import rest_funcs
 
 
@@ -61,7 +61,7 @@ def historyPageRevist(request, model='none', header='none'):
 
     jid = request.GET.get('jid')
     model_name = request.GET.get('model_name')
-    print jid, model_name
+
     # html = rest_funcs.get_output_html(jid, model_name)
 
 
@@ -117,7 +117,7 @@ def historyPageRevist(request, model='none', header='none'):
 
 
 def dict_to_flat_file(dict):
-    # print dict
+    #
     f = StringIO.StringIO()
 
     for k in dict:

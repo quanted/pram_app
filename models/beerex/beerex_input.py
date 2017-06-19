@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 def beerex_input_page(request, model='', header='', form_data=None):
-    import beerex_parameters
+    from . import beerex_parameters
 
     html = render_to_string('04uberinput_jquery.html', {'model': model})
     html += render_to_string('04uberinput_start_drupal.html', {

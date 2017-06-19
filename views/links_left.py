@@ -6,6 +6,10 @@ from django.template.loader import render_to_string
 # 03ubertext_links_left:
 def ordered_list(model=None, page=None):
     link_dict = OrderedDict([
+        ('utool', OrderedDict([
+            ('home', ''),
+        ])
+         ),
         ('Terrestrial Models', OrderedDict([
                 ('TerrPlant', 'terrplant'),
                 ('SIP', 'sip'),
@@ -37,6 +41,28 @@ def ordered_list(model=None, page=None):
                 # ('Surface Water Calculator', 'swc'),
             ])
         ),
+        ('Population Models', OrderedDict([
+            ('Exponential', 'exponential'),
+            ('Logistic', 'logistic'),
+            ('Gompertz', 'gompertz'),
+            ('Fox Surplus Yield', 'foxsurplus'),
+            ('Max Sustainable Yield', 'maxsus'),
+            ('Yule-Furry Markov Process', 'yulefurry'),
+            ('Feller-Arley Markov Process', 'fellerarley'),
+            ('Leslie Process', 'leslie'),
+            ('Leslie-Logistic Dose Response', 'lesliedr'),
+            ('Leslie-Probit Dose Response', 'leslie_probit'),
+            ('Loons Population', 'loons'),
+        ])
+         ),
+        ('Beta Versions', OrderedDict([
+            ('AgDisp', 'agdisp'),
+            ('Perfum', 'perfum'),
+            ('Pfam', 'pfam'),
+            ('PWC', 'pwc'),
+            ('TED', 'ted'),
+        ])
+         ),
         ('Documentation', OrderedDict([
                 ('Source Code', 'docs'),
                 ('API Documentation', 'api'),

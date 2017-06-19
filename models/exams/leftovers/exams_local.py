@@ -65,7 +65,7 @@ def exams_pi(exams_obj):
         file_name = str(os.getcwd())+'/'+inp
         lines = open(file_name, 'r').readlines() 
 
-        # print vars(exams_obj)
+        #
         lines[8] = "chem name is " + exams_obj.chem_name + '\n'
         lines[9] = "set mwt(1)= {0:10.4E}".format(float(exams_obj.mw)) + '\n'
         lines[10] = "set sol(1,1)= {0:10.4E}".format(float(exams_obj.sol)) + '\n'
@@ -112,7 +112,7 @@ def exams_pi(exams_obj):
             return temp
 
         exams_obj.k_abn = list(leastsq(residuals, k_abn, args=(ph_out, exams_obj.tmper, hl_out), maxfev=200000)[0])
-        print exams_obj.k_abn
+
 
         if exams_obj.k_abn[0] < 7.9E-5:
             exams_obj.k_abn[0] = 0
@@ -126,7 +126,7 @@ def exams_pi(exams_obj):
         lines[25]="set kbh(1,1,1)= {0:10.4E}".format((exams_obj.k_abn[2])) + '\n'
         lines[30]="read meteorology {0!s}".format((exams_obj.met)) + '\n'
 
-        print vars(exams_obj)
+
         out = open(file_name, 'w')
         out.writelines(lines)
         out.close()            
@@ -166,7 +166,7 @@ def exams_pi(exams_obj):
 
     return link
 
-print exams_pi(exams_obj)
+
 
 
 

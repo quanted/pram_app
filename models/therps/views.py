@@ -117,7 +117,7 @@ algorithm = '<h3>1. Introduction</h3>' \
             '</tbody>' \
             '</table>' \
             '<p>' \
-            'These body weights are also used by the risk assessor to provide insight into the relevance of some food items. For example, terrestrial phase CRLFs reported by Fellers (2007) were as small as approximately 1 gram. It is unlikely that a small mammal will be consumed by a 1 gram frog. Therefore, RQs are not calculated for small terrestrial phase herpetofauna that consume mammals. Therefore, RQs in the summary tables of the \"print results\" worksheet are not calculated for all body weight/food item combinations. The user should consider the body weight of the assessed species and the body weight assumptions of the prey items when evaluating the RQs from T-HERPS.' \
+            'These body weights are also used by the risk assessor to provide insight into the relevance of some food items. For example, terrestrial phase CRLFs reported by Fellers (2007) were as small as approximately 1 gram. It is unlikely that a small mammal will be consumed by a 1 gram frog. Therefore, RQs are not calculated for small terrestrial phase herpetofauna that consume mammals. Therefore, RQs in the summary tables of the \"
             '</p>' \
             '<h3>References</h3>' \
             '<li>' \

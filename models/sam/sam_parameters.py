@@ -9,143 +9,68 @@ from ubertool_app.models.forms import validation
 
 
 class SamInp_chem(forms.Form):
-    #SCENARIO_CHOICES = (
-    #    (1, 'Chemical A - Corn'),  # Atrazine
-    #    (2, 'Chemical B - Corn'),  # Chlorpyrifos
-    #    (3, 'Chemical C - Soybeans'),  # Chlorpyrifos
-    #    (4, 'Chemical D - Corn'),  # Fipronil
-    #    (5, 'Chemical E - Corn'),  # Metolachlor
-    #    (0, 'Custom')
-    #)
-
-    COEFFICIENT_CHOICES = (
-        (1, 'Koc'),
-        (2, 'Kd')
-    )
-
-    #scenario_selection = forms.ChoiceField(
-    #    choices=SCENARIO_CHOICES,
-    #    label='Choose a Scenario',
-    #    initial="Chemical A - Corn")
-
-    #Chemical
+    # Chemical
     simulation_name = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         initial="Simulation X")
+
     chemical_name = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
         initial="Chemical A")  # Atrazine
 
-    #watershed processes
+    # watershed processes
     koc = forms.FloatField(
         required=False,
         label='Sorption Coefficient (mL/g)',
         initial=100,
         validators=[validation.validate_positive])
-    kd = forms.FloatField(
-        required=False,
-        label='Sorption Coefficient (mL/g)',
-        initial=100,
-        validators=[validation.validate_positive])
-    coefficient = forms.ChoiceField(
+
+    kd_flag = forms.ChoiceField(
         required=False,
         widget=forms.RadioSelect,
-        choices=COEFFICIENT_CHOICES,
+        choices=((0, 'Koc'), (1, 'Kd')),
         initial=1,
         label='')
-    surface_soil_half_life = forms.FloatField(
+
+    soil_hl = forms.FloatField(
         required=False,
-        label='Surface Soil Halflife (days) 25C',
-        initial=10,
-        validators=[validation.validate_positive])
-    soil_reference_temperature = forms.FloatField(
-        required=False,
-        label='Soil reference temperature, C',
-        initial=10,
-        validators=[validation.validate_positive])
-    foliar_halflife = forms.FloatField(
-        required=False,
-        label='Foliar half life (days)',
+        label='Surface Soil Halflife (days), 25C',
         initial=10,
         validators=[validation.validate_positive])
 
-    #waterbody processes
-    aquatic_metabolism_halflife = forms.FloatField(
+    # water body processes
+
+    wc_metabolism_hl = forms.FloatField(
         required=False,
         label='Aquatic metabolism half life (days)',
         initial=100,
         validators=[validation.validate_positive])
-    water_reference_temperature = forms.FloatField(
-        required=False,
-        label='Water reference temperature, C',
-        initial=100,
-        validators=[validation.validate_positive])
-    benthic_metabolism_halflife = forms.FloatField(
+
+    ben_metabolism_hl = forms.FloatField(
         required=False,
         label='Benthic metabolism half life (days)',
         initial=100,
         validators=[validation.validate_positive])
-    benthic_reference_temperature = forms.FloatField(
-        required=False,
-        label='Benthic reference temperature, C',
-        initial=100,
-        validators=[validation.validate_positive])
-    aqueous_photolysis_halflife = forms.FloatField(
+
+    aq_photolysis_hl = forms.FloatField(
         required=False,
         label='Aqueous photolysis half life (days)',
         initial=100,
         validators=[validation.validate_positive])
-    photolysis_reference_latitude = forms.FloatField(
-        required=False,
-        label='Photolysis reference latitude, degrees',
-        initial=100,
-        validators=[validation.validate_positive])
-    hydrolysis_halflife = forms.FloatField(
+
+    hydrolysis_hl = forms.FloatField(
         required=False,
         label='Hydrolysis halflife (days), pH 7',
         initial=100,
         validators=[validation.validate_positive])
-    prben = forms.FloatField(
-        required=False,
-        label='PRBEN (fraction)',
-        initial=100,
-        validators=[validation.validate_positive])
 
-    #Volatilization processes
-    molecular_weight = forms.FloatField(
-        required=False,
-        label='Molecular weight (g/mol)',
-        initial=100,
-        validators=[validation.validate_positive])
-    vapor_pressure = forms.FloatField(
-        required=False,
-        label='Vapor pressure (torr)',
-        initial=100,
-        validators=[validation.validate_positive])
-    solubility = forms.FloatField(
-        required=False,
-        label='Solubility (mg/L)',
-        initial=100,
-        validators=[validation.validate_positive])
-    henrys_constant = forms.FloatField(
-        required=False,
-        label='Henry\'s constant',
-        initial=100,
-        validators=[validation.validate_positive])
-    air_diffusion_coefficient = forms.FloatField(
-        required=False,
-        label='Air diffusion coefficient (cm2/day)',
-        initial=100,
-        validators=[validation.validate_positive])
-    heat_of_henry = forms.FloatField(
-        required=False,
-        label='Heat of Henry (J/mol)',
-        initial=100,
-        validators=[validation.validate_positive])
 
 class SamInp_app(forms.Form):
+    pass
+
+class SamInp_app_old(forms.Form):
     CROP_CHOICES = (
         ("10 14 15 18", "Corn"),
         ("20 25 26 42", "Cotton"),
@@ -270,17 +195,16 @@ class SamInp_app_refine(forms.Form):
         label='Percent Applied',
         validators=[validation.validate_positive])
     refine_time_window2 = forms.FloatField(  # jQuery hides onLoad
-        required=False,
-        label='Time Window #2 (days)',
-        validators=[validation.validate_positive])
+                                             required=False,
+                                             label='Time Window #2 (days)',
+                                             validators=[validation.validate_positive])
     refine_percent_applied2 = forms.FloatField(  # jQuery hides onLoad
-        required=False,
-        label='Percent Applied #2',
-        validators=[validation.validate_positive])
+                                                 required=False,
+                                                 label='Percent Applied #2',
+                                                 validators=[validation.validate_positive])
 
 
 class SamInp_sim(forms.Form):
-
     SIM_AREA = (
         ('national', 'National'),
         ('hydroregion', 'Hydroregion'),
@@ -297,9 +221,9 @@ class SamInp_sim(forms.Form):
     SIM_DATE_END_CHOICES = (
         (1, 'Monday, December 31, 2014'),
     )
-    #SIM_DATE_1STAPP_CHOICES = (
+    # SIM_DATE_1STAPP_CHOICES = (
     #    (1, 'Monday, April 20, 1970'),
-    #)
+    # )
     # SIM_STATE = (
     #     ('Illinois', 'Illinois'),
     #     ('Indiana', 'Indiana'),

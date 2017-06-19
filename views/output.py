@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 
-import links_left
+from . import links_left
 
 print('qed.ubertool_app.views.output')
 
@@ -60,7 +60,7 @@ def output_page_html(header, model, tables_html):
     #    'TITLE': header + ' Output'})
     #html += tables_html
     ## if model is not "sam":
-    ##     print " model: " + model
+    ##
     ##     html += render_to_string('export.html', {})
     #html += render_to_string('04ubertext_end_drupal.html', {})
     #html += links_left.ordered_list(model, 'run_model')
@@ -280,7 +280,7 @@ def output_page(request, model='none', header=''):
 
             # end form validation testing
 
-    except Exception, e:
+    except Exception as e:
         logging.exception(e)
         logging.info("E X C E P T")
 

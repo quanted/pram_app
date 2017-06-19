@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 
-import links_left
+from . import links_left
 
 
 #######################################################################################
@@ -38,18 +38,18 @@ def login_auth(request):
     username = request.POST['username']
     password = request.POST['password']
     next_page = request.POST['next']
-    print username, password, next_page
+
     user = authenticate(username=username, password=password)
     if user is not None:
         if user.is_active:
             login(request, user)
             # Redirect to a success page.
-            print "Login Successful"
+
             request.session.set_expiry(3600)  # Set session length time (sec)
             return redirect(next_page)
         else:
             # Return a 'disabled account' error message
-            print "User account is inactive"
+
             return redirect('/ubertool/login?next=' + next_page)
     else:
         # Return an 'invalid login' error message.

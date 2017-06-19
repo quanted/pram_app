@@ -1,5 +1,5 @@
 from django.template.loader import render_to_string
-import links_left
+from . import links_left
 import os
 
 def drupal_2017_header(html):

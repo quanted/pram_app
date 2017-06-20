@@ -26,13 +26,18 @@ algorithm = '' \
             'on pre-defined parameter distributions. Please refer to Grear et. al. (2009) for more information.</p>'\
 
 #model description html for description page
-description = '<p>Will be populated soon...</p>'
+description = '<p> Based on Grear et. al. (2009) basic models of common loon (Gavia immer) demography and population dynamics.</p>'
+
 
 # How model name appears on web page
 header = 'Loons'
 
 history = '<p>User History</p>'
 
-references = '<p>Will be populated soon...</p>'
+references = '<b><a href=\"https://doi.org/10.2193/2008-093\">Population Growth and Demography of Common Loons in the Northern United States</a></b>'\
+              '<p>Jason S. Grear, Michael W. Meyer, John H. Cooley Jr, Anne Kuhn, Walter H. Piper, Matthew G. Mitro, '\
+              'Harry S. Vogel, Kate M. Taylor, Kevin P. Kenow, Stacy M. Craig, and Diane E. Nacci</p>'\
+              'Journal of Wildlife Management 73(7):1108-1115. 2009</p>'\
+              '<a href=\"https://doi.org/10.2193/2008-093\">https://doi.org/10.2193/2008-093</a>'
 
 

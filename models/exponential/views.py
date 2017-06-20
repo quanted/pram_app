@@ -11,11 +11,11 @@ qaqc = '<p>Will be back soon..</p>'
 #model algorithm html for algorithm page
 algorithm = '' \
             '<p>The population change rate is:</p>' \
-            '<img src = "/images/latex/exponential/exp_1.png" alt="Exp_1">' \
+            '<img src = \"/images/latex/exponential/exp_1.png\" alt=\"Exp_1\">' \
             '<p>If r is constant, the model is known as exponential growth model.</p>' \
             '<p>Integrate both sides of the above equation:</p>' \
-            '<img src = "/images/latex/exponential/exp_2.png" alt="Exp_2">'\
-            '<ul class="bullet">' \
+            '<img src = \"/images/latex/exponential/exp_2.png\" alt=\"Exp_2\">'\
+            '<ul class=\"bullet\">' \
             '<li>If r<0, population exponentially declines</li>' \
             '<li>If r>0, population exponentially increases</li>' \
             '<li>If r=0, population does not change</li>' \

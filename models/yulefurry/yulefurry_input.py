@@ -6,7 +6,7 @@
 from django.template.loader import render_to_string
 
 
-def exponential_input_page(request, model='', header='', form_data=None):
+def yulefurry_input_page(request, model='', header='', form_data=None):
     from . import yulefurry_parameters
 
     html = render_to_string('04uberinput_jquery.html', {'model': model})

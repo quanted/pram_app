@@ -1,35 +1,29 @@
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='settings'
-import cgi
-import cgitb
-cgitb.enable()
-import webapp2 as webapp
-from google.appengine.ext.webapp.util import run_wsgi_app
-from google.appengine.ext.webapp import template
-import django
-from django import forms
-from foxsurplus import foxsurplusdb
+"""
+.. module:: sip_input
+   :synopsis: A useful module indeed.
+"""
 
-class foxsurplusInputPage(webapp.RequestHandler):
-    def get(self):
-        templatepath = os.path.dirname(__file__) + '/../templates/'
-        html = template.render(templatepath + '01pop_uberheader.html', {'title':'Ubertool'})
-        html = html + template.render(templatepath + '02pop_uberintroblock_wmodellinks.html', {'model':'foxsurplus','page':'input'})
-        html = html + template.render (templatepath + '03pop_ubertext_links_left.html', {})                
-        html = html + template.render(templatepath + '04uberinput_start.html', {
-                'model':'foxsurplus', 
-                'model_attributes':'Fox Surplus Yield Model Inputs'})
-        html = html + str(foxsurplusdb.foxsurplusInp())
-        html = html + template.render(templatepath + '04uberinput_end.html', {'sub_title': 'Submit'})
-        html = html + template.render(templatepath + '05pop_ubertext_tooltips_right.html', {})
-        html = html + template.render(templatepath + '06pop_uberfooter.html', {'links': ''})
-        self.response.out.write(html)
+from django.template.loader import render_to_string
 
-app = webapp.WSGIApplication([('/.*', foxsurplusInputPage)], debug=True)
 
-def main():
-    run_wsgi_app(app)
+def foxsurplus_input_page(request, model='', header='', form_data=None):
+    from . import foxsurplus_parameters
 
-if __name__ == '__main__':
-    main()
-    
+    html = render_to_string('04uberinput_jquery.html', {'model': model})
+    html += render_to_string('04uberinput_start_drupal.html', {
+        'MODEL': model,
+        'TITLE': header})
+    html += render_to_string('04uberinput_form.html', {
+        'FORM': foxsurplus_parameters.foxsurplusInp(form_data)})
+    html += render_to_string('04uberinput_end_drupal.html', {})
+    html += render_to_string('04ubertext_end_drupal.html', {})
+    # Check if tooltips dictionary exists
+    # try:
+    #     import sip_tooltips
+    #     hasattr(sip_tooltips, 'tooltips')
+    #     tooltips = sip_tooltips.tooltips
+    # except:
+    #     tooltips = {}
+    # html += render_to_string('05ubertext_tooltips_right.html', {'tooltips': tooltips})
+
+    return html

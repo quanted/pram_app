@@ -16,6 +16,8 @@ def lesliedr_input_page(request, model='', header='', form_data=None):
     html += render_to_string('04uberinput_form.html', {
         'FORM': lesliedr_parameters.lesliedrInp(form_data)})
     html += render_to_string('04uberinput_end_drupal.html', {})
+    # html = html + """<table class="leslie" border="0">""" # implementing these lines will cause left menu to drop below input parameters
+    # html = html + """<table class="no" border="0">"""
     html += render_to_string('04ubertext_end_drupal.html', {})
     # Check if tooltips dictionary exists
     # try:

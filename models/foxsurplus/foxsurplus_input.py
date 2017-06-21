@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 def foxsurplus_input_page(request, model='', header='', form_data=None):
-    from . import foxsurplus_parameter
+    from . import foxsurplus_parameters
 
     html = render_to_string('04uberinput_jquery.html', {'model': model})
     html += render_to_string('04uberinput_start_drupal.html', {

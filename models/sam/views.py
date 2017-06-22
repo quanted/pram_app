@@ -76,7 +76,7 @@ header = 'SAM'
 history = '<p>User History</p>'
 
 references = '<p><ul class=\"bullet\">' \
-             '<li><a href=\"http://sam-manual.s3-website-us-east-1.amazonaws.com/SAM_ubertool_user_manual_21Apr2015.pdf\">SAM User Manual' \
+             '<li><a href=\"http://sam_new-manual.s3-website-us-east-1.amazonaws.com/SAM_ubertool_user_manual_21Apr2015.pdf\">SAM User Manual' \
              ' 4/21/2015</a>' \
              '<li><a href=\"https://github.com/quanted/static_qed/blob/master/docs/SAM_Developmental_Manual.pdf">' \
              'DEVELOPMENT OF A SPATIAL AQUATIC MODEL (SAM) FOR PESTICIDE ASSESSMENTS</a></li>' \
@@ -85,8 +85,8 @@ references = '<p><ul class=\"bullet\">' \
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/quanted/ubertool_app/tree/master/models/sam">ubertool_src on GitHub (front end)</a></li>' \
-             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/sam">ubertool_src on GitHub (back end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/ubertool_app/tree/master/models/sam_new">ubertool_src on GitHub (front end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/sam_new">ubertool_src on GitHub (back end)</a></li>' \
              '</ul>' \
              '<p>' \
              'Presentations/posters/abstracts/reports on the subject of EPA\'s ecological risk assessment ' \

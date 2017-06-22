@@ -19,7 +19,7 @@ class SamInp_app():
                  ("Application Timing",
                   (("Crop Stage",), ("Offset (days)",))),
                  ("Application Window",
-                  (("Distribution",), ("Length 1",), ("Frac 1",), ("Length 2",), ("Frac 2",))),
+                  (("Distribution",), ("Length 1",), ("% Applied",), ("Length 2",), ("% Applied",))),
                  ("Application Method",
                   (("Method",), ("Rate",), ("Efficiency",)))]
 
@@ -164,18 +164,18 @@ class SamInp_output():
                       "Aquatic vascular plant (Tox x LOC)"]
 
         # Add header
-        html = """<table class="input_table tab tab_Output" border="0">"""
+        html = """<table class="input_table tab tab_out tab_Output" border="0">"""
         html += '<tr id="header">'
         for heading in header:
             html += "<th>{}</th>".format(heading)
-        html += "</tr>"
+        html += "</tr>\n"
 
         for i, category in enumerate(categories):
             html += "<tr><td>{}</td>".format(category) + \
-                    '<td><input name="acute" disabled="disabled" type="text" size="5"></td>' + \
-                    '<td><input name="chronic" type="text" size="5"></td>'
+                    '<td><input name="acute" disabled="disabled" type="text" size="5"></td>\n' + \
+                    '<td><input name="chronic" type="text" size="5"></td>\n'
             if not i:
-                html += '<td><input name="overall" type="text" size="5"></td></tr>'
+                html += '<td><input name="overall" type="text" size="5"></td></tr>\n'
             else:
                 pass
 

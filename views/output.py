@@ -17,7 +17,7 @@ _UPDATED_MODELS = (
     'iec',
     'kabam',
     'rice',
-    'sam',
+    'sam_new',
     'sip',
     'stir',
     'trex',
@@ -59,7 +59,7 @@ def output_page_html(header, model, tables_html):
     #html += render_to_string('04uberoutput_start_drupal.html', {
     #    'TITLE': header + ' Output'})
     #html += tables_html
-    ## if model is not "sam":
+    ## if model is not "sam_new":
     ##
     ##     html += render_to_string('export.html', {})
     #html += render_to_string('04ubertext_end_drupal.html', {})
@@ -88,11 +88,11 @@ def output_page_view(request, model='none', header=''):
         from ubertool_app.models import model_handler
         model_obj = model_handler.modelInputPOSTReceiver(request, model)
 
-    elif model in {'sam'}:
+    elif model in {'sam_new'}:
         logging.info('=========== New Model Handler FORTRAN ===========')
         from ubertool_app.models import model_handler
 
-        if model == 'sam':
+        if model == 'sam_new':
             """
             SAM takes a long time to run relative to other models; therefore, 
             it will not return model results on form submit, but will instead 

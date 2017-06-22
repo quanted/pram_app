@@ -15,9 +15,10 @@ def leslie_input_page(request, model='', header='', form_data=None):
         'TITLE': header})
     html += render_to_string('04uberinput_form.html', {
         'FORM': leslie_parameters.leslieInp(form_data)})
+    html = html + """<table class="leslie" border="0">"""
+    html = html + """<table class="no" border="0">"""
+    html = html + render_to_string('leslie-input-jquery.html', {})
     html += render_to_string('04uberinput_end_drupal.html', {})
-  ##  html = html + """<table class="leslie" border="0">"""
-  ##  html = html + """<table class="no" border="0">"""
     html += render_to_string('04ubertext_end_drupal.html', {})
 
     # Check if tooltips dictionary exists

@@ -30,7 +30,7 @@ def leslie_probit_input_page(request, model='', header='', form_data=None):
     html += """<table class="input_table tab tab_popu no" border="0" style="display:none">"""
     html += render_to_string('leslie_probit_input_jquery.html', {})
     html += render_to_string('04uberinput_tabbed_end.html', {'sub_title': 'Submit'})
-    html += render_to_string('04uberinput_end_drupal.html', {})
+#    html += render_to_string('04uberinput_end_drupal.html', {})
     html += render_to_string('04ubertext_end_drupal.html', {})
 
     return html

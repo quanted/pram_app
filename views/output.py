@@ -14,6 +14,7 @@ _UPDATED_MODELS = (
     'agdrift',
     'beerex',
     'earthworm',
+    'exponential',
     'iec',
     'kabam',
     'rice',

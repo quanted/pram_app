@@ -26,8 +26,8 @@ def leslie_probit_input_page(request, model='', header='', form_data=None):
     html += """</table><table class="input_table tab tab_LeslieMatrix" border="0" style="display:none">"""
     html += str(leslie_probit_parameters.leslie_probit_LeslieMatrix())
 
-    html += """<table class="input_table tab tab_popu leslie" border="0" style="display:none">"""
-    html += """<table class="input_table tab tab_popu no" border="0" style="display:none">"""
+    html += """<table class="input_table tab tab_LeslieMatrix leslie" border="0" style="display:none">"""
+    html += """<table class="input_table tab tab_LeslieMatrix no" border="0" style="display:none">"""
     html += render_to_string('leslie_probit_input_jquery.html', {})
     html += render_to_string('04uberinput_tabbed_end.html', {'sub_title': 'Submit'})
 #    html += render_to_string('04uberinput_end_drupal.html', {})

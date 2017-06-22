@@ -15,6 +15,9 @@ def lesliedr_input_page(request, model='', header='', form_data=None):
         'TITLE': header})
     html += render_to_string('04uberinput_form.html', {
         'FORM': lesliedr_parameters.lesliedrInp(form_data)})
+    html += """<table class="leslie" border="0">"""
+    html += """<table class="no" border="0">"""
+    html += render_to_string('lesliedr-input-jquery.html', {})
     html += render_to_string('04uberinput_end_drupal.html', {})
     html += render_to_string('04ubertext_end_drupal.html', {})
     # Check if tooltips dictionary exists

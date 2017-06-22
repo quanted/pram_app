@@ -15,15 +15,15 @@ def leslie_probit_input_page(request, model='', header='', form_data=None):
         'TITLE': header})
     html += render_to_string('04uberinput_tabbed_nav.html', {
         'nav_dict': {
-            'class_name': ['chem', 'dose', 'popu'],
-            'tab_label': ['Chemical', 'Dose Response', 'Leslie Matrix']
+            'class_name': ['Chemical', 'DoseResponse', 'LeslieMatrix'],
+            'tab_label': ['Chemical', 'DoseResponse', 'LeslieMatrix']
         }
     })
-    html += """<br><table class="input_table tab tab_chem" border="0">"""
+    html += """<br><table class="input_table tab tab_Chemical" border="0">"""
     html += str(leslie_probit_parameters.leslie_probit_chem())
-    html += """</table><table class="input_table tab tab_dose" border="0" style="display:none">"""
+    html += """</table><table class="input_table tab tab_DoseResponse" border="0" style="display:none">"""
     html += str(leslie_probit_parameters.leslie_probit_dose())
-    html += """</table><table class="input_table tab tab_popu" border="0" style="display:none">"""
+    html += """</table><table class="input_table tab tab_LeslieMatrix" border="0" style="display:none">"""
     html += str(leslie_probit_parameters.leslie_probit_popu())
 
     html += """<table class="input_table tab tab_popu leslie" border="0" style="display:none">"""

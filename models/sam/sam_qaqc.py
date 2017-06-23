@@ -14,11 +14,11 @@ class samQaqcPage(webapp.RequestHandler):
                 'title': header+' Inputs'})
         html = html + template.render(templatepath + '02uberintroblock_wmodellinks.html', {
                 'site_skin' : os.environ['SITE_SKIN'],
-                'model':'sam_new',
+                'model':'sam',
                 'page':'qaqc'})
         html = html + template.render (templatepath + '03ubertext_links_left.html', {})                
         html = html + template.render(templatepath + '04uberinput_start.html', {
-                'model':'sam_new',
+                'model':'sam',
                 'model_attributes':'SAM QAQC'})
         html = html + template.render(templatepath + '04uberinput_end.html', {'sub_title': ''})
         html = html + template.render(templatepath + '05ubertext_links_right.html', {})

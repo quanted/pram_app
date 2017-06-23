@@ -27,7 +27,7 @@ class SamInp_app():
         html = """<table class="input_table tab tab_app tab_Application" border="0">"""
         html += """
                 <tr><th colspan="1" scope="col"><label for="id_noa">Number of Applications:</label></th>
-                    <td colspan="1" scope="col"><form id = "id_noa"><input type="number" id="id_noa" min="1" max="20" value="1"></form>
+                    <td colspan="1" scope="col"><form id = "id_noa"><input name="napps" type="number" id="id_noa" min="1" max="20" value="1"></form>
                     </td>
                 </tr>
                 """
@@ -61,18 +61,18 @@ class SamInp_chem(forms.Form):
     simulation_name = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-        initial="Simulation X")
+        initial="Mark Twain Atrazine 062217")
 
     chemical_name = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-        initial="Chemical A")  # Atrazine
+        initial="atrazine")  # Atrazine
 
     # watershed processes
     koc = forms.FloatField(
         required=False,
         label='Sorption Coefficient (mL/g)',
-        initial=100,
+        initial=75,
         validators=[validation.validate_positive])
 
     kd_flag = forms.ChoiceField(
@@ -85,7 +85,7 @@ class SamInp_chem(forms.Form):
     soil_hl = forms.FloatField(
         required=False,
         label='Surface Soil Halflife (days), 25C',
-        initial=10,
+        initial=139,
         validators=[validation.validate_positive])
 
     # water body processes
@@ -93,25 +93,25 @@ class SamInp_chem(forms.Form):
     wc_metabolism_hl = forms.FloatField(
         required=False,
         label='Aquatic metabolism half life (days)',
-        initial=100,
+        initial=277,
         validators=[validation.validate_positive])
 
     ben_metabolism_hl = forms.FloatField(
         required=False,
         label='Benthic metabolism half life (days)',
-        initial=100,
+        initial=277,
         validators=[validation.validate_positive])
 
     aq_photolysis_hl = forms.FloatField(
         required=False,
         label='Aqueous photolysis half life (days)',
-        initial=100,
+        initial=168,
         validators=[validation.validate_positive])
 
     hydrolysis_hl = forms.FloatField(
         required=False,
         label='Hydrolysis halflife (days), pH 7',
-        initial=100,
+        initial=0,
         validators=[validation.validate_positive])
 
 
@@ -133,19 +133,20 @@ class SamInp_sim(forms.Form):
     sim_type = forms.ChoiceField(
         required=False,
         widget=forms.RadioSelect(),
-        choices=TYPE_CHOICES)
+        choices=TYPE_CHOICES,
+        initial='Eco')
 
     sim_date_start = forms.DateField(
         required=False,
         widget=forms.DateInput(attrs={'class': 'datePicker'}),
         label='Start Date',
-        initial="01/01/1984")  # choices=SIM_DATE_START_CHOICES  This earliest possible start date
+        initial="01/01/2000")  # choices=SIM_DATE_START_CHOICES  This earliest possible start date
 
     sim_date_end = forms.DateField(
         required=False,
         widget=forms.DateInput(attrs={'class': 'datePicker'}),
         label='End Date',
-        initial="12/31/2013")
+        initial="12/31/2015")
 
 
 class SamInp_output():
@@ -154,14 +155,22 @@ class SamInp_output():
 
     @staticmethod
     def endpoint_table():
+        atrazine_defaults = [[3.4, "", ""],
+                             [2650, 0.5, ""],
+                             [360, 60, ""],
+                             [1000, 0.5, ""],
+                             [24, 80, ""],
+                             [1, "", ""],
+                             [4.6, "", ""]]
+
         header = ["Toxicity threshold", "Acute", "Chronic", "Overall (cancer)"]
-        categories = ["Human health DWLOC (ug/L)",
-                      "Freshwater Fish (Tox x LOC)",
-                      "Freshwater Invertebrate (Tox x LOC)",
-                      "Estuarine/Marine Fish (Tox x LOC)",
-                      "Estuarine/Marine Invertebrate (Tox x LOC)",
-                      "Aquatic nonvascular plant (Tox x LOC)",
-                      "Aquatic vascular plant (Tox x LOC)"]
+        categories = [("Human health DWLOC (ug/L)", 'human'),
+                      ("Freshwater Fish (Tox x LOC)", 'fw_fish'),
+                      ("Freshwater Invertebrate (Tox x LOC)", 'fw_inv'),
+                      ("Estuarine/Marine Fish (Tox x LOC)", 'em_fish'),
+                      ("Estuarine/Marine Invertebrate (Tox x LOC)", 'em_inv'),
+                      ("Aquatic nonvascular plant (Tox x LOC)", 'nonvasc_plant'),
+                      ("Aquatic vascular plant (Tox x LOC)", 'vasc_plant')]
 
         # Add header
         html = """<table class="input_table tab tab_out tab_Output" border="0">"""
@@ -170,12 +179,15 @@ class SamInp_output():
             html += "<th>{}</th>".format(heading)
         html += "</tr>\n"
 
-        for i, category in enumerate(categories):
+        # Build table
+        defaults = atrazine_defaults
+        for i, (category, tag) in enumerate(categories):
+            row = defaults[i]
             html += "<tr><td>{}</td>".format(category) + \
-                    '<td><input name="acute" disabled="disabled" type="text" size="5"></td>\n' + \
-                    '<td><input name="chronic" type="text" size="5"></td>\n'
+                    '<td><input name="acute_{}" value="{}" disabled="disabled" type="text" size="5"></td>\n'.format(tag, row[0]) + \
+                    '<td><input name="chronic_{}" value="{}" type="text" size="5"></td>\n'.format(tag, row[1])
             if not i:
-                html += '<td><input name="overall" type="text" size="5"></td></tr>\n'
+                html += '<td><input name="overall_human" value="{}" type="text" size="5"></td></tr>\n'.format(defaults[0][2])
             else:
                 pass
 

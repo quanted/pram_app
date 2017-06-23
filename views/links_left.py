@@ -34,7 +34,7 @@ def ordered_list(model=None, page=None):
                 # ('EXAMS', 'exams'),
                 # ('PFAM', 'pfam'),
                 # ('PRZM-EXAMS', 'przm_exams'),
-                ('SAM', 'sam_new'),
+                ('SAM', 'sam'),
                 #('SWC', 'swc'),
                 # ('Web-ICE', 'webice'),
                 # ('VVWM', 'vvwm'),

@@ -11,7 +11,7 @@ servers = ["https://qedinternal.epa.gov/ubertool/","http://127.0.0.1:8000/uberto
 
 models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
           "agdrift/", "earthworm/", "beerex/",
-          "kabam/", "sam_new/", "therps/", "trex/"]
+          "kabam/", "sam/", "therps/", "trex/"]
 #models = ["sip/", "stir/", "pfam/", "earthworm/"]
 
 #The following list represents the model page titles to be checked (order of models

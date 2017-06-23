@@ -480,7 +480,7 @@ def custom_run_tables(request, jid):
                     <tbody>
                         <tr>
                             <th>Output Data Link:</th>
-                            <td><a href="history/revisit?model_name=sam_new&jid={0!s}">Download SAM Output</a></td>
+                            <td><a href="history/revisit?model_name=sam&jid={0!s}">Download SAM Output</a></td>
                         </tr>
                     </tbody>
                 </table>

@@ -48,7 +48,7 @@ def get_jid(run_type):
     data = json.dumps(all_dic)
     logger.info(data)
     jid = rest_funcs.gen_jid()
-    url=url_part1 + '/sam_new/' + jid
+    url=url_part1 + '/sam/' + jid
 
     response = requests.post(url=url, data=data, headers=http_headers, timeout=60)
     output_val = json.loads(response.content)['result']

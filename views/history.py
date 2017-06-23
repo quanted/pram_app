@@ -30,7 +30,7 @@ def historyPage(request, model='none', header='none'):
             'model_attributes': header+' User History'})
     
     # Conditional template loading
-    if model == 'sam_new':
+    if model == 'sam':
         html = html + render_to_string('history_query_sam.html', {'model' : model})
     else:
         html = html + render_to_string('history_query.html', {'model' : model})
@@ -65,7 +65,7 @@ def historyPageRevist(request, model='none', header='none'):
     # html = rest_funcs.get_output_html(jid, model_name)
 
 
-    if model_name == 'sam_new':
+    if model_name == 'sam':
         """ 
         This is all temporary for development testing
 

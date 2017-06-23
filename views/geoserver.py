@@ -65,7 +65,7 @@ def sam_huc_query(request, jid):
 def sam_done_query(request, jid):
 
     from REST import rest_funcs
-    request = rest_funcs.get_model_object(jid, "sam_new")
+    request = rest_funcs.get_model_object(jid, "sam")
 
     response = {}
 

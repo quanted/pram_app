@@ -247,7 +247,7 @@ def get_sam_huc_output(jid, huc12):
     :param huc12:
     :return:
     """
-    all_dic = {"jid": jid, "model_name": "sam_new", "huc12": huc12}
+    all_dic = {"jid": jid, "model_name": "sam", "huc12": huc12}
     data = json.dumps(all_dic)
     url = rest_url + '/get_sam_huc_output'
     try:
@@ -340,7 +340,7 @@ class UserHistory(object):
 
                     self.user_id.append(element['user_id'])
 
-                    if model_name == 'sam_new':  # SAM changed "_id" to "jid" Mongo key
+                    if model_name == 'sam':  # SAM changed "_id" to "jid" Mongo key
                         self.jid.append(element['jid'])
                         self.time_id.append(
                             datetime.datetime.strptime(element['jid'], '%Y%m%d%H%M%S%f').strftime('%Y-%m-%d %H:%M:%S'))

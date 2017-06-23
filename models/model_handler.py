@@ -129,11 +129,11 @@ def modelInputPOSTReceiver(request, model):
     logging.info(args)
 
     response = call_model_server(model, args)
-
+    print("hello")
     logging.info("=========== returned from back end")
     jid = response.json()['_id']
     logging.info("job id = " + str(jid))
-    run_type = response.json()['run_type']
+    run_type = response.json()['run_type']   # jch - sam_new fails
     logging.info("run_type = " + run_type)
     dataframes = create_dataframe(response)
 
@@ -158,7 +158,7 @@ def modelInputPOSTReceiverFortran(request, model):
 
     response = call_model_server(model, args)
 
-    if model in {'sam'}:
+    if model in {'sam_new'}:
         logging.info(response.json()['outputs'])
 
         return str(response.json()['outputs'])

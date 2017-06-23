@@ -30,7 +30,7 @@ def historyPage(request, model='none', header='none'):
             'model_attributes': header+' User History'})
     
     # Conditional template loading
-    if model == 'sam':
+    if model == 'sam_new':
         html = html + render_to_string('history_query_sam.html', {'model' : model})
     else:
         html = html + render_to_string('history_query.html', {'model' : model})
@@ -65,7 +65,7 @@ def historyPageRevist(request, model='none', header='none'):
     # html = rest_funcs.get_output_html(jid, model_name)
 
 
-    if model_name == 'sam':
+    if model_name == 'sam_new':
         """ 
         This is all temporary for development testing
 
@@ -101,7 +101,7 @@ def historyPageRevist(request, model='none', header='none'):
             output_tables = historyOutputTableRedraw(model, model_obj)
             
         # Throw errow and return error message if exception
-        except Exception, e:
+        except Exception as e:
             import logging
             logging.exception(e)
             output_tables = """
@@ -166,7 +166,7 @@ def historyOutputTableRedraw(model, model_obj):
 
         return modelOutputHTML
 
-    except ImportError, e:
+    except ImportError as e:
         import logging
         logging.exception(e)
         """
@@ -198,7 +198,7 @@ def historyOutputTableRedraw(model, model_obj):
 
             return modelOutputHTML
 
-        except ImportError, e:
+        except ImportError as e:
             import logging
             logging.exception(e)
 
@@ -207,7 +207,7 @@ def historyOutputTableRedraw(model, model_obj):
             <b>*** Error retrieving model run ***</b>
             """
 
-    except Exception, e:
+    except Exception as e:
         """
         Catch any other exceptions and return error message
         """

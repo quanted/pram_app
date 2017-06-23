@@ -17,6 +17,7 @@ _UPDATED_MODELS = (
     'exponential',
     'iec',
     'kabam',
+    'loons',
     'rice',
     'sam',
     'sip',

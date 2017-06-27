@@ -14,7 +14,7 @@ numpy==1.13.0
 pandas==0.20.2
 pillow==4.1.1
 pypdf2==1.26.0
-python-coveralls
+python-coveralls==2.9.1
 pytz
 requests
 reportlab

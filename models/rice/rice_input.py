@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 def rice_input_page(request, model='', header='', form_data=None):
-    import rice_parameters
+    from . import rice_parameters
 
     html = render_to_string('04uberinput_start_drupal.html', {
         'MODEL': model,

@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 def insectInputPage(request, model='', header='', formData=None):
-    import insect_parameters
+    from . import insect_parameters
 
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
     html = html + render_to_string('04uberinput_start.html', {

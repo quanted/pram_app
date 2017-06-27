@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 def earthworm_input_page(request, model='', header='', form_data=None):
-    import earthworm_parameters
+    from . import earthworm_parameters
 
     html = render_to_string('04uberinput_start_drupal.html', {
         'MODEL': model,

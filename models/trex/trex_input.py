@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 def trex_input_page(request, model='', header='', form_data=None):
-    import trex_parameters
+    from . import trex_parameters
 
     html = render_to_string('04uberinput_jquery.html', {'model': model})
     html += render_to_string('04uberinput_start_tabbed_drupal.html', {

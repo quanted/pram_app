@@ -130,7 +130,7 @@ def get_jid(run_type, pfac, snowmelt, evapDepth,
         response = requests.post(url=url, data=data, headers=http_headers, timeout=60)
         output_val = json.loads(response.content)['result']
         # jid= json.loads(response.content)['jid']
-        # print "filepath=", output_val[4]
+        #
         # self.elapsed = (time.clock() - start)
         return(jid, output_val)
 
@@ -157,7 +157,7 @@ class przm5(object):
         alphanum_key = lambda (key, value): convert_dict_key(key)
         dictionary_1 = sorted(dictionary.items(), key=alphanum_key)
         dictionary = OrderedDict(dictionary_1)
-        print dictionary
+
         self.hydlength = 356.8  #for pond
         self.useYears = 0
         self.tempflag = 0

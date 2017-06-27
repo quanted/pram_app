@@ -5,7 +5,7 @@
 
 from django.template.loader import render_to_string
 
-import agdrift_parameters
+from . import agdrift_parameters
 
 
 def agdrift_input_page(request, model='', header='', form_data=None):

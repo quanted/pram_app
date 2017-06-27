@@ -8,442 +8,196 @@ from django.utils.safestring import mark_safe
 from ubertool_app.models.forms import validation
 
 
+class SamInp_app():
+    def __init__(self):
+        self.html = self.application_table()
+
+    @staticmethod
+    def application_table():
+        table = [("",
+                  (("Crop Group",),)),
+                 ("Application Timing",
+                  (("Crop Stage",), ("Offset (days)",))),
+                 ("Application Window",
+                  (("Distribution",), ("Length 1",), ("% Applied",), ("Length 2",), ("% Applied",))),
+                 ("Application Method",
+                  (("Method",), ("Rate",), ("Efficiency",)))]
+
+        # Add number-of-applications row
+        html = """<table class="input_table tab tab_app tab_Application" border="0">"""
+        html += """
+                <tr><th colspan="1" scope="col"><label for="id_noa">Number of Applications:</label></th>
+                    <td colspan="1" scope="col"><form id = "id_noa"><input name="napps" type="number" id="id_noa" min="1" max="20" value="1"></form>
+                    </td>
+                </tr>
+                """
+
+        # Set field width
+        field_size = 10
+
+        # Add super-header
+        html += '<tr id="super_header">\n'
+        for group, fields in table:
+            html += "<th colspan='{}'>{}</th>\n".format(len(fields), group)
+        html += "</tr>"
+
+        # Add sub-header
+        html += '<tr id="sub_header">\n'
+        html += "\n".join(
+            ("<th width='{}'>{}</th>".format(field_size, field[0]) for _, fields in table for field in fields))
+        html += "</tr>"
+
+        # Add first row
+        html += "</tr></table>"
+
+        return html
+
+    def __str__(self):
+        return self.html
+
+
 class SamInp_chem(forms.Form):
-    #SCENARIO_CHOICES = (
-    #    (1, 'Chemical A - Corn'),  # Atrazine
-    #    (2, 'Chemical B - Corn'),  # Chlorpyrifos
-    #    (3, 'Chemical C - Soybeans'),  # Chlorpyrifos
-    #    (4, 'Chemical D - Corn'),  # Fipronil
-    #    (5, 'Chemical E - Corn'),  # Metolachlor
-    #    (0, 'Custom')
-    #)
-
-    COEFFICIENT_CHOICES = (
-        (1, 'Koc'),
-        (2, 'Kd')
-    )
-
-    #scenario_selection = forms.ChoiceField(
-    #    choices=SCENARIO_CHOICES,
-    #    label='Choose a Scenario',
-    #    initial="Chemical A - Corn")
-
-    #Chemical
+    # Chemical
     simulation_name = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-        initial="Simulation X")
+        initial="Mark Twain Atrazine 062217")
+
     chemical_name = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-        initial="Chemical A")  # Atrazine
+        initial="atrazine")  # Atrazine
 
-    #watershed processes
+    # watershed processes
     koc = forms.FloatField(
         required=False,
         label='Sorption Coefficient (mL/g)',
-        initial=100,
+        initial=75,
         validators=[validation.validate_positive])
-    kd = forms.FloatField(
-        required=False,
-        label='Sorption Coefficient (mL/g)',
-        initial=100,
-        validators=[validation.validate_positive])
-    coefficient = forms.ChoiceField(
+
+    kd_flag = forms.ChoiceField(
         required=False,
         widget=forms.RadioSelect,
-        choices=COEFFICIENT_CHOICES,
+        choices=((0, 'Koc'), (1, 'Kd')),
         initial=1,
         label='')
-    surface_soil_half_life = forms.FloatField(
+
+    soil_hl = forms.FloatField(
         required=False,
-        label='Surface Soil Halflife (days) 25C',
-        initial=10,
-        validators=[validation.validate_positive])
-    soil_reference_temperature = forms.FloatField(
-        required=False,
-        label='Soil reference temperature, C',
-        initial=10,
-        validators=[validation.validate_positive])
-    foliar_halflife = forms.FloatField(
-        required=False,
-        label='Foliar half life (days)',
-        initial=10,
+        label='Surface Soil Halflife (days), 25C',
+        initial=139,
         validators=[validation.validate_positive])
 
-    #waterbody processes
-    aquatic_metabolism_halflife = forms.FloatField(
+    # water body processes
+
+    wc_metabolism_hl = forms.FloatField(
         required=False,
         label='Aquatic metabolism half life (days)',
-        initial=100,
+        initial=277,
         validators=[validation.validate_positive])
-    water_reference_temperature = forms.FloatField(
-        required=False,
-        label='Water reference temperature, C',
-        initial=100,
-        validators=[validation.validate_positive])
-    benthic_metabolism_halflife = forms.FloatField(
+
+    ben_metabolism_hl = forms.FloatField(
         required=False,
         label='Benthic metabolism half life (days)',
-        initial=100,
+        initial=277,
         validators=[validation.validate_positive])
-    benthic_reference_temperature = forms.FloatField(
-        required=False,
-        label='Benthic reference temperature, C',
-        initial=100,
-        validators=[validation.validate_positive])
-    aqueous_photolysis_halflife = forms.FloatField(
+
+    aq_photolysis_hl = forms.FloatField(
         required=False,
         label='Aqueous photolysis half life (days)',
-        initial=100,
+        initial=168,
         validators=[validation.validate_positive])
-    photolysis_reference_latitude = forms.FloatField(
-        required=False,
-        label='Photolysis reference latitude, degrees',
-        initial=100,
-        validators=[validation.validate_positive])
-    hydrolysis_halflife = forms.FloatField(
+
+    hydrolysis_hl = forms.FloatField(
         required=False,
         label='Hydrolysis halflife (days), pH 7',
-        initial=100,
-        validators=[validation.validate_positive])
-    prben = forms.FloatField(
-        required=False,
-        label='PRBEN (fraction)',
-        initial=100,
-        validators=[validation.validate_positive])
-
-    #Volatilization processes
-    molecular_weight = forms.FloatField(
-        required=False,
-        label='Molecular weight (g/mol)',
-        initial=100,
-        validators=[validation.validate_positive])
-    vapor_pressure = forms.FloatField(
-        required=False,
-        label='Vapor pressure (torr)',
-        initial=100,
-        validators=[validation.validate_positive])
-    solubility = forms.FloatField(
-        required=False,
-        label='Solubility (mg/L)',
-        initial=100,
-        validators=[validation.validate_positive])
-    henrys_constant = forms.FloatField(
-        required=False,
-        label='Henry\'s constant',
-        initial=100,
-        validators=[validation.validate_positive])
-    air_diffusion_coefficient = forms.FloatField(
-        required=False,
-        label='Air diffusion coefficient (cm2/day)',
-        initial=100,
-        validators=[validation.validate_positive])
-    heat_of_henry = forms.FloatField(
-        required=False,
-        label='Heat of Henry (J/mol)',
-        initial=100,
-        validators=[validation.validate_positive])
-
-class SamInp_app(forms.Form):
-    CROP_CHOICES = (
-        ("10 14 15 18", "Corn"),
-        ("20 25 26 42", "Cotton"),
-        ("40 42 45 48 14", "Soybeans"),
-        ("50 56 58 15 45", "Wheat"),
-        ("60 56 26 68", "Vegetables"),
-        ("60 61", "Ground fruit"),
-        ("70", "Orchards"),
-        ("70", "Grapes, vineyards"),
-        ("75", "Other trees"),
-        ("80 48 18 58", "Other grains"),
-        ("90", "Other row crops"),
-        ("100", "Other crops"),
-        ("110 150", "Pasture/hay/forage/grass"),
-
-        # (0, "Choose up to 4 crops"),
-        # (10, "Corn"),
-        # #(14, "Corn/soybeans"),
-        # #(15, "Corn/wheat"),
-        # #(18, "Corn/grains"),
-        # (20, "Cotton"),
-        # #(25, "Cotton/wheat"),
-        # #(26, "Cotton/vegetables"),
-        # #(30, "Rice"),
-        # (40, "Soybeans"),
-        # #(42, "Soybeans/cotton"),
-        # #(45, "Soybeans/wheat"),
-        # #(48, "Soybeans/grains"),
-        # (50, "Wheat"),
-        # #(56, "Wheat/vegetables"),
-        # #(58, "Wheat/grains"),
-        # #(60, "Vegetables/ground fruit"),
-        # (61, "Ground fruit"),
-        # #(68, "Vegetables/grains"),
-        # #(70, "Orchards/grapes"),
-        # (75, "Other trees"),
-        # (80, "Other grains"),
-        # (90, "Other row crops"),
-        # (100, "Other crops")
-        # #(110, "Pasture/hay/forage"),
-        # #(121, "Developed - open"),
-        # #(122, "Developed - low"),
-        # #(123, "Developed - med"),
-        # #(124, "Developed - high"),
-        # #(140, "Forest"),
-        # #(150, "Grassland"),
-        # #(160, "Shrubland"),
-        # #(180, "Water"),
-        # #(190, "Wetlands - woods"),
-        # #(195, "Wetlands - herbaceous"),
-        # #(200, "Miscellaneous land")
-    )
-    APP_METH_CHOICES = (
-        (1, 'Ground'),
-        (2, 'Foliar')
-    )
-
-    crop_list_no = forms.CharField(
-        # This field is hidden by jQuery and holds the list of chosen crops
-        required=False,
-        widget=forms.Textarea({'cols': 20, 'rows': 1}))
-
-    crop = forms.MultipleChoiceField(
-        required=False,
-        widget=forms.SelectMultiple(attrs={'size': 4}),
-        choices=CROP_CHOICES,
-        label=mark_safe("Crop Groups<br>('Ctrl' to select multiple)"))
-    # crop = forms.ChoiceField(
-    #         required=False,
-    #         choices=CROP_CHOICES,
-    #         validators=[validation.validate_choicefield])
-    try:
-        crop_number = forms.FloatField(
-            required=False,
-            label='Total Number of Crops',
-            initial=0,
-            widget=forms.NumberInput(attrs={'readonly': 'true'}))
-    except:
-        crop_number = forms.FloatField(
-            required=False,
-            label='Total Number of Crops',
-            initial=0,
-            widget=forms.TextInput(attrs={'readonly': 'true'}))
-    apps_per_year = forms.FloatField(
-        required=False,
-        label='Number of Applications per Year',
-        initial=1,
-        validators=[validation.validate_greaterthan0])
-    application_method = forms.ChoiceField(
-        required=False,
-        choices=APP_METH_CHOICES)
-    application_rate = forms.FloatField(
-        required=False,
-        label='Application Rate (kg/ha)',
-        initial=1.3,
-        validators=[validation.validate_positive])
-    sim_date_1stapp = forms.DateField(
-        required=False,
-        widget=forms.DateInput(attrs={'class': 'datePicker'}),
-        label='First Application Date',
-        initial="04/20/1984")
-
-
-class SamInp_app_refine(forms.Form):
-    REFINEMENT_CHOICES = (
-        ('uniform', 'Uniform Application over Window'),
-        ('uniform_step', 'Uniform Step Application over Window'),
-        ('triangular', 'Triangular Application over Window')
-    )
-
-    refine = forms.ChoiceField(
-        required=False,
-        choices=REFINEMENT_CHOICES,
-        label="Refinements",
-        initial='uniform_step')
-    refine_time_window1 = forms.FloatField(
-        required=False,
-        label='Time Window (days)',
-        validators=[validation.validate_positive])
-    refine_percent_applied1 = forms.FloatField(
-        required=False,
-        label='Percent Applied',
-        validators=[validation.validate_positive])
-    refine_time_window2 = forms.FloatField(  # jQuery hides onLoad
-        required=False,
-        label='Time Window #2 (days)',
-        validators=[validation.validate_positive])
-    refine_percent_applied2 = forms.FloatField(  # jQuery hides onLoad
-        required=False,
-        label='Percent Applied #2',
+        initial=0,
         validators=[validation.validate_positive])
 
 
 class SamInp_sim(forms.Form):
+    nhd_regions = ['01', '02', '03N', '03S', '03W', '04', '05', '06', '07', '08', '09',
+                   '10U', '10L', '11', '12', '13', '14', '15', '16', '17', '18']
 
-    SIM_AREA = (
-        ('national', 'National'),
-        ('hydroregion', 'Hydroregion'),
-        ('map', 'Map')
-    )
-    SIM_CHOICES = (
-        ('eco', 'Eco'),
-        ('dwr', 'DW Reservoirs'),
-        ('dwf', 'DW Flowing')
-    )
-    SIM_DATE_START_CHOICES = (
-        (1, 'Thursday, January 1, 1984'),
-    )
-    SIM_DATE_END_CHOICES = (
-        (1, 'Monday, December 31, 2014'),
-    )
-    #SIM_DATE_1STAPP_CHOICES = (
-    #    (1, 'Monday, April 20, 1970'),
-    #)
-    # SIM_STATE = (
-    #     ('Illinois', 'Illinois'),
-    #     ('Indiana', 'Indiana'),
-    #     ('Kentucky', 'Kentucky'),
-    #     ('Ohio', 'Ohio'),
-    #     ('Ohio Valley', 'Ohio Valley'),
-    #     ('Pennsylvania', 'Pennsylvania'),
-    #     ('Tennessee', 'Tennessee'),
-    #     ('West Virginia', 'West Virginia')
-    # )
+    REGION_CHOICES = [("mtb", "Mark Twain Basin")] + \
+                     list(zip(nhd_regions, ("NHD Region {}".format(r) for r in nhd_regions)))
 
-    # region = forms.ChoiceField(
-    #         required=False,
-    #         choices=SIM_STATE,
-    #         label='State/Region')
-    region = forms.CharField(
+    TYPE_CHOICES = (('eco', 'Eco'), ('dwr', 'Drinking Water'), ('dwf', 'ESA'))
+
+    region = forms.ChoiceField(
         required=False,
-        label='State/Region',
-        initial='Ohio River Valley',
-        widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-    )
+        label='Region',
+        choices=REGION_CHOICES,
+        initial="Mark Twain Basin")
+
     sim_type = forms.ChoiceField(
         required=False,
-        widget=forms.RadioSelect,
-        choices=SIM_CHOICES)
+        widget=forms.RadioSelect(),
+        choices=TYPE_CHOICES,
+        initial='Eco')
+
     sim_date_start = forms.DateField(
         required=False,
         widget=forms.DateInput(attrs={'class': 'datePicker'}),
         label='Start Date',
-        initial="01/01/1984")  # choices=SIM_DATE_START_CHOICES  This earliest possible start date
+        initial="01/01/2000")  # choices=SIM_DATE_START_CHOICES  This earliest possible start date
+
     sim_date_end = forms.DateField(
         required=False,
         widget=forms.DateInput(attrs={'class': 'datePicker'}),
         label='End Date',
-        initial="12/31/2013")  # choices=SIM_DATE_END_CHOICES  6/2/2014 is latest possible end date
-    # choices=SIM_DATE_1STAPP_CHOICES
+        initial="12/31/2015")
 
 
-class SamInp_output(forms.Form):
-    # OUTPUT_TYPE_CHOICES = (
-    # 	(1, '21-d Average Concentrations - 90th percentile'),
-    # 	(2, '60-d Average Concentrations - 90th percentile'),
-    # 	(3, 'Toxicity Threshold - Average Duration of Daily Exceedances'),
-    # 	(4, 'Toxicity Threshold - Percentage of Days with Exceedances')
-    # )
-    OUTPUT_TYPE_CHOICES = (
-        (1, 'Daily Concentrations'),
-        (2, 'Time-Averaged Results'),
-    )
-    TIME_AVG_CHOICES = (
-        (1, 'Time-Averaged Concentrations'),
-        (2, 'Toxicity Threshold Exceedances'),
-    )
-    TIME_AVG_CONC_CHOICES = (
-        (1, 'Daily time-average concentrations'),
-        (2, 'Annual max time-average concentrations')
-    )
-    TOX_THRES_EXCEED_CHOICES = (
-        (1, 'Frequency of exceeding threshold, by year'),
-        (2, 'Frequency of exceeding threshold, by month'),
-        (3, 'Average duration of exceedance (days), by year'),
-        (4, 'Average duration of exceedance (days), by month')
-    )
-    OUTPUT_FORMAT_CHOICES = (
-        (1, 'Generate CSVs'),
-        (2, 'Generate Map'),
-        (3, 'Plots / Histograms')
-    )
-    # OUTPUT_WORKER_CHOICES = (
-    #     (1, '1 Worker'),
-    #     (2, '2 Workers'),
-    #     (4, '4 Workers'),
-    #     (8, '8 Workers'),
-    #     (16, '16 Workers')
-    # )
-    # OUTPUT_PROCESS_CHOICES = (
-    #     (1, '1x Workers'),
-    #     (2, '2x Workers'),
-    #     (3, '3x Workers')
-    # )
+class SamInp_output():
+    def __init__(self):
+        self.html = self.endpoint_table()
 
-    # output_type = forms.ChoiceField(
-    # 		required=False,
-    # 		choices=OUTPUT_TYPE_CHOICES,
-    # 		initial = 2,
-    # 		label='Output Preference')
-    output_type = forms.ChoiceField(
-        required=False,
-        choices=OUTPUT_TYPE_CHOICES,
-        widget=forms.RadioSelect,
-        initial=2,
-        label='Output Preference')
-    output_avg_days = forms.IntegerField(
-        required=False,
-        label='Averaging Period (days)',
-        initial=4,
-        min_value=1,
-        max_value=365)
-    output_time_avg_option = forms.ChoiceField(
-        required=False,
-        label='',
-        widget=forms.RadioSelect,
-        initial=2,
-        choices=TIME_AVG_CHOICES
-    )
-    output_time_avg_conc = forms.ChoiceField(
-        required=False,
-        widget=forms.Select(attrs={'size': 2}),
-        choices=TIME_AVG_CONC_CHOICES,
-        initial=1,
-        label='')
-    output_tox_value = forms.FloatField(
-        required=False,
-        label=mark_safe('Threshold (&micro;g/L)'),
-        initial=4)
-    output_tox_thres_exceed = forms.ChoiceField(
-        required=False,
-        widget=forms.Select(attrs={'size': 4}),
-        choices=TOX_THRES_EXCEED_CHOICES,
-        label='')
-    output_format = forms.MultipleChoiceField(
-        required=False,
-        widget=forms.CheckboxSelectMultiple,
-        choices=OUTPUT_FORMAT_CHOICES,
-        label='Output Format')
-    # workers = forms.ChoiceField(
-    #         required=False,
-    #         choices=OUTPUT_WORKER_CHOICES,
-    #         label='Number of Concurrent Processes (Workers)',
-    #         initial=4)
-    # processes = forms.ChoiceField(
-    #         required=False,
-    #         choices=OUTPUT_PROCESS_CHOICES,
-    #         label='Total Number of Processes',
-    #         initial=1)
-    workers = forms.FloatField(
-        required=False,
-        label='Number of Concurrent Processes (Workers)',
-        initial=16)
-    processes = forms.FloatField(
-        required=False,
-        label='Number of Processes Multiplier',
-        initial=1)
+    @staticmethod
+    def endpoint_table():
+        atrazine_defaults = [[3.4, "", ""],
+                             [2650, 0.5, ""],
+                             [360, 60, ""],
+                             [1000, 0.5, ""],
+                             [24, 80, ""],
+                             [1, "", ""],
+                             [4.6, "", ""]]
+
+        header = ["Toxicity threshold", "Acute", "Chronic", "Overall (cancer)"]
+        categories = [("Human health DWLOC (ug/L)", 'human'),
+                      ("Freshwater Fish (Tox x LOC)", 'fw_fish'),
+                      ("Freshwater Invertebrate (Tox x LOC)", 'fw_inv'),
+                      ("Estuarine/Marine Fish (Tox x LOC)", 'em_fish'),
+                      ("Estuarine/Marine Invertebrate (Tox x LOC)", 'em_inv'),
+                      ("Aquatic nonvascular plant (Tox x LOC)", 'nonvasc_plant'),
+                      ("Aquatic vascular plant (Tox x LOC)", 'vasc_plant')]
+
+        # Add header
+        html = """<table class="input_table tab tab_out tab_Output" border="0">"""
+        html += '<tr id="header">'
+        for heading in header:
+            html += "<th>{}</th>".format(heading)
+        html += "</tr>\n"
+
+        # Build table
+        defaults = atrazine_defaults
+        for i, (category, tag) in enumerate(categories):
+            row = defaults[i]
+            html += "<tr><td>{}</td>".format(category) + \
+                    '<td><input name="acute_{}" value="{}" disabled="disabled" type="text" size="5"></td>\n'.format(tag, row[0]) + \
+                    '<td><input name="chronic_{}" value="{}" type="text" size="5"></td>\n'.format(tag, row[1])
+            if not i:
+                html += '<td><input name="overall_human" value="{}" type="text" size="5"></td></tr>\n'.format(defaults[0][2])
+            else:
+                pass
+
+        html += "</table>"
+
+        return html
+
+    def __str__(self):
+        return self.html
 
 
-class SamInp(SamInp_chem, SamInp_app, SamInp_app_refine, SamInp_sim, SamInp_output):
+class SamInp(SamInp_app, SamInp_chem, SamInp_sim, SamInp_output):
     pass

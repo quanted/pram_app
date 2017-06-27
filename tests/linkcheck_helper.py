@@ -20,7 +20,7 @@ def write_report(test_name, assert_error, col1, col2, start_time):
             headers = ["expected", "actual"]
             print(tabulate(report, headers, tablefmt='grid'))
         else:
-            print test_name + "Test completed successfully"
+
             report = build_table(col1, col2)
             headers = ["expected", "actual url or status"]
             print(tabulate(report, headers, tablefmt='grid'))

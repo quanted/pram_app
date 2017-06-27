@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from django.views.generic import RedirectView
 from django.views.static import serve
-from exceptions import ValueError
+#from exceptions import ValueError
 
 
 def superuser_required(view_func):

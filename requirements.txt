@@ -4,7 +4,7 @@ codecov==2.0.9
 coverage==4.4.1
 coveralls==1.1
 django==1.11.2
-django-rest-swagger
+django-rest-swagger==2.1.2
 enum
 html5lib
 mechanize

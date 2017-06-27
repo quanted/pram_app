@@ -89,7 +89,7 @@ selenium==2.48.0
 six==1.10.0
 snakefood==1.4
 snowballstemmer==1.2.0
-Sphinx==1.3.3
+Sphinx==1.6.2
 sphinx-rtd-theme==0.1.9
 SQLAlchemy==1.1.4
 SQLAlchemy-Utils==0.32.12

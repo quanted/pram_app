@@ -76,7 +76,7 @@ pyparsing==2.2.0
 PyPDF2==1.26.0
 python-coveralls==2.9.1
 python-dateutil==2.6.0
-python-dotenv==0.6.3
+python-dotenv==0.6.4
 pytz==2015.7
 PyYAML==3.11
 redis==2.10.5

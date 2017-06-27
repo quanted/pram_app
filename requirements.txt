@@ -5,7 +5,7 @@ coverage==4.4.1
 coveralls==1.1
 django==1.11.2
 django-rest-swagger==2.1.2
-enum
+enum==0.4.6
 html5lib
 mechanize
 nose
@@ -24,4 +24,4 @@ tabulate
 xhtml2pdf
 xlsxwriter
 celery==4.0.2
-enum
+enum==0.4.6

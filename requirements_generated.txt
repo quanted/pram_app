@@ -88,7 +88,7 @@ scipy==0.19.1
 selenium==3.4.3
 six==1.10.0
 snakefood==1.4
-snowballstemmer==1.2.0
+snowballstemmer==1.2.1
 Sphinx==1.6.2
 sphinx-rtd-theme==0.1.9
 SQLAlchemy==1.1.4

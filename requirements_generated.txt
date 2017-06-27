@@ -19,7 +19,7 @@ clonedigger==1.1.0
 codecov==2.0.9
 colorama==0.3.9
 cov-core==1.15.0
-coverage==4.0.3
+coverage==4.4.1
 coveralls==1.1
 cryptography==1.8.1
 distlib==0.2.4

@@ -21,7 +21,7 @@ colorama==0.3.9
 cov-core==1.15.0
 coverage==4.4.1
 coveralls==1.1
-cryptography==1.8.1
+cryptography==1.9
 distlib==0.2.4
 Django==1.10.6
 django-crispy-forms==1.6.1

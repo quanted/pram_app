@@ -39,7 +39,7 @@ Faker==0.7.17
 Flask==0.12.2
 Flask-RESTful==0.3.6
 Flask-SQLAlchemy==2.2
-flask-swagger==0.2.11
+flask-swagger==0.2.13
 flower==0.9.1
 futures==3.0.3
 google-api-python-client==1.6.2

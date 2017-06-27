@@ -27,7 +27,7 @@ Django==1.11.2
 django-crispy-forms==1.6.1
 django-parsley==0.6
 django-rest-swagger==2.1.2
-djangorestframework==3.3.1
+djangorestframework==3.6.3
 docopt==0.6.2
 docutils==0.12
 dotenv==0.0.5

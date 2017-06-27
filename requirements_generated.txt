@@ -90,7 +90,7 @@ six==1.10.0
 snakefood==1.4
 snowballstemmer==1.2.1
 Sphinx==1.6.2
-sphinx-rtd-theme==0.1.9
+sphinx-rtd-theme==0.2.4
 SQLAlchemy==1.1.4
 SQLAlchemy-Utils==0.32.12
 tabulate==0.7.5

@@ -6,7 +6,7 @@ coveralls==1.1
 django==1.11.2
 django-rest-swagger==2.1.2
 enum==0.4.6
-html5lib
+html5lib==0.999999999
 mechanize
 nose
 nose-cov

@@ -20,7 +20,7 @@ requests==2.18.1
 reportlab==3.4.0
 selenium==3.4.3
 Sphinx==1.6.2
-tabulate
+tabulate==0.7.7
 xhtml2pdf
 xlsxwriter
 celery==4.0.2

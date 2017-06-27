@@ -70,7 +70,7 @@ pycparser==2.17
 pycrypto==2.6.1
 Pygments==2.2.0
 pylint==1.7.2
-pymongo==2.8
+pymongo==3.4.0
 pyOpenSSL==16.2.0
 pyparsing==2.2.0
 PyPDF2==1.25.1

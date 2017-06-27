@@ -12,7 +12,7 @@ boto==2.47.0
 bottle==0.12.13
 caniusepython3==5.0.0
 celery==4.0.2
-certifi==2016.9.26
+certifi==2017.4.17
 cffi==1.10.0
 click==6.7
 clonedigger==1.1.0

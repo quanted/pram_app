@@ -85,7 +85,7 @@ requests==2.18.1
 requests-toolbelt==0.8.0
 rsa==3.4.2
 scipy==0.19.1
-selenium==2.48.0
+selenium==3.4.3
 six==1.10.0
 snakefood==1.4
 snowballstemmer==1.2.0

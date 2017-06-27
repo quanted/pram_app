@@ -37,7 +37,7 @@ enum34==1.1.6
 factory-boy==2.8.1
 Faker==0.7.17
 Flask==0.12.2
-Flask-RESTful==0.3.5
+Flask-RESTful==0.3.6
 Flask-SQLAlchemy==2.2
 flask-swagger==0.2.11
 flower==0.9.1

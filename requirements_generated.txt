@@ -6,7 +6,7 @@ astroid==1.5.3
 Babel==2.4.0
 backports.functools-lru-cache==1.4
 backports.ssl-match-hostname==3.5.0.1
-beautifulsoup4==4.4.1
+beautifulsoup4==4.6.0
 billiard==3.5.0.2
 boto==2.38.0
 bottle==0.12.9

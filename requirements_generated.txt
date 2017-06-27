@@ -35,7 +35,7 @@ earthengine-api==0.1.117
 enum==0.4.6
 enum34==1.1.6
 factory-boy==2.8.1
-Faker==0.7.11
+Faker==0.7.17
 Flask==0.10.1
 Flask-RESTful==0.3.5
 Flask-SQLAlchemy==2.2

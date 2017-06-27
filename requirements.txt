@@ -18,7 +18,7 @@ python-coveralls==2.9.1
 pytz==2017.2
 requests==2.18.1
 reportlab==3.4.0
-selenium
+selenium==3.4.3
 Sphinx
 tabulate
 xhtml2pdf

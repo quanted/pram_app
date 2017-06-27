@@ -102,4 +102,4 @@ virtualenv==15.1.0
 Werkzeug==0.12.2
 wrapt==1.10.10
 xhtml2pdf==0.2b1
-XlsxWriter==0.7.7
+XlsxWriter==0.9.7

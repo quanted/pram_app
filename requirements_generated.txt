@@ -69,7 +69,7 @@ pyasn1-modules==0.0.9
 pycparser==2.17
 pycrypto==2.6.1
 Pygments==2.2.0
-pylint==1.5.1
+pylint==1.7.2
 pymongo==2.8
 pyOpenSSL==16.2.0
 pyparsing==2.2.0

@@ -1,7 +1,7 @@
 import numpy
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
-from leslie_probit import leslie_probit_model, leslie_probit_parameters
+from . import logistic_parameters
 import logging
 import time
 import datetime

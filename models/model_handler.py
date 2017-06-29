@@ -129,7 +129,6 @@ def modelInputPOSTReceiver(request, model):
     logging.info(args)
 
     response = call_model_server(model, args)
-
     logging.info("=========== returned from back end")
     jid = response.json()['_id']
     logging.info("job id = " + str(jid))

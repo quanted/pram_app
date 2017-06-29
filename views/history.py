@@ -5,7 +5,7 @@ import os
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
-import links_left
+from . import links_left
 from ubertool_app.REST import rest_funcs
 
 
@@ -61,7 +61,7 @@ def historyPageRevist(request, model='none', header='none'):
 
     jid = request.GET.get('jid')
     model_name = request.GET.get('model_name')
-    print jid, model_name
+
     # html = rest_funcs.get_output_html(jid, model_name)
 
 
@@ -101,7 +101,7 @@ def historyPageRevist(request, model='none', header='none'):
             output_tables = historyOutputTableRedraw(model, model_obj)
             
         # Throw errow and return error message if exception
-        except Exception, e:
+        except Exception as e:
             import logging
             logging.exception(e)
             output_tables = """
@@ -117,7 +117,7 @@ def historyPageRevist(request, model='none', header='none'):
 
 
 def dict_to_flat_file(dict):
-    # print dict
+    #
     f = StringIO.StringIO()
 
     for k in dict:
@@ -166,7 +166,7 @@ def historyOutputTableRedraw(model, model_obj):
 
         return modelOutputHTML
 
-    except ImportError, e:
+    except ImportError as e:
         import logging
         logging.exception(e)
         """
@@ -198,7 +198,7 @@ def historyOutputTableRedraw(model, model_obj):
 
             return modelOutputHTML
 
-        except ImportError, e:
+        except ImportError as e:
             import logging
             logging.exception(e)
 
@@ -207,7 +207,7 @@ def historyOutputTableRedraw(model, model_obj):
             <b>*** Error retrieving model run ***</b>
             """
 
-    except Exception, e:
+    except Exception as e:
         """
         Catch any other exceptions and return error message
         """

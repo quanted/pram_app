@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 # sys.path.append(os.path.abspath(__file__ + "/../../"))
 
 def przm5InputPage(request, model='', header='', formData=None):
-    import przm5_parameters
+    from . import przm5_parameters
     from models.vvwm import vvwm_parameters
 
     html = render_to_string('04uberinput_jquery.html', { 'model': "przm5" })

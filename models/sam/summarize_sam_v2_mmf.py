@@ -26,7 +26,7 @@ def clear_tables(d, files):
     del_files = [os.path.join(d, f) for f in os.listdir(d) if f.split(".")[0] in files]
     for f in del_files:
         os.remove(f)
-    print "Removed {0} existing files".format(len(del_files))
+
 
 
 def get_parameters(parameter_file):
@@ -163,7 +163,7 @@ def write_shapefile(out_map, out_dir, table, bid_field, geom_file):
     """
     output_file = os.path.join(out_dir, table + ".shp")
     if not os.path.exists(output_file):
-        print "Writing to file {0}...".format(output_file)
+
         w = shapefile.Writer(shapefile.POLYGON)
         w.field("BasinID", 'C', '20')
         for year in sorted(out_map):
@@ -180,7 +180,7 @@ def write_shapefile(out_map, out_dir, table, bid_field, geom_file):
             w.record(**out_map)
         w.save(output_file)
     else:
-        print "No matches between basin ID's and shapefile - examine basin ID field values"
+
     del w, r
 
 
@@ -196,7 +196,7 @@ def write_table(out_map, out_dir, table):
     with open(output_file, mode) as f:
         writer = csv.DictWriter(f, sorted(out_map.keys()), 'nan', "ignore")
         if mode == 'wb':
-            print "Writing to file {0}...".format(output_file)
+
             writer.writeheader()
         writer.writerow(out_map)
 
@@ -208,18 +208,18 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv,"hi:",["input="])
     except getopt.GetoptError:
-        print 'summarize_sam.py -i <inputfile>'
+
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print 'test.py -i <inputfile> -o <outputfile>'
+
             sys.exit()
         elif opt in ("-i", "--input"):
             parameter_file = arg
     p = get_parameters(parameter_file)
     for i, h in enumerate(iter(p['files'])):
         basin = os.path.basename(h).split("_")[0]
-        print "Processing basin {0} ({1}/{2})...".format(basin, i+1, len(p['files']))
+
         record = read_file(h, p['julian_start'], p['infile_header'])
         output = {}
         intervals = sorted({('year', d.year) for d in record}) if p['annual'] else []

@@ -4,7 +4,7 @@ import os
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
-import links_left
+from . import links_left
 
 #import secret
 

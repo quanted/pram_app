@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 def pfamInputPage(request, model='', header='', formData=None):
 
-    import pfam_parameters
+    from . import pfam_parameters
  
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
     html = html + render_to_string('04uberinput_jquery_qtip.html', {})

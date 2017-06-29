@@ -5,7 +5,7 @@ from REST import rest_funcs
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
-import links_left
+from . import links_left
 import os
 
 @require_POST

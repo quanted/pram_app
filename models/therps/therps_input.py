@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 def therps_input_page(request, model='', header='', form_data=None):
-    import therps_parameters
+    from . import therps_parameters
 
     html = render_to_string('04uberinput_jquery.html', {'model': model})
     html += render_to_string('04uberinput_start_tabbed_drupal.html', {

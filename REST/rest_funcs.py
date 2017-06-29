@@ -10,7 +10,7 @@ import pytz
 import requests
 from django.http import HttpResponse
 
-import auth_s3
+from . import auth_s3
 
 # Set HTTP header
 http_headers = auth_s3.setHTTPHeaders()
@@ -332,7 +332,7 @@ class UserHistory(object):
         if self.response:
             self.output_val = json.loads(self.response.content)['hist_all']
             self.total_num = len(self.output_val)
-            # print self.output_val
+            #
             for element in self.output_val:
 
                 try:

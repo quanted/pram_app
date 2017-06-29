@@ -78,7 +78,7 @@ def gett1data(agdrift_obj):
         drop_size = agdrift_obj.drop_size_aerial
 
         data = {
-            "Parameter": ['Chemical Name', 'Application method', 'Drop size', 'Assessment type', 'Application rate',
+            "Parameter": ['Chemical Name', 'Application method', 'Drop size', 'Assessment type', 'Application rate (lb/ac)',
                           'Calculation Input', ],
             "Value": [chem_name, app_method, drop_size, assess_type, app_rate, calc_input,],
         }
@@ -88,7 +88,7 @@ def gett1data(agdrift_obj):
 
         data = {
             "Parameter": ['Chemical Name', 'Application method', 'Drop size', 'Boom Height', 'Assessment type',
-                          'Application rate', 'Calculation Input', ],
+                          'Application rate (lb/ac)', 'Calculation Input', ],
             "Value": [chem_name, app_method, drop_size, boom_hgt, assess_type, app_rate, calc_input,],
         }
     else:  #this is the airblast application
@@ -96,7 +96,7 @@ def gett1data(agdrift_obj):
 
         data = {
             "Parameter": ['Chemical Name', 'Application method', 'Airblast Type', 'Assessment type',
-                          'Application rate', 'Calculation Input', ],
+                          'Application rate (lb/ac)', 'Calculation Input', ],
             "Value": [chem_name, app_method, blast_type, assess_type, app_rate, calc_input,],
         }
 
@@ -116,32 +116,9 @@ def gett2data(agdrift_obj):
         length = agdrift_obj.out_area_length
         depth = agdrift_obj.out_area_depth
 
-        # if(waterbody_type == 'EPA Defined Pond'):
-        #     #width = agdrift_obj.default_width
-        #     #length = agdrift_obj.default_length
-        #     #depth = agdrift_obj.default_pond_depth
-        #     width = 208.7
-        #     length = 515.8
-        #     depth = 6.56
-        # elif(waterbody_type == 'User Defined Pond'):
-        #     width = agdrift_obj.user_pond_width
-        #     length = agdrift_obj.sqft_per_hectare / width
-        #     depth = agdrift_obj.user_pond_depth
-        # elif(waterbody_type == 'EPA Defined Wetland'):
-        #     #width = agdrift_obj.default_width
-        #     #length = agdrift_obj.default_length
-        #     #depth = agdrift_obj.out_default_wetland_depth
-        #     width = 208.7
-        #     length = 515.8
-        #     depth = 6.56
-        # elif(waterbody_type == 'User Defined Wetland'):
-        #     width = agdrift_obj.user_wetland_width
-        #     length = agdrift_obj.sqft_per_hectare / width
-        #     depth = agdrift_obj.user_wetland_depth
-
         data = {
             "Parameter": ['Waterbody_type', 'Width (feet)', 'Length (feet)', 'Depth (feet)', ],
-            "Value": [waterbody_type, width, length, depth, ],
+            "Value": [waterbody_type, '{0:.2f}'.format(width), '{0:.2f}'.format(length), '{0:.4f}'.format(depth), ],
         }
 
     else:  #this is a terrestrial assessment
@@ -162,7 +139,7 @@ def gett2data(agdrift_obj):
 
             data = {
                 "Parameter": ['Terrestrial Type', 'Width (feet)', 'Length (feet)', 'Depth (feet)', ],
-                "Value": [terrestrial_type, width, length, depth, ],
+                "Value": [terrestrial_type, '{0:.2f}'.format(width), length, depth, ],
             }
     return data
 

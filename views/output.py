@@ -7,6 +7,8 @@ from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 
 from . import links_left
+from .. import models
+from ..REST import rest_funcs
 
 print('qed.ubertool_app.views.output')
 
@@ -87,8 +89,7 @@ def output_page_view(request, model='none', header=''):
     # if not, use old method with '*_output' module
     if model in _UPDATED_MODELS:
         logging.info('=========== New Model Handler - Single Model Run ===========')
-        from ubertool_app.models import model_handler
-        model_obj = model_handler.modelInputPOSTReceiver(request, model)
+        model_obj = models.model_handler.modelInputPOSTReceiver(request, model)
 
     elif model in {'sam'}:
         logging.info('=========== New Model Handler FORTRAN ===========')
@@ -194,8 +195,6 @@ def output_page_view(request, model='none', header=''):
         Method to check if model run is to be saved to MongoDB.  If true,
         the fest_func method to save the model object instance is called
         """
-
-        from REST import rest_funcs
 
         # Handle Trex, which is not objectified yet; therefore, not saved in MongoDB
         # if model != 'trex':

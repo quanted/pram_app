@@ -6,41 +6,62 @@ from django.template.loader import render_to_string
 # 03ubertext_links_left:
 def ordered_list(model=None, page=None):
     link_dict = OrderedDict([
-        ('utool', OrderedDict([
-            ('home', ''),
+        ('\u00FCtool', OrderedDict([
+            ('\u00FCtool', ''),
+            ('pop', 'pop'),
+            ('unter', 'unter'),
         ])
          ),
         ('Terrestrial Models', OrderedDict([
-                ('TerrPlant', 'terrplant'),
-                ('SIP', 'sip'),
-                ('STIR', 'stir'),
-                # ('DUST', 'dust'),
-                ('T-REX', 'trex'),
-                ('T-Herps', 'therps'),
-                ('IEC', 'iec'),
-                ('AgDrift', 'agdrift'),
-                # ('Agdrift-T-Rex', 'agdrift_trex'),
-                # ('Agdrift-T-Herps', 'agdrift_therps'),
-                ('Earthworm', 'earthworm'),
-                ('Bee-REX', 'beerex'),
+            ('AgDrift', 'agdrift'),
+            ('Bee-REX', 'beerex'),
+            ('IEC', 'iec'),
+            ('SIP', 'sip'),
+            ('STIR', 'stir'),
+            ('TerrPlant', 'terrplant'),
+            ('T-Herps', 'therps'),
+            ('T-REX', 'trex'),
             ])
         ),
         ('Aquatic Models', OrderedDict([
-                ('RICE', 'rice'),
-                # ('GENEEC', 'geneec'),
                 ('Kabam', 'kabam'),
-                # ('PRZM', 'przm'),
-                # ('PRZM 5', 'przm5'),
-                # ('EXAMS', 'exams'),
-                # ('PFAM', 'pfam'),
-                # ('PRZM-EXAMS', 'przm_exams'),
+                ('RICE', 'rice'),
                 ('SAM', 'sam'),
-                #('SWC', 'swc'),
-                # ('Web-ICE', 'webice'),
-                # ('VVWM', 'vvwm'),
-                # ('Surface Water Calculator', 'swc'),
             ])
         ),
+        ('Documentation', OrderedDict([
+                ('Source Code', '/github.com/quanted/ubertool'),
+                ('Links', 'links')
+            ])
+        )
+        # ('&uuml;bertool', OrderedDict([
+        #         ('Chemical Selection', 'select_chemical'),
+        #         ('Use/Label/Site Data', 'site_data'),
+        #         ('Pesticide Properties', 'pesticide_properties'),
+        #         ('Exposure Concentrations', 'exposure_concentrations'),
+        #         ('Aquatic Toxicity', 'aquatic_toxicity'),
+        #         ('Terrestrial Toxicity', 'terrestrial_toxicity'),
+        #         ('Ecosystem Inputs', 'ecosystem_inputs'),
+        #         ('Run &uuml;bertool', 'run_ubertool'),
+        #         ('Saved Runs', 'user'),
+        #     ])
+        # ),
+    ])
+
+    return render_to_string('03ubertext_links_left_drupal.html', {
+        'LINK_DICT': link_dict,
+        'MODEL': model,
+        'PAGE': page
+    })
+
+def ordered_list_pop(model=None, page=None):
+    link_dict = OrderedDict([
+        ('\u00FCtool', OrderedDict([
+            ('\u00FCtool', ''),
+            ('pop', 'pop'),
+            ('unter', 'unter'),
+        ])
+         ),
         ('Population Models', OrderedDict([
             ('Exponential', 'exponential'),
             ('Logistic', 'logistic'),
@@ -55,8 +76,42 @@ def ordered_list(model=None, page=None):
             ('Loons Population', 'loons'),
         ])
          ),
+        ('Documentation', OrderedDict([
+                ('Source Code', '/github.com/quanted/ubertool'),
+                ('Links', 'links')
+            ])
+        )
+        # ('&uuml;bertool', OrderedDict([
+        #         ('Chemical Selection', 'select_chemical'),
+        #         ('Use/Label/Site Data', 'site_data'),
+        #         ('Pesticide Properties', 'pesticide_properties'),
+        #         ('Exposure Concentrations', 'exposure_concentrations'),
+        #         ('Aquatic Toxicity', 'aquatic_toxicity'),
+        #         ('Terrestrial Toxicity', 'terrestrial_toxicity'),
+        #         ('Ecosystem Inputs', 'ecosystem_inputs'),
+        #         ('Run &uuml;bertool', 'run_ubertool'),
+        #         ('Saved Runs', 'user'),
+        #     ])
+        # ),
+    ])
+
+    return render_to_string('03ubertext_links_left_drupal.html', {
+        'LINK_DICT': link_dict,
+        'MODEL': model,
+        'PAGE': page
+    })
+
+def ordered_list_unter(model=None, page=None):
+    link_dict = OrderedDict([
+        ('\u00FCtool', OrderedDict([
+            ('\u00FCtool', ''),
+            ('pop', 'pop'),
+            ('unter', 'unter'),
+        ])
+         ),
         ('Beta Versions', OrderedDict([
             ('AgDisp', 'agdisp'),
+            ('Earthworm', 'earthworm'),
             ('Perfum', 'perfum'),
             ('Pfam', 'pfam'),
             ('PWC', 'pwc'),
@@ -64,8 +119,7 @@ def ordered_list(model=None, page=None):
         ])
          ),
         ('Documentation', OrderedDict([
-                ('Source Code', 'docs'),
-                ('API Documentation', 'api'),
+                ('Source Code', '/github.com/quanted/ubertool'),
                 ('Links', 'links')
             ])
         )

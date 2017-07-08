@@ -26,6 +26,8 @@ print('qed.ubertool_app.urls')
 #groups is (?P<name>pattern), where name is the name of the group and pattern is some pattern to match
 urlpatterns = [
     url(r'^$', landing.eco_landing_page),
+    url(r'^pop/$', landing.pop_landing_page),
+    url(r'^unter/$', landing.unter_landing_page),
     url(r'^links/?$', misc.links),
     #docs
     url(r'^docs/$', docs_views.DocsRootView.as_view(), name='docs_root'),
@@ -48,6 +50,13 @@ urlpatterns = [
     url(r'^(?P<model>.*?)/batch/?$', batch.batch_page),
     #url(r'^(?P<model>.*?)/?', include(model_patterns)),
 ]
+
+# 404 Error view (file not found)
+handler404 = misc.file_not_found
+# 500 Error view (server error)
+handler500 = misc.file_not_found
+# 403 Error view (forbidden)
+handler403 = misc.file_not_found
 
 # #builds list of urlpatterns to pair with python methods to be called
 # urlpatterns = [
@@ -107,10 +116,3 @@ urlpatterns = [
 #     # url(r'^ubertool/api/', include('rest_framework_swagger.urls')),
 #     # url(r'^admin/', include(admin.site.urls)),
 # ]
-
-# 404 Error view (file not found)
-handler404 = misc.file_not_found
-# 500 Error view (server error)
-handler500 = misc.file_not_found
-# 403 Error view (forbidden)
-handler403 = misc.file_not_found

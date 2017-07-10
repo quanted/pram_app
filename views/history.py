@@ -1,12 +1,14 @@
-import StringIO
+import io
 import importlib
+import logging
 import os
 
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
 from . import links_left
-from ubertool_app.REST import rest_funcs
+from . import output
+from ..REST import rest_funcs
 
 
 def historyPage(request, model='none', header='none'):
@@ -57,7 +59,7 @@ def historyPageRevist(request, model='none', header='none'):
     
     viewmodule = importlib.import_module('.views', 'models.'+model)
     header = viewmodule.header
-    import output
+
 
     jid = request.GET.get('jid')
     model_name = request.GET.get('model_name')
@@ -118,7 +120,7 @@ def historyPageRevist(request, model='none', header='none'):
 
 def dict_to_flat_file(dict):
     #
-    f = StringIO.StringIO()
+    f = io.StringIO()  #StringIO.StringIO()
 
     for k in dict:
         f.write(k)
@@ -167,7 +169,6 @@ def historyOutputTableRedraw(model, model_obj):
         return modelOutputHTML
 
     except ImportError as e:
-        import logging
         logging.exception(e)
         """
         If no 'version_history' module for model, process model object

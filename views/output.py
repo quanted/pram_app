@@ -7,8 +7,9 @@ from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 
 from . import links_left
-from .. import models
+from ..models import model_handler
 from ..REST import rest_funcs
+#from ..models import sam.sam_tables.tablesmodule
 
 print('qed.ubertool_app.views.output')
 
@@ -89,69 +90,67 @@ def output_page_view(request, model='none', header=''):
     # if not, use old method with '*_output' module
     if model in _UPDATED_MODELS:
         logging.info('=========== New Model Handler - Single Model Run ===========')
-        model_obj = models.model_handler.modelInputPOSTReceiver(request, model)
+        print(request)
+        model_obj = model_handler.model_input_post_receiver(request, model)
 
-    elif model in {'sam'}:
-        logging.info('=========== New Model Handler FORTRAN ===========')
-        from ubertool_app.models import model_handler
-
-        if model == 'sam':
-            """
-            SAM takes a long time to run relative to other models; therefore, 
-            it will not return model results on form submit, but will instead 
-            return a confirmation of model submission to the user. Model results 
-            will be available at a later time (e.g. from the History page).
-            """
-
-            import ubertool_app.models.sam.sam_tables as tablesmodule
-
-            if request.POST['scenario_selection'] == '0':
-                """ Custom Run """
-                # Run SAM - no return expected
-                jid = model_handler.modelInputPOSTReceiverFortran(request, model)
-
-                disclaimer_html = """
-                <h3>Disclaimer:</h3>
-                <p>Ecological risk calculations contained here should be used for
-                no purpose other than quality assurance and peer review of the
-                presented web applications. This web site is under development.
-                It is available for the purposes of receiving feedback and quality
-                assurance from personnel in the EPA Office of Chemical Safety and
-                Pollution Prevention and from interested members of the ecological
-                risk assessment community.</p>
-                """
-
-                """ Generate Timestamp HTML from "*_tables" module """
-                model_output_html = tablesmodule.timestamp()
-                """ Generate Model input & output tables HTML from "*_tables" module """
-
-                try:
-                    tables_output = tablesmodule.table_all(request, jid)
-                except:
-                    tables_output = tablesmodule.table_all(request, "20150402133114784000")
-                model_output_html = disclaimer_html + model_output_html + tables_output
-
-                """ Render output page view HTML """
-                html = output_page_html(header, model, model_output_html)
-
-            else:
-                """ Pre-Canned Run """
-                """ Generate Timestamp HTML from "*_tables" module """
-                model_output_html = tablesmodule.timestamp()
-                """ Generate Model input & output tables HTML from "*_tables" module """
-                tables_output = tablesmodule.table_all(request)
-
-                model_output_html = model_output_html + tables_output
-
-                """ Render output page view HTML """
-                html = output_page_html(header, model, model_output_html)
-
-            response = HttpResponse()
-            response.write(html)
-            return response
-
-        else:
-            model_obj = model_handler.modelInputPOSTReceiverFortran(request, model)
+    # elif model in {'sam'}:
+    #     logging.info('=========== New Model Handler FORTRAN ===========')
+    #
+    #     if model == 'sam':
+    #         """
+    #         SAM takes a long time to run relative to other models; therefore,
+    #         it will not return model results on form submit, but will instead
+    #         return a confirmation of model submission to the user. Model results
+    #         will be available at a later time (e.g. from the History page).
+    #         """
+    #
+    #         if request.POST['scenario_selection'] == '0':
+    #             """ Custom Run """
+    #             # Run SAM - no return expected
+    #             jid = model_handler.modelInputPOSTReceiverFortran(request, model)
+    #
+    #             disclaimer_html = """
+    #             <h3>Disclaimer:</h3>
+    #             <p>Ecological risk calculations contained here should be used for
+    #             no purpose other than quality assurance and peer review of the
+    #             presented web applications. This web site is under development.
+    #             It is available for the purposes of receiving feedback and quality
+    #             assurance from personnel in the EPA Office of Chemical Safety and
+    #             Pollution Prevention and from interested members of the ecological
+    #             risk assessment community.</p>
+    #             """
+    #
+    #             """ Generate Timestamp HTML from "*_tables" module """
+    #             model_output_html = tablesmodule.timestamp()
+    #             """ Generate Model input & output tables HTML from "*_tables" module """
+    #
+    #             try:
+    #                 tables_output = tablesmodule.table_all(request, jid)
+    #             except:
+    #                 tables_output = tablesmodule.table_all(request, "20150402133114784000")
+    #             model_output_html = disclaimer_html + model_output_html + tables_output
+    #
+    #             """ Render output page view HTML """
+    #             html = output_page_html(header, model, model_output_html)
+    #
+    #         else:
+    #             """ Pre-Canned Run """
+    #             """ Generate Timestamp HTML from "*_tables" module """
+    #             model_output_html = tablesmodule.timestamp()
+    #             """ Generate Model input & output tables HTML from "*_tables" module """
+    #             tables_output = tablesmodule.table_all(request)
+    #
+    #             model_output_html = model_output_html + tables_output
+    #
+    #             """ Render output page view HTML """
+    #             html = output_page_html(header, model, model_output_html)
+    #
+    #         response = HttpResponse()
+    #         response.write(html)
+    #         return response
+    #
+    #     else:
+    #         model_obj = model_handler.modelInputPOSTReceiverFortran(request, model)
     else:
 
         # TODO: This section should be removed as it is not used anymore...(pre-objectifying method)

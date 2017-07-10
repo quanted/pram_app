@@ -3,7 +3,7 @@ import os
 
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-
+from ..models import model_handler
 from . import links_left
 
 print('qed.ubertool_app.views.qaqc')
@@ -180,7 +180,7 @@ def qaqcRun(model):
     # logging.info(json)
 
     # Send JSON to model_handler module
-    from models import model_handler
+
     # return model_handler.ModelQAQC(model, json)
     qaqc_output = model_handler.call_model_server(model, json)
 

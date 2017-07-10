@@ -7,6 +7,7 @@ from . import links_left
 
 print('qed.ubertool_app.views.description')
 
+
 def get_model_header(model):
 
     model_views_location = 'ubertool_app.models.' + model + '.views'

@@ -1,4 +1,4 @@
-from REST import rest_funcs
+from . import rest_funcs
 from django.conf.urls import url
 
 urlpatterns = [

@@ -17,10 +17,10 @@ import os
 import pandas as pd
 import re
 
-from ..REST import auth_s3, rest_funcs
+from ..REST import rest_funcs
 
 # Set HTTP header
-http_headers = auth_s3.setHTTPHeaders()
+http_headers = rest_funcs.set_http_headers()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 

@@ -17,7 +17,7 @@ class SamInp_app():
         table = [("",
                   (("Crop Group",),)),
                  ("Application Timing",
-                  (("Crop Stage",), ("Offset (days)",))),
+                  (("Stage",), ("Offset",))),
                  ("Application Window",
                   (("Distribution",), ("Length 1",), ("% Applied",), ("Length 2",), ("% Applied",))),
                  ("Application Method",

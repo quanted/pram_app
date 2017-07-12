@@ -9,7 +9,7 @@ rest_server = os.environ['UBERTOOL_REST_SERVER']
 
 def api_docs_view(request):
 
-    html = render_to_string('/templates/api/index.html', {})
+    html = render_to_string('ubertool_api_index.html', {})
     response = HttpResponse()
     response.write(html)
 

@@ -17,10 +17,10 @@ import os
 import pandas as pd
 import re
 
-from ubertool_app.REST import auth_s3, rest_funcs
+from ..REST import rest_funcs
 
 # Set HTTP header
-http_headers = auth_s3.setHTTPHeaders()
+http_headers = rest_funcs.set_http_headers()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 
@@ -111,14 +111,14 @@ def create_dataframe(response):
     return pd_obj_in, pd_obj_out
 
 
-def modelInputPOSTReceiver(request, model):
+def model_input_post_receiver(request, model):
     """
         Converts the POSTed data from the model's input page form
         to a Python dictionary and passes it to the Model object where
         it is to be converted to JSON and passed to the backend server.
     """
 
-    logging.info("=========== model_handler.modelInputPOSTReceiver")
+    logging.info("=========== model_handler.model_input_post_receiver")
     args = {"inputs": {}}
     for key in request.POST:
         args["inputs"][key] = {"0": request.POST.get(key)}

@@ -18,7 +18,9 @@ def api_docs_view(request):
 
 def api_docs_json(request):
     # TODO: Change to: /ubertool/api/spec
-    url = rest_server + '/api/spec'
+    api_rest_url = rest_server + '/ubertool/api/spec'
+    print(api_rest_url)
+    url = api_rest_url
     api_json = requests.get(url)
 
     response = HttpResponse()

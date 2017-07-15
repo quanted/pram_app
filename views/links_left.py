@@ -1,12 +1,13 @@
 from collections import OrderedDict
-
+from django.shortcuts import redirect
 from django.template.loader import render_to_string
 
 
 # 03ubertext_links_left:
 def ordered_list(model=None, page=None):
     link_dict = OrderedDict([
-        ('\u00FCtool', OrderedDict([
+        ('Apps', OrderedDict([
+            ('Q.E.D.', '..'),
             ('\u00FCtool', ''),
             ('pop', 'pop'),
             ('unter', 'unter'),
@@ -26,7 +27,6 @@ def ordered_list(model=None, page=None):
         ('Aquatic Models', OrderedDict([
                 ('Kabam', 'kabam'),
                 ('RICE', 'rice'),
-                ('SAM', 'sam'),
             ])
         ),
         ('Documentation', OrderedDict([
@@ -56,7 +56,8 @@ def ordered_list(model=None, page=None):
 
 def ordered_list_pop(model=None, page=None):
     link_dict = OrderedDict([
-        ('\u00FCtool', OrderedDict([
+        ('Apps', OrderedDict([
+            ('Q.E.D.', '..'),
             ('\u00FCtool', ''),
             ('pop', 'pop'),
             ('unter', 'unter'),
@@ -77,8 +78,8 @@ def ordered_list_pop(model=None, page=None):
         ])
          ),
         ('Documentation', OrderedDict([
-                ('Source Code', '/github.com/quanted/ubertool'),
-                ('Links', 'links')
+                ('Source Code', redirect('https://github.com/quanted/ubertool')),
+                ('Links', 'links'),
             ])
         )
         # ('&uuml;bertool', OrderedDict([
@@ -103,7 +104,8 @@ def ordered_list_pop(model=None, page=None):
 
 def ordered_list_unter(model=None, page=None):
     link_dict = OrderedDict([
-        ('\u00FCtool', OrderedDict([
+        ('Apps', OrderedDict([
+            ('Q.E.D.', '..'),
             ('\u00FCtool', ''),
             ('pop', 'pop'),
             ('unter', 'unter'),
@@ -115,6 +117,7 @@ def ordered_list_unter(model=None, page=None):
             ('Perfum', 'perfum'),
             ('Pfam', 'pfam'),
             ('PWC', 'pwc'),
+            ('SAM', 'sam'),
             ('TED', 'ted'),
         ])
          ),

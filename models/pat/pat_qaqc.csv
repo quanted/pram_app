@@ -1,11 +1,11 @@
-earthworm_property,description,units,type,valid_range,run1
+pat_property,description,units,type,valid_range,run1
 k_ow,octanol to water partitioning,unitless,,,57544
-l_f_e,earthworm lipid fraction,unitless,,,0.01
+l_f_e,pat lipid fraction,unitless,,,0.01
 c_s,chemical concentration in soil,mol/m3,,,0.055
 k_d,soil partitioning coefficient,cm3/g,,,69
 p_s,soil bulk density,g/cm3,,,1.7
 c_w,soil pore water chemical concentration,mol/m3,,,0.000447
 m_w,molecular weight,g/mol,,,406.9
-p_e,earthworm density,kg/m3,,,1000
-earthworm_fugacity_out,Earthworm chemical concentration,g/kg,,,
-earthworm_fugacity_exp,Earthworm chemical concentration,g/kg,,,0.214451
+p_e,pat density,kg/m3,,,1000
+pat_fugacity_out,Pat chemical concentration,g/kg,,,
+pat_fugacity_exp,Pat chemical concentration,g/kg,,,0.214451

@@ -1,5 +1,5 @@
 """
-.. module:: earthworm_qaqc
+.. module:: pat_qaqc
    :synopsis: Reads in CSV file containing model inputs and expected 
    outputs and converts them into each of their own DataFrames (2 total). 
    The DataFrames are converted to JSON strings and then concatenated 
@@ -9,7 +9,7 @@
 
 import pandas as pd
 
-def earthwormQaqc(model, csv_path):
+def patQaqc(model, csv_path):
     """
         Read in QAQC CSV as Pandas DataFrame, removing 
         any uneeded columns, setting the index_col name 

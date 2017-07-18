@@ -13,10 +13,9 @@ def ordered_list(model=None, page=None):
                    'yulefurry','fellerarley','leslie','lesliedr','leslie_probit',
                    'loons','landing_pop']):
         link_dict = ordered_list_pop(model)
-    elif(model in ['agdisp','earthworm','perfum','pfam','pwc','sam','ted',
-                   'landing_unter']):
+    elif(model in ['agdisp','earthworm','insect','pat','perfum','pfam','pwc',
+                   'sam','ted','landing_unter']):
         link_dict = ordered_list_unter(model)
-
     return render_to_string('03ubertext_links_left_drupal.html', {
         'LINK_DICT': link_dict,
         'MODEL': model,
@@ -113,6 +112,8 @@ def ordered_list_unter(model=None, page=None):
         ('Beta Versions', OrderedDict([
             ('AgDisp', 'agdisp'),
             ('Earthworm', 'earthworm'),
+            ('Insect', 'insect'),
+            ('Pat', 'pat'),
             ('Perfum', 'perfum'),
             ('Pfam', 'pfam'),
             ('PWC', 'pwc'),

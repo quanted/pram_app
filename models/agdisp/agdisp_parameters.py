@@ -1,5 +1,5 @@
 """
-.. module:: earthworm_parameters
+.. module:: agdisp_parameters
    :synopsis: A useful module indeed.
 """
 from django import forms
@@ -8,14 +8,14 @@ from django.utils.safestring import mark_safe
 from ubertool_app.models.forms import validation
 
 
-class EarthwormInp(forms.Form):
+class AgdispInp(forms.Form):
     version = forms.ChoiceField(
         choices=(('1.0', '1.0'),),
         label='Version',
         initial='1.0')
     chemical_name = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 2}),
-        initial='Earthworm Example',
+        initial='Agdisp Example',
         required=True)
     pc_code = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
@@ -26,7 +26,7 @@ class EarthwormInp(forms.Form):
         initial=57544,
         validators=[validation.validate_greaterthan0])
     l_f_e = forms.FloatField(
-        label='Lipid fraction of earthworm L',
+        label='Lipid fraction of agdisp L',
         initial=0.01,
         validators=[validation.validate_range01])
     c_s = forms.FloatField(
@@ -42,7 +42,7 @@ class EarthwormInp(forms.Form):
         initial=1.7,
         validators=[validation.validate_greaterthan0])
 
-# updated version of earthworm model uses EFED equation which does not include c_w, m_w, and p_e as inputs
+# updated version of agdisp model uses EFED equation which does not include c_w, m_w, and p_e as inputs
 # c_w = forms.FloatField(
 # 		label = mark_safe('Chemical concentration in pore water of soil C<sub>W</sub> (mol/m<sup>3</sup>)'),
 # 		initial = 0.000447,
@@ -52,6 +52,6 @@ class EarthwormInp(forms.Form):
 # 		initial = 406.9,
 # 		validators=[validation.validate_greaterthan0])
 # p_e = forms.FloatField(
-# 		label = mark_safe('Density of earthworm &#961;<sub>E</sub> (kg/m<sup>3</sup>)'),
+# 		label = mark_safe('Density of agdisp &#961;<sub>E</sub> (kg/m<sup>3</sup>)'),
 # 		initial = 1000,
 # 		validators=[validation.validate_greaterthan0])

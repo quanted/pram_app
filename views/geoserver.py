@@ -4,7 +4,7 @@ import logging
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
-
+from ..REST import rest_funcs
 
 def test_page(request):
 
@@ -24,9 +24,6 @@ def test_page(request):
 @require_POST
 def sam_huc_query(request, jid):
     # "20150402133114784000"
-    from REST import rest_funcs
-
-
 
     geoserver_post_dict = json.loads(request.body)
 
@@ -64,7 +61,6 @@ def sam_huc_query(request, jid):
 @require_POST
 def sam_done_query(request, jid):
 
-    from REST import rest_funcs
     request = rest_funcs.get_model_object(jid, "sam")
 
     response = {}

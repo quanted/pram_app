@@ -8,7 +8,7 @@ backports.functools-lru-cache==1.4
 backports.ssl-match-hostname==3.5.0.1
 beautifulsoup4==4.6.0
 billiard==3.5.0.2
-boto==2.47.0
+boto==2.48.0
 bottle==0.12.13
 caniusepython3==5.0.0
 celery==4.0.2

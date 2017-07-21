@@ -5,15 +5,14 @@
 
 import json
 import logging
-
-from ubertool_app.REST import auth_s3, rest_funcs
-
-logger = logging.getLogger('SAM Model')
 import os
 import requests
+from ubertool_app.REST import rest_funcs
+
+logger = logging.getLogger('SAM Model')
 
 # Set HTTP header
-http_headers = auth_s3.setHTTPHeaders()
+http_headers = rest_funcs.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 

@@ -15,7 +15,27 @@ def drupal_2017_header(html):
 def drupal_2017_footer(html):
 
     html += render_to_string('07ubertext_end_drupal.html', {})
-    html += links_left.ordered_list()  # fills out 05ubertext_links_left_drupal.html
+    html += links_left.ordered_list('landing_ubertool')  # fills out 05ubertext_links_left_drupal.html
+    #scripts and footer
+    html += render_to_string('09epa_drupal_ubertool_css.html', {})
+    #html += render_to_string('09epa_drupal_ubertool_scripts.html', {})
+    html += render_to_string('10epa_drupal_footer.html', {})
+    return html
+
+def drupal_2017_footer_pop(html):
+
+    html += render_to_string('07ubertext_end_drupal.html', {})
+    html += links_left.ordered_list('landing_pop')  # fills out 05ubertext_links_left_drupal.html
+    #scripts and footer
+    html += render_to_string('09epa_drupal_ubertool_css.html', {})
+    #html += render_to_string('09epa_drupal_ubertool_scripts.html', {})
+    html += render_to_string('10epa_drupal_footer.html', {})
+    return html
+
+def drupal_2017_footer_unter(html):
+
+    html += render_to_string('07ubertext_end_drupal.html', {})
+    html += links_left.ordered_list('landing_unter')  # fills out 05ubertext_links_left_drupal.html
     #scripts and footer
     html += render_to_string('09epa_drupal_ubertool_css.html', {})
     #html += render_to_string('09epa_drupal_ubertool_scripts.html', {})

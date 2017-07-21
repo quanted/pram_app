@@ -5,7 +5,7 @@ coverage==4.4.1
 coveralls==1.1
 django==1.11.2
 django-rest-swagger==2.1.2
-earthengine-api==0.1.117
+earthengine-api==0.1.119
 enum==0.4.6
 google-api-python-client==1.6.2 #dependency for earthengine-api
 html5lib==0.999999999

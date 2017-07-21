@@ -6,15 +6,16 @@
 import json
 import logging
 import os
+import requests
 from collections import OrderedDict
 from datetime import datetime
+from ubertool_app.REST import rest_funcs
 
 logger = logging.getLogger('PRZM5 Model')
-import requests
-from ubertool_app.REST import auth_s3, rest_funcs
+
 
 # Set HTTP header
-http_headers = auth_s3.setHTTPHeaders()
+http_headers = rest_funcs.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 def get_jid(run_type, pfac, snowmelt, evapDepth, 
@@ -153,8 +154,13 @@ class przm5(object):
         # logger.info(os.getcwd())
         # cwd=os.getcwd()+'/PRZM5/'
 
+        #py2
+        #accepts = filter(lambda q1, q2: (q1, q2) in states, [(q1, q2) for q1 in D1.accepts for q2 in D2.accepts])
+        #py3
+        #accepts = filter(lambda q: (q1, q2)      in states, [(q1, q2) for q1 in D1.accepts for q2 in D2.accepts])
 
-        alphanum_key = lambda (key, value): convert_dict_key(key)
+        #alphanum_key = lambda (key, value): convert_dict_key(key)
+        alphanum_key = filter(lambda q: convert_dict_key(q))
         dictionary_1 = sorted(dictionary.items(), key=alphanum_key)
         dictionary = OrderedDict(dictionary_1)
 

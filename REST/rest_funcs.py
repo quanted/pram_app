@@ -2,18 +2,15 @@ import ast
 import datetime
 import json
 import logging
-import os
-import warnings
-
 import numpy as np
+import os
 import pytz
 import requests
+import warnings
+
 from django.http import HttpResponse
 
-from . import auth_s3
 
-# Set HTTP header
-http_headers = auth_s3.setHTTPHeaders()
 rest_url = os.environ['UBERTOOL_REST_SERVER']
 rest_url_hwbi = os.environ['REST_SERVER_8']
 
@@ -72,7 +69,12 @@ def rest_proxy(request, model, jid=None):
 
 
 def rest_proxy_post(model, data, jid):
-    return requests.post(rest_url + '/rest/ubertool/' + model + '/' + jid, json=data, headers=http_headers, timeout=60)
+    print('ubertool_app.REST.rest_proxy_post calling backend model')
+    called_endpoint = (rest_url + '/rest/ubertool/' + model + '/' + jid)
+    print(called_endpoint)
+    http_headers = set_http_headers()
+    return requests.post(called_endpoint, json=data,
+                         headers=http_headers, timeout=60)
 
 
 def rest_proxy_get(model):
@@ -112,6 +114,7 @@ def save_dic(output_html, model_object_dict, model_name, run_type):
                "output_html": output_html, "model_object_dict": model_object_dict}
     data = json.dumps(all_dic, cls=NumPyArrangeEncoder)
     url = rest_url + '/save_history_html'
+    http_headers = set_http_headers()
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)
         response = requests.post(url, data=data, headers=http_headers, timeout=60)
@@ -131,11 +134,19 @@ def save_model_object(model_object_dict, model_name, run_type):
     all_dic = {"model_name": model_name, "_id": model_object_dict['jid'], "run_type": run_type}
     data = json.dumps(all_dic)
     url = rest_url + '/save_history'
+    http_headers = set_http_headers()
     try:
         response = requests.post(url, data=data, headers=http_headers, timeout=60)
     except:
         pass
 
+
+def set_http_headers():
+    """
+    set json header
+    """
+    http_headers = {'Content-Type': 'application/json'}
+    return http_headers
 
 def batch_save_dic(output_html, model_object_dict, model_name, run_type, jid_batch, linksleft=''):
     """
@@ -164,6 +175,7 @@ def batch_save_dic(output_html, model_object_dict, model_name, run_type, jid_bat
                "model_object_dict": model_object_dict}
     data = json.dumps(all_dic, cls=NumPyArrangeEncoder)
     url = rest_url + '/save_history'
+    http_headers = set_http_headers()
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)
@@ -185,6 +197,7 @@ def update_html(output_html, jid, model_name):
     all_dic = {"model_name": model_name, "_id": jid, "output_html": output_html}
     data = json.dumps(all_dic)
     url = rest_url + '/update_html'
+    http_headers = set_http_headers()
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)
@@ -206,6 +219,7 @@ def get_output_html(jid, model_name):
     all_dic = {"jid": jid, "model_name": model_name}
     data = json.dumps(all_dic)
     url = rest_url + '/get_html_output'
+    http_headers = set_http_headers()
     try:
         # response = urlfetch.fetch(url=url, payload=data, method=urlfetch.POST, headers=http_headers, deadline=60)   
         response = requests.post(url, data=data, headers=http_headers, timeout=60)
@@ -228,6 +242,7 @@ def get_model_object(jid, model_name):
     all_dic = {"jid": jid, "model_name": model_name}
     data = json.dumps(all_dic)
     url = rest_url + '/get_model_object'
+    http_headers = set_http_headers()
     try:
         response = requests.post(url, data=data, headers=http_headers, timeout=60)
         if response:
@@ -250,6 +265,7 @@ def get_sam_huc_output(jid, huc12):
     all_dic = {"jid": jid, "model_name": "sam", "huc12": huc12}
     data = json.dumps(all_dic)
     url = rest_url + '/get_sam_huc_output'
+    http_headers = set_http_headers()
     try:
         response = requests.post(url, data=data, headers=http_headers, timeout=60)
         if response:
@@ -274,6 +290,7 @@ def create_batchoutput_html(jid, model_name):
     all_dic = {"jid": jid, "model_name": model_name}
     data = json.dumps(all_dic)
     url = rest_url + '/get_przm_batch_output'
+    http_headers = set_http_headers()
     try:
         response = requests.post(url, data=data, headers=http_headers, timeout=60)
         if response:
@@ -321,6 +338,7 @@ class UserHistory(object):
         self.jid = []
         self.run_type = []
         self.model_name = model_name
+        http_headers = set_http_headers()
 
         try:
             self.response = requests.post(self.url, data=self.data, headers=http_headers, timeout=60)

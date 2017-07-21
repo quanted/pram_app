@@ -26,16 +26,17 @@ def getheadereecs():
     headings = ["Application Method", "EECs (ug a.i./mg)"]
     return headings
 
-
-def getheaderrqs():
-    headings = ["Life Stage and Caste", "Age (days)", "Jelly (mg/day)", "Nectar (mg/day)", "Pollen (mg/day)", "Total Dose (ug a.i./bee)", "Acute RQ", "Chronic RQ"]
+def getheader_exposure():
+    headings = ["Life Stage and Caste", "Age (days)", "Jelly (mg/day)", "Nectar (mg/day)", "Pollen (mg/day)"]
     return headings
 
+def getheader_rqs():
+    headings = ["Life Stage and Caste", "Age (days)", "Total Dose (ug a.i./bee)", "Acute RQ", "Chronic RQ"]
+    return headings
 
 # def getheadermaxrq():
 #     headings = ["Exposure", "Adults", "Larvae"]
 #     return headings
-
 
 def gethtmlrowsfromcols(data, headings):
     columns = [data[heading] for heading in headings]
@@ -97,24 +98,16 @@ def gett3data(beerex_obj):
     }
     return data
 
-
-def gett4data(beerex_obj):
-    data = { 
+def gett5data(beerex_obj):
+    data = {
         "Life Stage and Caste": ['Larval Worker', 'Larval Worker', 'Larval Worker', 'Larval Worker', 'Larval Worker',
                                'Larval Drone', 'Larval Queen', 'Larval Queen', 'Larval Queen', 'Larval Queen',
                                'Adult Worker (cell cleaning and capping)', 'Adult Worker (brood and queen tending, nurse bees)',
                                'Adult Worker (comb building, cleaning and food handling)', 'Adult Worker (foraging for pollen)',
                                'Adult Worker (foraging for nectar)', 'Adult Worker (maintenance of hive in winter)', 'Adult Drone',
                                'Adult Queen (laying 1500 eggs/day)'],
-        "Age (days)": ['1', '2', '3', '4', '5', '6+', '1', '2', '3', '4+', '0-10', '6-17', '11-18', '>18', '>18', '0-90', '>10', 'entire lifestage'],
-        "Jelly (mg/day)": ['{0:g}'.format(beerex_obj.lw1_jelly), '{0:g}'.format(beerex_obj.lw2_jelly), '{0:g}'.format(beerex_obj.lw3_jelly), '%g', '%g', '%g', '{0:g}'.format(beerex_obj.lq1_jelly),
-                           '{0:g}'.format(beerex_obj.lq2_jelly), '{0:g}'.format(beerex_obj.lq3_jelly), '{0:g}'.format(beerex_obj.lq4_jelly), '%g', '%g', '%g', '%g', '%g', '%g', '%g', '{0!s}'.format(beerex_obj.aq_jelly)],
-        "Nectar (mg/day)": ['%g', '%g', '%g', '{0:g}'.format(beerex_obj.lw4_nectar), '{0:g}'.format(beerex_obj.lw5_nectar), '{0:g}'.format(beerex_obj.ld6_nectar), '%g', '%g', '%g', '%g',
-                            '{0:g}'.format(beerex_obj.aw_cell_nectar), '{0:g}'.format(beerex_obj.aw_brood_nectar), '{0:g}'.format(beerex_obj.aw_comb_nectar), '{0:g}'.format(beerex_obj.aw_fpollen_nectar),
-                            '{0:g}'.format(beerex_obj.aw_fnectar_nectar), '{0:g}'.format(beerex_obj.aw_winter_nectar), '{0:g}'.format(beerex_obj.ad_nectar), '%s'],
-        "Pollen (mg/day)": ['%g', '%g', '%g', '{0:g}'.format(beerex_obj.lw4_pollen), '{0:g}'.format(beerex_obj.lw5_pollen), '{0:g}'.format(beerex_obj.ld6_pollen), '%g', '%g', '%g', '%g',
-                            '{0:g}'.format(beerex_obj.aw_cell_pollen), '{0:g}'.format(beerex_obj.aw_brood_pollen), '{0:g}'.format(beerex_obj.aw_comb_pollen), '{0:g}'.format(beerex_obj.aw_fpollen_pollen),
-                            '{0:g}'.format(beerex_obj.aw_fnectar_pollen), '{0:g}'.format(beerex_obj.aw_winter_pollen), '{0:g}'.format(beerex_obj.ad_pollen), '%s'],
+        "Age (days)": ['1', '2', '3', '4', '5', '6+', '1', '2', '3', '4+', '0-10', '6-17', '11-18', '>18', '>18',
+                       '0-90', '>10', 'entire lifestage'],
         "Total Dose (ug a.i./bee)": ['{0:g}'.format(beerex_obj.out_lw1_total_dose), '{0:g}'.format(beerex_obj.out_lw2_total_dose), '{0:g}'.format(beerex_obj.out_lw3_total_dose),
                                      '{0:g}'.format(beerex_obj.out_lw4_total_dose), '{0:g}'.format(beerex_obj.out_lw5_total_dose), '{0:g}'.format(beerex_obj.out_ld6_total_dose),
                                      '{0:g}'.format(beerex_obj.out_lq1_total_dose), '{0:g}'.format(beerex_obj.out_lq2_total_dose), '{0:g}'.format(beerex_obj.out_lq3_total_dose),
@@ -134,7 +127,6 @@ def gett4data(beerex_obj):
     }
     return data
 
-
 # def gett5data(beerex_obj):
 #     data = {
 #         "Exposure": ['Acute Contact', 'Acute Dietary', 'Chronic Dietary'],
@@ -147,7 +139,8 @@ def gett4data(beerex_obj):
 inpheadings = getheaderinp()
 toxheadings = getheadertox()
 eecheadings = getheadereecs()
-rqsheadings = getheaderrqs()
+exposure_headings = getheader_exposure()
+rqsheadings = getheader_rqs()
 # maxrqheadings = getheadermaxrq()
 djtemplate = getdjtemplate()
 tmpl = Template(djtemplate)
@@ -158,6 +151,7 @@ def table_all(beerex_obj):
     html_all = html_all + table_2(beerex_obj)
     html_all = html_all + table_3(beerex_obj)
     html_all = html_all + table_4(beerex_obj)
+    html_all = html_all + table_5(beerex_obj)
     # html_all = html_all + table_5(beerex_obj)
     return html_all
 
@@ -179,69 +173,103 @@ def timestamp(beerex_obj="", batch_jid=""):
 
 
 def table_1(beerex_obj):
-        html = """
-        <H3 class="out_1 collapsible" id="section1"><span></span>User Inputs</H3>
-        <div class="out_">
-            <H4 class="out_1 collapsible" id="section2"><span></span>Application Information</H4>
-                <div class="out_ container_output">
-        """
-        t1data = gett1data(beerex_obj)
-        t1rows = gethtmlrowsfromcols(t1data, inpheadings)
-        html = html + tmpl.render(Context(dict(data=t1rows, headings=inpheadings)))
-        html = html + """
-                </div>
-        </div>
-        """
-        return html
+    html = """
+    <H3 class="out_1 collapsible" id="section1"><span></span>User Inputs</H3>
+    <div class="out_">
+        <H4 class="out_1 collapsible" id="section2"><span></span>Application Information</H4>
+            <div class="out_ container_output">
+    """
+    t1data = gett1data(beerex_obj)
+    t1rows = gethtmlrowsfromcols(t1data, inpheadings)
+    html = html + tmpl.render(Context(dict(data=t1rows, headings=inpheadings)))
+    html = html + """
+            </div>
+    </div>
+    """
+    return html
 
 
 def table_2(beerex_obj):
-        html = """
-        <br>
-        <H3 class="out_1 collapsible" id="section3"><span></span>User Inputs</H3>
-        <div class="out_1">
-            <H4 class="out_1 collapsible" id="section4"><span></span>Toxicity data</H4>
-                <div class="out_ container_output">
-        """
-        t2data = gett2data(beerex_obj)
-        t2rows = gethtmlrowsfromcols(t2data, toxheadings)
-        html = html + tmpl.render(Context(dict(data=t2rows, headings=toxheadings)))
-        html = html + """
-                </div>
-        """
-        return html  
+    html = """
+    <br>
+    <H3 class="out_1 collapsible" id="section3"><span></span>User Inputs</H3>
+    <div class="out_1">
+        <H4 class="out_1 collapsible" id="section4"><span></span>Toxicity data</H4>
+            <div class="out_ container_output">
+    """
+    t2data = gett2data(beerex_obj)
+    t2rows = gethtmlrowsfromcols(t2data, toxheadings)
+    html = html + tmpl.render(Context(dict(data=t2rows, headings=toxheadings)))
+    html = html + """
+            </div>
+    """
+    return html
 
 
 def table_3(beerex_obj):
-        html = """
-        <br>
-        <H3 class="out_1 collapsible" id="section3"><span></span>Bee-Rex Output</H3>
-        <div class="out_1">
-            <H4 class="out_1 collapsible" id="section4"><span></span>Estimated concentrations in pollen and nectar</H4>
-                <div class="out_ container_output">
-        """
-        t3data = gett3data(beerex_obj)
-        t3rows = gethtmlrowsfromcols(t3data,eecheadings)
-        html = html + tmpl.render(Context(dict(data=t3rows, headings=eecheadings)))
-        html = html + """
-                </div>
-        """
-        return html  
+    html = """
+    <br>
+    <H3 class="out_1 collapsible" id="section3"><span></span>Bee-Rex Output</H3>
+    <div class="out_1">
+        <H4 class="out_1 collapsible" id="section4"><span></span>Estimated concentrations in pollen and nectar</H4>
+            <div class="out_ container_output">
+    """
+    t3data = gett3data(beerex_obj)
+    t3rows = gethtmlrowsfromcols(t3data,eecheadings)
+    html = html + tmpl.render(Context(dict(data=t3rows, headings=eecheadings)))
+    html = html + """
+            </div>
+    """
+    return html
 
 
 def table_4(beerex_obj):
-        html = """
-            <H4 class="out_1 collapsible" id="section4"><span></span>Dietary risk quotients (RQs) for all bees</H4>
-                <div class="out_ container_output">
-        """
-        t4data = gett4data(beerex_obj)
-        t4rows = gethtmlrowsfromcols(t4data, rqsheadings)
-        html = html + tmpl.render(Context(dict(data=t4rows, headings=rqsheadings)))
-        html = html + """
-                </div>
-        </div>
-        """
-        return html
+    html = """
+        <H4 class="out_1 collapsible" id="section4"><span></span>Exposure rates for all bees</H4>
+            <div class="out_ container_output">
+    """
+    t4data = gett4data(beerex_obj)
+    t4rows = gethtmlrowsfromcols(t4data, exposure_headings)
+    html = html + tmpl.render(Context(dict(data=t4rows, headings=exposure_headings)))
+    html = html + """
+            </div>
+    </div>
+    """
+    return html
+
+def gett4data(beerex_obj):
+    data = {
+        "Life Stage and Caste": ['Larval Worker', 'Larval Worker', 'Larval Worker', 'Larval Worker', 'Larval Worker',
+                               'Larval Drone', 'Larval Queen', 'Larval Queen', 'Larval Queen', 'Larval Queen',
+                               'Adult Worker (cell cleaning and capping)', 'Adult Worker (brood and queen tending, nurse bees)',
+                               'Adult Worker (comb building, cleaning and food handling)', 'Adult Worker (foraging for pollen)',
+                               'Adult Worker (foraging for nectar)', 'Adult Worker (maintenance of hive in winter)', 'Adult Drone',
+                               'Adult Queen (laying 1500 eggs/day)'],
+        "Age (days)": ['1', '2', '3', '4', '5', '6+', '1', '2', '3', '4+', '0-10', '6-17', '11-18', '>18', '>18', '0-90', '>10', 'entire lifestage'],
+        "Jelly (mg/day)": ['{0:g}'.format(beerex_obj.lw1_jelly), '{0:g}'.format(beerex_obj.lw2_jelly), '{0:g}'.format(beerex_obj.lw3_jelly), '%g', '%g', '%g', '{0:g}'.format(beerex_obj.lq1_jelly),
+                           '{0:g}'.format(beerex_obj.lq2_jelly), '{0:g}'.format(beerex_obj.lq3_jelly), '{0:g}'.format(beerex_obj.lq4_jelly), '%g', '%g', '%g', '%g', '%g', '%g', '%g', '{0!s}'.format(beerex_obj.aq_jelly)],
+        "Nectar (mg/day)": ['%g', '%g', '%g', '{0:g}'.format(beerex_obj.lw4_nectar), '{0:g}'.format(beerex_obj.lw5_nectar), '{0:g}'.format(beerex_obj.ld6_nectar), '%g', '%g', '%g', '%g',
+                            '{0:g}'.format(beerex_obj.aw_cell_nectar), '{0:g}'.format(beerex_obj.aw_brood_nectar), '{0:g}'.format(beerex_obj.aw_comb_nectar), '{0:g}'.format(beerex_obj.aw_fpollen_nectar),
+                            '{0:g}'.format(beerex_obj.aw_fnectar_nectar), '{0:g}'.format(beerex_obj.aw_winter_nectar), '{0:g}'.format(beerex_obj.ad_nectar), '%s'],
+        "Pollen (mg/day)": ['%g', '%g', '%g', '{0:g}'.format(beerex_obj.lw4_pollen), '{0:g}'.format(beerex_obj.lw5_pollen), '{0:g}'.format(beerex_obj.ld6_pollen), '%g', '%g', '%g', '%g',
+                            '{0:g}'.format(beerex_obj.aw_cell_pollen), '{0:g}'.format(beerex_obj.aw_brood_pollen), '{0:g}'.format(beerex_obj.aw_comb_pollen), '{0:g}'.format(beerex_obj.aw_fpollen_pollen),
+                            '{0:g}'.format(beerex_obj.aw_fnectar_pollen), '{0:g}'.format(beerex_obj.aw_winter_pollen), '{0:g}'.format(beerex_obj.ad_pollen), '%s'],
+    }
+    return data
+
+def table_5(beerex_obj):
+    html = """
+        <H4 class="out_1 collapsible" id="section4"><span></span>Dietary risk quotients (RQs) for all bees</H4>
+            <div class="out_ container_output">
+    """
+    t5data = gett5data(beerex_obj)
+    t5rows = gethtmlrowsfromcols(t5data, rqsheadings)
+    html = html + tmpl.render(Context(dict(data=t5rows, headings=rqsheadings)))
+    html = html + """
+            </div>
+    </div>
+    """
+    return html
 
 # def table_5(beerex_obj):
 #         html = """

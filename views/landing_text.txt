@@ -1,12 +1,12 @@
 <p>
-The &#252;bertool is a cloud-based web application platform that includes a variety of aquatic, terrestrial and
+The &#252;tool is a cloud-based web application platform that includes a variety of aquatic, terrestrial and
 atmospheric deposition fate and transport models used by the EPA for the ecological risk assessment of pesticides.
-The science models in the &#252;bertool provide predictions concerning chemical concentrations in environmental media,
+The science models in the &#252;tool provide predictions concerning chemical concentrations in environmental media,
 exposure doses, tissue residues and ultimately predictions of effects. These predictions are relevant for a number of
 ecological species under regulations that the EPA is responsible for, including the registration of pesticides and the
 protection of endangered species.
 
-<h2>Models in the &#252;bertool</h2>
+<h2>Models in the &#252;tool</h2>
 <h3>Terrestrial Models</h3>
 <p>
 Terrestrial models estimate exposure concentrations in terrestrial media and screen for pesticide effects at

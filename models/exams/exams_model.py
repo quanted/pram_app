@@ -5,16 +5,15 @@
 
 import json
 import logging
-
-from ubertool_app.REST import auth_s3, rest_funcs
-
-logger = logging.getLogger('SIP Model')
 import os
 import requests
+from ubertool_app.REST import rest_funcs
+
+logger = logging.getLogger('SIP Model')
 
 
 # Set HTTP header
-http_headers = auth_s3.setHTTPHeaders()
+http_headers = rest_funcs.setHTTPHeaders()
 url_part1 = os.environ['UBERTOOL_REST_SERVER']
 
 def get_jid(chem_name, scenarios, met, farm, mw, sol, koc, vp, aem, anm, aqp, tmper, n_ph, ph_out, hl_out):

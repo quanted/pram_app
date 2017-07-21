@@ -1,4 +1,4 @@
-import StringIO
+import io
 import datetime
 import json
 import os
@@ -7,6 +7,7 @@ import pytz
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
+from xhtml2pdf import pisa
 
 
 def parsePOST(request):
@@ -71,7 +72,7 @@ def pdfReceiver(request, model=''):
     PDF Generation Receiver function.
     Sends POST data as string to xhtml2pdf library for processing
     """
-    from xhtml2pdf import pisa
+
     # viewmodule = importlib.import_module('.views', 'models.'+model)
     # Open description txt
     text_description = open(os.path.join(os.environ['PROJECT_PATH'], 'models/'+model+'/'+model+'_text.txt'),'r')

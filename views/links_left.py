@@ -1,71 +1,55 @@
 from collections import OrderedDict
-
+from django.shortcuts import redirect
 from django.template.loader import render_to_string
 
 
 # 03ubertext_links_left:
 def ordered_list(model=None, page=None):
+    # get right set of links for links left
+    if(model in ['agdrift','beerex','iec','sip','stir','terrplant','therps',
+                 'trex','kabam','rice','landing_ubertool']):
+        link_dict = ordered_list_ubertool(model)
+    elif(model in ['exponential','logistic','gompertz','foxsurplus','maxsus',
+                   'yulefurry','fellerarley','leslie','lesliedr','leslie_probit',
+                   'loons','landing_pop']):
+        link_dict = ordered_list_pop(model)
+    elif(model in ['agdisp','earthworm','insect','pat','perfum','pfam','pwc',
+                   'sam','ted','landing_unter']):
+        link_dict = ordered_list_unter(model)
+    return render_to_string('03ubertext_links_left_drupal.html', {
+        'LINK_DICT': link_dict,
+        'MODEL': model,
+        'PAGE': page
+    })
+
+
+def ordered_list_ubertool(model=None, page=None):
     link_dict = OrderedDict([
-        ('utool', OrderedDict([
-            ('home', ''),
+        ('Apps', OrderedDict([
+            ('Q.E.D.', '..'),
+            ('\u00FCtool', ''),
+            ('pop', 'pop'),
+            ('unter', 'unter'),
         ])
          ),
         ('Terrestrial Models', OrderedDict([
-                ('TerrPlant', 'terrplant'),
-                ('SIP', 'sip'),
-                ('STIR', 'stir'),
-                # ('DUST', 'dust'),
-                ('T-REX', 'trex'),
-                ('T-Herps', 'therps'),
-                ('IEC', 'iec'),
-                ('AgDrift', 'agdrift'),
-                # ('Agdrift-T-Rex', 'agdrift_trex'),
-                # ('Agdrift-T-Herps', 'agdrift_therps'),
-                ('Earthworm', 'earthworm'),
-                ('Bee-REX', 'beerex'),
+            ('AgDrift', 'agdrift'),
+            ('Bee-REX', 'beerex'),
+            ('IEC', 'iec'),
+            ('SIP', 'sip'),
+            ('STIR', 'stir'),
+            ('TerrPlant', 'terrplant'),
+            ('T-Herps', 'therps'),
+            ('T-REX', 'trex'),
             ])
         ),
         ('Aquatic Models', OrderedDict([
-                ('RICE', 'rice'),
-                # ('GENEEC', 'geneec'),
-                ('Kabam', 'kabam'),
-                # ('PRZM', 'przm'),
-                # ('PRZM 5', 'przm5'),
-                # ('EXAMS', 'exams'),
-                # ('PFAM', 'pfam'),
-                # ('PRZM-EXAMS', 'przm_exams'),
-                ('SAM', 'sam'),
-                #('SWC', 'swc'),
-                # ('Web-ICE', 'webice'),
-                # ('VVWM', 'vvwm'),
-                # ('Surface Water Calculator', 'swc'),
+            ('Kabam', 'kabam'),
+            ('RICE', 'rice'),
             ])
         ),
-        ('Population Models', OrderedDict([
-            ('Exponential', 'exponential'),
-            ('Logistic', 'logistic'),
-            ('Gompertz', 'gompertz'),
-            ('Fox Surplus Yield', 'foxsurplus'),
-            ('Max Sustainable Yield', 'maxsus'),
-            ('Yule-Furry Markov Process', 'yulefurry'),
-            ('Feller-Arley Markov Process', 'fellerarley'),
-            ('Leslie Process', 'leslie'),
-            ('Leslie-Logistic Dose Response', 'lesliedr'),
-            ('Leslie-Probit Dose Response', 'leslie_probit'),
-            ('Loons Population', 'loons'),
-        ])
-         ),
-        ('Beta Versions', OrderedDict([
-            ('AgDisp', 'agdisp'),
-            ('Perfum', 'perfum'),
-            ('Pfam', 'pfam'),
-            ('PWC', 'pwc'),
-            ('TED', 'ted'),
-        ])
-         ),
         ('Documentation', OrderedDict([
-                ('Source Code', 'docs'),
-                ('API Documentation', 'api'),
+                ('Source Code', '/github.com/quanted/ubertool'),
                 ('Links', 'links')
             ])
         )
@@ -82,9 +66,65 @@ def ordered_list(model=None, page=None):
         #     ])
         # ),
     ])
+    return link_dict
 
-    return render_to_string('03ubertext_links_left_drupal.html', {
-        'LINK_DICT': link_dict,
-        'MODEL': model,
-        'PAGE': page
-    })
+
+def ordered_list_pop(model=None, page=None):
+    link_dict = OrderedDict([
+        ('Apps', OrderedDict([
+            ('Q.E.D.', '..'),
+            ('\u00FCtool', ''),
+            ('pop', 'pop'),
+            ('unter', 'unter'),
+        ])
+         ),
+        ('Population Models', OrderedDict([
+            ('Exponential', 'exponential'),
+            ('Logistic', 'logistic'),
+            ('Gompertz', 'gompertz'),
+            ('Fox Surplus Yield', 'foxsurplus'),
+            ('Max Sustainable Yield', 'maxsus'),
+            ('Yule-Furry Markov Process', 'yulefurry'),
+            ('Feller-Arley Markov Process', 'fellerarley'),
+            ('Leslie Process', 'leslie'),
+            ('Leslie-Logistic Dose Response', 'lesliedr'),
+            ('Leslie-Probit Dose Response', 'leslie_probit'),
+            ('Loons Population', 'loons'),
+        ])
+         ),
+        ('Documentation', OrderedDict([
+                ('Source Code', redirect('https://github.com/quanted/ubertool')),
+                ('Links', 'links'),
+            ])
+        ),
+    ])
+    return link_dict
+
+def ordered_list_unter(model=None, page=None):
+    link_dict = OrderedDict([
+        ('Apps', OrderedDict([
+            ('Q.E.D.', '..'),
+            ('\u00FCtool', ''),
+            ('pop', 'pop'),
+            ('unter', 'unter'),
+        ])
+         ),
+        ('Beta Versions', OrderedDict([
+            ('AgDisp', 'agdisp'),
+            ('Earthworm', 'earthworm'),
+            ('Insect', 'insect'),
+            ('Pat', 'pat'),
+            ('Perfum', 'perfum'),
+            ('Pfam', 'pfam'),
+            ('PWC', 'pwc'),
+            ('SAM', 'sam'),
+            ('TED', 'ted'),
+        ])
+         ),
+        ('Documentation', OrderedDict([
+                ('Source Code', '/github.com/quanted/ubertool'),
+                ('Links', 'links')
+            ])
+        ),
+    ])
+    return link_dict

@@ -1,7 +1,7 @@
 import json
 import logging
 logger = logging.getLogger('PRZM5_int_Model')
-from REST import rest_funcs
+from ..REST import rest_funcs
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse

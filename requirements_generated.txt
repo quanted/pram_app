@@ -60,7 +60,7 @@ nose2==0.6.5
 numpy==1.13.0
 oauth2client==4.1.1
 packaging==16.8
-pandas==0.20.2
+pandas==0.20.3
 Pillow==4.1.1
 pkginfo==1.4.1
 psutil==5.2.2

@@ -14,20 +14,36 @@ from ..REST import rest_funcs
 print('qed.ubertool_app.views.output')
 
 _UPDATED_MODELS = (
+    'agdisp',
     'agdrift',
     'beerex',
     'earthworm',
     'exponential',
+    'fellerarley',
+    'foxsurplus',
+    'gompertz',
     'iec',
+    'insect',
     'kabam',
+    'leslie',
+    'leslie_probit',
+    'lesliedr',
+    'logistic',
     'loons',
+    'maxsus',
+    'pat',
+    'perfum',
+    'pfam',
+    'pwc',
     'rice',
     'sam',
     'sip',
     'stir',
-    'trex',
+    'ted',
     'terrplant',
     'therps',
+    'trex',
+    'yulefurry',
 )
 
 

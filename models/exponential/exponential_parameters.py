@@ -11,6 +11,6 @@ from django.db import models
 from django.utils.safestring import mark_safe
 
 class ExponentialInp(forms.Form):
-    N_o = forms.FloatField(required=True,label=mark_safe('Initial amount of individuals (N<sub>0</sub>)'),initial=100)
-    rho = forms.FloatField(required=True,label=mark_safe('Initial growth rate in percent (&#961;)'),initial=4)
-    T = forms.FloatField(required=True,label='Number of time intervals (T)',initial=200)
+    init_pop_size = forms.FloatField(required=True,label=mark_safe('Initial amount of individuals (N<sub>0</sub>)'),initial=100)
+    growth_rate = forms.FloatField(required=True,label=mark_safe('Initial growth rate in percent (&#961;)'),initial=4)
+    time_steps = forms.FloatField(required=True,label='Number of time intervals (T)',initial=200)

@@ -5,9 +5,8 @@
 
 import datetime
 import logging
-import os
-
 import numpy
+import os
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
 

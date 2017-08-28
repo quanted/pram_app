@@ -13,7 +13,8 @@ def pfamInputPage(request, model='', header='', formData=None):
     html = html + render_to_string('04uberinput_jquery_qtip.html', {})
     html = html + render_to_string('04uberinput_start_tabbed.html', {
             'model':model,
-            'model_attributes': header+' Inputs'})
+            'model_attributes': header+' Inputs'},
+            request=request)
     html = html + render_to_string('04uberinput_tabbed_nav.html', {
             'nav_dict': {
                 'class_name': ['Chemical', 'Application', 'Location', "Floods", "Crop", "Physical", "Output"],

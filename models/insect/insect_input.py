@@ -10,9 +10,10 @@ def insectInputPage(request, model='', header='', formData=None):
     from . import insect_parameters
 
     html = render_to_string('04uberinput_jquery.html', { 'model': model })
-    html = html + render_to_string('04uberinput_start.html', {
+    html = html + render_to_string('04uberinput_start_drupal.html', {
             'model':model, 
-            'model_attributes': header+' Inputs'})
+            'model_attributes': header+' Inputs'},
+            request=request)
     html = html + render_to_string('insect_ubertool_config_input.html', {})
     # if formData == None:
     #     html = html + str(insect_parameters.InsectInp())

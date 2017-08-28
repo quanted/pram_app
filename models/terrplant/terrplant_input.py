@@ -11,7 +11,8 @@ def terrplant_input_page(request, model='', header='', form_data=None):
 
     html = render_to_string('04uberinput_start_drupal.html', {
         'MODEL': model,
-        'TITLE': header})
+        'TITLE': header},
+    	request=request)
 
     #input form
     html += render_to_string('04uberinput_form.html', {

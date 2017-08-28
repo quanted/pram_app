@@ -11,7 +11,8 @@ def kabam_input_page(request, model='', header='', form_data=None):
     html = render_to_string('04uberinput_jquery.html', {'model': model})
     html += render_to_string('04uberinput_start_tabbed_drupal.html', {
         'MODEL': model,
-        'TITLE': header})
+        'TITLE': header},
+        request=request)
     html += render_to_string('04uberinput_tabbed_nav.html', {
         'nav_dict': {
             'class_name': ['Chemical', 'Avian', 'Mammal', 'LargeFish', 'MediumFish', 'SmallFish', 'Filterfeeders',

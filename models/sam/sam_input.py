@@ -13,7 +13,8 @@ def sam_input_page(request, model='', header='', form_data=None):
     html += '<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>'
     html += render_to_string('04uberinput_start_tabbed_drupal.html', {
         'MODEL': model,
-        'TITLE': header})
+        'TITLE': header},
+    	request=request)
     html += render_to_string('04uberinput_tabbed_nav.html', {
         'nav_dict': {
             'class_name': ['Chemical Fate', 'Application', 'Simulation', 'Output Options'],

@@ -11,7 +11,8 @@ def stir_input_page(request, model='', header='', form_data=None):
 
     html = render_to_string('04uberinput_start_drupal.html', {
         'MODEL': model,
-        'TITLE': header})
+        'TITLE': header},
+    	request=request)
     html += render_to_string('04uberinput_form.html', {
         'FORM': stir_parameters.StirInp(form_data)})
     html += render_to_string('04uberinput_end_drupal.html', {})

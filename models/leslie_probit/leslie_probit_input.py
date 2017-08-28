@@ -1,5 +1,5 @@
 """
-.. module:: sip_input
+.. module:: leslie_probit_input
    :synopsis: A useful module indeed.
 """
 
@@ -12,7 +12,8 @@ def leslie_probit_input_page(request, model='', header='', form_data=None):
     html = render_to_string('04uberinput_jquery.html', {'model': model})
     html += render_to_string('04uberinput_start_tabbed_drupal.html', {
         'MODEL': model,
-        'TITLE': header})
+        'TITLE': header},
+    	request=request)
     html += render_to_string('04uberinput_tabbed_nav.html', {
         'nav_dict': {
             'class_name': ['Chemical', 'DoseResponse', 'LeslieMatrix'],
@@ -29,7 +30,7 @@ def leslie_probit_input_page(request, model='', header='', form_data=None):
     html += """<table class="input_table tab tab_LeslieMatrix leslie" border="0" style="display:none">"""
     html += """<table class="input_table tab tab_LeslieMatrix no" border="0" style="display:none">"""
     html += render_to_string('leslie_probit_input_jquery.html', {})
-    html += render_to_string('04uberinput_tabbed_end.html', {'sub_title': 'Submit'})
+    html += render_to_string('04uberinput_tabbed_end_drupal.html', {'sub_title': 'Submit'})
 #    html += render_to_string('04uberinput_end_drupal.html', {})
     html += render_to_string('04ubertext_end_drupal.html', {})
 

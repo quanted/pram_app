@@ -7,6 +7,15 @@ from django.utils.safestring import mark_safe
 
 from ubertool_app.models.forms import validation
 
+kd_CHOICES = (('0', 'Koc'), ('1', 'Kd'))
+
+nhd_regions = ['01', '02', '03N', '03S', '03W', '04', '05', '06', '07', '08', '09',
+               '10U', '10L', '11', '12', '13', '14', '15', '16', '17', '18']
+
+REGION_CHOICES = [("mtb", "Mark Twain Basin")] + \
+                 list(zip(nhd_regions, ("NHD Region {}".format(r) for r in nhd_regions)))
+
+TYPE_CHOICES = (('eco', 'Eco'), ('dwr', 'Drinking Water'), ('dwf', 'ESA'))
 
 class SamInp_app():
     def __init__(self):
@@ -69,18 +78,17 @@ class SamInp_chem(forms.Form):
         initial="atrazine")  # Atrazine
 
     # watershed processes
-    koc = forms.FloatField(
-        required=False,
-        label='Sorption Coefficient (mL/g)',
-        initial=75,
-        validators=[validation.validate_positive])
-
     kd_flag = forms.ChoiceField(
         required=False,
-        widget=forms.RadioSelect,
-        choices=((0, 'Koc'), (1, 'Kd')),
-        initial=1,
-        label='')
+        label='Soil Adsorption Coefficient Type',
+        choices=kd_CHOICES,
+        initial='1')
+
+    koc = forms.FloatField(
+        required=False,
+        label='Soil Adsorption Coefficient (mL/g)',
+        initial=75,
+        validators=[validation.validate_positive])
 
     soil_hl = forms.FloatField(
         required=False,
@@ -116,25 +124,18 @@ class SamInp_chem(forms.Form):
 
 
 class SamInp_sim(forms.Form):
-    nhd_regions = ['01', '02', '03N', '03S', '03W', '04', '05', '06', '07', '08', '09',
-                   '10U', '10L', '11', '12', '13', '14', '15', '16', '17', '18']
-
-    REGION_CHOICES = [("mtb", "Mark Twain Basin")] + \
-                     list(zip(nhd_regions, ("NHD Region {}".format(r) for r in nhd_regions)))
-
-    TYPE_CHOICES = (('eco', 'Eco'), ('dwr', 'Drinking Water'), ('dwf', 'ESA'))
 
     region = forms.ChoiceField(
         required=False,
         label='Region',
         choices=REGION_CHOICES,
-        initial="Mark Twain Basin")
+        initial="mtb")
 
     sim_type = forms.ChoiceField(
         required=False,
         widget=forms.RadioSelect(),
         choices=TYPE_CHOICES,
-        initial='Eco')
+        initial='eco')
 
     sim_date_start = forms.DateField(
         required=False,

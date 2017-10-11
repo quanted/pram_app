@@ -8,16 +8,11 @@ from django.utils.safestring import mark_safe
 from ubertool_app.models.forms import validation
 
 kd_CHOICES = (('0', 'Koc'), ('1', 'Kd'))
-
-nhd_regions = ['01', '02', '03N', '03S', '03W', '04', '05', '06', '07', '08', '09',
-               '10U', '10L', '11', '12', '13', '14', '15', '16', '17', '18']
-
-REGION_CHOICES = [("mtb", "Mark Twain Basin")] + \
-                 list(zip(nhd_regions, ("NHD Region {}".format(r) for r in nhd_regions)))
-
 TYPE_CHOICES = (('eco', 'Eco'), ('dwr', 'Drinking Water'), ('dwf', 'ESA'))
 
+
 class SamInp_app():
+
     def __init__(self):
         self.html = self.application_table()
 
@@ -66,6 +61,7 @@ class SamInp_app():
 
 
 class SamInp_chem(forms.Form):
+
     # Chemical
     simulation_name = forms.CharField(
         required=False,
@@ -75,7 +71,7 @@ class SamInp_chem(forms.Form):
     chemical_name = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-        initial="atrazine")  # Atrazine
+        initial='atrazine')  # Atrazine
 
     # watershed processes
     kd_flag = forms.ChoiceField(
@@ -125,11 +121,20 @@ class SamInp_chem(forms.Form):
 
 class SamInp_sim(forms.Form):
 
+    def __init__(self, *args, **kwargs):
+        super(SamInp_sim, self).__init__(*args, **kwargs)
+        self.fields['region'].initial = '07'
+
+    nhd_regions = ['01', '02', '03N', '03S', '03W', '04', '05', '06', '07', '08', '09',
+               '10U', '10L', '11', '12', '13', '14', '15', '16', '17', '18']
+    REGION_CHOICES = tuple(list(zip(nhd_regions, ("NHD Region {}".format(r) for r in nhd_regions))))
+    # region_type = forms.CharField(max_length=10, choices=REGION_CHOICES)
+
     region = forms.ChoiceField(
-        required=False,
-        label='Region',
         choices=REGION_CHOICES,
-        initial="mtb")
+        label='Region',
+        initial='01')
+        # initial="mtb")
 
     sim_type = forms.ChoiceField(
         required=False,
@@ -201,4 +206,7 @@ class SamInp_output():
 
 
 class SamInp(SamInp_app, SamInp_chem, SamInp_sim, SamInp_output):
-    pass
+    def __init__(self, *args, **kwargs):
+        super(SamInp, self).__init__(*args, **kwargs)
+        self.fields['region'].initial = '07'
+    # pass

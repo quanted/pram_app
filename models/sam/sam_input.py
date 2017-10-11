@@ -10,7 +10,7 @@ def sam_input_page(request, model='', header='', form_data=None):
     from . import sam_parameters
 
     html = render_to_string('04uberinput_jquery.html', {'model': model})
-    html += '<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>'
+    html += '<script type="text/javascript" src="/static_qed/js/jquery-ui.min.js"></script>'
     html += render_to_string('04uberinput_start_tabbed_drupal.html', {
         'MODEL': model,
         'TITLE': header},
@@ -22,11 +22,11 @@ def sam_input_page(request, model='', header='', form_data=None):
         }
     })
     html += """<br><table class="input_table tab tab_Chemical">"""
-    html += str(sam_parameters.SamInp_chem(form_data))
+    html += str(sam_parameters.SamInp_chem())
     html += """</table><table class="input_table tab tab_Application" style="display:none">"""
     html += str(sam_parameters.SamInp_app())
     html += """<table class="input_table tab tab_Simulation" style="display:none">"""
-    html += str(sam_parameters.SamInp_sim(form_data))
+    html += str(sam_parameters.SamInp_sim())
     html += """</table><table class="input_table tab tab_Output" style="display:none">"""
     html += str(sam_parameters.SamInp_output())
     html += render_to_string('04sam_application_table.html', {})

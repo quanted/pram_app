@@ -9,7 +9,7 @@ earthengine-api==0.1.125
 enum==0.4.6
 google-api-python-client==1.6.4 #dependency for earthengine-api
 html5lib==0.999999999
-mechanize==0.3.5
+mechanize==0.3.6
 nose==1.3.7
 nose-cov==1.6
 numpy==1.13.3

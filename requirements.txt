@@ -3,18 +3,18 @@ celery==4.1.0
 codecov==2.0.9
 coverage==4.4.1
 coveralls==1.2.0
-django==1.11.5
+django==1.11.6
 django-rest-swagger==2.1.2
-earthengine-api==0.1.124
+earthengine-api==0.1.125
 enum==0.4.6
 google-api-python-client==1.6.4 #dependency for earthengine-api
 html5lib==0.999999999
-mechanize==0.3.5
+mechanize==0.3.6
 nose==1.3.7
 nose-cov==1.6
 numpy==1.13.3
 pandas==0.20.3
-pillow==4.2.1
+pillow==4.3.0
 pypdf2==1.26.0
 python-coveralls==2.9.1
 pytz==2017.2
@@ -22,7 +22,7 @@ requests==2.18.4
 reportlab==3.4.0
 selenium==3.6.0
 Sphinx==1.6.4
-tabulate==0.8.0
+tabulate==0.8.1
 xhtml2pdf==0.0.6
-xlsxwriter==1.0.0
+xlsxwriter==1.0.2
 

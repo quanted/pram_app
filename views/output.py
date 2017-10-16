@@ -5,6 +5,7 @@ import os
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
+from django.shortcuts import redirect
 
 from . import links_left
 from ..models import model_handler
@@ -250,6 +251,8 @@ def output_page(request, model='none', header=''):
     try:
         # Class name must be ModelInp, e.g. SipInp or TerrplantInp
         input_form = getattr(parametersmodule, model.title() + 'Inp')
+        if model == "sam":
+            return redirect("/ubertool/sam/output/status")
         form = input_form(request.POST)  # bind user inputs to form object
 
         # Form validation testing

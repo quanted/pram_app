@@ -7,6 +7,7 @@ from .views import description, input, output, algorithms, references, qaqc
 from .views import misc, landing
 from .views import batch
 from .views import sam_watershed
+from .models.sam import sam_output_landing
 
 print('qed.ubertool_app.urls')
 
@@ -36,6 +37,7 @@ urlpatterns = [
     #url(r'^api/', include('ubertool_app.api.urls')),
     url(r'^api/$', api_views.api_docs_view, name='api_docs_view'),
     url(r'^api/spec/?$', api_views.api_docs_json),
+    url(r'^sam/output/landing$', sam_output_landing.olanding_page, {'model': 'sam'}),
     url(r'^sam/watershed$', sam_watershed.watershed_page, {'model': 'sam'}),
     #url(r'^test/$', landing.eco_landing_page_new), #testing before deployment
     #url(r'^(?P<model>.*?)/?$', description.description_page), #this catches everything...

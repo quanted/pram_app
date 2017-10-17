@@ -251,8 +251,9 @@ def output_page(request, model='none', header=''):
     try:
         # Class name must be ModelInp, e.g. SipInp or TerrplantInp
         input_form = getattr(parametersmodule, model.title() + 'Inp')
-        if model == "sam":
-            return redirect("/ubertool/sam/output/status")
+        # Uncomment the following two lines to get the submission status page.
+        # if model == "sam":
+        #     return redirect("/ubertool/sam/output/status")
         form = input_form(request.POST)  # bind user inputs to form object
 
         # Form validation testing

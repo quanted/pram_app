@@ -8,9 +8,10 @@ from django.views.decorators.http import require_POST
 from ... views import links_left
 
 
-def olanding_page(header, model):
+def olanding_page(header, model, task_id):
     html = olanding_html(header, model)
     response = HttpResponse(html)
+    response.set_cookie('task_id', task_id)
     return response
 
 

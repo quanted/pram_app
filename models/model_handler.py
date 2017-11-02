@@ -84,6 +84,7 @@ def call_model_server(model, args):
         data = args
 
     # POST JSON to model server through rest proxy
+    # REST/rest_funcs
     response = rest_funcs.rest_proxy_post(model, data, rest_funcs.gen_jid())
 
     return response
@@ -140,6 +141,7 @@ def model_input_post_receiver(request, model):
         model_obj = Model(run_type, jid, dataframes[0], dataframes[1])
     else:
         logging.info("back end not ok")
+        logging.info(response.text)
         logging.info("status_code = " + str(response.status_code))
         logging.info("raise = " + str(response.raise_for_status()))
     return model_obj

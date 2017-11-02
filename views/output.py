@@ -1,6 +1,8 @@
 import importlib
 import logging
 import os
+import requests
+import json
 
 from django.http import HttpResponse
 from django.template.loader import render_to_string
@@ -247,6 +249,17 @@ def output_page(request, model='none', header=''):
     model_parameters_location = 'ubertool_app.models.' + model + '.' + model + '_parameters'
     model_input_location = 'ubertool_app.models.' + model + '.' + model + '_input'
     parametersmodule = importlib.import_module(model_parameters_location)
+
+    if model == 'sam':
+        task = {}
+        try:
+            inputs = request.POST.dict()
+            task = requests.post('http://localhost:7777/rest/ubertool/sam/', data=inputs)
+        except Exception as ex:
+            print("Error attempting to connect to flask endpoint for sam. " + str(ex))
+        task_id = json.loads(task.content.decode(encoding="utf-8").replace("//", ""))
+        # request.Cookies['task_id'] = task_id['task_id']
+        return redirect('/ubertool/sam/output/status/' + task_id['task_id'])
 
     try:
         # Class name must be ModelInp, e.g. SipInp or TerrplantInp

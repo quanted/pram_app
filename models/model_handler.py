@@ -84,6 +84,7 @@ def call_model_server(model, args):
         data = args
 
     # POST JSON to model server through rest proxy
+    # REST/rest_funcs
     response = rest_funcs.rest_proxy_post(model, data, rest_funcs.gen_jid())
 
     return response
@@ -127,17 +128,22 @@ def model_input_post_receiver(request, model):
     logging.info(model)
     logging.info("args:")
     logging.info(args)
-
+    logging.info("=========== model_handler.model_input_post_receiver calling back end")
     response = call_model_server(model, args)
     logging.info("=========== returned from back end")
-    jid = response.json()['_id']
-    logging.info("job id = " + str(jid))
-    run_type = response.json()['run_type']
-    logging.info("run_type = " + run_type)
-    dataframes = create_dataframe(response)
-
-    model_obj = Model(run_type, jid, dataframes[0], dataframes[1])
-
+    if(response.ok):
+        logging.info("returned ok, status_code = " + str(response.status_code))
+        jid = response.json()['_id']
+        logging.info("job id = " + str(jid))
+        run_type = response.json()['run_type']
+        logging.info("run_type = " + run_type)
+        dataframes = create_dataframe(response)
+        model_obj = Model(run_type, jid, dataframes[0], dataframes[1])
+    else:
+        logging.info("back end not ok")
+        logging.info(response.text)
+        logging.info("status_code = " + str(response.status_code))
+        logging.info("raise = " + str(response.raise_for_status()))
     return model_obj
 
 

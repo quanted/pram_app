@@ -7,15 +7,16 @@ from django.conf import settings
 from . import links_left
 # from pisces_app import views
 
-def get_model_header(model):
 
+def get_model_header(model):
     model_views_location = 'ubertool_app.models.' + model + '.views'
     #import_module is py27 specific
     viewmodule = importlib.import_module(model_views_location)
     header = viewmodule.header
     return header
 
-def watershed_page(request, model='pisces', header='none'):
+
+def watershed_page(request, model='pisces', header='none', task_id=""):
     model = model.lstrip('/')
     header = get_model_header(model)
     x = render_to_string('sam_watershed_map.html')
@@ -34,7 +35,7 @@ def watershed_page(request, model='pisces', header='none'):
     html += links_left.ordered_list(model, 'watershedmap')
     html += render_to_string('10epa_drupal_footer.html', {})
 
-
     response = HttpResponse()
     response.write(html)
+    response.set_cookie('task_id', task_id)
     return response

@@ -254,7 +254,8 @@ def output_page(request, model='none', header=''):
         task = {}
         try:
             inputs = request.POST.dict()
-            task = requests.post('http://localhost:7777/rest/ubertool/sam/', data=inputs)
+            # task = requests.post('http://localhost:7777/rest/ubertool/sam/', data=inputs)
+            task = requests.post('http://172.20.100.11/rest/ubertool/sam/', data=inputs)
         except Exception as ex:
             print("Error attempting to connect to flask endpoint for sam. " + str(ex))
         task_id = json.loads(task.content.decode(encoding="utf-8").replace("//", ""))

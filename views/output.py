@@ -254,8 +254,8 @@ def output_page(request, model='none', header=''):
         task = {}
         try:
             inputs = request.POST.dict()
-            #task = requests.post('http://localhost:7777/rest/ubertool/sam/', data=inputs)
-            task = requests.post('http://qed_nginx:7777/rest/ubertool/sam/', data=inputs)
+            task = requests.post('http://localhost:7777/rest/ubertool/sam/', data=inputs)
+            #task = requests.post('http://qed_nginx:7777/rest/ubertool/sam/', data=inputs)
             task_id = json.loads(task.content.decode(encoding="utf-8").replace("//", ""))
             return redirect('/ubertool/sam/output/status/' + task_id['task_id'])
         except Exception as ex:

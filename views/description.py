@@ -26,7 +26,7 @@ def get_model_description(model):
 
 
 def description_page(request, model='none', header='none'):
-    print(request.path)
+    # print(request.path)
     print('ubertool_app.views.description_page')
 
     #get formatted model name and description for description page

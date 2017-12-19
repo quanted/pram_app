@@ -8,6 +8,7 @@ from .views import misc, landing
 from .views import batch
 from .views import sam_watershed
 from .models.sam import sam_output_landing
+from .views import proxy
 
 print('qed.ubertool_app.urls')
 
@@ -29,6 +30,7 @@ urlpatterns = [
     url(r'^pop/$', landing.pop_landing_page),
     url(r'^unter/$', landing.unter_landing_page),
     url(r'^links/?$', misc.links),
+    url(r'^rest/(?P<flask_url>.*?)/?$', proxy.flask_proxy),
     #docs
     #url(r'^docs/$', docs_views.DocsRootView.as_view(), name='docs_root'),
     #url(r'^(?P<path>.*)$', serve_docs, name='docs_files')

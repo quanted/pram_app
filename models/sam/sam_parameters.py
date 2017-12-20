@@ -123,7 +123,7 @@ class SamInp_sim(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(SamInp_sim, self).__init__(*args, **kwargs)
-        self.fields['region'].initial = '07'
+        self.fields['region'].initial = 'Mark Twain Demo'
 
     nhd_regions = ['01', '02', '03N', '03S', '03W', '04', '05', '06', '07', '08', '09',
                '10U', '10L', '11', '12', '13', '14', '15', '16', '17', '18', 'Mark Twain Demo']
@@ -133,7 +133,8 @@ class SamInp_sim(forms.Form):
     region = forms.ChoiceField(
         choices=REGION_CHOICES,
         label='Region',
-        initial='01')
+        # initial='01'
+    )
         # initial="mtb")
 
     sim_type = forms.ChoiceField(

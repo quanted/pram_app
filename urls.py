@@ -26,6 +26,7 @@ print('qed.ubertool_app.urls')
 #In Python regular expressions, the syntax for named regular-expression
 #groups is (?P<name>pattern), where name is the name of the group and pattern is some pattern to match
 urlpatterns = [
+    #django 1.X
     url(r'^$', landing.eco_landing_page),
     url(r'^pop/$', landing.pop_landing_page),
     url(r'^unter/$', landing.unter_landing_page),
@@ -52,6 +53,12 @@ urlpatterns = [
     url(r'^(?P<model>.*?)/output/?$', output.output_page),
     url(r'^(?P<model>.*?)/batch/?$', batch.batch_page),
     #url(r'^(?P<model>.*?)/?', include(model_patterns)),
+
+    # django 2.X
+    # path('', landing.eco_landing_page),
+    # path('pop$', landing.pop_landing_page),
+    # path('unter', landing.unter_landing_page),
+    # path('links', misc.links),
 ]
 
 # 404 Error view (file not found)

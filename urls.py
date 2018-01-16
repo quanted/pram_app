@@ -1,4 +1,5 @@
-from django.urls import include, path, re_path
+# from django.urls import include, path, re_path
+from django.conf.urls import url
 from .api import views as api_views
 # from .docs import views as docs_views
 from .views import description, input, output, algorithms, references, qaqc
@@ -25,50 +26,50 @@ print('qed.ubertool_app.urls')
 #groups is (?P<name>pattern), where name is the name of the group and pattern is some pattern to match
 urlpatterns = [
     # django 2.X
-    path('', landing.eco_landing_page),
-    path('pop', landing.pop_landing_page),
-    path('unter', landing.unter_landing_page),
-    path('links', misc.links),
-    re_path(r'^rest/(?P<flask_url>.*?)/?$', proxy.flask_proxy),
-    path('<slug:model>', description.description_page),
-    path('<slug:model>/algorithms', algorithms.algorithm_page),
-    path('<slug:model>/references', references.references_page),
-    path('<slug:model>/qaqc', qaqc.qaqc_page),
-    path('<slug:model>/input', input.input_page),
-    path('<slug:model>/output', output.output_page),
-    path('<slug:model>/batch', batch.batch_page),
-    re_path(r'^sam/output/status/(?P<task_id>.*?)$', sam_output_landing.olanding_page, {'model': 'sam'}),
-    re_path(r'^sam/watershed/(?P<task_id>.*?)$', sam_watershed.watershed_page, {'model': 'sam'}),
-    re_path(r'^api/$', api_views.api_docs_view, name='api_docs_view'),
-    re_path(r'^api/spec/?$', api_views.api_docs_json),
+    # path('', landing.eco_landing_page),
+    # path('pop', landing.pop_landing_page),
+    # path('unter', landing.unter_landing_page),
+    # path('links', misc.links),
+    # re_path(r'^rest/(?P<flask_url>.*?)/?$', proxy.flask_proxy),
+    # path('<slug:model>', description.description_page),
+    # path('<slug:model>/algorithms', algorithms.algorithm_page),
+    # path('<slug:model>/references', references.references_page),
+    # path('<slug:model>/qaqc', qaqc.qaqc_page),
+    # path('<slug:model>/input', input.input_page),
+    # path('<slug:model>/output', output.output_page),
+    # path('<slug:model>/batch', batch.batch_page),
+    # re_path(r'^sam/output/status/(?P<task_id>.*?)$', sam_output_landing.olanding_page, {'model': 'sam'}),
+    # re_path(r'^sam/watershed/(?P<task_id>.*?)$', sam_watershed.watershed_page, {'model': 'sam'}),
+    # re_path(r'^api/$', api_views.api_docs_view, name='api_docs_view'),
+    # re_path(r'^api/spec/?$', api_views.api_docs_json),
 
     #django 1.X
-    # url(r'^$', landing.eco_landing_page),
-    # url(r'^pop/$', landing.pop_landing_page),
-    # url(r'^unter/$', landing.unter_landing_page),
-    # url(r'^links/?$', misc.links),
-    # url(r'^rest/(?P<flask_url>.*?)/?$', proxy.flask_proxy),
-    # #docs
-    # #url(r'^docs/$', docs_views.DocsRootView.as_view(), name='docs_root'),
-    # #url(r'^(?P<path>.*)$', serve_docs, name='docs_files')
-    # #url(r'^docs/', include('ubertool_app.docs.urls')),
-    # #/api
-    # #url(r'^api/', include('ubertool_app.api.urls')),
-    # url(r'^api/$', api_views.api_docs_view, name='api_docs_view'),
-    # url(r'^api/spec/?$', api_views.api_docs_json),
-    # url(r'^sam/output/status/(?P<task_id>.*?)$', sam_output_landing.olanding_page, {'model': 'sam'}),
-    # url(r'^sam/watershed/(?P<task_id>.*?)$', sam_watershed.watershed_page, {'model': 'sam'}),
-    # #url(r'^test/$', landing.eco_landing_page_new), #testing before deployment
-    # #url(r'^(?P<model>.*?)/?$', description.description_page), #this catches everything...
-    # url(r'^(?P<model>.*?)/$', description.description_page),
-    # url(r'^(?P<model>.*?)/description/?$', description.description_page),
-    # url(r'^(?P<model>.*?)/algorithms/?$', algorithms.algorithm_page),
-    # url(r'^(?P<model>.*?)/references/?$', references.references_page),
-    # url(r'^(?P<model>.*?)/qaqc/?$', qaqc.qaqc_page),
-    # url(r'^(?P<model>.*?)/input/?$', input.input_page),
-    # url(r'^(?P<model>.*?)/output/?$', output.output_page),
-    # url(r'^(?P<model>.*?)/batch/?$', batch.batch_page),
-    # #url(r'^(?P<model>.*?)/?', include(model_patterns)),
+    url(r'^$', landing.eco_landing_page),
+    url(r'^pop/$', landing.pop_landing_page),
+    url(r'^unter/$', landing.unter_landing_page),
+    url(r'^links/?$', misc.links),
+    url(r'^rest/(?P<flask_url>.*?)/?$', proxy.flask_proxy),
+    #docs
+    #url(r'^docs/$', docs_views.DocsRootView.as_view(), name='docs_root'),
+    #url(r'^(?P<path>.*)$', serve_docs, name='docs_files')
+    #url(r'^docs/', include('ubertool_app.docs.urls')),
+    #/api
+    #url(r'^api/', include('ubertool_app.api.urls')),
+    url(r'^api/$', api_views.api_docs_view, name='api_docs_view'),
+    url(r'^api/spec/?$', api_views.api_docs_json),
+    url(r'^sam/output/status/(?P<task_id>.*?)$', sam_output_landing.olanding_page, {'model': 'sam'}),
+    url(r'^sam/watershed/(?P<task_id>.*?)$', sam_watershed.watershed_page, {'model': 'sam'}),
+    #url(r'^test/$', landing.eco_landing_page_new), #testing before deployment
+    #url(r'^(?P<model>.*?)/?$', description.description_page), #this catches everything...
+    url(r'^(?P<model>.*?)/$', description.description_page),
+    url(r'^(?P<model>.*?)/description/?$', description.description_page),
+    url(r'^(?P<model>.*?)/algorithms/?$', algorithms.algorithm_page),
+    url(r'^(?P<model>.*?)/references/?$', references.references_page),
+    url(r'^(?P<model>.*?)/qaqc/?$', qaqc.qaqc_page),
+    url(r'^(?P<model>.*?)/input/?$', input.input_page),
+    url(r'^(?P<model>.*?)/output/?$', output.output_page),
+    url(r'^(?P<model>.*?)/batch/?$', batch.batch_page),
+    #url(r'^(?P<model>.*?)/?', include(model_patterns)),
 
 ]
 

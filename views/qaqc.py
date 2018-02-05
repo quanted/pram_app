@@ -6,18 +6,18 @@ from django.template.loader import render_to_string
 from ..models import model_handler
 from . import links_left
 
-print('qed.ubertool_app.views.qaqc')
+print('qed.pram_app.views.qaqc')
 
 def get_model_header(model):
 
-    model_views_location = 'ubertool_app.models.' + model + '.views'
+    model_views_location = 'pram_app.models.' + model + '.views'
     #import_module is py27 specific
     viewmodule = importlib.import_module(model_views_location)
     header = viewmodule.header
     return header
 
 def get_model_qaqc(model):
-    model_views_location = 'ubertool_app.models.' + model + '.views'
+    model_views_location = 'pram_app.models.' + model + '.views'
     #import_module is py27 specific
     viewmodule = importlib.import_module(model_views_location)
     qaqc = viewmodule.qaqc
@@ -30,13 +30,13 @@ def qaqc_page(request, model='none'):
     """
 
     print(request.path)
-    print('ubertool_app.views.qaqc_page')
+    print('pram_app.views.qaqc_page')
 
     model = model.lstrip('/')
     header = get_model_header(model)
     qaqc = get_model_qaqc(model)
 
-    #viewmodule = importlib.import_module('.views', 'ubertool_app.models.'+model)
+    #viewmodule = importlib.import_module('.views', 'pram_app.models.'+model)
     #header = viewmodule.header
 
     #epa template header
@@ -45,7 +45,7 @@ def qaqc_page(request, model='none'):
         'TITLE': u"\u00FCbertool"
     })
     html += render_to_string('02epa_drupal_header_bluestripe_onesidebar.html', {})
-    html += render_to_string('03epa_drupal_section_title_ubertool.html', {})
+    html += render_to_string('03epa_drupal_section_title_pram.html', {})
 
     #main body
     #html += render_to_string('06ubertext_start_index_drupal.html', {
@@ -58,8 +58,8 @@ def qaqc_page(request, model='none'):
     #html += links_left.ordered_list(model, 'qaqc')
 
     #css and scripts
-    html += render_to_string('09epa_drupal_ubertool_css.html', {})
-    #html += render_to_string('09epa_drupal_ubertool_scripts.html', {})
+    html += render_to_string('09epa_drupal_pram_css.html', {})
+    #html += render_to_string('09epa_drupal_pram_scripts.html', {})
 
     #epa template footer
     html += render_to_string('10epa_drupal_footer.html', {})
@@ -87,13 +87,13 @@ def qaqc_page_old(request, model='none'):
     """
 
     print(request.path)
-    print('ubertool_app.views.qaqc_page')
+    print('pram_app.views.qaqc_page')
 
     model = model.lstrip('/')
     header = get_model_header(model)
     qaqc = get_model_qaqc(model)
 
-    #viewmodule = importlib.import_module('.views', 'ubertool_app.models.'+model)
+    #viewmodule = importlib.import_module('.views', 'pram_app.models.'+model)
     #header = viewmodule.header
 
     html = render_to_string('01uberheader_main_drupal.html', {

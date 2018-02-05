@@ -14,14 +14,14 @@ def insectInputPage(request, model='', header='', formData=None):
             'model':model, 
             'model_attributes': header+' Inputs'},
             request=request)
-    html = html + render_to_string('insect_ubertool_config_input.html', {})
+    html = html + render_to_string('insect_pram_config_input.html', {})
     # if formData == None:
     #     html = html + str(insect_parameters.InsectInp())
     # else:
     #     html = html + str(insect_parameters.InsectInp(formData))
     html = html + str(insect_parameters.InsectInp(formData))
     html = html + render_to_string('04uberinput_end.html', {'sub_title': 'Submit'})
-    html = html + render_to_string('insect_ubertool_config.html', {})
+    html = html + render_to_string('insect_pram_config.html', {})
     # Check if tooltips dictionary exists
     try:
         import insect_tooltips

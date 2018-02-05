@@ -7,7 +7,7 @@ import json
 import logging
 import os
 import requests
-from ubertool_app.REST import rest_funcs
+from pram_app.REST import rest_funcs
 
 logger = logging.getLogger('PFAM Model')
 

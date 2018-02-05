@@ -4,7 +4,7 @@
 """
 from django import forms
 
-from ubertool_app.models.forms import validation
+from pram_app.models.forms import validation
 
 Species_of_the_tested_bird_CHOICES = (
     ('Bobwhite quail', 'Bobwhite quail'), ('Mallard duck', 'Mallard duck'), ('Other', 'Other'))

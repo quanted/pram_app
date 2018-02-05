@@ -66,8 +66,8 @@ references = '<p>Specific EPA guidance and the Microsoft Excel version of the mo
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/quanted/ubertool_app/tree/master/models/kabam">ubertool_src on GitHub (front end)</a></li>' \
-             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/kabam">ubertool_src on GitHub (back end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/pram_app/tree/master/models/kabam">pram_src on GitHub (front end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/pram/tree/master/pram/kabam">pram_src on GitHub (back end)</a></li>' \
              '</ul>' \
              '<p>' \
              'Example reports documenting the use of KABAM in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:' \

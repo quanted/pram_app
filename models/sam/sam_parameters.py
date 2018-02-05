@@ -5,7 +5,7 @@
 from django import forms
 from django.utils.safestring import mark_safe
 
-from ubertool_app.models.forms import validation
+from pram_app.models.forms import validation
 
 kd_CHOICES = (('0', 'Koc'), ('1', 'Kd'))
 TYPE_CHOICES = (('eco', 'Eco'), ('dwr', 'Drinking Water'), ('dwf', 'ESA'))

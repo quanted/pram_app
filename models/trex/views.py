@@ -62,8 +62,8 @@ references = '<p>' \
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/trex">ubertool_src on GitHub (front end)</a></li>' \
-             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/trex\">ubertool_src on GitHub (back end model)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/pram/tree/master/pram/trex">pram_src on GitHub (front end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/pram/tree/master/pram/trex\">pram_src on GitHub (back end model)</a></li>' \
              '</ul>' \
              '<p>' \
              'Example reports documenting the use of T-Rex in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:' \

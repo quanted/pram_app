@@ -5,7 +5,7 @@
 from django import forms
 from django.utils.safestring import mark_safe
 
-from ubertool_app.models.forms import validation
+from pram_app.models.forms import validation
 
 application_method_CHOICES = (('soil application', 'soil application'), ('tree trunk', 'tree trunk'),
                               ('foliar spray', 'foliar spray'), ('seed treatment', 'seed treatment'))

@@ -65,8 +65,8 @@ references = '<p>Specific EPA guidance and the Microsoft Excel version of the mo
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"http://github.com/quanted/ubertool_app/tree/master/models/beerex\">ubertool_app on GitHub (front end)</a></li>' \
-             '<li><a href=\"http://github.com/quanted/ubertool/tree/master/ubertool/beerex\">ubertool on GitHub (back end model)</a></li>' \
+             '<li><a href=\"http://github.com/quanted/pram_app/tree/master/models/beerex\">pram_app on GitHub (front end)</a></li>' \
+             '<li><a href=\"http://github.com/quanted/pram/tree/master/pram/beerex\">pram on GitHub (back end model)</a></li>' \
              '</ul>' \
              '<p>' \
              'General EPA guidance on how Bee-REX fits into the overall ecological risk assessment process for pesticides can be found at the following links:' \

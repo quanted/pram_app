@@ -11,8 +11,8 @@ Specific EPA guidance and the Microsoft Excel version of the model on the STIR P
 Current github source code:
 </p>
 <ul class="bullet">
-  <li><a href="https://github.com/puruckertom/ubertool_eco/tree/master/models/stir">ubertool_src on GitHub (front end)</a></li>
-  <li><a href="https://github.com/puruckertom/ubertool_ecorest/tree/master/REST_UBER/stir_rest">ubertool_src on GitHub (back end model)</a></li>
+  <li><a href="https://github.com/puruckertom/pram_eco/tree/master/models/stir">pram_src on GitHub (front end)</a></li>
+  <li><a href="https://github.com/puruckertom/pram_ecorest/tree/master/REST_UBER/stir_rest">pram_src on GitHub (back end model)</a></li>
 </ul>
 
 <p>

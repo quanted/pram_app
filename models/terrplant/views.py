@@ -61,8 +61,8 @@ references = '<p>' \
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/puruckertom/ubertool_eco/tree/master/models/terrplant\">ubertool_src on GitHub (front end)</a></li>' \
-             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/terrplant\">ubertool_src on GitHub (back end model)</a></li>' \
+             '<li><a href=\"https://github.com/puruckertom/pram_eco/tree/master/models/terrplant\">pram_src on GitHub (front end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/pram/tree/master/pram/terrplant\">pram_src on GitHub (back end model)</a></li>' \
              '</ul>' \
              '<p>' \
              'Example reports documenting the use of TerrPlant in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:' \

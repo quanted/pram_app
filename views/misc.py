@@ -50,10 +50,10 @@ def login_auth(request):
         else:
             # Return a 'disabled account' error message
 
-            return redirect('/ubertool/login?next=' + next_page)
+            return redirect('/pram/login?next=' + next_page)
     else:
         # Return an 'invalid login' error message.
-        return redirect('/ubertool/login?next=' + next_page)
+        return redirect('/pram/login?next=' + next_page)
 
 
 #######################################################################################

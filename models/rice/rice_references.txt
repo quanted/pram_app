@@ -12,7 +12,7 @@ EPA guidance on the Tier I Rice Program can be found here:
 Current github source code:
 </p>
 <ul class="bullet">
-  <li><a href="https://github.com/puruckertom/ubertool_src/tree/master/rice">ubertool_src on GitHub</a></li>
+  <li><a href="https://github.com/puruckertom/pram_src/tree/master/rice">pram_src on GitHub</a></li>
 </ul>
 
 <p>

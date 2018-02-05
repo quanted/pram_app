@@ -8,11 +8,11 @@ from . import links_left
 
 #import secret
 
-print('qed.ubertool_app.views.input')
+print('qed.pram_app.views.input')
 
 def get_model_header(model):
 
-    model_views_location = 'ubertool_app.models.' + model + '.views'
+    model_views_location = 'pram_app.models.' + model + '.views'
     #import_module is py27 specific
     viewmodule = importlib.import_module(model_views_location)
     header = viewmodule.header
@@ -20,7 +20,7 @@ def get_model_header(model):
 
 def get_model_input_module(model):
 
-    model_module_location = 'ubertool_app.models.' + model + '.' + model + '_input'
+    model_module_location = 'pram_app.models.' + model + '.' + model + '_input'
     # import_module is py27 specific
     model_input_module = importlib.import_module(model_module_location)
     return model_input_module
@@ -28,7 +28,7 @@ def get_model_input_module(model):
 def input_page(request, model='none', header='none'):
 
     print(request.path)
-    print('ubertool_app.views.input_page')
+    print('pram_app.views.input_page')
     # If on public server, test user authentication
     # if settings.AUTH:
     #     if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:
@@ -49,7 +49,7 @@ def input_page(request, model='none', header='none'):
         'TITLE': u"\u00FCbertool"
     })
     html += render_to_string('02epa_drupal_header_bluestripe_onesidebar.html', {})
-    html += render_to_string('03epa_drupal_section_title_ubertool.html', {})
+    html += render_to_string('03epa_drupal_section_title_pram.html', {})
 
     #html = render_to_string('01uberheader_main_drupal.html', {
     #    'SITE_SKIN': os.environ['SITE_SKIN'],
@@ -66,8 +66,8 @@ def input_page(request, model='none', header='none'):
     html += links_left.ordered_list(model, 'run_model')
 
     #css and scripts
-    html += render_to_string('09epa_drupal_ubertool_css.html', {})
-    html += render_to_string('09epa_drupal_ubertool_scripts.html', {})
+    html += render_to_string('09epa_drupal_pram_css.html', {})
+    html += render_to_string('09epa_drupal_pram_scripts.html', {})
 
     #epa template footer
     html += render_to_string('10epa_drupal_footer.html', {})
@@ -79,7 +79,7 @@ def input_page(request, model='none', header='none'):
 
 def input_page_old(request, model='none', header='none'):
     print(request.path)
-    print('ubertool_app.views.input_page')
+    print('pram_app.views.input_page')
     # If on public server, test user authentication
     # if settings.AUTH:
     #     if settings.MACHINE_ID == secret.MACHINE_ID_PUBLIC:

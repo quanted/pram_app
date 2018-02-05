@@ -7,7 +7,7 @@ import json
 import os
 import requests
 
-from ubertool_app.REST import rest_funcs
+from pram_app.REST import rest_funcs
 
 # Set HTTP header
 http_headers = rest_funcs.setHTTPHeaders()

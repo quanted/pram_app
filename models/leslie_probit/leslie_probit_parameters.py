@@ -4,7 +4,7 @@
 """
 from django import forms
 from django.utils.safestring import mark_safe
-from ubertool_app.models.forms import validation
+from pram_app.models.forms import validation
 
 
 app_target_choices=(('Short Grass','Short Grass'),('Tall Grass','Tall Grass'))

@@ -45,10 +45,10 @@ references = '<p>Specific EPA guidance and the Microsoft Excel version of the IE
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/quanted/ubertool_app/tree/master/models/iec">' \
-             'ubertool_src on GitHub (front end)</a></li>' \
-             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/iec">' \
-             'ubertool_src on GitHub (back end model)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/pram_app/tree/master/models/iec">' \
+             'pram_src on GitHub (front end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/pram/tree/master/pram/iec">' \
+             'pram_src on GitHub (back end model)</a></li>' \
              '</ul>' \
              '<p>' \
              'Example reports documenting the use of IEC in reregistration eligibility documents and ' \

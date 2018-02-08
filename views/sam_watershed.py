@@ -9,7 +9,7 @@ from . import links_left
 
 
 def get_model_header(model):
-    model_views_location = 'ubertool_app.models.' + model + '.views'
+    model_views_location = 'pram_app.models.' + model + '.views'
     #import_module is py27 specific
     viewmodule = importlib.import_module(model_views_location)
     header = viewmodule.header

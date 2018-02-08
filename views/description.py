@@ -5,12 +5,12 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from . import links_left
 
-print('qed.ubertool_app.views.description')
+print('qed.pram_app.views.description')
 
 
 def get_model_header(model):
 
-    model_views_location = 'ubertool_app.models.' + model + '.views'
+    model_views_location = 'pram_app.models.' + model + '.views'
     #import_module is py27 specific
     viewmodule = importlib.import_module(model_views_location)
     header = viewmodule.header
@@ -18,7 +18,7 @@ def get_model_header(model):
 
 
 def get_model_description(model):
-    model_views_location = 'ubertool_app.models.' + model + '.views'
+    model_views_location = 'pram_app.models.' + model + '.views'
     #import_module is py27 specific
     viewmodule = importlib.import_module(model_views_location)
     description = viewmodule.description
@@ -26,8 +26,8 @@ def get_model_description(model):
 
 
 def description_page(request, model='none', header='none'):
-    # print(request.path)
-    print('ubertool_app.views.description_page')
+    print(request.path)
+    print('pram_app.views.description_page')
 
     #get formatted model name and description for description page
     model = model.lstrip('/')
@@ -40,7 +40,7 @@ def description_page(request, model='none', header='none'):
         'TITLE': u"\u00FCbertool"
     })
     html += render_to_string('02epa_drupal_header_bluestripe_onesidebar.html', {})
-    html += render_to_string('03epa_drupal_section_title_ubertool.html', {})
+    html += render_to_string('03epa_drupal_section_title_pram.html', {})
 
     #main body
     html += render_to_string('06ubertext_start_index_drupal.html', {
@@ -51,8 +51,8 @@ def description_page(request, model='none', header='none'):
     html += links_left.ordered_list(model)
 
     #css and scripts
-    html += render_to_string('09epa_drupal_ubertool_css.html', {})
-    #html += render_to_string('09epa_drupal_ubertool_scripts.html', {})
+    html += render_to_string('09epa_drupal_pram_css.html', {})
+    #html += render_to_string('09epa_drupal_pram_scripts.html', {})
 
     #epa template footer
     html += render_to_string('10epa_drupal_footer.html', {})
@@ -63,7 +63,7 @@ def description_page(request, model='none', header='none'):
 
 def description_page_old(request, model='none', header='none'):
     print(request.path)
-    print('ubertool_app.views.description_page')
+    print('pram_app.views.description_page')
 
     #get formatted model name and description for description page
     model = model.lstrip('/')

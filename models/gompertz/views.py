@@ -19,7 +19,7 @@ description = '<p>The Gompertz model was first introduced to model mortality by'
               'Benjamin Gompertz</a> in 1825. It assumes that population growth rate (r<sub>t</sub>) decays exponentially:</p>'\
               '<img src = \"/static_qed/images/latex/gompertz/gompertz_des_1.png\" alt=\"Gompertz Model\">'\
               '<p>Gompertz model has been used to model the growth of tumors and in fisheries '\
-              'ecology in the <a href=\"http://www.ubertool.org/foxsurplus_description.html\">Fox surplus yield model</a></p></p>'
+              'ecology in the <a href=\"http://www.pram.org/foxsurplus_description.html\">Fox surplus yield model</a></p></p>'
 
 # How model name appears on web page
 header = 'Gompertz'

@@ -181,8 +181,8 @@ references = '<p>' \
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"http://github.com/quanted/ubertool_app/tree/master/models/therps\">ubertool_app on GitHub</a></li>' \
-             '<li><a href=\"http://github.com/quanted/ubertool/tree/master/ubertool/therps\">ubertool on GitHub</a></li>' \
+             '<li><a href=\"http://github.com/quanted/pram_app/tree/master/models/therps\">pram_app on GitHub</a></li>' \
+             '<li><a href=\"http://github.com/quanted/pram/tree/master/pram/therps\">pram on GitHub</a></li>' \
              '</ul>' \
              'Example reports documenting the use of T-Herps in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:' \
              '</p>' \

@@ -11,8 +11,8 @@ Specific EPA guidance and the Microsoft Excel version of the model on the Screen
 Current github source code:
 </p>
 <ul class="bullet">
-  <li><a href="https://github.com/puruckertom/ubertool_eco/tree/master/models/sip target="_blank"">ubertool_src on github (front end)</a></li>
-  <li><a href="https://github.com/puruckertom/ubertool_ecorest/tree/master/REST_UBER/sip_rest" target="_blank">ubertool_src on github (back end model)</a></li>
+  <li><a href="https://github.com/puruckertom/pram_eco/tree/master/models/sip target="_blank"">pram_src on github (front end)</a></li>
+  <li><a href="https://github.com/puruckertom/pram_ecorest/tree/master/REST_UBER/sip_rest" target="_blank">pram_src on github (back end model)</a></li>
 </ul>
 
 <p>

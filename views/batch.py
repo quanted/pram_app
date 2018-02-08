@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 from . import links_left
 
-print('qed.ubertool_app.views.batch')
+print('qed.pram_app.views.batch')
 
 def batchRun(request, model):
     """

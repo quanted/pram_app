@@ -9,7 +9,7 @@
 import logging
 import os
 
-from ubertool_app.REST import rest_funcs
+from pram_app.REST import rest_funcs
 
 logger = logging.getLogger('agdrift Model')
 import json

@@ -27,7 +27,7 @@ def ordered_list_pram(model=None, page=None):
     link_dict = OrderedDict([
         ('Apps', OrderedDict([
             ('Q.E.D.', '..'),
-            ('\u00FCtool', ''),
+            ('pram', ''),
             ('pop', 'pop'),
             ('unter', 'unter'),
         ])

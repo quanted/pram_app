@@ -257,12 +257,12 @@ def output_page(request, model='none', header=''):
             #task = requests.post('http://localhost:7777/rest/ubertool/sam/', data=inputs)
             task = requests.post('http://qed_nginx:7777/rest/ubertool/sam/', data=inputs)
             task_id = json.loads(task.content.decode(encoding="utf-8").replace("//", ""))
-            return redirect('/ubertool/sam/output/status/' + task_id['task_id'])
+            return redirect('/pram/sam/output/status/' + task_id['task_id'])
             # task = requests.post('http://localhost:7777/rest/pram/sam/', data=inputs)
-            3 task = requests.post('http://172.20.100.11/rest/pram/sam/', data=inputs)
+            # task = requests.post('http://172.20.100.11/rest/pram/sam/', data=inputs)
         except Exception as ex:
             print("Error attempting to connect to flask endpoint for sam. " + str(ex))
-            return redirect('/PRAM/sam/output/status/1234567890')
+            return redirect('/pram/sam/output/status/1234567890')
             # return redirect('/pram/sam/output/status/' + task_id['task_id'])
 
     try:

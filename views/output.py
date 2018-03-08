@@ -46,6 +46,7 @@ _UPDATED_MODELS = (
     'terrplant',
     'therps',
     'trex',
+    'varroapop',
     'yulefurry',
 )
 

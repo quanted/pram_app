@@ -142,3 +142,31 @@ class VarroaPopInpMites(forms.Form):
         choices=ImmType_CHOICES,
         initial='yes',
         validators=[validation.validate_choicefield])
+    ImmStart = forms.DateField(
+        required=True,
+        label='Simulation start date',
+        initial=date(2015, 4, 25),  # '03/25/2015
+        input_formats=['%m/%d/%Y'],
+        widget=forms.SelectDateWidget(years=(2015,)))
+    # validators=[] #need to validate that it's within range of weather file
+    ImmEnd = forms.DateField(
+        required=True,
+        label='Simulation start date',
+        initial=date(2015, 8, 25),  # '03/25/2015
+        input_formats=['%m/%d/%Y'],
+        widget=forms.SelectDateWidget(years=(2015,)))
+    # validators=[] #need to validate that it's within range of weather file
+    TotalImmMites = forms.FloatField(
+        required=False,
+        label='Total # of mites immigrating',
+        validators=[validation.validate_greaterthan0])
+    PctImmMitesResistant = forms.FloatField(
+        required=False,
+        initial=10,
+        label='Percent of mites resistant to miticide',
+        validators=[validation.validate_range0100])
+    ICWorkerAdultInfest = forms.FloatField(
+        required=False,
+        initial=0,
+        label='Percent of worker adults infested',
+        validators=[validation.validate_range0100])

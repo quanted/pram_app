@@ -36,7 +36,7 @@ urlpatterns = [
     path('<slug:model>/references/', references.references_page),
     path('<slug:model>/qaqc/', qaqc.qaqc_page),
     path('<slug:model>/input/', input.input_page),
-    path('<slug:model>/output', output.output_page),
+    path('<slug:model>/output/', output.output_page),
     path('<slug:model>/batch/', batch.batch_page),
     re_path(r'^sam/output/status/(?P<task_id>.*?)$', sam_output_landing.olanding_page, {'model': 'sam'}),
     re_path(r'^sam/watershed/(?P<task_id>.*?)$', sam_watershed.watershed_page, {'model': 'sam'}),

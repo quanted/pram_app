@@ -50,7 +50,7 @@ description = '<p>The Bee-REX model is a screening level tool that is intended f
               'however, the Bee-REX tool does not include quantification of exposures via these routes.</p>'
 
 # How model name appears on web page
-header = 'Bee-REX'
+header = 'VarroaPop'
 
 history = '<p>User History</p>'
 

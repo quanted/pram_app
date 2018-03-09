@@ -19,12 +19,11 @@ ImmType_CHOICES = (('Logarithmic', 'logarithmic'), ('Exponential', 'exponential'
                    ('Sine', 'sine', 'Cosine', 'cosine'), ("Tangent", "tangent"))
 
 
-class VarroaPopInp(forms.Form):
+class VarroapopInp(forms.Form):
     SimStart = forms.DateField(
         required=True,
         label='Simulation start date',
         initial=date(2015, 3, 25),  # '03/25/2015
-        input_formats=['%m/%d/%Y'],
         widget=forms.SelectDateWidget(years=(2015,)),
         disabled=True)
         #validators=[] #need to validate that it's within range of weather file
@@ -32,7 +31,6 @@ class VarroaPopInp(forms.Form):
         required=True,
         label='Simulation start date',
         initial=date(2015, 8, 25),  # '03/25/2015
-        input_formats=['%m/%d/%Y'],
         widget=forms.SelectDateWidget(years=(2015,)),
         disabled=True)
         #validators=[] #need to validate that it's within range of weather file
@@ -61,42 +59,42 @@ class VarroaPopInp(forms.Form):
         required=True,
         label='Initial worker adult population',
         initial=1000,
-        validators = [validation.validate_greaterthan0])
+        validators = [validation.validate_positive])
     ICWorkerBrood = forms.IntegerField(
         required=True,
         label='Initial worker capped brood population',
         initial=5000,
-        validators=[validation.validate_greaterthan0])
+        validators=[validation.validate_positive])
     ICWorkerLarave = forms.IntegerField(
         required=True,
         label='Initial worker larvae population',
         initial=3000,
-        validators=[validation.validate_greaterthan0])
+        validators=[validation.validate_positive])
     ICWorkerEggs = forms.IntegerField(
         required=True,
         label='Initial worker egg population',
         initial=3000,
-        validators=[validation.validate_greaterthan0])
+        validators=[validation.validate_positive])
     ICDroneAdult = forms.IntegerField(
         required=True,
         label='Initial drone adult population',
         initial=0,
-        validators=[validation.validate_greaterthan0])
+        validators=[validation.validate_positive])
     ICDroneBrood = forms.IntegerField(
         required=True,
         label='Initial drone capped brood population',
         initial=0,
-        validators=[validation.validate_greaterthan0])
+        validators=[validation.validate_positive])
     ICDroneLarave = forms.IntegerField(
         required=True,
         label='Initial drone larvae population',
         initial=100,
-        validators=[validation.validate_greaterthan0])
+        validators=[validation.validate_positive])
     ICDroneEggs = forms.IntegerField(
         required=True,
         label='Initial drone egg population',
         initial=100,
-        validators=[validation.validate_greaterthan0])
+        validators=[validation.validate_positive])
     RQEnableReQueen = forms.ChoiceField(
         required=True,
         label='Enable Re-queening?',
@@ -113,7 +111,6 @@ class VarroaPopInp(forms.Form):
         required=True,
         label='Re-queening date',
         initial=date(2015,6,25),#'06/25/2015',
-        input_formats=['%m/%d/%Y'],
         widget=forms.SelectDateWidget(years=(2015,)))
         #validators=[] #need to validate that it's between start and end dates
     RQonce = forms.ChoiceField(
@@ -123,7 +120,7 @@ class VarroaPopInp(forms.Form):
         initial='once on date',
         validators=[validation.validate_choicefield])
 
-class VarroaPopInpMites(forms.Form):
+class VarroapopInpMites(forms.Form):
     enable_mites = forms.ChoiceField(
         required=True,
         label='Enable Varroa mites?',
@@ -146,20 +143,18 @@ class VarroaPopInpMites(forms.Form):
         required=True,
         label='Simulation start date',
         initial=date(2015, 4, 25),  # '03/25/2015
-        input_formats=['%m/%d/%Y'],
         widget=forms.SelectDateWidget(years=(2015,)))
     # validators=[] #need to validate that it's within range of weather file
     ImmEnd = forms.DateField(
         required=True,
         label='Simulation start date',
         initial=date(2015, 8, 25),  # '03/25/2015
-        input_formats=['%m/%d/%Y'],
         widget=forms.SelectDateWidget(years=(2015,)))
     # validators=[] #need to validate that it's within range of weather file
     TotalImmMites = forms.FloatField(
         required=False,
         label='Total # of mites immigrating',
-        validators=[validation.validate_greaterthan0])
+        validators=[validation.validate_positive])
     PctImmMitesResistant = forms.FloatField(
         required=False,
         initial=10,

@@ -309,7 +309,7 @@ def output_page(request, model='none', header=''):
             # html += links_left.ordered_list(model, 'run_model')
             # html += render_to_string('06uberfooter.html', {})
             html += links_left.ordered_list(model)
-            html += render_to_string('07ubertext_end_drupal.html', {})
+            html += render_to_string('10epa_drupal_footer.html', {})
 
             response = HttpResponse()
             response.write(html)

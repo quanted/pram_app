@@ -5,18 +5,29 @@
 
 from django.template.loader import render_to_string
 
+from . import varroapop_parameters
+
 
 def varroapop_input_page(request, model='', header='', form_data=None):
-    from . import varroapop_parameters
 
     html = render_to_string('04uberinput_jquery.html', {'model': model})
-    html += render_to_string('04uberinput_start_drupal.html', {
+    html += render_to_string('04uberinput_start_tabbed_drupal.html', {
         'MODEL': model,
         'TITLE': header},
         request=request)
-    html += render_to_string('04uberinput_form.html', {
-        'FORM': varroapop_parameters.VarroapopInp(form_data)})
-    html += render_to_string('04uberinput_end_drupal.html', {})
+    html += render_to_string('04uberinput_tabbed_nav.html', {
+        'nav_dict': {
+            'class_name': ['Colony', 'Mites', 'Pesticide'],
+            'tab_label': ['Colony', 'Mites', 'Pesticide']
+        }
+    })
+    html += """<br><table class="input_table tab tab_Colony">"""
+    html += str(varroapop_parameters.VarroapopInp_colony(form_data))
+    html += """</table><table class="input_table tab tab_Mites" style="display:none">"""
+    html += str(varroapop_parameters.VarroapopInp_mites(form_data))
+    html += """</table><table class="input_table tab tab_Pesticide" style="display:none">"""
+    html += str(varroapop_parameters.VarroapopInp_pesticide(form_data))
+    html += render_to_string('04uberinput_tabbed_end_drupal.html', {})
     html += render_to_string('04ubertext_end_drupal.html', {})
     # Check if tooltips dictionary exists
     # try:

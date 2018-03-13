@@ -13,10 +13,7 @@ def terrplant_input_page(request, model='', header='', form_data=None):
         'MODEL': model,
         'TITLE': header},
     	request=request)
-
-    #input form
-    html += render_to_string('04uberinput_form.html', {
-        'FORM': terrplant_parameters.TerrplantInp(form_data)})
+    html += str(terrplant_parameters.TerrplantInp(form_data))
     html += render_to_string('04uberinput_end_drupal.html', {})
 
     html += render_to_string('04ubertext_end_drupal.html', {})

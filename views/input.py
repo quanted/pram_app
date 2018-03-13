@@ -25,7 +25,7 @@ def get_model_input_module(model):
     model_input_module = importlib.import_module(model_module_location)
     return model_input_module
 
-def input_page(request, model='none', header='none'):
+def input_page(request, model='none', header='none', form_data=None):
 
     print(request.path)
     print('pram_app.views.input_page')
@@ -61,7 +61,7 @@ def input_page(request, model='none', header='none'):
 
     # function name example: 'sip_input_page'
     input_page_func = getattr(input_module, model + '_input_page')
-    html += input_page_func(request, model, header)
+    html += input_page_func(request, model, header, form_data)
 
     html += links_left.ordered_list(model, 'run_model')
 

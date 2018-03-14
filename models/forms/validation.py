@@ -46,6 +46,32 @@ def validate_range01(value):
 	else:
 		raise ValidationError(u'Range must fall between 0 - 1')
 
+class validate_range(object):
+	def __init__(self, min, max):
+		self.min = min
+		self.max = max
+
+	def __call__(self, value):
+		if self.min <= value <= self.max:
+			return value
+		else:
+			raise ValidationError(('Value must fall between %(min)s and %(max)s'),
+									params={'min': self.min, 'max': self.max})
+			# raise ValidationError(u'Range must fall between ' + self.min + u' and ' + self.max)
+
+def validate_range2(value):
+	""" Form Validation Rule: Valid range from min to max (inclusive)
+
+	:param value: Form input field value
+	:param min: minimum allowable value
+	:param max: maximum allowable value
+	:raises: ValidationError
+	"""
+	if 2 <= value <= 5:
+		pass
+	else:
+		raise ValidationError(u'Range must fall between 2 and 5')
+
 def validate_range0100(value):
 	""" Form Validation Rule: Valid range 0 - 100 (e.g. temperature Centigrade/Celsius)
 	

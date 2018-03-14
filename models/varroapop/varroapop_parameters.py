@@ -39,22 +39,19 @@ class VarroapopInp_colony(forms.Form):
         required=True,
         label='Queen strength (1-5)',
         initial=3.5,
-        widget=forms.NumberInput(attrs={'id': 'form_ICQueenStrength', 'step': '0.1',
-                                        'min': '1', 'max': '5'}),
-        validators=[validators.MinValueValidator(1.0),validators.MaxValueValidator(5.0)])
+        widget=forms.NumberInput(attrs={'id': 'form_ICQueenStrength', 'step': '0.1'}),
+        validators=[validation.validate_range(min=1,max=5)])
     ICForagerLifespan = forms.IntegerField(
         required=True,
         label='Forager lifespan (days)',
         initial=7,
-        widget=forms.NumberInput(attrs={'id': 'form_ICForagerLifespan', 'step': '1',
-                                        'min': '4', 'max': '16'}),
-        validators=[validators.MinValueValidator(4), validators.MaxValueValidator(16)])
+        widget=forms.NumberInput(attrs={'id': 'form_ICForagerLifespan', 'step': '1'}),
+        validators=[validation.validate_range(min=4,max=16)])
     ICForagerProp = forms.FloatField(  # NOTE: need to get the right parameter name for VarroaPop
         required=True,
         label='Active forager proportion',
         initial=.3,
-        widget=forms.NumberInput(attrs={'id': 'form_ICForagerProp', 'step': '0.01',
-                                        'min': '0', 'max': '1'}),
+        widget=forms.NumberInput(attrs={'id': 'form_ICForagerProp', 'step': '0.01'}),
         validators=[validation.validate_range01])
     ICWorkerAdult = forms.IntegerField(
         required=True,

@@ -25,16 +25,14 @@ class VarroapopInp_colony(forms.Form):
         required=True,
         label='Simulation start date',
         initial=date(2015, 3, 25),  # '03/25/2015
-        widget=forms.SelectDateWidget(years=(2015,)),
-        disabled=True)
-        #validators=[] #need to validate that it's within range of weather file
+        widget=forms.SelectDateWidget(years=tuple(range(1991,2016))),
+        validators=[validation.validate_date_range(min=date(1991,1,1),max=date(2015,12,31))])
     SimEnd = forms.DateField(
         required=True,
         label='Simulation start date',
         initial=date(2015, 8, 25),  # '03/25/2015
-        widget=forms.SelectDateWidget(years=(2015,)),
-        disabled=True)
-        #validators=[] #need to validate that it's within range of weather file
+        widget=forms.SelectDateWidget(years=tuple(range(1991, 2016))),
+        validators=[validation.validate_date_range(min=date(1991, 1, 1), max=date(2015, 12, 31))])
     ICQueenStrength = forms.FloatField(
         required=True,
         label='Queen strength (1-5)',
@@ -104,22 +102,30 @@ class VarroapopInp_colony(forms.Form):
         label='Re-queen on scheduled date or automatically?',
         choices=RQScheduled_CHOICES,
         initial='false',
-        validators=[validation.validate_choicefield],
-        disabled=True)
+        validators=[validation.validate_choicefield])
     RQReQueenDate = forms.DateField(
         required=True,
         label='Re-queening date',
         initial=date(2015,6,25),#'06/25/2015',
-        widget=forms.SelectDateWidget(years=(2015,)),
-        disabled=True)
-        #validators=[] #need to validate that it's between start and end dates
+        widget=forms.SelectDateWidget(years=tuple(range(1991,2016))),
+        validators=[validation.validate_date_range(min=date(1991,1,1),max=date(2015,12,31))])
     RQonce = forms.ChoiceField(
         required=True,
         label='Re-queen once on date, or annually on date?',
         choices=RQonce_CHOICES,
         initial='true',
-        validators=[validation.validate_choicefield],
-        disabled=True)
+        validators=[validation.validate_choicefield])
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get('SimStart')
+        end_date = cleaned_data.get('SimEnd')
+        requeen_date = cleaned_data.get('RQReQueenDate')
+        requeen_enabled = cleaned_data.get('RQEnableReQueen')
+        scheduled = cleaned_data.get('RQScheduled')
+        if(requeen_enabled == 'true' and scheduled == 'true'):
+            if(not(start_date <= requeen_date <= end_date)):
+                self.add_error('RQReQueenDate', 'Requeening date should be between simulation start and end dates')
 
 class VarroapopInp_mites(forms.Form):
     enable_mites = forms.ChoiceField(
@@ -133,46 +139,39 @@ class VarroapopInp_mites(forms.Form):
         label='Enable Varroa mite immigration?',
         choices=enable_mites_CHOICES,
         initial='false',
-        validators=[validation.validate_choicefield],
-        disabled=True)
+        validators=[validation.validate_choicefield])
     ImmType = forms.ChoiceField(
         required=True,
         label='Mite immigration profile',
         choices=ImmType_CHOICES,
         initial='Logarithmic',
-        validators=[validation.validate_choicefield],
-        disabled=True)
+        validators=[validation.validate_choicefield])
     ImmStart = forms.DateField(
         required=True,
         label='Simulation start date',
         initial=date(2015, 4, 25),  # '03/25/2015
-        widget=forms.SelectDateWidget(years=(2015,)),
-        disabled=True)
+        widget=forms.SelectDateWidget(years=(2015,)))
         #validators=[] #need to validate that it's within range of weather file
     ImmEnd = forms.DateField(
         required=True,
         label='Simulation start date',
         initial=date(2015, 8, 25),  # '03/25/2015
-        widget=forms.SelectDateWidget(years=(2015,)),
-        disabled=True)
+        widget=forms.SelectDateWidget(years=(2015,)))
         # validators=[] #need to validate that it's within range of weather file
     TotalImmMites = forms.FloatField(
         required=False,
         label='Total # of mites immigrating',
-        validators=[validation.validate_positive],
-        disabled=True)
+        validators=[validation.validate_positive])
     PctImmMitesResistant = forms.FloatField(
         required=False,
         initial=10,
         label='Percent of mites resistant to miticide',
-        validators=[validation.validate_range0100],
-        disabled=True)
+        validators=[validation.validate_range0100])
     ICWorkerAdultInfest = forms.FloatField(
         required=False,
         initial=0,
         label='Percent of worker adults infested',
-        validators=[validation.validate_range0100],
-        disabled=True)
+        validators=[validation.validate_range0100])
 
 class VarroapopInp_pesticide(forms.Form):
     enable_pesticides = forms.ChoiceField(
@@ -183,8 +182,7 @@ class VarroapopInp_pesticide(forms.Form):
         validators=[validation.validate_choicefield])
     chemical_name = forms.CharField(
         widget=forms.Textarea(attrs={'cols': 30, 'rows': 1}),
-        initial='VarroaPop Example',
-        disabled=True)
+        initial='VarroaPop Example')
 
 # Combined Form Classes for Validation
 class VarroapopInp(VarroapopInp_colony, VarroapopInp_mites, VarroapopInp_pesticide):

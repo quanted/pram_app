@@ -237,9 +237,8 @@ def output_page_view(request, model='none', header=''):
 @require_POST
 def output_page(request, model='none', header=''):
     """
-    Django HTTP POST handler for output page.  Receives form data and
-    validates it.  If valid it calls method to render the output page
-    view.  If invalid, it returns the error to the model input page.
+    Django HTTP POST handler for output page.  Receives form data which has been validated by input.py.
+    Calls method to render the output.
     This method maps to: '/pram/<model>/output'
     """
     #model_module_location = 'pram_app.models.' + model + '.' + model + '_input'
@@ -267,60 +266,5 @@ def output_page(request, model='none', header=''):
             return redirect('/pram/sam/output/status/1234567890')
             # return redirect('/pram/sam/output/status/' + task_id['task_id'])
 
-    try:
-        # Class name must be ModelInp, e.g. SipInp or TerrplantInp
-        input_form = getattr(parametersmodule, model.title() + 'Inp')
-        # Uncomment the following two lines to get the submission status page.
-        # if model == "sam":
-        #     return redirect("/pram/sam/output/status")
-        form = input_form(request.POST)  # bind user inputs to form object
-
-        # Form validation testing
-        if form.is_valid():
-            # If form is valid return the output page view
-            return output_page_view(request, model, header)
-
-        else:
-            # If Form is not valid, redraw Input page (this is the same as 'input.py', expect for 'form_data')
-            logging.info(form.errors)
-            input_module = importlib.import_module(model_input_location)
-
-
-            # # Render input page view with POSTed values and show errors
-            # html = render_to_string('01uberheader_main_drupal.html', {
-            #     'SITE_SKIN': os.environ['SITE_SKIN'],
-            #     'TITLE': header})
-            # html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
-            #     'CONTACT_URL': os.environ['CONTACT_URL'],
-            #     'MODEL': model,
-            #     'PAGE': 'input'})
-
-            # epa template header
-            #html = render_to_string('01epa_drupal_header.html', {
-            #    'SITE_SKIN': os.environ['SITE_SKIN'],
-            #    'TITLE': u"\u00FCbertool"
-            #})
-            #html += render_to_string('02epa_drupal_header_bluestripe_onesidebar.html', {})
-            #html += render_to_string('03epa_drupal_section_title_pram.html', {})
-
-            #input_page_func = getattr(input_module,
-            #                          model + '_input_page')  # function name example: 'sip_input_page'
-            return input.input_page(request, model, header,
-                                          form_data=request.POST)  # form_data contains the already POSTed form data
-
-            # html += links_left.ordered_list(model, 'run_model')
-            # html += render_to_string('06uberfooter.html', {})
-           # html += links_left.ordered_list(model)
-           # html += render_to_string('10epa_drupal_footer.html', {})
-
-            #response = HttpResponse()
-            #response.write(html)
-            #return response
-
-            # end form validation testing
-
-    except Exception as e:
-        logging.exception(e)
-        logging.info("E X C E P T")
-
+    else:
         return output_page_view(request, model, header)

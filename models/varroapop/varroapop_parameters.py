@@ -18,6 +18,11 @@ ImmEnabled_CHOICES = (('true', 'yes'), ('false', 'no'))
 ImmType_CHOICES = (('Logarithmic', 'logarithmic'), ('Exponential', 'exponential'), ('Polynomial', 'polynomial'),
                    ('Sine', 'sine'), ('Cosine', 'cosine'), ('Tangent', 'tangent'))
 enable_pesticides_CHOICES = (('true', 'yes'), ('false', 'no'))
+application_type_CHOICES = (('Foliar spray', 'Foliar spray'), ('Soil', 'Soil'), ('Seed treatment', 'Seed treatment'))
+VTEnable_CHOICES = (('true', 'yes'), ('false', 'no'))
+NeedResourcesToLive_CHOICES = (('true', 'yes'), ('false', 'no'))
+SupPollenEnable_CHOICES = (('true', 'yes'), ('false', 'no'))
+SupNectarEnable_CHOICES = (('true', 'yes'), ('false', 'no'))
 
 
 class VarroapopInp_colony(forms.Form):
@@ -45,7 +50,7 @@ class VarroapopInp_colony(forms.Form):
         initial=7,
         widget=forms.NumberInput(attrs={'id': 'form_ICForagerLifespan', 'step': '1'}),
         validators=[validation.validate_range(min=4,max=16)])
-    ICForagerProp = forms.FloatField(  # NOTE: need to get the right parameter name for VarroaPop
+    ForagerMaxProp = forms.FloatField(
         required=True,
         label='Active forager proportion',
         initial=.3,
@@ -99,21 +104,21 @@ class VarroapopInp_colony(forms.Form):
         validators=[validation.validate_choicefield])
     RQScheduled = forms.ChoiceField(
         required=False,
-        disabled=True,
+        disabled=False,
         label='Re-queen on scheduled date or automatically?',
         choices=RQScheduled_CHOICES,
         initial='false',
         validators=[validation.validate_choicefield])
     RQReQueenDate = forms.DateField(
         required=False,
-        disabled=True,
+        disabled=False,
         label='Re-queening date',
         initial=date(2015,6,25),#'06/25/2015',
         widget=forms.SelectDateWidget(years=tuple(range(1991,2016))),
         validators=[validation.validate_date_range(min=date(1991,1,1),max=date(2015,12,31))])
     RQonce = forms.ChoiceField(
         required=False,
-        disabled=True,
+        disabled=False,
         label='Re-queen once on date, or annually on date?',
         choices=RQonce_CHOICES,
         initial='true',
@@ -137,54 +142,135 @@ class VarroapopInp_mites(forms.Form):
         choices=enable_mites_CHOICES,
         initial='false',
         validators=[validation.validate_choicefield])
+    ICWorkerAdultInfest = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial=0,
+        label='Percent of worker adults infested',
+        validators=[validation.validate_range0100])
+    ICWorkerBroodInfest = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial=0,
+        label='Percent of worker brood infested',
+        validators=[validation.validate_range0100])
+    ICDroneAdultInfest = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial=0,
+        label='Percent of drone adults infested',
+        validators=[validation.validate_range0100])
+    ICDroneBroodInfest = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial=0,
+        label='Percent of drone brood infested',
+        validators=[validation.validate_range0100])
+    ICWorkerMiteOffspring = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial=0,
+        label='Offspring per mite on workers',
+        validators=[validation.validate_positive])
+    ICWorkerMiteSurvivorship = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial=0,
+        label='Mite survivorship on workers (%)',
+        validators=[validation.validate_range0100])
+    ICDroneMiteOffspring = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial=0,
+        label='Offspring per mite on drones',
+        validators=[validation.validate_positive])
+    ICDroneMiteSurvivorship = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial=0,
+        label='Mite survivorship on drones (%)',
+        validators=[validation.validate_range0100])
     ImmEnabled = forms.ChoiceField(
         required=False,
-        disabled=True,
+        disabled=False,
         label='Enable Varroa mite immigration?',
         choices=enable_mites_CHOICES,
         initial='false',
         validators=[validation.validate_choicefield])
     ImmType = forms.ChoiceField(
         required=False,
-        disabled=True,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'mite_imm'}),
         label='Mite immigration profile',
         choices=ImmType_CHOICES,
         initial='Logarithmic',
         validators=[validation.validate_choicefield])
     ImmStart = forms.DateField(
         required=False,
-        disabled=True,
+        disabled=False,
         label='Immigration start date',
         initial=date(2015, 4, 25),  # '03/25/2015
-        widget=forms.SelectDateWidget(years=(2015,)))
+        widget=forms.SelectDateWidget(attrs={'class': 'mite_imm'}, years=tuple(range(1991,2016))))
         #validators=[] #need to validate that it's within range of weather file
     ImmEnd = forms.DateField(
         required=False,
-        disabled=True,
-        label='Immigration start date',
+        disabled=False,
+        label='Immigration end date',
         initial=date(2015, 8, 25),  # '03/25/2015
-        widget=forms.SelectDateWidget(years=(2015,)))
+        widget=forms.SelectDateWidget(attrs={'class': 'mite_imm'},years=tuple(range(1991,2016))))
         # validators=[] #need to validate that it's within range of weather file
     TotalImmMites = forms.FloatField(
         required=False,
-        disabled=True,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'mite_imm'}),
         label='Total # of mites immigrating',
         initial=0,
         validators=[validation.validate_positive])
     PctImmMitesResistant = forms.FloatField(
         required=False,
-        disabled=True,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'mite_imm'}),
         initial='10',
         label='Percent of mites resistant to miticide',
         validators=[validation.validate_range0100])
-    ICWorkerAdultInfest = forms.FloatField(
+    VTEnable = forms.ChoiceField(
         required=False,
-        disabled=True,
-        initial=0,
-        label='Percent of worker adults infested',
+        disabled=False,
+        label='Enable Varroa mite treatment?',
+        choices= VTEnable_CHOICES,
+        initial='false',
+        validators=[validation.validate_choicefield])
+    VTTreatmentStart = forms.DateField(
+        required=False,
+        disabled=False,
+        label='Miticide start date',
+        initial=date(2015, 7, 25),  # '03/25/2015
+        widget=forms.SelectDateWidget(attrs={'class': 'mite_treat'}, years=tuple(range(1991,2016))))
+    # validators=[] #need to validate that it's within range of weather file
+    VTTreatmentDuration = forms.IntegerField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'mite_treat'}),
+        initial='30',
+        label='Miticide duration (days)',
+        validators=[validation.validate_positive])
+    VTMortality = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'mite_treat'}),
+        initial='10',
+        label='Miticide treatment mite mortality (%)',
+        validators=[validation.validate_range0100])
+    InitMitePctPresistant = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'mite_treat'}),
+        initial='10',
+        label='Mites resistant to miticide (%)',
         validators=[validation.validate_range0100])
 
-class VarroapopInp_pesticide(forms.Form):
+
+class VarroapopInp_chemical(forms.Form):
     enable_pesticides = forms.ChoiceField(
         required=True,
         label='Enable pesticide application?',
@@ -193,9 +279,428 @@ class VarroapopInp_pesticide(forms.Form):
         validators=[validation.validate_choicefield])
     chemical_name = forms.CharField(
         required=False,
+        disabled=False,
         widget=forms.Textarea(attrs={'cols': 30, 'rows': 1}),
         initial='VarroaPop Example')
+    application_type = forms.ChoiceField(
+        required=False,
+        disabled=False,
+        label='Application method',
+        choices=application_type_CHOICES,
+        initial='Foliar spray',
+        validators=[validation.validate_choicefield])
+    foliar_enable = forms.ChoiceField(
+        required=False,
+        disabled=False,
+        widget=forms.HiddenInput,
+        choices= (('true', 'true'), ('false', 'false')),
+        initial='false',
+        validators=[validation.validate_choicefield])
+    soil_enable = forms.ChoiceField(
+        required=False,
+        disabled=False,
+        widget=forms.HiddenInput,
+        choices=(('true', 'true'), ('false', 'false')),
+        initial='false',
+        validators=[validation.validate_choicefield])
+    seed_enable = forms.ChoiceField(
+        required=False,
+        disabled=False,
+        widget=forms.HiddenInput,
+        choices=(('true', 'true'), ('false', 'false')),
+        initial='false',
+        validators=[validation.validate_choicefield])
+    ar_lb = forms.FloatField(  #crosswalk name - rename for VP EAppRate
+        required=False,
+        disabled=False,
+        widget= forms.TextInput(attrs={'class':'foliar'}),
+        initial='1.0',
+        label='Application rate (lbs a.i./A)',
+        validators=[validation.validate_positive])
+    FoliarAppDate = forms.DateField(
+        required=False,
+        disabled=False,
+        label='Application date',
+        initial=date(2015,4,25),
+        widget=forms.SelectDateWidget(attrs={'class': 'foliar'}, years=tuple(range(1991,2016))), # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991,1,1),max=date(2015,12,31))])
+    FoliarForageBegin= forms.DateField(
+        required=False,
+        disabled=False,
+        label='Exposure start date',
+        initial=date(2015,4,25),
+        widget=forms.SelectDateWidget(attrs={'class': 'foliar'}, years=tuple(range(1991,2016))), # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991,1,1),max=date(2015,12,31))])
+    FoliarForageEnd= forms.DateField(
+        required=False,
+        disabled=False,
+        label='Exposure end date',
+        initial=date(2015,5,25),
+        widget=forms.SelectDateWidget(attrs={'class': 'foliar'}, years=tuple(range(1991,2016))), # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991,1,1),max=date(2015,12,31))])
+    AIContactFactor = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'foliar'}),
+        initial='1.0',
+        label='Contact dose factor',  # TODO Units??
+        validators=[validation.validate_positive])
+    SoilForageBegin = forms.DateField(
+        required=False,
+        disabled=False,
+        label='Exposure start date',
+        initial=date(2015, 4, 25),
+        widget=forms.SelectDateWidget(attrs={'class': 'soil'}, years=tuple(range(1991, 2016))),  # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991, 1, 1), max=date(2015, 12, 31))])
+    SoilForageEnd = forms.DateField(
+        required=False,
+        disabled=False,
+        label='Exposure end date',
+        initial=date(2015, 5, 25),
+        widget=forms.SelectDateWidget(attrs={'class': 'soil'}, years=tuple(range(1991, 2016))),  # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991, 1, 1), max=date(2015, 12, 31))])
+    l_kow = forms.FloatField( # crosswalk name - rename for VP AIKOW and un log transform (?)
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'soil'}),
+        initial='1.0',
+        label='log Kow',
+        validators=[validation.validate_positive])
+    k_oc = forms.FloatField(  # crosswalk name - rename for VP AIKOC
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'soil'}),
+        initial='1.0',
+        label='Koc (ml/g OC)',
+        validators=[validation.validate_positive])
+    Theta = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'soil'}),
+        initial='.20',
+        label='volumetric soil water content ('+u'\u03B8'+')',
+        validators=[validation.validate_range0100])
+    P = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'soil'}),
+        initial='1.0',
+        label='Soil P ',
+        validators=[validation.validate_positive])
+    Foc = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'soil'}),
+        initial='0.2',
+        label='Fraction of OC in soil (foc)',
+        validators=[validation.validate_range0100])
+    SeedForageBegin = forms.DateField(
+        required=False,
+        disabled=False,
+        label='Exposure start date',
+        initial=date(2015, 4, 25),  # '06/25/2015',
+        widget=forms.SelectDateWidget(attrs={'class': 'seed'}, years=tuple(range(1991, 2016))),  # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991, 1, 1), max=date(2015, 12, 31))])
+    SeedForageEnd = forms.DateField(
+        required=False,
+        disabled=False,
+        label='Exposure end date',
+        initial=date(2015, 5, 25),  # '06/25/2015',
+        widget=forms.SelectDateWidget(attrs={'class': 'seed'}, years=tuple(range(1991, 2016))),  # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991, 1, 1), max=date(2015, 12, 31))])
+    ESeedConcentration = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'seed'}),
+        initial='25',
+        label='Active ingredient concentration (ug/g)',
+        validators=[validation.validate_positive])
+    AIHalfLife = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial='25',
+        label='In-hive half-life (days)',
+        validators=[validation.validate_positive])
+    AIAdultLD50 = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial='2.0',
+        label='Adult LD50 (mg/bee)',
+        validators=[validation.validate_positive])
+    AIAdultSlope = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial='1',
+        label='Slope of adult diet dose-response curve',
+        validators=[validation.validate_positive])
+    AILarvaLD50 = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial='2.0',
+        label='Larva LD50 (mg/bee)',
+        validators=[validation.validate_positive])
+    AILarvaSlope = forms.FloatField(
+        required=False,
+        disabled=False,
+        initial='1',
+        label='Slope of larva diet dose-response curve',
+        validators=[validation.validate_positive])
+    AIAdultLD50Contact = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'foliar'}),
+        initial='2.0',
+        label='Adult LC50 (mg/bee)',  # TODO check units
+        validators=[validation.validate_positive])
+    AIAdultSlopeContact = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'foliar'}),
+        initial='1',
+        label='Slope of adult contact response curve',
+        validators=[validation.validate_positive])
+
+
+class VarroapopInp_resources(forms.Form):
+    InitColPollen = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'resources'}),
+        initial='100',
+        label='Initial colony pollen (g)',
+        validators=[validation.validate_positive])
+    InitColNectar = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'resources'}),
+        initial='100',
+        label='Initial colony nectar (g)',
+        validators=[validation.validate_positive])
+    MaxColPollen = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'resources'}),
+        initial='10000',
+        label='Maximum colony pollen (g)',
+        validators=[validation.validate_positive])
+    MaxColNectar = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'resources'}),
+        initial='10000',
+        label='Maximum colony nectar (g)',
+        validators=[validation.validate_positive])
+    NeedResourcesToLive = forms.ChoiceField(
+        required=False,
+        disabled=False,
+        widget=forms.Select(attrs={'class': 'resources'}),
+        label='Require pollen/nectar for survival?',
+        choices=NeedResourcesToLive_CHOICES,
+        initial='true',
+        validators=[validation.validate_choicefield])
+    IPollenTrips = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'resources'}),
+        initial='5',
+        label='Number of pollen trips per forager per day',
+        validators=[validation.validate_positive])
+    INectarTrips = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'resources'}),
+        initial='10',
+        label='Number of nectar trips per forager per day',
+        validators=[validation.validate_positive])
+    IPollenLoad = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'resources'}),
+        initial='15',
+        label='Mass of a forager pollen load (mg/bee)',
+        validators=[validation.validate_positive])
+    INectarLoad = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'resources'}),
+        initial='30',
+        label='Mass of a forager nectar load (mg/bee)',
+        validators=[validation.validate_positive])
+    SupPollenEnable = forms.ChoiceField(
+        required=False,
+        widget=forms.Select(attrs={'class': 'resources'}),
+        label='Supplemental pollen feeding?',
+        choices=SupPollenEnable_CHOICES,
+        initial='false',
+        validators=[validation.validate_choicefield])
+    SupPollenAmount = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'sup_pol'}),
+        initial='30',
+        label='Amount of supplemental pollen (g)',
+        validators=[validation.validate_positive])
+    SupPollenBegin = forms.DateField(
+        required=False,
+        disabled=False,
+        label='Supplemental pollen start date',
+        initial=date(2015, 4, 25),  # '06/25/2015',
+        widget=forms.SelectDateWidget(attrs={'class': 'sup_pol'}, years=tuple(range(1991, 2016))),
+        # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991, 1, 1), max=date(2015, 12, 31))])
+    SupPollenEnd = forms.DateField(
+        required=False,
+        disabled=False,
+        label='Supplemental pollen end date',
+        initial=date(2015, 5, 25),  # '06/25/2015',
+        widget=forms.SelectDateWidget(attrs={'class': 'sup_pol'}, years=tuple(range(1991, 2016))),
+        # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991, 1, 1), max=date(2015, 12, 31))])
+    SupNectarEnable = forms.ChoiceField(
+        required=False,
+        widget=forms.Select(attrs={'class': 'resources'}),
+        label='Supplemental nectar feeding?',
+        choices=SupNectarEnable_CHOICES,
+        initial='false',
+        validators=[validation.validate_choicefield])
+    SupNectarAmount = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'sup_nec'}),
+        initial='30',
+        label='Amount of supplemental nectar (g)',
+        validators=[validation.validate_positive])
+    SupNectarBegin = forms.DateField(
+        required=False,
+        disabled=False,
+        label='Supplemental nectar start date',
+        initial=date(2015, 4, 25),  # '06/25/2015',
+        widget=forms.SelectDateWidget(attrs={'class': 'sup_nec'}, years=tuple(range(1991, 2016))),
+        # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991, 1, 1), max=date(2015, 12, 31))])
+    SupNectarEnd = forms.DateField(
+        required=False,
+        disabled=False,
+        label='Supplemental nectar end date',
+        initial=date(2015, 5, 25),  # '06/25/2015',
+        widget=forms.SelectDateWidget(attrs={'class': 'sup_nec'}, years=tuple(range(1991, 2016))),
+        # TODO set up a clean function check
+        validators=[validation.validate_date_range(min=date(1991, 1, 1), max=date(2015, 12, 31))])
+    CL4Pollen = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='1.8',
+        label='Pollen consumption - larvae day 4 (mg/day)',
+        validators=[validation.validate_positive])
+    CL4Nectar = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='58',
+        label='Nectar consumption - larvae day 4 (mg/day)',
+        validators=[validation.validate_positive])
+    CL5Pollen = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='3.6',
+        label='Pollen consumption - larvae day 5 (mg/day)',
+        validators=[validation.validate_positive])
+    CL5Nectar = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='116',
+        label='Nectar consumption - larvae day 5 (mg/day)',
+        validators=[validation.validate_positive])
+    CLDPollen = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='2.5',
+        label='Pollen consumption - drone larvae (mg/day)',
+        validators=[validation.validate_positive])
+    CLDNectar = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='100',
+        label='Nectar consumption - drone larvae (mg/day)',
+        validators=[validation.validate_positive])
+    CA13Pollen = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='5.0',
+        label='Pollen consumption - adults days 1-3 (mg/day)',
+        validators=[validation.validate_positive])
+    CA13Nectar = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='60',
+        label='Nectar consumption - adults days 1-3 (mg/day)',
+        validators=[validation.validate_positive])
+    CA410Pollen = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='5.0',
+        label='Pollen consumption - adults days 4-10 (mg/day)',
+        validators=[validation.validate_positive])
+    CA410Nectar = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='140',
+        label='Nectar consumption - adults days 4-10 (mg/day)',
+        validators=[validation.validate_positive])
+    CA1120Pollen = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='1.7',
+        label='Pollen consumption - adults days 11-20 (mg/day)',
+        validators=[validation.validate_positive])
+    CA1120Nectar = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='60',
+        label='Nectar consumption - adults days 11-20 (mg/day)',
+        validators=[validation.validate_positive])
+    CADPollen = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='0',
+        label='Pollen consumption - drone adults (mg/day)',
+        validators=[validation.validate_positive])
+    CADNectar = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='100',
+        label='Nectar consumption - drone adults (mg/day)',
+        validators=[validation.validate_positive])
+    CForagerPollen = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='0',
+        label='Pollen consumption - foragers (mg/day)',
+        validators=[validation.validate_positive])
+    CForagerNectar = forms.FloatField(
+        required=False,
+        disabled=False,
+        widget=forms.TextInput(attrs={'class': 'consumption'}),
+        initial='292',
+        label='Nectar consumption - foragers (mg/day)',
+        validators=[validation.validate_positive])
+
 
 # Combined Form Classes for Validation
-class VarroapopInp(VarroapopInp_colony, VarroapopInp_mites, VarroapopInp_pesticide):
+class VarroapopInp(VarroapopInp_colony, VarroapopInp_mites, VarroapopInp_chemical, VarroapopInp_resources):
     pass
+

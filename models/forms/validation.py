@@ -5,6 +5,7 @@
 """
 
 from django.core.exceptions import ValidationError
+import logging
 
 # Built-in Django validation rules
 
@@ -45,6 +46,31 @@ def validate_range01(value):
 		pass
 	else:
 		raise ValidationError(u'Range must fall between 0 - 1')
+
+class validate_range(object):
+	def __init__(self, min, max):
+		self.min = min
+		self.max = max
+
+	def __call__(self, value):
+		if self.min <= value <= self.max:
+			return value
+		else:
+			raise ValidationError(('Value must fall between %(min)s and %(max)s'),
+									params={'min': self.min, 'max': self.max})
+
+class validate_date_range(object):
+    def __init__(self, min, max):
+        self.min = min
+        self.max = max
+
+    def __call__(self, value):
+        if self.min <= value <= self.max:
+            return value
+        else:
+            raise ValidationError(('Date must fall between %(min)s and %(max)s'),
+                                  params={'min': self.min, 'max': self.max})
+
 
 def validate_range0100(value):
 	""" Form Validation Rule: Valid range 0 - 100 (e.g. temperature Centigrade/Celsius)

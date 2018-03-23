@@ -9,7 +9,7 @@ import os
 
 
 def eco_landing_redirect(request):
-    return redirect('/ubertool')
+    return redirect('/pram')
 
 def eco_landing_page(request):
 
@@ -17,8 +17,8 @@ def eco_landing_page(request):
     html = ''
     html = helper_functions.drupal_2017_header(html)
 
-    #main text for ubertool landing page
-    text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'ubertool_app/views/landing_text.txt'), 'r')
+    #main text for pram landing page
+    text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'pram_app/views/landing_text.txt'), 'r')
     xx = text_file2.read()
     html += render_to_string('06ubertext_start_index_drupal.html', {
         'TITLE': 'Ecological assessment of pesticides',
@@ -38,8 +38,8 @@ def pop_landing_page(request):
     html = ''
     html = helper_functions.drupal_2017_header(html)
 
-    #main text for ubertool landing page
-    text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'ubertool_app/views/landing_text.txt'), 'r')
+    #main text for pram landing page
+    text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'pram_app/views/landing_text.txt'), 'r')
     xx = text_file2.read()
     html += render_to_string('06ubertext_start_index_drupal.html', {
         'TITLE': 'Ecological population models',
@@ -59,8 +59,8 @@ def unter_landing_page(request):
     html = ''
     html = helper_functions.drupal_2017_header(html)
 
-    #main text for ubertool landing page
-    text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'ubertool_app/views/landing_text.txt'), 'r')
+    #main text for pram landing page
+    text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'pram_app/views/landing_text.txt'), 'r')
     xx = text_file2.read()
     html += render_to_string('06ubertext_start_index_drupal.html', {
         'TITLE': 'Alpha Versions of Planned Models',
@@ -75,7 +75,7 @@ def unter_landing_page(request):
     return response
 
 def eco_landing_page_old(request):
-    text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'ubertool_app/views/landing_text.txt'), 'r')
+    text_file2 = open(os.path.join(os.environ['PROJECT_PATH'], 'pram_app/views/landing_text.txt'), 'r')
     xx = text_file2.read()
 
     html = render_to_string('01uberheader_main_drupal.html', {

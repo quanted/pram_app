@@ -5,7 +5,7 @@
 from django import forms
 from django.utils.safestring import mark_safe
 
-from ubertool_app.models.forms import validation
+from pram_app.models.forms import validation
 
 
 class EarthwormInp(forms.Form):

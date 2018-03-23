@@ -7,7 +7,7 @@ import linkcheck_helper
 
 test = {}
 
-servers = ["https://qedinternal.epa.gov/ubertool/","http://127.0.0.1:8000/ubertool/"]
+servers = ["https://qedinternal.epa.gov/pram/","http://127.0.0.1:8000/pram/"]
 
 models = ["sip/", "stir/", "rice/", "terrplant/",  "iec/",
           "agdrift/", "earthworm/", "beerex/",
@@ -44,7 +44,7 @@ class TestUbertoolPages(unittest.TestCase):
     @staticmethod
     def test_qed_200():
         start_time = datetime.datetime.utcnow()
-        test_name = str(start_time) + "\nModel page access for ubertool models \n"
+        test_name = str(start_time) + "\nModel page access for pram models \n"
         assert_error = False
         try:
             #returns array of status codes for each page

@@ -48,8 +48,8 @@ references = '<p>EPA guidance on the Tier I Rice Program can be found here:' \
              'Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/quanted/ubertool_app/tree/master/models/rice">ubertool_src on GitHub (front end)</a></li>' \
-             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/rice">ubertool_src on GitHub (back end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/pram_app/tree/master/models/rice">pram_src on GitHub (front end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/pram/tree/master/pram/rice">pram_src on GitHub (back end)</a></li>' \
              '</ul>' \
              '<p>' \
              'Example reports documenting the use of the Tier I Rice model in reregistration eligibility documents and pesticide effects determinations for federally threatened and endangered species:' \

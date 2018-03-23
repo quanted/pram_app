@@ -5,10 +5,10 @@
 from django import forms
 from django.utils.safestring import mark_safe
 
-from ubertool_app.models.forms import validation
+from pram_app.models.forms import validation
 
 kd_CHOICES = (('0', 'Koc'), ('1', 'Kd'))
-TYPE_CHOICES = (('eco', 'Eco'), ('dwr', 'Drinking Water'), ('dwf', 'ESA'))
+TYPE_CHOICES = (('eco', 'Eco'), ('dwr', 'Drinking Water'))
 
 
 class SamInp_app():
@@ -123,22 +123,23 @@ class SamInp_sim(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(SamInp_sim, self).__init__(*args, **kwargs)
-        self.fields['region'].initial = '07'
+        self.fields['region'].initial = 'Mark Twain Demo'
 
     nhd_regions = ['01', '02', '03N', '03S', '03W', '04', '05', '06', '07', '08', '09',
-               '10U', '10L', '11', '12', '13', '14', '15', '16', '17', '18']
+               '10U', '10L', '11', '12', '13', '14', '15', '16', '17', '18', 'Mark Twain Demo']
     REGION_CHOICES = tuple(list(zip(nhd_regions, ("NHD Region {}".format(r) for r in nhd_regions))))
     # region_type = forms.CharField(max_length=10, choices=REGION_CHOICES)
 
     region = forms.ChoiceField(
         choices=REGION_CHOICES,
         label='Region',
-        initial='01')
+        # initial='01'
+    )
         # initial="mtb")
 
     sim_type = forms.ChoiceField(
         required=False,
-        widget=forms.RadioSelect(),
+        label='Simulation Type',
         choices=TYPE_CHOICES,
         initial='eco')
 
@@ -208,5 +209,5 @@ class SamInp_output():
 class SamInp(SamInp_app, SamInp_chem, SamInp_sim, SamInp_output):
     def __init__(self, *args, **kwargs):
         super(SamInp, self).__init__(*args, **kwargs)
-        self.fields['region'].initial = '07'
+        self.fields['region'].initial = 'Mark Twain Basin'
     # pass

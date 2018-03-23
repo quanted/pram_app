@@ -69,8 +69,8 @@ def rest_proxy(request, model, jid=None):
 
 
 def rest_proxy_post(model, data, jid):
-    print('ubertool_app.REST.rest_proxy_post calling backend model')
-    called_endpoint = (rest_url + '/rest/ubertool/' + model + '/' + jid)
+    print('pram_app.REST.rest_proxy_post calling backend model')
+    called_endpoint = (rest_url + '/rest/pram/' + model + '/' + jid)
     print(called_endpoint)
     http_headers = set_http_headers()
     return requests.post(called_endpoint, json=data,
@@ -78,7 +78,7 @@ def rest_proxy_post(model, data, jid):
 
 
 def rest_proxy_get(model):
-    return requests.get(rest_url + '/rest/ubertool/' + model)
+    return requests.get(rest_url + '/rest/pram/' + model)
 
 
 def rest_proxy_hwbi(request, resource):

@@ -21,12 +21,12 @@ def olanding_html(header, model):
         'TITLE': u"\u00FCbertool"
     })
     html += render_to_string('02epa_drupal_header_bluestripe_onesidebar.html', {})
-    html += render_to_string('03epa_drupal_section_title_ubertool.html', {})
+    html += render_to_string('03epa_drupal_section_title_pram.html', {})
     html += render_to_string('07ubertext_end_drupal.html', {})
     html += render_to_string('sam_output_landing.html', {})
 
     html += links_left.ordered_list(model)
-    html += render_to_string('09epa_drupal_ubertool_css.html', {})
+    html += render_to_string('09epa_drupal_pram_css.html', {})
 
     html += render_to_string('10epa_drupal_footer.html', {})
     return html

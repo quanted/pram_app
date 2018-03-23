@@ -6,7 +6,7 @@
 import json
 import logging
 
-from ubertool_app.REST import rest_funcs
+from pram_app.REST import rest_funcs
 
 logger = logging.getLogger('earthworm Model')
 import os

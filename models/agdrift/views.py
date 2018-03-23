@@ -67,10 +67,10 @@ references = '<p>The web page for the Spray Drift Task Force, specific EPA guida
              '<p>Current github source code:' \
              '</p>' \
              '<ul class=\"bullet\">' \
-             '<li><a href=\"https://github.com/puruckertom/ubertool_eco/tree/master/models/agdrift\">' \
-             'ubertool_src on github (front end)</a></li>' \
-             '<li><a href=\"https://github.com/quanted/ubertool/tree/master/ubertool/agdrift">' \
-             'ubertool_src on github (back end model)</a></li>' \
+             '<li><a href=\"https://github.com/puruckertom/pram_eco/tree/master/models/agdrift\">' \
+             'pram_src on github (front end)</a></li>' \
+             '<li><a href=\"https://github.com/quanted/pram/tree/master/pram/agdrift">' \
+             'pram_src on github (back end model)</a></li>' \
              '</ul>' \
              '<p>Example reports documenting the use of TerrPlant in reregistration eligibility documents ' \
              'and pesticide effects determinations for federally threatened and endangered species:</p>' \

@@ -7,14 +7,14 @@ from django.template.loader import render_to_string
 def ordered_list(model=None, page=None):
     # get right set of links for links left
     if(model in ['agdrift','beerex','iec','sip','stir','terrplant','therps',
-                 'trex','kabam','rice','landing_ubertool']):
-        link_dict = ordered_list_ubertool(model)
+                 'trex','kabam','rice','landing_pram']):
+        link_dict = ordered_list_pram(model)
     elif(model in ['exponential','logistic','gompertz','foxsurplus','maxsus',
                    'yulefurry','fellerarley','leslie','lesliedr','leslie_probit',
                    'loons','landing_pop']):
         link_dict = ordered_list_pop(model)
     elif(model in ['agdisp','earthworm','insect','pat','perfum','pfam','pwc',
-                   'sam','ted','landing_unter']):
+                   'sam','ted','landing_unter','varroapop']):
         link_dict = ordered_list_unter(model)
     return render_to_string('03ubertext_links_left_drupal.html', {
         'LINK_DICT': link_dict,
@@ -23,11 +23,11 @@ def ordered_list(model=None, page=None):
     })
 
 
-def ordered_list_ubertool(model=None, page=None):
+def ordered_list_pram(model=None, page=None):
     link_dict = OrderedDict([
         ('Apps', OrderedDict([
             ('Q.E.D.', '..'),
-            ('\u00FCtool', ''),
+            ('pram', ''),
             ('pop', 'pop'),
             ('unter', 'unter'),
         ])
@@ -49,7 +49,7 @@ def ordered_list_ubertool(model=None, page=None):
             ])
         ),
         ('Documentation', OrderedDict([
-                ('Source Code', '/github.com/quanted/ubertool'),
+                ('Source Code', '/github.com/quanted/pram'),
                 ('Links', 'links')
             ])
         )
@@ -61,7 +61,7 @@ def ordered_list_ubertool(model=None, page=None):
         #         ('Aquatic Toxicity', 'aquatic_toxicity'),
         #         ('Terrestrial Toxicity', 'terrestrial_toxicity'),
         #         ('Ecosystem Inputs', 'ecosystem_inputs'),
-        #         ('Run &uuml;bertool', 'run_ubertool'),
+        #         ('Run &uuml;bertool', 'run_pram'),
         #         ('Saved Runs', 'user'),
         #     ])
         # ),
@@ -93,7 +93,7 @@ def ordered_list_pop(model=None, page=None):
         ])
          ),
         ('Documentation', OrderedDict([
-                ('Source Code', redirect('https://github.com/quanted/ubertool')),
+                ('Source Code', redirect('https://github.com/quanted/pram')),
                 ('Links', 'links'),
             ])
         ),
@@ -119,10 +119,11 @@ def ordered_list_unter(model=None, page=None):
             ('PWC', 'pwc'),
             ('SAM', 'sam'),
             ('TED', 'ted'),
+            ('VarroaPop', 'varroapop'),
         ])
          ),
         ('Documentation', OrderedDict([
-                ('Source Code', '/github.com/quanted/ubertool'),
+                ('Source Code', '/github.com/quanted/pram'),
                 ('Links', 'links')
             ])
         ),

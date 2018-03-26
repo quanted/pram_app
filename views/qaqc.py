@@ -25,6 +25,23 @@ def get_model_qaqc(model):
 
 
 def qaqc_page(request, model='none'):
+    print(request.path)
+    print('pram_app.views.qaqc_page')
+
+    model = model.lstrip('/')
+    model_qaqc_template = model + '.html'
+    print(model_qaqc_template)
+
+    #html = render_to_string(model_qaqc_template)
+   #html = "{% load static %}"
+    #html += "< link href= {% static 'assets/style.css' %} rel = 'stylesheet' type = 'text/css' >"
+    html = render_to_string(model + '.html')
+
+    response = HttpResponse()
+    response.write(html)
+    return response
+
+def qaqc_page_old(request, model='none'):
     """
         View to render QAQC page HTML for each model
     """
@@ -81,7 +98,7 @@ def qaqc_page(request, model='none'):
     response.write(html)
     return response
 
-def qaqc_page_old(request, model='none'):
+def qaqc_page_older(request, model='none'):
     """
         View to render QAQC page HTML for each model
     """

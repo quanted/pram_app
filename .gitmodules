@@ -1,0 +1,3 @@
+[submodule "pram_qaqc_reports"]
+	path = pram_qaqc_reports
+	url = https://github.com/quanted/pram_qaqc_reports.git

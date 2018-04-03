@@ -41,7 +41,7 @@ class VarroapopInp_colony(forms.Form):
         initial=3.5,
         widget=forms.NumberInput(attrs={'id': 'form_ICQueenStrength', 'step': '0.1'}),
         validators=[validation.validate_range(min=1,max=5)])
-    ICForagerLifespan = forms.IntegerField(
+    ICForagerLifespan = forms.FloatField(
         label='Forager lifespan (days)',
         initial=7,
         widget=forms.NumberInput(attrs={'id': 'form_ICForagerLifespan', 'step': '1'}),
@@ -51,35 +51,35 @@ class VarroapopInp_colony(forms.Form):
         initial=.3,
         widget=forms.NumberInput(attrs={'id': 'form_ICForagerProp', 'step': '0.01'}),
         validators=[validation.validate_range01])
-    ICWorkerAdult = forms.IntegerField(
+    ICWorkerAdult = forms.FloatField(
         label='Initial worker adult population',
         initial=1000,
         validators = [validation.validate_positive])
-    ICWorkerBrood = forms.IntegerField(
+    ICWorkerBrood = forms.FloatField(
         label='Initial worker capped brood population',
         initial=5000,
         validators=[validation.validate_positive])
-    ICWorkerLarave = forms.IntegerField(
+    ICWorkerLarvae = forms.FloatField(
         label='Initial worker larvae population',
         initial=3000,
         validators=[validation.validate_positive])
-    ICWorkerEggs = forms.IntegerField(
+    ICWorkerEggs = forms.FloatField(
         label='Initial worker egg population',
         initial=3000,
         validators=[validation.validate_positive])
-    ICDroneAdult = forms.IntegerField(
+    ICDroneAdult = forms.FloatField(
         label='Initial drone adult population',
         initial=0,
         validators=[validation.validate_positive])
-    ICDroneBrood = forms.IntegerField(
+    ICDroneBrood = forms.FloatField(
         label='Initial drone capped brood population',
         initial=0,
         validators=[validation.validate_positive])
-    ICDroneLarave = forms.IntegerField(
+    ICDroneLarvae = forms.FloatField(
         label='Initial drone larvae population',
         initial=100,
         validators=[validation.validate_positive])
-    ICDroneEggs = forms.IntegerField(
+    ICDroneEggs = forms.FloatField(
         label='Initial drone egg population',
         initial=100,
         validators=[validation.validate_positive])
@@ -195,7 +195,7 @@ class VarroapopInp_mites(forms.Form):
         initial=date(2015, 7, 25),  # '03/25/2015
         widget=forms.SelectDateWidget(attrs={'class': 'mite_treat'}, years=tuple(range(1991,2016))))
     # validators=[] #need to validate that it's within range of weather file
-    VTTreatmentDuration = forms.IntegerField(
+    VTTreatmentDuration = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'mite_treat'}),
         initial='30',
         label='Miticide duration (days)',
@@ -205,7 +205,7 @@ class VarroapopInp_mites(forms.Form):
         initial='10',
         label='Miticide treatment mite mortality (%)',
         validators=[validation.validate_range0100])
-    InitMitePctPresistant = forms.FloatField(
+    InitMitePctResistant = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'mite_treat'}),
         initial='10',
         label='Mites resistant to miticide (%)',

@@ -53,19 +53,19 @@ class VarroapopInp_colony(forms.Form):
         validators=[validation.validate_range01])
     ICWorkerAdult = forms.FloatField(
         label='Initial worker adult population',
-        initial=1000,
+        initial=3000,
         validators = [validation.validate_positive])
     ICWorkerBrood = forms.FloatField(
         label='Initial worker capped brood population',
-        initial=5000,
+        initial=0,
         validators=[validation.validate_positive])
     ICWorkerLarvae = forms.FloatField(
         label='Initial worker larvae population',
-        initial=3000,
+        initial=0,
         validators=[validation.validate_positive])
     ICWorkerEggs = forms.FloatField(
         label='Initial worker egg population',
-        initial=3000,
+        initial=0,
         validators=[validation.validate_positive])
     ICDroneAdult = forms.FloatField(
         label='Initial drone adult population',
@@ -81,7 +81,7 @@ class VarroapopInp_colony(forms.Form):
         validators=[validation.validate_positive])
     ICDroneEggs = forms.FloatField(
         label='Initial drone egg population',
-        initial=100,
+        initial=0,
         validators=[validation.validate_positive])
     RQEnableReQueen = forms.ChoiceField(
         label='Enable Re-queening?',
@@ -351,38 +351,38 @@ class VarroapopInp_chemical(forms.Form):
 class VarroapopInp_resources(forms.Form):
     InitColPollen = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='100',
+        initial='1500',
         label='Initial colony pollen (g)',
         validators=[validation.validate_positive])
     InitColNectar = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='100',
+        initial='1500',
         label='Initial colony nectar (g)',
         validators=[validation.validate_positive])
     MaxColPollen = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='10000',
+        initial='15000',
         label='Maximum colony pollen (g)',
         validators=[validation.validate_positive])
     MaxColNectar = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='10000',
+        initial='15000',
         label='Maximum colony nectar (g)',
         validators=[validation.validate_positive])
     NeedResourcesToLive = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'resources'}),
         label='Require pollen/nectar for survival?',
         choices=NeedResourcesToLive_CHOICES,
-        initial='true',
+        initial='false',
         validators=[validation.validate_choicefield])
     IPollenTrips = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='5',
+        initial='7',
         label='Number of pollen trips per forager per day',
         validators=[validation.validate_positive])
     INectarTrips = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='10',
+        initial='20',
         label='Number of nectar trips per forager per day',
         validators=[validation.validate_positive])
     IPollenLoad = forms.FloatField(

@@ -8,6 +8,8 @@ import logging
 
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
+from .varroapop_plots import VarroapopPlots
+
 
 logger = logging.getLogger("varroapopTables")
 
@@ -94,8 +96,74 @@ tmpl = Template(djtemplate)
 
 
 def table_all(varroapop_obj):
-    html_all = table_test(varroapop_obj)
+    html_all = plots_tab(varroapop_obj)
+    html_all += table_test(varroapop_obj)
     return html_all
+
+def plots_tab(varroapop_obj):
+    plots_obj = VarroapopPlots(varroapop_obj)
+    html =  """
+    <H3 class="out_1 collapsible" id="section1"><span></span>VarroaPop interactive plots</H3>
+    <div class="out_">
+    """
+    html += bee_pop_plot_tab(plots_obj)
+    html += "<br>"
+    html += pol_nec_tab(plots_obj)
+    html += "<br>"
+    html += mites_tab(plots_obj)
+    html += "<br>"
+    html += mortality_tab(plots_obj)
+    html += "<br>"
+    html += """
+    </div>
+    """
+    return html
+
+def bee_pop_plot_tab(plots_obj):
+    html = """
+        <H4 class="out_1 collapsible" id="section2"><span></span>Colony population</H4>
+            <div class="out_ container_output">
+        """
+    html += plots_obj.bee_pop_plot()
+    html += """
+            </div>
+            """
+    return html
+
+
+def pol_nec_tab(plots_obj):
+    html = """
+            <H4 class="out_2 collapsible" id="section2"><span></span>Resources and chemical contamination</H4>
+                <div class="out_ container_output">
+            """
+    html += plots_obj.pol_nec_plot()
+    html += """
+                </div>
+                """
+    return html
+
+
+def mites_tab(plots_obj):
+    html = """
+            <H4 class="out_3 collapsible" id="section2"><span></span>Mite population</H4>
+                <div class="out_ container_output">
+            """
+    html += plots_obj.mites_plot()
+    html += """
+                </div>
+                """
+    return html
+
+def mortality_tab(plots_obj):
+    html = """
+                <H4 class="out_4 collapsible" id="section2"><span></span>Bee mortality due to chemical exposure</H4>
+                    <div class="out_ container_output">
+                """
+    html += plots_obj.mortality_plot()
+    html += """
+                    </div>
+                    """
+    return html
 
 
 def timestamp(varroapop_obj="", batch_jid=""):
@@ -116,9 +184,9 @@ def timestamp(varroapop_obj="", batch_jid=""):
 
 def table_test(varroapop_obj):
     html = """
-    <H3 class="out_1 collapsible" id="section1"><span></span>VarroaPop output</H3>
+    <H3 class="out_1 collapsible" id="section1"><span></span>Summary tables</H3>
     <div class="out_">
-        <H4 class="out_1 collapsible" id="section2"><span></span>Raw colony data</H4>
+        <H4 class="out_1 collapsible" id="section2"><span></span>Summary table 1</H4>
             <div class="out_ container_output">
     """
     t1data = getdatatest(varroapop_obj)

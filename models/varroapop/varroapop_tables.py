@@ -96,9 +96,10 @@ tmpl = Template(djtemplate)
 
 
 def table_all(varroapop_obj):
-    html_all = summary_tab(varroapop_obj)
+    html_all = "<br>"
+    html_all += file_download_buttons(varroapop_obj)
+    html_all += summary_tab(varroapop_obj)
     html_all += plots_tab(varroapop_obj)
-    html_all += table_test(varroapop_obj)
     return html_all
 
 
@@ -187,7 +188,7 @@ def timestamp(varroapop_obj="", batch_jid=""):
         st = datetime.datetime.strptime(batch_jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
     html="""
     <div class="out_">
-        <b>beerex <a href="http://www.epa.gov/oppefed1/models/terrestrial/beerex/beerex_user_guide.html">Version 1.0</a> (Beta)<br>
+        <b>VarroaPop+Pesticide (Version 3.2.8.12) Beta<br>
     """
     html = html + st
     html = html + " (EST)</b>"
@@ -243,3 +244,15 @@ def table_test(varroapop_obj):
     """
     return html
 
+
+def file_download_buttons(varroapop_obj):
+    sessionid = varroapop_obj.out_api_sessionid
+    html = """
+    <H3 class="out_0 collapsible" id="section1"><span></span>Download raw data</H3>
+        <div class="buttons">
+            <input type="button" value="Input file" onclick="window.open('{sessionid}/input/')">
+            <input type="button" value="Error log file" onclick="window.open('{sessionid}/log/')">
+            <input type="button" value="Results file" onclick="window.open('{sessionid}/results/')">
+        </div>
+    """
+    return html.format(sessionid = sessionid)

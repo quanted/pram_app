@@ -26,6 +26,7 @@ class VarroapopPlots(object):
       self.data['out_date'] = pd.to_datetime(self.data['out_date'], format="%m/%d/%Y")
       self.model_obj = varroapop_obj
 
+
     def bee_pop_plot(self):
       source = ColumnDataSource(self.data)
       p = figure(plot_width=1000, plot_height=400, x_axis_type="datetime", title= "Click legend entries to show/hide",
@@ -53,6 +54,7 @@ class VarroapopPlots(object):
       p = self.add_exposure_label(p)
       html = file_html(p, CDN, "population_plot")
       return html
+
 
     def pol_nec_plot(self):
         source = ColumnDataSource(self.data)
@@ -83,6 +85,7 @@ class VarroapopPlots(object):
         html = file_html(p, CDN, "nec_pol_plot")
         return html
 
+
     def mites_plot(self):
             source = ColumnDataSource(self.data)
             p = figure(plot_width=1000, plot_height=400, x_axis_type="datetime",
@@ -112,6 +115,7 @@ class VarroapopPlots(object):
             html = file_html(p, CDN, "mites_plot")
             return html
 
+
     def mortality_plot(self):
         source = ColumnDataSource(self.data)
         p = figure(plot_width=1000, plot_height=400, x_axis_type="datetime",
@@ -138,6 +142,7 @@ class VarroapopPlots(object):
         p = self.add_exposure_label(p)
         html = file_html(p, CDN, "mortality_plot")
         return html
+
 
     def add_exposure_label(self, plot):
        if self.model_obj.enable_pesticides == "true":

@@ -96,14 +96,28 @@ tmpl = Template(djtemplate)
 
 
 def table_all(varroapop_obj):
-    html_all = plots_tab(varroapop_obj)
+    html_all = summary_tab(varroapop_obj)
+    html_all += plots_tab(varroapop_obj)
     html_all += table_test(varroapop_obj)
     return html_all
+
+
+def summary_tab(varroapop_obj):
+    html = """
+        <H3 class="out_1 collapsible" id="section1"><span></span>VarroaPop summary tables</H3>
+        <div class="out_">
+        """
+    html += col_success_sum_tab(varroapop_obj)
+    html += "<br>"
+    html += """
+        </div>
+        """
+    return html
 
 def plots_tab(varroapop_obj):
     plots_obj = VarroapopPlots(varroapop_obj)
     html =  """
-    <H3 class="out_1 collapsible" id="section1"><span></span>VarroaPop interactive plots</H3>
+    <H3 class="out_2 collapsible" id="section1"><span></span>VarroaPop interactive plots</H3>
     <div class="out_">
     """
     html += bee_pop_plot_tab(plots_obj)
@@ -181,10 +195,41 @@ def timestamp(varroapop_obj="", batch_jid=""):
     </div>"""
     return html
 
+def col_success_sum_tab(varroapop_obj):
+    html = """
+
+            <H4 class="out_6 collapsible" id="section2"><span></span>Colony success summary</H4>
+                <div class="out_ container_output">
+        """
+    successheadings = getheaderinp()
+    t1data = getdata_success(varroapop_obj)
+    t1rows = gethtmlrowsfromcols(t1data, successheadings)
+    html = html + tmpl.render(Context(dict(data=t1rows, headings=successheadings)))
+    html = html + """
+                </div>
+        """
+    return html
+
+
+def getdata_success(varroapop_obj):
+    data = {
+        "Description": ["Mean colony size", "Min colony size", "Max colony size", "Total bee mortality due to A.I.",
+                        "A.I. max concentration in colony pollen (ppm)", "A.I. max concentration in colony nectar (ppm)"],
+        "Value": ["{0:.0f}".format(varroapop_obj.out_mean_colony_size), "{0:.0f}".format(varroapop_obj.out_min_colony_size),
+                  "{0:.0f}".format(varroapop_obj.out_max_colony_size), "{0:.0f}".format(varroapop_obj.out_total_bee_mortality),
+                  "{0:.4f}".format(varroapop_obj.out_max_chemical_conc_pollen), "{0:.4f}".format(varroapop_obj.out_max_chemical_conc_nectar)]
+    }
+    return data
+
+
+def getheader_success():
+    headings = ['Mean colony size', 'Min colony size', 'Max colony size', 'Total bee mortality due to A.I.',
+                'A.I. max concentration in colony pollen (ug/g)', 'A.I. max concentration in colony nectar (ug/g)']
+    return headings
 
 def table_test(varroapop_obj):
     html = """
-    <H3 class="out_1 collapsible" id="section1"><span></span>Summary tables</H3>
+    <H3 class="out_3 collapsible" id="section1"><span></span>Summary tables</H3>
     <div class="out_">
         <H4 class="out_1 collapsible" id="section2"><span></span>Summary table 1</H4>
             <div class="out_ container_output">

@@ -86,7 +86,7 @@ class VarroapopInp_colony(forms.Form):
     RQEnableReQueen = forms.ChoiceField(
         label='Enable Re-queening?',
         choices=RQEnableReQueen_CHOICES,
-        initial='false',
+        initial='true',
         validators=[validation.validate_choicefield])
     RQScheduled = forms.ChoiceField(
         label='Re-queen on scheduled date or automatically?',
@@ -139,11 +139,11 @@ class VarroapopInp_mites(forms.Form):
         label='Percent of drone brood infested',
         validators=[validation.validate_range0100])
     ICWorkerMiteOffspring = forms.FloatField(
-        initial=2.5,
+        initial=1.3,
         label='Offspring per mite on workers',
         validators=[validation.validate_positive])
     ICWorkerMiteSurvivorship = forms.FloatField(
-        initial=80,
+        initial=65,
         label='Mite survivorship on workers (%)',
         validators=[validation.validate_range0100])
     ICDroneMiteOffspring = forms.FloatField(
@@ -151,7 +151,7 @@ class VarroapopInp_mites(forms.Form):
         label='Offspring per mite on drones',
         validators=[validation.validate_positive])
     ICDroneMiteSurvivorship = forms.FloatField(
-        initial=90,
+        initial=80,
         label='Mite survivorship on drones (%)',
         validators=[validation.validate_range0100])
     ImmEnabled = forms.ChoiceField(
@@ -279,7 +279,7 @@ class VarroapopInp_chemical(forms.Form):
     ESoilConcentration = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'soil'}),
         initial='2.5',
-        label='Active ingredient concentration (ug/g)',
+        label='Active ingredient soil concentration (ppm)',
         validators=[validation.validate_positive])
     l_kow = forms.FloatField( # crosswalk name - rename for VP AIKOW and un log transform (?)
         widget=forms.TextInput(attrs={'class': 'soil'}),
@@ -319,7 +319,7 @@ class VarroapopInp_chemical(forms.Form):
     ESeedConcentration = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'seed'}),
         initial='2.5',
-        label='Active ingredient concentration (ug/g)',
+        label='Active ingredient seed concentration (ppm)',
         validators=[validation.validate_positive])
     AIHalfLife = forms.FloatField(
         initial='15',
@@ -366,12 +366,12 @@ class VarroapopInp_resources(forms.Form):
         validators=[validation.validate_positive])
     MaxColPollen = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='15000',
+        initial='50000',
         label='Maximum colony pollen (g)',
         validators=[validation.validate_positive])
     MaxColNectar = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='15000',
+        initial='50000',
         label='Maximum colony nectar (g)',
         validators=[validation.validate_positive])
     NeedResourcesToLive = forms.ChoiceField(

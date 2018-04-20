@@ -8,7 +8,10 @@ from django.http import Http404, HttpResponse
 
 
 def flask_proxy(request, flask_url):
-    proxy_url = os.environ.get('UBERTOOL_REST_SERVER') + "/rest/" + flask_url
+    if os.environ["IN_DOCKER"] == "True":
+        proxy_url = "http://localhost:7777" + "/rest/" + flask_url
+    else:
+        proxy_url = os.environ.get('UBERTOOL_REST_SERVER') + "/rest/" + flask_url
     method = str(request.method)
     print("Django to Flask proxy method: " + method + " url: " + proxy_url)
     if method == "POST":

@@ -8,7 +8,7 @@ from django.http import Http404, HttpResponse
 
 
 def flask_proxy(request, flask_url):
-    if os.environ["IN_DOCKER"] == "True":
+    if os.environ["HMS_LOCAL"] == "True":
         proxy_url = "http://localhost:7777" + "/rest/" + flask_url
     else:
         proxy_url = os.environ.get('UBERTOOL_REST_SERVER') + "/rest/" + flask_url

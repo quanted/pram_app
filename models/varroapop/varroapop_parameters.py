@@ -10,6 +10,9 @@ from django.core import validators
 from datetime import date
 
 # SELECT_VERSION = (('1.0', '1.0'),)
+weather_CHOICES = (( 'Columbus', 'Columbus, OH'), ('Durham', 'Durham, NC'), ('Jackson', 'Jackson, MS'),
+                   ( 'Eau Claire', 'Eau Claire, WI',), ('Phoenix', 'Phoenix, AZ'), ('Sacramento', 'Sacramento, CA'),
+                   ('Yakima', 'Yakima, WA'))
 RQEnableReQueen_CHOICES = (('true', 'yes'), ('false', 'no'))
 RQScheduled_CHOICES = (('true', 'scheduled'), ('false', 'automatic'))
 RQonce_CHOICES = (('true', 'once on date'), ('false', 'annually on date'))
@@ -26,6 +29,11 @@ SupNectarEnable_CHOICES = (('true', 'yes'), ('false', 'no'))
 
 
 class VarroapopInp_colony(forms.Form):
+    weather_location = forms.ChoiceField(
+        label='Weather location',
+        choices=weather_CHOICES,
+        initial='Columbus',
+        validators=[validation.validate_choicefield])
     SimStart = forms.DateField(
         label='Simulation start date',
         initial=date(2015, 3, 25),  # '03/25/2015
@@ -356,22 +364,22 @@ class VarroapopInp_chemical(forms.Form):
 class VarroapopInp_resources(forms.Form):
     InitColPollen = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='2000',
+        initial='18000',
         label='Initial colony pollen (g)',
         validators=[validation.validate_positive])
     InitColNectar = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='2000',
+        initial='18000',
         label='Initial colony nectar (g)',
         validators=[validation.validate_positive])
     MaxColPollen = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='50000',
+        initial='60000',
         label='Maximum colony pollen (g)',
         validators=[validation.validate_positive])
     MaxColNectar = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'resources'}),
-        initial='50000',
+        initial='60000',
         label='Maximum colony nectar (g)',
         validators=[validation.validate_positive])
     NeedResourcesToLive = forms.ChoiceField(

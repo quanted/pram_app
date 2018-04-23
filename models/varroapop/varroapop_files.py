@@ -10,6 +10,7 @@ from ... views import links_left
 
 rest_url = os.environ['UBERTOOL_REST_SERVER']
 
+## Below: proxy views to get session files from the R API
 
 def files_input_view(request, sessionid):
     response = HttpResponse(requests.get(rest_url + '/rest/pram/varroapop/' + sessionid + '/input/'),

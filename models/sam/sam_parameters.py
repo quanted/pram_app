@@ -206,8 +206,9 @@ class SamInp_output():
         return self.html
 
 
-class SamInp(SamInp_app, SamInp_chem, SamInp_sim, SamInp_output):
+# class SamInp(SamInp_app, SamInp_chem, SamInp_sim, SamInp_output):
+class SamInp(SamInp_sim):
     def __init__(self, *args, **kwargs):
         super(SamInp, self).__init__(*args, **kwargs)
         self.fields['region'].initial = 'Mark Twain Basin'
-    # pass
+    #pass

@@ -7,6 +7,7 @@ from .views import misc, landing
 from .views import batch
 from .views import sam_watershed
 from .models.sam import sam_output_landing
+from .models.varroapop import varroapop_files
 from .views import proxy
 
 print('qed.pram_app.urls')
@@ -42,6 +43,9 @@ urlpatterns = [
     re_path(r'^sam/watershed/(?P<task_id>.*?)$', sam_watershed.watershed_page, {'model': 'sam'}),
     re_path(r'^api/$', api_views.api_docs_view, name='api_docs_view'),
     re_path(r'^api/spec/?$', api_views.api_docs_json),
+    path('varroapop/output/<slug:sessionid>/input/', varroapop_files.files_input_view, name = 'varroapop_input'),
+    path('varroapop/output/<slug:sessionid>/log/', varroapop_files.files_log_view, name = 'varroapop_log'),
+    path('varroapop/output/<slug:sessionid>/results/', varroapop_files.files_results_view, name = 'varroapop_results'),
 
     # #django 1.X
     # url(r'^$', landing.eco_landing_page),

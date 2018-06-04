@@ -8,10 +8,10 @@ notifications:
   slack: qed-epa:FnRva7RtXZLlczmpxShtokg
 
 before_install:
- - wget https://github.com/quanted/requirements_qed/requirements.txt
+ - git clone https://github.com/quanted/requirements_qed.git
 
 install:
-  - pip install -r https:requirements.txt
+  - pip install -r requirements_qed/requirements.txt
 
 # command to run tests
 script:

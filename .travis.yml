@@ -11,7 +11,7 @@ env:
  - GEOS_VERSION=3.6.2 GDAL_VERSION=2.2.1 PROJ4_VERSION=5.0.1
 
 before_install:
-- apt-get update
+- sudo apt-get update
 
 - wget http://download.osgeo.org/geos/geos-${GEOS_VERSION}.tar.bz2 -O /tmp/geos-${GEOS_VERSION}.tar.bz2 \
     && tar -xf /tmp/geos-${GEOS_VERSION}.tar.bz2 -C /tmp \

@@ -11,6 +11,8 @@ env:
  - GEOS_VERSION=3.6.2 GDAL_VERSION=2.2.1 PROJ4_VERSION=5.0.1
 
 before_install:
+- apt-get update
+
 - wget http://download.osgeo.org/geos/geos-${GEOS_VERSION}.tar.bz2 -O /tmp/geos-${GEOS_VERSION}.tar.bz2 \
     && tar -xf /tmp/geos-${GEOS_VERSION}.tar.bz2 -C /tmp \
     && cd /tmp/geos-${GEOS_VERSION} \
@@ -47,7 +49,7 @@ before_install:
     && make \
     && make install \
     && rm -rf /tmp/proj-${PROJ4_VERSION}
-    
+
  - git clone https://github.com/quanted/requirements_qed.git
 
 

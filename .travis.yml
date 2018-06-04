@@ -11,8 +11,7 @@ env:
  - GEOS_VERSION=3.6.2 GDAL_VERSION=2.2.1 PROJ4_VERSION=5.0.1
 
 before_install:
-- sudo apt-get update -q
-
+ - sudo apt-get update -q
  - git clone https://github.com/quanted/requirements_qed.git
 
 

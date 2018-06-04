@@ -12,10 +12,10 @@ notifications:
 
 
 before_install:
- - docker pull quanted/qed_py3
- - docker run -d -p 127.0.0.1:80:4567 quanted/qed_py3 /bin/sh -c "cd /root/qed_py3; exec nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO"
+ - docker pull quanted/qed_py3:${TRAVIS_BRANCH}
+ - docker run -d -p 127.0.0.1:80:4567 quanted/qed_py3 /bin/sh -c "cp -r pram_app /home/pram_app; cd /home/pram_app; exec nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO"
  - docker ps -a
- - docker run quanted/qed_py3 /bin/sh -c "cd /root/qed_py3; exec nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO"
+ - docker run quanted/qed_py3:${TRAVIS_BRANCH} /bin/sh -c "cd /root/pram_app; exec nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO"
  #- git clone https://github.com/quanted/requirements_qed.git
 
 #install:

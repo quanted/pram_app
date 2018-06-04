@@ -1,27 +1,31 @@
+sudo: required
 language: python
 
-#version
 python:
   - "3.6"
+
+services:
+ - docker
 
 notifications:
   slack: qed-epa:FnRva7RtXZLlczmpxShtokg
 
-env:
- - GEOS_VERSION=3.6.2 GDAL_VERSION=2.2.1 PROJ4_VERSION=5.0.1
 
 before_install:
- - sudo apt-get update -q
- - git clone https://github.com/quanted/requirements_qed.git
+ - docker pull quanted/qed_py3
+ - docker run -d -p 127.0.0.1:80:4567 quanted/qed_py3 /bin/sh -c "cd /root/qed_py3; bundle exec nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO"
+ - docker ps -a
+ - docker run quanted/qed_py3 /bin/sh -c "cd /root/qed_py3; bundle exec nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO"
+ #- git clone https://github.com/quanted/requirements_qed.git
 
-
-install:
- - cat requirements_qed/requirements.txt | xargs -n 1 pip install
+#install:
+# Iterate through requirements.txt and install individually, which allows for pip install to continue on error
+ #- cat requirements_qed/requirements.txt | xargs -n 1 pip install
 # - pip install -r requirements_qed/requirements.txt
 
 # command to run tests
-script:
-  - nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO
+#script:
+#  - nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO
 
 after_success:
   - coveralls --config_file .coveragerc

@@ -16,7 +16,8 @@ before_install:
 
 
 install:
-  - pip install -r requirements_qed/requirements.txt
+ - cat requirements_qed/requirements.txt | xargs -n 1 pip install
+# - pip install -r requirements_qed/requirements.txt
 
 # command to run tests
 script:

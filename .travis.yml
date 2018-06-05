@@ -10,7 +10,7 @@ notifications:
   slack: qed-epa:FnRva7RtXZLlczmpxShtokg
 
 install:
- - ./travis_build.sh
+ - sudo ./travis_build.sh
 
 # command to run tests
 script:

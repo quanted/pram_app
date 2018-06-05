@@ -10,22 +10,12 @@ services:
 notifications:
   slack: qed-epa:FnRva7RtXZLlczmpxShtokg
 
-
-before_install:
- - docker pull quanted/qed_py3:${TRAVIS_BRANCH}
- - docker run -d -p 127.0.0.1:80:4567 quanted/qed_py3:${TRAVIS_BRANCH} /bin/sh -c "cp -r pram_app /home/pram_app; cd /home/pram_app; exec nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO"
- - docker ps -a
- - docker run quanted/qed_py3:${TRAVIS_BRANCH} /bin/sh -c "cd /root/pram_app; exec nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO"
- #- git clone https://github.com/quanted/requirements_qed.git
-
-#install:
-# Iterate through requirements.txt and install individually, which allows for pip install to continue on error
- #- cat requirements_qed/requirements.txt | xargs -n 1 pip install
-# - pip install -r requirements_qed/requirements.txt
+install:
+ - ./travis_build.sh
 
 # command to run tests
-#script:
-#  - nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO
+script:
+  - nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO
 
 after_success:
   - coveralls --config_file .coveragerc

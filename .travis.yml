@@ -3,14 +3,10 @@ language: python
 python:
   - "3.6"
 
-services:
- - docker
-
 notifications:
   slack: qed-epa:FnRva7RtXZLlczmpxShtokg
 
-install:
- - sudo ./travis_build.sh
+install: ./travis_build.sh
 
 # command to run tests
 script:

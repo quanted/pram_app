@@ -1,3 +1,4 @@
+#!/bin/sh
 git clone https://github.com/quanted/requirements_qed.git
 
 for package in $(cat requirements_qed/requirements.txt)

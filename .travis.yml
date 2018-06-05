@@ -13,8 +13,7 @@ install: ./travis_build.sh
 
 # command to run tests
 script:
- - ls
- - nosetests --with-cov --cov pram --cov-config .coveragerc --logging-level=INFO
+ - nosetests --with-cov --cov ./pram_app/tests/ --cov-config .coveragerc --logging-level=INFO
 
 after_success:
   - coveralls --config_file .coveragerc

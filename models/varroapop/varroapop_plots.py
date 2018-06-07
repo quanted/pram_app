@@ -22,7 +22,7 @@ logger = logging.getLogger("varroapopTables")
 
 class VarroapopPlots(object):
     def __init__(self, varroapop_obj):
-      self.data = varroapop_obj.pd_obj_out.loc[1:]
+      self.data = varroapop_obj.pd_obj_out.loc[1:].copy()
       self.data['out_date'] = pd.to_datetime(self.data['out_date'], format="%m/%d/%Y")
       self.model_obj = varroapop_obj
 

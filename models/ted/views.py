@@ -15,7 +15,7 @@ algorithm = '<p> Coming soon...'
 description = '<p> Coming soon...'
 
 # How model name appears on web page
-header = 'Agdisp'
+header = 'TED'
 
 history = '<p>User History</p>'
 

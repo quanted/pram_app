@@ -53,6 +53,8 @@ def pop_landing_page(request):
     response.write(html)
     return response
 
+
+#no longer used, can be removed
 def unter_landing_page(request):
 
     #header

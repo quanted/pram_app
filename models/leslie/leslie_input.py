@@ -14,7 +14,7 @@ def leslie_input_page(request, model='', header='', form_data=None):
         'MODEL': model,
         'TITLE': header},
     	request=request)
-    html += str(leslie_parameters.leslieInp(form_data))
+    html += str(leslie_parameters.LeslieInp(form_data))
 
     html = html + """<table class="leslie" border="0">"""
     html = html + """<table class="no" border="0">"""

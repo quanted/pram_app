@@ -2,6 +2,7 @@ import importlib
 import os
 
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from ..models import model_handler
 from . import links_left
@@ -26,20 +27,22 @@ def get_model_qaqc(model):
 
 def qaqc_page(request, model='none'):
     print(request.path)
-    print('pram_app.views.qaqc_page')
+    # print('pram_app.views.qaqc_page')
 
     model = model.lstrip('/')
     model_qaqc_template = model + '.html'
-    print(model_qaqc_template)
+    # print(model_qaqc_template)
 
     #html = render_to_string(model_qaqc_template)
    #html = "{% load static %}"
     #html += "< link href= {% static 'assets/style.css' %} rel = 'stylesheet' type = 'text/css' >"
-    html = render_to_string(model + '.html')
-
-    response = HttpResponse()
-    response.write(html)
-    return response
+    #  html = render_to_string(model + '.html')
+    qaqc_static_path = "pram_qaqc_reports/"
+    #html = render_to_string(qaqc_static_path + model + ".html")
+    return render(request, qaqc_static_path + model_qaqc_template)
+    #response = HttpResponse()
+    #response.write(html)
+    #return response
 
 def qaqc_page_old(request, model='none'):
     """

@@ -2,6 +2,7 @@ import importlib
 import os
 
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from ..models import model_handler
 from . import links_left
@@ -36,7 +37,7 @@ def qaqc_page(request, model='none'):
    #html = "{% load static %}"
     #html += "< link href= {% static 'assets/style.css' %} rel = 'stylesheet' type = 'text/css' >"
     html = render_to_string(model + '.html')
-
+    return render(request, model + ".html")
     response = HttpResponse()
     response.write(html)
     return response

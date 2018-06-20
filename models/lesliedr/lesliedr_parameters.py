@@ -12,7 +12,7 @@ from django.utils.safestring import mark_safe
 
 S_select =(('','Please choose'), ('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'))
 
-class lesliedrInp(forms.Form):
+class LesliedrInp(forms.Form):
     animal_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 17, 'rows': 2}), initial='C. dubia')    
     chemical_name = forms.CharField(widget=forms.Textarea (attrs={'cols': 17, 'rows': 2}), initial='Spinosad')
     HL = forms.FloatField(required=True,label='Chemical half life (days)',initial=2)

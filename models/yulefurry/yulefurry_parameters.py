@@ -12,7 +12,7 @@ from django.utils.safestring import mark_safe
 
 Ite_select =(('1','1'),('5','5'),('10','10'),('20','20'))
 
-class yulefurryInp(forms.Form):
+class YulefurryInp(forms.Form):
     N_o = forms.FloatField(required=True,label=mark_safe('Initial amount of individuals (N<sub>0</sub>)'),initial=1)
     rho = forms.FloatField(required=True,label=mark_safe('Probability of birth in a time step (%)'),initial=4)
     T = forms.FloatField(required=True,label='Number of time intervals (T)',initial=100)

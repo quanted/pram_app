@@ -1,45 +1,43 @@
 import importlib
 import os
 
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from ..models import model_handler
 from . import links_left
 
 print('qed.pram_app.views.qaqc')
 
+
 def get_model_header(model):
 
     model_views_location = 'pram_app.models.' + model + '.views'
-    #import_module is py27 specific
+    # import_module is py27 specific
     viewmodule = importlib.import_module(model_views_location)
     header = viewmodule.header
     return header
 
+
 def get_model_qaqc(model):
     model_views_location = 'pram_app.models.' + model + '.views'
-    #import_module is py27 specific
+    # import_module is py27 specific
     viewmodule = importlib.import_module(model_views_location)
     qaqc = viewmodule.qaqc
     return qaqc
 
 
 def qaqc_page(request, model='none'):
-    print(request.path)
-    print('pram_app.views.qaqc_page')
-
     model = model.lstrip('/')
     model_qaqc_template = model + '.html'
-    print(model_qaqc_template)
+    qaqc_static_path = "pram_qaqc_reports/"
+    qaqc_full_file_path = qaqc_static_path + model_qaqc_template
+    if os.path.isfile(qaqc_full_file_path):
+        print("pram_app.views.qaqc_page, model path: " + qaqc_static_path + model_qaqc_template)
+        return render(request, qaqc_full_file_path)
+    else:
+        return Http404("Unable to find qaqc report file for model: " + model)
 
-    #html = render_to_string(model_qaqc_template)
-   #html = "{% load static %}"
-    #html += "< link href= {% static 'assets/style.css' %} rel = 'stylesheet' type = 'text/css' >"
-    html = render_to_string(model + '.html')
-
-    response = HttpResponse()
-    response.write(html)
-    return response
 
 def qaqc_page_old(request, model='none'):
     """
@@ -53,10 +51,10 @@ def qaqc_page_old(request, model='none'):
     header = get_model_header(model)
     qaqc = get_model_qaqc(model)
 
-    #viewmodule = importlib.import_module('.views', 'pram_app.models.'+model)
-    #header = viewmodule.header
+    # viewmodule = importlib.import_module('.views', 'pram_app.models.'+model)
+    # header = viewmodule.header
 
-    #epa template header
+    # epa template header
     html = render_to_string('01epa_drupal_header.html', {
         'SITE_SKIN': os.environ['SITE_SKIN'],
         'TITLE': u"\u00FCbertool"
@@ -64,21 +62,21 @@ def qaqc_page_old(request, model='none'):
     html += render_to_string('02epa_drupal_header_bluestripe_onesidebar.html', {})
     html += render_to_string('03epa_drupal_section_title_pram.html', {})
 
-    #main body
-    #html += render_to_string('06ubertext_start_index_drupal.html', {
+    # main body
+    # html += render_to_string('06ubertext_start_index_drupal.html', {
     #    'TITLE': header + ' QA/QC',
     #    'TEXT_PARAGRAPH': qaqc
-    #})
+    # })
     snip_qaqc = 'snip_' + model + '_nosetests.html'
     html += render_to_string(snip_qaqc, {})
     html += render_to_string('07ubertext_end_drupal.html', {})
-    #html += links_left.ordered_list(model, 'qaqc')
+    # html += links_left.ordered_list(model, 'qaqc')
 
-    #css and scripts
+    # css and scripts
     html += render_to_string('09epa_drupal_pram_css.html', {})
-    #html += render_to_string('09epa_drupal_pram_scripts.html', {})
+    # html += render_to_string('09epa_drupal_pram_scripts.html', {})
 
-    #epa template footer
+    # epa template footer
     html += render_to_string('10epa_drupal_footer.html', {})
 
     # html = render_to_string('01uberheader.html', {
@@ -98,6 +96,7 @@ def qaqc_page_old(request, model='none'):
     response.write(html)
     return response
 
+
 def qaqc_page_older(request, model='none'):
     """
         View to render QAQC page HTML for each model
@@ -110,8 +109,8 @@ def qaqc_page_older(request, model='none'):
     header = get_model_header(model)
     qaqc = get_model_qaqc(model)
 
-    #viewmodule = importlib.import_module('.views', 'pram_app.models.'+model)
-    #header = viewmodule.header
+    # viewmodule = importlib.import_module('.views', 'pram_app.models.'+model)
+    # header = viewmodule.header
 
     html = render_to_string('01uberheader_main_drupal.html', {
         'SITE_SKIN': os.environ['SITE_SKIN'],

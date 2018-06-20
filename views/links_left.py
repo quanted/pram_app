@@ -13,9 +13,9 @@ def ordered_list(model=None, page=None):
                    'yulefurry','fellerarley','leslie','lesliedr','leslie_probit',
                    'loons','landing_pop']):
         link_dict = ordered_list_pop(model)
-    elif(model in ['agdisp','earthworm','insect','pat','perfum','pfam','pwc',
+    elif(model in ['agdisp','earthworm','insect','pat','perfum','pfam','pwc',   #beta models
                    'sam','ted','landing_unter','varroapop']):
-        link_dict = ordered_list_unter(model)
+        link_dict = ordered_list_pram(model)
     return render_to_string('03ubertext_links_left_drupal.html', {
         'LINK_DICT': link_dict,
         'MODEL': model,
@@ -29,7 +29,6 @@ def ordered_list_pram(model=None, page=None):
             ('Q.E.D.', '..'),
             ('pram', ''),
             ('pop', 'pop'),
-            ('unter', 'unter'),
         ])
          ),
         ('Terrestrial Models', OrderedDict([
@@ -47,6 +46,19 @@ def ordered_list_pram(model=None, page=None):
             ('Kabam', 'kabam'),
             ('RICE', 'rice'),
             ])
+        ),
+        ('Beta Models', OrderedDict([
+            ('AgDisp', 'agdisp'),
+            ('Earthworm', 'earthworm'),
+            ('Insect', 'insect'),
+            ('Pat', 'pat'),
+            ('Perfum', 'perfum'),
+            ('Pfam', 'pfam'),
+            ('PWC', 'pwc'),
+            ('SAM', 'sam'),
+            ('TED', 'ted'),
+            ('VarroaPop', 'varroapop'),
+        ])
         ),
         ('Documentation', OrderedDict([
                 ('Source Code', '/github.com/quanted/pram'),
@@ -73,9 +85,8 @@ def ordered_list_pop(model=None, page=None):
     link_dict = OrderedDict([
         ('Apps', OrderedDict([
             ('Q.E.D.', '..'),
-            ('\u00FCtool', ''),
+            ('pram', ''),
             ('pop', 'pop'),
-            ('unter', 'unter'),
         ])
          ),
         ('Population Models', OrderedDict([
@@ -100,6 +111,8 @@ def ordered_list_pop(model=None, page=None):
     ])
     return link_dict
 
+
+#no longer used, can be removed
 def ordered_list_unter(model=None, page=None):
     link_dict = OrderedDict([
         ('Apps', OrderedDict([

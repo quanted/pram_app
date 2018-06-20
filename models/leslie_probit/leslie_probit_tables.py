@@ -1,7 +1,6 @@
 import numpy
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
-from leslie_probit import leslie_probit_model, leslie_probit_parameters
 import logging
 import time
 import datetime
@@ -118,18 +117,20 @@ def table_all(leslie_probit_obj):
     html_all = html_all + table_4(leslie_probit_obj)
     return html_all
 
-# def timestamp():
-#     ts = time.time()
-#     st = datetime.datetime.fromtimestamp(ts).strftime('%A, %Y-%B-%d %H:%M:%S')
-#     html="""
-#     <div class="out_">
-#         <b>SIP <a href="http://www.epa.gov/oppefed1/models/terrestrial/sip/sip_user_guide.html">Version 1.0</a> (Beta)<br>
-#     """
-#     html = html + st
-#     html = html + " (UTC)</b>"
-#     html = html + """
-#     </div>"""
-#     return html
+def timestamp(leslie_probit_obj="", batch_jid=""):
+    if leslie_probit_obj:
+        st = datetime.datetime.strptime(leslie_probit_obj.jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
+    else:
+        st = datetime.datetime.strptime(batch_jid, '%Y%m%d%H%M%S%f').strftime('%A, %Y-%B-%d %H:%M:%S')
+    html="""
+    <div class="out_">
+        <b>Leslie Probit<br>
+    """
+    html = html + st
+    html = html + " (EST)</b>"
+    html = html + """
+    </div>"""
+    return html
 
 def table_1(leslie_probit_obj):
         html = """

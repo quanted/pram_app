@@ -14,7 +14,7 @@ def lesliedr_input_page(request, model='', header='', form_data=None):
         'MODEL': model,
         'TITLE': header},
     	request=request)
-    html += str(lesliedr_parameters.lesliedrInp(form_data))
+    html += str(lesliedr_parameters.LesliedrInp(form_data))
     html += """<table class="leslie" border="0">"""
     html += """<table class="no" border="0">"""
     html += render_to_string('lesliedr-input-jquery.html', {})

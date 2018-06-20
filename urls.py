@@ -29,7 +29,6 @@ urlpatterns = [
     # django 2.X
     path('', landing.eco_landing_page),
     path('pop/', landing.pop_landing_page),
-    path('unter/', landing.unter_landing_page),
     path('links/', misc.links),
     re_path(r'^rest/(?P<flask_url>.*?)/?$', proxy.flask_proxy),
     path('<slug:model>/', description.description_page),

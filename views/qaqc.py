@@ -27,20 +27,13 @@ def get_model_qaqc(model):
 
 def qaqc_page(request, model='none'):
     print(request.path)
-    print('pram_app.views.qaqc_page')
+    # print('pram_app.views.qaqc_page')
 
     model = model.lstrip('/')
     model_qaqc_template = model + '.html'
-    print(model_qaqc_template)
-
-    #html = render_to_string(model_qaqc_template)
-   #html = "{% load static %}"
-    #html += "< link href= {% static 'assets/style.css' %} rel = 'stylesheet' type = 'text/css' >"
-    html = render_to_string(model + '.html')
-    return render(request, model + ".html")
-    response = HttpResponse()
-    response.write(html)
-    return response
+    qaqc_static_path = "pram_qaqc_reports/"
+    print("pram_app.views.qaqc_page, model path: " + qaqc_static_path + model_qaqc_template)
+    return render(request, qaqc_static_path + model_qaqc_template)
 
 def qaqc_page_old(request, model='none'):
     """

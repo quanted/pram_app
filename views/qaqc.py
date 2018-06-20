@@ -32,11 +32,11 @@ def qaqc_page(request, model='none'):
     model_qaqc_template = model + '.html'
     qaqc_static_path = "pram_qaqc_reports/"
     qaqc_full_file_path = qaqc_static_path + model_qaqc_template
-    if os.path.isfile(qaqc_full_file_path):
-        print("pram_app.views.qaqc_page, model path: " + qaqc_static_path + model_qaqc_template)
-        return render(request, qaqc_full_file_path)
-    else:
-        return Http404("Unable to find qaqc report file for model: " + model)
+    # if os.path.isfile(qaqc_full_file_path):
+    print("pram_app.views.qaqc_page, model path: " + qaqc_static_path + model_qaqc_template)
+    return render(request, qaqc_full_file_path)
+    #else:
+    #   return Http404("Unable to find qaqc report file for model: " + model)
 
 
 def qaqc_page_old(request, model='none'):

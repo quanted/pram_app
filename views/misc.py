@@ -26,7 +26,7 @@ def login(request):
     html += links_left.ordered_list()
     html += render_to_string('06uberfooter.html', {})
 
-    response = HttpResponse(status=303)
+    response = HttpResponse(status=302)
     response.write(html)
 
     return response

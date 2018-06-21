@@ -3,7 +3,7 @@ import requests
 import unittest
 import numpy as np
 import numpy.testing as npt
-import linkcheck_helper
+from . import linkcheck_helper
 
 test = {}
 

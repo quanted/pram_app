@@ -45,11 +45,16 @@ def input_page(request, model='none', header='none', form_data=None):
     model = model.lstrip('/')
     header = get_model_header(model)
     input_module = get_model_input_module(model)
-    input_page_func = getattr(input_module, model + '_input_page')
-    model_parameters_location = 'pram_app.models.' + model + '.' + model + '_parameters'
-    #model_input_location = 'pram_app.models.' + model + '.' + model + '_input'
-    parametersmodule = importlib.import_module(model_parameters_location)
-    input_form = getattr(parametersmodule, model.title() + 'Inp')
+    print(model)
+    try:
+        print("trying")
+        input_page_func = getattr(input_module, model + '_input_page')
+        model_parameters_location = 'pram_app.models.' + model + '.' + model + '_parameters'
+        # model_input_location = 'pram_app.models.' + model + '.' + model + '_input'
+        parametersmodule = importlib.import_module(model_parameters_location)
+        input_form = getattr(parametersmodule, model.title() + 'Inp')
+    except Exception:
+        input_page_func = coming_soon
     if (request.method == "POST"):
         form = input_form(request.POST)
         if (form.is_valid()):
@@ -90,3 +95,15 @@ class HttpResponseTemporaryRedirect(HttpResponse):
     def __init__(self, redirect_to):
         HttpResponse.__init__(self)
         self['Location'] = iri_to_uri(redirect_to)
+
+
+
+#generic coming soon function
+def coming_soon(request, model, header, form_data):
+    html = render_to_string('06ubertext_start_index_drupal.html', {
+        'TITLE': header,
+        'TEXT_PARAGRAPH': "<h3> Page coming soon!</h3>"
+    })
+    html += render_to_string('04ubertext_end_drupal.html', {})
+    return html
+

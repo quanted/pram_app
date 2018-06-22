@@ -19,5 +19,5 @@ header = 'Perfum'
 
 history = '<p>User History</p>'
 
-references = '<p> Coming soon...'
+references = '<p> Coming soon...</p>'
 

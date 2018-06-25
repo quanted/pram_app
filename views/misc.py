@@ -26,7 +26,7 @@ def login(request):
     html += links_left.ordered_list()
     html += render_to_string('06uberfooter.html', {})
 
-    response = HttpResponse()
+    response = HttpResponse(status=302)
     response.write(html)
 
     return response
@@ -74,7 +74,7 @@ def file_not_found(request):
     html += links_left.ordered_list()
     html += render_to_string('06uberfooter.html', {})
 
-    response = HttpResponse()
+    response = HttpResponse(status=404)
     response.write(html)
 
     return response

@@ -61,7 +61,7 @@ def ordered_list_pram(model=None, page=None):
         ])
         ),
         ('Documentation', OrderedDict([
-                ('Source Code', '/github.com/quanted/pram'),
+                ('Source Code', 'github'),
                 ('Links', 'links')
             ])
         )

@@ -115,3 +115,7 @@ def links(request):
     response.write(html)
 
     return response
+
+
+def github(request):
+    return redirect('https://github.com/quanted/ubertool/tree/master')

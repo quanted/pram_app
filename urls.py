@@ -45,6 +45,7 @@ urlpatterns = [
     path('varroapop/output/<slug:sessionid>/input/', varroapop_files.files_input_view, name = 'varroapop_input'),
     path('varroapop/output/<slug:sessionid>/log/', varroapop_files.files_log_view, name = 'varroapop_log'),
     path('varroapop/output/<slug:sessionid>/results/', varroapop_files.files_results_view, name = 'varroapop_results'),
+    path('github', misc.github)
 
     # #django 1.X
     # url(r'^$', landing.eco_landing_page),

@@ -97,21 +97,39 @@ def api_redirect(request):
 #######################################################################################
 
 def links(request):
+    print(request.path)
+    # get formatted model name and description for description page
+    #model = model.lstrip('/')
+    #header = get_model_header(model)
+    #references = get_model_references(model)
 
-    html = render_to_string('01uberheader_main_drupal.html', {
+    # epa template header
+    html = render_to_string('01epa_drupal_header.html', {
         'SITE_SKIN': os.environ['SITE_SKIN'],
-        'TITLE': u"\u00FCbertool Links"})
-    html += render_to_string('02uberintroblock_wmodellinks_drupal.html', {
-        'CONTACT_URL': os.environ['CONTACT_URL']})
-    html += render_to_string('04ubertext_start_index_drupal.html', {
-        'TITLE': u"\u00FCbertool External Links",
-        'TEXT_PARAGRAPH': ""})
-    html += render_to_string('05ubertext_links_right.html')
-    html += render_to_string('04ubertext_end_drupal.html', {})
-    html += links_left.ordered_list()
-    html += render_to_string('06uberfooter.html', {})
+        'TITLE': "pram: Pesticide Risk Assessment Models (beta)"
+    })
+    html += render_to_string('02epa_drupal_header_bluestripe_onesidebar.html', {})
+    html += render_to_string('03epa_drupal_section_title_pram.html', {})
+
+    # main body
+    html += render_to_string('06ubertext_start_index_drupal.html', {
+        'TITLE': 'Helpful links',
+        'TEXT_PARAGRAPH': render_to_string('05ubertext_links_right.html', {})
+    })
+    html += render_to_string('07ubertext_end_drupal.html', {})
+    html += links_left.ordered_list('links')
+
+    # css and scripts
+    html += render_to_string('09epa_drupal_pram_css.html', {})
+    # html += render_to_string('09epa_drupal_pram_scripts.html', {})
+
+    # epa template footer
+    html += render_to_string('10epa_drupal_footer.html', {})
 
     response = HttpResponse()
     response.write(html)
-
     return response
+
+
+def github(request):
+    return redirect('https://github.com/quanted/ubertool/tree/master')

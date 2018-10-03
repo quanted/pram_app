@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 def ordered_list(model=None, page=None):
     # get right set of links for links left
     if(model in ['agdrift','beerex','iec','sip','stir','terrplant','therps',
-                 'trex','kabam','rice','landing_pram']):
+                 'trex','kabam','rice','landing_pram', 'links']):
         link_dict = ordered_list_pram(model)
     elif(model in ['exponential','logistic','gompertz','foxsurplus','maxsus',
                    'yulefurry','fellerarley','leslie','lesliedr','leslie_probit',
@@ -61,7 +61,7 @@ def ordered_list_pram(model=None, page=None):
         ])
         ),
         ('Documentation', OrderedDict([
-                ('Source Code', '/github.com/quanted/pram'),
+                ('Source Code', 'github'),
                 ('Links', 'links')
             ])
         )

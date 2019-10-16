@@ -60,7 +60,7 @@ def login_auth(request):
 ################################ HTTP Error Pages #####################################
 #######################################################################################
 
-def file_not_found(request):
+def file_not_found(request, exception=None):
     html = render_to_string('01uberheader_main_drupal.html', {
         'SITE_SKIN': os.environ['SITE_SKIN'],
         'TITLE': 'Error'})

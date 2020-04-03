@@ -40,7 +40,7 @@ class VarroapopInp_colony(forms.Form):
         widget=forms.SelectDateWidget(years=tuple(range(1991,2016))),
         validators=[validation.validate_date_range(min=date(1991,1,1),max=date(2015,12,31))])
     SimEnd = forms.DateField(
-        label='Simulation start date',
+        label='Simulation end date',
         initial=date(2015, 8, 25),  # '03/25/2015
         widget=forms.SelectDateWidget(years=tuple(range(1991, 2016))),
         validators=[validation.validate_date_range(min=date(1991, 1, 1), max=date(2015, 12, 31))])

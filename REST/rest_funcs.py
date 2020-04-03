@@ -12,7 +12,12 @@ from django.http import HttpResponse
 
 
 rest_url = os.environ['UBERTOOL_REST_SERVER']
-rest_url_hwbi = os.environ['REST_SERVER_8']
+rest_url_hwbi = None
+try:
+    rest_url_hwbi = os.environ['REST_SERVER_8']
+except:
+    print("Failed to find REST_SERVER_8 env variable")
+
 
 
 class NumPyArrangeEncoder(json.JSONEncoder):

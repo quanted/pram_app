@@ -99,7 +99,7 @@ def output_page(request, model='none', header=''):
             if os.environ['IN_DOCKER'] == "False":
                 task = requests.post('http://localhost:7777/rest/pram/sam/', data=inputs)
             else:
-                task = requests.post('http://qed_nginx:7777/rest/pram/sam/', data=inputs)
+                task = requests.post('http://qed-nginx:7777/rest/pram/sam/', data=inputs)
             task_id = json.loads(task.content.decode(encoding="utf-8").replace("//", ""))
             return redirect('/pram/sam/output/status/' + task_id['task_id'])
         except Exception as ex:

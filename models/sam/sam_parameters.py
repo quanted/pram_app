@@ -66,7 +66,7 @@ class SamInp_chem(forms.Form):
     simulation_name = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-        initial="Mark Twain Atrazine 062217")
+        initial="test")#initial="Mark Twain Atrazine 062217")
 
     chemical_name = forms.CharField(
         required=False,
@@ -141,7 +141,8 @@ class SamInp_sim(forms.Form):
         required=False,
         label='Simulation Type',
         choices=TYPE_CHOICES,
-        initial='eco')
+        disabled=True,
+        initial='dwr',)
 
     sim_date_start = forms.DateField(
         required=False,

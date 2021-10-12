@@ -8,8 +8,7 @@ from django.utils.safestring import mark_safe
 from pram_app.models.forms import validation
 
 kd_CHOICES = (('0', 'Koc'), ('1', 'Kd'))
-TYPE_CHOICES = (('dwr', 'Drinking Water'))
-#TYPE_CHOICES = (('eco', 'Eco'), ('dwr', 'Drinking Water'))
+TYPE_CHOICES = (('dwr', 'Drinking Water'),('eco', 'Eco'))
 
 
 class SamInp_app():

@@ -21,7 +21,8 @@ from ..REST import rest_funcs
 
 # Set HTTP header
 http_headers = rest_funcs.set_http_headers()
-url_part1 = os.environ['UBERTOOL_REST_SERVER']
+#TODO: Set default value for url_part1 when UBERTOOL_REST_SERVER is not set
+url_part1 = os.getenv('UBERTOOL_REST_SERVER', "")
 
 
 class Model(object):

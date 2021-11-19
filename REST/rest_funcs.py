@@ -10,8 +10,8 @@ import warnings
 
 from django.http import HttpResponse
 
-
-rest_url = os.environ['UBERTOOL_REST_SERVER']
+#TODO: Set default value for rest_url when UBERTOOL_REST_SERVER is not set
+rest_url = os.getenv('UBERTOOL_REST_SERVER', "")
 rest_url_hwbi = None
 try:
     rest_url_hwbi = os.environ['REST_SERVER_8']

@@ -4,7 +4,8 @@ import requests
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
-rest_server = os.environ['UBERTOOL_REST_SERVER']
+#TODO: Set default value for rest_server when UBERTOOL_REST_SERVER is not set
+rest_server = os.getenv('UBERTOOL_REST_SERVER', "")
 
 
 def api_docs_view(request):

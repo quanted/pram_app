@@ -8,7 +8,8 @@ import requests
 
 from ... views import links_left
 
-rest_url = os.environ['UBERTOOL_REST_SERVER']
+#TODO: Set default value for rest_url when UBERTOOL_REST_SERVER is not set
+rest_url = os.getenv('UBERTOOL_REST_SERVER', "")
 
 ## Below: proxy views to get session files from the R API
 

@@ -25,6 +25,7 @@ print('qed.pram_app.urls')
 #as an argument
 #In Python regular expressions, the syntax for named regular-expression
 #groups is (?P<name>pattern), where name is the name of the group and pattern is some pattern to match
+
 urlpatterns = [
     # django 2.X
     path('', landing.eco_landing_page),
@@ -48,7 +49,7 @@ urlpatterns = [
     path('github', misc.github)
 ]
 
-urlpatterns = [path('pram', include(urlpatterns))]
+urlpatterns = [path('pram/', include(urlpatterns))]
 
 # 404 Error view (file not found)
 handler404 = misc.file_not_found

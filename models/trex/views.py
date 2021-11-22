@@ -9,9 +9,9 @@ batch = '<p>Will be back soon...</p>'
 qaqc = '<p>Will be back soon..</p>'
 
 #model algorithm html for algorithm page
-algorithm = '<img src = \"/static_qed/images/latex/trex/trex_image1.png\">' \
-            '<img src = \"/static_qed/images/latex/trex/trex_image2.png\">' \
-            '<img src = \"/static_qed/images/latex/trex/trex_image3.png\">'
+algorithm = '<img src = \"/pram/static/images/latex/trex/trex_image1.png\">' \
+            '<img src = \"/pram/static/images/latex/trex/trex_image2.png\">' \
+            '<img src = \"/pram/static/images/latex/trex/trex_image3.png\">'
 
 #model description html for description page
 description = '<p>This spreadsheet-based model calculates the residues on ' \

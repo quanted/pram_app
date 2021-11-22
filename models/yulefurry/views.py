@@ -20,7 +20,7 @@ algorithm = '' \
     ''<p>Yule-Furry process was originally introduced by Yule (1924) to model'\
     'new species evolution and by Furry (1937) to model particle creation.'\
     'As a Markov procees, the future population size is only related to its previous state: </p>'\
-    '<img src = "/static_qed/images/latex/yulefurry/yulefurry_des_1.png" alt="Yule-Furry Model">'
+    '<img src = "/pram/static/images/latex/yulefurry/yulefurry_des_1.png" alt="Yule-Furry Model">'
 
 #model description html for description page
 description = '<p>Yule-Furry Markov process is also known as the pure birth process,'\
@@ -33,7 +33,7 @@ description = '<p>Yule-Furry Markov process is also known as the pure birth proc
     '<p>Yule-Furry process was originally introduced by Yule (1924) to model'\
     'new species evolution and by Furry (1937) to model particle creation.'\
     'As a Markov procees, the future population size is only related to its previous state: </p>'\
-    '<img src = "/static_qed/images/latex/yulefurry/yulefurry_des_1.png" alt="Yule-Furry Model">'
+    '<img src = "/pram/static/images/latex/yulefurry/yulefurry_des_1.png" alt="Yule-Furry Model">'
 
 
 

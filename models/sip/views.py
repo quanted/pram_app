@@ -11,21 +11,21 @@ qaqc = '<p>Will be back soon..</p>'
 #model algorithm html for algorithm page
 algorithm = '' \
             '<p>The daily water intake rates for birds are calculated using allometric equations based on body weight:</p>' \
-            '<img src = \"/static_qed/images/latex/sip/sip_image1.png\" alt=\"SIP_1\">' \
+            '<img src = \"/pram/static/images/latex/sip/sip_image1.png\" alt=\"SIP_1\">' \
             '<p>For mammals the daily water intake rates are calculated below:</p>' \
-            '<img src = \"/static_qed/images/latex/sip/sip_image2.png\" alt=\"SIP_2\">' \
+            '<img src = \"/pram/static/images/latex/sip/sip_image2.png\" alt=\"SIP_2\">' \
             '<p>Dose from drinking water:</p>' \
-            '<img src = \"/static_qed/images/latex/sip/sip_image3.png\" alt=\"SIP_3\">' \
+            '<img src = \"/pram/static/images/latex/sip/sip_image3.png\" alt=\"SIP_3\">' \
             '<p>Adjusted acute toxicity values for birds:</p>' \
-            '<img src = \"/static_qed/images/latex/sip/sip_image4.png\" alt=\"SIP_4\">' \
+            '<img src = \"/pram/static/images/latex/sip/sip_image4.png\" alt=\"SIP_4\">' \
             '<p>Adjusted acute toxicity values for mammals:</p>' \
-            '<img src = \"/static_qed/images/latex/sip/sip_image5.png\" alt=\"SIP_5\">' \
+            '<img src = \"/pram/static/images/latex/sip/sip_image5.png\" alt=\"SIP_5\">' \
             '<p>Daily food intake rate:</p>' \
-            '<img src = \"/static_qed/images/latex/sip/sip_image6.png\" alt=\"SIP_6\">' \
+            '<img src = \"/pram/static/images/latex/sip/sip_image6.png\" alt=\"SIP_6\">' \
             '<p>Dose equivalent toxicity for birds:</p>' \
-            '<img src = \"/static_qed/images/latex/sip/sip_image7.png\" alt=\"SIP_7\">' \
+            '<img src = \"/pram/static/images/latex/sip/sip_image7.png\" alt=\"SIP_7\">' \
             '<p>Dose equivalent toxicity for mammals:</p>' \
-            '<img src = \"/static_qed/images/latex/sip/sip_image8.png\" alt=\"SIP_8\">'
+            '<img src = \"/pram/static/images/latex/sip/sip_image8.png\" alt=\"SIP_8\">'
 
 #model description html for description page
 description = '<p>The SIP model is designed to estimate chemical exposure from ' \

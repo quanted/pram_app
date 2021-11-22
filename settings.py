@@ -40,8 +40,10 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(TEMPLATE_ROOT),
-            # os.path.join(TEMPLATE_ROOT, 'drupal_2017'),
-            # os.path.join(TEMPLATE_ROOT, 'uber2017'),
+            os.path.join(TEMPLATE_ROOT, 'drupal_2017'),
+            os.path.join(TEMPLATE_ROOT, 'drupal_2014'),
+            os.path.join(TEMPLATE_ROOT, 'uber2017'),
+            os.path.join(TEMPLATE_ROOT, 'uber2011'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -118,7 +120,7 @@ STATIC_URL = '/pram/static/'
 
 # Define ENVIRONMENTAL VARIABLES
 os.environ.update({
-    'PROJECT_PATH': PROJECT_ROOT,
+    'PROJECT_PATH': os.path.join(PROJECT_ROOT, ".."),
     'SITE_SKIN': 'EPA',  # Leave empty ('') for default skin, 'EPA' for EPA skin
     'CONTACT_URL': 'https://www.epa.gov/research/forms/contact-us-about-epa-research',
 })

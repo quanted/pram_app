@@ -11,20 +11,20 @@ qaqc = '<p>Will be back soon..</p>'
 
 #model algorithm html for algorithm page
 algorithm = '<p>The KABAM model is used to estimate the potential bioaccumulation of hydrophobic organic pesticides in freshwater foodwebs and to estimate the risks to birds and mammals consuming the prey items from these freshwater food webs. The first part of the model calculate the parameters necessary to determine the pesticide concentration in tissues, bioaccumulation factors, bioconcentration factors, biomagnification factors and biota sediment accumulation factors for each trophic level in the aquatic food web. The KABAM model includes a trophic level representation for phytoplankton, zooplankton, benthic invertebrates, filter feeders, small fish, medium fish and large fish. The second part of the model estimates exposure and toxicological effects of a pesticide into risk estimates for mammals and birds consumging contaminated prey. Equations for the bioaccumulation of the food web are below:</p>' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image1.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image1.png\">' \
             '<p>Parameters calculated that contribute to trophic level pesticide concentration in tissues:</p>' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image2.png\">' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image3.png\">' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image4.png\">' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image5.png\">' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image6.png\">' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image7.png\">' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image8.png\">' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image9.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image2.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image3.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image4.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image5.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image6.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image7.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image8.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image9.png\">' \
             '<p>These equations are used to determine the dose-based response of mammals and birds feeding on the trophic levels</p>' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image10.png\">' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image11.png\">' \
-            '<img src = \"/static_qed/images/latex/kabam/kabam_image12.png\">'
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image10.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image11.png\">' \
+            '<img src = \"/pram/static/images/latex/kabam/kabam_image12.png\">'
 
 #model description html for description page
 description = '<p>K<sub>ow</sub> (based) Aquatic BioAccumulation Model (KABAM) ' \

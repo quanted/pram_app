@@ -1,0 +1,331 @@
+<style>
+    #statusDiv {
+        width: 75%;
+        float: right;
+        position: relative;
+    }
+
+    #samTitle {
+        font-weight: bold;
+        display: flex;
+    }
+
+    #processID_div {
+        margin-top: 15px;
+    }
+
+    #processID {
+        margin-left: 25px;
+    }
+    #processStatus_div {
+        margin-top: 5px;
+        display: flex;
+    }
+    #processStatus {
+        margin-left: 25px;
+        display: flex;
+    }
+
+    #processCompleted {
+        font-weight: bold;
+    }
+
+    #statusG {
+        position: relative;
+        width: 150px;
+        height: 18px;
+        margin: auto;
+    }
+
+    .statusG {
+        position: absolute;
+        top: 0;
+        background-color: rgb(0, 113, 188);
+        width: 18px;
+        height: 18px;
+        animation-name: bounce_statusG;
+        -o-animation-name: bounce_statusG;
+        -ms-animation-name: bounce_statusG;
+        -webkit-animation-name: bounce_statusG;
+        -moz-animation-name: bounce_statusG;
+        animation-duration: 0.975s;
+        -o-animation-duration: 0.975s;
+        -ms-animation-duration: 0.975s;
+        -webkit-animation-duration: 0.975s;
+        -moz-animation-duration: 0.975s;
+        animation-iteration-count: infinite;
+        -o-animation-iteration-count: infinite;
+        -ms-animation-iteration-count: infinite;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-iteration-count: infinite;
+        animation-direction: normal;
+        -o-animation-direction: normal;
+        -ms-animation-direction: normal;
+        -webkit-animation-direction: normal;
+        -moz-animation-direction: normal;
+        transform: scale(.3);
+        -o-transform: scale(.3);
+        -ms-transform: scale(.3);
+        -webkit-transform: scale(.3);
+        -moz-transform: scale(.3);
+        border-radius: 12px;
+        -o-border-radius: 12px;
+        -ms-border-radius: 12px;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+    }
+
+    #statusG_1 {
+        left: 0;
+        animation-delay: 0.386s;
+        -o-animation-delay: 0.386s;
+        -ms-animation-delay: 0.386s;
+        -webkit-animation-delay: 0.386s;
+        -moz-animation-delay: 0.386s;
+    }
+
+    #statusG_2 {
+        left: 19px;
+        animation-delay: 0.4825s;
+        -o-animation-delay: 0.4825s;
+        -ms-animation-delay: 0.4825s;
+        -webkit-animation-delay: 0.4825s;
+        -moz-animation-delay: 0.4825s;
+    }
+
+    #statusG_3 {
+        left: 37px;
+        animation-delay: 0.589s;
+        -o-animation-delay: 0.589s;
+        -ms-animation-delay: 0.589s;
+        -webkit-animation-delay: 0.589s;
+        -moz-animation-delay: 0.589s;
+    }
+
+    #statusG_4 {
+        left: 56px;
+        animation-delay: 0.6855s;
+        -o-animation-delay: 0.6855s;
+        -ms-animation-delay: 0.6855s;
+        -webkit-animation-delay: 0.6855s;
+        -moz-animation-delay: 0.6855s;
+    }
+
+    #statusG_5 {
+        left: 75px;
+        animation-delay: 0.782s;
+        -o-animation-delay: 0.782s;
+        -ms-animation-delay: 0.782s;
+        -webkit-animation-delay: 0.782s;
+        -moz-animation-delay: 0.782s;
+    }
+
+    #statusG_6 {
+        left: 94px;
+        animation-delay: 0.8785s;
+        -o-animation-delay: 0.8785s;
+        -ms-animation-delay: 0.8785s;
+        -webkit-animation-delay: 0.8785s;
+        -moz-animation-delay: 0.8785s;
+    }
+
+    #statusG_7 {
+        left: 112px;
+        animation-delay: 0.975s;
+        -o-animation-delay: 0.975s;
+        -ms-animation-delay: 0.975s;
+        -webkit-animation-delay: 0.975s;
+        -moz-animation-delay: 0.975s;
+    }
+
+    #statusG_8 {
+        left: 131px;
+        animation-delay: 1.0715s;
+        -o-animation-delay: 1.0715s;
+        -ms-animation-delay: 1.0715s;
+        -webkit-animation-delay: 1.0715s;
+        -moz-animation-delay: 1.0715s;
+    }
+
+    @keyframes bounce_statusG {
+        0% {
+            transform: scale(1);
+            background-color: rgb(0, 113, 188);
+        }
+
+        100% {
+            transform: scale(.3);
+            background-color: rgb(255, 255, 255);
+        }
+    }
+
+    @-o-keyframes bounce_statusG {
+        0% {
+            -o-transform: scale(1);
+            background-color: rgb(0, 113, 188);
+        }
+
+        100% {
+            -o-transform: scale(.3);
+            background-color: rgb(255, 255, 255);
+        }
+    }
+
+    @-ms-keyframes bounce_statusG {
+        0% {
+            -ms-transform: scale(1);
+            background-color: rgb(0, 113, 188);
+        }
+
+        100% {
+            -ms-transform: scale(.3);
+            background-color: rgb(255, 255, 255);
+        }
+    }
+
+    @-webkit-keyframes bounce_statusG {
+        0% {
+            -webkit-transform: scale(1);
+            background-color: rgb(0, 113, 188);
+        }
+
+        100% {
+            -webkit-transform: scale(.3);
+            background-color: rgb(255, 255, 255);
+        }
+    }
+
+    @-moz-keyframes bounce_statusG {
+        0% {
+            -moz-transform: scale(1);
+            background-color: rgb(0, 113, 188);
+        }
+
+        100% {
+            -moz-transform: scale(.3);
+            background-color: rgb(255, 255, 255);
+        }
+    }
+
+</style>
+
+<script>
+
+    // set token to the key for the guid token for the specific process.
+    var guid = "";
+    var timeout = 5000; // Timeout length in milliseconds (1000 = 1 second)
+    var attemptCount = 0;
+
+    $(document).ready(function () {
+        guid = getCookie('task_id');
+        if(guid === "1234567890"){
+            $('#processID').html("");
+            $('#processStatus').html("<div id='completedProcess'>The task failed to start.</div>");
+        }
+        else {
+            $('#processID').html(guid);
+            setTimeout(checkProcessStatus, timeout);
+
+            // Directly show results link, used when celery not being given task
+            {#var watershed_url = "/pram/sam/watershed/" + guid;#}
+            {#var json_url = "/pram/rest/pram/sam/data/" + guid;#}
+            {#$('#processStatus').html(#}
+            {#    "<div id='completedProcess'><a href=" + watershed_url + ">Watershe Results Page</a><br><a href=" + json_url + ">JSON Results</a></div>"#}
+            {#);#}
+        }
+    });
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function checkProcessStatus() {
+        var statusUrl = "/pram/rest/pram/sam/status/" + guid;     // Configure status url endpoint using guid.
+        attemptCount += 1;
+        var pendingCount = 0;
+{#        if(attemptCount >= 3){      // TESTING#}
+{#            $('#processStatus').html("<div id='processCompleted'><a href='/pram/sam/watershed'>Completed</a></div>");#}
+{#            return false;#}
+{#        }#}
+        console.log("Process check #: " + attemptCount);
+        $.ajax({
+            url: statusUrl,
+            type: "GET",
+            cache: false,
+            success: function (data, status, jqXHR) {
+                if ('task_status' in data) {
+
+                    if (data['task_status'] === "PENDING") {
+                        pendingCount += 1;
+                        if(pendingCount >= 10){
+                            $('#processStatus').html("<div id='completedProcess'>There was a problem finding the task.</div>");
+                        }else {
+                            setTimeout(checkProcessStatus, timeout);
+                        }
+                    }
+                    else if (data['task_status'] === "STARTED"){
+                        setTimeout(checkProcessStatus, timeout)
+                    }
+                    else if (data['task_status'] === "SUCCESS") {
+                        // Set processStatus to 'Completed' with a clickable link to sam/watershed page
+                        var watershed_url = "/pram/sam/watershed/" + guid;
+                        $('#processStatus').html("<div id='completedProcess'><a href=" + watershed_url + ">Completed</a></div>");
+                        var json_url = "/pram/rest/pram/sam/data/" + guid;
+                        $('#processStatus').html("<div id='completedProcess'><a href=" + watershed_url + ">View Watershed Results</a><br><a href=" + json_url + ">JSON Results</a></div>");
+                    }
+                    else if (data['task_status'] === "FAILURE") {
+                        // No process found for the provided guid
+                        $('#processStatus').html("<div id='invalidProcess'>Task failed to complete.</div>");
+                    }
+                    else {
+                        pendingCount += 1;
+                        if(pendingCount >= 10){
+                            $('#processStatus').html("<div id='completedProcess'>There was a problem finding the task.</div>");
+                        }else {
+                            setTimeout(checkProcessStatus, timeout);
+                        }
+                    }
+                }
+                else{
+                    $('#processStatus').html("<div id='invalidKey'>No status key found in process request.</div>")
+                }
+            },
+            error: function (jqXHR, status) {
+                // $('#processStatus').html("<div id='errorStatus'>" + status + "</div");
+                setTimeout(checkProcessStatus, timeout);
+            },
+            complete: function (jqXHR, status) {
+                return false;
+            }
+        })
+    }
+
+</script>
+<div id="statusDiv">
+    <div id="samTitle">SAM Output Result Status</div>
+    <div id="processID_div">Your process ID: <span id="processID"></span></div>
+    <div id="processStatus_div">Process status: <div id="processStatus">
+        <div id="statusG">
+	        <div id="statusG_1" class="statusG"></div>
+	        <div id="statusG_2" class="statusG"></div>
+	        <div id="statusG_3" class="statusG"></div>
+	        <div id="statusG_4" class="statusG"></div>
+	        <div id="statusG_5" class="statusG"></div>
+	        <div id="statusG_6" class="statusG"></div>
+	        <div id="statusG_7" class="statusG"></div>
+	        <div id="statusG_8" class="statusG"></div>
+        </div></div>
+    </div>
+
+</div>

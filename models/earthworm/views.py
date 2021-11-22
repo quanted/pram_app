@@ -14,7 +14,7 @@ algorithm = '<p>For any particular environmental phase (e.g., water, soil, air, 
             'by Z. The relationship between fugacity, fugacity capacity and chemical concentration (C) ' \
             'is defined by Equation 1.' \
             '</p>' \
-            '<p>Equation 1. <img src = \"/static_qed/images/latex/earthworm/earthworm_image1.png\" ' \
+            '<p>Equation 1. <img src = \"/pram/static/images/latex/earthworm/earthworm_image1.png\" ' \
             'alt=\"earthworm_1\"></p>' \
             '<p>' \
             'Fugacity capacities for a given chemical are calculated for the phases of interest as ' \
@@ -23,36 +23,36 @@ algorithm = '<p>For any particular environmental phase (e.g., water, soil, air, 
             'earthworms (Z<sub>E</sub>) (Equation 2-4) require several chemical-specific parameters and ' \
             'assumptions of system temperature (25 &#8451;) and steady state equilibrium. Parameter values ' \
             'relevant to Equations 2-4 are defined in Table 1.</p>' \
-            '<p>Equation 2. <img src = \"/static_qed/images/latex/earthworm/earthworm_image2.png\" ' \
+            '<p>Equation 2. <img src = \"/pram/static/images/latex/earthworm/earthworm_image2.png\" ' \
             'alt=\"earthworm_2\"></p>' \
-            '<p>Equation 3. <img src = \"/static_qed/images/latex/earthworm/earthworm_image3.png\" ' \
+            '<p>Equation 3. <img src = \"/pram/static/images/latex/earthworm/earthworm_image3.png\" ' \
             'alt=\"earthworm_3\"></p>' \
-            '<p>Equation 4. <img src = \"/static_qed/images/latex/earthworm/earthworm_image4.png\" ' \
+            '<p>Equation 4. <img src = \"/pram/static/images/latex/earthworm/earthworm_image4.png\" ' \
             'alt=\"earthworm_4\"></p>' \
             '<p>Fugacity capacities for a given chemical are caculated for the phases of interest as part ' \
             'of the exposure point concentration estimation methodology. By definition, the ratio between Z ' \
             'values of different phases (compartments) equals the partitioning coefficient (for example, see ' \
             'Equation 5).' \
             '</p>' \
-            '<p>Equation 5. <img src = \"/static_qed/images/latex/earthworm/earthworm_image5.png\" alt=\"earthworm_5\"></p>' \
+            '<p>Equation 5. <img src = \"/pram/static/images/latex/earthworm/earthworm_image5.png\" alt=\"earthworm_5\"></p>' \
             '<p>In this approach, it is assumed that a pesticide partitions between the soil, the (pore) water and the ' \
             'air contained within the soil of the treatment site. It is assumed that earthworms dwelling within the soil ' \
             'are exposed to a pesticide via ingestion of contaminated soil and pore-water (Belfroid et. al 1994). The ' \
             'concentration of a pesticide in earthworm tissues can be calculated according to Equation 6. The parameters of ' \
             'Equation 6 are defined in Table 1.' \
             '</p>' \
-            '<p>Equation 6. <img src = \"/static_qed/images/latex/earthworm/earthworm_image6.png\" alt=\"earthworm_6\"></p>' \
+            '<p>Equation 6. <img src = \"/pram/static/images/latex/earthworm/earthworm_image6.png\" alt=\"earthworm_6\"></p>' \
             '<p>' \
             'Equation 6 can be redefined using equations 2-4 as follows in Equation 7. Equation 7 is used to calculate ' \
             'the concentration of a pesticide in earthworms inhabiting the soil of treatment sites.' \
             '</p>' \
-            '<p>Equation 7. <img src = \"/static_qed/images/latex/earthworm/earthworm_image7.png\" alt=\"earthworm_7\"></p>' \
+            '<p>Equation 7. <img src = \"/pram/static/images/latex/earthworm/earthworm_image7.png\" alt=\"earthworm_7\"></p>' \
             '<p>L can be based on the lipid content of earthworms, which was assumed to be 0.01 (Cobb et al. 1995). The ' \
             'resulting C<sub>E</sub> value is in units of mol/m<sup>3</sup>. This value is converted to units of g/kg ' \
             'using Equation 8. The density of the earthworm (&#961;<sub>E</sub>) is assumed to be 1000kg/m<sup>3</sup> ' \
             '(equivalent to density of water). The resulting concentration of pesticide in earthworms denotes in ' \
             '(C<sub>E</sub><sup>*</sup>) of Equation 8.' \
-            '</p><p>Equation 8. <img src = \"/static_qed/images/latex/earthworm/earthworm_image8.png\" alt=\"earthworm_8\"></p>' \
+            '</p><p>Equation 8. <img src = \"/pram/static/images/latex/earthworm/earthworm_image8.png\" alt=\"earthworm_8\"></p>' \
             '<p>Table 1. Summary of parameters relevant to earthworm fugacity model.</p>' \
             '<table border=\"1\">' \
             '<tr>' \

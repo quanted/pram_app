@@ -9,7 +9,7 @@ batch = '<p>Will be back soon...</p>'
 qaqc = '<p>Will be back soon..</p>'
 
 #model algorithm html for algorithm page
-algorithm = '<img src = \"/static_qed/images/varroapop/varroapop_model_kuan.png\" alt=\"Varroapop_1\">' \
+algorithm = '<img src = \"/pram/static/images/varroapop/varroapop_model_kuan.png\" alt=\"Varroapop_1\">' \
             '<p><a href=\"https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=337175\">' \
             'Kuan <i>et al.</i>, 2018. Sensitivity analysis for simulating pesticide ' \
             'impacts on honey bee colonies. <i>Ecological Modeling</i>. </a>  </p>'

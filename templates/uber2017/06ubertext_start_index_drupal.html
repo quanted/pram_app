@@ -1,0 +1,11 @@
+<!--start 05ubertext_start-->
+{% load static %}
+<script src="{% static 'js/jquery.collapsible.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/scripts_collapsible.js' %}" type="text/javascript"></script>
+  <div class="main-column clearfix">
+    <h1 class="page-title">{{ TITLE }}</h1>
+    <div class="panel-pane pane-node-content" >
+      <div class="pane-content">
+        <div class="node node-page clearfix view-mode-full">
+          {{ TEXT_PARAGRAPH|safe }}
+<!--end 05ubertext_start-->

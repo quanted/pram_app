@@ -1,0 +1,441 @@
+<style>
+    #map {
+        width: 100%;
+        height: 450px;
+    }
+
+    #basemaps-wrapper {
+        background: white;
+        padding: 10px;
+        width: 100%;
+    }
+
+    {#datatables font size#}
+    th {
+        font-size: 12px;
+    }
+
+    td {
+        font-size: 11px;
+    }
+
+    {#remove all EPA css transitions for leaflet map#}
+    div.mapNoTransition * {
+        -o-transition-property: none !important;
+        -moz-transition-property: none !important;
+        -ms-transition-property: none !important;
+        -webkit-transition-property: none !important;
+        transition-property: none !important;
+        transition: none !important;
+    }
+
+</style>
+
+<head>
+
+    <!-- jquery -->
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <!-- datatables import -->
+    <link rel="stylesheet"
+          href="https://www.epa.gov/sites/all/libraries/js/datatables/media/css/jquery.dataTables.min.css">
+    <script src="https://www.epa.gov/sites/all/libraries/js/datatables/media/js/jquery.dataTables.min.js"></script>
+
+    <!-- local js -->
+    {% load static %}
+    <script src="{% static 'sam/mtb_flowline_simple.js' %}"></script>
+{#    <script src="{% static 'pisces/scripts/pisces_datatable.js' %}"></script>#}
+
+</head>
+
+<body>
+<div class="panel-display panel-1col clearfix">
+    <div class="panel-panel panel-col">
+
+        <!-- leaflet import -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css"/>
+        <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+        <script src="https://cdn.jsdelivr.net/leaflet.esri/2.0.1/esri-leaflet.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.1/esri-leaflet-geocoder.css">
+        <script src="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.1/esri-leaflet-geocoder.js"></script>
+
+
+        <!--- content div -->
+        <div class="col-md-10">
+            <div class="box multi news">
+                <div class="pane-content" id="mapDiv">
+                    <p><strong>Select a stream reach</strong> on the map to view data associated
+                        with the area.</p>
+                    <!-- leaflet map div -->
+                    <div id="map" class="mapNoTransition"></div>
+                    <!-- basemap wrapper -->
+                    <div id="basemaps-wrapper" class="leaflet-bar">
+                        <select name="basemaps" id="basemaps" onChange="changeBasemap(basemaps)">
+                            <option value="NationalGeographic">National Geographic</option>
+                            <option value="Topographic">Topographic</option>
+                            <option value="Imagery">Imagery</option>
+                            <option value="Streets">Streets</option>
+                            <option value="ShadedRelief">Shaded Relief</option>
+                        </select>
+                    </div>
+                    <br>
+                    <!-- datatables div -->
+                    <div>
+                        <table id="SAM_data_table" width="90%"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+
+            //style streams (update this once sample data of stream pesticide concentraion is available)
+            function getColor(d) {
+                return d > 110 ? '#084594' :
+                    d > 86 ? '#2171b5' :
+                        d > 63 ? '#4292c6' :
+                            d > 41 ? '#6baed6' :
+                                d > 20 ? '#9ecae1' :
+                                    d > -1 ? '#c6dbef' :
+                                        'red';
+            }
+
+
+            //style HUC 8 polygon cont.
+            function streamStyle(feature) {
+                return {
+                    fillColor: getColor(feature.properties.NumbSpc),
+                    weight: .8,
+                    color: '#2171b5',
+                };
+            }
+
+            //style selected stream
+            function selectStream(hucs) {
+                resetStreamLayer();
+                //  properties of highlighted HUC
+                streamLayer.eachLayer(function (layer) {
+                    if (hucs == layer.feature.properties.HUC_CODE)
+                        layer.setStyle({color: 'black', weight: 2.5, fillColor: '#02bfe7', fillOpacity: 0.6});
+                    if (hucs == layer.feature.properties.HUC_CODE)
+                        layer.bringToFront();
+                });
+            }
+
+            //get fish json data for selected HUC
+            function getHUCFishData(hucs) {
+                var url = "http://127.0.0.1:8000/fishhucs/" + hucs;
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: "json",
+                    success: function (data, status, jqXHR) {
+                        initDT(fish_by_huc_columns, data);
+                        return data;
+                    },
+                    error: function (jqXHR, status) {
+                        return null;
+                    }
+                })
+            }
+
+            //get fish json data for selected HUC
+            function resetStreamLayer() {
+                streamLayer.eachLayer(function (layer) {
+                    streamLayer.resetStyle(layer);
+                });
+            }
+
+            //Setup on click method for each stream feature
+            function onEachFeature(feature, layer) {
+                layer.on('click', function (e) {
+                    selectStream(feature.properties.HUC_CODE);
+                    var data = getHUCFishData(feature.properties.HUC_CODE);
+                    //initDT(fish_by_huc_columns, data);
+                    //alert(e.latlng.toString());
+                });
+            }
+
+
+            // initialize the map
+            var map = L.map('map', {renderer: L.svg({padding: 100})}).setView([39.6093, -91.9685], 8);
+
+            // load basemap
+            L.esri.basemapLayer('NationalGeographic')
+                .addTo(map);
+
+            // load huc watershed boundaries
+            var streamLayer = L.geoJson(markTwainStreams, {
+                style: streamStyle,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+
+            //basemap selection toolbar
+            var layerESRI = L.esri.basemapLayer('Imagery');
+            var layerLabels;
+
+            function setBasemap(basemap) {
+                if (layerESRI) {
+                    map.removeLayer(layerESRI);
+                }
+                layerESRI = L.esri.basemapLayer(basemap);
+                map.addLayer(layerESRI);
+                if (layerLabels) {
+                    map.removeLayer(layerLabels);
+                }
+                if (basemap === 'ShadedRelief' || basemap === 'Imagery' || basemap === 'Terrain') {
+                    layerLabels = L.esri.basemapLayer(basemap + 'Labels');
+                    map.addLayer(layerLabels);
+                }
+            }
+
+            function changeBasemap(basemaps) {
+                var basemap = basemaps.value;
+                setBasemap(basemap);
+            }
+
+            // -------- FISH Functions ---------- //
+
+
+            function getFishDataonMapClick(e) {
+                getStreamData(e.latlng.lat, e.latlng.lng);
+                //getFishData();
+                getTESTFishData();
+            }
+
+            function getFishData() {
+                var huc8 = JSON.stringify([document.getElementById('#huc12').value.substring(0, 8)]);
+                $.ajax({
+                    type: "POST",
+                    url: "/pisces/rest/fishproperies",
+                    data: huc8,
+                    crossDomain: true,
+                    success: function (data) {
+                        populateFishTable(data)
+                    },
+                    error: function (jqXHR, status) {
+                        $('#error_msg').html("Error: failed to get fish data for the selected huc.");
+                        return null;
+                    }
+                });
+            }
+
+            function getTESTFishData() {
+                var ecoData = {"region": "Coastal Plains", "gid": 9};
+                $('#ecoRegionId').html(ecoData.gid);
+                $('#ecoRegionName').html(ecoData.region);
+
+                var testFishData = {
+                    "cognatus": {
+                        "depth_l": 10.09,
+                        "tss_l": 0.0001,
+                        "area_l": 208.1,
+                        "area_u": 25890.0,
+                        "common_name": "slimy sculpin",
+                        "genusID": 41,
+                        "depth_u": 59.3727,
+                        "species": "cognatus",
+                        "tss_u": 22.2,
+                        "species_id": 137,
+                        "max_Size": 12.0,
+                        "slope_u": 3.45,
+                        "huc": "04030101",
+                        "ph_l": 6.65,
+                        "ph_u": 8.35,
+                        "slope_l": 0.255,
+                        "width_l": 2.025,
+                        "genus": "Cottus",
+                        "cond_l": 23.6,
+                        "do_l": 47.5254,
+                        "do_u": 95.1819,
+                        "width_u": 18.51,
+                        "cond_u": 534.0
+                    },
+                    "zenithicus": {
+                        "depth_l": null,
+                        "tss_l": null,
+                        "area_l": null,
+                        "area_u": null,
+                        "common_name": "shortjaw cisco",
+                        "genusID": 40,
+                        "depth_u": null,
+                        "species": "zenithicus",
+                        "tss_u": null,
+                        "species_id": 126,
+                        "max_Size": 40.0,
+                        "slope_u": null,
+                        "huc": "04030101",
+                        "ph_l": null,
+                        "ph_u": null,
+                        "slope_l": null,
+                        "width_l": null,
+                        "genus": "Coregonus",
+                        "cond_l": null,
+                        "do_l": null,
+                        "do_u": null,
+                        "width_u": null,
+                        "cond_u": null
+                    },
+                    "heterolepis": {
+                        "depth_l": 16.27,
+                        "tss_l": 0.8,
+                        "area_l": 595.8,
+                        "area_u": 77418.0,
+                        "common_name": "blacknose shiner",
+                        "genusID": 134,
+                        "depth_u": 66.32,
+                        "species": "heterolepis",
+                        "tss_u": 34.0,
+                        "species_id": 706,
+                        "max_Size": 10.0,
+                        "slope_u": 2.0,
+                        "huc": "04030101",
+                        "ph_l": 7.1,
+                        "ph_u": 8.43,
+                        "slope_l": 0.2,
+                        "width_l": 2.467,
+                        "genus": "Notropis",
+                        "cond_l": 46.0,
+                        "do_l": 42.1327,
+                        "do_u": 99.3147,
+                        "width_u": 27.4545,
+                        "cond_u": 883.0
+                    },
+                    "elongatus": {
+                        "depth_l": 13.48,
+                        "tss_l": 0.4,
+                        "area_l": 129.4,
+                        "area_u": 10614.0,
+                        "common_name": "redside dace",
+                        "genusID": 39,
+                        "depth_u": 61.52,
+                        "species": "elongatus",
+                        "tss_u": 31.4,
+                        "species_id": 109,
+                        "max_Size": 12.0,
+                        "slope_u": 3.25,
+                        "huc": "04030101",
+                        "ph_l": 6.56,
+                        "ph_u": 8.18,
+                        "slope_l": 0.1889,
+                        "width_l": 1.25,
+                        "genus": "Clinostomus",
+                        "cond_l": 22.8,
+                        "do_l": 49.0757,
+                        "do_u": 90.2983,
+                        "width_u": 14.25,
+                        "cond_u": 496.0
+                    },
+                    "hankinsoni": {
+                        "depth_l": null,
+                        "tss_l": null,
+                        "area_l": 1782.9,
+                        "area_u": 279035.0,
+                        "common_name": "brassy minnow",
+                        "genusID": 86,
+                        "depth_u": null,
+                        "species": "hankinsoni",
+                        "tss_u": null,
+                        "species_id": 493,
+                        "max_Size": 10.0,
+                        "slope_u": null,
+                        "huc": "04030101",
+                        "ph_l": 6.81,
+                        "ph_u": 8.13,
+                        "slope_l": null,
+                        "width_l": 4.02,
+                        "genus": "Hybognathus",
+                        "cond_l": 89.0,
+                        "do_l": 24.8836,
+                        "do_u": 82.509,
+                        "width_u": 62.7273,
+                        "cond_u": 388.4
+                    },
+                    "nigrum": {
+                        "depth_l": 13.17,
+                        "tss_l": 0.8,
+                        "area_l": 213.6,
+                        "area_u": 34914.5,
+                        "common_name": "johnny darter",
+                        "genusID": 69,
+                        "depth_u": 63.7386,
+                        "species": "nigrum",
+                        "tss_u": 34.0,
+                        "species_id": 352,
+                        "max_Size": 7.0,
+                        "slope_u": 2.44,
+                        "huc": "04030101",
+                        "ph_l": 6.85,
+                        "ph_u": 8.36,
+                        "slope_l": 0.155,
+                        "width_l": 1.635,
+                        "genus": "Etheostoma",
+                        "cond_l": 43.0,
+                        "do_l": 45.0836,
+                        "do_u": 99.3147,
+                        "width_u": 21.6364,
+                        "cond_u": 714.0
+                    },
+                    "umbratilis": {
+                        "depth_l": 23.68,
+                        "tss_l": 2.5,
+                        "area_l": 1997.9,
+                        "area_u": 63266.0,
+                        "common_name": "redfin shiner",
+                        "genusID": 112,
+                        "depth_u": 62.04,
+                        "species": "umbratilis",
+                        "tss_u": 15.8,
+                        "species_id": 591,
+                        "max_Size": 8.5,
+                        "slope_u": 2.0,
+                        "huc": "04030101",
+                        "ph_l": 6.83,
+                        "ph_u": 8.22,
+                        "slope_l": 0.06,
+                        "width_l": 4.4355,
+                        "genus": "Lythrurus",
+                        "cond_l": 36.7,
+                        "do_l": 48.2465,
+                        "do_u": 84.8443,
+                        "width_u": 16.88,
+                        "cond_u": 340.7
+                    }
+                };
+                populateFishTable(testFishData);
+            }
+
+            function populateFishTable(data) {
+                var fishArray = [];
+                Object.keys(data).forEach(function (key) {
+                    fishArray.push(Object.values(data[key]));
+                });
+                $('#fishTable').closest('table').show();
+                $('#fishTable').dataTable({
+                    data: fishArray,
+                    "scrollX": true,
+                    "columns": [
+                        {data: 4},
+                        {data: 7}
+                    ],
+                    "columnDefs": [
+                        {
+                            "render": function (data, type, row) {
+                                return row[17] + ' ' + data;
+                            },
+                            "targets": 1
+                        }
+                    ]
+                });
+            }
+
+
+        </script>
+
+    </div>
+</div>
+
+</body>
+</html>

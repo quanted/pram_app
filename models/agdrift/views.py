@@ -28,16 +28,16 @@ algorithm = '<p>The AgDRIFT model is both a mechanistic and empirical model whic
             'for calculation of deposition for ground and orchard application types are below:</p>' \
             '<p>The motion of the spray droplets is modeled using the lagrangian equations governing ' \
             'the behavior of a droplet in motion</p> ' \
-            '<img src=\"/static_qed/images/latex/agdrift/agdrift_image1.png\">' \
+            '<img src=\"/pram/static/images/latex/agdrift/agdrift_image1.png\">' \
             '<p>The evaporation model in AgDRIFT is based on the D-aquared law, which describes the ' \
             'time rate of change of drop diamter. This is described by:</p>' \
-            '<img src=\"/static_qed/images/latex/agdrift/agdrift_image2.png\">' \
+            '<img src=\"/pram/static/images/latex/agdrift/agdrift_image2.png\">' \
             '<p>Aircraft speed, weight, and thrust are all incorporated into the calculations of drift ' \
             'using flow field modeling.When the sprayed material nears the ground, ground deposition ' \
             'begins and continues until all evaporated material is deposited. Ground deposition is ' \
             'calculated by assuming that the concentration of material around the mean maybe be taken ' \
             'as Gaussian. </p>' \
-            '<img src=\"/static_qed/images/latex/agdrift/agdrift_image3.png\">'
+            '<img src=\"/pram/static/images/latex/agdrift/agdrift_image3.png\">'
 
 #model description html for description page
 description = '<p>The primary function of AgDRIFT is to calculate the downward ' \

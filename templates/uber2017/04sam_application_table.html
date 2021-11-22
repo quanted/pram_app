@@ -1,0 +1,93 @@
+<script>
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
+$(document).ready(function(){
+
+    var i = 1
+
+    var row = '<tr class="tab_noa1">' +
+                '<td><select name="crop_XXX">' +
+                    '<option value="10 14 15 18">Corn</option>' +
+                    '<option value="20 25 26 42">Cotton</option>'  +
+                    '<option value="40 42 45 48 14">Soybeans</option>' +
+                    '<option value="50 56 58 15 45">Wheat</option>' +
+                    '<option value="60 56 26 68">Vegetables</option>' +
+                    '<option value="60 61">Ground fruit</option>' +
+                    '<option value="70">Orchards</option>' +
+                    '<option value="70">Grapes, vineyards</option>' +
+                    '<option value="75">Other trees</option>' +
+                    '<option value="80 48 18 58">Other grains</option>' +
+                    '<option value="90">Other row crops</option>' +
+                    '<option value="100">Other crops</option>' +
+                    '<option value="110 150">Pasture/hay/forage/grass</option>' +
+                '</td>' +
+                '<td><select name="event_XXX">' +
+                    '<option value="plant">plant</option>' +
+                    '<option value="emergence">emergence</option>' +
+                    '<option value="maturity">maturity</option>' +
+                    '<option value="harvest">harvest</option>' +
+                '</select>' +
+                '<td><input name="offset_XXX" type="number" value="0" min="-30" max="30" size="5"></td>' +
+                '<td><select name="dist_XXX">' +
+                    '<option value="ground">uniform</option>' +
+                    '<option value="step">step</option>' +
+                '<td><input name="window1_XXX" type="number" size="5" min="0" max="50" value="7"></td>' +
+                '<td><input class="f1" name="pct1_XXX" type="number" min="0" max="100" size="5" value="100"></td>' +
+                '<td><input name="window2_XXX" type="number" size="5" min="0" max="50" value="7"></td>' +
+                '<td><input class = "f2" name="pct2_XXX" type="number" min="0" max="100" size="5" value="100"></td>' +
+                '<td><select name="method_XXX">' +
+                    '<option value="uniform">ground</option>' +
+                    '<option value="step">foliar</option>' +
+                '</select>'+
+                '<td><input name="apprate_XXX" type="number" step="0.01" min="0" max="100" value="1" size="3"></td>' +
+                '<td><input name="effic_XXX" type="number" step="0.01" min="0" max="1" value="1" size="3"></td>' +
+                '</tr>'
+
+    var total = $('#id_noa').val()
+
+    $('tr[id*="noa_header"]').show()
+
+    while (i <= total) {
+        $('.tab_app').append(row.replaceAll('XXX', i));
+        i = i + 1;
+    }
+
+
+    $(document).on('change', '.f1', function(){
+        $('.f1').each(function (index) {
+            var val = 100 - $('.f1').eq(index).val()
+            $('.f2').eq(index).val(val);
+            });
+    })
+
+    $(document).on('change', '.f2', function(){
+        $('.f2').each(function (index) {
+            var val = 100 - $('.f2').eq(index).val()
+            $('.f1').eq(index).val(val);
+            });
+    })
+
+    $('#id_noa').change(function () {
+    	var total = $(this).val()
+    	$('tr[id*="noa_header"]').show()
+
+    	while (i <= total) {
+            $('.tab_app').append(row.replaceAll('XXX', i));
+    		i = i + 1;
+    	}
+
+    	while (i-1 > total) {
+    		$(".tab_app tr:last").remove();
+    		i=i-1
+    	}
+
+    	$('</table>').appendTo('.tab_app');
+    })
+
+});
+</script>
+

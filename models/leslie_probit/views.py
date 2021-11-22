@@ -11,14 +11,14 @@ qaqc = '<p>Will be back soon..</p>'
 #model algorithm html for algorithm page
 algorithm = '' \
             '<p>Ideally, individuals\'\ survival and fertility rates can be treated as constants over time:</p>' \
-            '<img src = \"/static_qed/images/latex/lesliedr/lesliedr_1.png"\ alt=\"Leslie Dose_1"\>' \
+            '<img src = \"/pram/static/images/latex/lesliedr/lesliedr_1.png"\ alt=\"Leslie Dose_1"\>' \
             '<p>When taking account the reduction of fertility due to the increased population size,</p>' \
             '<p>the fertility is modified into:</p>' \
-            '<img src = \"/static_qed/images/latex/lesliedr/lesliedr_2.png"\ alt=\"Leslie Dose_2"\>' \
+            '<img src = \"/pram/static/images/latex/lesliedr/lesliedr_2.png"\ alt=\"Leslie Dose_2"\>' \
             '<p>When considering the impacts from chemical exposure the survival rate is modified into:</p>' \
-            '<img src = \"/static_qed/images/latex/lesliedr/lesliedr_3.png"\ alt=\"Leslie Dose_3"\>' \
+            '<img src = \"/pram/static/images/latex/lesliedr/lesliedr_3.png"\ alt=\"Leslie Dose_3"\>' \
             '<p>The logistic dose response model is given::</p>' \
-            '<img src = \"/static_qed/images/latex/lesliedr/lesliedr_4.png"\ alt=\"Leslie Dose_4"\>' \
+            '<img src = \"/pram/static/images/latex/lesliedr/lesliedr_4.png"\ alt=\"Leslie Dose_4"\>' \
 
 
 
@@ -28,7 +28,7 @@ description = '<p>Developed by Belgian mathematician <a href=\"http://en.wikiped
               'It is related to the maximum population growth rate (r<sub>0</sub>), carrying capacity (K), and current population' \
               '(N<sub>t</sub>), which follows the following relationship: ' \
               '</p>' \
-              '<img src = \"/static_qed/images/latex/logistic/logistic_des_1.png"\ alt=\"Logisitic Model"\>' \
+              '<img src = \"/pram/static/images/latex/logistic/logistic_des_1.png"\ alt=\"Logisitic Model"\>' \
               '<ul class="bullet">' \
                 '<li> Population growth rate (r<sub>t</sub>) declines with the increase of population size (N<sub>t</sub>) </li>' \
                 '<li> Population growth rate (r<sub>t</sub>) is 0 when the population (N<sub>t</sub>) reaches carrying capacity (K) </li>' \

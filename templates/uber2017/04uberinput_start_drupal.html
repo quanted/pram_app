@@ -1,0 +1,18 @@
+<!--start 04uberinput_start-->
+{% load static %}
+<script type="text/javascript" src="{% static 'js/jquery.blockUI.js' %}"></script>
+<script src="{% static 'js/scripts_input.js' %}"></script>
+
+  <div class="main-column clearfix">
+    <h1 class="page-title">{{ TITLE }}</h1>
+    <div class="panel-pane pane-node-content" >
+      <div class="pane-content">
+{#        <div class="node node-page clearfix view-mode-full">#}
+          <div class="model_inputs">
+          <form method="post" action="/pram/{{ MODEL }}/input/" name="input_table">
+              {% csrf_token %}
+            <table class="nostripe input_table">
+              <thead>
+                <tr><th scope="col">Input</th><th scope="col">Value</th></tr>
+              </thead>
+<!--end 04uberinput_start-->

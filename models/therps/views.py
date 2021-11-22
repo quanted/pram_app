@@ -13,7 +13,7 @@ algorithm = '<h3>1. Introduction</h3>' \
             '<p>' \
             'In conducting ecological risk assessments, EPA currently uses birds as surrogates for terrestrial-phase amphibians and reptiles. However, birds are likely to consume more food than amphibians or reptiles on a daily dietary intake basis, assuming similar caloric content of the food items. This difference is evident by comparing the estimated caloric requirements for free-living iguanid lizards (Iguanidae) to those of passerines (U.S. EPA, 1993):' \
             '</p>' \
-            '<img src = \"/static_qed/images/latex/therps/therps_image1.png\">' \
+            '<img src = \"/pram/static/images/latex/therps/therps_image1.png\">' \
             '<p>' \
             'Given the similar exponents on the allometric functions, the free-living metabolic rate of birds can be 40 times higher than reptiles of similar weight, with differences narrowing as body weight increases. Consequently, use of an avian food intake allometric equation as a surrogate to herptiles is likely to result in an over-estimation of exposure for reptiles and terrestrial-phase amphibians.' \
             '</p>' \
@@ -27,7 +27,7 @@ algorithm = '<h3>1. Introduction</h3>' \
             '<p><b>2.1 Food Intake Allometric Equation</p></b>' \
             '<p>Daily food ingestion for herptiles (Nagy, 1987 as cited in U.S. EPA, 1993):' \
             '</p>' \
-            '<img src = \"/static_qed/images/latex/therps/therps_image2.png\">' \
+            '<img src = \"/pram/static/images/latex/therps/therps_image2.png\">' \
             '<p>' \
             'The insectivore food intake equation was chosen to be consistent with the California red-legged frog diet. Therefore, this version of T-HERPS should not be used to estimate potential exposures to herbivores. Instead, it is used to estimate the food ingestion rate of herpetofauna. It is assumed that since both reptiles and amphibians are poikilothermic, they have similar caloric requirements.' \
             '</p>' \

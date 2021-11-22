@@ -11,18 +11,18 @@ qaqc = '<p>Will be back soon..</p>'
 #model algorithm html for algorithm page
 algorithm = '<p>The estimated concentrations in pollen and nectar (EECs) are calculated using the following e' \
             'quations:</p><p>EEC of foliar spray applications:</p>' \
-            '<img src = \"/static_qed/images/latex/beerex/fs_eec.png\" alt=\"Beerex_1\">' \
+            '<img src = \"/pram/static/images/latex/beerex/fs_eec.png\" alt=\"Beerex_1\">' \
             '<p>EEC of soil applications:</p>' \
-            '<img src = \"/static_qed/images/latex/beerex/soil_eec.png\" alt=\"Beerex_2\">' \
+            '<img src = \"/pram/static/images/latex/beerex/soil_eec.png\" alt=\"Beerex_2\">' \
             '<p>EEC of seed treatment applications:</p>' \
-            '<img src = \"/static_qed/images/latex/beerex/seed_eec.png\" alt=\"Beerex_3\">' \
+            '<img src = \"/pram/static/images/latex/beerex/seed_eec.png\" alt=\"Beerex_3\">' \
             '<p>EEC of tree trunk applications:</p>' \
-            '<img src = \"/static_qed/images/latex/beerex/tree_eec.png\" alt=\"Beerex_4\">' \
+            '<img src = \"/pram/static/images/latex/beerex/tree_eec.png\" alt=\"Beerex_4\">' \
             '<p>where, </p>' \
-            '<img src = \"/static_qed/images/latex/beerex/application_rate.png\" alt=\"App Rate\">' \
-            '<img src = \"/static_qed/images/latex/beerex/log_kow.png\" alt=\"Log kow\">' \
-            '<img src = \"/static_qed/images/latex/beerex/koc.png\" alt=\"koc\">' \
-            '<img src = \"/static_qed/images/latex/beerex/mass_tree.png\" alt=\"Tree mass\">' \
+            '<img src = \"/pram/static/images/latex/beerex/application_rate.png\" alt=\"App Rate\">' \
+            '<img src = \"/pram/static/images/latex/beerex/log_kow.png\" alt=\"Log kow\">' \
+            '<img src = \"/pram/static/images/latex/beerex/koc.png\" alt=\"koc\">' \
+            '<img src = \"/pram/static/images/latex/beerex/mass_tree.png\" alt=\"Tree mass\">' \
             '<p>The total dose of individual bees (ug a.i./bee) is calculated using EEC calculations and ' \
             'consumption rates of' \
             'individual bees. In the instance when empirical EEC data is provided, the empirical EEC data ' \

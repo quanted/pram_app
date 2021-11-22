@@ -10,7 +10,7 @@ qaqc = '<p>Will be back soon..</p>'
 #model algorithm html for algorithm page
 algorithm = '<p>Predictor of chance of individual effect using probit dose-response curve slope ' \
             'and median lethal estimate which is based on the following formula:</p>' \
-            '<img src = \"/static_qed/images/latex/iec/iec_image1.png\">'
+            '<img src = \"/pram/static/images/latex/iec/iec_image1.png\">'
 
 #model description html for description page
 description = '<p>IECV1.1 (Individual Effect Chance Model Version 1.1) estimates potential ' \

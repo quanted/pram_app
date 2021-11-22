@@ -10,7 +10,7 @@ def sam_input_page(request, model='', header='', form_data=None):
     from . import sam_parameters
 
     html = render_to_string('04uberinput_jquery.html', {'model': model})
-    html += '<script type="text/javascript" src="/static_qed/js/jquery-ui.min.js"></script>'
+    html += '<script type="text/javascript" src="/pram/static/js/jquery-ui.min.js"></script>'
     html += render_to_string('04uberinput_start_tabbed_drupal.html', {
         'MODEL': model,
         'TITLE': header},

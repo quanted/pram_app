@@ -46,7 +46,7 @@ description = '<p>The Spatial Aquatic Model (SAM) is an exposure model d' \
               '<p>Figure 1 shows the data inputs, organization, and model components of SAM.' \
               '</p>' \
               '<p>' \
-              '<img src = \"/static_qed/images/sam_figure1.gif\" alt=\"SAM Model\">' \
+              '<img src = \"/pram/static/images/sam_figure1.gif\" alt=\"SAM Model\">' \
               '</p>' \
               '<p>' \
               'Many of the data inputs and the hydrology are pre-processed to make exposure ' \

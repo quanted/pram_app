@@ -1,0 +1,15 @@
+<!--start 04uberinput_start-->
+{% load static %}
+<script src="{% static 'js/scripts_input_tabbed.js' %}"></script>
+
+<div class="main-column clearfix">
+    <h1 class="page-title">{{ TITLE }}</h1>
+    <div class="panel-pane pane-node-content" >
+      <div class="pane-content">
+        <div class="node node-page clearfix view-mode-full">
+          <form method="post" action="/pram/{{ MODEL }}/input/" id= "main_form" name="input_table" class="inputs_form">
+              {% csrf_token %}
+
+{#	<div class="articles_input">#}
+
+<!--end 04uberinput_start-->

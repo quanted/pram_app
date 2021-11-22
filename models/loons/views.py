@@ -11,17 +11,17 @@ qaqc = '<p>Will be back soon..</p>'
 #model algorithm html for algorithm page
 algorithm = '' \
             '<p>In general, the leslie matrix for different age classes can be written as:</p>'\
-            '<img src = "/static_qed/images/latex/loons/loons_image1.png">'\
+            '<img src = "/pram/static/images/latex/loons/loons_image1.png">'\
             '<p>When building a stage-based Lefkovitch matrix model (Figure 1):</p>'\
             '<figure style="text-align: center;"">'\
-            '<img src = "/static_qed/images/latex/loons/Figure1.png" style="width: 50%; height: 50%; ">'\
+            '<img src = "/pram/static/images/latex/loons/Figure1.png" style="width: 50%; height: 50%; ">'\
             '<figcaption>Figure 1. Loon life-cycle diagram</figcaption>'\
             '</figure>'\
-            '<img src = "/static_qed/images/latex/loons/loons_image2.png">'\
+            '<img src = "/pram/static/images/latex/loons/loons_image2.png">'\
             '<p>Sensitivity is tested as:</p>'\
-            '<img src = "/static_qed/images/latex/loons/loons_image3.png">'\
+            '<img src = "/pram/static/images/latex/loons/loons_image3.png">'\
             '<p>Elasticity is tested as:</p>'\
-            '<img src = "/static_qed/images/latex/loons/loons_image4.png">'\
+            '<img src = "/pram/static/images/latex/loons/loons_image4.png">'\
             '<p>The confindence interval for population growth rate is calculated based'\
             'on pre-defined parameter distributions. Please refer to Grear et. al. (2009) for more information.</p>'\
 

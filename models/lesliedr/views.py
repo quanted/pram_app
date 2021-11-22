@@ -10,14 +10,14 @@ qaqc = '<p>Will be back soon..</p>'
 
 #model algorithm html for algorithm page
 algorithm = '<p>Ideally, individuals\' survival and fertility rates can be treated as constants over time:</p>' \
-            '<img src = \"/static_qed/images/latex/lesliedr/lesliedr_1.png\" alt=\"Leslie Dose_1\">' \
+            '<img src = \"/pram/static/images/latex/lesliedr/lesliedr_1.png\" alt=\"Leslie Dose_1\">' \
             '<p>When taking account the reduction of fertility due to the increased population size,</p>' \
             '<p>the fertility is modified into:</p>' \
-            '<img src = \"/static_qed/images/latex/lesliedr/lesliedr_2.png\" alt=\"Leslie Dose_2\">' \
+            '<img src = \"/pram/static/images/latex/lesliedr/lesliedr_2.png\" alt=\"Leslie Dose_2\">' \
             '<p>When considering the impacts from chemical exposure the survival rate is modified into:</p>' \
-            '<img src = \"/static_qed/images/latex/lesliedr/lesliedr_3.png\" alt=\"Leslie Dose_3\">' \
+            '<img src = \"/pram/static/images/latex/lesliedr/lesliedr_3.png\" alt=\"Leslie Dose_3\">' \
             '<p>The logistic dose response model is given:</p>' \
-            '<img src = \"/static_qed/images/latex/lesliedr/lesliedr_4.png\" alt=\"Leslie Dose_4\">' \
+            '<img src = \"/pram/static/images/latex/lesliedr/lesliedr_4.png\" alt=\"Leslie Dose_4\">' \
 
 
 #model description html for description page

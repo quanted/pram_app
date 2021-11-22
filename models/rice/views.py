@@ -10,16 +10,16 @@ qaqc = '<p>Will be back soon..</p>'
 
 #model algorithm html for algorithm page
 algorithm = '<p>The formula of the Tier I Rice Model v1.0:</p>' \
-            '<img src = \"/static_qed/images/latex/rice/rice.eqn1.gif\">' \
+            '<img src = \"/pram/static/images/latex/rice/rice.eqn1.gif\">' \
             '<p>The Tier I Rice Conceptual Model:</p>' \
-            '<img src = \"/static_qed/images/latex/rice/rice.eqn2.gif\">' \
+            '<img src = \"/pram/static/images/latex/rice/rice.eqn2.gif\">' \
             '<p>It is more customary to describe a rice paddy in terms of depth rather than volume or mass. Therefore, ' \
             'the following equations are defined:</p>' \
-            '<img src = \"/static_qed/images/latex/rice/rice.eqn3.gif\">' \
+            '<img src = \"/pram/static/images/latex/rice/rice.eqn3.gif\">' \
             '<p>Further, the input mass per unit area as:</p>' \
-            '<img src = \"/static_qed/images/latex/rice/rice.eqn4.gif\">' \
+            '<img src = \"/pram/static/images/latex/rice/rice.eqn4.gif\">' \
             '<p>After substititution, the conceptual model with commonly understood parameters is the following:</p>' \
-            '<img src = \"/static_qed/images/latex/rice/rice.eqn5.gif\">'
+            '<img src = \"/pram/static/images/latex/rice/rice.eqn5.gif\">'
 
 #model description html for description page
 description = '<p>The Tier I Rice Model (Version 1.0) is designed to estimate surface ' \

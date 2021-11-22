@@ -10,29 +10,29 @@ qaqc = '<p>Will be back soon..</p>'
 
 #model algorithm html for algorithm page
 algorithm = '<p>Saturated air concentration:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image1.png\" alt=\"Stir_1\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image1.png\" alt=\"Stir_1\">' \
             '<p>Avian inhalation rate:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image2.png\" alt=\"stir_2\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image2.png\" alt=\"stir_2\">' \
             '<p>Maximum avian vapor inhalation dose:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image3.png\" alt=\"stir_3\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image3.png\" alt=\"stir_3\">' \
             '<p>Mammalian inhalation rate:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image4.png\" alt=\"stir_4\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image4.png\" alt=\"stir_4\">' \
             '<p>Maximum Mammalian Vapor Inhalation Dose:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image5.png\" alt=\"stir_5\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image5.png\" alt=\"stir_5\">' \
             '<p>Air column concentration after spray:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image6.png\" alt=\"stir_6\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image6.png\" alt=\"stir_6\">' \
             '<p>Avian spray droplet inhalation dose:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image7.png\" alt=\"stir_7\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image7.png\" alt=\"stir_7\">' \
             '<p>Mammalian spray droplet inhalation dose:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image8.png\" alt=\"stir_8\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image8.png\" alt=\"stir_8\">' \
             '<p>Conversion of mammalian inhalation LC50 to LD50:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image9.png\" alt=\"stir_9\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image9.png\" alt=\"stir_9\">' \
             '<p>Adjusted mammalian inhalation LD50:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image10.png\" alt=\"stir_10\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image10.png\" alt=\"stir_10\">' \
             '<p>Estimated avian inhalation LD50:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image11.png\" alt=\"stir_11\">' \
+            '<img src = \"/pram/static/images/latex/stir/stir_image11.png\" alt=\"stir_11\">' \
             '<p>Adjusted avian inhalation LD50:</p>' \
-            '<img src = \"/static_qed/images/latex/stir/stir_image12.png\" alt=\"stir_12\">'
+            '<img src = \"/pram/static/images/latex/stir/stir_image12.png\" alt=\"stir_12\">'
 
 #model description html for description page
 description = '<p>The STIR model was developed as a screening model to estimate ' \
@@ -55,7 +55,7 @@ description = '<p>The STIR model was developed as a screening model to estimate 
               'dose to toxicity.  To determine if inhalation exposure to a particular ' \
               'chemical warrants further investigation, ratios are compared to threshold ' \
               'values.</p>' \
-              '<img src = \"/static_qed/images/stir_figure1.gif\" alt=\"STIR Model\">'
+              '<img src = \"/pram/static/images/stir_figure1.gif\" alt=\"STIR Model\">'
 
 # How model name appears on web page
 header = 'STIR'

@@ -148,7 +148,7 @@ class SamInp_sim(forms.Form):
         required=False,
         widget=forms.DateInput(attrs={'class': 'datePicker'}),
         label='Start Date',
-        initial="01/01/2000")  # choices=SIM_DATE_START_CHOICES  This earliest possible start date
+        initial="01/01/2015")  # choices=SIM_DATE_START_CHOICES
 
     sim_date_end = forms.DateField(
         required=False,

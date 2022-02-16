@@ -148,13 +148,13 @@ class SamInp_sim(forms.Form):
         required=False,
         widget=forms.DateInput(attrs={'class': 'datePicker'}),
         label='Start Date',
-        initial="01/01/2015")  # choices=SIM_DATE_START_CHOICES
+        initial="01/01/2010")  # choices=SIM_DATE_START_CHOICES
 
     sim_date_end = forms.DateField(
         required=False,
         widget=forms.DateInput(attrs={'class': 'datePicker'}),
         label='End Date',
-        initial="12/31/2015")
+        initial="12/31/2010")
 
 
 class SamInp_output():

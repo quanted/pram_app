@@ -16,10 +16,16 @@ def flask_proxy(request, flask_url):
     print("Django to Flask proxy method: " + method + " url: " + proxy_url)
     if method == "POST":
         flask_request = requests.request("post", proxy_url, data=request.POST)
-        return HttpResponse(flask_request)
+        content_disposition = flask_request.headers["Content-Disposition"]
+        response =  HttpResponse(flask_request, content_type = flask_request.headers["Content-Type"],
+                                headers={'Content-Disposition': content_disposition)
+        return response
     elif method == "GET":
         flask_request = requests.request("get", proxy_url)
-        return HttpResponse(flask_request)
+        content_disposition = flask_request.headers["Content-Disposition"]
+        response =  HttpResponse(flask_request, content_type = flask_request.headers["Content-Type"],
+                                headers={'Content-Disposition': content_disposition)
+        return response
     else:
         print("Django to Flask proxy url invalid.")
         raise Http404

@@ -16,10 +16,10 @@ def flask_proxy(request, flask_url):
     print("Django to Flask proxy method: " + method + " url: " + proxy_url)
     if method == "POST":
         flask_request = requests.request("post", proxy_url, data=request.POST)
-        return HttpResponse(flask_request, content_type="application/json")
+        return HttpResponse(flask_request)
     elif method == "GET":
         flask_request = requests.request("get", proxy_url)
-        return HttpResponse(flask_request, content_type="application/json")
+        return HttpResponse(flask_request)
     else:
         print("Django to Flask proxy url invalid.")
         raise Http404

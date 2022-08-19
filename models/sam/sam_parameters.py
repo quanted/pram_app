@@ -66,7 +66,7 @@ class SamInp_chem(forms.Form):
     simulation_name = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'cols': 20, 'rows': 1}),
-        initial="test")#initial="Mark Twain Atrazine 062217")
+        initial="SAM run") # for random output set to test
 
     chemical_name = forms.CharField(
         required=False,

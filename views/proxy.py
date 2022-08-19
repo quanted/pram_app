@@ -16,7 +16,7 @@ def flask_proxy(request, flask_url):
     print("Django to Flask proxy method: " + method + " url: " + proxy_url)
     if method == "POST":
         flask_request = requests.request("post", proxy_url, data=request.POST)
-         response =  HttpResponse(flask_request, headers=flask_request.headers)
+        response =  HttpResponse(flask_request, headers=flask_request.headers)
         return response
     elif method == "GET":
         flask_request = requests.request("get", proxy_url)
